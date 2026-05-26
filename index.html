@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="te" id="html-root">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ఇస్లామిక్ ఫ్రంట్ – మంగళగిరి</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@300;400;500&family=Noto+Sans+Telugu:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --green-deep: #0d3b1e; --green-mid: #1a5c30; --green-light: #2e8b57;
+    --gold: #c8922a; --gold-light: #e8b84b; --gold-pale: #f5e6c0;
+    --cream: #faf6ee; --white: #ffffff;
+    --text-dark: #1a1208; --text-mid: #3d3018; --text-muted: #7a6840;
+    --border: rgba(200,146,42,0.25);
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', 'Noto Sans Telugu', sans-serif; background: var(--cream); color: var(--text-dark); overflow-x: hidden; }
+
+  /* NAV */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(13,59,30,0.96); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(200,146,42,0.3); padding: 0 5vw; display: flex; align-items: center; justify-content: space-between; height: 68px; }
+  .nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .nav-logo { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; }
+  .nav-title { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: var(--gold-light); letter-spacing: 0.5px; line-height: 1.2; }
+  .nav-sub { font-size: 10px; color: rgba(232,184,75,0.7); letter-spacing: 1.5px; text-transform: uppercase; }
+  .nav-right { display: flex; align-items: center; gap: 28px; }
+  .nav-links { display: flex; gap: 24px; list-style: none; }
+  .nav-links a { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 13px; letter-spacing: 0.5px; font-weight: 400; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--gold-light); }
+  .lang-btn { display: flex; align-items: center; gap: 6px; background: rgba(200,146,42,0.12); border: 1.5px solid rgba(200,146,42,0.4); color: var(--gold-light); padding: 7px 16px; border-radius: 100px; font-size: 12px; font-weight: 500; cursor: pointer; letter-spacing: 0.8px; font-family: inherit; transition: background 0.2s, transform 0.15s; white-space: nowrap; flex-shrink: 0; }
+  .lang-btn:hover { background: rgba(200,146,42,0.22); transform: translateY(-1px); }
+  .lang-btn::before { content: '🌐'; font-size: 13px; }
+
+  /* HERO */
+  .hero { min-height: 100vh; background: linear-gradient(160deg, var(--green-deep) 0%, #0a2e17 50%, #122b0f 100%); display: flex; align-items: center; padding: 100px 5vw 80px; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(200,146,42,0.06) 0%, transparent 70%), repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(200,146,42,0.02) 40px, rgba(200,146,42,0.02) 41px); }
+  .hero::after { content: '☽\FE0E'; position: absolute; right: 6vw; top: 12vh; font-size: clamp(160px, 20vw, 260px); color: rgba(200,146,42,0.06); line-height: 1; pointer-events: none; }
+  .hero-content { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr auto; gap: 60px; align-items: center; max-width: 1100px; width: 100%; }
+  .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(200,146,42,0.12); border: 1px solid rgba(200,146,42,0.35); border-radius: 100px; padding: 6px 16px; margin-bottom: 28px; font-size: 12px; color: var(--gold-light); letter-spacing: 1.5px; text-transform: uppercase; }
+  .hero-badge::before { content: '★\FE0E'; font-size: 10px; }
+  .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(48px, 7vw, 88px); font-weight: 900; color: var(--white); line-height: 1.05; margin-bottom: 8px; }
+  .hero-title span { color: var(--gold-light); display: block; }
+  .hero-subtitle { font-family: 'Cormorant Garamond', 'Noto Sans Telugu', serif; font-size: clamp(16px, 2vw, 22px); color: rgba(245,230,192,0.75); margin-bottom: 36px; font-weight: 400; letter-spacing: 0.3px; line-height: 1.7; }
+  .hero-stats { display: flex; gap: 36px; margin-bottom: 44px; flex-wrap: wrap; }
+  .hstat-num { font-family: 'Playfair Display', serif; font-size: 38px; font-weight: 700; color: var(--gold-light); line-height: 1; }
+  .hstat-label { font-size: 12px; color: rgba(245,230,192,0.55); letter-spacing: 0.8px; margin-top: 4px; }
+  .hero-divider { width: 1px; background: rgba(200,146,42,0.2); align-self: stretch; }
+  .hero-cta { display: inline-flex; align-items: center; gap: 10px; background: var(--gold); color: var(--green-deep); padding: 14px 32px; border-radius: 4px; font-weight: 500; font-size: 14px; letter-spacing: 0.5px; text-decoration: none; text-transform: uppercase; transition: background 0.2s, transform 0.15s; }
+  .hero-cta:hover { background: var(--gold-light); transform: translateY(-1px); }
+  .leader-card { position: relative; width: 300px; flex-shrink: 0; }
+  .leader-photo-frame { width: 280px; height: 340px; border: 2px solid rgba(200,146,42,0.4); border-radius: 6px; position: relative; overflow: hidden; background: linear-gradient(145deg, rgba(200,146,42,0.08), rgba(200,146,42,0.02)); }
+  .leader-photo-placeholder { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; }
+  .avatar-circle { width: 110px; height: 110px; border-radius: 50%; background: rgba(200,146,42,0.12); border: 2px solid rgba(200,146,42,0.35); display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 42px; font-weight: 700; color: var(--gold-light); }
+  .leader-photo-placeholder p { font-size: 12px; color: rgba(200,146,42,0.5); text-align: center; letter-spacing: 0.5px; padding: 0 20px; }
+  .leader-nameplate { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(13,59,30,0.97) 60%, transparent); padding: 36px 20px 20px; }
+  .leader-name { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--white); line-height: 1.2; }
+.leader-title-text {
+  font-size: 11px;
+  color: var(--gold-light);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-top: 4px;
+  white-space: pre-line;
+  line-height: 1.5;
+}
+  /* SECTIONS */
+  section { padding: 90px 5vw; }
+  .section-tag { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); font-weight: 500; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+  .section-tag::before { content: ''; display: block; width: 30px; height: 1px; background: var(--gold); }
+  .section-title { font-family: 'Playfair Display', serif; font-size: clamp(30px, 4vw, 48px); font-weight: 700; color: var(--green-deep); line-height: 1.15; margin-bottom: 16px; }
+  .section-lead { font-size: 16px; color: var(--text-muted); max-width: 560px; line-height: 1.75; }
+  .inner { max-width: 1100px; margin: 0 auto; }
+
+  /* VICTORY */
+  .victory { background: var(--green-deep); padding: 70px 5vw; }
+  .victory .inner { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+  .victory-left .section-title { color: var(--white); }
+  .victory-left .section-lead { color: rgba(245,230,192,0.65); }
+  .victory-left .section-tag { color: var(--gold-light); }
+  .victory-left .section-tag::before { background: var(--gold-light); }
+  .seats-visual { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px; }
+  .seat { width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 500; letter-spacing: 0.3px; transition: transform 0.2s; }
+  .seat:hover { transform: scale(1.1); }
+  .seat.won { background: var(--gold); color: var(--green-deep); font-weight: 700; box-shadow: 0 0 0 3px rgba(200,146,42,0.25); }
+  .seat.lost { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); color: rgba(255,255,255,0.3); }
+  .seat-legend { display: flex; gap: 24px; margin-top: 24px; }
+  .seat-legend-item { display: flex; align-items: center; gap: 8px; font-size: 13px; color: rgba(245,230,192,0.55); }
+  .sleg-dot { width: 14px; height: 14px; border-radius: 50%; }
+  /* CANDIDATE PHOTOS */
+  .candidates-grid { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 36px; }
+  .cand-item { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .cand-photo { width: 76px; height: 76px; border-radius: 50%; object-fit: cover; object-position: top; border: 3px solid var(--gold); box-shadow: 0 0 0 3px rgba(200,146,42,0.2); }
+  .cand-fallback { width: 76px; height: 76px; border-radius: 50%; background: rgba(200,146,42,0.12); border: 3px solid var(--gold); display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 700; color: var(--gold-light); }
+  .cand-name { font-size: 10px; font-weight: 600; color: rgba(245,230,192,0.92); text-align: center; letter-spacing: 0.3px; line-height: 1.35; max-width: 80px; }
+
+  /* ACHIEVEMENTS */
+  .achievements { background: var(--white); }
+  .achievements-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2px; margin-top: 56px; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .ach-card { background: var(--white); padding: 36px 32px; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); position: relative; overflow: hidden; transition: background 0.25s; }
+  .ach-card:hover { background: #fffdf7; }
+  .ach-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform 0.3s; }
+  .ach-card:hover::before { transform: scaleX(1); }
+  .ach-icon { width: 52px; height: 52px; border-radius: 8px; background: rgba(200,146,42,0.08); display: flex; align-items: center; justify-content: center; font-size: 26px; margin-bottom: 20px; border: 1px solid rgba(200,146,42,0.15); }
+  .ach-title { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 600; color: var(--green-deep); margin-bottom: 10px; }
+  .ach-desc { font-size: 14px; color: var(--text-muted); line-height: 1.75; }
+  .ach-tag { display: inline-block; margin-top: 16px; background: rgba(46,139,87,0.08); color: var(--green-mid); border-radius: 100px; font-size: 11px; font-weight: 500; letter-spacing: 0.5px; padding: 4px 12px; border: 1px solid rgba(46,139,87,0.15); }
+
+  /* SCHEME */
+  .scheme { background: var(--cream); }
+  .scheme .inner { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+  .scheme-card { background: var(--green-deep); border-radius: 10px; padding: 48px 44px; position: relative; overflow: hidden; }
+  .scheme-card::before { content: '♦\FE0E'; position: absolute; bottom: -20px; right: 20px; font-size: 160px; color: rgba(200,146,42,0.06); line-height: 1; }
+  .scheme-label { display: inline-block; background: rgba(200,146,42,0.15); border: 1px solid rgba(200,146,42,0.3); color: var(--gold-light); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; padding: 5px 14px; border-radius: 100px; margin-bottom: 24px; }
+  .scheme-amount { font-family: 'Playfair Display', serif; font-size: 68px; font-weight: 900; color: var(--gold-light); line-height: 1; margin-bottom: 4px; }
+  .scheme-amount-sub { font-size: 14px; color: rgba(245,230,192,0.5); margin-bottom: 28px; letter-spacing: 0.5px; }
+  .scheme-title-big { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 700; color: var(--white); line-height: 1.3; margin-bottom: 16px; }
+  .scheme-desc { font-size: 14px; color: rgba(245,230,192,0.65); line-height: 1.8; }
+  .scheme-conditions { margin-top: 28px; padding-top: 28px; border-top: 1px solid rgba(200,146,42,0.2); display: flex; flex-direction: column; gap: 10px; }
+  .scheme-cond { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: rgba(245,230,192,0.7); }
+  .scheme-cond::before { content: '✓'; color: var(--gold-light); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+  .scheme-right .section-tag { color: var(--gold); }
+  .scheme-right .section-title { color: var(--green-deep); }
+
+  /* INFRA */
+  .infra { background: var(--white); }
+  .infra-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 56px; }
+  .infra-card { border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .infra-img { height: 130px; background: linear-gradient(135deg, var(--green-deep), var(--green-mid)); display: flex; align-items: center; justify-content: center; position: relative; }
+  .infra-img span { font-size: 52px; }
+  .infra-body { padding: 22px; }
+  .infra-num { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 700; color: var(--gold); line-height: 1; }
+  .infra-label { font-size: 13px; color: var(--text-muted); margin-top: 4px; margin-bottom: 14px; }
+  .infra-title { font-family: 'Playfair Display', serif; font-size: 17px; color: var(--green-deep); font-weight: 600; margin-bottom: 8px; }
+  .infra-desc { font-size: 13px; color: var(--text-muted); line-height: 1.7; }
+
+  /* MANIFESTO */
+  .manifesto { background: var(--cream); }
+  .mf-legend { display: flex; gap: 14px; margin-top: 20px; margin-bottom: 36px; flex-wrap: wrap; }
+  .manifesto-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
+  .mf-card { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 22px 24px; transition: box-shadow 0.2s; }
+  .mf-card:hover { box-shadow: 0 4px 20px rgba(13,59,30,0.07); }
+  .mf-card.mf-done { border-left: 4px solid #16a34a; }
+  .mf-card.mf-progress { border-left: 4px solid #ca8a04; }
+  .mf-card.mf-pending { border-left: 4px solid var(--border); }
+  .mf-num { font-size: 11px; font-weight: 700; color: var(--gold); margin-bottom: 8px; letter-spacing: 1px; text-transform: uppercase; }
+  .mf-text { font-size: 14px; color: var(--text-mid); line-height: 1.8; }
+  .mf-badge { display: inline-flex; align-items: center; gap: 5px; margin-top: 14px; padding: 4px 12px; border-radius: 100px; font-size: 11px; font-weight: 600; letter-spacing: 0.5px; }
+  .mf-badge.b-done { background: rgba(22,163,74,0.1); color: #16a34a; border: 1px solid rgba(22,163,74,0.25); }
+  .mf-badge.b-progress { background: rgba(234,179,8,0.1); color: #a16207; border: 1px solid rgba(234,179,8,0.3); }
+  .mf-badge.b-pending { background: rgba(200,146,42,0.07); color: var(--text-muted); border: 1px solid var(--border); }
+
+  /* ABOUT */
+  .about { background: var(--cream); }
+  .about .inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .founder-photo-box { width: 100%; aspect-ratio: 4/5; border-radius: 8px; overflow: hidden; background: linear-gradient(145deg, #0d3b1e, #1a5c30); display: flex; align-items: center; justify-content: center; border: 2px solid rgba(200,146,42,0.25); position: relative; }
+  .founder-photo-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .founder-photo-box .big-avatar { width: 150px; height: 150px; border-radius: 50%; background: rgba(200,146,42,0.1); border: 3px solid rgba(200,146,42,0.3); display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 60px; font-weight: 700; color: var(--gold-light); }
+  .founder-ribbon { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.85), transparent); padding: 40px 28px 28px; text-align: center; }
+  .founder-ribbon h3 { font-family: 'Playfair Display', serif; font-size: 24px; color: var(--white); font-weight: 700; }
+  .founder-ribbon p { font-size: 12px; color: var(--gold-light); letter-spacing: 1px; text-transform: uppercase; margin-top: 4px; }
+  .upload-note { text-align: center; margin-top: 14px; font-size: 12px; color: var(--text-muted); font-style: italic; }
+  .timeline { display: flex; flex-direction: column; gap: 0; }
+  .tl-item { display: flex; gap: 20px; padding-bottom: 32px; position: relative; }
+  .tl-item:not(:last-child)::before { content: ''; position: absolute; left: 19px; top: 40px; bottom: 0; width: 1px; background: var(--border); }
+  .tl-dot { width: 38px; height: 38px; border-radius: 50%; flex-shrink: 0; border: 1.5px solid rgba(200,146,42,0.3); display: flex; align-items: center; justify-content: center; font-size: 16px; color: var(--gold); position: relative; z-index: 1; background: var(--cream); }
+  .tl-year { font-size: 11px; letter-spacing: 1px; color: var(--gold); font-weight: 500; text-transform: uppercase; margin-bottom: 4px; }
+  .tl-text { font-size: 14px; color: var(--text-mid); line-height: 1.7; }
+  .tl-text strong { color: var(--green-deep); }
+
+  /* CONTACT */
+  .contact { background: #f0f7f3; }
+  .contact .inner { max-width: 1100px; margin: 0 auto; }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-top: 52px; align-items: start; }
+  .map-box { border-radius: 10px; overflow: hidden; border: 1px solid var(--border); height: 380px; }
+  .map-box iframe { width: 100%; height: 100%; border: none; display: block; }
+  .offices { display: flex; flex-direction: column; gap: 16px; }
+  .office-card { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; position: relative; overflow: hidden; }
+  .office-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--gold); border-radius: 4px 0 0 4px; }
+  .office-type { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 5px; }
+  .office-name { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; color: var(--green-deep); margin-bottom: 8px; }
+  .office-addr { font-size: 13px; color: var(--text-muted); line-height: 1.7; }
+  .office-addr a { color: var(--green-mid); text-decoration: none; font-weight: 500; }
+  .office-addr a:hover { color: var(--gold); }
+
+  /* OPPONENTS */
+  .opponents { background: #f7f3ea; padding: 60px 5vw; }
+  .opponents .inner { display: flex; align-items: center; gap: 32px; flex-wrap: wrap; }
+  .opponents-label { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-muted); }
+  .opp-divider { width: 1px; height: 30px; background: var(--border); }
+  .opp-tag { display: flex; align-items: center; gap: 8px; background: var(--white); border: 1px solid var(--border); padding: 8px 18px; border-radius: 100px; font-size: 13px; color: var(--text-mid); }
+  .opp-tag::before { content: '◦'; color: var(--gold); }
+
+  /* FOOTER */
+  footer { background: var(--green-deep); padding: 60px 5vw 36px; border-top: 3px solid var(--gold); }
+  .footer-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+  .footer-brand h3 { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: var(--gold-light); margin-bottom: 6px; }
+  .footer-brand p { font-size: 13px; color: rgba(245,230,192,0.5); line-height: 1.7; }
+  .footer-col h4 { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold-light); margin-bottom: 16px; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .footer-col ul li { font-size: 13px; color: rgba(245,230,192,0.5); }
+  .footer-bottom { max-width: 1100px; margin: 0 auto; padding-top: 28px; border-top: 1px solid rgba(200,146,42,0.15); display: flex; justify-content: space-between; align-items: center; }
+  .footer-bottom p { font-size: 12px; color: rgba(245,230,192,0.3); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+  .hero-badge { animation: fadeUp 0.6s ease 0.1s both; }
+  .hero-title { animation: fadeUp 0.6s ease 0.2s both; }
+  .hero-subtitle { animation: fadeUp 0.6s ease 0.3s both; }
+  .hero-stats { animation: fadeUp 0.6s ease 0.4s both; }
+  .hero-cta { animation: fadeUp 0.6s ease 0.5s both; }
+  .leader-card { animation: fadeUp 0.6s ease 0.35s both; }
+
+  /* ═══════════════════════════════════════
+     PROFESSIONAL ANIMATIONS & ENHANCEMENTS
+  ═══════════════════════════════════════ */
+
+  /* Scroll Reveal */
+  .reveal { opacity:0; transform:translateY(28px);
+    transition:opacity .78s cubic-bezier(.22,.61,.36,1),transform .78s cubic-bezier(.22,.61,.36,1); }
+  .reveal.in-view { opacity:1; transform:none; }
+
+  /* Hero Manifesto Progress Bar */
+  .hero-mf-progress { margin-top:26px; margin-bottom:32px; max-width:340px; animation:fadeUp .6s ease .65s both; }
+  .hmfp-top { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:8px; }
+  .hmfp-label { font-size:10px; letter-spacing:1.8px; text-transform:uppercase; color:rgba(245,230,192,.45); }
+  .hmfp-pct { font-family:'Playfair Display',serif; font-size:20px; font-weight:700; color:var(--gold-light); line-height:1; }
+  .hmfp-bar { display:flex; gap:3px; height:7px; border-radius:100px; overflow:hidden; background:rgba(255,255,255,.06); margin-bottom:10px; }
+  .hmfp-seg { height:100%; width:0; border-radius:100px; transition:width 1.8s cubic-bezier(.4,0,.2,1); }
+  .hmfp-seg.s-done    { background:#22c55e; transition-delay:.7s; }
+  .hmfp-seg.s-progress{ background:#f59e0b; transition-delay:1.05s; }
+  .hmfp-seg.s-pending { background:rgba(255,255,255,.14); transition-delay:1.3s; }
+  .hmfp-legend { display:flex; gap:14px; }
+  .hmfp-li { display:flex; align-items:center; gap:5px; font-size:10px; color:rgba(245,230,192,.4); }
+  .hmfp-dot { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+
+  /* Manifesto Progress Rings */
+  .mf-rings-row { display:flex; gap:14px; flex-wrap:wrap; margin:6px 0 40px; }
+  .mf-ring-item { display:flex; align-items:center; gap:16px; flex:1; min-width:190px;
+    background:var(--white); border:1px solid var(--border); border-radius:12px;
+    padding:16px 20px; transition:box-shadow .25s,transform .25s; cursor:default; }
+  .mf-ring-item:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(13,59,30,.08); }
+  .mf-ring-wrap { position:relative; width:64px; height:64px; flex-shrink:0; }
+  .mf-ring-svg { width:64px; height:64px; transform:rotate(-90deg); display:block; }
+  .mf-ring-arc { stroke-dashoffset:100; transition:stroke-dashoffset 2s cubic-bezier(.4,0,.2,1) .4s; }
+  .mf-ring-inner { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; }
+  .mf-ring-pct { font-family:'Playfair Display',serif; font-size:14px; font-weight:700; line-height:1; }
+  .mf-ring-count { font-size:9px; color:var(--text-muted); margin-top:2px; }
+  .mf-ring-caption { flex:1; min-width:0; }
+  .mf-ring-title { font-size:13px; font-weight:700; margin-bottom:4px; }
+  .mf-ring-sub { font-size:11px; color:var(--text-muted); line-height:1.6; }
+
+  /* Manifesto Card Entrance + Hover */
+  .mf-card { transition:box-shadow .3s,transform .3s; }
+  .mf-card:hover { transform:translateY(-4px); box-shadow:0 10px 28px rgba(13,59,30,.1); }
+  .mf-card.mf-enter { opacity:0; transform:translateY(20px);
+    transition:opacity .6s ease,transform .6s ease,box-shadow .3s; }
+  .mf-card.mf-enter.in-view { opacity:1; transform:none; }
+
+  /* Card hover lifts */
+  .ach-card { transition:background .25s,transform .3s,box-shadow .3s; }
+  .ach-card:hover { transform:translateY(-4px); box-shadow:0 10px 28px rgba(13,59,30,.08); }
+  .infra-card { transition:box-shadow .3s,transform .3s; }
+  .infra-card:hover { transform:translateY(-4px); box-shadow:0 10px 28px rgba(13,59,30,.1); }
+  .office-card { transition:box-shadow .25s,transform .25s; }
+  .office-card:hover { transform:translateY(-3px); box-shadow:0 6px 20px rgba(13,59,30,.08); }
+
+  /* Candidate photo hover */
+  .cand-item { transition:transform .28s; }
+  .cand-item:hover { transform:translateY(-5px); }
+  .cand-photo { transition:box-shadow .28s; }
+  .cand-item:hover .cand-photo { box-shadow:0 0 0 4px rgba(200,146,42,.5); }
+
+  /* Scheme card ambient glow */
+  @keyframes schemeGlow {
+    0%,100%{ box-shadow:0 4px 20px rgba(200,146,42,0); }
+    50%{ box-shadow:0 4px 40px rgba(200,146,42,.15); }
+  }
+  .scheme-card { animation:schemeGlow 5s ease-in-out infinite; }
+
+  /* Timeline dot scale on hover */
+  .tl-dot { transition:transform .25s; }
+  .tl-item:hover .tl-dot { transform:scale(1.2); }
+
+  /* Seat legend dot pulse */
+  @keyframes seatPulse {
+    0%,100%{ box-shadow:0 0 0 0 rgba(200,146,42,.4); }
+    60%{ box-shadow:0 0 0 8px rgba(200,146,42,0); }
+  }
+  .sleg-dot { animation:seatPulse 3s ease-in-out infinite; }
+
+  @media (max-width: 900px) {
+    .infra-grid { grid-template-columns: repeat(2, 1fr); }
+    .contact-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 768px) {
+    .hero-content { grid-template-columns: 1fr; }
+    .leader-card { display: none; }
+    .victory .inner { grid-template-columns: 1fr; }
+    .scheme .inner { grid-template-columns: 1fr; }
+    .about .inner { grid-template-columns: 1fr; }
+    .infra-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer-inner { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .lang-btn { padding: 6px 10px; font-size: 11px; }
+  }
+</style>
+</head>
+<body>
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-brand">
+    <!-- LOGO: place your logo at assets/logo.png -->
+    <img src="assets/logo.png" class="nav-logo" alt="Islamic Front Logo"
+         onerror="this.style.display='none';document.getElementById('nav-svg').style.display='block'">
+    <svg id="nav-svg" style="display:none;width:42px;height:42px;" viewBox="0 0 42 42" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="21" cy="21" r="20" fill="none" stroke="#c8922a" stroke-width="1.5"/>
+      <text x="21" y="17" text-anchor="middle" font-family="serif" font-size="13" fill="#e8b84b" font-weight="700">إسلامی</text>
+      <text x="21" y="30" text-anchor="middle" font-family="sans-serif" font-size="7" fill="#c8922a" letter-spacing="1">FRONT</text>
+      <path d="M13 21 Q21 12 29 21" fill="none" stroke="#c8922a" stroke-width="1" opacity="0.5"/>
+    </svg>
+    <div>
+      <div class="nav-title" data-key="nav_title">ఇస్లామిక్ ఫ్రంట్</div>
+      <div class="nav-sub" data-key="nav_sub">మంగళగిరి · స్థా. 2011</div>
+    </div>
+  </a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#victory"      data-key="nav_victory">మా విజయం</a></li>
+      <li><a href="#achievements" data-key="nav_achievements">సాధనలు</a></li>
+      <li><a href="#manifesto"    data-key="nav_manifesto">మేనిఫెస్టో</a></li>
+      <li><a href="#scheme"       data-key="nav_scheme">సహాయ పథకం</a></li>
+      <li><a href="#about"        data-key="nav_about">మా గురించి</a></li>
+      <li><a href="#contact"      data-key="nav_contact">సంప్రదించండి</a></li>
+    </ul>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">English</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-left">
+      <div class="hero-badge" data-key="hero_badge">మంగళగిరి, ఆంధ్రప్రదేశ్</div>
+      <h1 class="hero-title" data-key="hero_title" data-html="true">ఇస్లామిక్<br><span>ఫ్రంట్</span></h1>
+      <p class="hero-subtitle" data-key="hero_subtitle" data-html="true">2011 నుండి మంగళగిరి ముస్లిం సమాజానికి<br>నిజాయితీగా, అభివృద్ధితో, కరుణతో సేవ చేస్తున్నాము.</p>
+      <div class="hero-stats">
+        <div class="hstat">
+          <div class="hstat-num" data-key="stat1_num">7/9</div>
+          <div class="hstat-label" data-key="stat1_label">2023లో గెలిచిన సీట్లు</div>
+        </div>
+        <div class="hero-divider"></div>
+        <div class="hstat">
+          <div class="hstat-num" data-key="stat3_num">15+</div>
+          <div class="hstat-label" data-key="stat3_label">సంవత్సరాల సేవ</div>
+        </div>
+      </div>
+      <div class="hero-mf-progress">
+        <div class="hmfp-top">
+          <span class="hmfp-label" data-key="hmfp_label">మేనిఫెస్టో పురోగతి</span>
+          <span class="hmfp-pct">40%</span>
+        </div>
+        <div class="hmfp-bar">
+          <div class="hmfp-seg s-done" data-w="40%"></div>
+          <div class="hmfp-seg s-progress" data-w="10%"></div>
+          <div class="hmfp-seg s-pending" data-w="50%"></div>
+        </div>
+        <div class="hmfp-legend">
+          <div class="hmfp-li"><div class="hmfp-dot" style="background:#22c55e;"></div><span data-key="hmfp_done">4 పూర్తయింది</span></div>
+          <div class="hmfp-li"><div class="hmfp-dot" style="background:#f59e0b;"></div><span data-key="hmfp_prog">1 పురోగతిలో</span></div>
+          <div class="hmfp-li"><div class="hmfp-dot" style="background:rgba(255,255,255,0.25);"></div><span data-key="hmfp_pend">5 రాబోతున్నవి</span></div>
+        </div>
+      </div>
+      <a href="#achievements" class="hero-cta" data-key="hero_cta">మా సాధనలు →</a>
+    </div>
+    <div class="leader-card">
+      <div class="leader-photo-frame">
+        <!-- FOUNDER PHOTO: place image at founder/shaik-akram.jpg -->
+        <img src="assets/founder/shaik-akram-2.jpg" alt="షేక్ అక్రమ్"
+		     style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;"
+			 onerror="this.style.display='none';document.getElementById('hero-ph').style.display='flex'">
+        <div id="hero-ph" class="leader-photo-placeholder" style="display:none">
+          <div class="avatar-circle">SA</div>
+          <p data-key="leader_placeholder">assets/founder/shaik-akram.jpg ఇక్కడ జోడించండి</p>
+        </div>
+        <div class="leader-nameplate">
+          <div class="leader-name" data-key="leader_name">షేక్ అక్రమ్</div>
+          <div class="leader-title-text" data-key="leader_title">సంస్థాపకుడు, ఇస్లామిక్ ఫ్రంట్ పార్టీ
+		  ఏ.పి. రాష్ట్ర వక్ఫ్ బోర్డు డైరెక్టర్
+		  ఎమ్మ్‌హెచ్‌పీఎస్ రాష్ట్ర కార్యదర్శి</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VICTORY -->
+<section class="victory" id="victory">
+  <div class="inner">
+    <div class="victory-left">
+      <div class="section-tag" data-key="victory_tag">ఎన్నికల ఫలితాలు · జూలై 2023</div>
+      <h2 class="section-title" style="color:#fff;" data-key="victory_title" data-html="true">చారిత్రాత్మక<br>విజయం</h2>
+      <p class="section-lead" data-key="victory_desc">ఇస్లామిక్ ఫ్రంట్ అంజుమన్‌- యి- హిమాయతుల్‌ ఇస్లాం ఎన్నికలలో నిర్ణయాత్మక మెజారిటీ సాధించింది — 9 సీట్లలో 7 గెలుచుకుని మంగళగిరి సమాజ విశ్వాసాన్ని పొందింది.</p>
+      <div style="margin-top:28px; padding:20px 24px; background:rgba(200,146,42,0.08); border:1px solid rgba(200,146,42,0.2); border-radius:6px;">
+        <p style="font-size:13px; color:rgba(245,230,192,0.6); line-height:1.7;" data-key="victory_info" data-html="true"><strong style="color:rgba(245,230,192,0.9);">అంజుమన్‌- యి- హిమాయతుల్‌ ఇస్లాం, మంగళగిరి</strong><br>522503, ఆంధ్రప్రదేశ్ · ఎన్నికలు ప్రతి 5 సంవత్సరాలకు ఒకసారి · ~3,000 నమోదిత ఓటర్లు</p>
+      </div>
+    </div>
+    <div class="victory-right">
+      <p style="font-size:12px; color:rgba(245,230,192,0.4); letter-spacing:1px; text-transform:uppercase; margin-bottom:20px;" data-key="victory_seats_label">7 మంది విజేత సభ్యులు</p>
+      <div class="candidates-grid">
+        <div class="cand-item">
+          <img src="assets/candidates/1.candidate.jpg" alt="Yaseen Shaik" class="cand-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="cand-fallback" style="display:none">1</div>
+          <div class="cand-name" data-key="cand1_name">యాసీన్ షేక్</div>
+        </div>
+        <div class="cand-item">
+          <img src="assets/candidates/2.candidate.jpg" alt="Abdul Aleem" class="cand-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="cand-fallback" style="display:none">2</div>
+          <div class="cand-name" data-key="cand2_name">అబ్దుల్ అలీమ్</div>
+        </div>
+        <div class="cand-item">
+          <img src="assets/candidates/3.candidate.jpg" alt="Akbar Basha Shaik" class="cand-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="cand-fallback" style="display:none">3</div>
+          <div class="cand-name" data-key="cand3_name">అక్బర్ బాషా షేక్</div>
+        </div>
+        <div class="cand-item">
+          <img src="assets/candidates/4.candidate.jpg" alt="Hazrat Ali Shaik" class="cand-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="cand-fallback" style="display:none">4</div>
+          <div class="cand-name" data-key="cand4_name">హజ్రత్ అలీ షేక్</div>
+        </div>
+        <div class="cand-item">
+          <img src="assets/candidates/5.candidate.jpg" alt="Abdul Saleem" class="cand-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="cand-fallback" style="display:none">5</div>
+          <div class="cand-name" data-key="cand5_name">అబ్దుల్ సలీమ్</div>
+        </div>
+        <div class="cand-item">
+          <img src="assets/candidates/6.candidate.jpg" alt="Hanifsha Shaik" class="cand-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="cand-fallback" style="display:none">6</div>
+          <div class="cand-name" data-key="cand6_name">హనీఫ్షా షేక్</div>
+        </div>
+        <div class="cand-item">
+          <img src="assets/candidates/7.candidate.jpg" alt="Hafeez Shaik" class="cand-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="cand-fallback" style="display:none">7</div>
+          <div class="cand-name" data-key="cand7_name">హఫీజ్ షేక్</div>
+        </div>
+      </div>
+      <div class="seat-legend">
+        <div class="seat-legend-item"><div class="sleg-dot" style="background:#c8922a;"></div><span data-key="legend1">ఇస్లామిక్ ఫ్రంట్ (7)</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section class="achievements" id="achievements">
+  <div class="inner">
+    <div class="section-tag" data-key="ach_tag">మేము చేసినవి</div>
+    <h2 class="section-title" data-key="ach_title" data-html="true">ఈ పదవీకాలంలో<br>మా సాధనలు</h2>
+    <p class="section-lead" data-key="ach_lead">మౌలిక సదుపాయాల మార్పు నుండి ఆర్థిక వ్యవస్థ సంస్కరణ వరకు — ఇస్లామిక్ ఫ్రంట్ మంగళగిరి సమాజానికి అందించినవి ఇవే.</p>
+    <div class="achievements-grid">
+      <div class="ach-card">
+        <div class="ach-icon">🏛️</div>
+        <h3 class="ach-title" data-key="ach1_title">కన్వెన్షన్ హాల్ పరివర్తన</h3>
+        <p class="ach-desc" data-key="ach1_desc">అంజుమన్ షాదీ మహల్ మరియు ఈద్గా కమ్యూనిటీ హాల్ — రెండు హాళ్ళు AC లేని స్థితి నుండి పూర్తి ఎయిర్ కండిషన్డ్ సౌకర్యాలకు అప్‌గ్రేడ్ చేయబడ్డాయి. పూర్తి రీమోడలింగ్, సీలింగ్ పునరుద్ధరణ మరియు అంతర్గత మెరుగుదల పనులు చేపట్టబడ్డాయి.</p>
+        <span class="ach-tag" data-key="ach1_tag">మౌలిక సదుపాయాలు</span>
+      </div>
+      <div class="ach-card">
+        <div class="ach-icon">💰</div>
+        <h3 class="ach-title" data-key="ach2_title">అంజుమన్ ఆదాయంలో మెరుగుదల</h3>
+        <p class="ach-desc" data-key="ach2_desc">గత నాయకత్వం అద్దెదారులు అద్దె చెల్లించకుండా వదిలేసేది. ఇస్లామిక్ ఫ్రంట్ ఆధ్వర్యంలో క్రమశిక్షణతో కూడిన అద్దె వసూలు వ్యవస్థ అమలు చేయబడింది — అంజుమన్ ఆర్థిక వనరులు గణనీయంగా మెరుగుపడ్డాయి.</p>
+        <span class="ach-tag" data-key="ach2_tag">ఆర్థిక సంస్కరణ</span>
+      </div>
+      <div class="ach-card">
+        <div class="ach-icon">🔒</div>
+        <h3 class="ach-title" data-key="ach3_title">సబ్‌లీజ్ వ్యవస్థ నిర్మూలన</h3>
+        <p class="ach-desc" data-key="ach3_desc">అద్దెదారులు అంజుమన్ ఆస్తులను మూడవ పక్షాలకు తిరిగి లీజుకు ఇచ్చే దోపిడీ సబ్‌లీజ్ పద్ధతి మా పాలనలో పూర్తిగా రద్దు చేయబడింది — సమాజ ఆస్తులు దీర్ఘకాలానికి రక్షించబడ్డాయి.</p>
+        <span class="ach-tag" data-key="ach3_tag">విధాన సంస్కరణ</span>
+      </div>
+      <div class="ach-card">
+        <div class="ach-icon">🤝</div>
+        <h3 class="ach-title" data-key="ach4_title">అంత్యక్రియల ఆర్థిక సహాయ పథకం</h3>
+        <p class="ach-desc" data-key="ach4_desc">మంగళగిరిలో అంత్యక్రియల ఖర్చులు భరించలేని ముస్లిం కుటుంబాలకు ₹10,000 ఆర్థిక సహాయం అందించే కరుణాపూర్వక పథకం ప్రారంభించబడింది. ఏ కుటుంబమూ ఆ భారాన్ని ఒంటరిగా మోయకూడదు.</p>
+        <span class="ach-tag" data-key="ach4_tag">సామాజిక సంక్షేమం</span>
+      </div>
+      <div class="ach-card">
+        <div class="ach-icon">🕌</div>
+        <h3 class="ach-title" data-key="ach5_title">18 మసీదుల నిర్వహణ</h3>
+        <p class="ach-desc" data-key="ach5_desc">మంగళగిరిలో 18 మసీదుల కార్యకలాపాలు మరియు నిర్వహణను ఇస్లామిక్ ఫ్రంట్ పర్యవేక్షిస్తుంది — సమాజ ఆధ్యాత్మిక అవసరాలకు అత్యున్నత ప్రమాణాలతో.</p>
+        <span class="ach-tag" data-key="ach5_tag">సమాజ ఆస్తులు</span>
+      </div>
+      <div class="ach-card">
+        <div class="ach-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 24" width="26" height="22" fill="none" stroke="#c8922a" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="19.5" width="26" height="4" rx="1.5" fill="rgba(200,146,42,0.15)"/><rect x="3" y="7.5" width="22" height="12" rx="2" fill="rgba(200,146,42,0.08)"/><path d="M3 7.5 Q3 3 8 3 L20 3 Q26 3 25 7.5"/><ellipse cx="14" cy="3" rx="3.5" ry="1.8" fill="rgba(200,146,42,0.2)"/><circle cx="7" cy="13.5" r="4.5" fill="rgba(200,146,42,0.06)"/><circle cx="7" cy="13.5" r="1.8" fill="rgba(200,146,42,0.4)"/><line x1="7" y1="9" x2="7" y2="18"/><line x1="2.5" y1="13.5" x2="11.5" y2="13.5"/><line x1="22" y1="11" x2="22" y2="23.5" stroke-width="2"/><line x1="19.5" y1="19.5" x2="24.5" y2="19.5" stroke-width="1.8"/><path d="M14 3 Q17 7 21 11" stroke-dasharray="2 1.5"/></svg></div>
+        <h3 class="ach-title" data-key="ach6_title">మహిళా కుట్టు శిక్షణా కేంద్రం</h3>
+        <p class="ach-desc" data-key="ach6_desc">ముస్లిం మహిళలకు ఆధునిక వసతులతో కుట్టు మిషన్ శిక్షణా కేంద్రం స్థాపించబడింది — ఉపాధి కల్పించడం మరియు ఆర్థిక స్వాతంత్ర్యం సాధించడం లక్ష్యం.</p>
+        <span class="ach-tag" data-key="ach6_tag">మహిళా సాధికారత</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCHEME -->
+<section class="scheme" id="scheme">
+  <div class="inner">
+    <div class="scheme-card">
+      <div class="scheme-label" data-key="scheme_label">సామాజిక సంక్షేమ పథకం</div>
+      <div class="scheme-amount">₹10,000</div>
+      <div class="scheme-amount-sub" data-key="scheme_amount_sub">కుటుంబానికి ఆర్థిక సహాయం</div>
+      <h3 class="scheme-title-big" data-key="scheme_title" data-html="true">అంజుమన్ అంత్యక్రియల<br>సహాయ కార్యక్రమం</h3>
+      <p class="scheme-desc" data-key="scheme_desc">మంగళగిరిలో ఏ ముస్లిం కుటుంబమూ ఆర్థిక కష్టాల కారణంగా గౌరవప్రదమైన అంత్యక్రియలు నిర్వహించలేకపోవు అని నిర్ధారించడానికి ఇస్లామిక్ ఫ్రంట్ తీసుకున్న కరుణాపూర్వక చొరవ.</p>
+      <div class="scheme-conditions">
+        <div class="scheme-cond" data-key="scheme_cond1">దరఖాస్తుదారు మంగళగిరి నియోజకవర్గంలో నివసించే ముస్లిం అయి ఉండాలి</div>
+        <div class="scheme-cond" data-key="scheme_cond2">కుటుంబం స్వతంత్రంగా అంత్యక్రియల ఏర్పాట్లకు నిధులు సమకూర్చుకోలేకపోవాలి</div>
+        <div class="scheme-cond" data-key="scheme_cond3">సహాయం అంజుమన్‌- యి- హిమాయతుల్‌ ఇస్లాం ద్వారా నేరుగా అందజేయబడుతుంది</div>
+        <div class="scheme-cond" data-key="scheme_cond4">అధికారిక జాప్యం లేకుండా — అవసరమైన సమయంలో నిధులు అందజేయబడతాయి</div>
+      </div>
+    </div>
+    <div class="scheme-right">
+      <div class="section-tag" data-key="scheme_right_tag">ఇది ఎందుకు ముఖ్యమైనది</div>
+      <h2 class="section-title" data-key="scheme_right_title" data-html="true">అత్యంత అవసరమైన<br>వారికి సేవ</h2>
+      <p class="section-lead" data-key="scheme_right_lead">మన సమాజంలో, గౌరవప్రదమైన వీడ్కోలు ఒక పవిత్ర బాధ్యత. కుటుంబం దుఃఖంలో ఉన్నప్పుడు, ఆర్థిక చింత అదనపు భారం కాకూడదు. మంగళగిరిలో ప్రతి ముస్లిం గౌరవాన్ని సమర్థించడానికి ఇస్లామిక్ ఫ్రంట్ ఈ పథకాన్ని స్థాపించింది.</p>
+      <div style="margin-top:36px; display:flex; flex-direction:column; gap:20px;">
+        <div style="display:flex; gap:20px; align-items:flex-start; padding:20px; background:var(--white); border:1px solid var(--border); border-radius:8px;">
+          <div style="font-size:32px; flex-shrink:0;">🌙</div>
+          <div>
+            <div style="font-family:'Playfair Display',serif; font-size:16px; font-weight:600; color:var(--green-deep); margin-bottom:4px;" data-key="scheme_principle_title">ఇస్లామిక్ సూత్రం</div>
+            <div style="font-size:13px; color:var(--text-muted); line-height:1.7;" data-key="scheme_principle_desc">మరణించిన వారిని మరియు వారి కుటుంబాన్ని జాగ్రత్తగా చూసుకోవడం ఇస్లాంలో సామూహిక బాధ్యత — ఫర్జ్ కిఫాయా.</div>
+          </div>
+        </div>
+        <div style="display:flex; gap:20px; align-items:flex-start; padding:20px; background:var(--white); border:1px solid var(--border); border-radius:8px;">
+          <div style="font-size:32px; flex-shrink:0;">🏘️</div>
+          <div>
+            <div style="font-family:'Playfair Display',serif; font-size:16px; font-weight:600; color:var(--green-deep); margin-bottom:4px;" data-key="scheme_impact_title">స్థానిక ప్రభావం</div>
+            <div style="font-size:13px; color:var(--text-muted); line-height:1.7;" data-key="scheme_impact_desc">సహాయం నిజంగా మన సమాజంలో భాగమైన వారికి చేరుతుందని నిర్ధారించుకోవడానికి మంగళగిరి స్థానికులకు మాత్రమే.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INFRASTRUCTURE -->
+<section class="infra" id="infra">
+  <div class="inner">
+    <div class="section-tag" data-key="infra_tag">అంజుమన్ నిర్వహణలో</div>
+    <h2 class="section-title" data-key="infra_title">మా మౌలిక సదుపాయాలు</h2>
+    <p class="section-lead" data-key="infra_lead">ఇస్లామిక్ ఫ్రంట్ అంజుమన్‌- యి- హిమాయతుల్‌ ఇస్లాం, మంగళగిరి ద్వారా నిర్వహిస్తున్న సమాజ ఆస్తుల సంపుటి.</p>
+    <div class="infra-grid">
+      <div class="infra-card">
+        <div class="infra-img"><span>🕌</span></div>
+        <div class="infra-body">
+          <div class="infra-num" data-key="infra1_num">18</div>
+          <div class="infra-label" data-key="infra1_label">క్రియాశీల మసీదులు</div>
+          <div class="infra-title" data-key="infra1_title">మసీదులు, మంగళగిరి</div>
+          <p class="infra-desc" data-key="infra1_desc">మంగళగిరిలో 18 మసీదులు ఇస్లామిక్ ఫ్రంట్ పర్యవేక్షణలో నిర్వహించబడుతున్నాయి.</p>
+        </div>
+      </div>
+      <div class="infra-card">
+        <div class="infra-img"><span>📖</span></div>
+        <div class="infra-body">
+          <div class="infra-num" data-key="infra2_num">5</div>
+          <div class="infra-label" data-key="infra2_label">ఇస్లామిక్ విద్యా కేంద్రాలు</div>
+          <div class="infra-title" data-key="infra2_title">మదర్సాలు</div>
+          <p class="infra-desc" data-key="infra2_desc">5 మదర్సాలు ఇస్లామిక్ విద్య మరియు ఖురాన్ బోధనను మంగళగిరి బాలలకు అందిస్తున్నాయి.</p>
+        </div>
+      </div>
+      <div class="infra-card">
+        <div class="infra-img"><span>🏛️</span></div>
+        <div class="infra-body">
+          <div class="infra-num" data-key="infra2_num_hall">2</div>
+          <div class="infra-label" data-key="infra3_label">పూర్తిగా పునరుద్ధరించబడింది</div>
+          <div class="infra-title" data-key="infra3_title">కన్వెన్షన్ హాళ్ళు</div>
+          <p class="infra-desc" data-key="infra3_desc">అంజుమన్ షాదీ మహల్ మరియు ఈద్గా కమ్యూనిటీ హాల్ — రెండూ పూర్తి AC వ్యవస్థాపన, సీలింగ్ పునర్నిర్మాణం మరియు ఆధునిక సదుపాయాలతో రీమోడల్ చేయబడ్డాయి.</p>
+        </div>
+      </div>
+      <div class="infra-card">
+        <div class="infra-img"><span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 24" width="50" height="43" fill="none" stroke="#e8b84b" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="19.5" width="26" height="4" rx="1.5" fill="rgba(232,184,75,0.12)"/><rect x="3" y="7.5" width="22" height="12" rx="2" fill="rgba(232,184,75,0.08)"/><path d="M3 7.5 Q3 3 8 3 L20 3 Q26 3 25 7.5"/><ellipse cx="14" cy="3" rx="3.5" ry="1.8" fill="rgba(232,184,75,0.2)"/><circle cx="7" cy="13.5" r="4.5" fill="rgba(232,184,75,0.06)"/><circle cx="7" cy="13.5" r="1.8" fill="rgba(232,184,75,0.35)"/><line x1="7" y1="9" x2="7" y2="18"/><line x1="2.5" y1="13.5" x2="11.5" y2="13.5"/><line x1="22" y1="11" x2="22" y2="23.5" stroke-width="1.8"/><line x1="19.5" y1="19.5" x2="24.5" y2="19.5" stroke-width="1.6"/><path d="M14 3 Q17 7 21 11" stroke-dasharray="2 1.5"/></svg></span></div>
+        <div class="infra-body">
+          <div class="infra-num" data-key="infra4_num">1</div>
+          <div class="infra-label" data-key="infra4_label">మహిళా శిక్షణా కేంద్రం</div>
+          <div class="infra-title" data-key="infra4_title">కుట్టు శిక్షణా కేంద్రం</div>
+          <p class="infra-desc" data-key="infra4_desc">ముస్లిం మహిళలకు ఆధునిక కుట్టు మిషన్ శిక్షణా కేంద్రం — ఉపాధి మరియు ఆర్థిక స్వాతంత్ర్యం కోసం.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MANIFESTO -->
+<section class="manifesto" id="manifesto">
+  <div class="inner">
+    <div class="section-tag" data-key="mf_tag">మా వాగ్దానాలు</div>
+    <h2 class="section-title" data-key="mf_title" data-html="true">ఇస్లామిక్ ఫ్రంట్<br>మేనిఫెస్టో</h2>
+    <p class="section-lead" data-key="mf_lead">మేము ఏమి వాగ్దానం చేశాము మరియు ప్రగతి ఏమిటి — పారదర్శకంగా మీ ముందు ఉంచుతున్నాము.</p>
+    <div class="mf-rings-row">
+      <div class="mf-ring-item">
+        <svg class="mf-ring-svg" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="18" cy="18" r="15.9155" fill="none" stroke="rgba(22,163,74,0.12)" stroke-width="3.5"/>
+          <circle class="mf-ring-arc" cx="18" cy="18" r="15.9155" fill="none" stroke="#16a34a" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="100 100" stroke-dashoffset="100" data-target="60"/>
+          <text x="18" y="20.5" text-anchor="middle" font-family="Playfair Display,serif" font-size="9" font-weight="700" fill="#16a34a">40%</text>
+        </svg>
+        <div>
+          <div class="mf-ring-title" data-key="mf_ring1_title">పూర్తయింది</div>
+          <div class="mf-ring-sub" data-key="mf_ring1_sub">4 వాగ్దానాలు (1, 3, 7, 10)</div>
+        </div>
+      </div>
+      <div class="mf-ring-item">
+        <svg class="mf-ring-svg" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="18" cy="18" r="15.9155" fill="none" stroke="rgba(245,158,11,0.12)" stroke-width="3.5"/>
+          <circle class="mf-ring-arc" cx="18" cy="18" r="15.9155" fill="none" stroke="#f59e0b" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="100 100" stroke-dashoffset="100" data-target="90"/>
+          <text x="18" y="20.5" text-anchor="middle" font-family="Playfair Display,serif" font-size="9" font-weight="700" fill="#f59e0b">10%</text>
+        </svg>
+        <div>
+          <div class="mf-ring-title" data-key="mf_ring2_title">పురోగతిలో</div>
+          <div class="mf-ring-sub" data-key="mf_ring2_sub">1 వాగ్దానం (9)</div>
+        </div>
+      </div>
+      <div class="mf-ring-item">
+        <svg class="mf-ring-svg" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="18" cy="18" r="15.9155" fill="none" stroke="rgba(200,146,42,0.12)" stroke-width="3.5"/>
+          <circle class="mf-ring-arc" cx="18" cy="18" r="15.9155" fill="none" stroke="rgba(200,146,42,0.55)" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="100 100" stroke-dashoffset="100" data-target="50"/>
+          <text x="18" y="20.5" text-anchor="middle" font-family="Playfair Display,serif" font-size="9" font-weight="700" fill="rgba(200,146,42,0.9)">50%</text>
+        </svg>
+        <div>
+          <div class="mf-ring-title" data-key="mf_ring3_title">రాబోతున్నది</div>
+          <div class="mf-ring-sub" data-key="mf_ring3_sub">5 వాగ్దానాలు రాబోతున్నవి</div>
+        </div>
+      </div>
+    </div>
+    <div class="manifesto-grid">
+
+      <div class="mf-card mf-done">
+        <div class="mf-num" data-key="mf_p1">వాగ్దానం 1</div>
+        <p class="mf-text" data-key="mf1_text">ఎతీమ్ పిల్లల వివాహాలకు అంజుమన్ షాది ఖానా ఉచితంగా ఇవ్వబడును.</p>
+        <span class="mf-badge b-done" data-key="mf_badge_done">✓ పూర్తయింది</span>
+      </div>
+
+      <div class="mf-card mf-pending">
+        <div class="mf-num" data-key="mf_p2">వాగ్దానం 2</div>
+        <p class="mf-text" data-key="mf2_text">మంగళగిరిలో ఉన్న పేద ఆడ పిల్లల వివాహాలకు పెళ్లి కానుకగా ఇస్లామిక్ ఫ్రంట్ జెహేజ్ కానుక ఇవ్వబడును.</p>
+        <span class="mf-badge b-pending" data-key="mf_badge_pending">○ రాబోతున్నది</span>
+      </div>
+
+      <div class="mf-card mf-done">
+        <div class="mf-num" data-key="mf_p3">వాగ్దానం 3</div>
+        <p class="mf-text" data-key="mf3_text">నిరుపేద సంఘ సభ్యులు మరణిస్తే వారి మరణ సంస్కార ఖర్చుల నిమిత్తం అంజుమన్ సంస్థ నుండి ₹10,000 ఆర్థిక సహాయం అందించుట.</p>
+        <span class="mf-badge b-done" data-key="mf_badge_done">✓ పూర్తయింది</span>
+      </div>
+
+      <div class="mf-card mf-pending">
+        <div class="mf-num" data-key="mf_p4">వాగ్దానం 4</div>
+        <p class="mf-text" data-key="mf4_text">ప్రతి సంవత్సరం 10 మంది మెరిట్ విద్యార్థులను 10వ తరగతి నుండి డిగ్రీ వరకు అంజుమన్ సంస్థ చదివించుట.</p>
+        <span class="mf-badge b-pending" data-key="mf_badge_pending">○ రాబోతున్నది</span>
+      </div>
+
+      <div class="mf-card mf-pending">
+        <div class="mf-num" data-key="mf_p5">వాగ్దానం 5</div>
+        <p class="mf-text" data-key="mf5_text">ముస్లిం మహిళలకు ఆధునిక వసతులతో కుట్టు మిషన్ శిక్షణా కేంద్రం ఏర్పాటు చేయుట, శిక్షణ పొందిన మహిళలకు ఉచితంగా కుట్టు మిషనులు ఇవ్వుట.</p>
+        <span class="mf-badge b-pending" data-key="mf_badge_pending">○ రాబోతున్నది</span>
+      </div>
+
+      <div class="mf-card mf-pending">
+        <div class="mf-num" data-key="mf_p6">వాగ్దానం 6</div>
+        <p class="mf-text" data-key="mf6_text">మెయిన్ బజారులో షాపింగ్ కాంప్లెక్సు నిర్మాణం చేసి అంజుమన్ సంస్థ ఆదాయాన్ని పెంచుట. సదరు కాంప్లెక్సులో సంఘ సభ్యులకు మాత్రమే అద్దెకు ఇవ్వటం.</p>
+        <span class="mf-badge b-pending" data-key="mf_badge_pending">○ రాబోతున్నది</span>
+      </div>
+
+      <div class="mf-card mf-done">
+        <div class="mf-num" data-key="mf_p7">వాగ్దానం 7</div>
+        <p class="mf-text" data-key="mf7_text">ప్రతి 6 నెలలకు అంజుమన్ సంస్థ ద్వారా మెడికల్ క్యాంప్ నిర్వహించి ఉచితంగా మందులు ఇవ్వటం.</p>
+        <span class="mf-badge b-done" data-key="mf_badge_done">✓ పూర్తయింది</span>
+      </div>
+
+      <div class="mf-card mf-pending">
+        <div class="mf-num" data-key="mf_p8">వాగ్దానం 8</div>
+        <p class="mf-text" data-key="mf8_text">పేద ముస్లిం విద్యార్థులు, విద్యార్థినులకు స్కాలర్‌షిప్ మొత్తాన్ని పెంచుట.</p>
+        <span class="mf-badge b-pending" data-key="mf_badge_pending">○ రాబోతున్నది</span>
+      </div>
+
+      <div class="mf-card mf-progress">
+        <div class="mf-num" data-key="mf_p9">వాగ్దానం 9</div>
+        <p class="mf-text" data-key="mf9_text">అంజుమన్ సంస్థ ద్వారా ఉచిత కంప్యూటర్ శిక్షణ కేంద్రం ఏర్పాటు చేయుట.</p>
+        <span class="mf-badge b-progress" data-key="mf_badge_progress">⏳ పురోగతిలో ఉంది</span>
+      </div>
+
+      <div class="mf-card mf-done">
+        <div class="mf-num" data-key="mf_p10">వాగ్దానం 10</div>
+        <p class="mf-text" data-key="mf10_text">ఇమాములు, ముయజ్జిన్‌లకు జీతాలు పెంచుట.</p>
+        <span class="mf-badge b-done" data-key="mf_badge_done">✓ పూర్తయింది</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="inner">
+    <div class="founder-frame">
+      <div class="founder-photo-box">
+        <!-- FOUNDER PHOTO: place image at founder/shaik-akram.jpg -->
+        <img src="assets/founder/shaik-akram.jpg" alt="షేక్ అక్రమ్"
+             onerror="this.style.display='none';document.getElementById('about-ph').style.display='flex'">
+        <div id="about-ph" class="big-avatar" style="display:none">SA</div>
+        <div class="founder-ribbon">
+          <h3 data-key="founder_name">షేక్ అక్రమ్</h3>
+          <p data-key="founder_role">స్థాపకుడు · ఇస్లామిక్ ఫ్రంట్</p>
+        </div>
+      </div>
+     
+    </div>
+    <div>
+      <div class="section-tag" data-key="about_tag">మా మూలాలు</div>
+      <h2 class="section-title" data-key="about_title" data-html="true">ఇస్లామిక్ ఫ్రంట్<br>గురించి</h2>
+      <p class="section-lead" style="margin-bottom:36px;" data-key="about_lead" data-html="true">ఇస్లామిక్ ఫ్రంట్ <strong>2011</strong>న <strong>షేక్ అక్రమ్</strong> చేత స్థాపించబడింది, ఒక విశిష్ట నాయకుడు మరియు ఆంధ్రప్రదేశ్ రాష్ట్ర వక్ఫ్ బోర్డు డైరెక్టర్. అంజుమన్‌- యి- హిమాయతుల్‌ ఇస్లాంకు జవాబుదారీ, అభివృద్ధి-కేంద్రిత నాయకత్వాన్ని అందించడానికి పార్టీ స్థాపించబడింది.</p>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot">🌱</div>
+          <div>
+            <div class="tl-year" data-key="tl1_year">స్థాపించబడిన తేదీ: 26-08-2011</div>
+            <div class="tl-text" data-key="tl1_text" data-html="true"><strong>ఇస్లామిక్ ఫ్రంట్ స్థాపన</strong> — షేక్ అక్రమ్ మంగళగిరి, ఆంధ్రప్రదేశ్‌లో స్థాపించారు. సమాజ సంక్షేమం, పారదర్శకత మరియు ఇస్లామిక్ విలువల పునాదులపై నిర్మించబడింది.</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot">🏛️</div>
+          <div>
+            <div class="tl-year" data-key="tl2_year">కొనసాగుతున్నది</div>
+            <div class="tl-text" data-key="tl2_text" data-html="true"><strong>షేక్ అక్రమ్ డైరెక్టర్‌గా సేవ</strong> — ఆంధ్రప్రదేశ్ రాష్ట్ర వక్ఫ్ బోర్డులో, స్థానిక సమాజానికి ప్రయోజనం చేకూర్చడానికి రాష్ట్ర స్థాయి అనుభవాన్ని తీసుకొస్తున్నారు.</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot">🏆</div>
+          <div>
+            <div class="tl-year" data-key="tl3_year">జూలై 2023</div>
+            <div class="tl-text" data-key="tl3_text" data-html="true"><strong>భారీ విజయం</strong> — ఇస్లామిక్ ఫ్రంట్ అంజుమన్ ఎన్నికలలో 9 సీట్లలో 7 గెలుచుకుంది, సమాజ విశ్వాసాన్ని పునరుద్ఘాటించింది.</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot">📍</div>
+          <div>
+            <div class="tl-year" data-key="tl4_year">2023–ప్రస్తుతం</div>
+            <div class="tl-text" data-key="tl4_text" data-html="true"><strong>కొనసాగుతున్న అభివృద్ధి:</strong> కన్వెన్షన్ హాల్ అప్‌గ్రేడ్లు, అంత్యక్రియల సహాయ పథకం, అద్దె సంస్కరణలు, కుట్టు శిక్షణా కేంద్రం మరియు సబ్‌లీజ్ రద్దు — మంగళగిరి ముస్లిం సమాజానికి అందించబడింది.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="inner">
+    <div class="section-tag" data-key="contact_tag">మా కార్యాలయాలు</div>
+    <h2 class="section-title" data-key="contact_title" data-html="true">సంప్రదించండి &​amp;<br>చిరునామా</h2>
+    <p class="section-lead" data-key="contact_lead">ఇస్లామిక్ ఫ్రంట్ మరియు అంజుమన్ కార్యాలయాలు మంగళగిరిలో మీ సేవలో ఉన్నాయి.</p>
+    <div class="contact-grid">
+      <div class="map-box">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30622.95!2d80.508!3d16.430!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a35e8f6f3e11f4b%3A0x1!2sMangalagiri%2C%20Andhra%20Pradesh%20522503!5e0!3m2!1ste!2sin!4v1716556800000!5m2!1ste!2sin"
+          allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          title="Mangalagiri Map">
+        </iframe>
+      </div>
+      <div class="offices">
+        <div class="office-card">
+          <div class="office-type" data-key="o1_type">ఇస్లామిక్ ఫ్రంట్</div>
+          <div class="office-name" data-key="o1_name">ఇస్లామిక్ ఫ్రంట్ పార్టీ కార్యాలయం</div>
+          <div class="office-addr">
+            మంగళగిరి, గుంటూరు జిల్లా<br>
+            ఆంధ్రప్రదేశ్ – 522503<br>
+            <a href="https://maps.google.com/?q=Mangalagiri,Andhra+Pradesh" target="_blank" rel="noopener">📍 గూగుల్ మ్యాప్‌లో చూడండి</a>
+          </div>
+        </div>
+        <div class="office-card">
+          <div class="office-type" data-key="o3_type">అంజుమన్ కార్యాలయం</div>
+          <div class="office-name" data-key="o3_name">అంజుమన్‌- యి- హిమాయతుల్‌ ఇస్లాం</div>
+          <div class="office-addr">
+            మంగళగిరి, గుంటూరు జిల్లా<br>
+            ఆంధ్రప్రదేశ్ – 522503<br>
+            <a href="https://maps.google.com/?q=Anjuman+Himmaythul+Islam+Mangalagiri" target="_blank" rel="noopener">📍 గూగుల్ మ్యాప్‌లో చూడండి</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <h3 data-key="nav_title">ఇస్లామిక్ ఫ్రంట్</h3>
+      <p data-key="footer_desc" data-html="true">2011 నుండి మంగళగిరి, ఆంధ్రప్రదేశ్ ముస్లిం సమాజానికి సేవ చేస్తున్నాము.<br>షేక్ అక్రమ్ నాయకత్వంలో, అంజుమన్‌- యి- హిమాయతుల్‌ ఇస్లాం ద్వారా<br>పారదర్శక, అభివృద్ధి-కేంద్రిత పాలనకు కట్టుబడి ఉన్నాము.</p>
+    </div>
+    <div class="footer-col">
+      <h4 data-key="footer_links_h">త్వరిత లింకులు</h4>
+      <ul>
+        <li data-key="footer_l1">మా విజయం 2023</li>
+        <li data-key="footer_l2">సాధనలు</li>
+        <li data-key="footer_l3">మేనిఫెస్టో</li>
+        <li data-key="footer_l4">అంత్యక్రియల సహాయ పథకం</li>
+        <li data-key="footer_l5">స్థాపకుని గురించి</li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4 data-key="footer_contact_h">సంప్రదించండి</h4>
+      <ul>
+        <li>మంగళగిరి, గుంటూరు జిల్లా</li>
+        <li>ఆంధ్రప్రదేశ్ – 522503</li>
+        <li data-key="footer_founded_li">స్థాపించబడింది: 2011</li>
+        <li>అంజుమన్‌- యి- హిమాయతుల్‌ ఇస్లాం</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p data-key="footer_copy">© 2026 ఇస్లామిక్ ఫ్రంట్, మంగళగిరి. అన్ని హక్కులు పరిరక్షించబడ్డాయి.</p>
+    <p style="color:rgba(200,146,42,0.4);" data-key="footer_founded">షేక్ అక్రమ్ స్థాపించారు · స్థా. 2011</p>
+  </div>
+</footer>
+<script>
+const T = {
+  te: {
+    nav_title: "ఇస్లామిక్ ఫ్రంట్",
+    nav_sub: "మంగళగిరి · స్థా. 2011",
+    nav_victory: "మా విజయం",
+    nav_achievements: "సాధనలు",
+    nav_manifesto: "మేనిఫెస్టో",
+    nav_scheme: "సహాయ పథకం",
+    nav_about: "మా గురించి",
+    nav_contact: "సంప్రదించండి",
+    hero_badge: "మంగళగిరి, ఆంధ్రప్రదేశ్",
+    hero_title: "ఇస్లామిక్<br><span>ఫ్రంట్</span>",
+    hero_subtitle: "2011 నుండి మంగళగిరి ముస్లిం సమాజానికి<br>నిజాయితీగా, అభివృద్ధితో, కరుణతో సేవ చేస్తున్నాము.",
+    stat1_num: "7/9", stat1_label: "2023లో గెలిచిన సీట్లు",
+    stat3_num: "15+", stat3_label: "సంవత్సరాల సేవ",
+    hero_cta: "మా సాధనలు →",
+    hmfp_label: "మేనిఫెస్టో పురోగతి", hmfp_done: "4 పూర్తయింది", hmfp_prog: "1 పురోగతిలో", hmfp_pend: "5 రాబోతున్నవి",
+    leader_placeholder: "assets/founder/shaik-akram.jpg ఇక్కడ జోడించండి",
+    leader_name: "షేక్ అక్రమ్",
+    leader_title: "సంస్థాపకుడు, ఇస్లామిక్ ఫ్రంట్ పార్టీ\nఏ.పి. రాష్ట్ర వక్ఫ్ బోర్డు డైరెక్టర్\nఎమ్మ్‌హెచ్‌పీఎస్ రాష్ట్ర కార్యదర్శి",
+    victory_tag: "ఎన్నికల ఫలితాలు · జూలై 2023",
+    victory_title: "చారిత్రాత్మక<br>విజయం",
+    victory_desc: "ఇస్లామిక్ ఫ్రంట్ అంజుమన్‌- యి- హిమాయతుల్‌ ఇస్లాం ఎన్నికలలో నిర్ణయాత్మక మెజారిటీ సాధించింది — 9 సీట్లలో 7 గెలుచుకుని మంగళగిరి సమాజ విశ్వాసాన్ని పొందింది.",
+    victory_info: "<strong style='color:rgba(245,230,192,0.9);'>అంజుమన్‌- యి- హిమాయతుల్‌ ఇస్లాం, మంగళగిరి</strong><br>522503, ఆంధ్రప్రదేశ్ · ఎన్నికలు ప్రతి 5 సంవత్సరాలకు ఒకసారి · ~3,000 నమోదిత ఓటర్లు",
+    victory_seats_label: "7 మంది విజేత సభ్యులు",
+    seat_won: "✓ గెలిచింది", seat_lost: "వ్య.",
+    legend1: "ఇస్లామిక్ ఫ్రంట్ (7)", legend2: "ప్రతిపక్షం (2)",
+    cand1_name: "యాసీన్ షేక్", cand2_name: "అబ్దుల్ అలీమ్", cand3_name: "అక్బర్ బాషా షేక్",
+    cand4_name: "హజ్రత్ అలీ షేక్", cand5_name: "అబ్దుల్ సలీమ్", cand6_name: "హనీఫ్షా షేక్", cand7_name: "హఫీజ్ షేక్",
+    ach_tag: "మేము చేసినవి",
+    ach_title: "ఈ పదవీకాలంలో<br>మా సాధనలు",
+    ach_lead: "మౌలిక సదుపాయాల మార్పు నుండి ఆర్థిక వ్యవస్థ సంస్కరణ వరకు — ఇస్లామిక్ ఫ్రంట్ మంగళగిరి సమాజానికి అందించినవి ఇవే.",
+    ach1_title: "కన్వెన్షన్ హాల్ పరివర్తన",
+    ach1_desc: "అంజుమన్ షాదీ మహల్ మరియు ఈద్గా కమ్యూనిటీ హాల్ — రెండు హాళ్ళు AC లేని స్థితి నుండి పూర్తి ఎయిర్ కండిషన్డ్ సౌకర్యాలకు అప్‌గ్రేడ్ చేయబడ్డాయి. పూర్తి రీమోడలింగ్, సీలింగ్ పునరుద్ధరణ మరియు అంతర్గత మెరుగుదల పనులు చేపట్టబడ్డాయి.",
+    ach1_tag: "మౌలిక సదుపాయాలు",
+    ach2_title: "అంజుమన్ ఆదాయంలో మెరుగుదల",
+    ach2_desc: "గత నాయకత్వం అద్దెదారులు అద్దె చెల్లించకుండా వదిలేసేది. ఇస్లామిక్ ఫ్రంట్ ఆధ్వర్యంలో క్రమశిక్షణతో కూడిన అద్దె వసూలు వ్యవస్థ అమలు చేయబడింది.",
+    ach2_tag: "ఆర్థిక సంస్కరణ",
+    ach3_title: "సబ్‌లీజ్ వ్యవస్థ నిర్మూలన",
+    ach3_desc: "అద్దెదారులు అంజుమన్ ఆస్తులను మూడవ పక్షాలకు తిరిగి లీజుకు ఇచ్చే దోపిడీ సబ్‌లీజ్ పద్ధతి మా పాలనలో పూర్తిగా రద్దు చేయబడింది.",
+    ach3_tag: "విధాన సంస్కరణ",
+    ach4_title: "అంత్యక్రియల ఆర్థిక సహాయ పథకం",
+    ach4_desc: "మంగళగిరిలో అంత్యక్రియల ఖర్చులు భరించలేని ముస్లిం కుటుంబాలకు ₹10,000 ఆర్థిక సహాయం అందించే కరుణాపూర్వక పథకం ప్రారంభించబడింది.",
+    ach4_tag: "సామాజిక సంక్షేమం",
+    ach5_title: "18 మసీదుల నిర్వహణ",
+    ach5_desc: "మంగళగిరిలో 18 మసీదుల కార్యకలాపాలు మరియు నిర్వహణను ఇస్లామిక్ ఫ్రంట్ పర్యవేక్షిస్తుంది.",
+    ach5_tag: "సమాజ ఆస్తులు",
+    ach6_title: "మహిళా కుట్టు శిక్షణా కేంద్రం",
+    ach6_desc: "ముస్లిం మహిళలకు ఆధునిక వసతులతో కుట్టు మిషన్ శిక్షణా కేంద్రం స్థాపించబడింది — ఉపాధి కల్పించడం మరియు ఆర్థిక స్వాతంత్ర్యం సాధించడం లక్ష్యం.",
+    ach6_tag: "మహిళా సాధికారత",
+    scheme_label: "సామాజిక సంక్షేమ పథకం",
+    scheme_amount_sub: "కుటుంబానికి ఆర్థిక సహాయం",
+    scheme_title: "అంజుమన్ అంత్యక్రియల<br>సహాయ కార్యక్రమం",
+    scheme_desc: "మంగళగిరిలో ఏ ముస్లిం కుటుంబమూ ఆర్థిక కష్టాల కారణంగా గౌరవప్రదమైన అంత్యక్రియలు నిర్వహించలేకపోవు అని నిర్ధారించడానికి ఇస్లామిక్ ఫ్రంట్ తీసుకున్న కరుణాపూర్వక చొరవ.",
+    scheme_cond1: "దరఖాస్తుదారు మంగళగిరి నియోజకవర్గంలో నివసించే ముస్లిం అయి ఉండాలి",
+    scheme_cond2: "కుటుంబం స్వతంత్రంగా అంత్యక్రియల ఏర్పాట్లకు నిధులు సమకూర్చుకోలేకపోవాలి",
+    scheme_cond3: "సహాయం అంజుమన్‌- యి- హిమాయతుల్‌ ఇస్లాం ద్వారా నేరుగా అందజేయబడుతుంది",
+    scheme_cond4: "అధికారిక జాప్యం లేకుండా — అవసరమైన సమయంలో నిధులు అందజేయబడతాయి",
+    scheme_right_tag: "ఇది ఎందుకు ముఖ్యమైనది",
+    scheme_right_title: "అత్యంత అవసరమైన<br>వారికి సేవ",
+    scheme_right_lead: "మన సమాజంలో, గౌరవప్రదమైన వీడ్కోలు ఒక పవిత్ర బాధ్యత. కుటుంబం దుఃఖంలో ఉన్నప్పుడు, ఆర్థిక చింత అదనపు భారం కాకూడదు.",
+    scheme_principle_title: "ఇస్లామిక్ సూత్రం",
+    scheme_principle_desc: "మరణించిన వారిని మరియు వారి కుటుంబాన్ని జాగ్రత్తగా చూసుకోవడం ఇస్లాంలో సామూహిక బాధ్యత — ఫర్జ్ కిఫాయా.",
+    scheme_impact_title: "స్థానిక ప్రభావం",
+    scheme_impact_desc: "సహాయం నిజంగా మన సమాజంలో భాగమైన వారికి చేరుతుందని నిర్ధారించుకోవడానికి మంగళగిరి స్థానికులకు మాత్రమే.",
+    infra_tag: "అంజుమన్ నిర్వహణలో",
+    infra_title: "మా మౌలిక సదుపాయాలు",
+    infra_lead: "ఇస్లామిక్ ఫ్రంట్ అంజుమన్‌- యి- హిమాయతుల్‌ ఇస్లాం, మంగళగిరి ద్వారా నిర్వహిస్తున్న సమాజ ఆస్తుల సంపుటి.",
+    infra1_num: "18", infra1_label: "క్రియాశీల మసీదులు", infra1_title: "మసీదులు, మంగళగిరి",
+    infra1_desc: "మంగళగిరిలో 18 మసీదులు ఇస్లామిక్ ఫ్రంట్ పర్యవేక్షణలో నిర్వహించబడుతున్నాయి.",
+    infra2_num: "5", infra2_label: "ఇస్లామిక్ విద్యా కేంద్రాలు", infra2_title: "మదర్సాలు",
+    infra2_desc: "5 మదర్సాలు ఇస్లామిక్ విద్య మరియు ఖురాన్ బోధనను మంగళగిరి బాలలకు అందిస్తున్నాయి.",
+    infra2_num_hall: "2", infra3_label: "పూర్తిగా పునరుద్ధరించబడింది", infra3_title: "కన్వెన్షన్ హాళ్ళు",
+    infra3_desc: "అంజుమన్ షాదీ మహల్ మరియు ఈద్గా కమ్యూనిటీ హాల్ — రెండూ పూర్తి AC వ్యవస్థాపన, సీలింగ్ పునర్నిర్మాణం మరియు ఆధునిక సదుపాయాలతో రీమోడల్ చేయబడ్డాయి.",
+    infra4_num: "1", infra4_label: "మహిళా శిక్షణా కేంద్రం", infra4_title: "కుట్టు శిక్షణా కేంద్రం",
+    infra4_desc: "ముస్లిం మహిళలకు ఆధునిక కుట్టు మిషన్ శిక్షణా కేంద్రం — ఉపాధి మరియు ఆర్థిక స్వాతంత్ర్యం కోసం.",
+    mf_tag: "మా వాగ్దానాలు",
+    mf_title: "ఇస్లామిక్ ఫ్రంట్<br>మేనిఫెస్టో",
+    mf_lead: "మేము ఏమి వాగ్దానం చేశాము మరియు ప్రగతి ఏమిటి — పారదర్శకంగా మీ ముందు ఉంచుతున్నాము.",
+    mf_legend_done: "✓ పూర్తయింది",
+    mf_legend_progress: "⏳ పురోగతిలో ఉంది",
+    mf_legend_pending: "○ రాబోతున్నది",
+    mf_ring1_title: "పూర్తయింది", mf_ring1_sub: "4 వాగ్దానాలు (1, 3, 7, 10)",
+    mf_ring2_title: "పురోగతిలో", mf_ring2_sub: "1 వాగ్దానం (9)",
+    mf_ring3_title: "రాబోతున్నది", mf_ring3_sub: "5 వాగ్దానాలు రాబోతున్నవి",
+    mf_badge_done: "✓ పూర్తయింది",
+    mf_badge_progress: "⏳ పురోగతిలో ఉంది",
+    mf_badge_pending: "○ రాబోతున్నది",
+    mf_p1: "వాగ్దానం 1", mf_p2: "వాగ్దానం 2", mf_p3: "వాగ్దానం 3",
+    mf_p4: "వాగ్దానం 4", mf_p5: "వాగ్దానం 5", mf_p6: "వాగ్దానం 6",
+    mf_p7: "వాగ్దానం 7", mf_p8: "వాగ్దానం 8", mf_p9: "వాగ్దానం 9",
+    mf_p10: "వాగ్దానం 10",
+    mf1_text: "ఎతీమ్ పిల్లల వివాహాలకు అంజుమన్ షాది ఖానా ఉచితంగా ఇవ్వబడును.",
+    mf2_text: "మంగళగిరిలో ఉన్న పేద ఆడ పిల్లల వివాహాలకు పెళ్లి కానుకగా ఇస్లామిక్ ఫ్రంట్ జెహేజ్ కానుక ఇవ్వబడును.",
+    mf3_text: "నిరుపేద సంఘ సభ్యులు మరణిస్తే వారి మరణ సంస్కార ఖర్చుల నిమిత్తం అంజుమన్ సంస్థ నుండి ₹10,000 ఆర్థిక సహాయం అందించుట.",
+    mf4_text: "ప్రతి సంవత్సరం 10 మంది మెరిట్ విద్యార్థులను 10వ తరగతి నుండి డిగ్రీ వరకు అంజుమన్ సంస్థ చదివించుట.",
+    mf5_text: "ముస్లిం మహిళలకు ఆధునిక వసతులతో కుట్టు మిషన్ శిక్షణా కేంద్రం ఏర్పాటు చేయుట, శిక్షణ పొందిన మహిళలకు ఉచితంగా కుట్టు మిషనులు ఇవ్వుట.",
+    mf6_text: "మెయిన్ బజారులో షాపింగ్ కాంప్లెక్సు నిర్మాణం చేసి అంజుమన్ సంస్థ ఆదాయాన్ని పెంచుట. సదరు కాంప్లెక్సులో సంఘ సభ్యులకు మాత్రమే అద్దెకు ఇవ్వటం.",
+    mf7_text: "ప్రతి 6 నెలలకు అంజుమన్ సంస్థ ద్వారా మెడికల్ క్యాంప్ నిర్వహించి ఉచితంగా మందులు ఇవ్వటం.",
+    mf8_text: "పేద ముస్లిం విద్యార్థులు, విద్యార్థినులకు స్కాలర్‌షిప్ మొత్తాన్ని పెంచుట.",
+    mf9_text: "అంజుమన్ సంస్థ ద్వారా ఉచిత కంప్యూటర్ శిక్షణ కేంద్రం ఏర్పాటు చేయుట.",
+    mf10_text: "ఇమాములు, ముయజ్జిన్‌లకు జీతాలు పెంచుట.",
+    about_tag: "మా మూలాలు",
+    about_title: "ఇస్లామిక్ ఫ్రంట్<br>గురించి",
+    about_lead: "ఇస్లామిక్ ఫ్రంట్ <strong>26-08-2011</strong>న <strong>షేక్ అక్రమ్</strong> చేత స్థాపించబడింది, ఒక విశిష్ట నాయకుడు మరియు ఆంధ్రప్రదేశ్ రాష్ట్ర వక్ఫ్ బోర్డు డైరెక్టర్.",
+    founder_name: "షేక్ అక్రమ్", founder_role: "స్థాపకుడు · ఇస్లామిక్ ఫ్రంట్",
+    tl1_year: "స్థాపించబడిన తేదీ: 26-08-2011", tl1_text: "<strong>ఇస్లామిక్ ఫ్రంట్ స్థాపన</strong> — షేక్ అక్రమ్ మంగళగిరి, ఆంధ్రప్రదేశ్‌లో స్థాపించారు. సమాజ సంక్షేమం, పారదర్శకత మరియు ఇస్లామిక్ విలువల పునాదులపై నిర్మించబడింది.",
+    tl2_year: "కొనసాగుతున్నది", tl2_text: "<strong>షేక్ అక్రమ్ డైరెక్టర్‌గా సేవ</strong> — ఆంధ్రప్రదేశ్ రాష్ట్ర వక్ఫ్ బోర్డులో, స్థానిక సమాజానికి ప్రయోజనం చేకూర్చడానికి రాష్ట్ర స్థాయి అనుభవాన్ని తీసుకొస్తున్నారు.",
+    tl3_year: "జూలై 2023", tl3_text: "<strong>భారీ విజయం</strong> — ఇస్లామిక్ ఫ్రంట్ అంజుమన్ ఎన్నికలలో 9 సీట్లలో 7 గెలుచుకుంది, సమాజ విశ్వాసాన్ని పునరుద్ఘాటించింది.",
+    tl4_year: "2023–ప్రస్తుతం", tl4_text: "<strong>కొనసాగుతున్న అభివృద్ధి:</strong> కన్వెన్షన్ హాల్ అప్‌గ్రేడ్లు, అంత్యక్రియల సహాయ పథకం, అద్దె సంస్కరణలు, కుట్టు శిక్షణా కేంద్రం మరియు సబ్‌లీజ్ రద్దు.",
+    contact_tag: "మా కార్యాలయాలు",
+    contact_title: "సంప్రదించండి &<br>చిరునామా",
+    contact_lead: "ఇస్లామిక్ ఫ్రంట్ మరియు అంజుమన్ కార్యాలయాలు మంగళగిరిలో మీ సేవలో ఉన్నాయి.",
+    o1_type: "ఇస్లామిక్ ఫ్రంట్",
+    o1_name: "ఇస్లామిక్ ఫ్రంట్ పార్టీ కార్యాలయం",
+    o3_type: "అంజుమన్ కార్యాలయం",
+    o3_name: "అంజుమన్‌- యి- హిమాయతుల్‌ ఇస్లాం",
+    footer_desc: "2011 నుండి మంగళగిరి, ఆంధ్రప్రదేశ్ ముస్లిం సమాజానికి సేవ చేస్తున్నాము.<br>షేక్ అక్రమ్ నాయకత్వంలో, అంజుమన్‌- యి- హిమాయతుల్‌ ఇస్లాం ద్వారా<br>పారదర్శక, అభివృద్ధి-కేంద్రిత పాలనకు కట్టుబడి ఉన్నాము.",
+    footer_links_h: "త్వరిత లింకులు",
+    footer_l1: "మా విజయం 2023", footer_l2: "సాధనలు", footer_l3: "మేనిఫెస్టో",
+    footer_l4: "అంత్యక్రియల సహాయ పథకం", footer_l5: "స్థాపకుని గురించి",
+    footer_contact_h: "సంప్రదించండి",
+    footer_founded_li: "స్థాపించబడింది: 2011",
+    footer_copy: "© 2026 ఇస్లామిక్ ఫ్రంట్, మంగళగిరి. అన్ని హక్కులు పరిరక్షించబడ్డాయి.",
+    footer_founded: "షేక్ అక్రమ్ స్థాపించారు · స్థా. 2011"
+  },
+  en: {
+    nav_title: "Islamic Front",
+    nav_sub: "Mangalagiri · Est. 2011",
+    nav_victory: "Our Victory",
+    nav_achievements: "Achievements",
+    nav_manifesto: "Manifesto",
+    nav_scheme: "Aid Scheme",
+    nav_about: "About",
+    nav_contact: "Contact",
+    hero_badge: "Mangalagiri, Andhra Pradesh",
+    hero_title: "Islamic<br><span>Front</span>",
+    hero_subtitle: "Serving the Muslim community of Mangalagiri<br>with integrity, development, and compassion since 2011.",
+    stat1_num: "7/9", stat1_label: "Seats Won 2023",
+    stat3_num: "15+", stat3_label: "Years of Service",
+    hero_cta: "Our Achievements →",
+    hmfp_label: "Manifesto Progress", hmfp_done: "4 Completed", hmfp_prog: "1 In Progress", hmfp_pend: "5 Upcoming",
+    leader_name: "Shaik Akram",
+    leader_title: "Founder, Islamic Front Party\nA.P. State Waqf Board Director\nMHPS State Secretary",
+    victory_tag: "Election Results · July 2023",
+    victory_title: "A Historic<br>Mandate",
+    victory_desc: "Islamic Front won a decisive majority in the Anjuman-e-Himayatul Islam elections — securing 7 out of 9 seats and earning the community's trust to lead for the next term.",
+    victory_info: "<strong style='color:rgba(245,230,192,0.9);'>Anjuman-e-Himayatul Islam, Mangalagiri</strong><br>522503, Andhra Pradesh · Elections held once every 5 years · ~3,000 registered voters",
+    victory_seats_label: "7 Elected Members",
+    seat_won: "✓ Won", seat_lost: "Opp.",
+    legend1: "Islamic Front (7)", legend2: "Opposition (2)",
+    cand1_name: "Yaseen Shaik", cand2_name: "Abdul Aleem", cand3_name: "Akbar Basha Shaik",
+    cand4_name: "Hazrat Ali Shaik", cand5_name: "Abdul Saleem", cand6_name: "Hanifsha Shaik", cand7_name: "Hafeez Shaik",
+    ach_tag: "What We Have Done",
+    ach_title: "Our Achievements<br>in This Tenure",
+    ach_lead: "From transforming infrastructure to reforming financial systems — here is what Islamic Front has delivered for the community of Mangalagiri.",
+    ach1_title: "Convention Hall Transformation",
+    ach1_desc: "Anjuman Shaadi Mahal and Eidgah Community Hall — both upgraded from non-AC to fully air-conditioned. Full remodelling, ceiling renovation and interior improvements completed.",
+    ach1_tag: "Infrastructure",
+    ach2_title: "Improved Anjuman Revenue",
+    ach2_desc: "Previous leadership allowed tenants to withhold rent. Under Islamic Front, a disciplined rent collection system was implemented — significantly improving the Anjuman's finances.",
+    ach2_tag: "Financial Reform",
+    ach3_title: "Eradication of Sublease System",
+    ach3_desc: "The exploitative sublease practice — where tenants re-leased Anjuman properties to third parties — has been completely eliminated under our administration.",
+    ach3_tag: "Policy Reform",
+    ach4_title: "Funeral Financial Aid Scheme",
+    ach4_desc: "Launched a compassionate scheme offering ₹10,000 financial assistance to Muslim families in Mangalagiri unable to fund funeral arrangements. No family should carry that burden alone.",
+    ach4_tag: "Community Welfare",
+    ach5_title: "Managing 18 Mosques",
+    ach5_desc: "Islamic Front oversees operations and upkeep of 18 mosques under the Anjuman, ensuring they are maintained to the highest standards for the community's spiritual and social needs.",
+    ach5_tag: "Community Assets",
+    ach6_title: "Women's Stitching Training Centre",
+    ach6_desc: "A modern stitching and tailoring training centre was established for Muslim women — aimed at providing employment and achieving economic independence.",
+    ach6_tag: "Women's Empowerment",
+    scheme_label: "Community Welfare Scheme",
+    scheme_amount_sub: "Financial Aid per Family",
+    scheme_title: "Anjuman Funeral<br>Aid Programme",
+    scheme_desc: "A compassionate initiative by Islamic Front to ensure no Muslim family in Mangalagiri faces the burden of being unable to perform a dignified farewell due to financial hardship.",
+    scheme_cond1: "Applicant must be a Muslim resident of Mangalagiri constituency",
+    scheme_cond2: "Family must be unable to fund funeral arrangements independently",
+    scheme_cond3: "Aid disbursed directly by Anjuman-e-Himayatul Islam",
+    scheme_cond4: "No bureaucratic delay — funds provided in time of need",
+    scheme_right_tag: "Why This Matters",
+    scheme_right_title: "Serving the<br>Most Vulnerable",
+    scheme_right_lead: "In our community, a dignified farewell is a sacred obligation. When a family is in grief, financial worry should never be an added burden.",
+    scheme_principle_title: "Islamic Principle",
+    scheme_principle_desc: "Caring for the deceased and their family is a collective responsibility — a fard kifaya — in Islam.",
+    scheme_impact_title: "Local Impact",
+    scheme_impact_desc: "Exclusively for Mangalagiri locals — ensuring the aid reaches those who are truly part of our community.",
+    infra_tag: "Under Anjuman Management",
+    infra_title: "Our Infrastructure",
+    infra_lead: "Islamic Front administers a significant portfolio of community assets through Anjuman-e-Himayatul Islam, Mangalagiri.",
+    infra1_num: "18", infra1_label: "Active Mosques", infra1_title: "Mosques, Mangalagiri",
+    infra1_desc: "18 mosques in Mangalagiri are managed and maintained under Islamic Front supervision.",
+    infra2_num: "5", infra2_label: "Islamic Education Centres", infra2_title: "Madrasas",
+    infra2_desc: "5 Madrasas provide Islamic education and Quran teaching to the children of Mangalagiri.",
+    infra2_num_hall: "2", infra3_label: "Fully Renovated", infra3_title: "Convention Halls",
+    infra3_desc: "Anjuman Shaadi Mahal and Eidgah Community Hall — both remodelled with full AC installation, ceiling overhaul, and modern amenities.",
+    infra4_num: "1", infra4_label: "Women's Training Centre", infra4_title: "Stitching Training Centre",
+    infra4_desc: "A modern stitching training centre for Muslim women — for employment and economic independence.",
+    mf_tag: "Our Promises",
+    mf_title: "Islamic Front<br>Manifesto",
+    mf_lead: "What we promised and where we stand — placed transparently before you.",
+    mf_legend_done: "✓ Completed",
+    mf_legend_progress: "⏳ In Progress",
+    mf_legend_pending: "○ Upcoming",
+    mf_ring1_title: "Completed", mf_ring1_sub: "4 Promises (1, 3, 7, 10)",
+    mf_ring2_title: "In Progress", mf_ring2_sub: "1 Promise (9)",
+    mf_ring3_title: "Upcoming", mf_ring3_sub: "5 Promises remaining",
+    mf_badge_done: "✓ Completed",
+    mf_badge_progress: "⏳ In Progress",
+    mf_badge_pending: "○ Upcoming",
+    mf_p1: "Promise 1", mf_p2: "Promise 2", mf_p3: "Promise 3",
+    mf_p4: "Promise 4", mf_p5: "Promise 5", mf_p6: "Promise 6",
+    mf_p7: "Promise 7", mf_p8: "Promise 8", mf_p9: "Promise 9",
+    mf_p10: "Promise 10",
+    mf1_text: "To provide the Anjuman Shadi Khana free of cost for the marriages of orphan children.",
+    mf2_text: "To give a wedding gift (Jehaz) from the Islamic Front for poor girls living in Mangalagiri.",
+    mf3_text: "If a poor association member passes away, to provide ₹10,000 financial assistance from the Anjuman organisation for funeral expenses.",
+    mf4_text: "Every year, to sponsor the education of 10 meritorious students from 10th grade up to degree level through the Anjuman organisation.",
+    mf5_text: "To establish a tailoring training centre with modern facilities for Muslim women, and to provide sewing machines free of cost to women who complete the training.",
+    mf6_text: "To construct a shopping complex in the main bazaar to increase the income of the Anjuman organisation, and to rent out shops in that complex only to association members.",
+    mf7_text: "To conduct a medical camp every six months through the Anjuman organisation and distribute medicines free of cost.",
+    mf8_text: "To increase the scholarship amount for poor Muslim students (both boys and girls).",
+    mf9_text: "To establish a free computer training centre through the Anjuman organisation.",
+    mf10_text: "To increase the salaries of Imams and Muezzins.",
+    about_tag: "Our Roots",
+    about_title: "About<br>Islamic Front",
+    about_lead: "Islamic Front was founded on <strong>26-08-2011</strong> by <strong>Shaik Akram</strong>, a distinguished leader and serving Director of the A.P. State Waqf Board.",
+    founder_name: "Shaik Akram", founder_role: "Founder · Islamic Front",
+    tl1_year: "Founded: 26-08-2011", tl1_text: "<strong>Islamic Front Founded</strong> by Shaik Akram in Mangalagiri, Andhra Pradesh. Built on the pillars of community welfare, transparency, and Islamic values.",
+    tl2_year: "Ongoing", tl2_text: "<strong>Shaik Akram serves as Director</strong> of the Andhra Pradesh State Waqf Board, bringing state-level experience to benefit the local community.",
+    tl3_year: "July 2023", tl3_text: "<strong>Landslide victory</strong> — Islamic Front wins 7 out of 9 seats in the Anjuman elections, reaffirming community trust.",
+    tl4_year: "2023–Present", tl4_text: "<strong>Continued development:</strong> Convention hall upgrades, funeral aid scheme, rent reforms, stitching centre, and sublease elimination — all delivered for Mangalagiri.",
+    contact_tag: "Our Offices",
+    contact_title: "Contact &<br>Address",
+    contact_lead: "Islamic Front and Anjuman offices are at your service in Mangalagiri.",
+    o1_type: "Islamic Front",
+    o1_name: "Islamic Front Party Office",
+    o3_type: "Anjuman Office",
+    o3_name: "Anjuman-e-Himayatul Islam",
+    footer_desc: "Serving the Muslim community of Mangalagiri, Andhra Pradesh since 2011.<br>Under the leadership of Shaik Akram, committed to transparent,<br>development-focused governance through Anjuman-e-Himayatul Islam.",
+    footer_links_h: "Quick Links",
+    footer_l1: "Our Victory 2023", footer_l2: "Achievements", footer_l3: "Manifesto",
+    footer_l4: "Funeral Aid Scheme", footer_l5: "About the Founder",
+    footer_contact_h: "Contact",
+    footer_founded_li: "Founded: 2011",
+    footer_copy: "© 2026 Islamic Front, Mangalagiri. All rights reserved.",
+    footer_founded: "Founded by Shaik Akram · Est. 2011"
+  }
+};
+
+let lang = 'te';
+
+function applyLang(l) {
+  document.querySelectorAll('[data-key]').forEach(el => {
+    const key = el.dataset.key;
+    const val = T[l][key];
+    if (val === undefined) return;
+    if (el.dataset.html === 'true') { el.innerHTML = val; }
+    else { el.textContent = val; }
+  });
+  document.getElementById('html-root').lang = l;
+  document.title = l === 'te' ? 'ఇస్లామిక్ ఫ్రంట్ – మంగళగిరి' : 'Islamic Front – Mangalagiri';
+  document.getElementById('lang-btn').textContent = l === 'te' ? 'English' : 'తెలుగు';
+  document.getElementById('lang-btn').style.fontFamily = l === 'te' ? "'DM Sans', sans-serif" : "'Noto Sans Telugu', sans-serif";
+}
+
+function toggleLang() {
+  lang = lang === 'te' ? 'en' : 'te';
+  applyLang(lang);
+}
+
+/* ── Animation initialisation ── */
+document.addEventListener('DOMContentLoaded', function () {
+  /* Hero progress segments — animate widths after a short delay */
+  setTimeout(function () {
+    document.querySelectorAll('.hmfp-seg').forEach(function (s) {
+      s.style.width = s.dataset.w;
+    });
+  }, 400);
+
+  /* Scroll-reveal: add .reveal class + staggered transition-delay */
+  function addReveal(selector, staggerMs) {
+    document.querySelectorAll(selector).forEach(function (el, i) {
+      el.classList.add('reveal');
+      if (staggerMs) el.style.transitionDelay = (i * staggerMs / 1000).toFixed(2) + 's';
+    });
+  }
+  addReveal('.ach-card', 70);
+  addReveal('.infra-card', 80);
+  addReveal('.cand-item', 65);
+  addReveal('.office-card', 100);
+  addReveal('.tl-item', 100);
+  addReveal('.mf-ring-item', 80);
+
+  var revealIO = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add('in-view'); revealIO.unobserve(e.target); }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+  document.querySelectorAll('.reveal').forEach(function (el) { revealIO.observe(el); });
+
+  /* Manifesto progress rings — animate on scroll into view */
+  var ringsRow = document.querySelector('.mf-rings-row');
+  if (ringsRow) {
+    new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          e.target.querySelectorAll('.mf-ring-arc').forEach(function (a) {
+            a.style.strokeDashoffset = a.dataset.target;
+          });
+        }
+      });
+    }, { threshold: 0.2 }).observe(ringsRow);
+  }
+
+  /* Manifesto cards — staggered entrance animation */
+  var mfGrid = document.querySelector('.manifesto-grid');
+  if (mfGrid) {
+    mfGrid.querySelectorAll('.mf-card').forEach(function (c) { c.classList.add('mf-enter'); });
+    new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          Array.from(e.target.querySelectorAll('.mf-card.mf-enter')).forEach(function (c, i) {
+            setTimeout(function () { c.classList.add('in-view'); }, i * 80);
+          });
+        }
+      });
+    }, { threshold: 0.05 }).observe(mfGrid);
+  }
+});
+
+document.addEventListener('DOMContentLoaded', () => applyLang('te'));
+</script>
+</body>
+</html>
