@@ -124,7 +124,7 @@
 
   /* INFRA */
   .infra { background: var(--white); }
-  .infra-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 56px; }
+  .infra-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 24px; margin-top: 56px; }
   .infra-card { border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
   .infra-img { height: 130px; background: linear-gradient(135deg, var(--green-deep), var(--green-mid)); display: flex; align-items: center; justify-content: center; position: relative; }
   .infra-img span { font-size: 52px; }
@@ -203,30 +203,30 @@
   .footer-bottom p { font-size: 12px; color: rgba(245,230,192,0.3); }
 
   /* ANIMATIONS */
-  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
-  .hero-badge { animation: fadeUp 0.6s ease 0.1s both; }
-  .hero-title { animation: fadeUp 0.6s ease 0.2s both; }
-  .hero-subtitle { animation: fadeUp 0.6s ease 0.3s both; }
-  .hero-stats { animation: fadeUp 0.6s ease 0.4s both; }
-  .hero-cta { animation: fadeUp 0.6s ease 0.5s both; }
-  .leader-card { animation: fadeUp 0.6s ease 0.35s both; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+  .hero-badge { animation: fadeUp 0.5s ease-out 0.1s both; }
+  .hero-title { animation: fadeUp 0.5s ease-out 0.2s both; }
+  .hero-subtitle { animation: fadeUp 0.5s ease-out 0.3s both; }
+  .hero-stats { animation: fadeUp 0.5s ease-out 0.4s both; }
+  .hero-cta { animation: fadeUp 0.5s ease-out 0.5s both; }
+  .leader-card { animation: fadeUp 0.5s ease-out 0.3s both; }
 
   /* ═══════════════════════════════════════
      PROFESSIONAL ANIMATIONS & ENHANCEMENTS
   ═══════════════════════════════════════ */
 
-  /* Scroll Reveal */
-  .reveal { opacity:0; transform:translateY(28px);
-    transition:opacity .78s cubic-bezier(.22,.61,.36,1),transform .78s cubic-bezier(.22,.61,.36,1); }
+  /* Scroll Reveal — subtle, decisive */
+  .reveal { opacity:0; transform:translateY(16px);
+    transition:opacity .55s cubic-bezier(.22,.61,.36,1),transform .55s cubic-bezier(.22,.61,.36,1); }
   .reveal.in-view { opacity:1; transform:none; }
 
   /* Hero Manifesto Progress Bar */
-  .hero-mf-progress { margin-top:26px; margin-bottom:32px; max-width:340px; animation:fadeUp .6s ease .65s both; }
+  .hero-mf-progress { margin-top:26px; margin-bottom:32px; max-width:340px; animation:fadeUp .5s ease-out .65s both; }
   .hmfp-top { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:8px; }
   .hmfp-label { font-size:10px; letter-spacing:1.8px; text-transform:uppercase; color:rgba(245,230,192,.45); }
   .hmfp-pct { font-family:'Playfair Display',serif; font-size:20px; font-weight:700; color:var(--gold-light); line-height:1; }
   .hmfp-bar { display:flex; gap:3px; height:7px; border-radius:100px; overflow:hidden; background:rgba(255,255,255,.06); margin-bottom:10px; }
-  .hmfp-seg { height:100%; width:0; border-radius:100px; transition:width 1.8s cubic-bezier(.4,0,.2,1); }
+  .hmfp-seg { height:100%; width:0; border-radius:100px; transition:width 1.6s cubic-bezier(.4,0,.2,1); }
   .hmfp-seg.s-done    { background:#22c55e; transition-delay:.7s; }
   .hmfp-seg.s-progress{ background:#f59e0b; transition-delay:1.05s; }
   .hmfp-seg.s-pending { background:rgba(255,255,255,.14); transition-delay:1.3s; }
@@ -238,8 +238,8 @@
   .mf-rings-row { display:flex; gap:14px; flex-wrap:wrap; margin:6px 0 40px; }
   .mf-ring-item { display:flex; align-items:center; gap:16px; flex:1; min-width:190px;
     background:var(--white); border:1px solid var(--border); border-radius:12px;
-    padding:16px 20px; transition:box-shadow .25s,transform .25s; cursor:default; }
-  .mf-ring-item:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(13,59,30,.08); }
+    padding:16px 20px; transition:box-shadow .2s ease,transform .2s ease-out; cursor:default; }
+  .mf-ring-item:hover { transform:translateY(-1px); box-shadow:0 4px 16px rgba(13,59,30,.07); }
   .mf-ring-wrap { position:relative; width:64px; height:64px; flex-shrink:0; }
   .mf-ring-svg { width:64px; height:64px; transform:rotate(-90deg); display:block; }
   .mf-ring-arc { stroke-dashoffset:100; transition:stroke-dashoffset 2s cubic-bezier(.4,0,.2,1) .4s; }
@@ -251,44 +251,33 @@
   .mf-ring-sub { font-size:11px; color:var(--text-muted); line-height:1.6; }
 
   /* Manifesto Card Entrance + Hover */
-  .mf-card { transition:box-shadow .3s,transform .3s; }
-  .mf-card:hover { transform:translateY(-4px); box-shadow:0 10px 28px rgba(13,59,30,.1); }
-  .mf-card.mf-enter { opacity:0; transform:translateY(20px);
-    transition:opacity .6s ease,transform .6s ease,box-shadow .3s; }
+  .mf-card { transition:box-shadow .2s ease; }
+  .mf-card:hover { box-shadow:0 6px 20px rgba(13,59,30,.09); }
+  .mf-card.mf-enter { opacity:0; transform:translateY(16px);
+    transition:opacity .55s ease,transform .55s ease,box-shadow .2s ease; }
   .mf-card.mf-enter.in-view { opacity:1; transform:none; }
 
-  /* Card hover lifts */
-  .ach-card { transition:background .25s,transform .3s,box-shadow .3s; }
-  .ach-card:hover { transform:translateY(-4px); box-shadow:0 10px 28px rgba(13,59,30,.08); }
-  .infra-card { transition:box-shadow .3s,transform .3s; }
-  .infra-card:hover { transform:translateY(-4px); box-shadow:0 10px 28px rgba(13,59,30,.1); }
-  .office-card { transition:box-shadow .25s,transform .25s; }
-  .office-card:hover { transform:translateY(-3px); box-shadow:0 6px 20px rgba(13,59,30,.08); }
+  /* Card hover — single-cue: 2 px lift + soft shadow */
+  .ach-card { transition:background .2s ease,transform .2s ease-out,box-shadow .2s ease; }
+  .ach-card:hover { transform:translateY(-2px); box-shadow:0 6px 18px rgba(13,59,30,.07); }
+  .infra-card { transition:box-shadow .2s ease,transform .2s ease-out; }
+  .infra-card:hover { transform:translateY(-2px); box-shadow:0 6px 18px rgba(13,59,30,.08); }
+  .office-card { transition:box-shadow .2s ease,transform .2s ease-out; }
+  .office-card:hover { transform:translateY(-2px); box-shadow:0 4px 14px rgba(13,59,30,.07); }
 
-  /* Candidate photo hover */
-  .cand-item { transition:transform .28s; }
-  .cand-item:hover { transform:translateY(-5px); }
-  .cand-photo { transition:box-shadow .28s; }
-  .cand-item:hover .cand-photo { box-shadow:0 0 0 4px rgba(200,146,42,.5); }
-
-  /* Scheme card ambient glow */
-  @keyframes schemeGlow {
-    0%,100%{ box-shadow:0 4px 20px rgba(200,146,42,0); }
-    50%{ box-shadow:0 4px 40px rgba(200,146,42,.15); }
-  }
-  .scheme-card { animation:schemeGlow 5s ease-in-out infinite; }
+  /* Candidate photo hover — lift + subtle ring */
+  .cand-item { transition:transform .2s ease-out; }
+  .cand-item:hover { transform:translateY(-3px); }
+  .cand-photo { transition:box-shadow .2s ease; }
+  .cand-item:hover .cand-photo { box-shadow:0 0 0 3px rgba(200,146,42,.38); }
 
   /* Timeline dot scale on hover */
-  .tl-dot { transition:transform .25s; }
-  .tl-item:hover .tl-dot { transform:scale(1.2); }
+  .tl-dot { transition:transform .2s ease; }
+  .tl-item:hover .tl-dot { transform:scale(1.15); }
 
-  /* Seat legend dot pulse */
-  @keyframes seatPulse {
-    0%,100%{ box-shadow:0 0 0 0 rgba(200,146,42,.4); }
-    60%{ box-shadow:0 0 0 8px rgba(200,146,42,0); }
+  @media (max-width: 1100px) {
+    .infra-grid { grid-template-columns: repeat(3, 1fr); }
   }
-  .sleg-dot { animation:seatPulse 3s ease-in-out infinite; }
-
   @media (max-width: 900px) {
     .infra-grid { grid-template-columns: repeat(2, 1fr); }
     .contact-grid { grid-template-columns: 1fr; }
@@ -582,7 +571,7 @@
       </div>
       <div class="ach-card">
         <div class="ach-icon">🔒</div>
-        <h3 class="ach-title" data-key="ach3_title">సబ్‌లీజ్ వ్యవస్థ నిర్మూలన</h3>
+        <h3 class="ach-title" data-key="ach3_title">సబ్‌లీజ్ వ్యవస్థ నిర్మూలన — ₹27 లక్షలు వసూలు</h3>
         <p class="ach-desc" data-key="ach3_desc">అద్దెదారులు అంజుమన్ ఆస్తులను మూడవ పక్షాలకు తిరిగి లీజుకు ఇచ్చే దోపిడీ సబ్‌లీజ్ పద్ధతి మా పాలనలో పూర్తిగా రద్దు చేయబడింది — సమాజ ఆస్తులు దీర్ఘకాలానికి రక్షించబడ్డాయి.</p>
         <span class="ach-tag" data-key="ach3_tag">విధాన సంస్కరణ</span>
       </div>
@@ -655,6 +644,24 @@
     <h2 class="section-title" data-key="infra_title">మా మౌలిక సదుపాయాలు</h2>
     <p class="section-lead" data-key="infra_lead">ఇస్లామిక్ ఫ్రంట్ అంజుమన్‌- యి- హిమాయతుల్‌ ఇస్లాం, మంగళగిరి ద్వారా నిర్వహిస్తున్న సమాజ ఆస్తుల సంపుటి.</p>
     <div class="infra-grid">
+      <div class="infra-card">
+        <div class="infra-img">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 24" width="44" height="34" fill="none" stroke="rgba(232,184,75,0.75)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="1" y="8" width="30" height="15" rx="1.5"/>
+            <path d="M1 8 L5 2 L27 2 L31 8"/>
+            <line x1="10" y1="8" x2="10" y2="23"/>
+            <line x1="22" y1="8" x2="22" y2="23"/>
+            <rect x="13" y="14" width="6" height="9" rx="0.5"/>
+          </svg>
+        </div>
+        <div class="infra-body">
+          <div class="infra-num" data-key="infra5_num">120+</div>
+          <div class="infra-label" data-key="infra5_label">అద్దె దుకాణాలు</div>
+          <div class="infra-title" data-key="infra5_title">వాణిజ్య సముదాయం</div>
+          <p class="infra-desc" data-key="infra5_desc">అంజుమన్ నిర్వహణలో 120+ కాంప్లెక్స్ దుకాణాలు — క్రమబద్ధమైన అద్దె వసూలు ద్వారా సంస్థ ఆదాయాన్ని పెంచుతున్నాయి.</p>
+        </div>
+      </div>
+
       <div class="infra-card">
         <div class="infra-img"><span>🕌</span></div>
         <div class="infra-body">
@@ -855,10 +862,10 @@ const T = {
     ach1_desc: "అంజుమన్ షాదీ మహల్ మరియు ఈద్గా కమ్యూనిటీ హాల్ — రెండు హాళ్ళు AC లేని స్థితి నుండి పూర్తి ఎయిర్ కండిషన్డ్ సౌకర్యాలకు అప్‌గ్రేడ్ చేయబడ్డాయి. పూర్తి రీమోడలింగ్, సీలింగ్ పునరుద్ధరణ మరియు అంతర్గత మెరుగుదల పనులు చేపట్టబడ్డాయి.",
     ach1_tag: "మౌలిక సదుపాయాలు",
     ach2_title: "అంజుమన్ ఆదాయంలో మెరుగుదల",
-    ach2_desc: "గత నాయకత్వం అద్దెదారులు అద్దె చెల్లించకుండా వదిలేసేది. ఇస్లామిక్ ఫ్రంట్ ఆధ్వర్యంలో క్రమశిక్షణతో కూడిన అద్దె వసూలు వ్యవస్థ అమలు చేయబడింది.",
+    ach2_desc: "గత నాయకత్వం 120+ దుకాణాల అద్దెదారులు చెల్లించకుండా వదిలేసేది. ఇస్లామిక్ ఫ్రంట్ ఆధ్వర్యంలో కఠినమైన అద్దె వసూలు వ్యవస్థ అమలు చేయబడింది — అంజుమన్ ఆదాయం గణనీయంగా పెరిగింది.",
     ach2_tag: "ఆర్థిక సంస్కరణ",
-    ach3_title: "సబ్‌లీజ్ వ్యవస్థ నిర్మూలన",
-    ach3_desc: "అద్దెదారులు అంజుమన్ ఆస్తులను మూడవ పక్షాలకు తిరిగి లీజుకు ఇచ్చే దోపిడీ సబ్‌లీజ్ పద్ధతి మా పాలనలో పూర్తిగా రద్దు చేయబడింది.",
+    ach3_title: "సబ్‌లీజ్ వ్యవస్థ నిర్మూలన — ₹27 లక్షలు వసూలు",
+    ach3_desc: "120+ అంజుమన్ దుకాణాలను మూడవ పక్షాలకు తిరిగి లీజుకు ఇచ్చే దోపిడీ సబ్‌లీజ్ పద్ధతి పూర్తిగా రద్దు చేయబడింది. బకాయి అద్దె ₹27 లక్షలు వసూలు చేయబడ్డాయి.",
     ach3_tag: "విధాన సంస్కరణ",
     ach4_title: "అంత్యక్రియల ఆర్థిక సహాయ పథకం",
     ach4_desc: "మంగళగిరిలో అంత్యక్రియల ఖర్చులు భరించలేని ముస్లిం కుటుంబాలకు ₹10,000 ఆర్థిక సహాయం అందించే కరుణాపూర్వక పథకం ప్రారంభించబడింది.",
@@ -869,6 +876,8 @@ const T = {
     ach6_title: "మహిళా కుట్టు శిక్షణా కేంద్రం",
     ach6_desc: "ముస్లిం మహిళలకు ఆధునిక వసతులతో కుట్టు మిషన్ శిక్షణా కేంద్రం స్థాపించబడింది — ఉపాధి కల్పించడం మరియు ఆర్థిక స్వాతంత్ర్యం సాధించడం లక్ష్యం.",
     ach6_tag: "మహిళా సాధికారత",
+    infra5_num: "120+", infra5_label: "అద్దె దుకాణాలు", infra5_title: "వాణిజ్య సముదాయం",
+    infra5_desc: "అంజుమన్ నిర్వహణలో 120+ కాంప్లెక్స్ దుకాణాలు — క్రమబద్ధమైన అద్దె వసూలు ద్వారా సంస్థ ఆదాయాన్ని పెంచుతున్నాయి.",
     scheme_label: "సామాజిక సంక్షేమ పథకం",
     scheme_amount_sub: "కుటుంబానికి ఆర్థిక సహాయం",
     scheme_title: "అంజుమన్ అంత్యక్రియల<br>సహాయ కార్యక్రమం",
@@ -979,10 +988,10 @@ const T = {
     ach1_desc: "Anjuman Shaadi Mahal and Eidgah Community Hall — both upgraded from non-AC to fully air-conditioned. Full remodelling, ceiling renovation and interior improvements completed.",
     ach1_tag: "Infrastructure",
     ach2_title: "Improved Anjuman Revenue",
-    ach2_desc: "Previous leadership allowed tenants to withhold rent. Under Islamic Front, a disciplined rent collection system was implemented — significantly improving the Anjuman's finances.",
+    ach2_desc: "Previous leadership allowed tenants across 120+ Anjuman shops to withhold rent unchecked. Under Islamic Front, a disciplined collection system was enforced — significantly improving Anjuman's income.",
     ach2_tag: "Financial Reform",
-    ach3_title: "Eradication of Sublease System",
-    ach3_desc: "The exploitative sublease practice — where tenants re-leased Anjuman properties to third parties — has been completely eliminated under our administration.",
+    ach3_title: "Sublease Eradication — ₹27 Lakhs Recovered",
+    ach3_desc: "The exploitative sublease practice — where tenants re-leased Anjuman's 120+ shops to third parties — has been fully eliminated. ₹27 lakhs in outstanding dues were recovered for the Anjuman.",
     ach3_tag: "Policy Reform",
     ach4_title: "Funeral Financial Aid Scheme",
     ach4_desc: "Launched a compassionate scheme offering ₹10,000 financial assistance to Muslim families in Mangalagiri unable to fund funeral arrangements. No family should carry that burden alone.",
@@ -993,6 +1002,8 @@ const T = {
     ach6_title: "Women's Stitching Training Centre",
     ach6_desc: "A modern stitching and tailoring training centre was established for Muslim women — aimed at providing employment and achieving economic independence.",
     ach6_tag: "Women's Empowerment",
+    infra5_num: "120+", infra5_label: "Rental Shops", infra5_title: "Commercial Complex",
+    infra5_desc: "120+ complex shops under Anjuman management — generating steady rental income through disciplined collection.",
     scheme_label: "Community Welfare Scheme",
     scheme_amount_sub: "Financial Aid per Family",
     scheme_title: "Anjuman Funeral<br>Aid Programme",
