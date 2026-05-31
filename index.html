@@ -365,7 +365,28 @@
   .ach-card, .infra-card, .mf-card, .office-card { box-shadow: var(--shadow-sm); }
   .ach-card:hover, .infra-card:hover { box-shadow: var(--shadow-md); }
   .office-card:hover { box-shadow: var(--shadow-md); }
+
+  /* ═══════════════════════════════════════
+     PHASE 3 — SCROLL & CLIP REVEALS
+  ═══════════════════════════════════════ */
+  /* Clip-path reveal requires element to not be clipped by parent */
+  .section-title { will-change: clip-path, opacity; }
+
+  /* ═══════════════════════════════════════
+     PHASE 4 — INTERACTIVE 3D
+  ═══════════════════════════════════════ */
+  /* Ripple */
+  .ripple-btn { position: relative; overflow: hidden; }
+  .ripple { position: absolute; border-radius: 50%; transform: scale(0); pointer-events: none; background: rgba(255,255,255,0.28); animation: rippleAnim 0.65s ease-out forwards; }
+  @keyframes rippleAnim { to { transform: scale(5); opacity: 0; } }
+
+  /* Preserve 3D for tilt cards */
+  .ach-card, .infra-card, .mf-ring-item { transform-style: preserve-3d; }
 </style>
+<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
 </head>
 <body>
 <div id="scroll-bar"></div>
@@ -1227,54 +1248,130 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }, 400);
 
-  /* Scroll-reveal: add .reveal class + staggered transition-delay */
-  function addReveal(selector, staggerMs) {
-    document.querySelectorAll(selector).forEach(function (el, i) {
-      el.classList.add('reveal');
-      if (staggerMs) el.style.transitionDelay = (i * staggerMs / 1000).toFixed(2) + 's';
+  /* ── Phase 3: Lenis smooth scroll ── */
+  gsap.registerPlugin(ScrollTrigger);
+  var lenis = new Lenis({
+    duration: 1.2,
+    easing: function(t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); },
+    smoothWheel: true
+  });
+  lenis.on('scroll', ScrollTrigger.update);
+  gsap.ticker.add(function(time) { lenis.raf(time * 1000); });
+  gsap.ticker.lagSmoothing(0);
+  lenis.on('scroll', function(e) {
+    if (scrollBar) scrollBar.style.width = (e.progress * 100) + '%';
+  });
+
+  /* ── Phase 3: GSAP ScrollTrigger card reveals ── */
+  gsap.from('.ach-card', {
+    scrollTrigger: { trigger: '.achievements-grid', start: 'top 82%' },
+    y: 40, opacity: 0, duration: 0.65, stagger: 0.09, ease: 'back.out(1.4)'
+  });
+  gsap.from('.infra-card', {
+    scrollTrigger: { trigger: '.infra-grid', start: 'top 82%' },
+    y: 36, opacity: 0, duration: 0.6, stagger: 0.08, ease: 'back.out(1.4)'
+  });
+  gsap.from('.mf-card', {
+    scrollTrigger: { trigger: '.manifesto-grid', start: 'top 85%' },
+    y: 30, opacity: 0, duration: 0.55, stagger: 0.055, ease: 'back.out(1.2)'
+  });
+  gsap.from('.cand-item', {
+    scrollTrigger: { trigger: '.candidates-grid', start: 'top 82%' },
+    y: 28, opacity: 0, duration: 0.5, stagger: 0.07, ease: 'back.out(1.4)'
+  });
+  gsap.from('.tl-item', {
+    scrollTrigger: { trigger: '.timeline', start: 'top 82%' },
+    x: -24, opacity: 0, duration: 0.55, stagger: 0.12, ease: 'power3.out'
+  });
+  gsap.from('.mf-ring-item', {
+    scrollTrigger: { trigger: '.mf-rings-row', start: 'top 82%' },
+    y: 24, opacity: 0, duration: 0.55, stagger: 0.1, ease: 'back.out(1.4)'
+  });
+  gsap.from('.office-card', {
+    scrollTrigger: { trigger: '.offices', start: 'top 82%' },
+    y: 24, opacity: 0, duration: 0.5, stagger: 0.1, ease: 'back.out(1.3)'
+  });
+
+  /* ── Phase 3: Section title clip-path reveals ── */
+  gsap.utils.toArray('.section-title').forEach(function(el) {
+    gsap.from(el, {
+      scrollTrigger: { trigger: el, start: 'top 88%' },
+      clipPath: 'inset(0 100% 0 0)', opacity: 0,
+      duration: 0.9, ease: 'power3.out'
+    });
+  });
+  gsap.utils.toArray('.section-tag').forEach(function(el) {
+    gsap.from(el, {
+      scrollTrigger: { trigger: el, start: 'top 90%' },
+      x: -20, opacity: 0, duration: 0.6, ease: 'power2.out'
+    });
+  });
+
+  /* ── Phase 3: Manifesto rings ── */
+  ScrollTrigger.create({
+    trigger: '.mf-rings-row', start: 'top 82%',
+    onEnter: function() {
+      document.querySelectorAll('.mf-ring-arc').forEach(function(a) {
+        a.style.strokeDashoffset = a.dataset.target;
+      });
+    }
+  });
+
+  /* ── Phase 4: Vanilla Tilt 3D ── */
+  if (typeof VanillaTilt !== 'undefined' && window.matchMedia('(pointer: fine)').matches) {
+    VanillaTilt.init(document.querySelectorAll('.ach-card, .infra-card'), {
+      max: 7, speed: 400, glare: true, 'max-glare': 0.1, perspective: 1000, scale: 1.02
+    });
+    VanillaTilt.init(document.querySelectorAll('.mf-ring-item'), {
+      max: 5, speed: 300, glare: false, scale: 1.01
+    });
+    VanillaTilt.init(document.querySelectorAll('.scheme-card'), {
+      max: 3, speed: 500, glare: true, 'max-glare': 0.06, scale: 1.01
     });
   }
-  addReveal('.ach-card', 70);
-  addReveal('.infra-card', 80);
-  addReveal('.cand-item', 65);
-  addReveal('.office-card', 100);
-  addReveal('.tl-item', 100);
-  addReveal('.mf-ring-item', 80);
 
-  var revealIO = new IntersectionObserver(function (entries) {
-    entries.forEach(function (e) {
-      if (e.isIntersecting) { e.target.classList.add('in-view'); revealIO.unobserve(e.target); }
-    });
-  }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
-  document.querySelectorAll('.reveal').forEach(function (el) { revealIO.observe(el); });
-
-  /* Manifesto progress rings — animate on scroll into view */
-  var ringsRow = document.querySelector('.mf-rings-row');
-  if (ringsRow) {
-    new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) {
-          e.target.querySelectorAll('.mf-ring-arc').forEach(function (a) {
-            a.style.strokeDashoffset = a.dataset.target;
-          });
-        }
+  /* ── Phase 4: Magnetic buttons ── */
+  if (window.matchMedia('(pointer: fine)').matches) {
+    document.querySelectorAll('.hero-cta, .mf-download-btn').forEach(function(btn) {
+      btn.addEventListener('mouseenter', function() {
+        btn.style.transition = 'transform 0.15s ease, background 0.2s, box-shadow 0.2s';
       });
-    }, { threshold: 0.2 }).observe(ringsRow);
+      btn.addEventListener('mousemove', function(e) {
+        var rect = btn.getBoundingClientRect();
+        var dx = e.clientX - (rect.left + rect.width / 2);
+        var dy = e.clientY - (rect.top + rect.height / 2);
+        btn.style.transform = 'translate(' + (dx * 0.28) + 'px,' + (dy * 0.28) + 'px)';
+      });
+      btn.addEventListener('mouseleave', function() {
+        btn.style.transition = 'transform 0.5s cubic-bezier(0.34,1.56,0.64,1), background 0.2s, box-shadow 0.2s';
+        btn.style.transform = 'translate(0,0)';
+      });
+    });
   }
 
-  /* Manifesto cards — staggered entrance animation */
-  var mfGrid = document.querySelector('.manifesto-grid');
-  if (mfGrid) {
-    mfGrid.querySelectorAll('.mf-card').forEach(function (c) { c.classList.add('mf-enter'); });
-    new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) {
-          Array.from(e.target.querySelectorAll('.mf-card.mf-enter')).forEach(function (c, i) {
-            setTimeout(function () { c.classList.add('in-view'); }, i * 80);
-          });
-        }
+  /* ── Phase 4: Ripple on button clicks ── */
+  document.querySelectorAll('.hero-cta, .mf-download-btn').forEach(function(btn) {
+    btn.classList.add('ripple-btn');
+    btn.addEventListener('click', function(e) {
+      var rect = btn.getBoundingClientRect();
+      var size = Math.max(rect.width, rect.height) * 1.4;
+      var ripple = document.createElement('span');
+      ripple.className = 'ripple';
+      ripple.style.cssText = 'width:' + size + 'px;height:' + size + 'px;left:' + (e.clientX - rect.left - size / 2) + 'px;top:' + (e.clientY - rect.top - size / 2) + 'px;';
+      btn.appendChild(ripple);
+      setTimeout(function() { if (ripple.parentNode) ripple.remove(); }, 700);
+    });
+  });
+
+  /* ── Phase 4: Card hover spotlight ── */
+  if (window.matchMedia('(pointer: fine)').matches) {
+    document.querySelectorAll('.ach-card, .infra-card').forEach(function(card) {
+      card.addEventListener('mousemove', function(e) {
+        var r = card.getBoundingClientRect();
+        card.style.background = 'radial-gradient(circle 160px at ' + (e.clientX - r.left) + 'px ' + (e.clientY - r.top) + 'px, rgba(200,146,42,0.07), transparent), var(--white)';
       });
-    }, { threshold: 0.05 }).observe(mfGrid);
+      card.addEventListener('mouseleave', function() { card.style.background = ''; });
+    });
   }
 
   /* ── Phase 1: Preloader ── */
