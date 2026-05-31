@@ -381,6 +381,54 @@
 
   /* Preserve 3D for tilt cards */
   .ach-card, .infra-card, .mf-ring-item { transform-style: preserve-3d; }
+
+  /* ═══════════════════════════════════════
+     PHASE 5 — HERO PARTICLES
+  ═══════════════════════════════════════ */
+  #hero-particles {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    pointer-events: none; z-index: 1; opacity: 0.5;
+  }
+
+  /* ═══════════════════════════════════════
+     PHASE 6 — SECTION NAV DOTS + NAV GLASS
+  ═══════════════════════════════════════ */
+  #section-nav {
+    position: fixed; right: 22px; top: 50%; transform: translateY(-50%);
+    z-index: 200; display: flex; flex-direction: column; gap: 13px;
+  }
+  .sn-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: rgba(200,146,42,0.22); border: 1.5px solid rgba(200,146,42,0.42);
+    display: block; cursor: pointer;
+    transition: all 0.35s cubic-bezier(0.22,0.61,0.36,1);
+    position: relative;
+  }
+  .sn-dot::after {
+    content: '';
+    position: absolute; right: 18px; top: 50%; transform: translateY(-50%);
+    background: rgba(13,59,30,0.94); color: var(--gold-light);
+    font-size: 11px; font-family: 'Space Grotesk', sans-serif;
+    padding: 4px 10px; border-radius: 4px; white-space: nowrap;
+    opacity: 0; pointer-events: none; transition: opacity 0.2s;
+    border: 1px solid rgba(200,146,42,0.2);
+  }
+  html[lang="te"] .sn-dot::after { content: attr(data-te); }
+  html[lang="en"] .sn-dot::after { content: attr(data-en); }
+  .sn-dot:hover::after { opacity: 1; }
+  .sn-dot:hover {
+    background: var(--gold); border-color: var(--gold);
+    transform: scale(1.55); box-shadow: 0 0 8px rgba(200,146,42,0.4);
+  }
+  .sn-dot.active {
+    background: var(--gold); border-color: var(--gold-light);
+    transform: scale(1.3); box-shadow: 0 0 6px rgba(200,146,42,0.35);
+  }
+  nav.scrolled {
+    background: rgba(10,46,23,0.99);
+    box-shadow: 0 2px 24px rgba(0,0,0,0.2), inset 0 -1px 0 rgba(200,146,42,0.25);
+  }
+  @media (max-width: 900px) { #section-nav { display: none; } }
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
@@ -457,6 +505,7 @@
     </svg>
     <div class="hero-noise-layer"></div>
   </div>
+  <canvas id="hero-particles"></canvas>
   <div class="hero-content">
     <div class="hero-left">
       <div class="hero-badge" data-key="hero_badge">మంగళగిరి, ఆంధ్రప్రదేశ్</div>
@@ -1252,7 +1301,7 @@ document.addEventListener('DOMContentLoaded', function () {
   /* ── Phase 3: GSAP ScrollTrigger card reveals ── */
   gsap.from('.ach-card', {
     scrollTrigger: { trigger: '.achievements-grid', start: 'top 82%' },
-    y: 40, opacity: 0, duration: 0.65, stagger: 0.09, ease: 'back.out(1.4)'
+    opacity: 0, duration: 0.5, stagger: 0.07, ease: 'power2.out'
   });
   gsap.from('.infra-card', {
     scrollTrigger: { trigger: '.infra-grid', start: 'top 82%' },
@@ -1351,6 +1400,90 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  /* ── Phase 5: Hero gold particle system ── */
+  (function () {
+    var canvas = document.getElementById('hero-particles');
+    if (!canvas) return;
+    var ctx = canvas.getContext('2d');
+    var W, H, particles = [];
+    var MAX = 38;
+
+    function resize() {
+      var hero = canvas.parentElement;
+      W = canvas.width  = hero.offsetWidth;
+      H = canvas.height = hero.offsetHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize, { passive: true });
+
+    function Particle(init) {
+      this.x       = Math.random() * (W || 800);
+      this.y       = init ? Math.random() * (H || 600) : (H || 600) + 5;
+      this.r       = 0.8 + Math.random() * 1.8;
+      this.vx      = (Math.random() - 0.5) * 0.32;
+      this.vy      = -0.14 - Math.random() * 0.32;
+      this.alpha   = 0.12 + Math.random() * 0.5;
+      this.life    = init ? Math.floor(Math.random() * 280) : 0;
+      this.maxLife = 220 + Math.random() * 280;
+    }
+    Particle.prototype.update = function () {
+      this.x += this.vx; this.y += this.vy; this.life++;
+      if (this.life > this.maxLife || this.y < -10) {
+        var p = new Particle(false); Object.assign(this, p);
+      }
+    };
+    Particle.prototype.draw = function () {
+      var t    = this.life / this.maxLife;
+      var fade = Math.min(t * 5, 1) * Math.min((1 - t) * 5, 1);
+      ctx.globalAlpha = this.alpha * fade;
+      ctx.fillStyle   = '#e8b84b';
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+      ctx.fill();
+    };
+    for (var i = 0; i < MAX; i++) particles.push(new Particle(true));
+
+    var heroVisible = true;
+    new IntersectionObserver(function (entries) {
+      heroVisible = entries[0].isIntersecting;
+    }, { threshold: 0.1 }).observe(canvas.parentElement);
+
+    (function loop() {
+      requestAnimationFrame(loop);
+      if (!heroVisible) return;
+      ctx.clearRect(0, 0, W, H);
+      particles.forEach(function (p) { p.update(); p.draw(); });
+    })();
+  })();
+
+  /* ── Phase 6: Section nav dot active state ── */
+  (function () {
+    var dots = document.querySelectorAll('#section-nav .sn-dot');
+    if (!dots.length) return;
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          dots.forEach(function (d) { d.classList.remove('active'); });
+          var dot = document.querySelector('#section-nav a[href="#' + entry.target.id + '"]');
+          if (dot) dot.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-35% 0px -55% 0px' });
+    ['victory', 'manifesto', 'achievements', 'scheme', 'infra', 'about', 'contact'].forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) obs.observe(el);
+    });
+  })();
+
+  /* ── Phase 6: Nav glassmorphism on scroll ── */
+  (function () {
+    var navEl = document.querySelector('nav');
+    if (!navEl) return;
+    window.addEventListener('scroll', function () {
+      navEl.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
+  })();
+
   /* ── Phase 1: Preloader ── */
   var preloader = document.getElementById('preloader');
   function hidePreloader() {
@@ -1405,5 +1538,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
 document.addEventListener('DOMContentLoaded', () => applyLang('te'));
 </script>
+<nav id="section-nav" aria-label="Section navigation">
+  <a href="#victory"      class="sn-dot" data-te="విజయం"          data-en="Victory"></a>
+  <a href="#manifesto"    class="sn-dot" data-te="మేనిఫెస్టో"     data-en="Manifesto"></a>
+  <a href="#achievements" class="sn-dot" data-te="సాధనలు"         data-en="Achievements"></a>
+  <a href="#scheme"       class="sn-dot" data-te="పథకం"           data-en="Aid Scheme"></a>
+  <a href="#infra"        class="sn-dot" data-te="మౌలిక"          data-en="Infrastructure"></a>
+  <a href="#about"        class="sn-dot" data-te="గురించి"        data-en="About"></a>
+  <a href="#contact"      class="sn-dot" data-te="సంప్రదించండి"   data-en="Contact"></a>
+</nav>
 </body>
 </html>
