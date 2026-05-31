@@ -151,6 +151,11 @@
   .mf-badge.b-progress { background: rgba(234,179,8,0.1); color: #a16207; border: 1px solid rgba(234,179,8,0.3); }
   .mf-badge.b-pending { background: rgba(200,146,42,0.07); color: var(--text-muted); border: 1px solid var(--border); }
 
+  /* MANIFESTO DOWNLOAD */
+  .mf-download-btn { display: inline-flex; align-items: center; gap: 9px; margin-top: 14px; margin-bottom: 4px; background: var(--green-deep); color: var(--gold-light); border: 1.5px solid rgba(200,146,42,0.4); padding: 11px 22px; border-radius: 6px; font-size: 13px; font-weight: 500; letter-spacing: 0.4px; text-decoration: none; transition: background 0.2s, transform 0.15s, box-shadow 0.2s; }
+  .mf-download-btn:hover { background: #122e1a; transform: translateY(-1px); box-shadow: 0 4px 14px rgba(13,59,30,0.18); }
+  .mf-download-btn svg { flex-shrink: 0; opacity: 0.85; }
+
   /* ABOUT */
   .about { background: var(--cream); }
   .about .inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
@@ -370,7 +375,6 @@
 			 onerror="this.style.display='none';document.getElementById('hero-ph').style.display='flex'">
         <div id="hero-ph" class="leader-photo-placeholder" style="display:none">
           <div class="avatar-circle">SA</div>
-          <p data-key="leader_placeholder">assets/founder/shaik-akram.jpg ఇక్కడ జోడించండి</p>
         </div>
         <div class="leader-nameplate">
           <div class="leader-name" data-key="leader_name">జనాబ్ షేక్ అక్రమ్</div>
@@ -448,6 +452,10 @@
     <div class="section-tag" data-key="mf_tag">మా వాగ్దానాలు</div>
     <h2 class="section-title" data-key="mf_title" data-html="true">ఇస్లామిక్ ఫ్రంట్<br>మేనిఫెస్టో</h2>
     <p class="section-lead" data-key="mf_lead">మేము ఏమి వాగ్దానం చేశాము మరియు ప్రగతి ఏమిటి — పారదర్శకంగా మీ ముందు ఉంచుతున్నాము.</p>
+    <a href="assets/Islamic_Front_Manifesto.pdf" download class="mf-download-btn">
+      <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      <span data-key="mf_download">మేనిఫెస్టో డౌన్‌లోడ్ చేయండి (PDF)</span>
+    </a>
     <div class="mf-rings-row">
       <div class="mf-ring-item">
         <svg class="mf-ring-svg" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
@@ -712,7 +720,7 @@
         <div id="about-ph" class="big-avatar" style="display:none">SA</div>
         <div class="founder-ribbon">
           <h3 data-key="founder_name">జనాబ్ షేక్ అక్రమ్</h3>
-          <p data-key="founder_role">స్థాపకుడు · ఇస్లామిక్ ఫ్రంట్</p>
+          <p data-key="founder_role">సంస్థాపకుడు · ఇస్లామిక్ ఫ్రంట్</p>
         </div>
       </div>
      
@@ -844,7 +852,6 @@ const T = {
     stat3_num: "15+", stat3_label: "సంవత్సరాల సేవ",
     hero_cta: "మా సాధనలు →",
     hmfp_label: "మేనిఫెస్టో పురోగతి", hmfp_done: "4 పూర్తయింది", hmfp_prog: "4 పురోగతిలో", hmfp_pend: "2 రాబోతున్నవి",
-    leader_placeholder: "assets/founder/shaik-akram.jpg ఇక్కడ జోడించండి",
     leader_name: "జనాబ్ షేక్ అక్రమ్",
     leader_title: "సంస్థాపకుడు, ఇస్లామిక్ ఫ్రంట్ పార్టీ\nఏ.పి. రాష్ట్ర వక్ఫ్ బోర్డు డైరెక్టర్\nఎమ్మ్‌హెచ్‌పీఎస్ రాష్ట్ర కార్యదర్శి",
     victory_tag: "ఎన్నికల ఫలితాలు · జూలై 2023",
@@ -908,6 +915,7 @@ const T = {
     mf_tag: "మా వాగ్దానాలు",
     mf_title: "ఇస్లామిక్ ఫ్రంట్<br>మేనిఫెస్టో",
     mf_lead: "మేము ఏమి వాగ్దానం చేశాము మరియు ప్రగతి ఏమిటి — పారదర్శకంగా మీ ముందు ఉంచుతున్నాము.",
+    mf_download: "మేనిఫెస్టో డౌన్‌లోడ్ చేయండి (PDF)",
     mf_legend_done: "✓ పూర్తయింది",
     mf_legend_progress: "⏳ పురోగతిలో ఉంది",
     mf_legend_pending: "○ రాబోతున్నది",
@@ -934,7 +942,7 @@ const T = {
     about_tag: "మా మూలాలు",
     about_title: "ఇస్లామిక్ ఫ్రంట్<br>గురించి",
     about_lead: "ఇస్లామిక్ ఫ్రంట్ <strong>26-08-2011</strong>న <strong>జనాబ్ షేక్ అక్రమ్</strong> చేత స్థాపించబడింది, ఒక విశిష్ట నాయకుడు మరియు ఆంధ్రప్రదేశ్ రాష్ట్ర వక్ఫ్ బోర్డు డైరెక్టర్.",
-    founder_name: "జనాబ్ షేక్ అక్రమ్", founder_role: "స్థాపకుడు · ఇస్లామిక్ ఫ్రంట్",
+    founder_name: "జనాబ్ షేక్ అక్రమ్", founder_role: "సంస్థాపకుడు · ఇస్లామిక్ ఫ్రంట్",
     tl1_year: "స్థాపించబడిన తేదీ: 26-08-2011", tl1_text: "<strong>ఇస్లామిక్ ఫ్రంట్ స్థాపన</strong> — జనాబ్ షేక్ అక్రమ్ మంగళగిరి, ఆంధ్రప్రదేశ్‌లో స్థాపించారు. సమాజ సంక్షేమం, పారదర్శకత మరియు ఇస్లామిక్ విలువల పునాదులపై నిర్మించబడింది.",
     tl2_year: "కొనసాగుతున్నది", tl2_text: "<strong>జనాబ్ షేక్ అక్రమ్ డైరెక్టర్‌గా సేవ</strong> — ఆంధ్రప్రదేశ్ రాష్ట్ర వక్ఫ్ బోర్డులో, స్థానిక సమాజానికి ప్రయోజనం చేకూర్చడానికి రాష్ట్ర స్థాయి అనుభవాన్ని తీసుకొస్తున్నారు.",
     tl3_year: "జూలై 2023", tl3_text: "<strong>భారీ విజయం</strong> — ఇస్లామిక్ ఫ్రంట్ అంజుమన్ ఎన్నికలలో 9 సీట్లలో 7 గెలుచుకుంది, సమాజ విశ్వాసాన్ని పునరుద్ఘాటించింది.",
@@ -1034,6 +1042,7 @@ const T = {
     mf_tag: "Our Promises",
     mf_title: "Islamic Front<br>Manifesto",
     mf_lead: "What we promised and where we stand — placed transparently before you.",
+    mf_download: "Download Manifesto (PDF)",
     mf_legend_done: "✓ Completed",
     mf_legend_progress: "⏳ In Progress",
     mf_legend_pending: "○ Upcoming",
