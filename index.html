@@ -383,7 +383,6 @@
   /* Preserve 3D for tilt cards */
   .ach-card, .infra-card, .mf-ring-item { transform-style: preserve-3d; }
 </style>
-<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
@@ -1248,19 +1247,8 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }, 400);
 
-  /* ── Phase 3: Lenis smooth scroll ── */
+  /* ── Phase 3: GSAP ScrollTrigger (native scroll) ── */
   gsap.registerPlugin(ScrollTrigger);
-  var lenis = new Lenis({
-    duration: 1.2,
-    easing: function(t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); },
-    smoothWheel: true
-  });
-  lenis.on('scroll', ScrollTrigger.update);
-  gsap.ticker.add(function(time) { lenis.raf(time * 1000); });
-  gsap.ticker.lagSmoothing(0);
-  lenis.on('scroll', function(e) {
-    if (scrollBar) scrollBar.style.width = (e.progress * 100) + '%';
-  });
 
   /* ── Phase 3: GSAP ScrollTrigger card reveals ── */
   gsap.from('.ach-card', {
