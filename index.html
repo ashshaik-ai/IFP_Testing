@@ -5,18 +5,23 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ఇస్లామిక్ ఫ్రంట్ – మంగళగిరి</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@300;400;500&family=Noto+Sans+Telugu:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@300;400;500&family=Space+Grotesk:wght@300;400;500;600&family=Noto+Sans+Telugu:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
     --green-deep: #0d3b1e; --green-mid: #1a5c30; --green-light: #2e8b57;
     --gold: #c8922a; --gold-light: #e8b84b; --gold-pale: #f5e6c0;
+    --gold-warm: #d4a537; --gold-glow: rgba(200,146,42,0.15);
     --cream: #faf6ee; --white: #ffffff;
     --text-dark: #1a1208; --text-mid: #3d3018; --text-muted: #7a6840;
     --border: rgba(200,146,42,0.25);
+    --radius-sm: 6px; --radius-md: 12px; --radius-lg: 20px; --radius-full: 9999px;
+    --shadow-sm: 0 1px 3px rgba(13,59,30,0.08), 0 1px 2px rgba(13,59,30,0.06);
+    --shadow-md: 0 4px 16px rgba(13,59,30,0.10), 0 2px 6px rgba(13,59,30,0.08);
+    --shadow-lg: 0 12px 40px rgba(13,59,30,0.14), 0 4px 12px rgba(13,59,30,0.10);
   }
   html { scroll-behavior: smooth; }
-  body { font-family: 'DM Sans', 'Noto Sans Telugu', sans-serif; background: var(--cream); color: var(--text-dark); overflow-x: hidden; }
+  body { font-family: 'Space Grotesk', 'DM Sans', 'Noto Sans Telugu', sans-serif; background: var(--cream); color: var(--text-dark); overflow-x: hidden; }
 
   /* NAV */
   nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(13,59,30,0.96); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(200,146,42,0.3); padding: 0 5vw; display: flex; align-items: center; justify-content: space-between; height: 68px; }
@@ -41,7 +46,7 @@
   .hero-badge::before { content: '★\FE0E'; font-size: 10px; }
   .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(48px, 7vw, 88px); font-weight: 900; color: var(--white); line-height: 1.05; margin-bottom: 8px; }
   :lang(te) .hero-title { line-height: 1.4; }
-  .hero-title span { color: var(--gold-light); display: block; }
+  .hero-title span { display: block; color: var(--gold-light); background: linear-gradient(90deg, var(--gold) 0%, #fff8d6 38%, var(--gold-light) 55%, var(--gold) 100%); background-size: 300% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: shimmer 4s linear 2.4s infinite; }
   .hero-subtitle { font-family: 'Cormorant Garamond', 'Noto Sans Telugu', serif; font-size: clamp(16px, 2vw, 22px); color: rgba(245,230,192,0.75); margin-bottom: 36px; font-weight: 400; letter-spacing: 0.3px; line-height: 1.7; }
   .hero-stats { display: flex; gap: 36px; margin-bottom: 44px; flex-wrap: wrap; }
   .hstat-num { font-family: 'Playfair Display', serif; font-size: 38px; font-weight: 700; color: var(--gold-light); line-height: 1; }
@@ -211,7 +216,7 @@
   /* ANIMATIONS */
   @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
   .hero-badge { animation: fadeUp 0.5s ease-out 0.1s both; }
-  .hero-title { animation: fadeUp 0.5s ease-out 0.2s both; }
+  .hero-title { animation: titleReveal 0.85s cubic-bezier(0.16,1,0.3,1) 0.2s both; }
   .hero-subtitle { animation: fadeUp 0.5s ease-out 0.3s both; }
   .hero-stats { animation: fadeUp 0.5s ease-out 0.4s both; }
   .hero-cta { animation: fadeUp 0.5s ease-out 0.5s both; }
@@ -299,9 +304,84 @@
     .nav-links { display: none; }
     .lang-btn { padding: 6px 10px; font-size: 11px; }
   }
+
+  /* ═══════════════════════════════════════
+     PHASE 1 — SCROLL BAR & PRELOADER
+  ═══════════════════════════════════════ */
+  html.loading { overflow: hidden; }
+
+  #scroll-bar {
+    position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    z-index: 9999; pointer-events: none;
+  }
+
+  #preloader {
+    position: fixed; inset: 0; z-index: 9998;
+    background: var(--green-deep);
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 12px;
+    transition: opacity .55s ease, visibility .55s ease;
+  }
+  #preloader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+  .pl-icon { animation: plPulse 1.8s ease-in-out infinite; }
+  @keyframes plPulse { 0%,100%{transform:scale(1);opacity:.8} 50%{transform:scale(1.1);opacity:1} }
+  .pl-name { font-family:'Playfair Display',serif; font-size:21px; font-weight:700; color:var(--gold-light); letter-spacing:.5px; margin-top:4px; }
+  .pl-loc { font-size:10px; color:rgba(200,146,42,.4); letter-spacing:3px; text-transform:uppercase; }
+  .pl-track { width:100px; height:2px; background:rgba(200,146,42,.12); border-radius:100px; overflow:hidden; margin-top:10px; }
+  .pl-fill { height:100%; width:0%; background:linear-gradient(90deg,var(--gold),var(--gold-light)); border-radius:100px; animation:plFill 1.1s cubic-bezier(.4,0,.2,1) forwards; }
+  @keyframes plFill { to { width: 100%; } }
+
+  /* ═══════════════════════════════════════
+     PHASE 2 — HERO ENHANCEMENTS
+  ═══════════════════════════════════════ */
+  @keyframes titleReveal {
+    from { opacity:0; transform:translateY(22px); clip-path:inset(0 0 100% 0); }
+    to   { opacity:1; transform:none;             clip-path:inset(0 0 -8px 0); }
+  }
+  @keyframes shimmer {
+    0%   { background-position: 200% center; }
+    100% { background-position: -200% center; }
+  }
+  @keyframes slowRotate {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+
+  .hero-pattern-wrap { position:absolute; inset:0; pointer-events:none; z-index:0; overflow:hidden; }
+  .hero-grid-svg { position:absolute; inset:0; width:100%; height:100%; }
+  .hero-star-deco {
+    position:absolute; right:2vw; bottom:-3vh;
+    width:clamp(160px,22vw,360px); height:clamp(160px,22vw,360px);
+    opacity:.055; animation:slowRotate 90s linear infinite;
+  }
+  .hero-noise-layer {
+    position:absolute; inset:0; pointer-events:none; z-index:1;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E");
+    background-size:220px 220px;
+  }
+
+  /* Card shadow upgrade */
+  .ach-card, .infra-card, .mf-card, .office-card { box-shadow: var(--shadow-sm); }
+  .ach-card:hover, .infra-card:hover { box-shadow: var(--shadow-md); }
+  .office-card:hover { box-shadow: var(--shadow-md); }
 </style>
 </head>
 <body>
+<div id="scroll-bar"></div>
+<div id="preloader">
+  <div class="pl-icon">
+    <svg viewBox="0 0 80 80" width="72" height="72" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="40" cy="40" r="36" fill="none" stroke="rgba(200,146,42,0.18)" stroke-width="1.5"/>
+      <circle cx="40" cy="40" r="28" fill="#c8922a" opacity="0.92"/>
+      <circle cx="51" cy="31" r="21" fill="#0d3b1e"/>
+      <circle cx="52.5" cy="27" r="3" fill="#e8b84b"/>
+    </svg>
+  </div>
+  <div class="pl-name">ఇస్లామిక్ ఫ్రంట్</div>
+  <div class="pl-loc">Mangalagiri · AP</div>
+  <div class="pl-track"><div class="pl-fill"></div></div>
+</div>
 <!-- NAV -->
 <nav>
   <a href="#" class="nav-brand">
@@ -334,6 +414,30 @@
 
 <!-- HERO -->
 <section class="hero">
+  <div class="hero-pattern-wrap">
+    <svg class="hero-grid-svg" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <pattern id="islamic-grid" x="0" y="0" width="56" height="56" patternUnits="userSpaceOnUse">
+          <g fill="none" stroke="rgba(200,146,42,0.085)" stroke-width="0.65" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M28 3 L53 28 L28 53 L3 28 Z"/>
+            <rect x="15" y="15" width="26" height="26"/>
+            <line x1="28" y1="3" x2="28" y2="15"/><line x1="53" y1="28" x2="41" y2="28"/>
+            <line x1="28" y1="53" x2="28" y2="41"/><line x1="3" y1="28" x2="15" y2="28"/>
+            <line x1="44.8" y1="11.2" x2="41" y2="15"/><line x1="44.8" y1="44.8" x2="41" y2="41"/>
+            <line x1="11.2" y1="44.8" x2="15" y2="41"/><line x1="11.2" y1="11.2" x2="15" y2="15"/>
+          </g>
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#islamic-grid)"/>
+    </svg>
+    <svg class="hero-star-deco" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="190,100 134.5,114.2 163.6,163.6 114.2,134.5 100,190 85.8,134.5 36.4,163.6 65.5,114.2 10,100 65.5,85.8 36.4,36.4 85.8,65.5 100,10 114.2,65.5 163.6,36.4 134.5,85.8"
+        fill="none" stroke="rgba(200,146,42,1)" stroke-width="1.2" stroke-linejoin="round"/>
+      <circle cx="100" cy="100" r="32" fill="none" stroke="rgba(200,146,42,0.5)" stroke-width="0.8"/>
+      <circle cx="100" cy="100" r="16" fill="none" stroke="rgba(200,146,42,0.3)" stroke-width="0.6"/>
+    </svg>
+    <div class="hero-noise-layer"></div>
+  </div>
   <div class="hero-content">
     <div class="hero-left">
       <div class="hero-badge" data-key="hero_badge">మంగళగిరి, ఆంధ్రప్రదేశ్</div>
@@ -835,6 +939,7 @@
   </div>
 </footer>
 <script>
+document.documentElement.classList.add('loading');
 const T = {
   te: {
     nav_title: "ఇస్లామిక్ ఫ్రంట్",
@@ -1170,6 +1275,57 @@ document.addEventListener('DOMContentLoaded', function () {
         }
       });
     }, { threshold: 0.05 }).observe(mfGrid);
+  }
+
+  /* ── Phase 1: Preloader ── */
+  var preloader = document.getElementById('preloader');
+  function hidePreloader() {
+    if (!preloader || preloader.classList.contains('hidden')) return;
+    preloader.classList.add('hidden');
+    document.documentElement.classList.remove('loading');
+  }
+  setTimeout(hidePreloader, 1350);
+  window.addEventListener('load', function () { setTimeout(hidePreloader, 200); });
+
+  /* ── Phase 1: Scroll progress bar ── */
+  var scrollBar = document.getElementById('scroll-bar');
+  window.addEventListener('scroll', function () {
+    if (!scrollBar) return;
+    var pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
+    scrollBar.style.width = Math.min(pct, 100) + '%';
+  }, { passive: true });
+
+  /* ── Phase 2: Hero stat counter animations ── */
+  function animateStat(el, to, suffix, ms) {
+    var start = null;
+    function tick(ts) {
+      if (!start) start = ts;
+      var p = Math.min((ts - start) / ms, 1);
+      var ease = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(ease * to) + suffix;
+      if (p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+  setTimeout(function () {
+    var s1 = document.querySelector('[data-key="stat1_num"]');
+    var s3 = document.querySelector('[data-key="stat3_num"]');
+    if (s1) animateStat(s1, 7, '/9', 1000);
+    if (s3) animateStat(s3, 15, '+', 1200);
+  }, 1500);
+
+  /* ── Phase 2: Leader card parallax (desktop only) ── */
+  var leaderCard = document.querySelector('.leader-card');
+  if (leaderCard && window.matchMedia('(min-width: 769px) and (pointer: fine)').matches) {
+    var _rafPending = false;
+    window.addEventListener('scroll', function () {
+      if (_rafPending) return;
+      _rafPending = true;
+      requestAnimationFrame(function () {
+        leaderCard.style.transform = 'translateY(' + (window.scrollY * 0.1) + 'px)';
+        _rafPending = false;
+      });
+    }, { passive: true });
   }
 });
 
