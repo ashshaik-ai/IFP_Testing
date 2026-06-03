@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="te" id="html-root">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ఇస్లామిక్ నాలెడ్జ్ సెంటర్ – ఇస్లామిక్ ఫ్రంట్</title>
+<meta name="description" content="Islamic Knowledge Center by Islamic Front, Mangalagiri — Zakat calculator, daily Salah timings, next prayer countdown, and authentic Quran &amp; Hadith resources.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@300;400;500&family=Noto+Sans+Telugu:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --green-deep: #0d3b1e; --green-mid: #1a5c30; --green-light: #2e8b57;
+    --gold: #c8922a; --gold-light: #e8b84b; --gold-pale: #f5e6c0;
+    --cream: #faf6ee; --white: #ffffff;
+    --text-dark: #1a1208; --text-mid: #3d3018; --text-muted: #7a6840;
+    --border: rgba(200,146,42,0.25);
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', 'Noto Sans Telugu', sans-serif; background: var(--cream); color: var(--text-dark); overflow-x: hidden; }
+
+  /* NAV */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(13,59,30,0.96); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(200,146,42,0.3); padding: 0 5vw; display: flex; align-items: center; justify-content: space-between; height: 68px; }
+  .nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .nav-logo { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; }
+  .nav-title { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: var(--gold-light); letter-spacing: 0.5px; line-height: 1.2; }
+  .nav-sub { font-size: 10px; color: rgba(232,184,75,0.7); letter-spacing: 1.5px; text-transform: uppercase; }
+  .nav-right { display: flex; align-items: center; gap: 18px; }
+  .nav-home { display: inline-flex; align-items: center; gap: 7px; color: rgba(255,255,255,0.82); text-decoration: none; font-size: 13px; letter-spacing: 0.5px; transition: color 0.2s; white-space: nowrap; }
+  .nav-home::before { content: '\2190'; font-size: 15px; }
+  .nav-home:hover { color: var(--gold-light); }
+  .lang-btn { display: flex; align-items: center; gap: 6px; background: rgba(200,146,42,0.12); border: 1.5px solid rgba(200,146,42,0.4); color: var(--gold-light); padding: 7px 16px; border-radius: 100px; font-size: 12px; font-weight: 500; cursor: pointer; letter-spacing: 0.8px; font-family: inherit; transition: background 0.2s, transform 0.15s; white-space: nowrap; flex-shrink: 0; }
+  .lang-btn:hover { background: rgba(200,146,42,0.22); transform: translateY(-1px); }
+  .lang-btn::before { content: '🌐'; font-size: 13px; }
+
+  /* HERO */
+  .kc-hero { padding: 130px 5vw 70px; background: linear-gradient(160deg, var(--green-deep) 0%, #0a2e17 55%, #122b0f 100%); position: relative; overflow: hidden; }
+  .kc-hero::after { content: '☪\FE0E'; position: absolute; right: 6vw; top: 50%; transform: translateY(-50%); font-size: clamp(150px, 20vw, 260px); color: rgba(200,146,42,0.06); line-height: 1; pointer-events: none; }
+  .kc-hero-inner { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
+  .kc-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(200,146,42,0.12); border: 1px solid rgba(200,146,42,0.35); border-radius: 100px; padding: 6px 16px; margin-bottom: 22px; font-size: 12px; color: var(--gold-light); letter-spacing: 1.5px; text-transform: uppercase; }
+  .kc-badge::before { content: '★\FE0E'; font-size: 10px; }
+  .kc-hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(34px, 5vw, 60px); font-weight: 900; color: var(--white); line-height: 1.15; margin-bottom: 16px; }
+  :lang(te) .kc-hero h1 { line-height: 1.35; }
+  .kc-hero h1 span { color: var(--gold-light); }
+  .kc-hero p { font-family: 'Cormorant Garamond', 'Noto Sans Telugu', serif; font-size: clamp(16px, 2vw, 21px); color: rgba(245,230,192,0.75); max-width: 620px; line-height: 1.7; }
+  .kc-jump { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 30px; }
+  .kc-jump a { font-size: 12.5px; color: rgba(245,230,192,0.85); text-decoration: none; border: 1px solid rgba(200,146,42,0.35); background: rgba(200,146,42,0.08); padding: 7px 15px; border-radius: 100px; transition: background 0.2s, transform 0.15s; }
+  .kc-jump a:hover { background: rgba(200,146,42,0.2); transform: translateY(-1px); }
+
+  /* SECTIONS */
+  section.kc-sec { padding: 72px 5vw; }
+  .kc-inner { max-width: 1100px; margin: 0 auto; }
+  .sec-tag { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+  .sec-tag::before { content: ''; display: block; width: 30px; height: 1px; background: var(--gold); }
+  .sec-title { font-family: 'Playfair Display', serif; font-size: clamp(26px, 3.4vw, 40px); font-weight: 700; color: var(--green-deep); line-height: 1.18; margin-bottom: 14px; }
+  .sec-lead { font-size: 15px; color: var(--text-muted); max-width: 620px; line-height: 1.75; }
+  .ref-note { font-size: 12.5px; color: var(--text-muted); line-height: 1.7; background: rgba(200,146,42,0.06); border: 1px solid var(--border); border-left: 3px solid var(--gold); border-radius: 6px; padding: 12px 16px; margin-top: 18px; }
+  .ref-note strong { color: var(--green-deep); }
+
+  /* SALAH */
+  .salah { background: var(--white); }
+  .salah-wrap { display: grid; grid-template-columns: 1.15fr 1fr; gap: 36px; margin-top: 40px; align-items: start; }
+  .salah-times { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+  .salah-loc { background: linear-gradient(135deg, var(--green-deep), var(--green-mid)); color: var(--gold-light); padding: 16px 22px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 6px; }
+  .salah-loc .sl-place { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; }
+  .salah-loc .sl-place::before { content: '📍 '; }
+  .salah-loc .sl-date { font-size: 12px; color: rgba(245,230,192,0.7); text-align: right; line-height: 1.5; }
+  .salah-row { display: flex; justify-content: space-between; align-items: center; padding: 15px 22px; border-bottom: 1px solid var(--border); transition: background 0.2s; }
+  .salah-row:last-child { border-bottom: none; }
+  .salah-row.is-next { background: rgba(200,146,42,0.1); }
+  .salah-row .sr-name { font-size: 15px; font-weight: 500; color: var(--text-mid); display: flex; align-items: center; gap: 9px; }
+  .salah-row .sr-ic { font-size: 17px; }
+  .salah-row .sr-time { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700; color: var(--green-deep); }
+  .salah-row.sr-muted .sr-name, .salah-row.sr-muted .sr-time { color: var(--text-muted); font-weight: 500; }
+  .next-pill { font-size: 9.5px; letter-spacing: 1px; text-transform: uppercase; color: var(--gold); border: 1px solid var(--gold); border-radius: 100px; padding: 2px 8px; margin-left: 8px; }
+  .asr-toggle { display: flex; gap: 8px; margin-top: 18px; align-items: center; flex-wrap: wrap; }
+  .asr-toggle .at-label { font-size: 12px; color: var(--text-muted); }
+  .asr-btn { font-size: 12px; font-family: inherit; cursor: pointer; border: 1px solid var(--border); background: var(--white); color: var(--text-mid); padding: 6px 14px; border-radius: 100px; transition: all 0.2s; }
+  .asr-btn.active { background: var(--green-deep); color: var(--gold-light); border-color: var(--green-deep); }
+
+  /* COUNTDOWN */
+  .countdown-card { background: var(--green-deep); border-radius: 12px; padding: 32px 30px; position: relative; overflow: hidden; }
+  .countdown-card::before { content: '⏳'; position: absolute; right: 18px; bottom: 6px; font-size: 110px; opacity: 0.06; }
+  .cd-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: rgba(245,230,192,0.55); margin-bottom: 10px; }
+  .cd-next { font-family: 'Playfair Display', serif; font-size: 30px; font-weight: 700; color: var(--gold-light); line-height: 1; margin-bottom: 6px; }
+  .cd-at { font-size: 13px; color: rgba(245,230,192,0.7); margin-bottom: 24px; }
+  .cd-timer { display: flex; gap: 12px; }
+  .cd-unit { background: rgba(255,255,255,0.05); border: 1px solid rgba(200,146,42,0.25); border-radius: 8px; padding: 14px 0; flex: 1; text-align: center; }
+  .cd-num { font-family: 'Playfair Display', serif; font-size: 30px; font-weight: 700; color: var(--white); line-height: 1; }
+  .cd-u { font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: rgba(245,230,192,0.5); margin-top: 7px; }
+
+  /* ZAKAT */
+  .zakat { background: var(--cream); }
+  .zakat-wrap { display: grid; grid-template-columns: 1.1fr 1fr; gap: 36px; margin-top: 40px; align-items: start; }
+  .zakat-form { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 28px 28px 30px; }
+  .zf-group { margin-bottom: 16px; }
+  .zf-group label { display: block; font-size: 13px; color: var(--text-mid); font-weight: 500; margin-bottom: 6px; }
+  .zf-group .zf-hint { font-size: 11.5px; color: var(--text-muted); font-weight: 400; }
+  .zf-input { display: flex; align-items: center; border: 1px solid var(--border); border-radius: 7px; overflow: hidden; background: var(--cream); transition: border-color 0.2s; }
+  .zf-input:focus-within { border-color: var(--gold); }
+  .zf-input .zf-cur { padding: 0 12px; font-size: 14px; color: var(--text-muted); background: rgba(200,146,42,0.08); align-self: stretch; display: flex; align-items: center; border-right: 1px solid var(--border); }
+  .zf-input input { flex: 1; border: none; background: transparent; padding: 11px 12px; font-size: 14px; font-family: inherit; color: var(--text-dark); outline: none; width: 100%; }
+  .zf-divider { height: 1px; background: var(--border); margin: 20px 0; }
+  .zakat-result { background: var(--green-deep); border-radius: 12px; padding: 30px 28px; position: relative; overflow: hidden; position: sticky; top: 84px; }
+  .zr-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: rgba(245,230,192,0.55); margin-bottom: 8px; }
+  .zr-amount { font-family: 'Playfair Display', serif; font-size: 46px; font-weight: 900; color: var(--gold-light); line-height: 1; margin-bottom: 6px; }
+  .zr-status { font-size: 13px; color: rgba(245,230,192,0.8); margin-bottom: 22px; line-height: 1.6; }
+  .zr-line { display: flex; justify-content: space-between; font-size: 13px; padding: 9px 0; border-top: 1px solid rgba(200,146,42,0.18); color: rgba(245,230,192,0.75); }
+  .zr-line span:last-child { font-weight: 600; color: var(--white); }
+  .zr-line.zr-net span:last-child { color: var(--gold-light); }
+
+  /* RESOURCE CARDS */
+  .resources { background: var(--white); }
+  .res-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; margin-top: 40px; }
+  .res-card { display: block; text-decoration: none; background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 24px 24px 22px; transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s; position: relative; }
+  .res-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(13,59,30,0.08); border-color: rgba(200,146,42,0.5); }
+  .res-ic { width: 46px; height: 46px; border-radius: 9px; background: rgba(200,146,42,0.1); border: 1px solid rgba(200,146,42,0.2); display: flex; align-items: center; justify-content: center; font-size: 23px; margin-bottom: 16px; }
+  .res-card h3 { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--green-deep); font-weight: 600; margin-bottom: 7px; }
+  .res-card p { font-size: 13px; color: var(--text-muted); line-height: 1.65; }
+  .res-card .res-go { margin-top: 14px; font-size: 12px; font-weight: 600; color: var(--gold); letter-spacing: 0.4px; }
+  .res-card .res-go::after { content: ' \2197'; }
+  .hadith { background: var(--cream); }
+
+  /* LEARNING */
+  .learn { background: var(--white); }
+  .learn-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 16px; margin-top: 40px; }
+  .learn-card { background: var(--cream); border: 1px solid var(--border); border-left: 4px solid var(--gold); border-radius: 10px; padding: 22px 24px; }
+  .learn-card h3 { font-family: 'Playfair Display', serif; font-size: 17px; color: var(--green-deep); font-weight: 600; margin-bottom: 10px; display: flex; align-items: center; gap: 9px; }
+  .learn-card p { font-size: 13.5px; color: var(--text-mid); line-height: 1.75; }
+  .learn-ref { display: inline-block; margin-top: 12px; font-size: 11.5px; font-weight: 600; color: var(--green-mid); background: rgba(46,139,87,0.08); border: 1px solid rgba(46,139,87,0.18); border-radius: 100px; padding: 4px 12px; }
+
+  /* FOOTER */
+  .kc-footer { background: var(--green-deep); border-top: 3px solid var(--gold); padding: 48px 5vw; }
+  .kc-footer-inner { max-width: 1100px; margin: 0 auto; text-align: center; }
+  .kcf-brand { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--gold-light); margin-bottom: 10px; }
+  .kcf-note { font-size: 13px; color: rgba(245,230,192,0.6); line-height: 1.7; max-width: 540px; margin: 0 auto 18px; }
+  .kcf-back { display: inline-block; font-size: 13px; color: var(--gold-light); text-decoration: none; border: 1px solid rgba(200,146,42,0.4); padding: 9px 22px; border-radius: 100px; transition: background 0.2s; }
+  .kcf-back:hover { background: rgba(200,146,42,0.15); }
+  .kcf-copy { font-size: 12px; color: rgba(245,230,192,0.3); margin-top: 22px; }
+
+  @media (max-width: 860px) {
+    .salah-wrap { grid-template-columns: 1fr; }
+    .zakat-wrap { grid-template-columns: 1fr; }
+    .zakat-result { position: static; }
+  }
+  @media (max-width: 768px) {
+    .nav-right { gap: 12px; }
+    .nav-home span { display: none; }
+    .lang-btn { padding: 6px 11px; font-size: 11px; }
+  }
+</style>
+</head>
+<body>
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-brand">
+    <img src="assets/logo.png" class="nav-logo" alt="Islamic Front Logo"
+         onerror="this.style.display='none';document.getElementById('nav-svg').style.display='block'">
+    <svg id="nav-svg" style="display:none;width:42px;height:42px;" viewBox="0 0 42 42" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="21" cy="21" r="20" fill="none" stroke="#c8922a" stroke-width="1.5"/>
+      <text x="21" y="17" text-anchor="middle" font-family="serif" font-size="13" fill="#e8b84b" font-weight="700">إسلامی</text>
+      <text x="21" y="30" text-anchor="middle" font-family="sans-serif" font-size="7" fill="#c8922a" letter-spacing="1">FRONT</text>
+    </svg>
+    <div>
+      <div class="nav-title">ఇస్లామిక్ ఫ్రంట్</div>
+      <div class="nav-sub" data-te="మంగళగిరి · స్థా. 2011" data-en="Mangalagiri · Est. 2011">మంగళగిరి · స్థా. 2011</div>
+    </div>
+  </a>
+  <div class="nav-right">
+    <a href="index.html" class="nav-home"><span data-te="హోమ్‌కు తిరిగి" data-en="Back to Home">హోమ్‌కు తిరిగి</span></a>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">English</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="kc-hero">
+  <div class="kc-hero-inner">
+    <div class="kc-badge" data-te="విజ్ఞాన వనరు" data-en="Knowledge Resource">విజ్ఞాన వనరు</div>
+    <h1 data-te="ఇస్లామిక్ <span>నాలెడ్జ్ సెంటర్</span>" data-en="Islamic <span>Knowledge Center</span>">ఇస్లామిక్ <span>నాలెడ్జ్ సెంటర్</span></h1>
+    <p data-te="ప్రతి ముస్లిం కుటుంబానికి ఉపయోగపడే ఇస్లామిక్ సాధనాలు మరియు విశ్వసనీయ వనరులు — జకాత్ లెక్కింపు, నమాజ్ వేళలు, తదుపరి నమాజ్ కౌంట్‌డౌన్, ఖురాన్ మరియు హదీస్ వనరులు ఒకే చోట." data-en="Practical Islamic tools and trusted resources for every Muslim family — Zakat calculation, daily Salah timings, a next-prayer countdown, and authentic Quran &amp; Hadith resources, all in one place.">ప్రతి ముస్లిం కుటుంబానికి ఉపయోగపడే ఇస్లామిక్ సాధనాలు మరియు విశ్వసనీయ వనరులు — జకాత్ లెక్కింపు, నమాజ్ వేళలు, తదుపరి నమాజ్ కౌంట్‌డౌన్, ఖురాన్ మరియు హదీస్ వనరులు ఒకే చోట.</p>
+    <nav class="kc-jump">
+      <a href="#salah" data-te="నమాజ్ వేళలు" data-en="Salah Timings">నమాజ్ వేళలు</a>
+      <a href="#zakat" data-te="జకాత్ కాలిక్యులేటర్" data-en="Zakat Calculator">జకాత్ కాలిక్యులేటర్</a>
+      <a href="#quran" data-te="ఖురాన్" data-en="Quran">ఖురాన్</a>
+      <a href="#hadith" data-te="హదీస్" data-en="Hadith">హదీస్</a>
+      <a href="#learn" data-te="అభ్యాసం" data-en="Learning">అభ్యాసం</a>
+    </nav>
+  </div>
+</header>
+
+<!-- SALAH TIMINGS + COUNTDOWN -->
+<section class="kc-sec salah" id="salah">
+  <div class="kc-inner">
+    <div class="sec-tag" data-te="ఈ రోజు" data-en="Today">ఈ రోజు</div>
+    <h2 class="sec-title" data-te="నమాజ్ వేళలు &amp; తదుపరి నమాజ్" data-en="Salah Timings &amp; Next Prayer">నమాజ్ వేళలు &amp; తదుపరి నమాజ్</h2>
+    <p class="sec-lead" data-te="మంగళగిరి కోసం ప్రతిరోజూ స్వయంచాలకంగా లెక్కించబడిన నమాజ్ వేళలు. తదుపరి నమాజ్‌కు మిగిలిన సమయం క్రింద చూపబడుతుంది." data-en="Salah timings calculated automatically each day for Mangalagiri. Time remaining until the next prayer is shown below.">మంగళగిరి కోసం ప్రతిరోజూ స్వయంచాలకంగా లెక్కించబడిన నమాజ్ వేళలు. తదుపరి నమాజ్‌కు మిగిలిన సమయం క్రింద చూపబడుతుంది.</p>
+
+    <div class="salah-wrap">
+      <div>
+        <div class="salah-times">
+          <div class="salah-loc">
+            <div class="sl-place">Mangalagiri</div>
+            <div class="sl-date" id="salah-date">—</div>
+          </div>
+          <div class="salah-row sr-muted" data-prayer="sunrise">
+            <div class="sr-name"><span class="sr-ic">🌅</span><span data-te="సూర్యోదయం" data-en="Sunrise">సూర్యోదయం</span></div>
+            <div class="sr-time" id="t-sunrise">—</div>
+          </div>
+          <div class="salah-row" data-prayer="fajr">
+            <div class="sr-name"><span class="sr-ic">🌌</span><span data-te="ఫజ్ర్" data-en="Fajr">ఫజ్ర్</span></div>
+            <div class="sr-time" id="t-fajr">—</div>
+          </div>
+          <div class="salah-row" data-prayer="dhuhr">
+            <div class="sr-name"><span class="sr-ic">☀️</span><span data-te="జుహ్ర్" data-en="Dhuhr">జుహ్ర్</span></div>
+            <div class="sr-time" id="t-dhuhr">—</div>
+          </div>
+          <div class="salah-row" data-prayer="asr">
+            <div class="sr-name"><span class="sr-ic">🌤️</span><span data-te="అస్ర్" data-en="Asr">అస్ర్</span></div>
+            <div class="sr-time" id="t-asr">—</div>
+          </div>
+          <div class="salah-row" data-prayer="maghrib">
+            <div class="sr-name"><span class="sr-ic">🌇</span><span data-te="మగ్రిబ్" data-en="Maghrib">మగ్రిబ్</span></div>
+            <div class="sr-time" id="t-maghrib">—</div>
+          </div>
+          <div class="salah-row" data-prayer="isha">
+            <div class="sr-name"><span class="sr-ic">🌃</span><span data-te="ఇషా" data-en="Isha">ఇషా</span></div>
+            <div class="sr-time" id="t-isha">—</div>
+          </div>
+        </div>
+        <div class="asr-toggle">
+          <span class="at-label" data-te="అస్ర్ లెక్కింపు:" data-en="Asr calculation:">అస్ర్ లెక్కింపు:</span>
+          <button class="asr-btn active" id="asr-hanafi" onclick="setAsr(true)" data-te="హనఫీ" data-en="Hanafi">హనఫీ</button>
+          <button class="asr-btn" id="asr-standard" onclick="setAsr(false)" data-te="స్టాండర్డ్ (షాఫయీ)" data-en="Standard (Shafi'i)">స్టాండర్డ్ (షాఫయీ)</button>
+        </div>
+      </div>
+
+      <div class="countdown-card">
+        <div class="cd-label" data-te="తదుపరి నమాజ్‌కు" data-en="Time until next prayer">తదుపరి నమాజ్‌కు</div>
+        <div class="cd-next" id="cd-next">—</div>
+        <div class="cd-at" id="cd-at">—</div>
+        <div class="cd-timer">
+          <div class="cd-unit"><div class="cd-num" id="cd-h">00</div><div class="cd-u" data-te="గంటలు" data-en="Hours">గంటలు</div></div>
+          <div class="cd-unit"><div class="cd-num" id="cd-m">00</div><div class="cd-u" data-te="నిమి." data-en="Min">నిమి.</div></div>
+          <div class="cd-unit"><div class="cd-num" id="cd-s">00</div><div class="cd-u" data-te="సెకన్లు" data-en="Sec">సెకన్లు</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ref-note" data-te="<strong>లెక్కింపు పద్ధతి:</strong> University of Islamic Sciences, Karachi (ఫజ్ర్ 18°, ఇషా 18°). వేళలు మంగళగిరి కోఆర్డినేట్‌ల ఆధారంగా బ్రౌజర్‌లోనే లెక్కించబడతాయి మరియు సుమారు అంచనాలు — స్థానిక మసీదు ప్రకటనను ఎల్లప్పుడూ ప్రామాణికంగా తీసుకోండి. నమాజ్‌ను సమయానికి నిర్వహించడం విధి (ఖురాన్ · సూరా అన్-నిసా 4:103)." data-en="<strong>Calculation method:</strong> University of Islamic Sciences, Karachi (Fajr 18°, Isha 18°). Times are computed in your browser from Mangalagiri's coordinates and are approximate — always treat your local masjid's announcement as authoritative. Establishing prayer at its appointed time is an obligation (Quran · Surah An-Nisa 4:103)."><strong>లెక్కింపు పద్ధతి:</strong> University of Islamic Sciences, Karachi (ఫజ్ర్ 18°, ఇషా 18°). వేళలు మంగళగిరి కోఆర్డినేట్‌ల ఆధారంగా బ్రౌజర్‌లోనే లెక్కించబడతాయి మరియు సుమారు అంచనాలు — స్థానిక మసీదు ప్రకటనను ఎల్లప్పుడూ ప్రామాణికంగా తీసుకోండి. నమాజ్‌ను సమయానికి నిర్వహించడం విధి (ఖురాన్ · సూరా అన్-నిసా 4:103).</div>
+  </div>
+</section>
+
+<!-- ZAKAT CALCULATOR -->
+<section class="kc-sec zakat" id="zakat">
+  <div class="kc-inner">
+    <div class="sec-tag" data-te="సాధనం" data-en="Tool">సాధనం</div>
+    <h2 class="sec-title" data-te="జకాత్ కాలిక్యులేటర్" data-en="Zakat Calculator">జకాత్ కాలిక్యులేటర్</h2>
+    <p class="sec-lead" data-te="మీ జకాత్‌కు లోబడే ఆస్తుల విలువను నమోదు చేయండి. మొత్తం నిసాబ్‌ను మించితే, 2.5% జకాత్ స్వయంచాలకంగా లెక్కించబడుతుంది." data-en="Enter the value of your zakatable assets. If the total reaches the nisab threshold, Zakat at 2.5% is calculated automatically.">మీ జకాత్‌కు లోబడే ఆస్తుల విలువను నమోదు చేయండి. మొత్తం నిసాబ్‌ను మించితే, 2.5% జకాత్ స్వయంచాలకంగా లెక్కించబడుతుంది.</p>
+
+    <div class="zakat-wrap">
+      <div class="zakat-form">
+        <div class="zf-group">
+          <label data-te="నగదు, బ్యాంకు పొదుపు" data-en="Cash &amp; bank savings">నగదు, బ్యాంకు పొదుపు</label>
+          <div class="zf-input"><span class="zf-cur">₹</span><input type="number" id="z-cash" min="0" placeholder="0" oninput="calcZakat()"></div>
+        </div>
+        <div class="zf-group">
+          <label data-te="బంగారం విలువ" data-en="Value of gold">బంగారం విలువ</label>
+          <div class="zf-input"><span class="zf-cur">₹</span><input type="number" id="z-gold" min="0" placeholder="0" oninput="calcZakat()"></div>
+        </div>
+        <div class="zf-group">
+          <label data-te="వెండి విలువ" data-en="Value of silver">వెండి విలువ</label>
+          <div class="zf-input"><span class="zf-cur">₹</span><input type="number" id="z-silver" min="0" placeholder="0" oninput="calcZakat()"></div>
+        </div>
+        <div class="zf-group">
+          <label data-te="వ్యాపార సరుకు / నిల్వ" data-en="Business stock / inventory">వ్యాపార సరుకు / నిల్వ</label>
+          <div class="zf-input"><span class="zf-cur">₹</span><input type="number" id="z-business" min="0" placeholder="0" oninput="calcZakat()"></div>
+        </div>
+        <div class="zf-group">
+          <label data-te="పెట్టుబడులు &amp; ఇతరులు మీకు చెల్లించవలసినవి" data-en="Investments &amp; money owed to you">పెట్టుబడులు &amp; ఇతరులు మీకు చెల్లించవలసినవి</label>
+          <div class="zf-input"><span class="zf-cur">₹</span><input type="number" id="z-receivable" min="0" placeholder="0" oninput="calcZakat()"></div>
+        </div>
+        <div class="zf-divider"></div>
+        <div class="zf-group">
+          <label data-te="తీసివేయవలసిన అప్పులు / బాధ్యతలు" data-en="Debts / liabilities to deduct">తీసివేయవలసిన అప్పులు / బాధ్యతలు</label>
+          <div class="zf-input"><span class="zf-cur">₹</span><input type="number" id="z-liab" min="0" placeholder="0" oninput="calcZakat()"></div>
+        </div>
+        <div class="zf-group">
+          <label data-te="వెండి ధర (గ్రాముకు)" data-en="Silver price (per gram)">వెండి ధర (గ్రాముకు)
+            <span class="zf-hint" data-te="— నేటి ధరకు మార్చండి" data-en="— update to today's rate">— నేటి ధరకు మార్చండి</span></label>
+          <div class="zf-input"><span class="zf-cur">₹</span><input type="number" id="z-silverprice" min="0" value="85" oninput="calcZakat()"></div>
+        </div>
+      </div>
+
+      <div class="zakat-result">
+        <div class="zr-label" data-te="చెల్లించవలసిన జకాత్" data-en="Zakat payable">చెల్లించవలసిన జకాత్</div>
+        <div class="zr-amount" id="zr-amount">₹0</div>
+        <div class="zr-status" id="zr-status" data-te="మీ ఆస్తుల వివరాలను నమోదు చేయండి." data-en="Enter your asset details to begin.">మీ ఆస్తుల వివరాలను నమోదు చేయండి.</div>
+        <div class="zr-line"><span data-te="మొత్తం ఆస్తులు" data-en="Total assets">మొత్తం ఆస్తులు</span><span id="zr-assets">₹0</span></div>
+        <div class="zr-line"><span data-te="అప్పులు (−)" data-en="Liabilities (−)">అప్పులు (−)</span><span id="zr-liab">₹0</span></div>
+        <div class="zr-line zr-net"><span data-te="నికర జకాత్ ఆస్తి" data-en="Net zakatable wealth">నికర జకాత్ ఆస్తి</span><span id="zr-net">₹0</span></div>
+        <div class="zr-line"><span data-te="నిసాబ్ పరిమితి" data-en="Nisab threshold">నిసాబ్ పరిమితి</span><span id="zr-nisab">₹0</span></div>
+      </div>
+    </div>
+
+    <div class="ref-note" data-te="<strong>జకాత్ గురించి:</strong> జకాత్ ఇస్లాం యొక్క ఐదు మూలస్తంభాలలో ఒకటి (ఖురాన్ · సూరా అత్-తౌబా 9:103, సూరా అల్-బఖరా 2:43). చాంద్రమాన సంవత్సరం పాటు నిసాబ్‌కు మించి ఉన్న సంపదపై రేటు 2.5% (1/40). నిసాబ్ = 612.36 గ్రా. వెండి లేదా 87.48 గ్రా. బంగారం విలువ — ఇది ప్రామాణిక హదీస్ నుండి స్థాపించబడింది (సహీహ్ అల్-బుఖారీ 1454). ఇది ఒక మార్గదర్శక అంచనా మాత్రమే — ఖచ్చితమైన మార్గదర్శకత్వం కోసం దయచేసి విశ్వసనీయ ఆలిమ్‌ను సంప్రదించండి." data-en="<strong>About Zakat:</strong> Zakat is one of the five pillars of Islam (Quran · Surah At-Tawbah 9:103, Surah Al-Baqarah 2:43). The rate is 2.5% (1/40) on wealth held above the nisab for one lunar year. Nisab = the value of 612.36g of silver or 87.48g of gold — established from authentic hadith (Sahih al-Bukhari 1454). This is a guidance estimate only — please consult a trusted scholar for a precise ruling."><strong>జకాత్ గురించి:</strong> జకాత్ ఇస్లాం యొక్క ఐదు మూలస్తంభాలలో ఒకటి (ఖురాన్ · సూరా అత్-తౌబా 9:103, సూరా అల్-బఖరా 2:43). చాంద్రమాన సంవత్సరం పాటు నిసాబ్‌కు మించి ఉన్న సంపదపై రేటు 2.5% (1/40). నిసాబ్ = 612.36 గ్రా. వెండి లేదా 87.48 గ్రా. బంగారం విలువ — ఇది ప్రామాణిక హదీస్ నుండి స్థాపించబడింది (సహీహ్ అల్-బుఖారీ 1454). ఇది ఒక మార్గదర్శక అంచనా మాత్రమే — ఖచ్చితమైన మార్గదర్శకత్వం కోసం దయచేసి విశ్వసనీయ ఆలిమ్‌ను సంప్రదించండి.</div>
+  </div>
+</section>
+
+<!-- QURAN RESOURCES -->
+<section class="kc-sec resources" id="quran">
+  <div class="kc-inner">
+    <div class="sec-tag" data-te="వనరులు" data-en="Resources">వనరులు</div>
+    <h2 class="sec-title" data-te="ఖురాన్ వనరులు" data-en="Quran Resources">ఖురాన్ వనరులు</h2>
+    <p class="sec-lead" data-te="ఖురాన్‌ను చదవడానికి, వినడానికి మరియు అర్థం చేసుకోవడానికి విశ్వసనీయ వనరులు." data-en="Trusted resources to read, listen to, and understand the Holy Quran.">ఖురాన్‌ను చదవడానికి, వినడానికి మరియు అర్థం చేసుకోవడానికి విశ్వసనీయ వనరులు.</p>
+    <div class="res-grid">
+      <a class="res-card" href="https://quran.com/" target="_blank" rel="noopener">
+        <div class="res-ic">📖</div>
+        <h3 data-te="ఖురాన్ చదవండి" data-en="Read the Quran">ఖురాన్ చదవండి</h3>
+        <p data-te="అరబిక్ మూలంతో పాటు అనువాదం మరియు పదాల వారీగా అర్థం — Quran.com." data-en="Full Arabic text with translation and word-by-word meaning — Quran.com.">అరబిక్ మూలంతో పాటు అనువాదం మరియు పదాల వారీగా అర్థం — Quran.com.</p>
+        <div class="res-go" data-te="quran.com తెరవండి" data-en="Open quran.com">quran.com తెరవండి</div>
+      </a>
+      <a class="res-card" href="https://quran.com/?audio=7" target="_blank" rel="noopener">
+        <div class="res-ic">🎧</div>
+        <h3 data-te="తిలావత్ వినండి" data-en="Listen to Recitation">తిలావత్ వినండి</h3>
+        <p data-te="ప్రఖ్యాత ఖారీల తిలావత్ ఆడియో — ఆయత్ వారీగా అనుసరించవచ్చు." data-en="Audio recitation by renowned reciters — follow along ayah by ayah.">ప్రఖ్యాత ఖారీల తిలావత్ ఆడియో — ఆయత్ వారీగా అనుసరించవచ్చు.</p>
+        <div class="res-go" data-te="తిలావత్ వినండి" data-en="Listen now">తిలావత్ వినండి</div>
+      </a>
+      <a class="res-card" href="https://quran.com/en/1?translations=234" target="_blank" rel="noopener">
+        <div class="res-ic">🌐</div>
+        <h3 data-te="అనువాదం &amp; తఫ్సీర్" data-en="Translation &amp; Tafsir">అనువాదం &amp; తఫ్సీర్</h3>
+        <p data-te="బహుళ భాషల్లో అనువాదాలు మరియు ప్రామాణిక తఫ్సీర్ వివరణలు." data-en="Translations in multiple languages with authentic tafsir explanations.">బహుళ భాషల్లో అనువాదాలు మరియు ప్రామాణిక తఫ్సీర్ వివరణలు.</p>
+        <div class="res-go" data-te="చదవండి" data-en="Explore">చదవండి</div>
+      </a>
+      <a class="res-card" href="https://tanzil.net/" target="_blank" rel="noopener">
+        <div class="res-ic">🔖</div>
+        <h3 data-te="తన్జీల్ ఖురాన్" data-en="Tanzil Quran">తన్జీల్ ఖురాన్</h3>
+        <p data-te="ధృవీకరించబడిన ఖురాన్ మూల పాఠం మరియు బహుళ అనువాదాలు — Tanzil.net." data-en="Verified Quran text with multiple translations — Tanzil.net.">ధృవీకరించబడిన ఖురాన్ మూల పాఠం మరియు బహుళ అనువాదాలు — Tanzil.net.</p>
+        <div class="res-go" data-te="తెరవండి" data-en="Open">తెరవండి</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- HADITH RESOURCES -->
+<section class="kc-sec resources hadith" id="hadith">
+  <div class="kc-inner">
+    <div class="sec-tag" data-te="వనరులు" data-en="Resources">వనరులు</div>
+    <h2 class="sec-title" data-te="హదీస్ వనరులు" data-en="Hadith Resources">హదీస్ వనరులు</h2>
+    <p class="sec-lead" data-te="ప్రామాణిక హదీస్ సంకలనాలు — Sunnah.com ద్వారా, మూల అరబిక్ మరియు ఆంగ్ల అనువాదంతో." data-en="Authentic hadith collections via Sunnah.com, with original Arabic and English translation.">ప్రామాణిక హదీస్ సంకలనాలు — Sunnah.com ద్వారా, మూల అరబిక్ మరియు ఆంగ్ల అనువాదంతో.</p>
+    <div class="res-grid">
+      <a class="res-card" href="https://sunnah.com/bukhari" target="_blank" rel="noopener">
+        <div class="res-ic">📜</div>
+        <h3 data-te="సహీహ్ అల్-బుఖారీ" data-en="Sahih al-Bukhari">సహీహ్ అల్-బుఖారీ</h3>
+        <p data-te="అత్యంత ప్రామాణికమైన హదీస్ సంకలనంగా పరిగణించబడుతుంది." data-en="Regarded as the most authentic collection of hadith.">అత్యంత ప్రామాణికమైన హదీస్ సంకలనంగా పరిగణించబడుతుంది.</p>
+        <div class="res-go" data-te="చదవండి" data-en="Read">చదవండి</div>
+      </a>
+      <a class="res-card" href="https://sunnah.com/muslim" target="_blank" rel="noopener">
+        <div class="res-ic">📜</div>
+        <h3 data-te="సహీహ్ ముస్లిం" data-en="Sahih Muslim">సహీహ్ ముస్లిం</h3>
+        <p data-te="ప్రామాణికత్వంలో రెండవ స్థానంలో ఉన్న ప్రఖ్యాత హదీస్ సంకలనం." data-en="The second most authentic and widely referenced hadith collection.">ప్రామాణికత్వంలో రెండవ స్థానంలో ఉన్న ప్రఖ్యాత హదీస్ సంకలనం.</p>
+        <div class="res-go" data-te="చదవండి" data-en="Read">చదవండి</div>
+      </a>
+      <a class="res-card" href="https://sunnah.com/abudawud" target="_blank" rel="noopener">
+        <div class="res-ic">📜</div>
+        <h3 data-te="సునన్ అబీ దావూద్" data-en="Sunan Abi Dawud">సునన్ అబీ దావూద్</h3>
+        <p data-te="ఆచరణకు సంబంధించిన (ఫిఖ్) హదీసులపై ప్రత్యేక దృష్టి." data-en="Focuses on hadith relating to practice and jurisprudence (fiqh).">ఆచరణకు సంబంధించిన (ఫిఖ్) హదీసులపై ప్రత్యేక దృష్టి.</p>
+        <div class="res-go" data-te="చదవండి" data-en="Read">చదవండి</div>
+      </a>
+      <a class="res-card" href="https://sunnah.com/tirmidhi" target="_blank" rel="noopener">
+        <div class="res-ic">📜</div>
+        <h3 data-te="జామి అత్-తిర్మిజీ" data-en="Jami at-Tirmidhi">జామి అత్-తిర్మిజీ</h3>
+        <p data-te="ప్రతి హదీస్ స్థాయిని (గ్రేడింగ్) వివరించే సంకలనం." data-en="A collection noting the grading and reliability of each hadith.">ప్రతి హదీస్ స్థాయిని (గ్రేడింగ్) వివరించే సంకలనం.</p>
+        <div class="res-go" data-te="చదవండి" data-en="Read">చదవండి</div>
+      </a>
+      <a class="res-card" href="https://sunnah.com/nasai" target="_blank" rel="noopener">
+        <div class="res-ic">📜</div>
+        <h3 data-te="సునన్ అన్-నసాయీ" data-en="Sunan an-Nasa'i">సునన్ అన్-నసాయీ</h3>
+        <p data-te="ఆరు ప్రామాణిక సంకలనాలలో ఒకటి (కుతుబ్ అస్-సిత్తా)." data-en="One of the six canonical collections (Kutub as-Sittah).">ఆరు ప్రామాణిక సంకలనాలలో ఒకటి (కుతుబ్ అస్-సిత్తా).</p>
+        <div class="res-go" data-te="చదవండి" data-en="Read">చదవండి</div>
+      </a>
+      <a class="res-card" href="https://sunnah.com/riyadussalihin" target="_blank" rel="noopener">
+        <div class="res-ic">🌿</div>
+        <h3 data-te="రియాద్ అస్-సాలిహీన్" data-en="Riyad as-Salihin">రియాద్ అస్-సాలిహీన్</h3>
+        <p data-te="ఇమామ్ నవవీ సంకలనం చేసిన నైతికత మరియు ఆరాధనపై హదీసులు." data-en="Hadith on character and worship, compiled by Imam an-Nawawi.">ఇమామ్ నవవీ సంకలనం చేసిన నైతికత మరియు ఆరాధనపై హదీసులు.</p>
+        <div class="res-go" data-te="చదవండి" data-en="Read">చదవండి</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ISLAMIC LEARNING -->
+<section class="kc-sec learn" id="learn">
+  <div class="kc-inner">
+    <div class="sec-tag" data-te="అభ్యాసం" data-en="Learning">అభ్యాసం</div>
+    <h2 class="sec-title" data-te="ఇస్లామిక్ అభ్యాస సామగ్రి" data-en="Islamic Learning Content">ఇస్లామిక్ అభ్యాస సామగ్రి</h2>
+    <p class="sec-lead" data-te="ప్రతి అంశం ప్రామాణిక ఆధారంతో — ఖురాన్ లేదా సహీహ్ హదీస్ నుండి." data-en="Each point cited with an authentic source — from the Quran or a Sahih hadith.">ప్రతి అంశం ప్రామాణిక ఆధారంతో — ఖురాన్ లేదా సహీహ్ హదీస్ నుండి.</p>
+    <div class="learn-grid">
+      <div class="learn-card">
+        <h3><span>🕋</span><span data-te="ఇస్లాం యొక్క ఐదు మూలస్తంభాలు" data-en="The Five Pillars of Islam">ఇస్లాం యొక్క ఐదు మూలస్తంభాలు</span></h3>
+        <p data-te="ఇస్లాం ఐదు స్తంభాలపై నిర్మించబడింది: షహాదా (సాక్ష్యం), నమాజ్, జకాత్, రమజాన్ ఉపవాసం, మరియు సామర్థ్యం ఉన్నవారికి హజ్." data-en="Islam is built upon five pillars: the Shahada (testimony of faith), Salah (prayer), Zakat (almsgiving), fasting in Ramadan, and Hajj for those who are able.">ఇస్లాం ఐదు స్తంభాలపై నిర్మించబడింది: షహాదా (సాక్ష్యం), నమాజ్, జకాత్, రమజాన్ ఉపవాసం, మరియు సామర్థ్యం ఉన్నవారికి హజ్.</p>
+        <span class="learn-ref">Sahih al-Bukhari 8 · Sahih Muslim 16</span>
+      </div>
+      <div class="learn-card">
+        <h3><span>🕌</span><span data-te="నమాజ్‌ను సమయానికి నిర్వహించడం" data-en="Praying at its Appointed Time">నమాజ్‌ను సమయానికి నిర్వహించడం</span></h3>
+        <p data-te="&quot;నిశ్చయంగా, నమాజ్ విశ్వాసులపై నిర్దిష్ట సమయాల్లో విధిగా నిర్ణయించబడింది.&quot; ప్రళయదినాన బానిస మొదట లెక్క అడగబడేది నమాజ్ గురించే." data-en="&quot;Indeed, prayer has been decreed upon the believers at specified times.&quot; The first matter a servant will be questioned about on the Day of Judgement is the prayer.">&quot;నిశ్చయంగా, నమాజ్ విశ్వాసులపై నిర్దిష్ట సమయాల్లో విధిగా నిర్ణయించబడింది.&quot; ప్రళయదినాన బానిస మొదట లెక్క అడగబడేది నమాజ్ గురించే.</p>
+        <span class="learn-ref">Quran 4:103 · Jami at-Tirmidhi 413</span>
+      </div>
+      <div class="learn-card">
+        <h3><span>🤲</span><span data-te="జకాత్ యొక్క ప్రాముఖ్యత" data-en="The Importance of Zakat">జకాత్ యొక్క ప్రాముఖ్యత</span></h3>
+        <p data-te="&quot;వారి సంపద నుండి దానం (జకాత్) స్వీకరించు, దాని ద్వారా నీవు వారిని పవిత్రులుగా చేస్తావు.&quot; జకాత్ సంపదను శుద్ధి చేస్తుంది మరియు సమాజంలో సమతుల్యతను తెస్తుంది." data-en="&quot;Take from their wealth a charity (Zakat) by which you purify them.&quot; Zakat purifies wealth and brings balance to the community.">&quot;వారి సంపద నుండి దానం (జకాత్) స్వీకరించు, దాని ద్వారా నీవు వారిని పవిత్రులుగా చేస్తావు.&quot; జకాత్ సంపదను శుద్ధి చేస్తుంది మరియు సమాజంలో సమతుల్యతను తెస్తుంది.</p>
+        <span class="learn-ref">Quran 9:103</span>
+      </div>
+      <div class="learn-card">
+        <h3><span>📚</span><span data-te="విజ్ఞానాన్ని అన్వేషించడం" data-en="Seeking Knowledge">విజ్ఞానాన్ని అన్వేషించడం</span></h3>
+        <p data-te="&quot;మీలో ఉత్తములు ఖురాన్ నేర్చుకొని, దానిని ఇతరులకు నేర్పేవారు.&quot; విజ్ఞానాన్ని అన్వేషించడం ప్రతి ముస్లింపై ఒక బాధ్యత." data-en="&quot;The best among you are those who learn the Quran and teach it.&quot; Seeking knowledge is an obligation upon every Muslim.">&quot;మీలో ఉత్తములు ఖురాన్ నేర్చుకొని, దానిని ఇతరులకు నేర్పేవారు.&quot; విజ్ఞానాన్ని అన్వేషించడం ప్రతి ముస్లింపై ఒక బాధ్యత.</p>
+        <span class="learn-ref">Sahih al-Bukhari 5027 · Sunan Ibn Majah 224</span>
+      </div>
+      <div class="learn-card">
+        <h3><span>💧</span><span data-te="వుజూ (అంగశుద్ధి)" data-en="Wudu (Ablution)">వుజూ (అంగశుద్ధి)</span></h3>
+        <p data-te="&quot;శుద్ధత విశ్వాసంలో సగభాగం.&quot; నమాజ్‌కు ముందు వుజూ చేయడం తప్పనిసరి — ముఖం, చేతులు (మోచేతుల వరకు), తలను తడవడం, మరియు కాళ్ళు (మడమల వరకు) కడగడం." data-en="&quot;Purity is half of faith.&quot; Wudu before prayer is essential — washing the face, hands to the elbows, wiping the head, and washing the feet to the ankles.">&quot;శుద్ధత విశ్వాసంలో సగభాగం.&quot; నమాజ్‌కు ముందు వుజూ చేయడం తప్పనిసరి — ముఖం, చేతులు (మోచేతుల వరకు), తలను తడవడం, మరియు కాళ్ళు (మడమల వరకు) కడగడం.</p>
+        <span class="learn-ref">Quran 5:6 · Sahih Muslim 223</span>
+      </div>
+      <div class="learn-card">
+        <h3><span>🌙</span><span data-te="రమజాన్ ఉపవాసం" data-en="Fasting in Ramadan">రమజాన్ ఉపవాసం</span></h3>
+        <p data-te="&quot;ఓ విశ్వాసులారా! మీకు పూర్వం వారిపై విధించబడినట్లే మీపై ఉపవాసం విధించబడింది — మీరు భయభక్తులు (తఖ్వా) అలవరచుకోవడానికి.&quot;" data-en="&quot;O you who believe, fasting is prescribed for you as it was prescribed for those before you, so that you may attain God-consciousness (taqwa).&quot;">&quot;ఓ విశ్వాసులారా! మీకు పూర్వం వారిపై విధించబడినట్లే మీపై ఉపవాసం విధించబడింది — మీరు భయభక్తులు (తఖ్వా) అలవరచుకోవడానికి.&quot;</p>
+        <span class="learn-ref">Quran 2:183</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="kc-footer">
+  <div class="kc-footer-inner">
+    <p class="kcf-brand">ఇస్లామిక్ ఫ్రంట్ · Islamic Front</p>
+    <p class="kcf-note" data-te="ఇస్లామిక్ నాలెడ్జ్ సెంటర్ — సమాజ సేవకు అనుబంధంగా అందించబడిన విజ్ఞాన వనరు." data-en="Islamic Knowledge Center — a knowledge resource offered alongside our community service.">ఇస్లామిక్ నాలెడ్జ్ సెంటర్ — సమాజ సేవకు అనుబంధంగా అందించబడిన విజ్ఞాన వనరు.</p>
+    <a href="index.html" class="kcf-back" data-te="← హోమ్ పేజీకి తిరిగి వెళ్ళండి" data-en="← Back to Home">← హోమ్ పేజీకి తిరిగి వెళ్ళండి</a>
+    <p class="kcf-copy">© 2026 Islamic Front, Mangalagiri.</p>
+  </div>
+</footer>
+
+<script>
+/* ───────── Bilingual engine (data-te / data-en) ───────── */
+let lang = (function () { try { return localStorage.getItem('if-lang') === 'en' ? 'en' : 'te'; } catch (e) { return 'te'; } })();
+function applyLang(l) {
+  try { localStorage.setItem('if-lang', l); } catch (e) {}
+  document.getElementById('html-root').lang = l;
+  document.querySelectorAll('[data-te]').forEach(function (el) {
+    var v = el.getAttribute('data-' + l);
+    if (v !== null) el.innerHTML = v;
+  });
+  document.title = l === 'te' ? 'ఇస్లామిక్ నాలెడ్జ్ సెంటర్ – ఇస్లామిక్ ఫ్రంట్' : 'Islamic Knowledge Center – Islamic Front';
+  var btn = document.getElementById('lang-btn');
+  btn.textContent = l === 'te' ? 'English' : 'తెలుగు';
+  btn.style.fontFamily = l === 'te' ? "'DM Sans', sans-serif" : "'Noto Sans Telugu', sans-serif";
+  renderNextLabel();
+}
+function toggleLang() { lang = lang === 'te' ? 'en' : 'te'; applyLang(lang); }
+
+/* ───────── Prayer-time calculation (PrayTimes.org algorithm) ─────────
+   Method: University of Islamic Sciences, Karachi (Fajr 18°, Isha 18°). */
+var PrayTimes = (function () {
+  var D2R = Math.PI / 180, R2D = 180 / Math.PI;
+  function sin(d){return Math.sin(d*D2R);} function cos(d){return Math.cos(d*D2R);} function tan(d){return Math.tan(d*D2R);}
+  function asin(x){return R2D*Math.asin(x);} function acos(x){return R2D*Math.acos(x);}
+  function atan2(y,x){return R2D*Math.atan2(y,x);} function acot(x){return R2D*Math.atan(1/x);}
+  function fixA(a){a%=360; return a<0?a+360:a;} function fixH(a){a%=24; return a<0?a+24:a;}
+  function julian(y,m,d){ if(m<=2){y-=1;m+=12;} var A=Math.floor(y/100), B=2-A+Math.floor(A/4);
+    return Math.floor(365.25*(y+4716))+Math.floor(30.6001*(m+1))+d+B-1524.5; }
+  function sunPos(jd){ var D=jd-2451545.0;
+    var g=fixA(357.529+0.98560028*D), q=fixA(280.459+0.98564736*D);
+    var L=fixA(q+1.915*sin(g)+0.020*sin(2*g)), e=23.439-0.00000036*D;
+    var RA=atan2(cos(e)*sin(L),cos(L))/15, decl=asin(sin(e)*sin(L));
+    return {decl:decl, eqt:q/15-fixH(RA)}; }
+  function midDay(jd,t){ return fixH(12-sunPos(jd+t).eqt); }
+  function sunAngle(jd,t,angle,lat,ccw){ var decl=sunPos(jd+t).decl, noon=midDay(jd,t);
+    var x=(-sin(angle)-sin(lat)*sin(decl))/(cos(lat)*cos(decl)), T=(1/15)*acos(x);
+    return noon+(ccw?-T:T); }
+  function asrT(jd,t,factor,lat){ var decl=sunPos(jd+t).decl;
+    var angle=-acot(factor+tan(Math.abs(lat-decl))); return sunAngle(jd,t,angle,lat,false); }
+  return function (y, m, d, lat, lng, tz, opts) {
+    opts = opts || {};
+    var fajrAngle = 18, ishaAngle = 18, riseSet = 0.833, asrFactor = opts.hanafi ? 2 : 1;
+    var jd = julian(y, m, d) - lng / (15 * 24);
+    var t = { fajr:5/24, sunrise:6/24, dhuhr:12/24, asr:13/24, sunset:18/24, isha:18/24 };
+    for (var i = 0; i < 3; i++) {
+      t = {
+        fajr:    sunAngle(jd, t.fajr,    fajrAngle, lat, true) / 24,
+        sunrise: sunAngle(jd, t.sunrise, riseSet,   lat, true) / 24,
+        dhuhr:   midDay(jd, t.dhuhr) / 24,
+        asr:     asrT(jd, t.asr, asrFactor, lat) / 24,
+        sunset:  sunAngle(jd, t.sunset,  riseSet,   lat, false) / 24,
+        isha:    sunAngle(jd, t.isha,    ishaAngle, lat, false) / 24
+      };
+    }
+    function adj(h){ return fixH(h + tz - lng / 15); }
+    return {
+      fajr:    adj(t.fajr * 24),
+      sunrise: adj(t.sunrise * 24),
+      dhuhr:   adj(t.dhuhr * 24) + 1/60,
+      asr:     adj(t.asr * 24),
+      maghrib: adj(t.sunset * 24) + 1/60,
+      isha:    adj(t.isha * 24)
+    };
+  };
+})();
+
+/* ───────── Salah + countdown ───────── */
+var LAT = 16.4307, LNG = 80.5680, TZ = 5.5;
+var hanafi = (function () { try { return (localStorage.getItem('if-asr') || 'hanafi') === 'hanafi'; } catch (e) { return true; } })();
+var PNAME = {
+  te: { fajr:'ఫజ్ర్', sunrise:'సూర్యోదయం', dhuhr:'జుహ్ర్', asr:'అస్ర్', maghrib:'మగ్రిబ్', isha:'ఇషా' },
+  en: { fajr:'Fajr', sunrise:'Sunrise', dhuhr:'Dhuhr', asr:'Asr', maghrib:'Maghrib', isha:'Isha' }
+};
+var nextKey = null, targetEpoch = 0;
+
+function nowIST() { return new Date(Date.now() + TZ * 3600000); }
+function fmt(h) { h = (h % 24 + 24) % 24; var H = Math.floor(h), M = Math.round((h - H) * 60);
+  if (M === 60) { M = 0; H = (H + 1) % 24; }
+  var ap = H < 12 ? 'AM' : 'PM', h12 = H % 12; if (h12 === 0) h12 = 12;
+  return h12 + ':' + (M < 10 ? '0' + M : M) + ' ' + ap; }
+function epochFor(d, hf) { var H = Math.floor(hf), M = Math.round((hf - H) * 60);
+  return Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate(), H, M, 0) - TZ * 3600000; }
+
+function renderSalah() {
+  var ist = nowIST();
+  var T = PrayTimes(ist.getUTCFullYear(), ist.getUTCMonth() + 1, ist.getUTCDate(), LAT, LNG, TZ, { hanafi: hanafi });
+  ['fajr','sunrise','dhuhr','asr','maghrib','isha'].forEach(function (k) {
+    var el = document.getElementById('t-' + k); if (el) el.textContent = fmt(T[k]);
+  });
+  // dates (Gregorian + Hijri)
+  var greg = ist.toLocaleDateString(lang === 'te' ? 'te-IN' : 'en-GB', { weekday:'short', day:'numeric', month:'short', year:'numeric', timeZone:'UTC' });
+  var hijri = '';
+  try { hijri = ist.toLocaleDateString('en-u-ca-islamic-umalqura', { day:'numeric', month:'long', year:'numeric', era:'short', timeZone:'UTC' }); } catch (e) {}
+  document.getElementById('salah-date').innerHTML = greg + (hijri ? '<br>' + hijri : '');
+
+  // determine next salah (exclude sunrise)
+  var order = [['fajr',T.fajr],['dhuhr',T.dhuhr],['asr',T.asr],['maghrib',T.maghrib],['isha',T.isha]];
+  var nowH = ist.getUTCHours() + ist.getUTCMinutes()/60 + ist.getUTCSeconds()/3600;
+  var nx = null, targetDate = ist;
+  for (var i = 0; i < order.length; i++) { if (order[i][1] > nowH) { nx = order[i]; break; } }
+  if (!nx) {
+    var tm = new Date(ist.getTime() + 86400000);
+    var T2 = PrayTimes(tm.getUTCFullYear(), tm.getUTCMonth() + 1, tm.getUTCDate(), LAT, LNG, TZ, { hanafi: hanafi });
+    nx = ['fajr', T2.fajr]; targetDate = tm;
+  }
+  nextKey = nx[0];
+  targetEpoch = epochFor(targetDate, nx[1]);
+  // highlight current next row
+  document.querySelectorAll('.salah-row').forEach(function (r) {
+    r.classList.toggle('is-next', r.getAttribute('data-prayer') === nextKey);
+    var pill = r.querySelector('.next-pill'); if (pill) pill.remove();
+  });
+  var nextRow = document.querySelector('.salah-row[data-prayer="' + nextKey + '"] .sr-name');
+  if (nextRow) { var p = document.createElement('span'); p.className = 'next-pill';
+    p.textContent = lang === 'te' ? 'తదుపరి' : 'NEXT'; nextRow.appendChild(p); }
+  document.getElementById('cd-at').textContent = (lang === 'te' ? 'వద్ద ' : 'at ') + fmt(nx[1]);
+  renderNextLabel();
+}
+function renderNextLabel() {
+  if (!nextKey) return;
+  var el = document.getElementById('cd-next'); if (el) el.textContent = PNAME[lang][nextKey];
+  var pill = document.querySelector('.next-pill'); if (pill) pill.textContent = lang === 'te' ? 'తదుపరి' : 'NEXT';
+}
+function tickCountdown() {
+  if (!targetEpoch) return;
+  var diff = Math.floor((targetEpoch - Date.now()) / 1000);
+  if (diff < 0) { renderSalah(); return; }
+  var h = Math.floor(diff / 3600), m = Math.floor((diff % 3600) / 60), s = diff % 60;
+  document.getElementById('cd-h').textContent = h < 10 ? '0' + h : h;
+  document.getElementById('cd-m').textContent = m < 10 ? '0' + m : m;
+  document.getElementById('cd-s').textContent = s < 10 ? '0' + s : s;
+}
+function setAsr(isHanafi) {
+  hanafi = isHanafi;
+  try { localStorage.setItem('if-asr', isHanafi ? 'hanafi' : 'standard'); } catch (e) {}
+  document.getElementById('asr-hanafi').classList.toggle('active', isHanafi);
+  document.getElementById('asr-standard').classList.toggle('active', !isHanafi);
+  renderSalah();
+}
+
+/* ───────── Zakat calculator ───────── */
+function inr(n) { return '₹' + Math.round(n).toLocaleString('en-IN'); }
+function calcZakat() {
+  function v(id) { var x = parseFloat(document.getElementById(id).value); return isNaN(x) || x < 0 ? 0 : x; }
+  var assets = v('z-cash') + v('z-gold') + v('z-silver') + v('z-business') + v('z-receivable');
+  var liab = v('z-liab');
+  var net = Math.max(0, assets - liab);
+  var nisab = 612.36 * v('z-silverprice');
+  var due = nisab > 0 && net >= nisab;
+  var zakat = due ? net * 0.025 : 0;
+  document.getElementById('zr-amount').textContent = inr(zakat);
+  document.getElementById('zr-assets').textContent = inr(assets);
+  document.getElementById('zr-liab').textContent = inr(liab);
+  document.getElementById('zr-net').textContent = inr(net);
+  document.getElementById('zr-nisab').textContent = inr(nisab);
+  var st = document.getElementById('zr-status');
+  if (nisab <= 0) { st.setAttribute('data-te','నిసాబ్ లెక్కించడానికి వెండి ధరను నమోదు చేయండి.'); st.setAttribute('data-en','Enter the silver price to compute nisab.'); }
+  else if (due) { st.setAttribute('data-te','మీ సంపద నిసాబ్‌ను చేరింది — జకాత్ చెల్లించవలసి ఉంటుంది.'); st.setAttribute('data-en','Your wealth has reached nisab — Zakat is due.'); }
+  else { st.setAttribute('data-te','మీ సంపద నిసాబ్‌కు దిగువన ఉంది — జకాత్ తప్పనిసరి కాదు.'); st.setAttribute('data-en','Your wealth is below nisab — Zakat is not obligatory.'); }
+  st.innerHTML = st.getAttribute('data-' + lang);
+}
+
+/* ───────── Boot ───────── */
+document.addEventListener('DOMContentLoaded', function () {
+  document.getElementById('asr-hanafi').classList.toggle('active', hanafi);
+  document.getElementById('asr-standard').classList.toggle('active', !hanafi);
+  applyLang(lang);
+  renderSalah();
+  calcZakat();
+  tickCountdown();
+  setInterval(tickCountdown, 1000);
+  setInterval(renderSalah, 60000);
+});
+</script>
+</body>
+</html>

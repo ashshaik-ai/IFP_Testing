@@ -5,23 +5,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ఇస్లామిక్ ఫ్రంట్ – మంగళగిరి</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@300;400;500&family=Space+Grotesk:wght@300;400;500;600&family=Noto+Sans+Telugu:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@300;400;500&family=Noto+Sans+Telugu:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
     --green-deep: #0d3b1e; --green-mid: #1a5c30; --green-light: #2e8b57;
     --gold: #c8922a; --gold-light: #e8b84b; --gold-pale: #f5e6c0;
-    --gold-warm: #d4a537; --gold-glow: rgba(200,146,42,0.15);
     --cream: #faf6ee; --white: #ffffff;
     --text-dark: #1a1208; --text-mid: #3d3018; --text-muted: #7a6840;
     --border: rgba(200,146,42,0.25);
-    --radius-sm: 6px; --radius-md: 12px; --radius-lg: 20px; --radius-full: 9999px;
-    --shadow-sm: 0 1px 3px rgba(13,59,30,0.08), 0 1px 2px rgba(13,59,30,0.06);
-    --shadow-md: 0 4px 16px rgba(13,59,30,0.10), 0 2px 6px rgba(13,59,30,0.08);
-    --shadow-lg: 0 12px 40px rgba(13,59,30,0.14), 0 4px 12px rgba(13,59,30,0.10);
   }
   html { scroll-behavior: smooth; }
-  body { font-family: 'Space Grotesk', 'DM Sans', 'Noto Sans Telugu', sans-serif; background: var(--cream); color: var(--text-dark); overflow-x: hidden; }
+  body { font-family: 'DM Sans', 'Noto Sans Telugu', sans-serif; background: var(--cream); color: var(--text-dark); overflow-x: hidden; }
 
   /* NAV */
   nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(13,59,30,0.96); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(200,146,42,0.3); padding: 0 5vw; display: flex; align-items: center; justify-content: space-between; height: 68px; }
@@ -36,6 +31,11 @@
   .lang-btn { display: flex; align-items: center; gap: 6px; background: rgba(200,146,42,0.12); border: 1.5px solid rgba(200,146,42,0.4); color: var(--gold-light); padding: 7px 16px; border-radius: 100px; font-size: 12px; font-weight: 500; cursor: pointer; letter-spacing: 0.8px; font-family: inherit; transition: background 0.2s, transform 0.15s; white-space: nowrap; flex-shrink: 0; }
   .lang-btn:hover { background: rgba(200,146,42,0.22); transform: translateY(-1px); }
   .lang-btn::before { content: '🌐'; font-size: 13px; }
+  /* KNOWLEDGE CENTER NAV PILL */
+  .nav-kc { display: inline-flex; align-items: center; gap: 6px; background: linear-gradient(135deg, rgba(200,146,42,0.22), rgba(200,146,42,0.1)); border: 1.5px solid rgba(232,184,75,0.55); color: var(--gold-light); text-decoration: none; padding: 7px 16px; border-radius: 100px; font-size: 12px; font-weight: 500; letter-spacing: 0.6px; white-space: nowrap; flex-shrink: 0; transition: background 0.2s, transform 0.15s, box-shadow 0.2s; }
+  .nav-kc::before { content: '☪\FE0E'; font-size: 13px; }
+  .nav-kc::after { content: '↗'; font-size: 12px; opacity: 0.7; }
+  .nav-kc:hover { background: linear-gradient(135deg, rgba(200,146,42,0.34), rgba(200,146,42,0.18)); transform: translateY(-1px); box-shadow: 0 3px 12px rgba(200,146,42,0.18); }
 
   /* HERO */
   .hero { min-height: 100vh; background: linear-gradient(160deg, var(--green-deep) 0%, #0a2e17 50%, #122b0f 100%); display: flex; align-items: center; padding: 100px 5vw 80px; position: relative; overflow: hidden; }
@@ -46,7 +46,7 @@
   .hero-badge::before { content: '★\FE0E'; font-size: 10px; }
   .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(48px, 7vw, 88px); font-weight: 900; color: var(--white); line-height: 1.05; margin-bottom: 8px; }
   :lang(te) .hero-title { line-height: 1.4; }
-  .hero-title span { display: block; color: var(--gold-light); background: linear-gradient(90deg, var(--gold) 0%, #fff8d6 38%, var(--gold-light) 55%, var(--gold) 100%); background-size: 300% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: shimmer 4s linear 2.4s infinite; }
+  .hero-title span { color: var(--gold-light); display: block; }
   .hero-subtitle { font-family: 'Cormorant Garamond', 'Noto Sans Telugu', serif; font-size: clamp(16px, 2vw, 22px); color: rgba(245,230,192,0.75); margin-bottom: 36px; font-weight: 400; letter-spacing: 0.3px; line-height: 1.7; }
   .hero-stats { display: flex; gap: 36px; margin-bottom: 44px; flex-wrap: wrap; }
   .hstat-num { font-family: 'Playfair Display', serif; font-size: 38px; font-weight: 700; color: var(--gold-light); line-height: 1; }
@@ -202,6 +202,23 @@
   .opp-tag { display: flex; align-items: center; gap: 8px; background: var(--white); border: 1px solid var(--border); padding: 8px 18px; border-radius: 100px; font-size: 13px; color: var(--text-mid); }
   .opp-tag::before { content: '◦'; color: var(--gold); }
 
+  /* KNOWLEDGE CENTER PROMO (secondary initiative) */
+  .kc-promo { background: linear-gradient(150deg, #0a2e17 0%, #103a1f 55%, #0d3b1e 100%); position: relative; overflow: hidden; border-top: 1px solid rgba(200,146,42,0.18); }
+  .kc-promo::before { content: '☪\FE0E'; position: absolute; right: 4vw; top: 50%; transform: translateY(-50%); font-size: clamp(150px, 18vw, 250px); color: rgba(200,146,42,0.05); line-height: 1; pointer-events: none; }
+  .kc-promo .inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1.05fr 1fr; gap: 56px; align-items: center; }
+  .kc-promo .section-tag { color: var(--gold-light); }
+  .kc-promo .section-tag::before { background: var(--gold-light); }
+  .kc-promo-title { font-family: 'Playfair Display', serif; font-size: clamp(28px, 3.6vw, 42px); font-weight: 700; color: var(--white); line-height: 1.2; margin-bottom: 16px; }
+  .kc-promo-lead { font-size: 15px; color: rgba(245,230,192,0.7); line-height: 1.85; margin-bottom: 30px; max-width: 480px; }
+  .kc-cta { display: inline-flex; align-items: center; gap: 10px; background: var(--gold); color: var(--green-deep); padding: 14px 30px; border-radius: 6px; font-weight: 600; font-size: 14px; letter-spacing: 0.5px; text-decoration: none; text-transform: uppercase; transition: background 0.2s, transform 0.15s; }
+  .kc-cta::after { content: '↗'; font-size: 15px; }
+  .kc-cta:hover { background: var(--gold-light); transform: translateY(-1px); }
+  .kc-tools { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .kc-tool { display: flex; align-items: center; gap: 13px; background: rgba(255,255,255,0.04); border: 1px solid rgba(200,146,42,0.22); border-radius: 10px; padding: 16px 18px; transition: background 0.2s, transform 0.2s, box-shadow 0.2s; }
+  .kc-tool:hover { background: rgba(200,146,42,0.1); transform: translateY(-2px); box-shadow: 0 4px 14px rgba(0,0,0,0.18); }
+  .kc-tool-ic { font-size: 24px; flex-shrink: 0; line-height: 1; }
+  .kc-tool-tx { font-size: 13px; font-weight: 500; color: rgba(245,230,192,0.92); line-height: 1.4; }
+
   /* FOOTER */
   footer { background: var(--green-deep); padding: 60px 5vw 36px; border-top: 3px solid var(--gold); }
   .footer-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
@@ -216,7 +233,7 @@
   /* ANIMATIONS */
   @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
   .hero-badge { animation: fadeUp 0.5s ease-out 0.1s both; }
-  .hero-title { animation: titleReveal 0.85s cubic-bezier(0.16,1,0.3,1) 0.2s both; }
+  .hero-title { animation: fadeUp 0.5s ease-out 0.2s both; }
   .hero-subtitle { animation: fadeUp 0.5s ease-out 0.3s both; }
   .hero-stats { animation: fadeUp 0.5s ease-out 0.4s both; }
   .hero-cta { animation: fadeUp 0.5s ease-out 0.5s both; }
@@ -303,155 +320,17 @@
     .footer-inner { grid-template-columns: 1fr; }
     .nav-links { display: none; }
     .lang-btn { padding: 6px 10px; font-size: 11px; }
+    .nav-kc { padding: 6px 11px; font-size: 11px; }
+    .nav-right { gap: 12px; }
+    .kc-promo .inner { grid-template-columns: 1fr; gap: 36px; }
   }
-
-  /* ═══════════════════════════════════════
-     PHASE 1 — SCROLL BAR & PRELOADER
-  ═══════════════════════════════════════ */
-  html.loading { overflow: hidden; }
-
-  #scroll-bar {
-    position: fixed; top: 0; left: 0; height: 3px; width: 0%;
-    background: linear-gradient(90deg, var(--gold), var(--gold-light));
-    z-index: 9999; pointer-events: none;
+  @media (max-width: 420px) {
+    .nav-kc::after { display: none; }
+    .kc-tools { grid-template-columns: 1fr; }
   }
-
-  #preloader {
-    position: fixed; inset: 0; z-index: 9998;
-    background: var(--green-deep);
-    display: flex; align-items: center; justify-content: center;
-    flex-direction: column; gap: 12px;
-    transition: opacity .55s ease, visibility .55s ease;
-  }
-  #preloader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
-  .pl-icon { animation: plPulse 1.8s ease-in-out infinite; }
-  @keyframes plPulse { 0%,100%{transform:scale(1);opacity:.8} 50%{transform:scale(1.1);opacity:1} }
-  .pl-name { font-family:'Playfair Display',serif; font-size:21px; font-weight:700; color:var(--gold-light); letter-spacing:.5px; margin-top:4px; }
-  .pl-loc { font-size:10px; color:rgba(200,146,42,.4); letter-spacing:3px; text-transform:uppercase; }
-  .pl-track { width:100px; height:2px; background:rgba(200,146,42,.12); border-radius:100px; overflow:hidden; margin-top:10px; }
-  .pl-fill { height:100%; width:0%; background:linear-gradient(90deg,var(--gold),var(--gold-light)); border-radius:100px; animation:plFill 1.1s cubic-bezier(.4,0,.2,1) forwards; }
-  @keyframes plFill { to { width: 100%; } }
-
-  /* ═══════════════════════════════════════
-     PHASE 2 — HERO ENHANCEMENTS
-  ═══════════════════════════════════════ */
-  @keyframes titleReveal {
-    from { opacity:0; transform:translateY(22px); clip-path:inset(0 0 100% 0); }
-    to   { opacity:1; transform:none;             clip-path:inset(0 0 -8px 0); }
-  }
-  @keyframes shimmer {
-    0%   { background-position: 200% center; }
-    100% { background-position: -200% center; }
-  }
-  @keyframes slowRotate {
-    from { transform: rotate(0deg); }
-    to   { transform: rotate(360deg); }
-  }
-
-  .hero-pattern-wrap { position:absolute; inset:0; pointer-events:none; z-index:0; overflow:hidden; }
-  .hero-grid-svg { position:absolute; inset:0; width:100%; height:100%; }
-  .hero-star-deco {
-    position:absolute; right:2vw; bottom:-3vh;
-    width:clamp(160px,22vw,360px); height:clamp(160px,22vw,360px);
-    opacity:.055; animation:slowRotate 90s linear infinite;
-  }
-  .hero-noise-layer {
-    position:absolute; inset:0; pointer-events:none; z-index:1;
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E");
-    background-size:220px 220px;
-  }
-
-  /* Card shadow upgrade */
-  .ach-card, .infra-card, .mf-card, .office-card { box-shadow: var(--shadow-sm); }
-  .ach-card:hover, .infra-card:hover { box-shadow: var(--shadow-md); }
-  .office-card:hover { box-shadow: var(--shadow-md); }
-
-  /* ═══════════════════════════════════════
-     PHASE 3 — SCROLL & CLIP REVEALS
-  ═══════════════════════════════════════ */
-  .section-title { will-change: opacity, transform; }
-
-  /* ═══════════════════════════════════════
-     PHASE 4 — INTERACTIVE 3D
-  ═══════════════════════════════════════ */
-  /* Ripple */
-  .ripple-btn { position: relative; overflow: hidden; }
-  .ripple { position: absolute; border-radius: 50%; transform: scale(0); pointer-events: none; background: rgba(255,255,255,0.28); animation: rippleAnim 0.65s ease-out forwards; }
-  @keyframes rippleAnim { to { transform: scale(5); opacity: 0; } }
-
-  /* Preserve 3D for tilt cards */
-  .ach-card, .infra-card, .mf-ring-item { transform-style: preserve-3d; }
-
-  /* ═══════════════════════════════════════
-     PHASE 5 — HERO PARTICLES
-  ═══════════════════════════════════════ */
-  #hero-particles {
-    position: absolute; inset: 0; width: 100%; height: 100%;
-    pointer-events: none; z-index: 1; opacity: 0.5;
-  }
-
-  /* ═══════════════════════════════════════
-     PHASE 6 — SECTION NAV DOTS + NAV GLASS
-  ═══════════════════════════════════════ */
-  #section-nav {
-    position: fixed; right: 22px; left: auto; top: 50%; transform: translateY(-50%);
-    width: auto; height: auto; padding: 0; margin: 0;
-    background: none; backdrop-filter: none; border: none;
-    z-index: 200; display: flex; flex-direction: column;
-    align-items: center; justify-content: center; gap: 13px;
-  }
-  .sn-dot {
-    width: 8px; height: 8px; border-radius: 50%;
-    background: rgba(200,146,42,0.22); border: 1.5px solid rgba(200,146,42,0.42);
-    display: block; cursor: pointer;
-    transition: all 0.35s cubic-bezier(0.22,0.61,0.36,1);
-    position: relative;
-  }
-  .sn-dot::after {
-    content: '';
-    position: absolute; right: 18px; top: 50%; transform: translateY(-50%);
-    background: rgba(13,59,30,0.94); color: var(--gold-light);
-    font-size: 11px; font-family: 'Space Grotesk', sans-serif;
-    padding: 4px 10px; border-radius: 4px; white-space: nowrap;
-    opacity: 0; pointer-events: none; transition: opacity 0.2s;
-    border: 1px solid rgba(200,146,42,0.2);
-  }
-  html[lang="te"] .sn-dot::after { content: attr(data-te); }
-  html[lang="en"] .sn-dot::after { content: attr(data-en); }
-  .sn-dot:hover::after { opacity: 1; }
-  .sn-dot:hover {
-    background: var(--gold); border-color: var(--gold);
-    transform: scale(1.55); box-shadow: 0 0 8px rgba(200,146,42,0.4);
-  }
-  .sn-dot.active {
-    background: var(--gold); border-color: var(--gold-light);
-    transform: scale(1.3); box-shadow: 0 0 6px rgba(200,146,42,0.35);
-  }
-  nav.scrolled {
-    background: rgba(10,46,23,0.99);
-    box-shadow: 0 2px 24px rgba(0,0,0,0.2), inset 0 -1px 0 rgba(200,146,42,0.25);
-  }
-  @media (max-width: 900px) { #section-nav { display: none; } }
 </style>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
 </head>
 <body>
-<div id="scroll-bar"></div>
-<div id="preloader">
-  <div class="pl-icon">
-    <svg viewBox="0 0 80 80" width="72" height="72" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="40" cy="40" r="36" fill="none" stroke="rgba(200,146,42,0.18)" stroke-width="1.5"/>
-      <circle cx="40" cy="40" r="28" fill="#c8922a" opacity="0.92"/>
-      <circle cx="51" cy="31" r="21" fill="#0d3b1e"/>
-      <circle cx="52.5" cy="27" r="3" fill="#e8b84b"/>
-    </svg>
-  </div>
-  <div class="pl-name">ఇస్లామిక్ ఫ్రంట్</div>
-  <div class="pl-loc">Mangalagiri · AP</div>
-  <div class="pl-track"><div class="pl-fill"></div></div>
-</div>
 <!-- NAV -->
 <nav>
   <a href="#" class="nav-brand">
@@ -478,37 +357,13 @@
       <li><a href="#about"        data-key="nav_about">మా గురించి</a></li>
       <li><a href="#contact"      data-key="nav_contact">సంప్రదించండి</a></li>
     </ul>
+    <a href="islamic-knowledge.html" class="nav-kc" data-key="nav_knowledge">నాలెడ్జ్ సెంటర్</a>
     <button class="lang-btn" id="lang-btn" onclick="toggleLang()">English</button>
   </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-pattern-wrap">
-    <svg class="hero-grid-svg" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <pattern id="islamic-grid" x="0" y="0" width="56" height="56" patternUnits="userSpaceOnUse">
-          <g fill="none" stroke="rgba(200,146,42,0.085)" stroke-width="0.65" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M28 3 L53 28 L28 53 L3 28 Z"/>
-            <rect x="15" y="15" width="26" height="26"/>
-            <line x1="28" y1="3" x2="28" y2="15"/><line x1="53" y1="28" x2="41" y2="28"/>
-            <line x1="28" y1="53" x2="28" y2="41"/><line x1="3" y1="28" x2="15" y2="28"/>
-            <line x1="44.8" y1="11.2" x2="41" y2="15"/><line x1="44.8" y1="44.8" x2="41" y2="41"/>
-            <line x1="11.2" y1="44.8" x2="15" y2="41"/><line x1="11.2" y1="11.2" x2="15" y2="15"/>
-          </g>
-        </pattern>
-      </defs>
-      <rect width="100%" height="100%" fill="url(#islamic-grid)"/>
-    </svg>
-    <svg class="hero-star-deco" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-      <polygon points="190,100 134.5,114.2 163.6,163.6 114.2,134.5 100,190 85.8,134.5 36.4,163.6 65.5,114.2 10,100 65.5,85.8 36.4,36.4 85.8,65.5 100,10 114.2,65.5 163.6,36.4 134.5,85.8"
-        fill="none" stroke="rgba(200,146,42,1)" stroke-width="1.2" stroke-linejoin="round"/>
-      <circle cx="100" cy="100" r="32" fill="none" stroke="rgba(200,146,42,0.5)" stroke-width="0.8"/>
-      <circle cx="100" cy="100" r="16" fill="none" stroke="rgba(200,146,42,0.3)" stroke-width="0.6"/>
-    </svg>
-    <div class="hero-noise-layer"></div>
-  </div>
-  <canvas id="hero-particles"></canvas>
   <div class="hero-content">
     <div class="hero-left">
       <div class="hero-badge" data-key="hero_badge">మంగళగిరి, ఆంధ్రప్రదేశ్</div>
@@ -977,6 +832,38 @@
 </section>
 
 
+<!-- KNOWLEDGE CENTER PROMO (secondary initiative) -->
+<section class="kc-promo" id="knowledge">
+  <div class="inner">
+    <div class="kc-promo-left">
+      <div class="section-tag" data-key="kc_tag">విజ్ఞాన వనరు</div>
+      <h2 class="kc-promo-title" data-key="kc_title" data-html="true">ఇస్లామిక్<br>నాలెడ్జ్ సెంటర్</h2>
+      <p class="kc-promo-lead" data-key="kc_lead">సమాజ సేవతో పాటు, ప్రతి ముస్లిం కుటుంబానికి ఉపయోగపడే ఇస్లామిక్ సాధనాలు మరియు విశ్వసనీయ వనరులు — జకాత్ లెక్కింపు, నమాజ్ వేళలు, ఖురాన్ మరియు హదీస్ వనరులు ఒకే చోట.</p>
+      <a href="islamic-knowledge.html" class="kc-cta" data-key="kc_cta">నాలెడ్జ్ సెంటర్‌ను తెరవండి</a>
+    </div>
+    <div class="kc-tools">
+      <a href="islamic-knowledge.html#zakat" class="kc-tool">
+        <span class="kc-tool-ic">🧮</span><span class="kc-tool-tx" data-key="kc_t1">జకాత్ కాలిక్యులేటర్</span>
+      </a>
+      <a href="islamic-knowledge.html#salah" class="kc-tool">
+        <span class="kc-tool-ic">🕌</span><span class="kc-tool-tx" data-key="kc_t2">నమాజ్ వేళలు</span>
+      </a>
+      <a href="islamic-knowledge.html#salah" class="kc-tool">
+        <span class="kc-tool-ic">⏳</span><span class="kc-tool-tx" data-key="kc_t3">తదుపరి నమాజ్ కౌంట్‌డౌన్</span>
+      </a>
+      <a href="islamic-knowledge.html#quran" class="kc-tool">
+        <span class="kc-tool-ic">📖</span><span class="kc-tool-tx" data-key="kc_t4">ఖురాన్ వనరులు</span>
+      </a>
+      <a href="islamic-knowledge.html#hadith" class="kc-tool">
+        <span class="kc-tool-ic">📜</span><span class="kc-tool-tx" data-key="kc_t5">హదీస్ వనరులు</span>
+      </a>
+      <a href="islamic-knowledge.html#learn" class="kc-tool">
+        <span class="kc-tool-ic">🎓</span><span class="kc-tool-tx" data-key="kc_t6">ఇస్లామిక్ అభ్యాసం</span>
+      </a>
+    </div>
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-inner">
@@ -1010,7 +897,6 @@
   </div>
 </footer>
 <script>
-document.documentElement.classList.add('loading');
 const T = {
   te: {
     nav_title: "ఇస్లామిక్ ఫ్రంట్",
@@ -1021,6 +907,7 @@ const T = {
     nav_scheme: "సహాయ పథకం",
     nav_about: "మా గురించి",
     nav_contact: "సంప్రదించండి",
+    nav_knowledge: "నాలెడ్జ్ సెంటర్",
     hero_badge: "మంగళగిరి, ఆంధ్రప్రదేశ్",
     hero_title: "ఇస్లామిక్<br><span>ఫ్రంట్</span>",
     hero_subtitle: "2011 నుండి మంగళగిరి ముస్లిం సమాజానికి<br>నిజాయితీగా, అభివృద్ధితో, కరుణతో సేవ చేస్తున్నాము.",
@@ -1130,6 +1017,16 @@ const T = {
     o1_name: "ఇస్లామిక్ ఫ్రంట్ పార్టీ కార్యాలయం",
     o3_type: "అంజుమన్ కార్యాలయం",
     o3_name: "అంజుమన్‌- యి- హిమాయతుల్‌ ఇస్లాం",
+    kc_tag: "విజ్ఞాన వనరు",
+    kc_title: "ఇస్లామిక్<br>నాలెడ్జ్ సెంటర్",
+    kc_lead: "సమాజ సేవతో పాటు, ప్రతి ముస్లిం కుటుంబానికి ఉపయోగపడే ఇస్లామిక్ సాధనాలు మరియు విశ్వసనీయ వనరులు — జకాత్ లెక్కింపు, నమాజ్ వేళలు, ఖురాన్ మరియు హదీస్ వనరులు ఒకే చోట.",
+    kc_cta: "నాలెడ్జ్ సెంటర్‌ను తెరవండి",
+    kc_t1: "జకాత్ కాలిక్యులేటర్",
+    kc_t2: "రోజువారీ నమాజ్ వేళలు",
+    kc_t3: "తదుపరి నమాజ్ కౌంట్‌డౌన్",
+    kc_t4: "ఖురాన్ వనరులు",
+    kc_t5: "హదీస్ వనరులు",
+    kc_t6: "ఇస్లామిక్ అభ్యాస సామగ్రి",
     footer_desc: "2011 నుండి మంగళగిరి, ఆంధ్రప్రదేశ్ ముస్లిం సమాజానికి సేవ చేస్తున్నాము.<br>జనాబ్ షేక్ అక్రమ్ నాయకత్వంలో, అంజుమన్‌- యి- హిమాయతుల్‌ ఇస్లాం ద్వారా<br>పారదర్శక, అభివృద్ధి-కేంద్రిత పాలనకు కట్టుబడి ఉన్నాము.",
     footer_links_h: "త్వరిత లింకులు",
     footer_l1: "మా విజయం 2023", footer_l2: "సాధనలు", footer_l3: "మేనిఫెస్టో",
@@ -1148,6 +1045,7 @@ const T = {
     nav_scheme: "Aid Scheme",
     nav_about: "About",
     nav_contact: "Contact",
+    nav_knowledge: "Knowledge Center",
     hero_badge: "Mangalagiri, Andhra Pradesh",
     hero_title: "Islamic<br><span>Front</span>",
     hero_subtitle: "Serving the Muslim community of Mangalagiri<br>with integrity, development, and compassion since 2011.",
@@ -1257,6 +1155,16 @@ const T = {
     o1_name: "Islamic Front Party Office",
     o3_type: "Anjuman Office",
     o3_name: "Anjuman-e-Himayatul Islam",
+    kc_tag: "Knowledge Resource",
+    kc_title: "Islamic<br>Knowledge Center",
+    kc_lead: "Alongside our community work, a set of practical Islamic tools and trusted resources for every Muslim family — Zakat calculation, daily Salah timings, and Quran &amp; Hadith resources, all in one place.",
+    kc_cta: "Open Knowledge Center",
+    kc_t1: "Zakat Calculator",
+    kc_t2: "Daily Salah Timings",
+    kc_t3: "Next Salah Countdown",
+    kc_t4: "Quran Resources",
+    kc_t5: "Hadith Resources",
+    kc_t6: "Islamic Learning Content",
     footer_desc: "Serving the Muslim community of Mangalagiri, Andhra Pradesh since 2011.<br>Under the leadership of Janab Shaik Akram, committed to transparent,<br>development-focused governance through Anjuman-e-Himayatul Islam.",
     footer_links_h: "Quick Links",
     footer_l1: "Our Victory 2023", footer_l2: "Achievements", footer_l3: "Manifesto",
@@ -1268,9 +1176,10 @@ const T = {
   }
 };
 
-let lang = 'te';
+let lang = (function () { try { return localStorage.getItem('if-lang') === 'en' ? 'en' : 'te'; } catch (e) { return 'te'; } })();
 
 function applyLang(l) {
+  try { localStorage.setItem('if-lang', l); } catch (e) {}
   document.querySelectorAll('[data-key]').forEach(el => {
     const key = el.dataset.key;
     const val = T[l][key];
@@ -1298,257 +1207,58 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }, 400);
 
-  /* ── Phase 3: GSAP ScrollTrigger (native scroll) ── */
-  gsap.registerPlugin(ScrollTrigger);
-
-  /* ── Phase 3: GSAP ScrollTrigger card reveals ── */
-  gsap.from('.ach-card', {
-    scrollTrigger: { trigger: '.achievements-grid', start: 'top 82%' },
-    opacity: 0, duration: 0.5, stagger: 0.07, ease: 'power2.out'
-  });
-  gsap.from('.infra-card', {
-    scrollTrigger: { trigger: '.infra-grid', start: 'top 82%' },
-    y: 36, opacity: 0, duration: 0.6, stagger: 0.08, ease: 'back.out(1.4)'
-  });
-  gsap.from('.mf-card', {
-    scrollTrigger: { trigger: '.manifesto-grid', start: 'top 85%' },
-    y: 20, opacity: 0, duration: 0.5, stagger: 0.05, ease: 'power2.out'
-  });
-  gsap.from('.cand-item', {
-    scrollTrigger: { trigger: '.candidates-grid', start: 'top 82%' },
-    y: 20, opacity: 0, duration: 0.45, stagger: 0.06, ease: 'power2.out'
-  });
-  gsap.from('.tl-item', {
-    scrollTrigger: { trigger: '.timeline', start: 'top 82%' },
-    x: -24, opacity: 0, duration: 0.55, stagger: 0.12, ease: 'power3.out'
-  });
-  gsap.from('.mf-ring-item', {
-    scrollTrigger: { trigger: '.mf-rings-row', start: 'top 82%' },
-    y: 24, opacity: 0, duration: 0.55, stagger: 0.1, ease: 'back.out(1.4)'
-  });
-  gsap.from('.office-card', {
-    scrollTrigger: { trigger: '.offices', start: 'top 82%' },
-    y: 16, opacity: 0, duration: 0.45, stagger: 0.1, ease: 'power2.out'
-  });
-
-  /* ── Phase 3: Section title reveals (clean fade-up, no theatrics) ── */
-  gsap.utils.toArray('.section-title').forEach(function(el) {
-    gsap.from(el, {
-      scrollTrigger: { trigger: el, start: 'top 88%' },
-      y: 16, opacity: 0, duration: 0.65, ease: 'power2.out'
-    });
-  });
-
-  /* ── Phase 3: Manifesto rings ── */
-  ScrollTrigger.create({
-    trigger: '.mf-rings-row', start: 'top 82%',
-    onEnter: function() {
-      document.querySelectorAll('.mf-ring-arc').forEach(function(a) {
-        a.style.strokeDashoffset = a.dataset.target;
-      });
-    }
-  });
-
-  /* ── Phase 4: Vanilla Tilt 3D ── */
-  if (typeof VanillaTilt !== 'undefined' && window.matchMedia('(pointer: fine)').matches) {
-    VanillaTilt.init(document.querySelectorAll('.ach-card, .infra-card'), {
-      max: 4, speed: 500, glare: false, perspective: 1000, scale: 1.01
-    });
-    VanillaTilt.init(document.querySelectorAll('.mf-ring-item'), {
-      max: 4, speed: 400, glare: false, scale: 1.01
+  /* Scroll-reveal: add .reveal class + staggered transition-delay */
+  function addReveal(selector, staggerMs) {
+    document.querySelectorAll(selector).forEach(function (el, i) {
+      el.classList.add('reveal');
+      if (staggerMs) el.style.transitionDelay = (i * staggerMs / 1000).toFixed(2) + 's';
     });
   }
+  addReveal('.ach-card', 70);
+  addReveal('.infra-card', 80);
+  addReveal('.cand-item', 65);
+  addReveal('.office-card', 100);
+  addReveal('.tl-item', 100);
+  addReveal('.mf-ring-item', 80);
 
-  /* ── Phase 4: Magnetic buttons ── */
-  if (window.matchMedia('(pointer: fine)').matches) {
-    document.querySelectorAll('.hero-cta, .mf-download-btn').forEach(function(btn) {
-      btn.addEventListener('mouseenter', function() {
-        btn.style.transition = 'transform 0.15s ease, background 0.2s, box-shadow 0.2s';
-      });
-      btn.addEventListener('mousemove', function(e) {
-        var rect = btn.getBoundingClientRect();
-        var dx = e.clientX - (rect.left + rect.width / 2);
-        var dy = e.clientY - (rect.top + rect.height / 2);
-        btn.style.transform = 'translate(' + (dx * 0.28) + 'px,' + (dy * 0.28) + 'px)';
-      });
-      btn.addEventListener('mouseleave', function() {
-        btn.style.transition = 'transform 0.5s cubic-bezier(0.34,1.56,0.64,1), background 0.2s, box-shadow 0.2s';
-        btn.style.transform = 'translate(0,0)';
-      });
+  var revealIO = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add('in-view'); revealIO.unobserve(e.target); }
     });
-  }
+  }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+  document.querySelectorAll('.reveal').forEach(function (el) { revealIO.observe(el); });
 
-  /* ── Phase 4: Ripple on button clicks ── */
-  document.querySelectorAll('.hero-cta, .mf-download-btn').forEach(function(btn) {
-    btn.classList.add('ripple-btn');
-    btn.addEventListener('click', function(e) {
-      var rect = btn.getBoundingClientRect();
-      var size = Math.max(rect.width, rect.height) * 1.4;
-      var ripple = document.createElement('span');
-      ripple.className = 'ripple';
-      ripple.style.cssText = 'width:' + size + 'px;height:' + size + 'px;left:' + (e.clientX - rect.left - size / 2) + 'px;top:' + (e.clientY - rect.top - size / 2) + 'px;';
-      btn.appendChild(ripple);
-      setTimeout(function() { if (ripple.parentNode) ripple.remove(); }, 700);
-    });
-  });
-
-  /* ── Phase 4: Card hover spotlight ── */
-  if (window.matchMedia('(pointer: fine)').matches) {
-    document.querySelectorAll('.ach-card, .infra-card').forEach(function(card) {
-      card.addEventListener('mousemove', function(e) {
-        var r = card.getBoundingClientRect();
-        card.style.background = 'radial-gradient(circle 160px at ' + (e.clientX - r.left) + 'px ' + (e.clientY - r.top) + 'px, rgba(200,146,42,0.07), transparent), var(--white)';
-      });
-      card.addEventListener('mouseleave', function() { card.style.background = ''; });
-    });
-  }
-
-  /* ── Phase 5: Hero gold particle system ── */
-  (function () {
-    var canvas = document.getElementById('hero-particles');
-    if (!canvas) return;
-    var ctx = canvas.getContext('2d');
-    var W, H, particles = [];
-    var MAX = 38;
-
-    function resize() {
-      var hero = canvas.parentElement;
-      W = canvas.width  = hero.offsetWidth;
-      H = canvas.height = hero.offsetHeight;
-    }
-    resize();
-    window.addEventListener('resize', resize, { passive: true });
-
-    function Particle(init) {
-      this.x       = Math.random() * (W || 800);
-      this.y       = init ? Math.random() * (H || 600) : (H || 600) + 5;
-      this.r       = 0.8 + Math.random() * 1.8;
-      this.vx      = (Math.random() - 0.5) * 0.32;
-      this.vy      = -0.14 - Math.random() * 0.32;
-      this.alpha   = 0.12 + Math.random() * 0.5;
-      this.life    = init ? Math.floor(Math.random() * 280) : 0;
-      this.maxLife = 220 + Math.random() * 280;
-    }
-    Particle.prototype.update = function () {
-      this.x += this.vx; this.y += this.vy; this.life++;
-      if (this.life > this.maxLife || this.y < -10) {
-        var p = new Particle(false); Object.assign(this, p);
-      }
-    };
-    Particle.prototype.draw = function () {
-      var t    = this.life / this.maxLife;
-      var fade = Math.min(t * 5, 1) * Math.min((1 - t) * 5, 1);
-      ctx.globalAlpha = this.alpha * fade;
-      ctx.fillStyle   = '#e8b84b';
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
-      ctx.fill();
-    };
-    for (var i = 0; i < MAX; i++) particles.push(new Particle(true));
-
-    var heroVisible = true;
+  /* Manifesto progress rings — animate on scroll into view */
+  var ringsRow = document.querySelector('.mf-rings-row');
+  if (ringsRow) {
     new IntersectionObserver(function (entries) {
-      heroVisible = entries[0].isIntersecting;
-    }, { threshold: 0.1 }).observe(canvas.parentElement);
-
-    (function loop() {
-      requestAnimationFrame(loop);
-      if (!heroVisible) return;
-      ctx.clearRect(0, 0, W, H);
-      particles.forEach(function (p) { p.update(); p.draw(); });
-    })();
-  })();
-
-  /* ── Phase 6: Section nav dot active state ── */
-  (function () {
-    var dots = document.querySelectorAll('#section-nav .sn-dot');
-    if (!dots.length) return;
-    var obs = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          dots.forEach(function (d) { d.classList.remove('active'); });
-          var dot = document.querySelector('#section-nav a[href="#' + entry.target.id + '"]');
-          if (dot) dot.classList.add('active');
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          e.target.querySelectorAll('.mf-ring-arc').forEach(function (a) {
+            a.style.strokeDashoffset = a.dataset.target;
+          });
         }
       });
-    }, { rootMargin: '-35% 0px -55% 0px' });
-    ['victory', 'manifesto', 'achievements', 'scheme', 'infra', 'about', 'contact'].forEach(function (id) {
-      var el = document.getElementById(id);
-      if (el) obs.observe(el);
-    });
-  })();
-
-  /* ── Phase 6: Nav glassmorphism on scroll ── */
-  (function () {
-    var navEl = document.querySelector('nav');
-    if (!navEl) return;
-    window.addEventListener('scroll', function () {
-      navEl.classList.toggle('scrolled', window.scrollY > 60);
-    }, { passive: true });
-  })();
-
-  /* ── Phase 1: Preloader ── */
-  var preloader = document.getElementById('preloader');
-  function hidePreloader() {
-    if (!preloader || preloader.classList.contains('hidden')) return;
-    preloader.classList.add('hidden');
-    document.documentElement.classList.remove('loading');
+    }, { threshold: 0.2 }).observe(ringsRow);
   }
-  setTimeout(hidePreloader, 1350);
-  window.addEventListener('load', function () { setTimeout(hidePreloader, 200); });
 
-  /* ── Phase 1: Scroll progress bar ── */
-  var scrollBar = document.getElementById('scroll-bar');
-  window.addEventListener('scroll', function () {
-    if (!scrollBar) return;
-    var pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
-    scrollBar.style.width = Math.min(pct, 100) + '%';
-  }, { passive: true });
-
-  /* ── Phase 2: Hero stat counter animations ── */
-  function animateStat(el, to, suffix, ms) {
-    var start = null;
-    function tick(ts) {
-      if (!start) start = ts;
-      var p = Math.min((ts - start) / ms, 1);
-      var ease = 1 - Math.pow(1 - p, 3);
-      el.textContent = Math.round(ease * to) + suffix;
-      if (p < 1) requestAnimationFrame(tick);
-    }
-    requestAnimationFrame(tick);
-  }
-  setTimeout(function () {
-    var s1 = document.querySelector('[data-key="stat1_num"]');
-    var s3 = document.querySelector('[data-key="stat3_num"]');
-    if (s1) animateStat(s1, 7, '/9', 1000);
-    if (s3) animateStat(s3, 15, '+', 1200);
-  }, 1500);
-
-  /* ── Phase 2: Leader card parallax (desktop only) ── */
-  var leaderCard = document.querySelector('.leader-card');
-  if (leaderCard && window.matchMedia('(min-width: 769px) and (pointer: fine)').matches) {
-    var _rafPending = false;
-    window.addEventListener('scroll', function () {
-      if (_rafPending) return;
-      _rafPending = true;
-      requestAnimationFrame(function () {
-        leaderCard.style.transform = 'translateY(' + (window.scrollY * 0.1) + 'px)';
-        _rafPending = false;
+  /* Manifesto cards — staggered entrance animation */
+  var mfGrid = document.querySelector('.manifesto-grid');
+  if (mfGrid) {
+    mfGrid.querySelectorAll('.mf-card').forEach(function (c) { c.classList.add('mf-enter'); });
+    new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          Array.from(e.target.querySelectorAll('.mf-card.mf-enter')).forEach(function (c, i) {
+            setTimeout(function () { c.classList.add('in-view'); }, i * 80);
+          });
+        }
       });
-    }, { passive: true });
+    }, { threshold: 0.05 }).observe(mfGrid);
   }
 });
 
-document.addEventListener('DOMContentLoaded', () => applyLang('te'));
+document.addEventListener('DOMContentLoaded', () => applyLang(lang));
 </script>
-<nav id="section-nav" aria-label="Section navigation">
-  <a href="#victory"      class="sn-dot" data-te="విజయం"          data-en="Victory"></a>
-  <a href="#manifesto"    class="sn-dot" data-te="మేనిఫెస్టో"     data-en="Manifesto"></a>
-  <a href="#achievements" class="sn-dot" data-te="సాధనలు"         data-en="Achievements"></a>
-  <a href="#scheme"       class="sn-dot" data-te="పథకం"           data-en="Aid Scheme"></a>
-  <a href="#infra"        class="sn-dot" data-te="మౌలిక"          data-en="Infrastructure"></a>
-  <a href="#about"        class="sn-dot" data-te="గురించి"        data-en="About"></a>
-  <a href="#contact"      class="sn-dot" data-te="సంప్రదించండి"   data-en="Contact"></a>
-</nav>
 </body>
 </html>
