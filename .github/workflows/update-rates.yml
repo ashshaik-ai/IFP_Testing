@@ -1,4 +1,5 @@
 name: Update gold & silver rates
+# Registered 2026-06-05
 
 # Runs once a day and whenever you trigger it manually from the Actions tab.
 on:
