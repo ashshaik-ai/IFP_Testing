@@ -17,9 +17,10 @@
   }
   html { scroll-behavior: smooth; }
   body { font-family: 'DM Sans', 'Noto Sans Telugu', sans-serif; background: var(--cream); color: var(--text-dark); overflow-x: hidden; }
+  section[id], header[id] { scroll-margin-top: 84px; }
 
-  /* NAV */
-  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(13,59,30,0.96); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(200,146,42,0.3); padding: 0 5vw; display: flex; align-items: center; justify-content: space-between; height: 68px; }
+  /* NAV — scoped to the top-level bar only, so it cannot leak into nested <nav> (e.g. .kc-jump) */
+  body > nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(13,59,30,0.96); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(200,146,42,0.3); padding: 0 5vw; display: flex; align-items: center; justify-content: space-between; height: 68px; }
   .nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
   .nav-logo { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; }
   .nav-title { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: var(--gold-light); letter-spacing: 0.5px; line-height: 1.2; }
@@ -107,6 +108,32 @@
   .zr-line { display: flex; justify-content: space-between; font-size: 13px; padding: 9px 0; border-top: 1px solid rgba(200,146,42,0.18); color: rgba(245,230,192,0.75); }
   .zr-line span:last-child { font-weight: 600; color: var(--white); }
   .zr-line.zr-net span:last-child { color: var(--gold-light); }
+  .zr-line.zr-zakat { border-top: 1px solid rgba(200,146,42,0.35); margin-top: 4px; padding-top: 13px; }
+
+  /* LIVE METAL PRICES */
+  .live-prices { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 36px; }
+  .lp-card { background: var(--white); border: 1px solid var(--border); border-radius: 11px; padding: 16px 18px; position: relative; overflow: hidden; }
+  .lp-card.lp-nisab { background: linear-gradient(145deg, var(--green-deep), var(--green-mid)); border-color: var(--green-mid); }
+  .lp-top { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--text-muted); font-weight: 600; letter-spacing: 0.4px; margin-bottom: 8px; }
+  .lp-card.lp-nisab .lp-top { color: rgba(245,230,192,0.7); }
+  .lp-ic { font-size: 16px; }
+  .lp-val { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: var(--green-deep); line-height: 1.1; }
+  .lp-card.lp-nisab .lp-val { color: var(--gold-light); }
+  .lp-unit { font-size: 11px; color: var(--text-muted); margin-top: 3px; }
+  .lp-card.lp-nisab .lp-unit { color: rgba(245,230,192,0.6); }
+  .lp-status { display: flex; align-items: center; gap: 7px; font-size: 12px; color: var(--text-muted); margin-top: 14px; }
+  .lp-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
+  .lp-dot.live { background: #3fbf6a; box-shadow: 0 0 0 0 rgba(63,191,106,0.6); animation: lpPulse 2s infinite; }
+  .lp-dot.stale { background: #d99a2b; }
+  .lp-dot.err { background: #c0512b; }
+  @keyframes lpPulse { 0%{box-shadow:0 0 0 0 rgba(63,191,106,0.5);} 70%{box-shadow:0 0 0 7px rgba(63,191,106,0);} 100%{box-shadow:0 0 0 0 rgba(63,191,106,0);} }
+
+  /* TOOLTIP */
+  .tip { position: relative; display: inline-flex; align-items: center; justify-content: center; width: 15px; height: 15px; margin-left: 5px; border-radius: 50%; border: 1px solid var(--text-muted); color: var(--text-muted); font-size: 10px; font-weight: 700; cursor: help; vertical-align: middle; }
+  .tip-pop { position: absolute; bottom: 145%; left: 50%; transform: translateX(-50%) translateY(4px); width: 210px; background: var(--green-deep); color: rgba(245,230,192,0.95); font-size: 11.5px; font-weight: 400; line-height: 1.55; letter-spacing: 0; text-transform: none; padding: 10px 12px; border-radius: 8px; box-shadow: 0 8px 24px rgba(0,0,0,0.22); opacity: 0; visibility: hidden; transition: opacity 0.2s, transform 0.2s; z-index: 20; pointer-events: none; text-align: left; }
+  .tip-pop::after { content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); border: 6px solid transparent; border-top-color: var(--green-deep); }
+  .tip:hover .tip-pop, .tip:focus .tip-pop, .tip:focus-within .tip-pop { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+  .zr-label .tip { border-color: rgba(245,230,192,0.5); color: rgba(245,230,192,0.7); }
 
   /* RESOURCE CARDS */
   .resources { background: var(--white); }
@@ -137,6 +164,34 @@
   .kcf-back:hover { background: rgba(200,146,42,0.15); }
   .kcf-copy { font-size: 12px; color: rgba(245,230,192,0.3); margin-top: 22px; }
 
+  /* FIVE PILLARS */
+  .pillars { background: var(--cream); position: relative; overflow: hidden; }
+  .pillars::before { content: '☪\FE0E'; position: absolute; left: -3vw; bottom: -4vw; font-size: clamp(180px, 24vw, 320px); color: rgba(13,59,30,0.035); line-height: 1; pointer-events: none; }
+  .pillars-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-top: 44px; position: relative; z-index: 1; }
+  .pillar-card { position: relative; background: var(--white); border: 1px solid var(--border); border-radius: 14px; padding: 30px 20px 26px; text-align: center; transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), box-shadow 0.35s, border-color 0.35s; overflow: hidden; }
+  .pillar-card::after { content: ''; position: absolute; left: 0; top: 0; height: 4px; width: 100%; background: linear-gradient(90deg, var(--gold), var(--gold-light)); transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease; }
+  .pillar-card:hover { transform: translateY(-8px); box-shadow: 0 16px 38px rgba(13,59,30,0.14); border-color: rgba(200,146,42,0.55); }
+  .pillar-card:hover::after { transform: scaleX(1); }
+  .pillar-card:hover .pc-ic { transform: scale(1.12) rotate(-4deg); }
+  .pc-num { position: absolute; top: 12px; right: 16px; font-family: 'Playfair Display', serif; font-size: 30px; font-weight: 700; color: rgba(200,146,42,0.16); line-height: 1; }
+  .pc-ic { width: 64px; height: 64px; margin: 0 auto 16px; border-radius: 50%; background: linear-gradient(145deg, rgba(200,146,42,0.14), rgba(46,139,87,0.08)); border: 1px solid rgba(200,146,42,0.25); display: flex; align-items: center; justify-content: center; font-size: 30px; transition: transform 0.4s cubic-bezier(0.16,1,0.3,1); }
+  .pc-ar { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 600; color: var(--gold); line-height: 1; margin-bottom: 7px; direction: rtl; }
+  .pc-name { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: var(--green-deep); margin-bottom: 3px; }
+  .pc-sub { font-size: 11.5px; letter-spacing: 1px; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 12px; }
+  .pc-desc { font-size: 12.5px; color: var(--text-muted); line-height: 1.6; margin-bottom: 14px; }
+  .pc-ref { display: inline-block; font-size: 10.5px; font-weight: 600; color: var(--green-mid); background: rgba(46,139,87,0.08); border: 1px solid rgba(46,139,87,0.18); border-radius: 100px; padding: 3px 10px; }
+
+  /* SCROLL REVEAL */
+  .reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1); }
+  .reveal.reveal-in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+    .pillar-card, .pc-ic { transition: none !important; }
+  }
+
+  @media (max-width: 980px) {
+    .pillars-grid { grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  }
   @media (max-width: 860px) {
     .salah-wrap { grid-template-columns: 1fr; }
     .zakat-wrap { grid-template-columns: 1fr; }
@@ -146,6 +201,14 @@
     .nav-right { gap: 12px; }
     .nav-home span { display: none; }
     .lang-btn { padding: 6px 11px; font-size: 11px; }
+  }
+  @media (max-width: 560px) {
+    .pillars-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .pillar-card { padding: 24px 14px 22px; }
+    .pc-ic { width: 56px; height: 56px; font-size: 26px; }
+    .live-prices { grid-template-columns: 1fr; }
+    .lp-val { font-size: 22px; }
+    .tip-pop { width: 180px; }
   }
 </style>
 </head>
@@ -178,6 +241,7 @@
     <h1 data-te="ఇస్లామిక్ <span>నాలెడ్జ్ సెంటర్</span>" data-en="Islamic <span>Knowledge Center</span>">ఇస్లామిక్ <span>నాలెడ్జ్ సెంటర్</span></h1>
     <p data-te="ప్రతి ముస్లిం కుటుంబానికి ఉపయోగపడే ఇస్లామిక్ సాధనాలు మరియు విశ్వసనీయ వనరులు — జకాత్ లెక్కింపు, నమాజ్ వేళలు, తదుపరి నమాజ్ కౌంట్‌డౌన్, ఖురాన్ మరియు హదీస్ వనరులు ఒకే చోట." data-en="Practical Islamic tools and trusted resources for every Muslim family — Zakat calculation, daily Salah timings, a next-prayer countdown, and authentic Quran &amp; Hadith resources, all in one place.">ప్రతి ముస్లిం కుటుంబానికి ఉపయోగపడే ఇస్లామిక్ సాధనాలు మరియు విశ్వసనీయ వనరులు — జకాత్ లెక్కింపు, నమాజ్ వేళలు, తదుపరి నమాజ్ కౌంట్‌డౌన్, ఖురాన్ మరియు హదీస్ వనరులు ఒకే చోట.</p>
     <nav class="kc-jump">
+      <a href="#pillars" data-te="ఐదు మూలస్తంభాలు" data-en="Five Pillars">ఐదు మూలస్తంభాలు</a>
       <a href="#salah" data-te="నమాజ్ వేళలు" data-en="Salah Timings">నమాజ్ వేళలు</a>
       <a href="#zakat" data-te="జకాత్ కాలిక్యులేటర్" data-en="Zakat Calculator">జకాత్ కాలిక్యులేటర్</a>
       <a href="#quran" data-te="ఖురాన్" data-en="Quran">ఖురాన్</a>
@@ -186,6 +250,65 @@
     </nav>
   </div>
 </header>
+
+<!-- FIVE PILLARS OF ISLAM -->
+<section class="kc-sec pillars" id="pillars">
+  <div class="kc-inner">
+    <div class="sec-tag reveal" data-te="ఇస్లాం యొక్క ఆధారం" data-en="The Foundation of Islam">ఇస్లాం యొక్క ఆధారం</div>
+    <h2 class="sec-title reveal" data-te="ఇస్లాం యొక్క ఐదు మూలస్తంభాలు" data-en="The Five Pillars of Islam">ఇస్లాం యొక్క ఐదు మూలస్తంభాలు</h2>
+    <p class="sec-lead reveal" data-te="ప్రవక్త ముహమ్మద్ (ﷺ) ప్రకారం, ఇస్లాం ఐదు మూలస్తంభాలపై నిర్మించబడింది. ప్రతి ముస్లిం జీవితానికి ఇవే పునాది." data-en="According to the Prophet Muhammad (ﷺ), Islam is built upon five pillars. They are the foundation of every Muslim's life.">ప్రవక్త ముహమ్మద్ (ﷺ) ప్రకారం, ఇస్లాం ఐదు మూలస్తంభాలపై నిర్మించబడింది. ప్రతి ముస్లిం జీవితానికి ఇవే పునాది.</p>
+
+    <div class="pillars-grid">
+      <div class="pillar-card reveal">
+        <span class="pc-num">01</span>
+        <div class="pc-ic">☝️</div>
+        <div class="pc-ar">الشهادة</div>
+        <div class="pc-name">Shahādah</div>
+        <div class="pc-sub" data-te="విశ్వాస సాక్ష్యం" data-en="Faith">విశ్వాస సాక్ష్యం</div>
+        <p class="pc-desc" data-te="అల్లాహ్ తప్ప వేరే ఆరాధ్యుడు లేడని, ముహమ్మద్ (ﷺ) ఆయన ప్రవక్త అని సాక్ష్యమివ్వడం." data-en="To testify that there is no god but Allah, and Muhammad (ﷺ) is His Messenger.">అల్లాహ్ తప్ప వేరే ఆరాధ్యుడు లేడని, ముహమ్మద్ (ﷺ) ఆయన ప్రవక్త అని సాక్ష్యమివ్వడం.</p>
+        <span class="pc-ref">Sahih al-Bukhari 8</span>
+      </div>
+      <div class="pillar-card reveal">
+        <span class="pc-num">02</span>
+        <div class="pc-ic">🕌</div>
+        <div class="pc-ar">الصلاة</div>
+        <div class="pc-name">Salāh</div>
+        <div class="pc-sub" data-te="నమాజ్" data-en="Prayer">నమాజ్</div>
+        <p class="pc-desc" data-te="రోజుకు ఐదు పూటలా నిర్దిష్ట సమయాల్లో నమాజ్ నిర్వహించడం విధి." data-en="Establishing the five daily prayers at their appointed times.">రోజుకు ఐదు పూటలా నిర్దిష్ట సమయాల్లో నమాజ్ నిర్వహించడం విధి.</p>
+        <span class="pc-ref">Quran 4:103</span>
+      </div>
+      <div class="pillar-card reveal">
+        <span class="pc-num">03</span>
+        <div class="pc-ic">🤲</div>
+        <div class="pc-ar">الزكاة</div>
+        <div class="pc-name">Zakāh</div>
+        <div class="pc-sub" data-te="దానం" data-en="Charity">దానం</div>
+        <p class="pc-desc" data-te="నిసాబ్‌ను మించిన సంపదపై 2.5% పేదలకు దానం చేయడం — సంపదను శుద్ధి చేస్తుంది." data-en="Giving 2.5% of qualifying wealth to the poor — it purifies one's wealth.">నిసాబ్‌ను మించిన సంపదపై 2.5% పేదలకు దానం చేయడం — సంపదను శుద్ధి చేస్తుంది.</p>
+        <span class="pc-ref">Quran 9:103</span>
+      </div>
+      <div class="pillar-card reveal">
+        <span class="pc-num">04</span>
+        <div class="pc-ic">🌙</div>
+        <div class="pc-ar">الصوم</div>
+        <div class="pc-name">Sawm</div>
+        <div class="pc-sub" data-te="ఉపవాసం" data-en="Fasting">ఉపవాసం</div>
+        <p class="pc-desc" data-te="రమజాన్ మాసంలో తెల్లవారు నుండి సూర్యాస్తమయం వరకు ఉపవాసం ఉండటం." data-en="Fasting from dawn to sunset throughout the month of Ramadan.">రమజాన్ మాసంలో తెల్లవారు నుండి సూర్యాస్తమయం వరకు ఉపవాసం ఉండటం.</p>
+        <span class="pc-ref">Quran 2:183</span>
+      </div>
+      <div class="pillar-card reveal">
+        <span class="pc-num">05</span>
+        <div class="pc-ic">🕋</div>
+        <div class="pc-ar">الحج</div>
+        <div class="pc-name">Hajj</div>
+        <div class="pc-sub" data-te="యాత్ర" data-en="Pilgrimage">యాత్ర</div>
+        <p class="pc-desc" data-te="సామర్థ్యం ఉన్నవారు జీవితంలో ఒకసారి మక్కాకు హజ్ యాత్ర చేయడం." data-en="A pilgrimage to Makkah, once in a lifetime, for those who are able.">సామర్థ్యం ఉన్నవారు జీవితంలో ఒకసారి మక్కాకు హజ్ యాత్ర చేయడం.</p>
+        <span class="pc-ref">Quran 3:97</span>
+      </div>
+    </div>
+
+    <div class="ref-note reveal" data-te="ప్రవక్త (ﷺ) ఇలా అన్నారు: &quot;ఇస్లాం ఐదు స్తంభాలపై నిర్మించబడింది...&quot; — <strong>సహీహ్ అల్-బుఖారీ 8, సహీహ్ ముస్లిం 16</strong>." data-en="The Prophet (ﷺ) said: &quot;Islam is built upon five pillars...&quot; — <strong>Sahih al-Bukhari 8, Sahih Muslim 16</strong>.">ప్రవక్త (ﷺ) ఇలా అన్నారు: &quot;ఇస్లాం ఐదు స్తంభాలపై నిర్మించబడింది...&quot; — <strong>సహీహ్ అల్-బుఖారీ 8, సహీహ్ ముస్లిం 16</strong>.</div>
+  </div>
+</section>
 
 <!-- SALAH TIMINGS + COUNTDOWN -->
 <section class="kc-sec salah" id="salah">
@@ -254,39 +377,52 @@
   <div class="kc-inner">
     <div class="sec-tag" data-te="సాధనం" data-en="Tool">సాధనం</div>
     <h2 class="sec-title" data-te="జకాత్ కాలిక్యులేటర్" data-en="Zakat Calculator">జకాత్ కాలిక్యులేటర్</h2>
-    <p class="sec-lead" data-te="మీ జకాత్‌కు లోబడే ఆస్తుల విలువను నమోదు చేయండి. మొత్తం నిసాబ్‌ను మించితే, 2.5% జకాత్ స్వయంచాలకంగా లెక్కించబడుతుంది." data-en="Enter the value of your zakatable assets. If the total reaches the nisab threshold, Zakat at 2.5% is calculated automatically.">మీ జకాత్‌కు లోబడే ఆస్తుల విలువను నమోదు చేయండి. మొత్తం నిసాబ్‌ను మించితే, 2.5% జకాత్ స్వయంచాలకంగా లెక్కించబడుతుంది.</p>
+    <p class="sec-lead" data-te="మీ ఆస్తులను నమోదు చేయండి — బంగారం &amp; వెండి ధరలు ప్రతిరోజూ ఆటోమేటిక్‌గా అప్‌డేట్ అవుతాయి. మీ సంపద నిసాబ్‌ను చేరితే 2.5% జకాత్ వెంటనే లెక్కించబడుతుంది." data-en="Enter your assets — gold &amp; silver prices update automatically every day. If your wealth reaches the nisab, Zakat at 2.5% is calculated instantly.">మీ ఆస్తులను నమోదు చేయండి — బంగారం &amp; వెండి ధరలు ప్రతిరోజూ ఆటోమేటిక్‌గా అప్‌డేట్ అవుతాయి. మీ సంపద నిసాబ్‌ను చేరితే 2.5% జకాత్ వెంటనే లెక్కించబడుతుంది.</p>
+
+    <!-- live metal prices -->
+    <div class="live-prices">
+      <div class="lp-card">
+        <div class="lp-top"><span class="lp-ic">🥇</span><span data-te="బంగారం (24K)" data-en="Gold (24K)">బంగారం (24K)</span></div>
+        <div class="lp-val" id="lp-gold">—</div>
+        <div class="lp-unit" data-te="గ్రాముకు" data-en="per gram">గ్రాముకు</div>
+      </div>
+      <div class="lp-card">
+        <div class="lp-top"><span class="lp-ic">🥈</span><span data-te="వెండి" data-en="Silver">వెండి</span></div>
+        <div class="lp-val" id="lp-silver">—</div>
+        <div class="lp-unit" data-te="గ్రాముకు" data-en="per gram">గ్రాముకు</div>
+      </div>
+      <div class="lp-card lp-nisab">
+        <div class="lp-top"><span class="lp-ic">⚖️</span><span data-te="నిసాబ్ పరిమితి" data-en="Nisab threshold">నిసాబ్ పరిమితి</span></div>
+        <div class="lp-val" id="lp-nisab-val">—</div>
+        <div class="lp-unit" data-te="612.36 గ్రా. వెండి విలువ" data-en="value of 612.36g silver">612.36 గ్రా. వెండి విలువ</div>
+      </div>
+    </div>
+    <div class="lp-status"><span class="lp-dot" id="lp-dot"></span><span id="lp-updated" data-te="ధరలను తెస్తోంది…" data-en="Fetching live prices…">ధరలను తెస్తోంది…</span></div>
 
     <div class="zakat-wrap">
       <div class="zakat-form">
         <div class="zf-group">
-          <label data-te="నగదు, బ్యాంకు పొదుపు" data-en="Cash &amp; bank savings">నగదు, బ్యాంకు పొదుపు</label>
-          <div class="zf-input"><span class="zf-cur">₹</span><input type="number" id="z-cash" min="0" placeholder="0" oninput="calcZakat()"></div>
+          <label data-te="నగదు &amp; బ్యాంకు పొదుపు" data-en="Cash &amp; bank savings">నగదు &amp; బ్యాంకు పొదుపు</label>
+          <div class="zf-input"><span class="zf-cur">₹</span><input type="number" id="z-cash" min="0" placeholder="0" inputmode="decimal" oninput="calcZakat()"></div>
         </div>
         <div class="zf-group">
-          <label data-te="బంగారం విలువ" data-en="Value of gold">బంగారం విలువ</label>
-          <div class="zf-input"><span class="zf-cur">₹</span><input type="number" id="z-gold" min="0" placeholder="0" oninput="calcZakat()"></div>
+          <label><span data-te="మీ వద్ద ఉన్న బంగారం" data-en="Gold you own">మీ వద్ద ఉన్న బంగారం</span><span class="tip" tabindex="0">i<span class="tip-pop" data-te="ఆభరణాలతో సహా మీ వద్ద ఉన్న మొత్తం బంగారం (గ్రాములలో). నేటి ధర ప్రకారం విలువ లెక్కించబడుతుంది." data-en="All the gold you own including jewellery (in grams). Valued at today's live price.">All the gold you own including jewellery (in grams). Valued at today's live price.</span></span></label>
+          <div class="zf-input"><input type="number" id="z-goldg" min="0" placeholder="0" inputmode="decimal" oninput="calcZakat()"><span class="zf-cur" style="border-right:none;border-left:1px solid var(--border);">g</span></div>
+          <div class="zf-hint" id="z-goldval"></div>
         </div>
         <div class="zf-group">
-          <label data-te="వెండి విలువ" data-en="Value of silver">వెండి విలువ</label>
-          <div class="zf-input"><span class="zf-cur">₹</span><input type="number" id="z-silver" min="0" placeholder="0" oninput="calcZakat()"></div>
+          <label><span data-te="మీ వద్ద ఉన్న వెండి" data-en="Silver you own">మీ వద్ద ఉన్న వెండి</span><span class="tip" tabindex="0">i<span class="tip-pop" data-te="ఆభరణాలు, పాత్రలతో సహా మీ వద్ద ఉన్న మొత్తం వెండి (గ్రాములలో)." data-en="All the silver you own including jewellery and utensils (in grams).">All the silver you own including jewellery and utensils (in grams).</span></span></label>
+          <div class="zf-input"><input type="number" id="z-silverg" min="0" placeholder="0" inputmode="decimal" oninput="calcZakat()"><span class="zf-cur" style="border-right:none;border-left:1px solid var(--border);">g</span></div>
+          <div class="zf-hint" id="z-silverval"></div>
         </div>
         <div class="zf-group">
-          <label data-te="వ్యాపార సరుకు / నిల్వ" data-en="Business stock / inventory">వ్యాపార సరుకు / నిల్వ</label>
-          <div class="zf-input"><span class="zf-cur">₹</span><input type="number" id="z-business" min="0" placeholder="0" oninput="calcZakat()"></div>
-        </div>
-        <div class="zf-group">
-          <label data-te="పెట్టుబడులు &amp; ఇతరులు మీకు చెల్లించవలసినవి" data-en="Investments &amp; money owed to you">పెట్టుబడులు &amp; ఇతరులు మీకు చెల్లించవలసినవి</label>
-          <div class="zf-input"><span class="zf-cur">₹</span><input type="number" id="z-receivable" min="0" placeholder="0" oninput="calcZakat()"></div>
+          <label><span data-te="ఇతర జకాత్ ఆస్తులు" data-en="Other zakatable assets">ఇతర జకాత్ ఆస్తులు</span><span class="tip" tabindex="0">i<span class="tip-pop" data-te="వ్యాపార సరుకు, పెట్టుబడులు, మరియు ఇతరులు మీకు తిరిగి చెల్లించాల్సిన సొమ్ము." data-en="Business stock, investments, and money others owe you that you expect back.">Business stock, investments, and money others owe you that you expect back.</span></span></label>
+          <div class="zf-input"><span class="zf-cur">₹</span><input type="number" id="z-other" min="0" placeholder="0" inputmode="decimal" oninput="calcZakat()"></div>
         </div>
         <div class="zf-divider"></div>
         <div class="zf-group">
-          <label data-te="తీసివేయవలసిన అప్పులు / బాధ్యతలు" data-en="Debts / liabilities to deduct">తీసివేయవలసిన అప్పులు / బాధ్యతలు</label>
-          <div class="zf-input"><span class="zf-cur">₹</span><input type="number" id="z-liab" min="0" placeholder="0" oninput="calcZakat()"></div>
-        </div>
-        <div class="zf-group">
-          <label data-te="వెండి ధర (గ్రాముకు)" data-en="Silver price (per gram)">వెండి ధర (గ్రాముకు)
-            <span class="zf-hint" data-te="— నేటి ధరకు మార్చండి" data-en="— update to today's rate">— నేటి ధరకు మార్చండి</span></label>
-          <div class="zf-input"><span class="zf-cur">₹</span><input type="number" id="z-silverprice" min="0" value="85" oninput="calcZakat()"></div>
+          <label><span data-te="తీసివేయాల్సిన అప్పులు" data-en="Debts to subtract">తీసివేయాల్సిన అప్పులు</span><span class="tip" tabindex="0">i<span class="tip-pop" data-te="మీరు చెల్లించాల్సిన స్వల్పకాలిక అప్పులు &amp; బకాయిలు. ఇవి మొత్తం ఆస్తుల నుండి తీసివేయబడతాయి." data-en="Short-term debts and dues you must pay. These are subtracted from your total assets.">Short-term debts and dues you must pay. These are subtracted from your total assets.</span></span></label>
+          <div class="zf-input"><span class="zf-cur">₹</span><input type="number" id="z-liab" min="0" placeholder="0" inputmode="decimal" oninput="calcZakat()"></div>
         </div>
       </div>
 
@@ -395,11 +531,6 @@
     <p class="sec-lead" data-te="ప్రతి అంశం ప్రామాణిక ఆధారంతో — ఖురాన్ లేదా సహీహ్ హదీస్ నుండి." data-en="Each point cited with an authentic source — from the Quran or a Sahih hadith.">ప్రతి అంశం ప్రామాణిక ఆధారంతో — ఖురాన్ లేదా సహీహ్ హదీస్ నుండి.</p>
     <div class="learn-grid">
       <div class="learn-card">
-        <h3><span>🕋</span><span data-te="ఇస్లాం యొక్క ఐదు మూలస్తంభాలు" data-en="The Five Pillars of Islam">ఇస్లాం యొక్క ఐదు మూలస్తంభాలు</span></h3>
-        <p data-te="ఇస్లాం ఐదు స్తంభాలపై నిర్మించబడింది: షహాదా (సాక్ష్యం), నమాజ్, జకాత్, రమజాన్ ఉపవాసం, మరియు సామర్థ్యం ఉన్నవారికి హజ్." data-en="Islam is built upon five pillars: the Shahada (testimony of faith), Salah (prayer), Zakat (almsgiving), fasting in Ramadan, and Hajj for those who are able.">ఇస్లాం ఐదు స్తంభాలపై నిర్మించబడింది: షహాదా (సాక్ష్యం), నమాజ్, జకాత్, రమజాన్ ఉపవాసం, మరియు సామర్థ్యం ఉన్నవారికి హజ్.</p>
-        <span class="learn-ref">Sahih al-Bukhari 8 · Sahih Muslim 16</span>
-      </div>
-      <div class="learn-card">
         <h3><span>🕌</span><span data-te="నమాజ్‌ను సమయానికి నిర్వహించడం" data-en="Praying at its Appointed Time">నమాజ్‌ను సమయానికి నిర్వహించడం</span></h3>
         <p data-te="&quot;నిశ్చయంగా, నమాజ్ విశ్వాసులపై నిర్దిష్ట సమయాల్లో విధిగా నిర్ణయించబడింది.&quot; ప్రళయదినాన బానిస మొదట లెక్క అడగబడేది నమాజ్ గురించే." data-en="&quot;Indeed, prayer has been decreed upon the believers at specified times.&quot; The first matter a servant will be questioned about on the Day of Judgement is the prayer.">&quot;నిశ్చయంగా, నమాజ్ విశ్వాసులపై నిర్దిష్ట సమయాల్లో విధిగా నిర్ణయించబడింది.&quot; ప్రళయదినాన బానిస మొదట లెక్క అడగబడేది నమాజ్ గురించే.</p>
         <span class="learn-ref">Quran 4:103 · Jami at-Tirmidhi 413</span>
@@ -453,6 +584,8 @@ function applyLang(l) {
   btn.textContent = l === 'te' ? 'English' : 'తెలుగు';
   btn.style.fontFamily = l === 'te' ? "'DM Sans', sans-serif" : "'Noto Sans Telugu', sans-serif";
   renderNextLabel();
+  if (typeof updatePriceUI === 'function') updatePriceUI();
+  if (typeof calcZakat === 'function') calcZakat();
 }
 function toggleLang() { lang = lang === 'te' ? 'en' : 'te'; applyLang(lang); }
 
@@ -578,14 +711,100 @@ function setAsr(isHanafi) {
   renderSalah();
 }
 
-/* ───────── Zakat calculator ───────── */
+/* ───────── Zakat calculator + live metal prices ─────────
+   Prices auto-fetched daily (keyless, CORS-enabled APIs) and cached in
+   localStorage. Per-gram INR = (USD/troy-oz ÷ 31.1034768) × USD→INR rate. */
 function inr(n) { return '₹' + Math.round(n).toLocaleString('en-IN'); }
+var TROY = 31.1034768;            // grams per troy ounce
+var NISAB_SILVER_G = 612.36;      // nisab = value of 612.36g of silver
+var FALLBACK = { goldOz: 2400, silverOz: 30, usdInr: 83 }; // sane defaults
+var METAL = { goldG: 0, silverG: 0, ts: 0, state: 'loading' }; // INR per gram
+
+function applyMetal(goldOzUsd, silverOzUsd, usdInr, ts, state) {
+  METAL.goldG = (goldOzUsd / TROY) * usdInr;
+  METAL.silverG = (silverOzUsd / TROY) * usdInr;
+  METAL.ts = ts || Date.now();
+  METAL.state = state || 'live';
+  updatePriceUI();
+  calcZakat();
+}
+
+function updatePriceUI() {
+  var g = document.getElementById('lp-gold');
+  var s = document.getElementById('lp-silver');
+  var n = document.getElementById('lp-nisab-val');
+  if (!g || !s || !n) return;
+  if (METAL.goldG > 0) { g.textContent = inr(METAL.goldG); s.textContent = inr(METAL.silverG); n.textContent = inr(NISAB_SILVER_G * METAL.silverG); }
+  var dot = document.getElementById('lp-dot');
+  var up = document.getElementById('lp-updated');
+  if (!dot || !up) return;
+  dot.className = 'lp-dot';
+  var te, en;
+  if (METAL.state === 'loading') {
+    te = 'ధరలను తెస్తోంది…'; en = 'Fetching live prices…';
+  } else if (METAL.state === 'live') {
+    dot.classList.add('live');
+    var t = new Date(METAL.ts), hh = t.getHours(), mm = ('0' + t.getMinutes()).slice(-2);
+    var ap = hh >= 12 ? 'PM' : 'AM', h12 = hh % 12 || 12;
+    te = 'ప్రత్యక్ష ధరలు · ఈరోజు ' + h12 + ':' + mm + ' ' + ap + ' నాటికి';
+    en = 'Live prices · updated today ' + h12 + ':' + mm + ' ' + ap;
+  } else if (METAL.state === 'stale') {
+    dot.classList.add('stale');
+    var d = new Date(METAL.ts), dd = d.getDate(), mo = (d.getMonth() + 1);
+    te = 'సేవ్ చేసిన ధరలు (' + dd + '/' + mo + ') — తాజావి తేవడానికి ప్రయత్నిస్తోంది';
+    en = 'Saved prices (' + dd + '/' + mo + ') — retrying for latest';
+  } else { // err
+    dot.classList.add('err');
+    te = 'ప్రత్యక్ష ధరలు అందుబాటులో లేవు — సూచిక విలువలు చూపబడ్డాయి';
+    en = 'Live prices unavailable — showing indicative values';
+  }
+  up.setAttribute('data-te', te); up.setAttribute('data-en', en);
+  up.textContent = lang === 'te' ? te : en;
+}
+
+function cachePrices(goldOz, silverOz, usdInr) {
+  try { localStorage.setItem('if-metal-prices', JSON.stringify({ goldOz: goldOz, silverOz: silverOz, usdInr: usdInr, ts: Date.now() })); } catch (e) {}
+}
+function readCache() {
+  try { var c = JSON.parse(localStorage.getItem('if-metal-prices')); if (c && c.goldOz && c.silverOz && c.usdInr) return c; } catch (e) {}
+  return null;
+}
+
+function fetchMetalPrices() {
+  var cache = readCache();
+  var dayMs = 86400000;
+  if (cache) {
+    var fresh = (Date.now() - cache.ts) < dayMs;
+    applyMetal(cache.goldOz, cache.silverOz, cache.usdInr, cache.ts, fresh ? 'live' : 'stale');
+    if (fresh) return; // cached today — no network needed
+  } else {
+    applyMetal(FALLBACK.goldOz, FALLBACK.silverOz, FALLBACK.usdInr, Date.now(), 'loading');
+  }
+  var jget = function (url) { return fetch(url).then(function (r) { if (!r.ok) throw 0; return r.json(); }); };
+  Promise.all([
+    jget('https://api.gold-api.com/price/XAU'),
+    jget('https://api.gold-api.com/price/XAG'),
+    jget('https://open.er-api.com/v6/latest/USD')
+  ]).then(function (res) {
+    var goldOz = res[0] && res[0].price, silverOz = res[1] && res[1].price;
+    var usdInr = res[2] && res[2].rates && res[2].rates.INR;
+    if (!goldOz || !silverOz || !usdInr) throw 0;
+    cachePrices(goldOz, silverOz, usdInr);
+    applyMetal(goldOz, silverOz, usdInr, Date.now(), 'live');
+  }).catch(function () {
+    if (cache) { applyMetal(cache.goldOz, cache.silverOz, cache.usdInr, cache.ts, 'stale'); }
+    else { applyMetal(FALLBACK.goldOz, FALLBACK.silverOz, FALLBACK.usdInr, Date.now(), 'err'); }
+  });
+}
+
 function calcZakat() {
-  function v(id) { var x = parseFloat(document.getElementById(id).value); return isNaN(x) || x < 0 ? 0 : x; }
-  var assets = v('z-cash') + v('z-gold') + v('z-silver') + v('z-business') + v('z-receivable');
+  function v(id) { var el = document.getElementById(id); if (!el) return 0; var x = parseFloat(el.value); return isNaN(x) || x < 0 ? 0 : x; }
+  var goldG = v('z-goldg'), silverG = v('z-silverg');
+  var goldVal = goldG * METAL.goldG, silverVal = silverG * METAL.silverG;
+  var assets = v('z-cash') + goldVal + silverVal + v('z-other');
   var liab = v('z-liab');
   var net = Math.max(0, assets - liab);
-  var nisab = 612.36 * v('z-silverprice');
+  var nisab = NISAB_SILVER_G * METAL.silverG;
   var due = nisab > 0 && net >= nisab;
   var zakat = due ? net * 0.025 : 0;
   document.getElementById('zr-amount').textContent = inr(zakat);
@@ -593,11 +812,38 @@ function calcZakat() {
   document.getElementById('zr-liab').textContent = inr(liab);
   document.getElementById('zr-net').textContent = inr(net);
   document.getElementById('zr-nisab').textContent = inr(nisab);
+  // live valuation hints under the gram inputs
+  var gh = document.getElementById('z-goldval'), sh = document.getElementById('z-silverval');
+  if (gh) gh.textContent = goldG > 0 && METAL.goldG > 0 ? '≈ ' + inr(goldVal) : '';
+  if (sh) sh.textContent = silverG > 0 && METAL.silverG > 0 ? '≈ ' + inr(silverVal) : '';
   var st = document.getElementById('zr-status');
-  if (nisab <= 0) { st.setAttribute('data-te','నిసాబ్ లెక్కించడానికి వెండి ధరను నమోదు చేయండి.'); st.setAttribute('data-en','Enter the silver price to compute nisab.'); }
+  if (nisab <= 0) { st.setAttribute('data-te','ధరలు లోడ్ అవుతున్నాయి…'); st.setAttribute('data-en','Loading live prices…'); }
+  else if (assets <= 0) { st.setAttribute('data-te','ప్రారంభించడానికి మీ ఆస్తుల వివరాలను నమోదు చేయండి.'); st.setAttribute('data-en','Enter your asset details to begin.'); }
   else if (due) { st.setAttribute('data-te','మీ సంపద నిసాబ్‌ను చేరింది — జకాత్ చెల్లించవలసి ఉంటుంది.'); st.setAttribute('data-en','Your wealth has reached nisab — Zakat is due.'); }
   else { st.setAttribute('data-te','మీ సంపద నిసాబ్‌కు దిగువన ఉంది — జకాత్ తప్పనిసరి కాదు.'); st.setAttribute('data-en','Your wealth is below nisab — Zakat is not obligatory.'); }
   st.innerHTML = st.getAttribute('data-' + lang);
+}
+
+/* ───────── Scroll reveal (staggered) ───────── */
+function initReveal() {
+  var els = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    els.forEach(function (el) { el.classList.add('reveal-in'); });
+    return;
+  }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      var el = e.target;
+      // stagger pillar cards within their grid
+      var sibs = el.parentElement && el.parentElement.classList.contains('pillars-grid')
+        ? Array.prototype.indexOf.call(el.parentElement.children, el) : 0;
+      el.style.transitionDelay = (sibs * 90) + 'ms';
+      el.classList.add('reveal-in');
+      io.unobserve(el);
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+  els.forEach(function (el) { io.observe(el); });
 }
 
 /* ───────── Boot ───────── */
@@ -606,8 +852,10 @@ document.addEventListener('DOMContentLoaded', function () {
   document.getElementById('asr-standard').classList.toggle('active', !hanafi);
   applyLang(lang);
   renderSalah();
+  fetchMetalPrices();
   calcZakat();
   tickCountdown();
+  initReveal();
   setInterval(tickCountdown, 1000);
   setInterval(renderSalah, 60000);
 });

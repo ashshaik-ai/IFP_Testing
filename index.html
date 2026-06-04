@@ -78,27 +78,35 @@
   .section-lead { font-size: 16px; color: var(--text-muted); max-width: 560px; line-height: 1.75; }
   .inner { max-width: 1100px; margin: 0 auto; }
 
-  /* VICTORY */
-  .victory { background: var(--green-deep); padding: 70px 5vw; }
-  .victory .inner { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
-  .victory-left .section-title { color: var(--white); }
-  .victory-left .section-lead { color: rgba(245,230,192,0.65); }
-  .victory-left .section-tag { color: var(--gold-light); }
-  .victory-left .section-tag::before { background: var(--gold-light); }
-  .seats-visual { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px; }
-  .seat { width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 500; letter-spacing: 0.3px; transition: transform 0.2s; }
-  .seat:hover { transform: scale(1.1); }
-  .seat.won { background: var(--gold); color: var(--green-deep); font-weight: 700; box-shadow: 0 0 0 3px rgba(200,146,42,0.25); }
-  .seat.lost { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); color: rgba(255,255,255,0.3); }
-  .seat-legend { display: flex; gap: 24px; margin-top: 24px; }
-  .seat-legend-item { display: flex; align-items: center; gap: 8px; font-size: 13px; color: rgba(245,230,192,0.55); }
-  .sleg-dot { width: 14px; height: 14px; border-radius: 50%; }
-  /* CANDIDATE PHOTOS */
-  .candidates-grid { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 36px; }
-  .cand-item { display: flex; flex-direction: column; align-items: center; gap: 6px; }
-  .cand-photo { width: 76px; height: 76px; border-radius: 50%; object-fit: cover; object-position: top; border: 3px solid var(--gold); box-shadow: 0 0 0 3px rgba(200,146,42,0.2); }
-  .cand-fallback { width: 76px; height: 76px; border-radius: 50%; background: rgba(200,146,42,0.12); border: 3px solid var(--gold); display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 700; color: var(--gold-light); }
-  .cand-name { font-size: 10px; font-weight: 600; color: rgba(245,230,192,0.92); text-align: center; letter-spacing: 0.3px; line-height: 1.35; max-width: 80px; }
+  /* LEADERSHIP & HISTORIC MANDATE (unified) */
+  .victory { background: var(--green-deep); padding: 90px 5vw; }
+  .victory .inner { max-width: 1080px; }
+  .lead-head { text-align: center; max-width: 720px; margin: 0 auto; }
+  .lead-head .section-tag { justify-content: center; color: var(--gold-light); }
+  .lead-head .section-tag::before { background: var(--gold-light); }
+  .lead-head .section-title { color: var(--white); }
+  .lead-head .section-lead { color: rgba(245,230,192,0.7); margin: 0 auto; max-width: 640px; }
+  .lead-info { font-size: 13px; color: rgba(245,230,192,0.55); line-height: 1.7; margin: 18px auto 0; max-width: 620px; }
+  /* mandate / impact stat chips */
+  .mandate-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; max-width: 880px; margin: 42px auto 0; }
+  .ms-chip { background: rgba(255,255,255,0.04); border: 1px solid rgba(200,146,42,0.2); border-radius: 12px; padding: 24px 16px; text-align: center; transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
+  .ms-chip:hover { transform: translateY(-4px); border-color: rgba(200,146,42,0.45); box-shadow: 0 12px 28px rgba(0,0,0,0.26); }
+  .ms-chip.ms-hl { background: rgba(200,146,42,0.13); border-color: rgba(200,146,42,0.5); }
+  .ms-num { font-family: 'Playfair Display', serif; font-size: 40px; font-weight: 700; color: var(--gold-light); line-height: 1; }
+  .ms-lab { font-size: 11px; letter-spacing: 1.2px; text-transform: uppercase; color: rgba(245,230,192,0.62); margin-top: 10px; line-height: 1.5; }
+  /* sub-headings inside the section */
+  .lead-subcap { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); text-align: center; font-weight: 600; }
+  .lead-subhead { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 700; color: #fff; text-align: center; margin: 8px 0 30px; }
+  .lead-block { margin-top: 56px; }
+  /* elected members gallery — larger cards */
+  .members-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; max-width: 940px; margin: 0 auto; }
+  .member-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(200,146,42,0.18); border-radius: 14px; padding: 24px 12px 18px; text-align: center; transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
+  .member-card:hover { transform: translateY(-6px); border-color: rgba(200,146,42,0.5); box-shadow: 0 14px 32px rgba(0,0,0,0.3); }
+  .member-photo, .member-fallback { width: 128px; height: 128px; border-radius: 50%; border: 3px solid var(--gold); box-shadow: 0 0 0 4px rgba(200,146,42,0.18); margin: 0 auto; display: block; transition: box-shadow .25s ease; object-fit: cover; object-position: top; }
+  .member-fallback { background: rgba(200,146,42,0.12); display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 40px; font-weight: 700; color: var(--gold-light); }
+  .member-card:hover .member-photo { box-shadow: 0 0 0 5px rgba(200,146,42,0.42); }
+  .member-name { font-size: 15px; font-weight: 600; color: rgba(245,230,192,0.96); margin-top: 16px; line-height: 1.4; }
+  .member-role { font-size: 10px; color: var(--gold); letter-spacing: 1px; text-transform: uppercase; margin-top: 5px; }
 
   /* ACHIEVEMENTS */
   .achievements { background: var(--white); }
@@ -293,11 +301,13 @@
   .office-card { transition:box-shadow .2s ease,transform .2s ease-out; }
   .office-card:hover { transform:translateY(-2px); box-shadow:0 4px 14px rgba(13,59,30,.07); }
 
-  /* Candidate photo hover — lift + subtle ring */
-  .cand-item { transition:transform .2s ease-out; }
-  .cand-item:hover { transform:translateY(-3px); }
-  .cand-photo { transition:box-shadow .2s ease; }
-  .cand-item:hover .cand-photo { box-shadow:0 0 0 3px rgba(200,146,42,.38); }
+  /* Leadership section responsive */
+  @media (max-width: 860px) { .members-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 600px) {
+    .members-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .mandate-stats { grid-template-columns: repeat(2, 1fr); }
+    .ms-num { font-size: 34px; }
+  }
 
   /* Timeline dot scale on hover */
   .tl-dot { transition:transform .2s ease; }
@@ -420,55 +430,87 @@
 <!-- VICTORY -->
 <section class="victory" id="victory">
   <div class="inner">
-    <div class="victory-left">
+    <div class="lead-head reveal">
       <div class="section-tag" data-key="victory_tag">ఎన్నికల ఫలితాలు · జూలై 2023</div>
-      <h2 class="section-title" style="color:#fff;" data-key="victory_title" data-html="true">చారిత్రాత్మక<br>విజయం</h2>
+      <h2 class="section-title" data-key="victory_title" data-html="true">చారిత్రాత్మక<br>విజయం</h2>
       <p class="section-lead" data-key="victory_desc">ఇస్లామిక్ ఫ్రంట్ అంజుమన్‌- యి- హిమాయతుల్‌ ఇస్లాం ఎన్నికలలో నిర్ణయాత్మక మెజారిటీ సాధించింది — 9 సీట్లలో 7 గెలుచుకుని మంగళగిరి సమాజ విశ్వాసాన్ని పొందింది.</p>
-      <div style="margin-top:28px; padding:20px 24px; background:rgba(200,146,42,0.08); border:1px solid rgba(200,146,42,0.2); border-radius:6px;">
-        <p style="font-size:13px; color:rgba(245,230,192,0.6); line-height:1.7;" data-key="victory_info" data-html="true"><strong style="color:rgba(245,230,192,0.9);">అంజుమన్‌- యి- హిమాయతుల్‌ ఇస్లాం, మంగళగిరి</strong><br>522503, ఆంధ్రప్రదేశ్ · ఎన్నికలు ప్రతి 5 సంవత్సరాలకు ఒకసారి · ~3,000 నమోదిత ఓటర్లు</p>
+      <div class="lead-info" data-key="victory_info" data-html="true"><strong style="color:rgba(245,230,192,0.9);">అంజుమన్‌- యి- హిమాయతుల్‌ ఇస్లాం, మంగళగిరి</strong> · 522503, ఆంధ్రప్రదేశ్ · ఎన్నికలు ప్రతి 5 సంవత్సరాలకు ఒకసారి</div>
+    </div>
+
+    <div class="mandate-stats">
+      <div class="ms-chip reveal">
+        <div class="ms-num" data-count="15" data-suffix="+">15+</div>
+        <div class="ms-lab" data-key="ms_years">సంవత్సరాల సేవ</div>
+      </div>
+      <div class="ms-chip ms-hl reveal">
+        <div class="ms-num" data-count="7" data-suffix="">7</div>
+        <div class="ms-lab" data-key="ms_seats">2023 గెలిచిన సీట్లు</div>
+      </div>
+      <div class="ms-chip reveal">
+        <div class="ms-num" data-count="3000" data-suffix="+">3,000+</div>
+        <div class="ms-lab" data-key="ms_voters">నమోదిత ఓటర్లు</div>
+      </div>
+      <div class="ms-chip reveal">
+        <div class="ms-num" data-count="250" data-suffix="+">250+</div>
+        <div class="ms-lab" data-key="ms_families">సేవ పొందిన కుటుంబాలు</div>
+      </div>
+      <div class="ms-chip reveal">
+        <div class="ms-num" data-count="120" data-suffix="+">120+</div>
+        <div class="ms-lab" data-key="ms_shops">నిర్వహించే దుకాణాలు</div>
+      </div>
+      <div class="ms-chip reveal">
+        <div class="ms-num" data-count="10" data-suffix="">10</div>
+        <div class="ms-lab" data-key="ms_goals">మేనిఫెస్టో లక్ష్యాలు</div>
       </div>
     </div>
-    <div class="victory-right">
-      <p style="font-size:12px; color:rgba(245,230,192,0.4); letter-spacing:1px; text-transform:uppercase; margin-bottom:20px;" data-key="victory_seats_label">7 మంది విజేత సభ్యులు</p>
-      <div class="candidates-grid">
-        <div class="cand-item">
-          <img src="assets/candidates/1.candidate.jpg" alt="Yaseen Shaik" class="cand-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="cand-fallback" style="display:none">1</div>
-          <div class="cand-name" data-key="cand1_name">యాసీన్ షేక్</div>
+
+    <!-- Elected Members -->
+    <div class="lead-block">
+      <div class="lead-subcap reveal" data-key="members_cap">2023 ఎన్నికలు</div>
+      <div class="lead-subhead reveal" data-key="victory_seats_label">7 మంది విజేత సభ్యులు</div>
+      <div class="members-grid">
+        <div class="member-card reveal">
+          <img src="assets/candidates/1.candidate.jpg" alt="Yaseen Shaik" class="member-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="member-fallback" style="display:none">1</div>
+          <div class="member-name" data-key="cand1_name">యాసీన్ షేక్</div>
+          <div class="member-role" data-key="member_role">ఎన్నికైన సభ్యుడు</div>
         </div>
-        <div class="cand-item">
-          <img src="assets/candidates/2.candidate.jpg" alt="Abdul Aleem" class="cand-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="cand-fallback" style="display:none">2</div>
-          <div class="cand-name" data-key="cand2_name">అబ్దుల్ అలీమ్</div>
+        <div class="member-card reveal">
+          <img src="assets/candidates/2.candidate.jpg" alt="Abdul Aleem" class="member-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="member-fallback" style="display:none">2</div>
+          <div class="member-name" data-key="cand2_name">అబ్దుల్ అలీమ్</div>
+          <div class="member-role" data-key="member_role">ఎన్నికైన సభ్యుడు</div>
         </div>
-        <div class="cand-item">
-          <img src="assets/candidates/3.candidate.jpg" alt="Akbar Basha Shaik" class="cand-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="cand-fallback" style="display:none">3</div>
-          <div class="cand-name" data-key="cand3_name">అక్బర్ బాషా షేక్</div>
+        <div class="member-card reveal">
+          <img src="assets/candidates/3.candidate.jpg" alt="Akbar Basha Shaik" class="member-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="member-fallback" style="display:none">3</div>
+          <div class="member-name" data-key="cand3_name">అక్బర్ బాషా షేక్</div>
+          <div class="member-role" data-key="member_role">ఎన్నికైన సభ్యుడు</div>
         </div>
-        <div class="cand-item">
-          <img src="assets/candidates/4.candidate.jpg" alt="Hazrat Ali Shaik" class="cand-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="cand-fallback" style="display:none">4</div>
-          <div class="cand-name" data-key="cand4_name">హజ్రత్ అలీ షేక్</div>
+        <div class="member-card reveal">
+          <img src="assets/candidates/4.candidate.jpg" alt="Hazrat Ali Shaik" class="member-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="member-fallback" style="display:none">4</div>
+          <div class="member-name" data-key="cand4_name">హజ్రత్ అలీ షేక్</div>
+          <div class="member-role" data-key="member_role">ఎన్నికైన సభ్యుడు</div>
         </div>
-        <div class="cand-item">
-          <img src="assets/candidates/5.candidate.jpg" alt="Abdul Saleem" class="cand-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="cand-fallback" style="display:none">5</div>
-          <div class="cand-name" data-key="cand5_name">అబ్దుల్ సలీమ్</div>
+        <div class="member-card reveal">
+          <img src="assets/candidates/5.candidate.jpg" alt="Abdul Saleem" class="member-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="member-fallback" style="display:none">5</div>
+          <div class="member-name" data-key="cand5_name">అబ్దుల్ సలీమ్</div>
+          <div class="member-role" data-key="member_role">ఎన్నికైన సభ్యుడు</div>
         </div>
-        <div class="cand-item">
-          <img src="assets/candidates/6.candidate.jpg" alt="Hanifsha Shaik" class="cand-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="cand-fallback" style="display:none">6</div>
-          <div class="cand-name" data-key="cand6_name">హనీఫ్షా షేక్</div>
+        <div class="member-card reveal">
+          <img src="assets/candidates/6.candidate.jpg" alt="Hanifsha Shaik" class="member-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="member-fallback" style="display:none">6</div>
+          <div class="member-name" data-key="cand6_name">హనీఫ్షా షేక్</div>
+          <div class="member-role" data-key="member_role">ఎన్నికైన సభ్యుడు</div>
         </div>
-        <div class="cand-item">
-          <img src="assets/candidates/7.candidate.jpg" alt="Hafeez Shaik" class="cand-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="cand-fallback" style="display:none">7</div>
-          <div class="cand-name" data-key="cand7_name">హఫీజ్ షేక్</div>
+        <div class="member-card reveal">
+          <img src="assets/candidates/7.candidate.jpg" alt="Hafeez Shaik" class="member-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="member-fallback" style="display:none">7</div>
+          <div class="member-name" data-key="cand7_name">హఫీజ్ షేక్</div>
+          <div class="member-role" data-key="member_role">ఎన్నికైన సభ్యుడు</div>
         </div>
-      </div>
-      <div class="seat-legend">
-        <div class="seat-legend-item"><div class="sleg-dot" style="background:#c8922a;"></div><span data-key="legend1">ఇస్లామిక్ ఫ్రంట్ (7)</span></div>
       </div>
     </div>
   </div>
@@ -920,8 +962,18 @@ const T = {
     victory_tag: "ఎన్నికల ఫలితాలు · జూలై 2023",
     victory_title: "చారిత్రాత్మక<br>విజయం",
     victory_desc: "ఇస్లామిక్ ఫ్రంట్ అంజుమన్‌- యి- హిమాయతుల్‌ ఇస్లాం ఎన్నికలలో నిర్ణయాత్మక మెజారిటీ సాధించింది — 9 సీట్లలో 7 గెలుచుకుని మంగళగిరి సమాజ విశ్వాసాన్ని పొందింది.",
-    victory_info: "<strong style='color:rgba(245,230,192,0.9);'>అంజుమన్‌- యి- హిమాయతుల్‌ ఇస్లాం, మంగళగిరి</strong><br>522503, ఆంధ్రప్రదేశ్ · ఎన్నికలు ప్రతి 5 సంవత్సరాలకు ఒకసారి · ~3,000 నమోదిత ఓటర్లు",
+    victory_info: "<strong style='color:rgba(245,230,192,0.9);'>అంజుమన్‌- యి- హిమాయతుల్‌ ఇస్లాం, మంగళగిరి</strong> · 522503, ఆంధ్రప్రదేశ్ · ఎన్నికలు ప్రతి 5 సంవత్సరాలకు ఒకసారి",
     victory_seats_label: "7 మంది విజేత సభ్యులు",
+    lead_subcap: "నాయకత్వం",
+    lead_subhead: "సంస్థాపకుడు & నాయకత్వం",
+    members_cap: "2023 ఎన్నికలు",
+    member_role: "ఎన్నికైన సభ్యుడు",
+    ms_years: "సంవత్సరాల సేవ",
+    ms_seats: "2023 గెలిచిన సీట్లు",
+    ms_voters: "నమోదిత ఓటర్లు",
+    ms_families: "సేవ పొందిన కుటుంబాలు",
+    ms_shops: "నిర్వహించే దుకాణాలు",
+    ms_goals: "మేనిఫెస్టో లక్ష్యాలు",
     seat_won: "✓ గెలిచింది", seat_lost: "వ్య.",
     legend1: "ఇస్లామిక్ ఫ్రంట్ (7)", legend2: "ప్రతిపక్షం (2)",
     cand1_name: "యాసీన్ షేక్", cand2_name: "అబ్దుల్ అలీమ్", cand3_name: "అక్బర్ బాషా షేక్",
@@ -1058,8 +1110,18 @@ const T = {
     victory_tag: "Election Results · July 2023",
     victory_title: "A Historic<br>Mandate",
     victory_desc: "Islamic Front won a decisive majority in the Anjuman-e-Himayatul Islam elections — securing 7 out of 9 seats and earning the community's trust to lead for the next term.",
-    victory_info: "<strong style='color:rgba(245,230,192,0.9);'>Anjuman-e-Himayatul Islam, Mangalagiri</strong><br>522503, Andhra Pradesh · Elections held once every 5 years · ~3,000 registered voters",
+    victory_info: "<strong style='color:rgba(245,230,192,0.9);'>Anjuman-e-Himayatul Islam, Mangalagiri</strong> · 522503, Andhra Pradesh · Elections held once every 5 years",
     victory_seats_label: "7 Elected Members",
+    lead_subcap: "Leadership",
+    lead_subhead: "Founder & Leadership",
+    members_cap: "2023 Elections",
+    member_role: "Elected Member",
+    ms_years: "Years of Service",
+    ms_seats: "Seats Won 2023",
+    ms_voters: "Registered Voters",
+    ms_families: "Families Served",
+    ms_shops: "Shops Managed",
+    ms_goals: "Manifesto Goals",
     seat_won: "✓ Won", seat_lost: "Opp.",
     legend1: "Islamic Front (7)", legend2: "Opposition (2)",
     cand1_name: "Yaseen Shaik", cand2_name: "Abdul Aleem", cand3_name: "Akbar Basha Shaik",
@@ -1216,7 +1278,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
   addReveal('.ach-card', 70);
   addReveal('.infra-card', 80);
-  addReveal('.cand-item', 65);
+  addReveal('.member-card', 65);
   addReveal('.office-card', 100);
   addReveal('.tl-item', 100);
   addReveal('.mf-ring-item', 80);
@@ -1255,6 +1317,34 @@ document.addEventListener('DOMContentLoaded', function () {
         }
       });
     }, { threshold: 0.05 }).observe(mfGrid);
+  }
+
+  /* Animated counters — count up .ms-num[data-count] on scroll into view */
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function formatNum(n) { return Math.round(n).toLocaleString('en-IN'); }
+  function runCounter(el) {
+    var target = parseInt(el.dataset.count, 10) || 0;
+    var suffix = el.dataset.suffix || '';
+    if (reduceMotion || target === 0) { el.textContent = formatNum(target) + suffix; return; }
+    var dur = 1400, start = null;
+    function step(ts) {
+      if (start === null) start = ts;
+      var p = Math.min((ts - start) / dur, 1);
+      var eased = 1 - Math.pow(1 - p, 3); /* ease-out cubic */
+      el.textContent = formatNum(target * eased) + suffix;
+      if (p < 1) requestAnimationFrame(step);
+      else el.textContent = formatNum(target) + suffix;
+    }
+    requestAnimationFrame(step);
+  }
+  var counters = document.querySelectorAll('.ms-num[data-count]');
+  if (counters.length) {
+    var countIO = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { runCounter(e.target); countIO.unobserve(e.target); }
+      });
+    }, { threshold: 0.4 });
+    counters.forEach(function (el) { countIO.observe(el); });
   }
 });
 
