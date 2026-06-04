@@ -1,0 +1,43 @@
+name: Update gold & silver rates
+
+# Runs once a day and whenever you trigger it manually from the Actions tab.
+on:
+  schedule:
+    - cron: '30 2 * * *'   # 02:30 UTC = 08:00 IST, after GoodReturns posts the day's rate
+  workflow_dispatch:        # manual "Run workflow" button
+
+# Allow the job to commit rates.json back to the repo.
+permissions:
+  contents: write
+
+# Avoid overlapping runs.
+concurrency:
+  group: update-rates
+  cancel-in-progress: true
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Fetch latest rates from GoodReturns
+        run: node scripts/update-rates.mjs
+
+      - name: Commit rates.json if it changed
+        run: |
+          if git diff --quiet -- rates.json; then
+            echo "No rate change today — nothing to commit."
+          else
+            git config user.name "rates-bot"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add rates.json
+            git commit -m "chore: update gold/silver rates from GoodReturns"
+            git push
+          fi

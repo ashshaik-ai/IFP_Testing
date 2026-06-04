@@ -1,0 +1,17 @@
+# Claude Code tooling — never deploy
+.claude/
+
+# Temp image-processing scripts (generated during development)
+_logo_*.py
+
+# OS / editor
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*.swo
+
+# Local server / env
+*.log
+.env
+.env.local
