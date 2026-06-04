@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ఇస్లామిక్ నాలెడ్జ్ సెంటర్ – ఇస్లామిక్ ఫ్రంట్</title>
 <meta name="description" content="Islamic Knowledge Center by Islamic Front, Mangalagiri — Zakat calculator, daily Salah timings, next prayer countdown, and authentic Quran &amp; Hadith resources.">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@300;400;500&family=Noto+Sans+Telugu:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:wght@300;400;500&family=Noto+Sans+Telugu:wght@300;400;500;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
@@ -16,8 +16,18 @@
     --border: rgba(200,146,42,0.25);
   }
   html { scroll-behavior: smooth; }
-  body { font-family: 'DM Sans', 'Noto Sans Telugu', sans-serif; background: var(--cream); color: var(--text-dark); overflow-x: hidden; }
+  body { font-family: 'DM Sans', 'Noto Sans Telugu', sans-serif; background: var(--cream); color: var(--text-dark); overflow-x: hidden; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility; }
   section[id], header[id] { scroll-margin-top: 84px; }
+
+  /* ── Global premium polish ── */
+  ::selection { background: rgba(200,146,42,0.28); color: var(--text-dark); }
+  ::-webkit-scrollbar { width: 11px; height: 11px; }
+  ::-webkit-scrollbar-track { background: var(--cream); }
+  ::-webkit-scrollbar-thumb { background: linear-gradient(var(--gold), var(--gold-light)); border-radius: 100px; border: 3px solid var(--cream); }
+  ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+  html { scrollbar-color: var(--gold) var(--cream); scrollbar-width: thin; }
+  a:focus-visible, button:focus-visible, [tabindex]:focus-visible { outline: 2px solid var(--gold-light); outline-offset: 3px; border-radius: 3px; }
+  img { -webkit-user-drag: none; }
 
   /* NAV — scoped to the top-level bar only, so it cannot leak into nested <nav> (e.g. .kc-jump) */
   body > nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(13,59,30,0.96); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(200,146,42,0.3); padding: 0 5vw; display: flex; align-items: center; justify-content: space-between; height: 68px; }
@@ -34,8 +44,31 @@
   .lang-btn::before { content: '🌐'; font-size: 13px; }
 
   /* HERO */
-  .kc-hero { padding: 130px 5vw 70px; background: linear-gradient(160deg, var(--green-deep) 0%, #0a2e17 55%, #122b0f 100%); position: relative; overflow: hidden; }
-  .kc-hero::after { content: '☪\FE0E'; position: absolute; right: 6vw; top: 50%; transform: translateY(-50%); font-size: clamp(150px, 20vw, 260px); color: rgba(200,146,42,0.06); line-height: 1; pointer-events: none; }
+  .kc-hero { padding: 130px 5vw 70px; background: linear-gradient(160deg, var(--green-deep) 0%, #0a2e17 55%, #122b0f 100%); position: relative; overflow: hidden; isolation: isolate; }
+  /* Static premium glow */
+  .kc-hero::before { content: ''; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+    background-image:
+      radial-gradient(ellipse 64% 60% at 80% 42%, rgba(200,146,42,0.13) 0%, transparent 62%),
+      radial-gradient(ellipse 55% 55% at 6% 95%, rgba(46,139,87,0.18) 0%, transparent 60%); }
+  /* Brand emblem — fully fitted into the right corner of the hero */
+  .kc-logo-bg { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+  .kc-logo-float { position: absolute; top: 50%; right: 5vw; transform: translateY(-50%);
+    width: clamp(220px, 26vw, 340px); aspect-ratio: 1; display: flex; align-items: center; justify-content: center;
+    animation: kcLogoIn 1.1s cubic-bezier(.22,.61,.36,1) both; }
+  .kc-logo-bg img { width: 100%; height: 100%; object-fit: contain; opacity: .14;
+    filter: drop-shadow(0 0 45px rgba(200,146,42,.25)); }
+  @keyframes kcLogoIn {
+    from { opacity: 0; transform: translateY(-50%) scale(.96); }
+    to   { opacity: 1; transform: translateY(-50%) scale(1); }
+  }
+  @media (max-width: 760px) {
+    .kc-logo-float { right: 50%; transform: translate(50%, -50%); width: min(360px, 72vw); }
+    .kc-logo-bg img { opacity: .06; }
+    @keyframes kcLogoIn {
+      from { opacity: 0; transform: translate(50%, -50%) scale(.96); }
+      to   { opacity: 1; transform: translate(50%, -50%) scale(1); }
+    }
+  }
   .kc-hero-inner { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
   .kc-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(200,146,42,0.12); border: 1px solid rgba(200,146,42,0.35); border-radius: 100px; padding: 6px 16px; margin-bottom: 22px; font-size: 12px; color: var(--gold-light); letter-spacing: 1.5px; text-transform: uppercase; }
   .kc-badge::before { content: '★\FE0E'; font-size: 10px; }
@@ -46,6 +79,18 @@
   .kc-jump { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 30px; }
   .kc-jump a { font-size: 12.5px; color: rgba(245,230,192,0.85); text-decoration: none; border: 1px solid rgba(200,146,42,0.35); background: rgba(200,146,42,0.08); padding: 7px 15px; border-radius: 100px; transition: background 0.2s, transform 0.15s; }
   .kc-jump a:hover { background: rgba(200,146,42,0.2); transform: translateY(-1px); }
+
+  /* STICKY QUICK-JUMP NAV */
+  .kc-sticky { position: fixed; top: 68px; left: 0; right: 0; z-index: 90; background: rgba(13,59,30,0.97); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(200,146,42,0.3); box-shadow: 0 6px 20px rgba(0,0,0,0.18); transform: translateY(-130%); transition: transform 0.35s cubic-bezier(0.16,1,0.3,1); }
+  .kc-sticky.is-visible { transform: translateY(0); }
+  .kc-sticky-inner { max-width: 1180px; margin: 0 auto; display: flex; gap: 8px; overflow-x: auto; padding: 9px 5vw; scrollbar-width: thin; scrollbar-color: rgba(200,146,42,0.4) transparent; -webkit-overflow-scrolling: touch; }
+  .kc-sticky-inner::-webkit-scrollbar { height: 4px; }
+  .kc-sticky-inner::-webkit-scrollbar-thumb { background: rgba(200,146,42,0.4); border-radius: 4px; }
+  .kc-sticky a { white-space: nowrap; flex-shrink: 0; font-size: 12px; color: rgba(245,230,192,0.82); text-decoration: none; border: 1px solid rgba(200,146,42,0.28); background: rgba(200,146,42,0.06); padding: 6px 13px; border-radius: 100px; transition: background 0.2s, color 0.2s, border-color 0.2s; }
+  .kc-sticky a:hover { background: rgba(200,146,42,0.18); color: var(--gold-light); }
+  .kc-sticky a.is-active { background: var(--gold); color: var(--green-deep); border-color: var(--gold); font-weight: 600; }
+  /* offset anchored sections so they clear the fixed top nav + sticky bar */
+  .kc-sec, #wudu, #salah-guide { scroll-margin-top: 122px; }
 
   /* SECTIONS */
   section.kc-sec { padding: 72px 5vw; }
@@ -155,6 +200,156 @@
   .learn-card p { font-size: 13.5px; color: var(--text-mid); line-height: 1.75; }
   .learn-ref { display: inline-block; margin-top: 12px; font-size: 11.5px; font-weight: 600; color: var(--green-mid); background: rgba(46,139,87,0.08); border: 1px solid rgba(46,139,87,0.18); border-radius: 100px; padding: 4px 12px; }
 
+  /* FAQ / UNDERSTANDING ISLAM — articles + accordion */
+  .faqs { background: var(--cream); }
+  .articles-wrap { max-width: 860px; margin: 44px auto 0; }
+  .article { background: var(--white); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; margin-bottom: 32px; box-shadow: 0 2px 14px rgba(13,59,30,0.06); }
+  .article-header { background: linear-gradient(135deg, var(--green-deep) 0%, #0f3520 100%); padding: 30px 34px 26px; position: relative; overflow: hidden; }
+  .article-header::after { content: ''; position: absolute; bottom: -30px; right: -30px; width: 120px; height: 120px; border-radius: 50%; background: rgba(200,146,42,0.07); pointer-events: none; }
+  .article-num { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: rgba(200,146,42,0.6); margin-bottom: 10px; }
+  .article-title { font-family: 'Playfair Display', 'Noto Sans Telugu', serif; font-size: clamp(19px,2.8vw,26px); font-weight: 700; color: var(--white); line-height: 1.3; }
+  .article-summary { font-family: 'Cormorant Garamond', 'Noto Sans Telugu', serif; font-size: clamp(15px,1.6vw,17px); font-style: italic; color: rgba(245,230,192,0.62); line-height: 1.65; margin-top: 14px; border-top: 1px solid rgba(200,146,42,0.18); padding-top: 14px; }
+  .article-body { padding: 30px 34px 34px; }
+  .article-body h3 { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 600; color: var(--green-deep); margin: 26px 0 10px; display: flex; align-items: center; gap: 8px; }
+  .article-body h3:first-child { margin-top: 0; }
+  .article-body h3::before { content: '\2726'; font-size: 10px; color: var(--gold); flex-shrink: 0; }
+  .article-body p { font-size: 14.5px; color: var(--text-mid); line-height: 1.8; margin-bottom: 14px; }
+  .article-body p:last-child { margin-bottom: 0; }
+  .quran-quote { background: rgba(46,139,87,0.06); border-left: 3px solid var(--gold); border-radius: 0 10px 10px 0; padding: 16px 20px; margin: 20px 0; }
+  .quran-arabic { font-family: 'Amiri', 'Traditional Arabic', serif; font-size: 21px; color: var(--green-deep); direction: rtl; line-height: 2; margin-bottom: 8px; }
+  .quran-trans { font-family: 'Cormorant Garamond', serif; font-size: 15px; font-style: italic; color: var(--text-mid); line-height: 1.6; margin-bottom: 4px; }
+  .quran-trans-te { font-family: 'Noto Sans Telugu', sans-serif; font-size: 13px; color: var(--text-muted); line-height: 1.6; margin-bottom: 6px; }
+  .quran-ref { font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: var(--gold); font-weight: 600; }
+  .key-points { background: rgba(200,146,42,0.07); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; margin-top: 24px; }
+  .key-points-title { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 12px; }
+  .key-points ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .key-points li { font-size: 13.5px; color: var(--text-mid); padding-left: 22px; position: relative; line-height: 1.55; }
+  .key-points li::before { content: '\2713'; position: absolute; left: 0; top: 1px; color: var(--green-light); font-weight: 700; font-size: 12px; }
+
+  .qa-wrap { max-width: 860px; margin: 8px auto 0; }
+  .qa-cat { margin-bottom: 30px; }
+  .qa-cat-title { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+  .qa-cat-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  .qa-item { border: 1px solid rgba(200,146,42,0.18); border-radius: 10px; background: var(--white); overflow: hidden; margin-bottom: 8px; transition: border-color 0.2s, box-shadow 0.2s; }
+  .qa-item.qa-open { border-color: rgba(200,146,42,0.45); box-shadow: 0 4px 18px rgba(13,59,30,0.07); }
+  .qa-btn { width: 100%; display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; padding: 16px 20px; background: none; border: none; cursor: pointer; text-align: left; font-family: 'Noto Sans Telugu', 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; color: var(--text-dark); line-height: 1.5; transition: background 0.15s; }
+  .qa-btn:hover { background: rgba(200,146,42,0.05); }
+  .qa-chevron { font-size: 14px; color: var(--gold); flex-shrink: 0; margin-top: 2px; transition: transform 0.3s ease; }
+  .qa-item.qa-open .qa-chevron { transform: rotate(180deg); }
+  .qa-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+  .qa-item.qa-open .qa-answer { max-height: 900px; }
+  .qa-answer-inner { padding: 14px 20px 18px; font-size: 13.5px; line-height: 1.8; color: var(--text-mid); font-family: 'Noto Sans Telugu', 'DM Sans', sans-serif; border-top: 1px solid rgba(200,146,42,0.12); }
+
+  /* GUIDES (step-by-step accordion) */
+  .guides { background: var(--white); }
+  .guide-acc { max-width: 880px; margin: 44px auto 0; }
+  .guide-item { background: var(--white); border: 1px solid var(--border); border-radius: 14px; margin-bottom: 16px; overflow: hidden; box-shadow: 0 2px 12px rgba(13,59,30,0.05); transition: border-color 0.2s, box-shadow 0.2s; }
+  .guide-item.guide-open { border-color: rgba(200,146,42,0.5); box-shadow: 0 8px 26px rgba(13,59,30,0.1); }
+  .guide-head { width: 100%; display: flex; align-items: center; gap: 16px; padding: 20px 24px; background: none; border: none; cursor: pointer; text-align: left; font-family: inherit; transition: background 0.15s; }
+  .guide-head:hover { background: rgba(200,146,42,0.04); }
+  .guide-ic { font-size: 26px; line-height: 1; flex-shrink: 0; width: 46px; height: 46px; display: flex; align-items: center; justify-content: center; background: rgba(46,139,87,0.08); border-radius: 12px; }
+  .guide-htext { flex: 1; min-width: 0; }
+  .guide-title { display: block; font-family: 'Playfair Display', 'Noto Sans Telugu', serif; font-size: clamp(16px,2vw,19px); font-weight: 700; color: var(--green-deep); line-height: 1.3; }
+  .guide-sub { display: block; font-size: 12.5px; color: var(--text-muted); margin-top: 3px; line-height: 1.5; }
+  .guide-chev { flex-shrink: 0; color: var(--gold); font-size: 13px; transition: transform 0.3s ease; }
+  .guide-item.guide-open .guide-chev { transform: rotate(180deg); }
+  .guide-body { max-height: 0; overflow: hidden; transition: max-height 0.45s ease; }
+  .guide-item.guide-open .guide-body { max-height: 2600px; }
+  .guide-body-inner { padding: 4px 26px 28px; border-top: 1px solid rgba(200,146,42,0.12); }
+  .guide-intro { font-size: 14px; color: var(--text-mid); line-height: 1.8; margin: 18px 0; }
+  .guide-steps { list-style: none; counter-reset: gstep; display: flex; flex-direction: column; gap: 14px; margin: 18px 0; }
+  .guide-steps li { counter-increment: gstep; position: relative; padding-left: 46px; font-size: 14px; color: var(--text-mid); line-height: 1.7; min-height: 30px; display: flex; flex-direction: column; justify-content: center; }
+  .guide-steps li::before { content: counter(gstep); position: absolute; left: 0; top: 0; width: 30px; height: 30px; background: linear-gradient(135deg, var(--green-mid), var(--green-light)); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; font-family: 'DM Sans', sans-serif; }
+  .guide-steps li strong { color: var(--green-deep); font-weight: 700; }
+  .guide-steps .gstep-ar { font-family: 'Amiri', serif; direction: rtl; color: var(--green-deep); font-size: 16px; margin-top: 2px; }
+  .guide-tl { list-style: none; display: flex; flex-direction: column; gap: 0; margin: 18px 0; border-left: 2px solid var(--gold-pale); padding-left: 0; }
+  .guide-tl li { position: relative; padding: 0 0 18px 26px; font-size: 14px; color: var(--text-mid); line-height: 1.65; }
+  .guide-tl li:last-child { padding-bottom: 0; }
+  .guide-tl li::before { content: ''; position: absolute; left: -7px; top: 4px; width: 12px; height: 12px; border-radius: 50%; background: var(--gold); border: 2px solid var(--white); }
+  .guide-tl li b { display: block; color: var(--green-deep); font-family: 'Playfair Display', serif; font-size: 14px; }
+  .guide-ref { font-size: 12.5px; color: var(--text-muted); line-height: 1.7; background: rgba(200,146,42,0.06); border: 1px solid var(--border); border-left: 3px solid var(--gold); border-radius: 6px; padding: 11px 15px; margin-top: 16px; }
+  .guide-ref strong { color: var(--green-deep); }
+  .guide-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+  .guide-links a { font-size: 12.5px; color: var(--green-mid); text-decoration: none; border: 1px solid var(--border); background: rgba(46,139,87,0.05); padding: 7px 14px; border-radius: 100px; transition: background 0.2s, transform 0.15s; display: inline-flex; align-items: center; gap: 6px; }
+  .guide-links a::before { content: '\2197'; font-size: 12px; color: var(--gold); }
+  .guide-links a:hover { background: rgba(46,139,87,0.12); transform: translateY(-1px); }
+
+  /* INTERACTIVE WUDU GUIDE */
+  .wudu { background: var(--cream); }
+  .wudu-stepper { max-width: 720px; margin: 44px auto 0; background: var(--white); border: 1px solid var(--border); border-radius: 20px; padding: 30px 32px 34px; box-shadow: 0 10px 40px rgba(13,59,30,0.08); }
+  .ws-progress { display: flex; align-items: center; gap: 16px; }
+  .ws-track { flex: 1; height: 7px; background: rgba(13,59,30,0.08); border-radius: 100px; overflow: hidden; }
+  .ws-fill { height: 100%; width: 12.5%; background: linear-gradient(90deg, var(--green-mid), var(--green-light)); border-radius: 100px; transition: width 0.5s cubic-bezier(0.16,1,0.3,1); }
+  .ws-count { flex-shrink: 0; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 700; color: var(--green-deep); letter-spacing: 0.5px; }
+  .ws-count .ws-cur { color: var(--gold); }
+  .ws-dots { display: flex; flex-wrap: wrap; justify-content: center; gap: 9px; margin: 22px 0 4px; }
+  .ws-dot { width: 28px; height: 28px; flex-shrink: 0; border-radius: 50%; border: 1px solid var(--border); background: var(--white); color: var(--text-muted); font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.25s, color 0.25s, border-color 0.25s, transform 0.2s; padding: 0; }
+  .ws-dot:hover { transform: translateY(-2px); border-color: rgba(200,146,42,0.55); }
+  .ws-dot.is-done { background: rgba(46,139,87,0.12); color: var(--green-mid); border-color: rgba(46,139,87,0.4); }
+  .ws-dot.is-active { background: linear-gradient(135deg, var(--green-mid), var(--green-light)); color: #fff; border-color: transparent; box-shadow: 0 4px 12px rgba(46,139,87,0.35); transform: translateY(-2px); }
+  .ws-stage { position: relative; margin: 18px 0 4px; min-height: 230px; display: flex; align-items: center; justify-content: center; }
+  .ws-step { display: none; text-align: center; width: 100%; }
+  .ws-step.is-active { display: block; animation: wsIn 0.5s cubic-bezier(0.16,1,0.3,1); }
+  @keyframes wsIn { from { opacity: 0; transform: translateX(18px); } to { opacity: 1; transform: none; } }
+  .ws-ic { position: relative; overflow: hidden; width: 92px; height: 92px; margin: 0 auto 18px; border-radius: 50%; background: linear-gradient(145deg, rgba(200,146,42,0.16), rgba(46,139,87,0.1)); border: 1px solid rgba(200,146,42,0.3); display: flex; align-items: center; justify-content: center; font-size: 46px; line-height: 1; }
+  .ws-emoji { line-height: 1; }
+  .ws-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+  .ws-title { font-family: 'Playfair Display', 'Noto Sans Telugu', serif; font-size: clamp(19px,2.4vw,24px); font-weight: 700; color: var(--green-deep); line-height: 1.3; margin-bottom: 12px; }
+  .ws-desc { font-size: 15px; color: var(--text-mid); line-height: 1.85; max-width: 520px; margin: 0 auto; font-family: 'Noto Sans Telugu', 'DM Sans', sans-serif; }
+  .ws-times { display: inline-block; margin-top: 16px; font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--gold); background: rgba(200,146,42,0.1); border: 1px solid var(--border); border-radius: 100px; padding: 6px 16px; }
+  .ws-nav { display: flex; justify-content: space-between; gap: 14px; margin-top: 26px; }
+  .ws-btn { flex: 1; max-width: 200px; font-family: 'DM Sans', 'Noto Sans Telugu', sans-serif; font-size: 14px; font-weight: 700; padding: 13px 20px; border-radius: 100px; cursor: pointer; transition: background 0.2s, transform 0.15s, opacity 0.2s; border: 1px solid var(--border); }
+  .ws-prev { background: var(--white); color: var(--green-deep); }
+  .ws-prev:hover:not(:disabled) { background: rgba(200,146,42,0.08); transform: translateY(-1px); }
+  .ws-next { background: linear-gradient(135deg, var(--green-mid), var(--green-light)); color: #fff; border-color: transparent; box-shadow: 0 6px 18px rgba(46,139,87,0.3); }
+  .ws-next:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 9px 24px rgba(46,139,87,0.4); }
+  .ws-btn:disabled { opacity: 0.4; cursor: default; }
+  /* dua after wudu */
+  .wudu-dua { max-width: 720px; margin: 24px auto 0; background: var(--green-deep); border: 1px solid rgba(200,146,42,0.4); border-radius: 18px; padding: 30px 34px 32px; text-align: center; position: relative; overflow: hidden; }
+  .wudu-dua::before { content: '\6'; position: absolute; right: -2vw; top: -3vw; font-size: clamp(120px,18vw,200px); color: rgba(200,146,42,0.06); line-height: 1; pointer-events: none; }
+  .wd-tag { display: inline-block; font-family: 'DM Sans', sans-serif; font-size: 11.5px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold-light); border: 1px solid rgba(200,146,42,0.4); border-radius: 100px; padding: 6px 16px; margin-bottom: 18px; position: relative; }
+  .wd-ar { font-family: 'Amiri', serif; direction: rtl; font-size: clamp(22px,3.2vw,30px); line-height: 1.9; color: var(--gold-light); margin-bottom: 16px; position: relative; }
+  .wd-tl { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 16px; color: rgba(245,230,192,0.9); line-height: 1.7; margin-bottom: 14px; position: relative; }
+  .wd-trans { font-size: 14px; color: rgba(245,230,192,0.82); line-height: 1.8; max-width: 560px; margin: 0 auto 14px; font-family: 'Noto Sans Telugu', 'DM Sans', sans-serif; position: relative; }
+  .wd-note { font-size: 13px; color: rgba(245,230,192,0.65); line-height: 1.75; max-width: 560px; margin: 0 auto 16px; font-family: 'Noto Sans Telugu', 'DM Sans', sans-serif; position: relative; }
+  .wd-ref { font-size: 12px; color: var(--gold-light); letter-spacing: 0.5px; position: relative; }
+  .wd-ref strong { color: rgba(245,230,192,0.85); }
+
+  /* SALAH GUIDE — recitation block within a step */
+  .ws-recite { margin: 18px auto 0; max-width: 560px; background: linear-gradient(180deg, rgba(46,139,87,0.06), rgba(200,146,42,0.05)); border: 1px solid var(--border); border-radius: 14px; padding: 18px 20px 16px; }
+  .ws-recite-label { display: inline-block; font-family: 'DM Sans', sans-serif; font-size: 10.5px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold); background: rgba(200,146,42,0.1); border: 1px solid var(--border); border-radius: 100px; padding: 4px 13px; margin-bottom: 12px; }
+  .ws-ar { font-family: 'Amiri', serif; direction: rtl; font-size: clamp(20px,3vw,27px); line-height: 1.95; color: var(--green-deep); margin-bottom: 10px; }
+  .ws-translit { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 15.5px; color: var(--gold-700, var(--gold)); line-height: 1.6; margin-bottom: 9px; }
+  .ws-trans { font-size: 13.5px; color: var(--text-mid); line-height: 1.75; font-family: 'Noto Sans Telugu', 'DM Sans', sans-serif; }
+  /* notes card */
+  .salah-notes { max-width: 720px; margin: 24px auto 0; background: var(--white); border: 1px solid var(--border); border-radius: 18px; padding: 28px 30px 24px; box-shadow: 0 6px 24px rgba(13,59,30,0.06); }
+  .sn-title { font-family: 'Playfair Display', 'Noto Sans Telugu', serif; font-size: 18px; font-weight: 700; color: var(--green-deep); margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid rgba(200,146,42,0.18); }
+  .sn-item { padding: 12px 0; border-bottom: 1px dashed rgba(200,146,42,0.18); }
+  .sn-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .sn-item b { display: block; font-family: 'DM Sans', 'Noto Sans Telugu', sans-serif; font-size: 13.5px; font-weight: 700; color: var(--gold-700, var(--gold)); margin-bottom: 5px; }
+  .sn-item p { font-size: 13.5px; color: var(--text-mid); line-height: 1.8; font-family: 'Noto Sans Telugu', 'DM Sans', sans-serif; }
+
+  /* ISLAM & MODERN LIFE */
+  .modern-life { background: var(--cream); position: relative; overflow: hidden; }
+  .modern-life::before { content: '🧠'; position: absolute; right: -2vw; top: -2vw; font-size: clamp(140px, 18vw, 240px); opacity: 0.04; line-height: 1; pointer-events: none; filter: grayscale(1); }
+  .ml-acc { margin-top: 40px; }
+  .tcard-block { position: relative; border-radius: 12px; padding: 16px 18px 15px; margin-top: 14px; border: 1px solid var(--border); border-left-width: 4px; }
+  .tcard-block:first-of-type { margin-top: 4px; }
+  .tcard-faith { background: rgba(46,139,87,0.06); border-left-color: var(--green-mid); }
+  .tcard-science { background: rgba(120,140,160,0.07); border-left-color: #6b7d8f; }
+  .tcard-practical { background: rgba(200,146,42,0.07); border-left-color: var(--gold); }
+  .tcard-label { display: inline-block; font-family: 'DM Sans', 'Noto Sans Telugu', sans-serif; font-size: 10.5px; font-weight: 700; letter-spacing: 0.7px; text-transform: uppercase; padding: 3px 11px; border-radius: 100px; margin-bottom: 9px; }
+  .tcard-faith .tcard-label { color: var(--green-deep); background: rgba(46,139,87,0.14); }
+  .tcard-science .tcard-label { color: #41525f; background: rgba(107,125,143,0.16); }
+  .tcard-practical .tcard-label { color: var(--gold-700, #a3741f); background: rgba(200,146,42,0.16); }
+  .tcard-block > p { font-size: 13.5px; color: var(--text-mid); line-height: 1.85; font-family: 'Noto Sans Telugu', 'DM Sans', sans-serif; }
+  .tcard-block .guide-ref { margin-top: 12px; }
+  .tcard-list { list-style: none; margin: 4px 0 0; padding: 0; }
+  .tcard-list li { position: relative; font-size: 13.5px; color: var(--text-mid); line-height: 1.8; font-family: 'Noto Sans Telugu', 'DM Sans', sans-serif; padding: 6px 0 6px 26px; border-bottom: 1px dashed rgba(200,146,42,0.16); }
+  .tcard-list li:last-child { border-bottom: none; padding-bottom: 0; }
+  .tcard-list li::before { content: '✓'; position: absolute; left: 0; top: 6px; color: var(--gold); font-weight: 700; font-size: 13px; }
+  .ml-note { max-width: 760px; margin: 30px auto 0; text-align: center; font-size: 12.5px; color: var(--text-muted); line-height: 1.8; font-family: 'Noto Sans Telugu', 'DM Sans', sans-serif; background: rgba(200,146,42,0.06); border: 1px solid var(--border); border-radius: 12px; padding: 16px 22px; }
+
   /* FOOTER */
   .kc-footer { background: var(--green-deep); border-top: 3px solid var(--gold); padding: 48px 5vw; }
   .kc-footer-inner { max-width: 1100px; margin: 0 auto; text-align: center; }
@@ -187,6 +382,9 @@
   @media (prefers-reduced-motion: reduce) {
     .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
     .pillar-card, .pc-ic { transition: none !important; }
+    .kc-logo-float { animation: none !important; }
+    .ws-step.is-active { animation: none !important; }
+    .ws-fill { transition: none !important; }
   }
 
   @media (max-width: 980px) {
@@ -209,6 +407,18 @@
     .live-prices { grid-template-columns: 1fr; }
     .lp-val { font-size: 22px; }
     .tip-pop { width: 180px; }
+    .wudu-stepper { padding: 24px 18px 26px; border-radius: 16px; }
+    .wudu-dua { padding: 26px 20px 28px; }
+    .ws-ic { width: 76px; height: 76px; font-size: 38px; }
+    .ws-stage { min-height: 250px; }
+    .ws-dot { width: 26px; height: 26px; font-size: 11px; }
+    .ws-nav { gap: 10px; }
+    .ws-btn { padding: 12px 14px; font-size: 13px; }
+    .ws-recite { padding: 15px 15px 13px; }
+    .salah-notes { padding: 22px 18px 20px; }
+    .tcard-block { padding: 14px 14px 13px; }
+    .tcard-block > p, .tcard-list li { font-size: 13px; }
+    .ml-note { padding: 14px 16px; }
   }
 </style>
 </head>
@@ -224,7 +434,7 @@
       <text x="21" y="30" text-anchor="middle" font-family="sans-serif" font-size="7" fill="#c8922a" letter-spacing="1">FRONT</text>
     </svg>
     <div>
-      <div class="nav-title">ఇస్లామిక్ ఫ్రంట్</div>
+      <div class="nav-title" data-te="ఇస్లామిక్ ఫ్రంట్" data-en="Islamic Front">ఇస్లామిక్ ఫ్రంట్</div>
       <div class="nav-sub" data-te="మంగళగిరి · స్థా. 2011" data-en="Mangalagiri · Est. 2011">మంగళగిరి · స్థా. 2011</div>
     </div>
   </a>
@@ -236,20 +446,172 @@
 
 <!-- HERO -->
 <header class="kc-hero">
+  <div class="kc-logo-bg" aria-hidden="true">
+    <div class="kc-logo-float">
+      <img src="assets/logo-emblem.png" alt="" onerror="this.closest('.kc-logo-bg').style.display='none'">
+    </div>
+  </div>
   <div class="kc-hero-inner">
     <div class="kc-badge" data-te="విజ్ఞాన వనరు" data-en="Knowledge Resource">విజ్ఞాన వనరు</div>
     <h1 data-te="ఇస్లామిక్ <span>నాలెడ్జ్ సెంటర్</span>" data-en="Islamic <span>Knowledge Center</span>">ఇస్లామిక్ <span>నాలెడ్జ్ సెంటర్</span></h1>
     <p data-te="ప్రతి ముస్లిం కుటుంబానికి ఉపయోగపడే ఇస్లామిక్ సాధనాలు మరియు విశ్వసనీయ వనరులు — జకాత్ లెక్కింపు, నమాజ్ వేళలు, తదుపరి నమాజ్ కౌంట్‌డౌన్, ఖురాన్ మరియు హదీస్ వనరులు ఒకే చోట." data-en="Practical Islamic tools and trusted resources for every Muslim family — Zakat calculation, daily Salah timings, a next-prayer countdown, and authentic Quran &amp; Hadith resources, all in one place.">ప్రతి ముస్లిం కుటుంబానికి ఉపయోగపడే ఇస్లామిక్ సాధనాలు మరియు విశ్వసనీయ వనరులు — జకాత్ లెక్కింపు, నమాజ్ వేళలు, తదుపరి నమాజ్ కౌంట్‌డౌన్, ఖురాన్ మరియు హదీస్ వనరులు ఒకే చోట.</p>
     <nav class="kc-jump">
+      <a href="#basics" data-te="ఇక్కడ మొదలుపెట్టండి" data-en="Start Here">ఇక్కడ మొదలుపెట్టండి</a>
       <a href="#pillars" data-te="ఐదు మూలస్తంభాలు" data-en="Five Pillars">ఐదు మూలస్తంభాలు</a>
-      <a href="#salah" data-te="నమాజ్ వేళలు" data-en="Salah Timings">నమాజ్ వేళలు</a>
+      <a href="#wudu" data-te="వుజూ మార్గదర్శి" data-en="Wudu Guide">వుజూ మార్గదర్శి</a>
+      <a href="#salah-guide" data-te="నమాజ్ ఎలా చేయాలి" data-en="How to Pray">నమాజ్ ఎలా చేయాలి</a>
+      <a href="#salah" data-te="నమాజ్ వేళలు" data-en="Prayer Times">నమాజ్ వేళలు</a>
       <a href="#zakat" data-te="జకాత్ కాలిక్యులేటర్" data-en="Zakat Calculator">జకాత్ కాలిక్యులేటర్</a>
       <a href="#quran" data-te="ఖురాన్" data-en="Quran">ఖురాన్</a>
       <a href="#hadith" data-te="హదీస్" data-en="Hadith">హదీస్</a>
-      <a href="#learn" data-te="అభ్యాసం" data-en="Learning">అభ్యాసం</a>
+      <a href="#guides" data-te="మరిన్ని మార్గదర్శిని" data-en="More Guides">మరిన్ని మార్గదర్శిని</a>
+      <a href="#akhlaq" data-te="నైతికత (అఖ్లాఖ్)" data-en="Manners (Akhlaq)">నైతికత (అఖ్లాఖ్)</a>
+      <a href="#modern-life" data-te="ఇస్లాం & ఆధునిక జీవితం" data-en="Islam & Modern Life">ఇస్లాం & ఆధునిక జీవితం</a>
+      <a href="#quran-science" data-te="ఖురాన్ & సైన్స్" data-en="Quran & Science">ఖురాన్ & సైన్స్</a>
+      <a href="#faqs" data-te="ఇస్లాం గురించి" data-en="Understanding Islam">ఇస్లాం గురించి</a>
     </nav>
   </div>
 </header>
+
+<!-- STICKY QUICK-JUMP NAV (appears after hero scrolls away) -->
+<nav class="kc-sticky" id="kc-sticky" aria-label="Knowledge Center sections">
+  <div class="kc-sticky-inner">
+    <a href="#basics"      data-spy="basics"      data-te="ఇక్కడ మొదలుపెట్టండి" data-en="Start Here">ఇక్కడ మొదలుపెట్టండి</a>
+    <a href="#pillars"     data-spy="pillars"     data-te="ఐదు మూలస్తంభాలు" data-en="Five Pillars">ఐదు మూలస్తంభాలు</a>
+    <a href="#wudu"        data-spy="wudu"        data-te="వుజూ మార్గదర్శి" data-en="Wudu Guide">వుజూ మార్గదర్శి</a>
+    <a href="#salah-guide" data-spy="salah-guide" data-te="నమాజ్ ఎలా చేయాలి" data-en="How to Pray">నమాజ్ ఎలా చేయాలి</a>
+    <a href="#salah"       data-spy="salah"       data-te="నమాజ్ వేళలు" data-en="Prayer Times">నమాజ్ వేళలు</a>
+    <a href="#zakat"       data-spy="zakat"       data-te="జకాత్ కాలిక్యులేటర్" data-en="Zakat Calculator">జకాత్ కాలిక్యులేటర్</a>
+    <a href="#quran"       data-spy="quran"       data-te="ఖురాన్" data-en="Quran">ఖురాన్</a>
+    <a href="#hadith"      data-spy="hadith"      data-te="హదీస్" data-en="Hadith">హదీస్</a>
+    <a href="#guides"      data-spy="guides"      data-te="మరిన్ని మార్గదర్శిని" data-en="More Guides">మరిన్ని మార్గదర్శిని</a>
+    <a href="#akhlaq"      data-spy="akhlaq"      data-te="నైతికత (అఖ్లాఖ్)" data-en="Manners (Akhlaq)">నైతికత (అఖ్లాఖ్)</a>
+    <a href="#modern-life" data-spy="modern-life" data-te="ఇస్లాం & ఆధునిక జీవితం" data-en="Islam & Modern Life">ఇస్లాం & ఆధునిక జీవితం</a>
+    <a href="#quran-science" data-spy="quran-science" data-te="ఖురాన్ & సైన్స్" data-en="Quran & Science">ఖురాన్ & సైన్స్</a>
+    <a href="#faqs"        data-spy="faqs"        data-te="ఇస్లాం గురించి" data-en="Understanding Islam">ఇస్లాం గురించి</a>
+  </div>
+</nav>
+
+<!-- LEARN THE BASICS OF ISLAM -->
+<section class="kc-sec basics" id="basics">
+  <div class="kc-inner">
+    <div class="sec-tag reveal" data-te="మొదలుపెట్టండి ఇక్కడ" data-en="Start Here">మొదలుపెట్టండి ఇక్కడ</div>
+    <h2 class="sec-title reveal" data-te="ఇస్లాం యొక్క ప్రాథమికాంశాలు" data-en="Learn the Basics of Islam">ఇస్లాం యొక్క ప్రాథమికాంశాలు</h2>
+    <p class="sec-lead reveal" data-te="ఇస్లాం గురించి కొత్తగా తెలుసుకుంటున్నారా? ఇక్కడ సరళమైన, ప్రామాణిక ఆధారాలతో కూడిన పరిచయం — క్రొత్త ముస్లింలకు మరియు పిల్లలకు అనువైనది." data-en="New to Islam? Here is a simple, source-backed introduction — ideal for new Muslims and children.">ఇస్లాం గురించి కొత్తగా తెలుసుకుంటున్నారా? ఇక్కడ సరళమైన, ప్రామాణిక ఆధారాలతో కూడిన పరిచయం — క్రొత్త ముస్లింలకు మరియు పిల్లలకు అనువైనది.</p>
+
+    <div class="guide-acc reveal">
+
+      <!-- 1. SHAHADA -->
+      <div class="guide-item">
+        <button class="guide-head" type="button" aria-expanded="false">
+          <span class="guide-ic">☝️</span>
+          <span class="guide-htext">
+            <span class="guide-title" data-te="షహాదహ్ — విశ్వాస ప్రకటన" data-en="The Shahada — Declaration of Faith">షహాదహ్ — విశ్వాస ప్రకటన</span>
+            <span class="guide-sub" data-te="ముస్లిం అవ్వడానికి మొదటి అడుగు" data-en="The first step to becoming a Muslim">ముస్లిం అవ్వడానికి మొదటి అడుగు</span>
+          </span>
+          <span class="guide-chev">▾</span>
+        </button>
+        <div class="guide-body"><div class="guide-body-inner">
+          <p class="guide-intro" data-te="ఇస్లాం యొక్క మొదటి మూలస్తంభం షహాదహ్ — హృదయపూర్వక నమ్మకంతో దీన్ని పలకడం ద్వారా ఒకరు ముస్లిం అవుతారు." data-en="The first pillar of Islam is the Shahada — by sincerely uttering it with belief in the heart, one becomes a Muslim.">ఇస్లాం యొక్క మొదటి మూలస్తంభం షహాదహ్ — హృదయపూర్వక నమ్మకంతో దీన్ని పలకడం ద్వారా ఒకరు ముస్లిం అవుతారు.</p>
+          <div class="tcard-block tcard-faith">
+            <span class="tcard-label" data-te="ఇది పలకండి" data-en="Say This">ఇది పలకండి</span>
+            <p class="wd-ar" style="text-align:left">أَشْهَدُ أَنْ لَا إِلَٰهَ إِلَّا اللَّهُ وَأَشْهَدُ أَنَّ مُحَمَّدًا رَسُولُ اللَّهِ</p>
+            <p style="font-style:italic;color:var(--text-muted)">Ashhadu an lā ilāha illa-llāh, wa ashhadu anna Muḥammadan rasūlu-llāh.</p>
+            <p data-te="&quot;అల్లాహ్ తప్ప మరో ఆరాధ్యుడు లేడని, మరియు ముహమ్మద్ (స.అ.) అల్లాహ్ యొక్క సందేశహరుడని నేను సాక్ష్యమిస్తున్నాను.&quot;" data-en="&quot;I bear witness that there is no god but Allah, and I bear witness that Muhammad (ﷺ) is the Messenger of Allah.&quot;">&quot;అల్లాహ్ తప్ప మరో ఆరాధ్యుడు లేడని, మరియు ముహమ్మద్ (స.అ.) అల్లాహ్ యొక్క సందేశహరుడని నేను సాక్ష్యమిస్తున్నాను.&quot;</p>
+            <p class="guide-ref"><strong data-te="ఆధారం:" data-en="Reference:">ఆధారం:</strong> Sahih al-Bukhari 8 · Sahih Muslim 16</p>
+          </div>
+        </div></div>
+      </div>
+
+      <!-- 2. WHO IS ALLAH -->
+      <div class="guide-item">
+        <button class="guide-head" type="button" aria-expanded="false">
+          <span class="guide-ic">🌟</span>
+          <span class="guide-htext">
+            <span class="guide-title" data-te="అల్లాహ్ ఎవరు? (తౌహీద్)" data-en="Who is Allah? (Tawhid)">అల్లాహ్ ఎవరు? (తౌహీద్)</span>
+            <span class="guide-sub" data-te="ఏకేశ్వరోపాసన — ఇస్లాం యొక్క గుండెకాయ" data-en="The Oneness of God — the heart of Islam">ఏకేశ్వరోపాసన — ఇస్లాం యొక్క గుండెకాయ</span>
+          </span>
+          <span class="guide-chev">▾</span>
+        </button>
+        <div class="guide-body"><div class="guide-body-inner">
+          <p class="guide-intro" data-te="అల్లాహ్ అంటే ఏకైక సృష్టికర్త, పోషకుడు మరియు ఆరాధనకు అర్హుడైన ఏకైక దేవుడు. ఆయనకు భాగస్వాములు లేరు, సంతానం లేదు, సాటి లేదు. ఖురాన్‌లో మొత్తం ఒక సూరహ్ ఆయన గురించి సంక్షిప్తంగా వివరిస్తుంది:" data-en="Allah is the one Creator, Sustainer, and the only God worthy of worship. He has no partners, no offspring, and no equal. An entire surah of the Quran summarises Him:">అల్లాహ్ అంటే ఏకైక సృష్టికర్త, పోషకుడు మరియు ఆరాధనకు అర్హుడైన ఏకైక దేవుడు. ఆయనకు భాగస్వాములు లేరు, సంతానం లేదు, సాటి లేదు. ఖురాన్‌లో మొత్తం ఒక సూరహ్ ఆయన గురించి సంక్షిప్తంగా వివరిస్తుంది:</p>
+          <div class="tcard-block tcard-faith">
+            <span class="tcard-label" data-te="ఖురాన్ — సూరహ్ అల్-ఇఖ్లాస్" data-en="Quran — Surah Al-Ikhlas">ఖురాన్ — సూరహ్ అల్-ఇఖ్లాస్</span>
+            <p data-te="&quot;చెప్పు: ఆయన అల్లాహ్, ఏకైకుడు. అల్లాహ్, అందరికీ ఆశ్రయుడు. ఆయన ఎవరికీ జన్మనివ్వలేదు, ఆయన ఎవరికీ జన్మించలేదు. ఆయనకు సాటి ఎవరూ లేరు.&quot;" data-en="&quot;Say: He is Allah, the One. Allah, the Eternal Refuge. He neither begets nor is born, nor is there to Him any equivalent.&quot;">&quot;చెప్పు: ఆయన అల్లాహ్, ఏకైకుడు. అల్లాహ్, అందరికీ ఆశ్రయుడు. ఆయన ఎవరికీ జన్మనివ్వలేదు, ఆయన ఎవరికీ జన్మించలేదు. ఆయనకు సాటి ఎవరూ లేరు.&quot;</p>
+            <p class="guide-ref"><strong data-te="ఆధారం:" data-en="Reference:">ఆధారం:</strong> Quran 112:1-4</p>
+          </div>
+        </div></div>
+      </div>
+
+      <!-- 3. PROPHET MUHAMMAD -->
+      <div class="guide-item">
+        <button class="guide-head" type="button" aria-expanded="false">
+          <span class="guide-ic">🕌</span>
+          <span class="guide-htext">
+            <span class="guide-title" data-te="ప్రవక్త ముహమ్మద్ (ﷺ)" data-en="The Prophet Muhammad ﷺ">ప్రవక్త ముహమ్మద్ (ﷺ)</span>
+            <span class="guide-sub" data-te="చివరి ప్రవక్త, కారుణ్యంగా పంపబడినవారు" data-en="The final Prophet, sent as a mercy">చివరి ప్రవక్త, కారుణ్యంగా పంపబడినవారు</span>
+          </span>
+          <span class="guide-chev">▾</span>
+        </button>
+        <div class="guide-body"><div class="guide-body-inner">
+          <p class="guide-intro" data-te="ముహమ్మద్ (స.అ.) 570 CE లో మక్కాలో జన్మించారు. 40 ఏళ్ళ వయసులో అల్లాహ్ నుండి దివ్యవాణి (ఖురాన్) పొందారు. ఆయన ఆదమ్, నూహ్, ఇబ్రాహీం, మూసా, ఈసా (అలైహిముస్సలాం) వంటి ప్రవక్తల పరంపరలో చివరివారు." data-en="Muhammad (ﷺ) was born in Makkah in 570 CE. At the age of 40 he received revelation (the Quran) from Allah. He is the last in the chain of prophets that includes Adam, Noah, Abraham, Moses and Jesus (peace be upon them).">ముహమ్మద్ (స.అ.) 570 CE లో మక్కాలో జన్మించారు. 40 ఏళ్ళ వయసులో అల్లాహ్ నుండి దివ్యవాణి (ఖురాన్) పొందారు. ఆయన ఆదమ్, నూహ్, ఇబ్రాహీం, మూసా, ఈసా (అలైహిముస్సలాం) వంటి ప్రవక్తల పరంపరలో చివరివారు.</p>
+          <div class="tcard-block tcard-faith">
+            <span class="tcard-label" data-te="ఖురాన్" data-en="Quran">ఖురాన్</span>
+            <p data-te="&quot;(ఓ ప్రవక్తా!) మేము నిన్ను సమస్త లోకాలకు కారుణ్యంగా మాత్రమే పంపాము.&quot; ఆయన చివరి ప్రవక్త (ఖాతమున్-నబియ్యీన్)." data-en="&quot;We have not sent you (O Prophet) except as a mercy to all the worlds.&quot; He is the Seal of the Prophets (Khatam an-Nabiyyin).">&quot;(ఓ ప్రవక్తా!) మేము నిన్ను సమస్త లోకాలకు కారుణ్యంగా మాత్రమే పంపాము.&quot; ఆయన చివరి ప్రవక్త (ఖాతమున్-నబియ్యీన్).</p>
+            <p class="guide-ref"><strong data-te="ఆధారం:" data-en="Reference:">ఆధారం:</strong> Quran 21:107 · Quran 33:40</p>
+          </div>
+        </div></div>
+      </div>
+
+      <!-- 4. THE QURAN -->
+      <div class="guide-item">
+        <button class="guide-head" type="button" aria-expanded="false">
+          <span class="guide-ic">📖</span>
+          <span class="guide-htext">
+            <span class="guide-title" data-te="పవిత్ర ఖురాన్" data-en="The Holy Quran">పవిత్ర ఖురాన్</span>
+            <span class="guide-sub" data-te="అల్లాహ్ యొక్క సంరక్షించబడిన వాక్కు" data-en="The preserved word of Allah">అల్లాహ్ యొక్క సంరక్షించబడిన వాక్కు</span>
+          </span>
+          <span class="guide-chev">▾</span>
+        </button>
+        <div class="guide-body"><div class="guide-body-inner">
+          <p class="guide-intro" data-te="ఖురాన్ అల్లాహ్ యొక్క అక్షరాలా వాక్కు, ప్రవక్త ముహమ్మద్ (స.అ.)పై 23 సంవత్సరాలలో అవతరించింది. ఇది 114 సూరహ్‌లు కలిగి, 14 శతాబ్దాలుగా ఏ మార్పూ లేకుండా సంరక్షించబడింది." data-en="The Quran is the literal word of Allah, revealed to Prophet Muhammad (ﷺ) over 23 years. It contains 114 surahs and has been preserved unchanged for 14 centuries.">ఖురాన్ అల్లాహ్ యొక్క అక్షరాలా వాక్కు, ప్రవక్త ముహమ్మద్ (స.అ.)పై 23 సంవత్సరాలలో అవతరించింది. ఇది 114 సూరహ్‌లు కలిగి, 14 శతాబ్దాలుగా ఏ మార్పూ లేకుండా సంరక్షించబడింది.</p>
+          <div class="tcard-block tcard-faith">
+            <span class="tcard-label" data-te="ఖురాన్" data-en="Quran">ఖురాన్</span>
+            <p data-te="&quot;నిశ్చయంగా ఈ ఉపదేశాన్ని (ఖురాన్‌ను) మేమే అవతరింపజేశాము, మరియు దాన్ని మేమే తప్పక సంరక్షిస్తాము.&quot;" data-en="&quot;Indeed, it is We who sent down the Reminder (the Quran), and indeed, We will be its guardian.&quot;">&quot;నిశ్చయంగా ఈ ఉపదేశాన్ని (ఖురాన్‌ను) మేమే అవతరింపజేశాము, మరియు దాన్ని మేమే తప్పక సంరక్షిస్తాము.&quot;</p>
+            <p class="guide-ref"><strong data-te="ఆధారం:" data-en="Reference:">ఆధారం:</strong> Quran 15:9 · Quran 2:2</p>
+          </div>
+          <div class="guide-links">
+            <a href="#quran" data-te="ఈ పేజీలో ఖురాన్ చదవండి" data-en="Read the Quran on this page">ఈ పేజీలో ఖురాన్ చదవండి</a>
+          </div>
+        </div></div>
+      </div>
+
+      <!-- 5. BECOMING / PRACTISING -->
+      <div class="guide-item">
+        <button class="guide-head" type="button" aria-expanded="false">
+          <span class="guide-ic">🌱</span>
+          <span class="guide-htext">
+            <span class="guide-title" data-te="ఇస్లాంను ఆచరించడం ఎలా మొదలుపెట్టాలి" data-en="How to Begin Practising Islam">ఇస్లాంను ఆచరించడం ఎలా మొదలుపెట్టాలి</span>
+            <span class="guide-sub" data-te="కొత్త ముస్లింలకు ఆచరణాత్మక మొదటి అడుగులు" data-en="Practical first steps for new Muslims">కొత్త ముస్లింలకు ఆచరణాత్మక మొదటి అడుగులు</span>
+          </span>
+          <span class="guide-chev">▾</span>
+        </button>
+        <div class="guide-body"><div class="guide-body-inner">
+          <p class="guide-intro" data-te="అల్లాహ్ సులభతను కోరుకుంటాడు, కష్టాన్ని కాదు (ఖురాన్ 2:185). ఒక్కో అడుగు చొప్పున నేర్చుకోండి — తొందరపడవద్దు." data-en="Allah intends ease for you, not hardship (Quran 2:185). Learn one step at a time — there is no need to rush.">అల్లాహ్ సులభతను కోరుకుంటాడు, కష్టాన్ని కాదు (ఖురాన్ 2:185). ఒక్కో అడుగు చొప్పున నేర్చుకోండి — తొందరపడవద్దు.</p>
+          <ol class="guide-steps">
+            <li data-te="హృదయపూర్వకంగా షహాదహ్ పలకండి." data-en="Sincerely pronounce the Shahada.">హృదయపూర్వకంగా షహాదహ్ పలకండి.</li>
+            <li data-te="వుజూ మరియు ఐదు పూటల నమాజ్ నేర్చుకోండి (ఈ పేజీలోని మార్గదర్శులు చూడండి)." data-en="Learn wudu and the five daily prayers (see the interactive guides on this page).">వుజూ మరియు ఐదు పూటల నమాజ్ నేర్చుకోండి (ఈ పేజీలోని మార్గదర్శులు చూడండి).</li>
+            <li data-te="చిన్న సూరహ్‌లు (అల్-ఫాతిహా, అల్-ఇఖ్లాస్) కంఠస్తం చేయండి." data-en="Memorise short surahs (Al-Fatihah, Al-Ikhlas).">చిన్న సూరహ్‌లు (అల్-ఫాతిహా, అల్-ఇఖ్లాస్) కంఠస్తం చేయండి.</li>
+            <li data-te="హలాల్ ఆహారం తినండి, మద్యం/మత్తుపదార్థాలను విడిచిపెట్టండి." data-en="Eat halal food and avoid alcohol and intoxicants.">హలాల్ ఆహారం తినండి, మద్యం/మత్తుపదార్థాలను విడిచిపెట్టండి.</li>
+            <li data-te="మంచి సహవాసం, స్థానిక మస్జిద్‌తో అనుబంధం పెంచుకోండి, నేర్చుకుంటూ ఉండండి." data-en="Keep good company, connect with a local mosque, and keep learning.">మంచి సహవాసం, స్థానిక మస్జిద్‌తో అనుబంధం పెంచుకోండి, నేర్చుకుంటూ ఉండండి.</li>
+          </ol>
+          <p class="guide-ref"><strong data-te="ఆధారం:" data-en="Reference:">ఆధారం:</strong> Quran 2:185 · Sahih al-Bukhari 39</p>
+        </div></div>
+      </div>
+
+    </div>
+  </div>
+</section>
 
 <!-- FIVE PILLARS OF ISLAM -->
 <section class="kc-sec pillars" id="pillars">
@@ -310,6 +672,265 @@
   </div>
 </section>
 
+<!-- INTERACTIVE WUDU GUIDE -->
+<section class="kc-sec wudu" id="wudu">
+  <div class="kc-inner">
+    <div class="sec-tag reveal" data-te="వుజూ మార్గదర్శి" data-en="Wudu Guide">వుజూ మార్గదర్శి</div>
+    <h2 class="sec-title reveal" data-te="వుజూ ఎలా చేయాలి — ఇంటరాక్టివ్ మార్గదర్శి" data-en="How to Perform Wudu — Interactive Guide">వుజూ ఎలా చేయాలి — ఇంటరాక్టివ్ మార్గదర్శి</h2>
+    <p class="sec-lead reveal" data-te="నమాజ్‌కు ముందు చేసే అంగశుద్ధి (వుజూ) దశలవారీగా. ప్రతి దశను ఒక్కొక్కటిగా చూడండి — &quot;తదుపరి&quot; నొక్కి ముందుకు సాగండి." data-en="Step through the ablution (wudu) performed before prayer — one step at a time. Tap “Next” to move forward at your own pace.">నమాజ్‌కు ముందు చేసే అంగశుద్ధి (వుజూ) దశలవారీగా. ప్రతి దశను ఒక్కొక్కటిగా చూడండి — &quot;తదుపరి&quot; నొక్కి ముందుకు సాగండి.</p>
+
+    <div class="wudu-stepper reveal">
+      <!-- progress -->
+      <div class="ws-progress">
+        <div class="ws-track"><div class="ws-fill" id="ws-fill"></div></div>
+        <div class="ws-count"><span class="ws-cur">1</span> / <span class="ws-total">8</span></div>
+      </div>
+      <div class="ws-dots"></div>
+
+      <!-- steps -->
+      <div class="ws-stage">
+        <div class="ws-step is-active" data-step="0">
+          <div class="ws-ic">🤲</div>
+          <h3 class="ws-title" data-te="సంకల్పం (నియ్యత్) &amp; బిస్మిల్లాహ్" data-en="Intention (Niyyah) &amp; Bismillah">సంకల్పం (నియ్యత్) &amp; బిస్మిల్లాహ్</h3>
+          <p class="ws-desc" data-te="మనసులో వుజూ సంకల్పం (నియ్యత్) చేసుకోండి — దాన్ని పైకి పలకాల్సిన అవసరం లేదు — &quot;బిస్మిల్లాహ్&quot; అని పలికి ప్రారంభించండి." data-en="Make the intention (niyyah) for wudu in your heart — there is no need to say it aloud — and begin by saying “Bismillah”.">మనసులో వుజూ సంకల్పం (నియ్యత్) చేసుకోండి — దాన్ని పైకి పలకాల్సిన అవసరం లేదు — &quot;బిస్మిల్లాహ్&quot; అని పలికి ప్రారంభించండి.</p>
+        </div>
+        <div class="ws-step" data-step="1">
+          <div class="ws-ic">🖐️</div>
+          <h3 class="ws-title" data-te="చేతులను మణికట్టు వరకు కడగడం" data-en="Wash the Hands to the Wrists">చేతులను మణికట్టు వరకు కడగడం</h3>
+          <p class="ws-desc" data-te="రెండు చేతులను మణికట్టు వరకు కడగండి — ముందు కుడి చేయి, తర్వాత ఎడమ చేయి — వేళ్ళ మధ్య కూడా శుభ్రం చేయండి." data-en="Wash both hands up to the wrists — the right hand first, then the left — making sure water reaches between the fingers.">రెండు చేతులను మణికట్టు వరకు కడగండి — ముందు కుడి చేయి, తర్వాత ఎడమ చేయి — వేళ్ళ మధ్య కూడా శుభ్రం చేయండి.</p>
+          <span class="ws-times" data-te="3 సార్లు" data-en="3 times">3 సార్లు</span>
+        </div>
+        <div class="ws-step" data-step="2">
+          <div class="ws-ic">👄</div>
+          <h3 class="ws-title" data-te="నోటిని పుక్కిలించడం" data-en="Rinse the Mouth">నోటిని పుక్కిలించడం</h3>
+          <p class="ws-desc" data-te="కుడి చేతితో నీరు తీసుకొని నోటిని బాగా పుక్కిలించండి." data-en="Take water into the right hand and rinse the mouth thoroughly.">కుడి చేతితో నీరు తీసుకొని నోటిని బాగా పుక్కిలించండి.</p>
+          <span class="ws-times" data-te="3 సార్లు" data-en="3 times">3 సార్లు</span>
+        </div>
+        <div class="ws-step" data-step="3">
+          <div class="ws-ic">👃</div>
+          <h3 class="ws-title" data-te="ముక్కును శుభ్రం చేయడం" data-en="Cleanse the Nose">ముక్కును శుభ్రం చేయడం</h3>
+          <p class="ws-desc" data-te="ముక్కులోకి నీరు పీల్చి, ఎడమ చేతితో దానిని బయటకు ఊదండి." data-en="Sniff water into the nose, then blow it out using the left hand.">ముక్కులోకి నీరు పీల్చి, ఎడమ చేతితో దానిని బయటకు ఊదండి.</p>
+          <span class="ws-times" data-te="3 సార్లు" data-en="3 times">3 సార్లు</span>
+        </div>
+        <div class="ws-step" data-step="4">
+          <div class="ws-ic">💦</div>
+          <h3 class="ws-title" data-te="ముఖాన్ని కడగడం" data-en="Wash the Face">ముఖాన్ని కడగడం</h3>
+          <p class="ws-desc" data-te="ముఖమంతటినీ కడగండి — నుదుటి వెంట్రుకల మొదలు నుండి గడ్డం కింది వరకు, ఒక చెవి నుండి మరో చెవి వరకు." data-en="Wash the entire face — from the hairline to below the chin, and from one ear to the other.">ముఖమంతటినీ కడగండి — నుదుటి వెంట్రుకల మొదలు నుండి గడ్డం కింది వరకు, ఒక చెవి నుండి మరో చెవి వరకు.</p>
+          <span class="ws-times" data-te="3 సార్లు" data-en="3 times">3 సార్లు</span>
+        </div>
+        <div class="ws-step" data-step="5">
+          <div class="ws-ic">💪</div>
+          <h3 class="ws-title" data-te="చేతులను మోచేతుల వరకు కడగడం" data-en="Wash the Arms to the Elbows">చేతులను మోచేతుల వరకు కడగడం</h3>
+          <p class="ws-desc" data-te="చేతులను మోచేతులతో సహా కడగండి — ముందు కుడి చేయి, తర్వాత ఎడమ చేయి." data-en="Wash the arms up to and including the elbows — the right arm first, then the left.">చేతులను మోచేతులతో సహా కడగండి — ముందు కుడి చేయి, తర్వాత ఎడమ చేయి.</p>
+          <span class="ws-times" data-te="3 సార్లు" data-en="3 times">3 సార్లు</span>
+        </div>
+        <div class="ws-step" data-step="6">
+          <div class="ws-ic">💆</div>
+          <h3 class="ws-title" data-te="తలను &amp; చెవులను తుడవడం (మసహ్)" data-en="Wipe the Head &amp; Ears (Masah)">తలను &amp; చెవులను తుడవడం (మసహ్)</h3>
+          <p class="ws-desc" data-te="తడి చేతులతో తలను ముందు నుండి వెనుకకు, మళ్ళీ వెనుక నుండి ముందుకు తుడవండి; తర్వాత చూపుడు వేళ్ళతో చెవుల లోపలి భాగాన్ని, బొటనవేళ్ళతో వెలుపలి భాగాన్ని తుడవండి." data-en="With wet hands, wipe over the head from front to back and back to front; then wipe the inside of the ears with the index fingers and the outside with the thumbs.">తడి చేతులతో తలను ముందు నుండి వెనుకకు, మళ్ళీ వెనుక నుండి ముందుకు తుడవండి; తర్వాత చూపుడు వేళ్ళతో చెవుల లోపలి భాగాన్ని, బొటనవేళ్ళతో వెలుపలి భాగాన్ని తుడవండి.</p>
+          <span class="ws-times" data-te="1 సారి" data-en="once">1 సారి</span>
+        </div>
+        <div class="ws-step" data-step="7">
+          <div class="ws-ic">🦶</div>
+          <h3 class="ws-title" data-te="కాళ్ళను మడమల వరకు కడగడం" data-en="Wash the Feet to the Ankles">కాళ్ళను మడమల వరకు కడగడం</h3>
+          <p class="ws-desc" data-te="కాళ్ళను మడమలతో సహా కడగండి — ముందు కుడి కాలు, తర్వాత ఎడమ కాలు — కాలి వేళ్ళ మధ్య కూడా శుభ్రం చేయండి. ఇప్పుడు మీ వుజూ పూర్తయింది." data-en="Wash the feet up to and including the ankles — the right foot first, then the left — cleaning between the toes. Your wudu is now complete.">కాళ్ళను మడమలతో సహా కడగండి — ముందు కుడి కాలు, తర్వాత ఎడమ కాలు — కాలి వేళ్ళ మధ్య కూడా శుభ్రం చేయండి. ఇప్పుడు మీ వుజూ పూర్తయింది.</p>
+          <span class="ws-times" data-te="3 సార్లు" data-en="3 times">3 సార్లు</span>
+        </div>
+      </div>
+
+      <!-- controls -->
+      <div class="ws-nav">
+        <button class="ws-btn ws-prev" id="ws-prev" type="button" disabled data-te="← మునుపటి" data-en="← Previous">← మునుపటి</button>
+        <button class="ws-btn ws-next" id="ws-next" type="button" data-te="తదుపరి →" data-en="Next →">తదుపరి →</button>
+      </div>
+
+      <p class="guide-ref" style="margin-top:24px"><strong data-te="ఆధారం:" data-en="Reference:">ఆధారం:</strong> Quran 5:6 · Sahih al-Bukhari 159 · Sahih Muslim 226</p>
+      <div class="guide-links">
+        <a href="https://islamqa.info/en/answers/11497" target="_blank" rel="noopener noreferrer">IslamQA</a>
+        <a href="https://seekersguidance.org/articles/knowledge/how-to-perform-wudu-ablution/" target="_blank" rel="noopener noreferrer">SeekersGuidance</a>
+      </div>
+    </div>
+
+    <!-- DUA AFTER WUDU -->
+    <div class="wudu-dua reveal">
+      <div class="wd-tag" data-te="వుజూ తర్వాత దుఆ" data-en="Supplication After Wudu">వుజూ తర్వాత దుఆ</div>
+      <p class="wd-ar">أَشْهَدُ أَنْ لَا إِلَٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ</p>
+      <p class="wd-tl">Ashhadu an lā ilāha illa-llāhu waḥdahu lā sharīka lah, wa ashhadu anna Muḥammadan ‘abduhu wa rasūluh.</p>
+      <p class="wd-trans" data-te="&quot;అల్లాహ్ తప్ప మరో ఆరాధ్యుడు లేడని, ఆయన ఒక్కడే, ఆయనకు భాగస్వామి లేడని, మరియు ముహమ్మద్ (స.అ.) ఆయన దాసుడు మరియు సందేశహరుడని నేను సాక్ష్యమిస్తున్నాను.&quot;" data-en="“I bear witness that there is no god but Allah alone, with no partner, and I bear witness that Muhammad (ﷺ) is His servant and Messenger.”">&quot;అల్లాహ్ తప్ప మరో ఆరాధ్యుడు లేడని, ఆయన ఒక్కడే, ఆయనకు భాగస్వామి లేడని, మరియు ముహమ్మద్ (స.అ.) ఆయన దాసుడు మరియు సందేశహరుడని నేను సాక్ష్యమిస్తున్నాను.&quot;</p>
+      <p class="wd-note" data-te="ప్రవక్త (స.అ.) చెప్పారు: వుజూ తర్వాత ఎవరైనా దీన్ని పఠిస్తే, స్వర్గపు ఎనిమిది ద్వారాలూ అతని కోసం తెరవబడతాయి." data-en="The Prophet (ﷺ) said: whoever recites this after wudu, the eight gates of Paradise are opened for him.">ప్రవక్త (స.అ.) చెప్పారు: వుజూ తర్వాత ఎవరైనా దీన్ని పఠిస్తే, స్వర్గపు ఎనిమిది ద్వారాలూ అతని కోసం తెరవబడతాయి.</p>
+      <p class="wd-ref"><strong data-te="ఆధారం:" data-en="Reference:">ఆధారం:</strong> Sahih Muslim 234</p>
+    </div>
+  </div>
+</section>
+
+<!-- INTERACTIVE SALAH GUIDE -->
+<section class="kc-sec salah-guide" id="salah-guide">
+  <div class="kc-inner">
+    <div class="sec-tag reveal" data-te="నమాజ్ మార్గదర్శి" data-en="Salah Guide">నమాజ్ మార్గదర్శి</div>
+    <h2 class="sec-title reveal" data-te="నమాజ్ ఎలా చేయాలి — ఇంటరాక్టివ్ మార్గదర్శి" data-en="How to Pray Salah — Interactive Guide">నమాజ్ ఎలా చేయాలి — ఇంటరాక్టివ్ మార్గదర్శి</h2>
+    <p class="sec-lead reveal" data-te="రెండు రకాతుల నమాజ్‌ను దశలవారీగా చూడండి — ప్రతి భంగిమ, దానితో పాటు పఠించే అరబీ పఠనం, ఉచ్చారణ మరియు అర్థంతో." data-en="Step through a two-rak'ah prayer — each posture together with what to recite in Arabic, its transliteration and meaning.">రెండు రకాతుల నమాజ్‌ను దశలవారీగా చూడండి — ప్రతి భంగిమ, దానితో పాటు పఠించే అరబీ పఠనం, ఉచ్చారణ మరియు అర్థంతో.</p>
+
+    <div class="wudu-stepper reveal">
+      <div class="ws-progress">
+        <div class="ws-track"><div class="ws-fill"></div></div>
+        <div class="ws-count"><span class="ws-cur">1</span> / <span class="ws-total">11</span></div>
+      </div>
+      <div class="ws-dots"></div>
+
+      <div class="ws-stage">
+        <!-- 1 -->
+        <div class="ws-step is-active" data-step="0">
+          <div class="ws-ic">🙌</div>
+          <h3 class="ws-title" data-te="తక్బీరె తహ్రీమా — ప్రారంభం" data-en="Takbiratul-Ihram — The Opening">తక్బీరె తహ్రీమా — ప్రారంభం</h3>
+          <p class="ws-desc" data-te="ఖిబ్లా (కాబా) వైపు ముఖం చేసి, మనసులో సంకల్పం (నియ్యత్) చేసుకోండి. చేతులను చెవుల లేదా భుజాల వరకు ఎత్తి &quot;అల్లాహు అక్బర్&quot; అని పలకండి." data-en="Face the Qibla (the Ka'bah) and make the intention (niyyah) in your heart. Raise both hands to the ears or shoulders and say “Allahu Akbar”.">ఖిబ్లా (కాబా) వైపు ముఖం చేసి, మనసులో సంకల్పం (నియ్యత్) చేసుకోండి. చేతులను చెవుల లేదా భుజాల వరకు ఎత్తి &quot;అల్లాహు అక్బర్&quot; అని పలకండి.</p>
+          <div class="ws-recite">
+            <span class="ws-recite-label" data-te="పఠించండి" data-en="Recite">పఠించండి</span>
+            <p class="ws-ar">اللَّهُ أَكْبَر</p>
+            <p class="ws-translit">Allāhu Akbar</p>
+            <p class="ws-trans" data-te="&quot;అల్లాహ్ అందరికంటే గొప్పవాడు.&quot;" data-en="“Allah is the Greatest.”">&quot;అల్లాహ్ అందరికంటే గొప్పవాడు.&quot;</p>
+          </div>
+        </div>
+        <!-- 2 -->
+        <div class="ws-step" data-step="1">
+          <div class="ws-ic">🧍</div>
+          <h3 class="ws-title" data-te="ఖియామ్ — నిలబడటం" data-en="Qiyam — Standing">ఖియామ్ — నిలబడటం</h3>
+          <p class="ws-desc" data-te="కుడి చేతిని ఎడమ చేతిపై ఛాతీపై ఉంచి నిలబడండి. మొదట సూరహ్ అల్-ఫాతిహా, తర్వాత మరో చిన్న సూరహ్ (ఉదాహరణకు సూరహ్ అల్-ఇఖ్లాస్) పఠించండి." data-en="Stand with the right hand placed over the left on the chest. Recite Surah Al-Fatihah, followed by another short surah (for example, Surah Al-Ikhlas).">కుడి చేతిని ఎడమ చేతిపై ఛాతీపై ఉంచి నిలబడండి. మొదట సూరహ్ అల్-ఫాతిహా, తర్వాత మరో చిన్న సూరహ్ (ఉదాహరణకు సూరహ్ అల్-ఇఖ్లాస్) పఠించండి.</p>
+        </div>
+        <!-- 3 -->
+        <div class="ws-step" data-step="2">
+          <div class="ws-ic">🙇</div>
+          <h3 class="ws-title" data-te="రుకూ — వంగడం" data-en="Ruku — Bowing">రుకూ — వంగడం</h3>
+          <p class="ws-desc" data-te="&quot;అల్లాహు అక్బర్&quot; అని పలికి, వీపు నిటారుగా ఉండేలా వంగి, రెండు చేతులను మోకాళ్ళపై ఉంచండి." data-en="Saying “Allahu Akbar”, bow with the back kept straight and place both hands on the knees.">&quot;అల్లాహు అక్బర్&quot; అని పలికి, వీపు నిటారుగా ఉండేలా వంగి, రెండు చేతులను మోకాళ్ళపై ఉంచండి.</p>
+          <div class="ws-recite">
+            <span class="ws-recite-label" data-te="పఠించండి" data-en="Recite">పఠించండి</span>
+            <p class="ws-ar">سُبْحَانَ رَبِّيَ الْعَظِيم</p>
+            <p class="ws-translit">Subḥāna Rabbiya l-‘Aẓīm</p>
+            <p class="ws-trans" data-te="&quot;నా ప్రభువు, మహోన్నతుడు, పరిశుద్ధుడు&quot; — మూడుసార్లు." data-en="“Glory be to my Lord, the Most Great.” — three times.">&quot;నా ప్రభువు, మహోన్నతుడు, పరిశుద్ధుడు&quot; — మూడుసార్లు.</p>
+          </div>
+        </div>
+        <!-- 4 -->
+        <div class="ws-step" data-step="3">
+          <div class="ws-ic">⬆️</div>
+          <h3 class="ws-title" data-te="ఇతిదాల్ — తిరిగి నిలబడటం" data-en="I'tidal — Rising from Bowing">ఇతిదాల్ — తిరిగి నిలబడటం</h3>
+          <p class="ws-desc" data-te="&quot;సమిఅల్లాహు లిమన్ హమిదహ్&quot; అని పలుకుతూ నిటారుగా లేచి నిలబడండి; తర్వాత &quot;రబ్బనా వలకల్ హమ్ద్&quot; అనండి." data-en="Rise to stand upright while saying “Sami'a Allahu liman hamidah”, then say “Rabbana wa laka l-hamd”.">&quot;సమిఅల్లాహు లిమన్ హమిదహ్&quot; అని పలుకుతూ నిటారుగా లేచి నిలబడండి; తర్వాత &quot;రబ్బనా వలకల్ హమ్ద్&quot; అనండి.</p>
+          <div class="ws-recite">
+            <span class="ws-recite-label" data-te="పఠించండి" data-en="Recite">పఠించండి</span>
+            <p class="ws-ar">سَمِعَ اللَّهُ لِمَنْ حَمِدَهُ، رَبَّنَا وَلَكَ الْحَمْدُ</p>
+            <p class="ws-translit">Sami‘a-llāhu liman ḥamidah, Rabbanā wa laka l-ḥamd</p>
+            <p class="ws-trans" data-te="&quot;తనను స్తుతించేవారి మాటను అల్లాహ్ ఆలకిస్తాడు; మా ప్రభూ, సమస్త స్తోత్రం నీకే.&quot;" data-en="“Allah hears the one who praises Him; our Lord, to You belongs all praise.”">&quot;తనను స్తుతించేవారి మాటను అల్లాహ్ ఆలకిస్తాడు; మా ప్రభూ, సమస్త స్తోత్రం నీకే.&quot;</p>
+          </div>
+        </div>
+        <!-- 5 -->
+        <div class="ws-step" data-step="4">
+          <div class="ws-ic">🛐</div>
+          <h3 class="ws-title" data-te="సజ్దా — సాష్టాంగ నమస్కారం" data-en="Sujud — Prostration">సజ్దా — సాష్టాంగ నమస్కారం</h3>
+          <p class="ws-desc" data-te="&quot;అల్లాహు అక్బర్&quot; అని పలికి సాష్టాంగపడండి — నుదురు, ముక్కు, రెండు అరచేతులు, రెండు మోకాళ్ళు, రెండు కాళ్ళ వేళ్ళు నేలను తాకాలి." data-en="Saying “Allahu Akbar”, prostrate so that seven parts touch the ground: the forehead, nose, both palms, both knees and the toes of both feet.">&quot;అల్లాహు అక్బర్&quot; అని పలికి సాష్టాంగపడండి — నుదురు, ముక్కు, రెండు అరచేతులు, రెండు మోకాళ్ళు, రెండు కాళ్ళ వేళ్ళు నేలను తాకాలి.</p>
+          <div class="ws-recite">
+            <span class="ws-recite-label" data-te="పఠించండి" data-en="Recite">పఠించండి</span>
+            <p class="ws-ar">سُبْحَانَ رَبِّيَ الْأَعْلَى</p>
+            <p class="ws-translit">Subḥāna Rabbiya l-A‘lā</p>
+            <p class="ws-trans" data-te="&quot;నా ప్రభువు, అత్యున్నతుడు, పరిశుద్ధుడు&quot; — మూడుసార్లు." data-en="“Glory be to my Lord, the Most High.” — three times.">&quot;నా ప్రభువు, అత్యున్నతుడు, పరిశుద్ధుడు&quot; — మూడుసార్లు.</p>
+          </div>
+        </div>
+        <!-- 6 -->
+        <div class="ws-step" data-step="5">
+          <div class="ws-ic">🧎</div>
+          <h3 class="ws-title" data-te="జల్సా — రెండు సజ్దాల మధ్య కూర్చోవడం" data-en="Jalsah — Sitting Between the Prostrations">జల్సా — రెండు సజ్దాల మధ్య కూర్చోవడం</h3>
+          <p class="ws-desc" data-te="&quot;అల్లాహు అక్బర్&quot; అని పలికి కొద్దిసేపు ప్రశాంతంగా కూర్చుని క్షమాపణ వేడుకోండి." data-en="Saying “Allahu Akbar”, sit calmly for a moment and ask Allah for forgiveness.">&quot;అల్లాహు అక్బర్&quot; అని పలికి కొద్దిసేపు ప్రశాంతంగా కూర్చుని క్షమాపణ వేడుకోండి.</p>
+          <div class="ws-recite">
+            <span class="ws-recite-label" data-te="పఠించండి" data-en="Recite">పఠించండి</span>
+            <p class="ws-ar">رَبِّ اغْفِرْ لِي</p>
+            <p class="ws-translit">Rabbi-ghfir lī</p>
+            <p class="ws-trans" data-te="&quot;నా ప్రభూ, నన్ను క్షమించు.&quot;" data-en="“My Lord, forgive me.”">&quot;నా ప్రభూ, నన్ను క్షమించు.&quot;</p>
+          </div>
+        </div>
+        <!-- 7 -->
+        <div class="ws-step" data-step="6">
+          <div class="ws-ic">🛐</div>
+          <h3 class="ws-title" data-te="రెండవ సజ్దా" data-en="The Second Prostration">రెండవ సజ్దా</h3>
+          <p class="ws-desc" data-te="&quot;అల్లాహు అక్బర్&quot; అని పలికి మళ్ళీ సాష్టాంగపడి, మునుపటిలా తస్బీహ్ పఠించండి. దీంతో మొదటి రకాతు పూర్తవుతుంది." data-en="Saying “Allahu Akbar”, prostrate a second time and repeat the same tasbih as before. This completes the first rak'ah.">&quot;అల్లాహు అక్బర్&quot; అని పలికి మళ్ళీ సాష్టాంగపడి, మునుపటిలా తస్బీహ్ పఠించండి. దీంతో మొదటి రకాతు పూర్తవుతుంది.</p>
+          <div class="ws-recite">
+            <span class="ws-recite-label" data-te="పఠించండి" data-en="Recite">పఠించండి</span>
+            <p class="ws-ar">سُبْحَانَ رَبِّيَ الْأَعْلَى</p>
+            <p class="ws-translit">Subḥāna Rabbiya l-A‘lā</p>
+            <p class="ws-trans" data-te="&quot;నా ప్రభువు, అత్యున్నతుడు, పరిశుద్ధుడు&quot; — మూడుసార్లు." data-en="“Glory be to my Lord, the Most High.” — three times.">&quot;నా ప్రభువు, అత్యున్నతుడు, పరిశుద్ధుడు&quot; — మూడుసార్లు.</p>
+          </div>
+        </div>
+        <!-- 8 -->
+        <div class="ws-step" data-step="7">
+          <div class="ws-ic">🔁</div>
+          <h3 class="ws-title" data-te="రెండవ రకాతు" data-en="The Second Rak'ah">రెండవ రకాతు</h3>
+          <p class="ws-desc" data-te="&quot;అల్లాహు అక్బర్&quot; అని పలికి లేచి నిలబడి, 2 నుండి 7 వరకు దశలను రెండవ రకాతు కోసం అదే విధంగా పునరావృతం చేయండి." data-en="Saying “Allahu Akbar”, stand up and repeat steps 2 to 7 in the same way for the second rak'ah.">&quot;అల్లాహు అక్బర్&quot; అని పలికి లేచి నిలబడి, 2 నుండి 7 వరకు దశలను రెండవ రకాతు కోసం అదే విధంగా పునరావృతం చేయండి.</p>
+        </div>
+        <!-- 9 -->
+        <div class="ws-step" data-step="8">
+          <div class="ws-ic">☝️</div>
+          <h3 class="ws-title" data-te="తషహ్హుద్ — సాక్ష్య వచనం" data-en="Tashahhud — The Testimony">తషహ్హుద్ — సాక్ష్య వచనం</h3>
+          <p class="ws-desc" data-te="చివరి రకాతు రెండవ సజ్దా తర్వాత కూర్చుని, కుడి చూపుడు వేలును ఎత్తి తషహ్హుద్ పఠించండి." data-en="After the second prostration of the final rak'ah, sit and recite the Tashahhud, raising the right index finger.">చివరి రకాతు రెండవ సజ్దా తర్వాత కూర్చుని, కుడి చూపుడు వేలును ఎత్తి తషహ్హుద్ పఠించండి.</p>
+          <div class="ws-recite">
+            <span class="ws-recite-label" data-te="పఠించండి" data-en="Recite">పఠించండి</span>
+            <p class="ws-ar">التَّحِيَّاتُ لِلَّهِ وَالصَّلَوَاتُ وَالطَّيِّبَاتُ، السَّلَامُ عَلَيْكَ أَيُّهَا النَّبِيُّ وَرَحْمَةُ اللَّهِ وَبَرَكَاتُهُ، السَّلَامُ عَلَيْنَا وَعَلَى عِبَادِ اللَّهِ الصَّالِحِينَ، أَشْهَدُ أَنْ لَا إِلَٰهَ إِلَّا اللَّهُ وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ</p>
+            <p class="ws-translit">At-taḥiyyātu lillāhi waṣ-ṣalawātu waṭ-ṭayyibāt, as-salāmu ‘alayka ayyuhan-nabiyyu wa raḥmatu-llāhi wa barakātuh, as-salāmu ‘alaynā wa ‘alā ‘ibādi-llāhi ṣ-ṣāliḥīn, ashhadu an lā ilāha illa-llāh, wa ashhadu anna Muḥammadan ‘abduhu wa rasūluh.</p>
+            <p class="ws-trans" data-te="&quot;సకల మౌఖిక, శారీరక మరియు ధన సంబంధ ఆరాధనలు అల్లాహ్‌కే చెందుతాయి. ఓ ప్రవక్తా, మీపై అల్లాహ్ శాంతి, కరుణ మరియు శుభాలు కురియుగాక. మాపై మరియు అల్లాహ్ యొక్క సద్వర్తనులైన దాసులపై శాంతి కురియుగాక. అల్లాహ్ తప్ప మరో ఆరాధ్యుడు లేడని, ముహమ్మద్ (స.అ.) ఆయన దాసుడు మరియు సందేశహరుడని నేను సాక్ష్యమిస్తున్నాను.&quot;" data-en="“All greetings, prayers and good things are for Allah. Peace be upon you, O Prophet, and the mercy of Allah and His blessings. Peace be upon us and upon the righteous servants of Allah. I bear witness that there is no god but Allah, and I bear witness that Muhammad is His servant and Messenger.”">&quot;సకల మౌఖిక, శారీరక మరియు ధన సంబంధ ఆరాధనలు అల్లాహ్‌కే చెందుతాయి. ఓ ప్రవక్తా, మీపై అల్లాహ్ శాంతి, కరుణ మరియు శుభాలు కురియుగాక. మాపై మరియు అల్లాహ్ యొక్క సద్వర్తనులైన దాసులపై శాంతి కురియుగాక. అల్లాహ్ తప్ప మరో ఆరాధ్యుడు లేడని, ముహమ్మద్ (స.అ.) ఆయన దాసుడు మరియు సందేశహరుడని నేను సాక్ష్యమిస్తున్నాను.&quot;</p>
+          </div>
+        </div>
+        <!-- 10 -->
+        <div class="ws-step" data-step="9">
+          <div class="ws-ic">🤲</div>
+          <h3 class="ws-title" data-te="దురూద్ — ప్రవక్తపై దీవెన" data-en="Salah upon the Prophet (Durood)">దురూద్ — ప్రవక్తపై దీవెన</h3>
+          <p class="ws-desc" data-te="తషహ్హుద్ తర్వాత ప్రవక్త ముహమ్మద్ (స.అ.)పై దీవెన పంపండి." data-en="After the Tashahhud, send blessings upon the Prophet Muhammad (ﷺ).">తషహ్హుద్ తర్వాత ప్రవక్త ముహమ్మద్ (స.అ.)పై దీవెన పంపండి.</p>
+          <div class="ws-recite">
+            <span class="ws-recite-label" data-te="పఠించండి" data-en="Recite">పఠించండి</span>
+            <p class="ws-ar">اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ، كَمَا صَلَّيْتَ عَلَى إِبْرَاهِيمَ وَعَلَى آلِ إِبْرَاهِيمَ، إِنَّكَ حَمِيدٌ مَجِيدٌ</p>
+            <p class="ws-translit">Allāhumma ṣalli ‘alā Muḥammad wa ‘alā āli Muḥammad, kamā ṣallayta ‘alā Ibrāhīm wa ‘alā āli Ibrāhīm, innaka Ḥamīdun Majīd.</p>
+            <p class="ws-trans" data-te="&quot;ఓ అల్లాహ్! నీవు ఇబ్రాహీం (అ.స.)పై మరియు వారి కుటుంబంపై దీవెనలు కురిపించినట్లే, ముహమ్మద్ (స.అ.)పై మరియు వారి కుటుంబంపై దీవెనలు కురిపించు. నిశ్చయంగా నీవు స్తుత్యుడవు, ఘనుడవు.&quot;" data-en="“O Allah, send blessings upon Muhammad and the family of Muhammad, as You sent blessings upon Ibrahim and the family of Ibrahim. Indeed, You are Praiseworthy, Most Glorious.”">&quot;ఓ అల్లాహ్! నీవు ఇబ్రాహీం (అ.స.)పై మరియు వారి కుటుంబంపై దీవెనలు కురిపించినట్లే, ముహమ్మద్ (స.అ.)పై మరియు వారి కుటుంబంపై దీవెనలు కురిపించు. నిశ్చయంగా నీవు స్తుత్యుడవు, ఘనుడవు.&quot;</p>
+          </div>
+        </div>
+        <!-- 11 -->
+        <div class="ws-step" data-step="10">
+          <div class="ws-ic">👋</div>
+          <h3 class="ws-title" data-te="తస్లీమ్ — ముగింపు" data-en="Tasleem — Concluding the Prayer">తస్లీమ్ — ముగింపు</h3>
+          <p class="ws-desc" data-te="ముఖాన్ని ముందుగా కుడి వైపుకు, తర్వాత ఎడమ వైపుకు తిప్పుతూ ప్రతిసారీ సలాం పలకండి. దీంతో మీ నమాజ్ పూర్తవుతుంది." data-en="Turn the face to the right, then to the left, giving the salam each time. Your prayer is now complete.">ముఖాన్ని ముందుగా కుడి వైపుకు, తర్వాత ఎడమ వైపుకు తిప్పుతూ ప్రతిసారీ సలాం పలకండి. దీంతో మీ నమాజ్ పూర్తవుతుంది.</p>
+          <div class="ws-recite">
+            <span class="ws-recite-label" data-te="పఠించండి" data-en="Recite">పఠించండి</span>
+            <p class="ws-ar">السَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللَّهِ</p>
+            <p class="ws-translit">As-salāmu ‘alaykum wa raḥmatu-llāh</p>
+            <p class="ws-trans" data-te="&quot;మీపై శాంతి మరియు అల్లాహ్ కరుణ కురియుగాక.&quot;" data-en="“Peace and the mercy of Allah be upon you.”">&quot;మీపై శాంతి మరియు అల్లాహ్ కరుణ కురియుగాక.&quot;</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="ws-nav">
+        <button class="ws-btn ws-prev" type="button" disabled data-te="← మునుపటి" data-en="← Previous">← మునుపటి</button>
+        <button class="ws-btn ws-next" type="button" data-te="తదుపరి →" data-en="Next →">తదుపరి →</button>
+      </div>
+
+      <p class="guide-ref" style="margin-top:24px"><strong data-te="ఆధారం:" data-en="Reference:">ఆధారం:</strong> Sahih al-Bukhari 631, 795, 831, 3370 · Sahih Muslim 402, 582, 772 · Sunan Abi Dawud 869, 874</p>
+      <div class="guide-links">
+        <a href="https://islamqa.info/en/answers/13340" target="_blank" rel="noopener noreferrer">IslamQA</a>
+        <a href="https://seekersguidance.org/articles/knowledge/how-to-pray-step-by-step-guide-to-prayer-for-beginners/" target="_blank" rel="noopener noreferrer">SeekersGuidance</a>
+      </div>
+    </div>
+
+    <!-- NOTES: MEN, WOMEN & CHILDREN -->
+    <div class="salah-notes reveal">
+      <div class="sn-title" data-te="పురుషులు, స్త్రీలు మరియు పిల్లల కోసం" data-en="For Men, Women and Children">పురుషులు, స్త్రీలు మరియు పిల్లల కోసం</div>
+      <div class="sn-item">
+        <b data-te="పురుషులు మరియు స్త్రీలు" data-en="Men and Women">పురుషులు మరియు స్త్రీలు</b>
+        <p data-te="నమాజ్ యొక్క మూల స్తంభాలు మరియు పఠనాలు పురుషులకు, స్త్రీలకు ఒకటే. ప్రవక్త (స.అ.) చెప్పారు: &quot;నేను నమాజ్ చేయడం మీరు ఎలా చూశారో అలాగే నమాజ్ చేయండి.&quot; (సహీహ్ అల్-బుఖారీ 631)." data-en="The pillars and recitations of the prayer are the same for men and women. The Prophet (ﷺ) said: “Pray as you have seen me pray.” (Sahih al-Bukhari 631).">నమాజ్ యొక్క మూల స్తంభాలు మరియు పఠనాలు పురుషులకు, స్త్రీలకు ఒకటే. ప్రవక్త (స.అ.) చెప్పారు: &quot;నేను నమాజ్ చేయడం మీరు ఎలా చూశారో అలాగే నమాజ్ చేయండి.&quot; (సహీహ్ అల్-బుఖారీ 631).</p>
+      </div>
+      <div class="sn-item">
+        <b data-te="స్త్రీల దుస్తులు" data-en="A Woman's Dress in Prayer">స్త్రీల దుస్తులు</b>
+        <p data-te="నమాజ్‌లో స్త్రీ ముఖం మరియు చేతులు తప్ప శరీరమంతటినీ కప్పుకోవాలి (ఖురాన్ 24:31)." data-en="In prayer, a woman should cover her whole body except the face and the hands (Quran 24:31).">నమాజ్‌లో స్త్రీ ముఖం మరియు చేతులు తప్ప శరీరమంతటినీ కప్పుకోవాలి (ఖురాన్ 24:31).</p>
+      </div>
+      <div class="sn-item">
+        <b data-te="పిల్లలు" data-en="Children">పిల్లలు</b>
+        <p data-te="పిల్లలకు ఏడేళ్ళ వయసు నుండి నమాజ్ నేర్పించండి. ప్రవక్త (స.అ.) చెప్పారు: &quot;మీ పిల్లలు ఏడేళ్ళకు చేరినప్పుడు వారికి నమాజ్ చేయమని ఆదేశించండి.&quot; (సునన్ అబీ దావూద్ 495)." data-en="Teach children to pray from the age of seven. The Prophet (ﷺ) said: “Command your children to pray when they reach seven years of age.” (Sunan Abi Dawud 495).">పిల్లలకు ఏడేళ్ళ వయసు నుండి నమాజ్ నేర్పించండి. ప్రవక్త (స.అ.) చెప్పారు: &quot;మీ పిల్లలు ఏడేళ్ళకు చేరినప్పుడు వారికి నమాజ్ చేయమని ఆదేశించండి.&quot; (సునన్ అబీ దావూద్ 495).</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- SALAH TIMINGS + COUNTDOWN -->
 <section class="kc-sec salah" id="salah">
   <div class="kc-inner">
@@ -323,10 +944,6 @@
           <div class="salah-loc">
             <div class="sl-place">Mangalagiri</div>
             <div class="sl-date" id="salah-date">—</div>
-          </div>
-          <div class="salah-row sr-muted" data-prayer="sunrise">
-            <div class="sr-name"><span class="sr-ic">🌅</span><span data-te="సూర్యోదయం" data-en="Sunrise">సూర్యోదయం</span></div>
-            <div class="sr-time" id="t-sunrise">—</div>
           </div>
           <div class="salah-row" data-prayer="fajr">
             <div class="sr-name"><span class="sr-ic">🌌</span><span data-te="ఫజ్ర్" data-en="Fajr">ఫజ్ర్</span></div>
@@ -377,19 +994,19 @@
   <div class="kc-inner">
     <div class="sec-tag" data-te="సాధనం" data-en="Tool">సాధనం</div>
     <h2 class="sec-title" data-te="జకాత్ కాలిక్యులేటర్" data-en="Zakat Calculator">జకాత్ కాలిక్యులేటర్</h2>
-    <p class="sec-lead" data-te="మీ ఆస్తులను నమోదు చేయండి — బంగారం &amp; వెండి ధరలు ప్రతిరోజూ ఆటోమేటిక్‌గా అప్‌డేట్ అవుతాయి. మీ సంపద నిసాబ్‌ను చేరితే 2.5% జకాత్ వెంటనే లెక్కించబడుతుంది." data-en="Enter your assets — gold &amp; silver prices update automatically every day. If your wealth reaches the nisab, Zakat at 2.5% is calculated instantly.">మీ ఆస్తులను నమోదు చేయండి — బంగారం &amp; వెండి ధరలు ప్రతిరోజూ ఆటోమేటిక్‌గా అప్‌డేట్ అవుతాయి. మీ సంపద నిసాబ్‌ను చేరితే 2.5% జకాత్ వెంటనే లెక్కించబడుతుంది.</p>
+    <p class="sec-lead" data-te="మీ ఆస్తులను నమోదు చేయండి — బంగారం &amp; వెండి ధరలు GoodReturns.in నుండి భారత ధరల ఆధారంగా ఉంటాయి. మీ సంపద నిసాబ్‌ను చేరితే 2.5% జకాత్ వెంటనే లెక్కించబడుతుంది." data-en="Enter your assets — gold &amp; silver prices are based on the latest India rates from GoodReturns.in. If your wealth reaches the nisab, Zakat at 2.5% is calculated instantly.">మీ ఆస్తులను నమోదు చేయండి — బంగారం &amp; వెండి ధరలు GoodReturns.in నుండి భారత ధరల ఆధారంగా ఉంటాయి. మీ సంపద నిసాబ్‌ను చేరితే 2.5% జకాత్ వెంటనే లెక్కించబడుతుంది.</p>
 
     <!-- live metal prices -->
     <div class="live-prices">
       <div class="lp-card">
         <div class="lp-top"><span class="lp-ic">🥇</span><span data-te="బంగారం (24K)" data-en="Gold (24K)">బంగారం (24K)</span></div>
         <div class="lp-val" id="lp-gold">—</div>
-        <div class="lp-unit" data-te="గ్రాముకు" data-en="per gram">గ్రాముకు</div>
+        <div class="lp-unit" data-te="గ్రాముకు (భారత ధర)" data-en="per gram (India)">గ్రాముకు (భారత ధర)</div>
       </div>
       <div class="lp-card">
         <div class="lp-top"><span class="lp-ic">🥈</span><span data-te="వెండి" data-en="Silver">వెండి</span></div>
         <div class="lp-val" id="lp-silver">—</div>
-        <div class="lp-unit" data-te="గ్రాముకు" data-en="per gram">గ్రాముకు</div>
+        <div class="lp-unit" data-te="గ్రాముకు (భారత ధర)" data-en="per gram (India)">గ్రాముకు (భారత ధర)</div>
       </div>
       <div class="lp-card lp-nisab">
         <div class="lp-top"><span class="lp-ic">⚖️</span><span data-te="నిసాబ్ పరిమితి" data-en="Nisab threshold">నిసాబ్ పరిమితి</span></div>
@@ -523,46 +1140,640 @@
   </div>
 </section>
 
-<!-- ISLAMIC LEARNING -->
-<section class="kc-sec learn" id="learn">
+<!-- MORE GUIDES (step-by-step accordion) -->
+<section class="kc-sec guides" id="guides">
   <div class="kc-inner">
-    <div class="sec-tag" data-te="అభ్యాసం" data-en="Learning">అభ్యాసం</div>
-    <h2 class="sec-title" data-te="ఇస్లామిక్ అభ్యాస సామగ్రి" data-en="Islamic Learning Content">ఇస్లామిక్ అభ్యాస సామగ్రి</h2>
-    <p class="sec-lead" data-te="ప్రతి అంశం ప్రామాణిక ఆధారంతో — ఖురాన్ లేదా సహీహ్ హదీస్ నుండి." data-en="Each point cited with an authentic source — from the Quran or a Sahih hadith.">ప్రతి అంశం ప్రామాణిక ఆధారంతో — ఖురాన్ లేదా సహీహ్ హదీస్ నుండి.</p>
-    <div class="learn-grid">
-      <div class="learn-card">
-        <h3><span>🕌</span><span data-te="నమాజ్‌ను సమయానికి నిర్వహించడం" data-en="Praying at its Appointed Time">నమాజ్‌ను సమయానికి నిర్వహించడం</span></h3>
-        <p data-te="&quot;నిశ్చయంగా, నమాజ్ విశ్వాసులపై నిర్దిష్ట సమయాల్లో విధిగా నిర్ణయించబడింది.&quot; ప్రళయదినాన బానిస మొదట లెక్క అడగబడేది నమాజ్ గురించే." data-en="&quot;Indeed, prayer has been decreed upon the believers at specified times.&quot; The first matter a servant will be questioned about on the Day of Judgement is the prayer.">&quot;నిశ్చయంగా, నమాజ్ విశ్వాసులపై నిర్దిష్ట సమయాల్లో విధిగా నిర్ణయించబడింది.&quot; ప్రళయదినాన బానిస మొదట లెక్క అడగబడేది నమాజ్ గురించే.</p>
-        <span class="learn-ref">Quran 4:103 · Jami at-Tirmidhi 413</span>
+    <div class="sec-tag reveal" data-te="ఆచరణ మార్గదర్శి" data-en="How-To Guides">ఆచరణ మార్గదర్శి</div>
+    <h2 class="sec-title reveal" data-te="ఇస్లామిక్ ఆచరణలు — దశల వారీగా" data-en="Islamic Practices — Step by Step">ఇస్లామిక్ ఆచరణలు — దశల వారీగా</h2>
+    <p class="sec-lead reveal" data-te="ప్రతి మార్గదర్శి సంక్షిప్తంగా, ప్రామాణిక ఆధారాలతో మరియు విశ్వసనీయ వనరుల లింకులతో అందించబడింది." data-en="Each guide is concise, grounded in authentic sources, with links to trusted resources.">ప్రతి మార్గదర్శి సంక్షిప్తంగా, ప్రామాణిక ఆధారాలతో మరియు విశ్వసనీయ వనరుల లింకులతో అందించబడింది.</p>
+
+    <div class="guide-acc reveal">
+
+      <!-- ZAKAT -->
+      <div class="guide-item">
+        <button class="guide-head" type="button" aria-expanded="false">
+          <span class="guide-ic">💰</span>
+          <span class="guide-htext">
+            <span class="guide-title" data-te="జకాత్ ఎలా లెక్కించాలి &amp; ఇవ్వాలి" data-en="How to Calculate &amp; Give Zakat">జకాత్ ఎలా లెక్కించాలి &amp; ఇవ్వాలి</span>
+            <span class="guide-sub" data-te="నిసాబ్, 2.5%, మరియు 8 అర్హత వర్గాలు" data-en="Nisab, 2.5%, and the 8 eligible categories">నిసాబ్, 2.5%, మరియు 8 అర్హత వర్గాలు</span>
+          </span>
+          <span class="guide-chev">▾</span>
+        </button>
+        <div class="guide-body"><div class="guide-body-inner">
+          <p class="guide-intro" data-te="జకాత్ ఇస్లాం యొక్క మూడవ స్తంభం — అర్హత గల సంపదపై సంవత్సరానికి 2.5%. అల్లాహ్ దాని హక్కుదారులను ఖురాన్ (9:60)లో పేర్కొన్నాడు." data-en="Zakat is the third pillar of Islam — 2.5% annually on qualifying wealth. Allah names its rightful recipients in Quran 9:60.">జకాత్ ఇస్లాం యొక్క మూడవ స్తంభం — అర్హత గల సంపదపై సంవత్సరానికి 2.5%. అల్లాహ్ దాని హక్కుదారులను ఖురాన్ (9:60)లో పేర్కొన్నాడు.</p>
+          <ol class="guide-steps">
+            <li data-te="మీ సంపద ఒక పూర్తి చాంద్రమాన సంవత్సరం (హౌల్) మీ వద్ద ఉందని నిర్ధారించుకోండి." data-en="Confirm the wealth has been in your possession for one full lunar year (hawl).">మీ సంపద ఒక పూర్తి చాంద్రమాన సంవత్సరం (హౌల్) మీ వద్ద ఉందని నిర్ధారించుకోండి.</li>
+            <li data-te="అది నిసాబ్ స్థాయిని మించిందో చూడండి — 87.48 గ్రా. బంగారం లేదా 612.36 గ్రా. వెండి విలువ." data-en="Check it exceeds the nisab threshold — the value of 87.48g of gold or 612.36g of silver.">అది నిసాబ్ స్థాయిని మించిందో చూడండి — 87.48 గ్రా. బంగారం లేదా 612.36 గ్రా. వెండి విలువ.</li>
+            <li data-te="మీ జకాత్‌కు లోబడిన ఆస్తులను కూడండి: నగదు, పొదుపు, బంగారం/వెండి, వ్యాపార సరుకు, పెట్టుబడులు." data-en="Total your zakatable assets: cash, savings, gold/silver, business stock, investments.">మీ జకాత్‌కు లోబడిన ఆస్తులను కూడండి: నగదు, పొదుపు, బంగారం/వెండి, వ్యాపార సరుకు, పెట్టుబడులు.</li>
+            <li data-te="చెల్లించవలసిన తక్షణ అప్పులు/బాధ్యతలను తీసివేయండి." data-en="Subtract any immediate debts and liabilities that are due.">చెల్లించవలసిన తక్షణ అప్పులు/బాధ్యతలను తీసివేయండి.</li>
+            <li data-te="మిగిలిన నికర మొత్తంలో 2.5% (1/40వ వంతు) చెల్లించండి." data-en="Pay 2.5% (one-fortieth) of the remaining net amount.">మిగిలిన నికర మొత్తంలో 2.5% (1/40వ వంతు) చెల్లించండి.</li>
+            <li data-te="ఖురాన్ (9:60)లో పేర్కొన్న 8 వర్గాలలో ఒకరికి ఇవ్వండి — పేదలు, నిరుపేదలు, అప్పుల్లో ఉన్నవారు మొదలైనవారు." data-en="Give it to one of the 8 categories named in Quran 9:60 — the poor, the needy, those in debt, and so on.">ఖురాన్ (9:60)లో పేర్కొన్న 8 వర్గాలలో ఒకరికి ఇవ్వండి — పేదలు, నిరుపేదలు, అప్పుల్లో ఉన్నవారు మొదలైనవారు.</li>
+          </ol>
+          <p class="guide-ref"><strong data-te="ఆధారం:" data-en="Reference:">ఆధారం:</strong> Quran 9:60 · Quran 2:267 · Sahih al-Bukhari 1395</p>
+          <div class="guide-links">
+            <a href="#zakat" data-te="ఈ పేజీలో జకాత్ కాలిక్యులేటర్" data-en="Zakat Calculator on this page">ఈ పేజీలో జకాత్ కాలిక్యులేటర్</a>
+            <a href="https://islamqa.info/en/answers/64740" target="_blank" rel="noopener noreferrer">IslamQA</a>
+          </div>
+        </div></div>
       </div>
-      <div class="learn-card">
-        <h3><span>🤲</span><span data-te="జకాత్ యొక్క ప్రాముఖ్యత" data-en="The Importance of Zakat">జకాత్ యొక్క ప్రాముఖ్యత</span></h3>
-        <p data-te="&quot;వారి సంపద నుండి దానం (జకాత్) స్వీకరించు, దాని ద్వారా నీవు వారిని పవిత్రులుగా చేస్తావు.&quot; జకాత్ సంపదను శుద్ధి చేస్తుంది మరియు సమాజంలో సమతుల్యతను తెస్తుంది." data-en="&quot;Take from their wealth a charity (Zakat) by which you purify them.&quot; Zakat purifies wealth and brings balance to the community.">&quot;వారి సంపద నుండి దానం (జకాత్) స్వీకరించు, దాని ద్వారా నీవు వారిని పవిత్రులుగా చేస్తావు.&quot; జకాత్ సంపదను శుద్ధి చేస్తుంది మరియు సమాజంలో సమతుల్యతను తెస్తుంది.</p>
-        <span class="learn-ref">Quran 9:103</span>
+
+      <!-- QURAN LEARNING ROADMAP -->
+      <div class="guide-item">
+        <button class="guide-head" type="button" aria-expanded="false">
+          <span class="guide-ic">📖</span>
+          <span class="guide-htext">
+            <span class="guide-title" data-te="ఖురాన్ నేర్చుకునే మార్గం" data-en="Quran Learning Roadmap">ఖురాన్ నేర్చుకునే మార్గం</span>
+            <span class="guide-sub" data-te="అక్షరమాల నుండి అర్థం వరకు — 5 దశలు" data-en="From the alphabet to understanding — 5 stages">అక్షరమాల నుండి అర్థం వరకు — 5 దశలు</span>
+          </span>
+          <span class="guide-chev">▾</span>
+        </button>
+        <div class="guide-body"><div class="guide-body-inner">
+          <p class="guide-intro" data-te="ప్రవక్త (ﷺ) చెప్పారు: &quot;మీలో ఉత్తములు ఖురాన్ నేర్చుకొని, దానిని ఇతరులకు నేర్పేవారు.&quot; మీరు ఉన్న చోటి నుండే మొదలుపెట్టండి." data-en="The Prophet ﷺ said: &quot;The best among you are those who learn the Quran and teach it.&quot; Begin from wherever you are.">ప్రవక్త (ﷺ) చెప్పారు: &quot;మీలో ఉత్తములు ఖురాన్ నేర్చుకొని, దానిని ఇతరులకు నేర్పేవారు.&quot; మీరు ఉన్న చోటి నుండే మొదలుపెట్టండి.</p>
+          <ol class="guide-steps">
+            <li data-te="ఖాయిదా (ఉదా. నూరానీ ఖాయిదా) ఉపయోగించి అరబిక్ అక్షరాలను, వాటి ఉచ్చారణను నేర్చుకోండి." data-en="Learn the Arabic letters and their sounds using a Qaida (e.g. Noorani Qaida).">ఖాయిదా (ఉదా. నూరానీ ఖాయిదా) ఉపయోగించి అరబిక్ అక్షరాలను, వాటి ఉచ్చారణను నేర్చుకోండి.</li>
+            <li data-te="తజ్వీద్ ప్రాథమిక నియమాలను నేర్చుకోండి — ప్రతి అక్షరం యొక్క సరైన ఉచ్చారణ." data-en="Learn basic Tajweed rules — the correct pronunciation and rights of each letter.">తజ్వీద్ ప్రాథమిక నియమాలను నేర్చుకోండి — ప్రతి అక్షరం యొక్క సరైన ఉచ్చారణ.</li>
+            <li data-te="మీ పఠనాన్ని సరిదిద్దే అర్హత గల ఉపాధ్యాయుని వద్ద క్రమం తప్పకుండా చదవండి." data-en="Read regularly with a qualified teacher who corrects your recitation.">మీ పఠనాన్ని సరిదిద్దే అర్హత గల ఉపాధ్యాయుని వద్ద క్రమం తప్పకుండా చదవండి.</li>
+            <li data-te="చిన్న సూరహ్‌లను కంఠస్తం చేయడం మొదలుపెట్టండి — జుజ్ అమ్మ (30వ భాగం) నుండి." data-en="Begin memorising short surahs, starting with Juz Amma (the 30th part).">చిన్న సూరహ్‌లను కంఠస్తం చేయడం మొదలుపెట్టండి — జుజ్ అమ్మ (30వ భాగం) నుండి.</li>
+            <li data-te="విశ్వసనీయ అనువాదం, తఫ్సీర్ ద్వారా అర్థాన్ని అధ్యయనం చేసి, దాని ప్రకారం జీవించండి." data-en="Study the meaning through a reliable translation and tafsir, and live by it.">విశ్వసనీయ అనువాదం, తఫ్సీర్ ద్వారా అర్థాన్ని అధ్యయనం చేసి, దాని ప్రకారం జీవించండి.</li>
+          </ol>
+          <p class="guide-ref"><strong data-te="ఆధారం:" data-en="Reference:">ఆధారం:</strong> Sahih al-Bukhari 5027 · Jami at-Tirmidhi 2910 · Quran 73:4</p>
+          <div class="guide-links">
+            <a href="https://quran.com" target="_blank" rel="noopener noreferrer">Quran.com</a>
+            <a href="https://tarteel.ai" target="_blank" rel="noopener noreferrer">Tarteel</a>
+          </div>
+        </div></div>
       </div>
-      <div class="learn-card">
-        <h3><span>📚</span><span data-te="విజ్ఞానాన్ని అన్వేషించడం" data-en="Seeking Knowledge">విజ్ఞానాన్ని అన్వేషించడం</span></h3>
-        <p data-te="&quot;మీలో ఉత్తములు ఖురాన్ నేర్చుకొని, దానిని ఇతరులకు నేర్పేవారు.&quot; విజ్ఞానాన్ని అన్వేషించడం ప్రతి ముస్లింపై ఒక బాధ్యత." data-en="&quot;The best among you are those who learn the Quran and teach it.&quot; Seeking knowledge is an obligation upon every Muslim.">&quot;మీలో ఉత్తములు ఖురాన్ నేర్చుకొని, దానిని ఇతరులకు నేర్పేవారు.&quot; విజ్ఞానాన్ని అన్వేషించడం ప్రతి ముస్లింపై ఒక బాధ్యత.</p>
-        <span class="learn-ref">Sahih al-Bukhari 5027 · Sunan Ibn Majah 224</span>
+
+      <!-- PROPHET TIMELINE -->
+      <div class="guide-item">
+        <button class="guide-head" type="button" aria-expanded="false">
+          <span class="guide-ic">🕋</span>
+          <span class="guide-htext">
+            <span class="guide-title" data-te="ప్రవక్త ముహమ్మద్ (ﷺ) జీవిత ఘట్టాలు" data-en="Life of Prophet Muhammad ﷺ — Key Milestones">ప్రవక్త ముహమ్మద్ (ﷺ) జీవిత ఘట్టాలు</span>
+            <span class="guide-sub" data-te="పుట్టుక నుండి వీడ్కోలు హజ్ వరకు" data-en="From his birth to the Farewell Pilgrimage">పుట్టుక నుండి వీడ్కోలు హజ్ వరకు</span>
+          </span>
+          <span class="guide-chev">▾</span>
+        </button>
+        <div class="guide-body"><div class="guide-body-inner">
+          <p class="guide-intro" data-te="ప్రధాన ఘట్టాల సంక్షిప్త కాలరేఖ (CE = సామాన్య శకం)." data-en="A brief timeline of the major events (CE = Common Era).">ప్రధాన ఘట్టాల సంక్షిప్త కాలరేఖ (CE = సామాన్య శకం).</p>
+          <ul class="guide-tl">
+            <li><b>570 CE</b> <span data-te="మక్కాలో జననం — ఏనుగు సంవత్సరం." data-en="Born in Makkah — the Year of the Elephant.">మక్కాలో జననం — ఏనుగు సంవత్సరం.</span></li>
+            <li><b>610 CE</b> <span data-te="హిరా గుహలో మొదటి దివ్యవాణి (వయసు 40)." data-en="The first revelation in the Cave of Hira (age 40).">హిరా గుహలో మొదటి దివ్యవాణి (వయసు 40).</span></li>
+            <li><b>613 CE</b> <span data-te="ఇస్లాం బహిరంగ ప్రచారం ప్రారంభం." data-en="Begins the public preaching of Islam.">ఇస్లాం బహిరంగ ప్రచారం ప్రారంభం.</span></li>
+            <li><b>619 CE</b> <span data-te="దుఃఖ సంవత్సరం: ఖదీజా (ర.అ.), అబూ తాలిబ్ మరణం." data-en="The Year of Sorrow: Khadijah (RA) and Abu Talib pass away.">దుఃఖ సంవత్సరం: ఖదీజా (ర.అ.), అబూ తాలిబ్ మరణం.</span></li>
+            <li><b>622 CE</b> <span data-te="మదీనాకు హిజ్రత్ (వలస) — ఇస్లామిక్ క్యాలెండర్ ప్రారంభం." data-en="The Hijrah (migration) to Madinah — the start of the Islamic calendar.">మదీనాకు హిజ్రత్ (వలస) — ఇస్లామిక్ క్యాలెండర్ ప్రారంభం.</span></li>
+            <li><b>624 CE</b> <span data-te="బద్ర్ యుద్ధం." data-en="The Battle of Badr.">బద్ర్ యుద్ధం.</span></li>
+            <li><b>628 CE</b> <span data-te="హుదైబియా సంధి." data-en="The Treaty of Hudaybiyyah.">హుదైబియా సంధి.</span></li>
+            <li><b>630 CE</b> <span data-te="మక్కా శాంతియుత విజయం." data-en="The peaceful conquest of Makkah.">మక్కా శాంతియుత విజయం.</span></li>
+            <li><b>632 CE</b> <span data-te="వీడ్కోలు హజ్, మరియు మదీనాలో ఆయన మరణం." data-en="The Farewell Pilgrimage, and his passing in Madinah.">వీడ్కోలు హజ్, మరియు మదీనాలో ఆయన మరణం.</span></li>
+          </ul>
+          <p class="guide-ref"><strong data-te="ఆధారం:" data-en="Reference:">ఆధారం:</strong> Quran 33:21 · Sahih al-Bukhari 3902 · Ar-Raheeq Al-Makhtum (The Sealed Nectar)</p>
+          <div class="guide-links">
+            <a href="https://seerah.com" target="_blank" rel="noopener noreferrer">Seerah</a>
+            <a href="https://islamqa.info/en/categories/topics/268" target="_blank" rel="noopener noreferrer">IslamQA</a>
+          </div>
+        </div></div>
       </div>
-      <div class="learn-card">
-        <h3><span>💧</span><span data-te="వుజూ (అంగశుద్ధి)" data-en="Wudu (Ablution)">వుజూ (అంగశుద్ధి)</span></h3>
-        <p data-te="&quot;శుద్ధత విశ్వాసంలో సగభాగం.&quot; నమాజ్‌కు ముందు వుజూ చేయడం తప్పనిసరి — ముఖం, చేతులు (మోచేతుల వరకు), తలను తడవడం, మరియు కాళ్ళు (మడమల వరకు) కడగడం." data-en="&quot;Purity is half of faith.&quot; Wudu before prayer is essential — washing the face, hands to the elbows, wiping the head, and washing the feet to the ankles.">&quot;శుద్ధత విశ్వాసంలో సగభాగం.&quot; నమాజ్‌కు ముందు వుజూ చేయడం తప్పనిసరి — ముఖం, చేతులు (మోచేతుల వరకు), తలను తడవడం, మరియు కాళ్ళు (మడమల వరకు) కడగడం.</p>
-        <span class="learn-ref">Quran 5:6 · Sahih Muslim 223</span>
+
+      <!-- ISLAMIC SCIENCE -->
+      <div class="guide-item">
+        <button class="guide-head" type="button" aria-expanded="false">
+          <span class="guide-ic">🔬</span>
+          <span class="guide-htext">
+            <span class="guide-title" data-te="ఇస్లామిక్ స్వర్ణయుగం — విజ్ఞానం" data-en="Islam's Golden Age of Science">ఇస్లామిక్ స్వర్ణయుగం — విజ్ఞానం</span>
+            <span class="guide-sub" data-te="ముస్లిం పండితుల కృషి & విజ్ఞాన ప్రోత్సాహం" data-en="Muslim scholars and the encouragement of knowledge">ముస్లిం పండితుల కృషి &amp; విజ్ఞాన ప్రోత్సాహం</span>
+          </span>
+          <span class="guide-chev">▾</span>
+        </button>
+        <div class="guide-body"><div class="guide-body-inner">
+          <p class="guide-intro" data-te="ఖురాన్ యొక్క మొదటి దివ్యవాణి &quot;చదువు!&quot; (96:1-5), మరియు అది సృష్టిని గురించి పదే పదే ఆలోచించమని పిలుపునిస్తుంది (3:190-191). ఈ స్ఫూర్తి ఒక స్వర్ణయుగానికి దారితీసింది." data-en="The Quran's very first revelation was &quot;Read!&quot; (96:1-5), and it repeatedly calls for reflection on creation (3:190-191). This spirit fuelled a golden age of learning.">ఖురాన్ యొక్క మొదటి దివ్యవాణి &quot;చదువు!&quot; (96:1-5), మరియు అది సృష్టిని గురించి పదే పదే ఆలోచించమని పిలుపునిస్తుంది (3:190-191). ఈ స్ఫూర్తి ఒక స్వర్ణయుగానికి దారితీసింది.</p>
+          <ul class="guide-tl">
+            <li><b data-te="బీజగణితం" data-en="Algebra &amp; Algorithms">బీజగణితం</b> <span data-te="అల్-ఖ్వారిజ్మీ — 'అల్గోరిథం' అనే పదం ఆయన పేరు నుండే వచ్చింది." data-en="Al-Khwarizmi — the word 'algorithm' derives from his name.">అల్-ఖ్వారిజ్మీ — 'అల్గోరిథం' అనే పదం ఆయన పేరు నుండే వచ్చింది.</span></li>
+            <li><b data-te="వైద్యం" data-en="Medicine">వైద్యం</b> <span data-te="ఇబ్న్ సీనా (అవిసెన్నా) — ఆయన 'కానన్ ఆఫ్ మెడిసిన్' శతాబ్దాలపాటు యూరప్‌లో బోధించబడింది." data-en="Ibn Sina (Avicenna) — whose Canon of Medicine was taught in Europe for centuries.">ఇబ్న్ సీనా (అవిసెన్నా) — ఆయన 'కానన్ ఆఫ్ మెడిసిన్' శతాబ్దాలపాటు యూరప్‌లో బోధించబడింది.</span></li>
+            <li><b data-te="కాంతిశాస్త్రం" data-en="Optics">కాంతిశాస్త్రం</b> <span data-te="ఇబ్న్ అల్-హైథమ్ (అల్హాజెన్) — శాస్త్రీయ పద్ధతికి మార్గదర్శి." data-en="Ibn al-Haytham (Alhazen) — a pioneer of the scientific method.">ఇబ్న్ అల్-హైథమ్ (అల్హాజెన్) — శాస్త్రీయ పద్ధతికి మార్గదర్శి.</span></li>
+            <li><b data-te="శస్త్రచికిత్స" data-en="Surgery">శస్త్రచికిత్స</b> <span data-te="అల్-జహ్రావీ — ఒక మూలాధార శస్త్రచికిత్స విజ్ఞానకోశ రచయిత." data-en="Al-Zahrawi — author of a foundational surgical encyclopaedia.">అల్-జహ్రావీ — ఒక మూలాధార శస్త్రచికిత్స విజ్ఞానకోశ రచయిత.</span></li>
+            <li><b data-te="సమాజశాస్త్రం & చరిత్ర" data-en="Sociology &amp; History">సమాజశాస్త్రం &amp; చరిత్ర</b> <span data-te="ఇబ్న్ ఖల్దూన్ — సమాజశాస్త్రం, చరిత్రరచనకు పితామహులలో ఒకరు." data-en="Ibn Khaldun — a father of sociology and historiography.">ఇబ్న్ ఖల్దూన్ — సమాజశాస్త్రం, చరిత్రరచనకు పితామహులలో ఒకరు.</span></li>
+          </ul>
+          <p class="guide-ref"><strong data-te="ఆధారం:" data-en="Reference:">ఆధారం:</strong> Quran 96:1-5 · Quran 3:190-191 · Sunan Ibn Majah 224</p>
+          <div class="guide-links">
+            <a href="https://www.1001inventions.com" target="_blank" rel="noopener noreferrer">1001 Inventions</a>
+          </div>
+        </div></div>
       </div>
-      <div class="learn-card">
-        <h3><span>🌙</span><span data-te="రమజాన్ ఉపవాసం" data-en="Fasting in Ramadan">రమజాన్ ఉపవాసం</span></h3>
-        <p data-te="&quot;ఓ విశ్వాసులారా! మీకు పూర్వం వారిపై విధించబడినట్లే మీపై ఉపవాసం విధించబడింది — మీరు భయభక్తులు (తఖ్వా) అలవరచుకోవడానికి.&quot;" data-en="&quot;O you who believe, fasting is prescribed for you as it was prescribed for those before you, so that you may attain God-consciousness (taqwa).&quot;">&quot;ఓ విశ్వాసులారా! మీకు పూర్వం వారిపై విధించబడినట్లే మీపై ఉపవాసం విధించబడింది — మీరు భయభక్తులు (తఖ్వా) అలవరచుకోవడానికి.&quot;</p>
-        <span class="learn-ref">Quran 2:183</span>
-      </div>
+
     </div>
+
+  </div>
+</section>
+
+<!-- ISLAMIC MANNERS & CHARACTER (AKHLAQ) -->
+<section class="kc-sec akhlaq" id="akhlaq">
+  <div class="kc-inner">
+    <div class="sec-tag reveal" data-te="అఖ్లాఖ్" data-en="Akhlaq">అఖ్లాఖ్</div>
+    <h2 class="sec-title reveal" data-te="ఇస్లామిక్ నడవడిక & సత్ప్రవర్తన" data-en="Islamic Manners & Character">ఇస్లామిక్ నడవడిక & సత్ప్రవర్తన</h2>
+    <p class="sec-lead reveal" data-te="ప్రవక్త (స.అ.) చెప్పారు: &quot;నేను సత్ప్రవర్తనను పరిపూర్ణం చేయడానికే పంపబడ్డాను.&quot; (అల్-అదబ్ అల్-ముఫ్రద్ 273). మంచి నడవడిక విశ్వాసంలో ఒక భాగం." data-en="The Prophet (ﷺ) said: &quot;I was sent only to perfect good character.&quot; (Al-Adab Al-Mufrad 273). Good conduct is part of faith itself.">ప్రవక్త (స.అ.) చెప్పారు: &quot;నేను సత్ప్రవర్తనను పరిపూర్ణం చేయడానికే పంపబడ్డాను.&quot; (అల్-అదబ్ అల్-ముఫ్రద్ 273). మంచి నడవడిక విశ్వాసంలో ఒక భాగం.</p>
+
+    <div class="guide-acc ak-acc reveal">
+
+      <!-- 1. TRUTHFULNESS -->
+      <div class="guide-item">
+        <button class="guide-head" type="button" aria-expanded="false">
+          <span class="guide-ic">🤝</span>
+          <span class="guide-htext">
+            <span class="guide-title" data-te="నిజాయితీ & సత్యవాక్కు" data-en="Honesty & Truthfulness">నిజాయితీ & సత్యవాక్కు</span>
+            <span class="guide-sub" data-te="సత్యం మంచితనం వైపు నడిపిస్తుంది" data-en="Truthfulness leads to righteousness">సత్యం మంచితనం వైపు నడిపిస్తుంది</span>
+          </span>
+          <span class="guide-chev">▾</span>
+        </button>
+        <div class="guide-body"><div class="guide-body-inner">
+          <div class="tcard-block tcard-faith">
+            <span class="tcard-label" data-te="ప్రవక్త (స.అ.) వాక్కు" data-en="The Prophet ﷺ said">ప్రవక్త (స.అ.) వాక్కు</span>
+            <p data-te="&quot;సత్యాన్ని పాటించండి, ఎందుకంటే సత్యం మంచితనం వైపు, మంచితనం స్వర్గం వైపు నడిపిస్తుంది… అబద్ధం దుర్మార్గం వైపు నడిపిస్తుంది.&quot; అల్లాహ్ కూడా ఆదేశించాడు: &quot;సత్యవంతులతో కలిసి ఉండండి.&quot;" data-en="&quot;Hold to truthfulness, for truthfulness leads to righteousness, and righteousness leads to Paradise… and lying leads to wickedness.&quot; Allah also commands: &quot;Be with those who are truthful.&quot;">&quot;సత్యాన్ని పాటించండి, ఎందుకంటే సత్యం మంచితనం వైపు, మంచితనం స్వర్గం వైపు నడిపిస్తుంది… అబద్ధం దుర్మార్గం వైపు నడిపిస్తుంది.&quot; అల్లాహ్ కూడా ఆదేశించాడు: &quot;సత్యవంతులతో కలిసి ఉండండి.&quot;</p>
+            <p class="guide-ref"><strong data-te="ఆధారం:" data-en="Reference:">ఆధారం:</strong> Sahih al-Bukhari 6094 · Quran 9:119</p>
+          </div>
+        </div></div>
+      </div>
+
+      <!-- 2. PARENTS -->
+      <div class="guide-item">
+        <button class="guide-head" type="button" aria-expanded="false">
+          <span class="guide-ic">👪</span>
+          <span class="guide-htext">
+            <span class="guide-title" data-te="తల్లిదండ్రుల పట్ల మంచితనం" data-en="Kindness to Parents">తల్లిదండ్రుల పట్ల మంచితనం</span>
+            <span class="guide-sub" data-te="అల్లాహ్ ఆరాధన తర్వాత అతి పెద్ద హక్కు" data-en="A right second only to worshipping Allah">అల్లాహ్ ఆరాధన తర్వాత అతి పెద్ద హక్కు</span>
+          </span>
+          <span class="guide-chev">▾</span>
+        </button>
+        <div class="guide-body"><div class="guide-body-inner">
+          <div class="tcard-block tcard-faith">
+            <span class="tcard-label" data-te="ఖురాన్" data-en="Quran">ఖురాన్</span>
+            <p data-te="&quot;నీ ప్రభువు ఆజ్ఞాపించాడు — ఆయనను తప్ప మరెవరినీ ఆరాధించవద్దని, మరియు తల్లిదండ్రుల పట్ల మంచిగా ప్రవర్తించాలని. వారిలో ఒకరు లేదా ఇద్దరూ వృద్ధాప్యానికి చేరితే వారిని విసుక్కోవద్దు… వారితో మర్యాదగా మాట్లాడు.&quot;" data-en="&quot;Your Lord has decreed that you worship none but Him, and that you be kind to parents. If one or both reach old age with you, do not say to them (even) 'uff'… and speak to them a noble word.&quot;">&quot;నీ ప్రభువు ఆజ్ఞాపించాడు — ఆయనను తప్ప మరెవరినీ ఆరాధించవద్దని, మరియు తల్లిదండ్రుల పట్ల మంచిగా ప్రవర్తించాలని. వారిలో ఒకరు లేదా ఇద్దరూ వృద్ధాప్యానికి చేరితే వారిని విసుక్కోవద్దు… వారితో మర్యాదగా మాట్లాడు.&quot;</p>
+            <p class="guide-ref"><strong data-te="ఆధారం:" data-en="Reference:">ఆధారం:</strong> Quran 17:23-24</p>
+          </div>
+        </div></div>
+      </div>
+
+      <!-- 3. NEIGHBOURS -->
+      <div class="guide-item">
+        <button class="guide-head" type="button" aria-expanded="false">
+          <span class="guide-ic">🏘️</span>
+          <span class="guide-htext">
+            <span class="guide-title" data-te="పొరుగువారి హక్కులు" data-en="The Rights of Neighbours">పొరుగువారి హక్కులు</span>
+            <span class="guide-sub" data-te="నీ పొరుగువాడు ఆకలితో ఉండకూడదు" data-en="Your neighbour should not go hungry">నీ పొరుగువాడు ఆకలితో ఉండకూడదు</span>
+          </span>
+          <span class="guide-chev">▾</span>
+        </button>
+        <div class="guide-body"><div class="guide-body-inner">
+          <div class="tcard-block tcard-faith">
+            <span class="tcard-label" data-te="ప్రవక్త (స.అ.) వాక్కు" data-en="The Prophet ﷺ said">ప్రవక్త (స.అ.) వాక్కు</span>
+            <p data-te="&quot;జిబ్రీల్ నాకు పొరుగువారి గురించి ఎంతగా ఉపదేశిస్తూ ఉండేవారంటే, పొరుగువాడిని వారసునిగా చేస్తారేమో అనిపించింది.&quot; మరియు: &quot;తన పొరుగువాడు ఆకలితో ఉండగా తాను కడుపునిండా తినేవాడు (నిజమైన) విశ్వాసి కాడు.&quot;" data-en="&quot;Gabriel kept advising me about the neighbour until I thought he would make him an heir.&quot; And: &quot;He is not a (true) believer who eats his fill while his neighbour beside him goes hungry.&quot;">&quot;జిబ్రీల్ నాకు పొరుగువారి గురించి ఎంతగా ఉపదేశిస్తూ ఉండేవారంటే, పొరుగువాడిని వారసునిగా చేస్తారేమో అనిపించింది.&quot; మరియు: &quot;తన పొరుగువాడు ఆకలితో ఉండగా తాను కడుపునిండా తినేవాడు (నిజమైన) విశ్వాసి కాడు.&quot;</p>
+            <p class="guide-ref"><strong data-te="ఆధారం:" data-en="Reference:">ఆధారం:</strong> Sahih al-Bukhari 6014 · Al-Adab Al-Mufrad 112</p>
+          </div>
+        </div></div>
+      </div>
+
+      <!-- 4. ANGER -->
+      <div class="guide-item">
+        <button class="guide-head" type="button" aria-expanded="false">
+          <span class="guide-ic">😤</span>
+          <span class="guide-htext">
+            <span class="guide-title" data-te="కోపాన్ని నియంత్రించడం" data-en="Controlling Anger">కోపాన్ని నియంత్రించడం</span>
+            <span class="guide-sub" data-te="బలవంతుడు కోపంలో తనను అదుపు చేసుకునేవాడు" data-en="The strong one controls himself in anger">బలవంతుడు కోపంలో తనను అదుపు చేసుకునేవాడు</span>
+          </span>
+          <span class="guide-chev">▾</span>
+        </button>
+        <div class="guide-body"><div class="guide-body-inner">
+          <div class="tcard-block tcard-faith">
+            <span class="tcard-label" data-te="ప్రవక్త (స.అ.) వాక్కు" data-en="The Prophet ﷺ said">ప్రవక్త (స.అ.) వాక్కు</span>
+            <p data-te="&quot;బలవంతుడు అంటే (మల్లయుద్ధంలో) ఇతరులను ఓడించేవాడు కాదు; నిజమైన బలవంతుడు కోపం వచ్చినప్పుడు తనను తాను అదుపులో ఉంచుకునేవాడు.&quot;" data-en="&quot;The strong man is not the one who wrestles others down; the strong man is the one who controls himself when he is angry.&quot;">&quot;బలవంతుడు అంటే (మల్లయుద్ధంలో) ఇతరులను ఓడించేవాడు కాదు; నిజమైన బలవంతుడు కోపం వచ్చినప్పుడు తనను తాను అదుపులో ఉంచుకునేవాడు.&quot;</p>
+            <p class="guide-ref"><strong data-te="ఆధారం:" data-en="Reference:">ఆధారం:</strong> Sahih al-Bukhari 6114 · Sahih Muslim 2609</p>
+          </div>
+        </div></div>
+      </div>
+
+      <!-- 5. GOOD SPEECH -->
+      <div class="guide-item">
+        <button class="guide-head" type="button" aria-expanded="false">
+          <span class="guide-ic">🗣️</span>
+          <span class="guide-htext">
+            <span class="guide-title" data-te="మంచి మాట & నాలుకను కాపాడుకోవడం" data-en="Good Speech & Guarding the Tongue">మంచి మాట & నాలుకను కాపాడుకోవడం</span>
+            <span class="guide-sub" data-te="మంచి మాట్లాడు లేదా మౌనంగా ఉండు" data-en="Speak good or remain silent">మంచి మాట్లాడు లేదా మౌనంగా ఉండు</span>
+          </span>
+          <span class="guide-chev">▾</span>
+        </button>
+        <div class="guide-body"><div class="guide-body-inner">
+          <div class="tcard-block tcard-faith">
+            <span class="tcard-label" data-te="ప్రవక్త (స.అ.) వాక్కు" data-en="The Prophet ﷺ said">ప్రవక్త (స.అ.) వాక్కు</span>
+            <p data-te="&quot;ఎవరైతే అల్లాహ్‌ను మరియు అంతిమ దినాన్ని విశ్వసిస్తారో, వారు మంచి మాట్లాడాలి, లేదా మౌనంగా ఉండాలి.&quot;" data-en="&quot;Whoever believes in Allah and the Last Day, let him speak good or remain silent.&quot;">&quot;ఎవరైతే అల్లాహ్‌ను మరియు అంతిమ దినాన్ని విశ్వసిస్తారో, వారు మంచి మాట్లాడాలి, లేదా మౌనంగా ఉండాలి.&quot;</p>
+            <p class="guide-ref"><strong data-te="ఆధారం:" data-en="Reference:">ఆధారం:</strong> Sahih al-Bukhari 6018 · Sahih Muslim 47</p>
+          </div>
+        </div></div>
+      </div>
+
+      <!-- 6. HUMILITY / BEST CHARACTER -->
+      <div class="guide-item">
+        <button class="guide-head" type="button" aria-expanded="false">
+          <span class="guide-ic">🌸</span>
+          <span class="guide-htext">
+            <span class="guide-title" data-te="వినయం & ఉత్తమ స్వభావం" data-en="Humility & the Best Character">వినయం & ఉత్తమ స్వభావం</span>
+            <span class="guide-sub" data-te="విశ్వాసంలో ఉత్తములు మంచి స్వభావం కలవారు" data-en="The best in faith are the best in character">విశ్వాసంలో ఉత్తములు మంచి స్వభావం కలవారు</span>
+          </span>
+          <span class="guide-chev">▾</span>
+        </button>
+        <div class="guide-body"><div class="guide-body-inner">
+          <div class="tcard-block tcard-faith">
+            <span class="tcard-label" data-te="ప్రవక్త (స.అ.) వాక్కు" data-en="The Prophet ﷺ said">ప్రవక్త (స.అ.) వాక్కు</span>
+            <p data-te="&quot;విశ్వాసులలో విశ్వాసం పరంగా అత్యుత్తములు, స్వభావంలో అత్యుత్తమమైనవారు.&quot; అల్లాహ్ ప్రవక్త (స.అ.)ను ఇలా ప్రశంసించాడు: &quot;నిశ్చయంగా నీవు ఒక మహోన్నత స్వభావం కలవాడివి.&quot;" data-en="&quot;The most complete of the believers in faith are those with the best character.&quot; Allah praised the Prophet (ﷺ): &quot;Indeed, you are of a great moral character.&quot;">&quot;విశ్వాసులలో విశ్వాసం పరంగా అత్యుత్తములు, స్వభావంలో అత్యుత్తమమైనవారు.&quot; అల్లాహ్ ప్రవక్త (స.అ.)ను ఇలా ప్రశంసించాడు: &quot;నిశ్చయంగా నీవు ఒక మహోన్నత స్వభావం కలవాడివి.&quot;</p>
+            <p class="guide-ref"><strong data-te="ఆధారం:" data-en="Reference:">ఆధారం:</strong> Sunan al-Tirmidhi 1162 · Quran 68:4</p>
+          </div>
+        </div></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ISLAM & MODERN LIFE -->
+<section class="kc-sec modern-life" id="modern-life">
+  <div class="kc-inner">
+    <div class="sec-tag reveal" data-te="ఇస్లాం & ఆధునిక జీవితం" data-en="Islam & Modern Life">ఇస్లాం & ఆధునిక జీవితం</div>
+    <h2 class="sec-title reveal" data-te="విశ్వాసం, మనస్సు మరియు ఆధునిక శాస్త్రం" data-en="Faith, the Mind and Modern Science">విశ్వాసం, మనస్సు మరియు ఆధునిక శాస్త్రం</h2>
+    <p class="sec-lead reveal" data-te="ఇస్లాం 1400 సంవత్సరాల క్రితం ఇచ్చిన మార్గదర్శకత్వాన్ని నేటి శాస్త్రం పదేపదే ధృవీకరిస్తోంది. ఇక్కడ ప్రామాణిక ఇస్లామిక్ బోధనలను ఆధునిక శాస్త్రీయ అవగాహనతో కలిపి — ఆరోగ్యకరమైన మనస్సు, శరీరం మరియు జీవనం కోసం ఆచరణాత్మక మార్గదర్శనం అందిస్తున్నాము." data-en="Modern science increasingly confirms guidance Islam gave over 1,400 years ago. Here we combine authentic Islamic teachings with current scientific understanding — offering practical guidance for a healthy mind, body and life.">ఇస్లాం 1400 సంవత్సరాల క్రితం ఇచ్చిన మార్గదర్శకత్వాన్ని నేటి శాస్త్రం పదేపదే ధృవీకరిస్తోంది. ఇక్కడ ప్రామాణిక ఇస్లామిక్ బోధనలను ఆధునిక శాస్త్రీయ అవగాహనతో కలిపి — ఆరోగ్యకరమైన మనస్సు, శరీరం మరియు జీవనం కోసం ఆచరణాత్మక మార్గదర్శనం అందిస్తున్నాము.</p>
+
+    <div class="guide-acc ml-acc reveal">
+
+      <!-- 1. MENTAL HEALTH -->
+      <div class="guide-item">
+        <button class="guide-head" type="button" aria-expanded="false">
+          <span class="guide-ic">🧘</span>
+          <span class="guide-htext">
+            <span class="guide-title" data-te="మానసిక ఆరోగ్యం & భావోద్వేగ సంక్షేమం" data-en="Mental Health & Emotional Well-Being">మానసిక ఆరోగ్యం & భావోద్వేగ సంక్షేమం</span>
+            <span class="guide-sub" data-te="ఆందోళన, దుఃఖం మరియు మనశ్శాంతి" data-en="Anxiety, grief and inner peace">ఆందోళన, దుఃఖం మరియు మనశ్శాంతి</span>
+          </span>
+          <span class="guide-chev">▾</span>
+        </button>
+        <div class="guide-body"><div class="guide-body-inner">
+          <p class="guide-intro" data-te="ఒత్తిడి, ఆందోళన మానవ సహజం. ఇస్లాం వీటిని తోసిపుచ్చదు — వాటిని ఎదుర్కొనే ఆధ్యాత్మిక మరియు ఆచరణాత్మక మార్గాలను అందిస్తుంది." data-en="Stress and anxiety are part of being human. Islam does not dismiss them — it offers both spiritual and practical ways to face them.">ఒత్తిడి, ఆందోళన మానవ సహజం. ఇస్లాం వీటిని తోసిపుచ్చదు — వాటిని ఎదుర్కొనే ఆధ్యాత్మిక మరియు ఆచరణాత్మక మార్గాలను అందిస్తుంది.</p>
+          <div class="tcard-block tcard-faith">
+            <span class="tcard-label" data-te="ఇస్లామిక్ బోధన" data-en="Islamic Teaching">ఇస్లామిక్ బోధన</span>
+            <p data-te="అల్లాహ్ అంటున్నాడు: &quot;…అల్లాహ్ స్మరణతో హృదయాలు ప్రశాంతత పొందుతాయి.&quot; ప్రవక్త (స.అ.) ఆందోళన మరియు దుఃఖం నుండి రక్షణ కోరుతూ దుఆ చేసేవారు." data-en="Allah says: &quot;…surely in the remembrance of Allah do hearts find rest.&quot; The Prophet (ﷺ) regularly made a supplication seeking refuge from anxiety and grief.">అల్లాహ్ అంటున్నాడు: &quot;…అల్లాహ్ స్మరణతో హృదయాలు ప్రశాంతత పొందుతాయి.&quot; ప్రవక్త (స.అ.) ఆందోళన మరియు దుఃఖం నుండి రక్షణ కోరుతూ దుఆ చేసేవారు.</p>
+            <p class="guide-ref"><strong data-te="ఆధారం:" data-en="Reference:">ఆధారం:</strong> Quran 13:28 · Sahih al-Bukhari 6369</p>
+          </div>
+          <div class="tcard-block tcard-science">
+            <span class="tcard-label" data-te="ఆధునిక శాస్త్రం ఏమంటోంది" data-en="What Modern Science Says">ఆధునిక శాస్త్రం ఏమంటోంది</span>
+            <p data-te="పరిశోధనలు చూపిస్తున్నాయి — క్రమమైన ధ్యానం/స్మరణ (దిక్ర్), కృతజ్ఞత, నిద్ర, సామాజిక బంధాలు మరియు స్థిరమైన దినచర్య కార్టిసాల్ (ఒత్తిడి హార్మోన్)ను తగ్గించి ఆందోళన, నిరాశలను తగ్గిస్తాయి. రోజువారీ ఐదు పూటల నమాజ్ ఈ నిర్మాణాన్ని సహజంగా అందిస్తుంది." data-en="Research shows that regular meditation/remembrance (dhikr), gratitude, sleep, social bonds and a steady daily routine lower cortisol (the stress hormone) and reduce anxiety and depression. The five daily prayers naturally provide this structure.">పరిశోధనలు చూపిస్తున్నాయి — క్రమమైన ధ్యానం/స్మరణ (దిక్ర్), కృతజ్ఞత, నిద్ర, సామాజిక బంధాలు మరియు స్థిరమైన దినచర్య కార్టిసాల్ (ఒత్తిడి హార్మోన్)ను తగ్గించి ఆందోళన, నిరాశలను తగ్గిస్తాయి. రోజువారీ ఐదు పూటల నమాజ్ ఈ నిర్మాణాన్ని సహజంగా అందిస్తుంది.</p>
+          </div>
+          <div class="tcard-block tcard-practical">
+            <span class="tcard-label" data-te="ఆచరణాత్మక చర్యలు" data-en="Practical Steps">ఆచరణాత్మక చర్యలు</span>
+            <ul class="tcard-list">
+              <li data-te="రోజూ ఉదయం మరియు సాయంత్రం దిక్ర్, దుఆ అలవాటు చేసుకోండి." data-en="Build a habit of morning and evening dhikr and dua.">రోజూ ఉదయం మరియు సాయంత్రం దిక్ర్, దుఆ అలవాటు చేసుకోండి.</li>
+              <li data-te="ఐదు పూటల నమాజ్‌ను రోజుకు లంగరుగా ఉపయోగించుకోండి." data-en="Use the five daily prayers as anchors throughout your day.">ఐదు పూటల నమాజ్‌ను రోజుకు లంగరుగా ఉపయోగించుకోండి.</li>
+              <li data-te="ప్రతిరోజూ మూడు అనుగ్రహాలను లెక్కించి కృతజ్ఞత తెలపండి." data-en="Count three blessings each day to cultivate gratitude.">ప్రతిరోజూ మూడు అనుగ్రహాలను లెక్కించి కృతజ్ఞత తెలపండి.</li>
+              <li data-te="అవసరమైతే నిపుణుల సహాయం తీసుకోవడం బలహీనత కాదు — అది వివేకం." data-en="Seeking professional help when needed is not weakness — it is wisdom.">అవసరమైతే నిపుణుల సహాయం తీసుకోవడం బలహీనత కాదు — అది వివేకం.</li>
+            </ul>
+          </div>
+        </div></div>
+      </div>
+
+      <!-- 2. ADDICTION -->
+      <div class="guide-item">
+        <button class="guide-head" type="button" aria-expanded="false">
+          <span class="guide-ic">⛓️</span>
+          <span class="guide-htext">
+            <span class="guide-title" data-te="వ్యసనాన్ని అర్థం చేసుకోవడం" data-en="Understanding Addiction">వ్యసనాన్ని అర్థం చేసుకోవడం</span>
+            <span class="guide-sub" data-te="మద్యం, మాదకద్రవ్యాలు, జూదం మరియు తెర-వ్యసనం" data-en="Alcohol, drugs, gambling and screen addiction">మద్యం, మాదకద్రవ్యాలు, జూదం మరియు తెర-వ్యసనం</span>
+          </span>
+          <span class="guide-chev">▾</span>
+        </button>
+        <div class="guide-body"><div class="guide-body-inner">
+          <p class="guide-intro" data-te="వ్యసనం కేవలం ఇష్టమైన ఎంపిక కాదు — అది మెదడు యొక్క బహుమతి వ్యవస్థను స్వాధీనం చేసుకుంటుంది. మత్తు కలిగించే ప్రతిదాన్ని ఇస్లాం నిషేధించడం ఈ ప్రమాదాన్ని మూలంలోనే అడ్డుకుంటుంది." data-en="Addiction is not simply a lifestyle choice — it hijacks the brain's reward system. Islam's prohibition of all intoxicants guards against this danger at its root.">వ్యసనం కేవలం ఇష్టమైన ఎంపిక కాదు — అది మెదడు యొక్క బహుమతి వ్యవస్థను స్వాధీనం చేసుకుంటుంది. మత్తు కలిగించే ప్రతిదాన్ని ఇస్లాం నిషేధించడం ఈ ప్రమాదాన్ని మూలంలోనే అడ్డుకుంటుంది.</p>
+          <div class="tcard-block tcard-faith">
+            <span class="tcard-label" data-te="ఇస్లామిక్ బోధన" data-en="Islamic Teaching">ఇస్లామిక్ బోధన</span>
+            <p data-te="అల్లాహ్ అంటున్నాడు: &quot;ఓ విశ్వాసులారా! మద్యం, జూదం… షైతాన్ పనిలోని అపవిత్రమైనవి; కావున వాటిని విడిచిపెట్టండి — మీరు సాఫల్యం పొందవచ్చు.&quot; ప్రవక్త (స.అ.) చెప్పారు: &quot;ఏది ఎక్కువ మోతాదులో మత్తు కలిగిస్తుందో, దాని కొద్ది మోతాదు కూడా నిషిద్ధం.&quot;" data-en="Allah says: &quot;O you who believe! Intoxicants and gambling… are an abomination of Satan's handiwork, so avoid it that you may be successful.&quot; The Prophet (ﷺ) said: &quot;Whatever intoxicates in large amounts, a small amount of it is also unlawful.&quot;">అల్లాహ్ అంటున్నాడు: &quot;ఓ విశ్వాసులారా! మద్యం, జూదం… షైతాన్ పనిలోని అపవిత్రమైనవి; కావున వాటిని విడిచిపెట్టండి — మీరు సాఫల్యం పొందవచ్చు.&quot; ప్రవక్త (స.అ.) చెప్పారు: &quot;ఏది ఎక్కువ మోతాదులో మత్తు కలిగిస్తుందో, దాని కొద్ది మోతాదు కూడా నిషిద్ధం.&quot;</p>
+            <p class="guide-ref"><strong data-te="ఆధారం:" data-en="Reference:">ఆధారం:</strong> Quran 5:90-91 · Sunan Abi Dawud 3681</p>
+          </div>
+          <div class="tcard-block tcard-science">
+            <span class="tcard-label" data-te="ఆధునిక శాస్త్రం ఏమంటోంది" data-en="What Modern Science Says">ఆధునిక శాస్త్రం ఏమంటోంది</span>
+            <p data-te="మాదకద్రవ్యాలు, మద్యం — అలాగే జూదం, పోర్నోగ్రఫీ, అతిగా తెర వాడకం — మెదడులోని డోపమైన్ బహుమతి మార్గాన్ని అతిగా ఉత్తేజపరచి, సహనం (టాలరెన్స్) మరియు తీవ్ర కోరికలను (క్రేవింగ్) సృష్టిస్తాయి. ఇవి కేవలం ఇష్టాలు కావు — ఒక అనారోగ్యకర చక్రం." data-en="Drugs and alcohol — as well as gambling, pornography and excessive screen use — over-stimulate the brain's dopamine reward pathway, creating tolerance and intense cravings. These are not mere preferences but an unhealthy cycle.">మాదకద్రవ్యాలు, మద్యం — అలాగే జూదం, పోర్నోగ్రఫీ, అతిగా తెర వాడకం — మెదడులోని డోపమైన్ బహుమతి మార్గాన్ని అతిగా ఉత్తేజపరచి, సహనం (టాలరెన్స్) మరియు తీవ్ర కోరికలను (క్రేవింగ్) సృష్టిస్తాయి. ఇవి కేవలం ఇష్టాలు కావు — ఒక అనారోగ్యకర చక్రం.</p>
+          </div>
+          <div class="tcard-block tcard-practical">
+            <span class="tcard-label" data-te="ఆచరణాత్మక చర్యలు" data-en="Practical Steps">ఆచరణాత్మక చర్యలు</span>
+            <ul class="tcard-list">
+              <li data-te="ట్రిగ్గర్‌లను (ప్రేరేపించే ప్రదేశాలు, వ్యక్తులు, యాప్‌లు) గుర్తించి దూరంగా ఉండండి." data-en="Identify and avoid triggers — places, people or apps that prompt the behaviour.">ట్రిగ్గర్‌లను (ప్రేరేపించే ప్రదేశాలు, వ్యక్తులు, యాప్‌లు) గుర్తించి దూరంగా ఉండండి.</li>
+              <li data-te="హానికర అలవాట్లను ప్రయోజనకర అలవాట్లతో భర్తీ చేయండి." data-en="Replace harmful habits with beneficial ones.">హానికర అలవాట్లను ప్రయోజనకర అలవాట్లతో భర్తీ చేయండి.</li>
+              <li data-te="విశ్వసనీయ వ్యక్తి లేదా సమూహంతో జవాబుదారీతనం ఏర్పరచుకోండి." data-en="Build accountability with a trusted person or group.">విశ్వసనీయ వ్యక్తి లేదా సమూహంతో జవాబుదారీతనం ఏర్పరచుకోండి.</li>
+              <li data-te="నిజాయితీగా తౌబా (పశ్చాత్తాపం) చేయండి మరియు అవసరమైతే వైద్య/మానసిక సహాయం పొందండి." data-en="Make sincere tawbah (repentance) and seek medical or psychological help when needed.">నిజాయితీగా తౌబా (పశ్చాత్తాపం) చేయండి మరియు అవసరమైతే వైద్య/మానసిక సహాయం పొందండి.</li>
+            </ul>
+          </div>
+        </div></div>
+      </div>
+
+      <!-- 3. RECOVERY -->
+      <div class="guide-item">
+        <button class="guide-head" type="button" aria-expanded="false">
+          <span class="guide-ic">🌱</span>
+          <span class="guide-htext">
+            <span class="guide-title" data-te="పునరావాసం & కోలుకోవడం" data-en="Rehabilitation & Recovery">పునరావాసం & కోలుకోవడం</span>
+            <span class="guide-sub" data-te="పశ్చాత్తాపం, ఆశ మరియు కొత్త ప్రారంభం" data-en="Repentance, hope and starting again">పశ్చాత్తాపం, ఆశ మరియు కొత్త ప్రారంభం</span>
+          </span>
+          <span class="guide-chev">▾</span>
+        </button>
+        <div class="guide-body"><div class="guide-body-inner">
+          <p class="guide-intro" data-te="ఎంత దూరం పడిపోయినా అల్లాహ్ తలుపులు ఎల్లప్పుడూ తెరిచే ఉంటాయి. కోలుకోవడం అనేది ఒక సరళ రేఖ కాదు — అది ఒక ప్రయాణం." data-en="No matter how far one has fallen, Allah's door is always open. Recovery is not a straight line — it is a journey.">ఎంత దూరం పడిపోయినా అల్లాహ్ తలుపులు ఎల్లప్పుడూ తెరిచే ఉంటాయి. కోలుకోవడం అనేది ఒక సరళ రేఖ కాదు — అది ఒక ప్రయాణం.</p>
+          <div class="tcard-block tcard-faith">
+            <span class="tcard-label" data-te="ఇస్లామిక్ బోధన" data-en="Islamic Teaching">ఇస్లామిక్ బోధన</span>
+            <p data-te="అల్లాహ్ అంటున్నాడు: &quot;…అల్లాహ్ కరుణ పట్ల నిరాశ చెందకండి. నిశ్చయంగా అల్లాహ్ అన్ని పాపాలను క్షమిస్తాడు.&quot; ప్రవక్త (స.అ.) చెప్పారు: &quot;ఆదమ్ సంతానమంతా తప్పులు చేసేవారే; తప్పు చేసేవారిలో ఉత్తములు పశ్చాత్తాపపడేవారు.&quot; 100 మందిని చంపిన వ్యక్తి కూడా నిజాయితీగా మరలినప్పుడు క్షమించబడ్డాడని ప్రవక్త (స.అ.) తెలిపారు." data-en="Allah says: &quot;…do not despair of the mercy of Allah. Indeed, Allah forgives all sins.&quot; The Prophet (ﷺ) said: &quot;Every son of Adam errs, and the best of those who err are those who repent.&quot; He also told of a man who had killed a hundred people yet was forgiven when he sincerely turned back.">అల్లాహ్ అంటున్నాడు: &quot;…అల్లాహ్ కరుణ పట్ల నిరాశ చెందకండి. నిశ్చయంగా అల్లాహ్ అన్ని పాపాలను క్షమిస్తాడు.&quot; ప్రవక్త (స.అ.) చెప్పారు: &quot;ఆదమ్ సంతానమంతా తప్పులు చేసేవారే; తప్పు చేసేవారిలో ఉత్తములు పశ్చాత్తాపపడేవారు.&quot; 100 మందిని చంపిన వ్యక్తి కూడా నిజాయితీగా మరలినప్పుడు క్షమించబడ్డాడని ప్రవక్త (స.అ.) తెలిపారు.</p>
+            <p class="guide-ref"><strong data-te="ఆధారం:" data-en="Reference:">ఆధారం:</strong> Quran 39:53 · Sahih al-Bukhari 3470 · Sunan al-Tirmidhi 2499</p>
+          </div>
+          <div class="tcard-block tcard-science">
+            <span class="tcard-label" data-te="ఆధునిక శాస్త్రం ఏమంటోంది" data-en="What Modern Science Says">ఆధునిక శాస్త్రం ఏమంటోంది</span>
+            <p data-te="ఆధునిక వ్యసన శాస్త్రం చెప్తుంది — ఒక్కసారి జారడం (రిలాప్స్) మొత్తం పురోగతిని చెరిపివేయదు. నిర్మాణాత్మక దినచర్య, స్పష్టమైన ఉద్దేశ్యం మరియు మద్దతు ఇచ్చే సంబంధాలు దీర్ఘకాలిక కోలుకోవడాన్ని అత్యధికంగా నిర్ణయించే అంశాలు." data-en="Modern addiction science confirms that a single relapse does not erase all progress. A structured routine, a clear sense of purpose, and supportive relationships are among the strongest predictors of long-term recovery.">ఆధునిక వ్యసన శాస్త్రం చెప్తుంది — ఒక్కసారి జారడం (రిలాప్స్) మొత్తం పురోగతిని చెరిపివేయదు. నిర్మాణాత్మక దినచర్య, స్పష్టమైన ఉద్దేశ్యం మరియు మద్దతు ఇచ్చే సంబంధాలు దీర్ఘకాలిక కోలుకోవడాన్ని అత్యధికంగా నిర్ణయించే అంశాలు.</p>
+          </div>
+          <div class="tcard-block tcard-practical">
+            <span class="tcard-label" data-te="ఆచరణాత్మక చర్యలు" data-en="Practical Steps">ఆచరణాత్మక చర్యలు</span>
+            <ul class="tcard-list">
+              <li data-te="ఒక్క తప్పును పూర్తి పతనంగా మారనివ్వకండి — వెంటనే తిరిగి లేవండి." data-en="Don't let one slip become a total collapse — get back up immediately.">ఒక్క తప్పును పూర్తి పతనంగా మారనివ్వకండి — వెంటనే తిరిగి లేవండి.</li>
+              <li data-te="నమాజ్ చుట్టూ కొత్త, ఆరోగ్యకర దినచర్యను నిర్మించుకోండి." data-en="Build a new, healthy routine around the daily prayers.">నమాజ్ చుట్టూ కొత్త, ఆరోగ్యకర దినచర్యను నిర్మించుకోండి.</li>
+              <li data-te="మీ ప్రయాణంలో మద్దతు ఇచ్చే వ్యక్తులను చేరదీయండి." data-en="Surround yourself with people who support your journey.">మీ ప్రయాణంలో మద్దతు ఇచ్చే వ్యక్తులను చేరదీయండి.</li>
+              <li data-te="చిన్న, నిలకడైన అడుగులపై దృష్టి పెట్టండి — పరిపూర్ణతపై కాదు." data-en="Focus on small, consistent steps — not on perfection.">చిన్న, నిలకడైన అడుగులపై దృష్టి పెట్టండి — పరిపూర్ణతపై కాదు.</li>
+            </ul>
+          </div>
+        </div></div>
+      </div>
+
+      <!-- 4. LIFESTYLE & HEALTH -->
+      <div class="guide-item">
+        <button class="guide-head" type="button" aria-expanded="false">
+          <span class="guide-ic">🍎</span>
+          <span class="guide-htext">
+            <span class="guide-title" data-te="జీవనశైలి & ఆరోగ్యం" data-en="Lifestyle & Health">జీవనశైలి & ఆరోగ్యం</span>
+            <span class="guide-sub" data-te="ఆహారం, శరీరం మరియు పరిశుభ్రత" data-en="Diet, the body and cleanliness">ఆహారం, శరీరం మరియు పరిశుభ్రత</span>
+          </span>
+          <span class="guide-chev">▾</span>
+        </button>
+        <div class="guide-body"><div class="guide-body-inner">
+          <p class="guide-intro" data-te="శరీరం అల్లాహ్ ఇచ్చిన అమానత్ (నమ్మకపు ఆస్తి). దాన్ని కాపాడుకోవడం ఆరాధనలో ఒక భాగం." data-en="The body is an amanah (a trust) from Allah. Caring for it is part of worship.">శరీరం అల్లాహ్ ఇచ్చిన అమానత్ (నమ్మకపు ఆస్తి). దాన్ని కాపాడుకోవడం ఆరాధనలో ఒక భాగం.</p>
+          <div class="tcard-block tcard-faith">
+            <span class="tcard-label" data-te="ఇస్లామిక్ బోధన" data-en="Islamic Teaching">ఇస్లామిక్ బోధన</span>
+            <p data-te="అల్లాహ్ అంటున్నాడు: &quot;…తినండి, త్రాగండి, కానీ మితిమీరకండి.&quot; ప్రవక్త (స.అ.) చెప్పారు: &quot;బలమైన విశ్వాసి, బలహీన విశ్వాసి కంటే అల్లాహ్‌కు మేలైనవాడు మరియు ప్రియమైనవాడు&quot; మరియు &quot;పరిశుభ్రత విశ్వాసంలో సగం.&quot;" data-en="Allah says: &quot;…eat and drink, but be not excessive.&quot; The Prophet (ﷺ) said: &quot;The strong believer is better and more beloved to Allah than the weak believer,&quot; and: &quot;Cleanliness is half of faith.&quot;">అల్లాహ్ అంటున్నాడు: &quot;…తినండి, త్రాగండి, కానీ మితిమీరకండి.&quot; ప్రవక్త (స.అ.) చెప్పారు: &quot;బలమైన విశ్వాసి, బలహీన విశ్వాసి కంటే అల్లాహ్‌కు మేలైనవాడు మరియు ప్రియమైనవాడు&quot; మరియు &quot;పరిశుభ్రత విశ్వాసంలో సగం.&quot;</p>
+            <p class="guide-ref"><strong data-te="ఆధారం:" data-en="Reference:">ఆధారం:</strong> Quran 7:31 · Sahih Muslim 223, 2664 · Sunan al-Tirmidhi 2380</p>
+          </div>
+          <div class="tcard-block tcard-science">
+            <span class="tcard-label" data-te="ఆధునిక శాస్త్రం ఏమంటోంది" data-en="What Modern Science Says">ఆధునిక శాస్త్రం ఏమంటోంది</span>
+            <p data-te="మితమైన ఆహారం, క్రమమైన ఉపవాసం, శారీరక శ్రమ, తగినంత నిద్ర మరియు పరిశుభ్రత — ఇవి గుండె జబ్బులు, మధుమేహం, సంక్రమణలను తగ్గిస్తాయని శాస్త్రం రుజువు చేసింది. కడుపును మూడు భాగాలుగా (ఆహారం, నీరు, గాలి) ఉంచమనే ప్రవక్త (స.అ.) సూచన అతిగా తినడాన్ని నివారిస్తుంది." data-en="Moderate eating, regular fasting, physical activity, adequate sleep and hygiene are scientifically proven to reduce heart disease, diabetes and infection. The Prophet's (ﷺ) guidance to keep the stomach in thirds (food, water, air) prevents overeating.">మితమైన ఆహారం, క్రమమైన ఉపవాసం, శారీరక శ్రమ, తగినంత నిద్ర మరియు పరిశుభ్రత — ఇవి గుండె జబ్బులు, మధుమేహం, సంక్రమణలను తగ్గిస్తాయని శాస్త్రం రుజువు చేసింది. కడుపును మూడు భాగాలుగా (ఆహారం, నీరు, గాలి) ఉంచమనే ప్రవక్త (స.అ.) సూచన అతిగా తినడాన్ని నివారిస్తుంది.</p>
+          </div>
+          <div class="tcard-block tcard-practical">
+            <span class="tcard-label" data-te="ఆచరణాత్మక చర్యలు" data-en="Practical Steps">ఆచరణాత్మక చర్యలు</span>
+            <ul class="tcard-list">
+              <li data-te="మోతాదును నియంత్రించండి — కొంత ఆకలి మిగిలి ఉండగానే తినడం ఆపండి." data-en="Control portions — stop eating while you still have a little appetite.">మోతాదును నియంత్రించండి — కొంత ఆకలి మిగిలి ఉండగానే తినడం ఆపండి.</li>
+              <li data-te="వారానికి కొన్ని రోజులు (ఉదా: సోమ, గురువారాలు) ఉపవాసం పాటించండి." data-en="Fast on a few days each week (for example, Mondays and Thursdays).">వారానికి కొన్ని రోజులు (ఉదా: సోమ, గురువారాలు) ఉపవాసం పాటించండి.</li>
+              <li data-te="ప్రతిరోజూ నడక లేదా వ్యాయామం చేయండి." data-en="Walk or exercise every day.">ప్రతిరోజూ నడక లేదా వ్యాయామం చేయండి.</li>
+              <li data-te="నిద్ర, పరిశుభ్రత మరియు వుజూ ద్వారా శరీర శుద్ధిని కాపాడుకోండి." data-en="Protect sleep, hygiene and physical cleanliness, including through wudu.">నిద్ర, పరిశుభ్రత మరియు వుజూ ద్వారా శరీర శుద్ధిని కాపాడుకోండి.</li>
+            </ul>
+          </div>
+        </div></div>
+      </div>
+
+      <!-- 5. BRAIN & BEHAVIOUR -->
+      <div class="guide-item">
+        <button class="guide-head" type="button" aria-expanded="false">
+          <span class="guide-ic">🧠</span>
+          <span class="guide-htext">
+            <span class="guide-title" data-te="మెదడు & మానవ ప్రవర్తన" data-en="Brain & Human Behaviour">మెదడు & మానవ ప్రవర్తన</span>
+            <span class="guide-sub" data-te="అలవాట్లు, స్వీయ-సంస్కరణ మరియు శీలం" data-en="Habits, self-reform and character">అలవాట్లు, స్వీయ-సంస్కరణ మరియు శీలం</span>
+          </span>
+          <span class="guide-chev">▾</span>
+        </button>
+        <div class="guide-body"><div class="guide-body-inner">
+          <p class="guide-intro" data-te="మనం ఎవరమో మన అలవాట్లు నిర్ణయిస్తాయి. ఇస్లాం స్వీయ-సంస్కరణను (తజ్కియతున్-నఫ్స్) జీవితకాల ప్రయత్నంగా చూస్తుంది." data-en="We are shaped by our habits. Islam views self-reform (tazkiyat al-nafs) as a lifelong effort.">మనం ఎవరమో మన అలవాట్లు నిర్ణయిస్తాయి. ఇస్లాం స్వీయ-సంస్కరణను (తజ్కియతున్-నఫ్స్) జీవితకాల ప్రయత్నంగా చూస్తుంది.</p>
+          <div class="tcard-block tcard-faith">
+            <span class="tcard-label" data-te="ఇస్లామిక్ బోధన" data-en="Islamic Teaching">ఇస్లామిక్ బోధన</span>
+            <p data-te="అల్లాహ్ అంటున్నాడు: &quot;…ఒక జాతి తమలో ఉన్నదాన్ని తాము మార్చుకొనే వరకు అల్లాహ్ వారి స్థితిని మార్చడు&quot; మరియు &quot;తన ఆత్మను పరిశుద్ధపరచుకున్నవాడు సాఫల్యం పొందాడు.&quot; ఖురాన్ పదేపదే ఆలోచించమని, చింతన (తఫక్కుర్) చేయమని ప్రోత్సహిస్తుంది." data-en="Allah says: &quot;…Allah does not change the condition of a people until they change what is within themselves,&quot; and: &quot;He has succeeded who purifies the soul.&quot; The Quran repeatedly urges us to reflect and ponder (tafakkur).">అల్లాహ్ అంటున్నాడు: &quot;…ఒక జాతి తమలో ఉన్నదాన్ని తాము మార్చుకొనే వరకు అల్లాహ్ వారి స్థితిని మార్చడు&quot; మరియు &quot;తన ఆత్మను పరిశుద్ధపరచుకున్నవాడు సాఫల్యం పొందాడు.&quot; ఖురాన్ పదేపదే ఆలోచించమని, చింతన (తఫక్కుర్) చేయమని ప్రోత్సహిస్తుంది.</p>
+            <p class="guide-ref"><strong data-te="ఆధారం:" data-en="Reference:">ఆధారం:</strong> Quran 13:11 · Quran 91:9-10 · Quran 3:190-191</p>
+          </div>
+          <div class="tcard-block tcard-science">
+            <span class="tcard-label" data-te="ఆధునిక శాస్త్రం ఏమంటోంది" data-en="What Modern Science Says">ఆధునిక శాస్త్రం ఏమంటోంది</span>
+            <p data-te="న్యూరోసైన్స్ చూపిస్తుంది — పునరావృత ప్రవర్తనలు మెదడులోని నాడీ మార్గాలను భౌతికంగా పునర్నిర్మిస్తాయి (న్యూరోప్లాస్టిసిటీ). అలవాట్లు 'సూచన → చర్య → బహుమతి' చక్రం ద్వారా ఏర్పడతాయి; సాధన ద్వారా స్వీయ-నియంత్రణ బలపడుతుంది — ఇది నఫ్స్‌తో పోరాటం (ముజాహదహ్) అనే ఇస్లామిక్ భావనను ప్రతిబింబిస్తుంది." data-en="Neuroscience shows that repeated behaviours physically reshape the brain's neural pathways (neuroplasticity). Habits form through a 'cue → routine → reward' loop, and self-control strengthens with practice — mirroring the Islamic concept of striving against the self (mujahadah).">న్యూరోసైన్స్ చూపిస్తుంది — పునరావృత ప్రవర్తనలు మెదడులోని నాడీ మార్గాలను భౌతికంగా పునర్నిర్మిస్తాయి (న్యూరోప్లాస్టిసిటీ). అలవాట్లు 'సూచన → చర్య → బహుమతి' చక్రం ద్వారా ఏర్పడతాయి; సాధన ద్వారా స్వీయ-నియంత్రణ బలపడుతుంది — ఇది నఫ్స్‌తో పోరాటం (ముజాహదహ్) అనే ఇస్లామిక్ భావనను ప్రతిబింబిస్తుంది.</p>
+          </div>
+          <div class="tcard-block tcard-practical">
+            <span class="tcard-label" data-te="ఆచరణాత్మక చర్యలు" data-en="Practical Steps">ఆచరణాత్మక చర్యలు</span>
+            <ul class="tcard-list">
+              <li data-te="చెడు అలవాట్లను క్రమంగా, ఒక్కొక్కటిగా మంచి అలవాట్లతో మార్చండి." data-en="Replace bad habits with good ones gradually, one at a time.">చెడు అలవాట్లను క్రమంగా, ఒక్కొక్కటిగా మంచి అలవాట్లతో మార్చండి.</li>
+              <li data-te="మంచి చర్యలను పునరావృతం చేయండి — పునరావృతమే శీలాన్ని నిర్మిస్తుంది." data-en="Repeat good actions — repetition is what builds character.">మంచి చర్యలను పునరావృతం చేయండి — పునరావృతమే శీలాన్ని నిర్మిస్తుంది.</li>
+              <li data-te="మీరు చూసేది, వినేది జాగ్రత్తగా ఎంచుకోండి — ఇన్‌పుట్ ప్రవర్తనను మలుస్తుంది." data-en="Guard what you see and hear — your inputs shape your behaviour.">మీరు చూసేది, వినేది జాగ్రత్తగా ఎంచుకోండి — ఇన్‌పుట్ ప్రవర్తనను మలుస్తుంది.</li>
+              <li data-te="ప్రతిరోజూ కాస్త సమయం ఆత్మపరిశీలన, చింతనకు కేటాయించండి." data-en="Set aside a little time each day for self-reflection and contemplation.">ప్రతిరోజూ కాస్త సమయం ఆత్మపరిశీలన, చింతనకు కేటాయించండి.</li>
+            </ul>
+          </div>
+        </div></div>
+      </div>
+
+      <!-- 6. MODERN CHALLENGES -->
+      <div class="guide-item">
+        <button class="guide-head" type="button" aria-expanded="false">
+          <span class="guide-ic">📱</span>
+          <span class="guide-htext">
+            <span class="guide-title" data-te="ఇస్లాం & ఆధునిక సవాళ్లు" data-en="Islam & Modern Challenges">ఇస్లాం & ఆధునిక సవాళ్లు</span>
+            <span class="guide-sub" data-te="సోషల్ మీడియా, సమయం మరియు సమాచార యుగం" data-en="Social media, time and the information age">సోషల్ మీడియా, సమయం మరియు సమాచార యుగం</span>
+          </span>
+          <span class="guide-chev">▾</span>
+        </button>
+        <div class="guide-body"><div class="guide-body-inner">
+          <p class="guide-intro" data-te="డిజిటల్ యుగం కొత్త అవకాశాలతో పాటు కొత్త పరీక్షలను తెచ్చింది. ఇస్లాం సూత్రాలు — సమయ విలువ, సత్య ధృవీకరణ, సమతుల్యత — నేటికీ మార్గదర్శకాలే." data-en="The digital age has brought new opportunities alongside new tests. Islam's principles — valuing time, verifying truth, and maintaining balance — remain a guide today.">డిజిటల్ యుగం కొత్త అవకాశాలతో పాటు కొత్త పరీక్షలను తెచ్చింది. ఇస్లాం సూత్రాలు — సమయ విలువ, సత్య ధృవీకరణ, సమతుల్యత — నేటికీ మార్గదర్శకాలే.</p>
+          <div class="tcard-block tcard-faith">
+            <span class="tcard-label" data-te="ఇస్లామిక్ బోధన" data-en="Islamic Teaching">ఇస్లామిక్ బోధన</span>
+            <p data-te="ప్రవక్త (స.అ.) చెప్పారు: &quot;రెండు అనుగ్రహాల విషయంలో చాలా మంది మోసపోతారు: ఆరోగ్యం మరియు తీరిక సమయం.&quot; అల్లాహ్ అంటున్నాడు: &quot;ఓ విశ్వాసులారా! ఒక దుష్టుడు మీ వద్దకు ఏదైనా వార్త తెస్తే, దాన్ని ధృవీకరించుకోండి&quot; మరియు పరలోకాన్ని కోరుతూనే ప్రపంచంలో మీ వాటాను మరువవద్దని చెప్తుంది." data-en="The Prophet (ﷺ) said: &quot;There are two blessings which many people are deceived about: health and free time.&quot; Allah says: &quot;O you who believe! If a corrupt person brings you news, verify it,&quot; and instructs us to seek the Hereafter without forgetting our share of this world.">ప్రవక్త (స.అ.) చెప్పారు: &quot;రెండు అనుగ్రహాల విషయంలో చాలా మంది మోసపోతారు: ఆరోగ్యం మరియు తీరిక సమయం.&quot; అల్లాహ్ అంటున్నాడు: &quot;ఓ విశ్వాసులారా! ఒక దుష్టుడు మీ వద్దకు ఏదైనా వార్త తెస్తే, దాన్ని ధృవీకరించుకోండి&quot; మరియు పరలోకాన్ని కోరుతూనే ప్రపంచంలో మీ వాటాను మరువవద్దని చెప్తుంది.</p>
+            <p class="guide-ref"><strong data-te="ఆధారం:" data-en="Reference:">ఆధారం:</strong> Sahih al-Bukhari 6412 · Quran 49:6 · Quran 28:77</p>
+          </div>
+          <div class="tcard-block tcard-science">
+            <span class="tcard-label" data-te="ఆధునిక శాస్త్రం ఏమంటోంది" data-en="What Modern Science Says">ఆధునిక శాస్త్రం ఏమంటోంది</span>
+            <p data-te="సోషల్ మీడియా, అంతులేని స్క్రోలింగ్ డోపమైన్‌ను లక్ష్యంగా చేసుకొని రూపొందించబడ్డాయి; నిరంతర పోలిక (సోషల్ కంపారిజన్) ఆందోళన, నిరాశలను పెంచుతుందని పరిశోధనలు చూపిస్తున్నాయి. డిజిటల్ సంక్షేమ అధ్యయనాలు స్పష్టమైన హద్దులు, ఉద్దేశపూర్వక వాడకాన్ని సిఫార్సు చేస్తాయి." data-en="Social media and infinite scrolling are engineered to target dopamine; research shows that constant social comparison increases anxiety and depression. Digital-wellbeing studies recommend clear boundaries and intentional use.">సోషల్ మీడియా, అంతులేని స్క్రోలింగ్ డోపమైన్‌ను లక్ష్యంగా చేసుకొని రూపొందించబడ్డాయి; నిరంతర పోలిక (సోషల్ కంపారిజన్) ఆందోళన, నిరాశలను పెంచుతుందని పరిశోధనలు చూపిస్తున్నాయి. డిజిటల్ సంక్షేమ అధ్యయనాలు స్పష్టమైన హద్దులు, ఉద్దేశపూర్వక వాడకాన్ని సిఫార్సు చేస్తాయి.</p>
+          </div>
+          <div class="tcard-block tcard-practical">
+            <span class="tcard-label" data-te="ఆచరణాత్మక చర్యలు" data-en="Practical Steps">ఆచరణాత్మక చర్యలు</span>
+            <ul class="tcard-list">
+              <li data-te="తెర సమయానికి స్పష్టమైన హద్దులు పెట్టుకోండి (ఉదా: నమాజ్, భోజన సమయాల్లో ఫోన్ దూరంగా)." data-en="Set clear screen-time boundaries (for example, no phone during prayer and meals).">తెర సమయానికి స్పష్టమైన హద్దులు పెట్టుకోండి (ఉదా: నమాజ్, భోజన సమయాల్లో ఫోన్ దూరంగా).</li>
+              <li data-te="ఏదైనా పంచుకునే ముందు దాన్ని ధృవీకరించుకోండి — పుకార్లను వ్యాప్తి చేయకండి." data-en="Verify information before sharing it — do not spread rumours.">ఏదైనా పంచుకునే ముందు దాన్ని ధృవీకరించుకోండి — పుకార్లను వ్యాప్తి చేయకండి.</li>
+              <li data-te="ఆరాధన మరియు కుటుంబం కోసం రక్షిత సమయాన్ని కేటాయించండి." data-en="Protect dedicated time for worship and family.">ఆరాధన మరియు కుటుంబం కోసం రక్షిత సమయాన్ని కేటాయించండి.</li>
+              <li data-te="క్రమం తప్పకుండా 'డిజిటల్ విరామం' తీసుకోండి." data-en="Take a regular 'digital detox' break.">క్రమం తప్పకుండా 'డిజిటల్ విరామం' తీసుకోండి.</li>
+            </ul>
+          </div>
+        </div></div>
+      </div>
+
+    </div>
+
+    <p class="ml-note reveal" data-te="ఈ వనరులు ఖురాన్ మరియు ప్రామాణిక సున్నతును ఆధునిక శాస్త్రీయ అవగాహనతో కలిపి విద్యా ప్రయోజనం కోసం అందించబడ్డాయి. ఇవి వృత్తిపరమైన వైద్య లేదా మానసిక సలహాకు ప్రత్యామ్నాయం కాదు." data-en="These resources combine the Quran and authentic Sunnah with modern scientific understanding for educational purposes. They are not a substitute for professional medical or psychological advice.">ఈ వనరులు ఖురాన్ మరియు ప్రామాణిక సున్నతును ఆధునిక శాస్త్రీయ అవగాహనతో కలిపి విద్యా ప్రయోజనం కోసం అందించబడ్డాయి. ఇవి వృత్తిపరమైన వైద్య లేదా మానసిక సలహాకు ప్రత్యామ్నాయం కాదు.</p>
+  </div>
+</section>
+
+<!-- SCIENTIFIC SIGNS IN THE QURAN -->
+<section class="kc-sec quran-science" id="quran-science">
+  <div class="kc-inner">
+    <div class="sec-tag reveal" data-te="ఖురాన్ & విజ్ఞానం" data-en="Quran & Science">ఖురాన్ & విజ్ఞానం</div>
+    <h2 class="sec-title reveal" data-te="ఖురాన్‌లో పేర్కొనబడిన శాస్త్రీయ సూచనలు" data-en="Scientific Signs Mentioned in the Quran">ఖురాన్‌లో పేర్కొనబడిన శాస్త్రీయ సూచనలు</h2>
+    <p class="sec-lead reveal" data-te="ఖురాన్ ఒక విజ్ఞాన పాఠ్యపుస్తకం కాదు — ఇది మార్గదర్శక గ్రంథం. అయినా, 1400 సంవత్సరాల క్రితం అవతరించిన అనేక ఆయతులు సహజ ప్రపంచంలోని విషయాలను సూచిస్తాయి, వాటిని ఇవి 'ఆయాత్' (సూచనలు)గా పిలుస్తూ ఆలోచించమని ఆహ్వానిస్తాయి." data-en="The Quran is not a science textbook — it is a book of guidance. Yet many verses revealed over 1,400 years ago point to features of the natural world, calling them 'ayat' (signs) and inviting reflection.">ఖురాన్ ఒక విజ్ఞాన పాఠ్యపుస్తకం కాదు — ఇది మార్గదర్శక గ్రంథం. అయినా, 1400 సంవత్సరాల క్రితం అవతరించిన అనేక ఆయతులు సహజ ప్రపంచంలోని విషయాలను సూచిస్తాయి, వాటిని ఇవి 'ఆయాత్' (సూచనలు)గా పిలుస్తూ ఆలోచించమని ఆహ్వానిస్తాయి.</p>
+
+    <div class="guide-acc qs-acc reveal">
+
+      <!-- 1. EXPANDING UNIVERSE -->
+      <div class="guide-item">
+        <button class="guide-head" type="button" aria-expanded="false">
+          <span class="guide-ic">🌌</span>
+          <span class="guide-htext">
+            <span class="guide-title" data-te="విస్తరిస్తున్న విశ్వం" data-en="The Expanding Universe">విస్తరిస్తున్న విశ్వం</span>
+            <span class="guide-sub" data-te="ఆకాశాన్ని మేము విస్తరిస్తూ ఉన్నాము" data-en="“We are expanding the heaven”">ఆకాశాన్ని మేము విస్తరిస్తూ ఉన్నాము</span>
+          </span>
+          <span class="guide-chev">▾</span>
+        </button>
+        <div class="guide-body"><div class="guide-body-inner">
+          <div class="tcard-block tcard-faith">
+            <span class="tcard-label" data-te="ఖురాన్" data-en="Quran">ఖురాన్</span>
+            <p data-te="&quot;మరియు ఆకాశాన్ని మేము మా శక్తితో నిర్మించాము, మరియు నిశ్చయంగా మేము దాన్ని విస్తరింపజేస్తున్నాము.&quot;" data-en="&quot;And the heaven We constructed with strength, and indeed, We are (its) expander.&quot;">&quot;మరియు ఆకాశాన్ని మేము మా శక్తితో నిర్మించాము, మరియు నిశ్చయంగా మేము దాన్ని విస్తరింపజేస్తున్నాము.&quot;</p>
+            <p class="guide-ref"><strong data-te="ఆధారం:" data-en="Reference:">ఆధారం:</strong> Quran 51:47</p>
+          </div>
+          <div class="tcard-block tcard-science">
+            <span class="tcard-label" data-te="ఆధునిక శాస్త్రం" data-en="Modern Science">ఆధునిక శాస్త్రం</span>
+            <p data-te="20వ శతాబ్దంలో ఖగోళ శాస్త్రవేత్తలు (హబుల్, 1929) విశ్వం నిరంతరం విస్తరిస్తోందని కనుగొన్నారు — గెలాక్సీలు ఒకదాని నుండి మరొకటి దూరమవుతున్నాయి. ఈ ఆయతు ఆ సూచనను ప్రతిధ్వనిస్తుంది." data-en="In the 20th century, astronomers (Hubble, 1929) found that the universe is continually expanding — galaxies are moving apart from one another. This verse resonates with that discovery.">20వ శతాబ్దంలో ఖగోళ శాస్త్రవేత్తలు (హబుల్, 1929) విశ్వం నిరంతరం విస్తరిస్తోందని కనుగొన్నారు — గెలాక్సీలు ఒకదాని నుండి మరొకటి దూరమవుతున్నాయి. ఈ ఆయతు ఆ సూచనను ప్రతిధ్వనిస్తుంది.</p>
+          </div>
+        </div></div>
+      </div>
+
+      <!-- 2. EMBRYOLOGY -->
+      <div class="guide-item">
+        <button class="guide-head" type="button" aria-expanded="false">
+          <span class="guide-ic">🤰</span>
+          <span class="guide-htext">
+            <span class="guide-title" data-te="మానవ పిండం దశలవారీ ఎదుగుదల" data-en="Stages of Human Embryonic Development">మానవ పిండం దశలవారీ ఎదుగుదల</span>
+            <span class="guide-sub" data-te="ఒక చుక్క నుండి ఎముకలు & మాంసం వరకు" data-en="From a drop to bones clothed in flesh">ఒక చుక్క నుండి ఎముకలు & మాంసం వరకు</span>
+          </span>
+          <span class="guide-chev">▾</span>
+        </button>
+        <div class="guide-body"><div class="guide-body-inner">
+          <div class="tcard-block tcard-faith">
+            <span class="tcard-label" data-te="ఖురాన్" data-en="Quran">ఖురాన్</span>
+            <p data-te="&quot;…తరువాత మేము ఆ బిందువును ఒక పిండంగా (అలఖహ్) చేశాము, ఆ పిండాన్ని ఒక మాంసపు ముద్దగా చేశాము, ఆ ముద్దలో ఎముకలను సృష్టించాము, తరువాత ఆ ఎముకలను మాంసంతో కప్పాము…&quot;" data-en="&quot;…then We made the drop into a clinging clot (alaqah), and the clot into a lump of flesh, and the lump into bones, and We clothed the bones with flesh…&quot;">&quot;…తరువాత మేము ఆ బిందువును ఒక పిండంగా (అలఖహ్) చేశాము, ఆ పిండాన్ని ఒక మాంసపు ముద్దగా చేశాము, ఆ ముద్దలో ఎముకలను సృష్టించాము, తరువాత ఆ ఎముకలను మాంసంతో కప్పాము…&quot;</p>
+            <p class="guide-ref"><strong data-te="ఆధారం:" data-en="Reference:">ఆధారం:</strong> Quran 23:12-14</p>
+          </div>
+          <div class="tcard-block tcard-science">
+            <span class="tcard-label" data-te="ఆధునిక శాస్త్రం" data-en="Modern Science">ఆధునిక శాస్త్రం</span>
+            <p data-te="ఆధునిక భ్రూణశాస్త్రం (embryology) పిండం దశలవారీగా అభివృద్ధి చెందుతుందని వివరిస్తుంది — ముందు మృదు ఎముక నిర్మాణం, ఆపై దానిపై కండరాలు (మాంసం) ఏర్పడటం — ఈ క్రమం ఆయతులో పేర్కొన్న వరుసను పోలి ఉంటుంది." data-en="Modern embryology describes development in stages — cartilage/bone forming first, then muscle (flesh) wrapping around it — a sequence that mirrors the order described in the verse.">ఆధునిక భ్రూణశాస్త్రం (embryology) పిండం దశలవారీగా అభివృద్ధి చెందుతుందని వివరిస్తుంది — ముందు మృదు ఎముక నిర్మాణం, ఆపై దానిపై కండరాలు (మాంసం) ఏర్పడటం — ఈ క్రమం ఆయతులో పేర్కొన్న వరుసను పోలి ఉంటుంది.</p>
+          </div>
+        </div></div>
+      </div>
+
+      <!-- 3. LIFE FROM WATER -->
+      <div class="guide-item">
+        <button class="guide-head" type="button" aria-expanded="false">
+          <span class="guide-ic">💧</span>
+          <span class="guide-htext">
+            <span class="guide-title" data-te="ప్రతి జీవి నీటి నుండి" data-en="Every Living Thing from Water">ప్రతి జీవి నీటి నుండి</span>
+            <span class="guide-sub" data-te="జీవానికి నీరు ఆధారం" data-en="Water as the basis of life">జీవానికి నీరు ఆధారం</span>
+          </span>
+          <span class="guide-chev">▾</span>
+        </button>
+        <div class="guide-body"><div class="guide-body-inner">
+          <div class="tcard-block tcard-faith">
+            <span class="tcard-label" data-te="ఖురాన్" data-en="Quran">ఖురాన్</span>
+            <p data-te="&quot;…మరియు మేము నీటి నుండి ప్రతి జీవిని సృష్టించాము. అయినా వారు విశ్వసించరా?&quot;" data-en="&quot;…and We made from water every living thing. Then will they not believe?&quot;">&quot;…మరియు మేము నీటి నుండి ప్రతి జీవిని సృష్టించాము. అయినా వారు విశ్వసించరా?&quot;</p>
+            <p class="guide-ref"><strong data-te="ఆధారం:" data-en="Reference:">ఆధారం:</strong> Quran 21:30</p>
+          </div>
+          <div class="tcard-block tcard-science">
+            <span class="tcard-label" data-te="ఆధునిక శాస్త్రం" data-en="Modern Science">ఆధునిక శాస్త్రం</span>
+            <p data-te="జీవశాస్త్రం ప్రకారం నీరు ప్రతి జీవకణానికి ఆధారం — మానవ శరీరంలో దాదాపు 60% నీరే. నీరు లేకుండా మనకు తెలిసిన ఏ జీవమూ ఉండదు." data-en="Biology confirms that water is fundamental to every living cell — the human body is roughly 60% water. No known life exists without it.">జీవశాస్త్రం ప్రకారం నీరు ప్రతి జీవకణానికి ఆధారం — మానవ శరీరంలో దాదాపు 60% నీరే. నీరు లేకుండా మనకు తెలిసిన ఏ జీవమూ ఉండదు.</p>
+          </div>
+        </div></div>
+      </div>
+
+      <!-- 4. MOUNTAINS -->
+      <div class="guide-item">
+        <button class="guide-head" type="button" aria-expanded="false">
+          <span class="guide-ic">⛰️</span>
+          <span class="guide-htext">
+            <span class="guide-title" data-te="పర్వతాలు — భూమికి మేకులు" data-en="Mountains as Stabilising Pegs">పర్వతాలు — భూమికి మేకులు</span>
+            <span class="guide-sub" data-te="భూమి కదలకుండా స్థిరపరిచేవి" data-en="Stabilising the earth">భూమి కదలకుండా స్థిరపరిచేవి</span>
+          </span>
+          <span class="guide-chev">▾</span>
+        </button>
+        <div class="guide-body"><div class="guide-body-inner">
+          <div class="tcard-block tcard-faith">
+            <span class="tcard-label" data-te="ఖురాన్" data-en="Quran">ఖురాన్</span>
+            <p data-te="&quot;మేము భూమిని ఒక పరుపుగా చేయలేదా? మరియు పర్వతాలను మేకులుగా (చేయలేదా)?&quot;" data-en="&quot;Have We not made the earth a resting place, and the mountains as pegs?&quot;">&quot;మేము భూమిని ఒక పరుపుగా చేయలేదా? మరియు పర్వతాలను మేకులుగా (చేయలేదా)?&quot;</p>
+            <p class="guide-ref"><strong data-te="ఆధారం:" data-en="Reference:">ఆధారం:</strong> Quran 78:6-7 · Quran 16:15</p>
+          </div>
+          <div class="tcard-block tcard-science">
+            <span class="tcard-label" data-te="ఆధునిక శాస్త్రం" data-en="Modern Science">ఆధునిక శాస్త్రం</span>
+            <p data-te="భూవిజ్ఞానం (geology) ప్రకారం పర్వతాలకు భూమి లోపలికి లోతుగా చొచ్చుకుపోయే 'మూలాలు' (roots) ఉంటాయి — ఇవి మేకు లాగా భూపలకలను స్థిరపరచడంలో సహాయపడతాయి." data-en="Geology shows that mountains have deep 'roots' extending into the earth — helping to stabilise the crust much like a peg, a concept formalised as isostasy.">భూవిజ్ఞానం (geology) ప్రకారం పర్వతాలకు భూమి లోపలికి లోతుగా చొచ్చుకుపోయే 'మూలాలు' (roots) ఉంటాయి — ఇవి మేకు లాగా భూపలకలను స్థిరపరచడంలో సహాయపడతాయి.</p>
+          </div>
+        </div></div>
+      </div>
+
+      <!-- 5. TWO SEAS -->
+      <div class="guide-item">
+        <button class="guide-head" type="button" aria-expanded="false">
+          <span class="guide-ic">🌊</span>
+          <span class="guide-htext">
+            <span class="guide-title" data-te="రెండు సముద్రాల మధ్య అడ్డుతెర" data-en="A Barrier Between Two Seas">రెండు సముద్రాల మధ్య అడ్డుతెర</span>
+            <span class="guide-sub" data-te="కలిసే నీళ్ళు కలవకుండా" data-en="Meeting waters that do not mix">కలిసే నీళ్ళు కలవకుండా</span>
+          </span>
+          <span class="guide-chev">▾</span>
+        </button>
+        <div class="guide-body"><div class="guide-body-inner">
+          <div class="tcard-block tcard-faith">
+            <span class="tcard-label" data-te="ఖురాన్" data-en="Quran">ఖురాన్</span>
+            <p data-te="&quot;ఆయన రెండు సముద్రాలను కలిసేలా వదిలాడు; (అయినా) వాటి మధ్య ఒక అడ్డుతెర ఉంది, దాన్ని అవి దాటవు.&quot;" data-en="&quot;He released the two seas, meeting (side by side); between them is a barrier which they do not transgress.&quot;">&quot;ఆయన రెండు సముద్రాలను కలిసేలా వదిలాడు; (అయినా) వాటి మధ్య ఒక అడ్డుతెర ఉంది, దాన్ని అవి దాటవు.&quot;</p>
+            <p class="guide-ref"><strong data-te="ఆధారం:" data-en="Reference:">ఆధారం:</strong> Quran 55:19-20 · Quran 25:53</p>
+          </div>
+          <div class="tcard-block tcard-science">
+            <span class="tcard-label" data-te="ఆధునిక శాస్త్రం" data-en="Modern Science">ఆధునిక శాస్త్రం</span>
+            <p data-te="సముద్ర శాస్త్రం (oceanography) ప్రకారం వేర్వేరు లవణీయత, ఉష్ణోగ్రత, సాంద్రత గల జలరాశులు కలిసిన చోట కూడా ఒక సరిహద్దు (pycnocline) వద్ద వెంటనే పూర్తిగా కలవకుండా ఉంటాయి." data-en="Oceanography observes that where bodies of water with different salinity, temperature and density meet, a boundary (pycnocline) keeps them from immediately mixing completely.">సముద్ర శాస్త్రం (oceanography) ప్రకారం వేర్వేరు లవణీయత, ఉష్ణోగ్రత, సాంద్రత గల జలరాశులు కలిసిన చోట కూడా ఒక సరిహద్దు (pycnocline) వద్ద వెంటనే పూర్తిగా కలవకుండా ఉంటాయి.</p>
+          </div>
+        </div></div>
+      </div>
+
+      <!-- 6. IRON -->
+      <div class="guide-item">
+        <button class="guide-head" type="button" aria-expanded="false">
+          <span class="guide-ic">🪨</span>
+          <span class="guide-htext">
+            <span class="guide-title" data-te="ఇనుము — 'క్రిందికి పంపబడింది'" data-en="Iron — “Sent Down”">ఇనుము — 'క్రిందికి పంపబడింది'</span>
+            <span class="guide-sub" data-te="బలమైన లోహం, అంతరిక్షం నుండి" data-en="A metal of great strength, from the cosmos">బలమైన లోహం, అంతరిక్షం నుండి</span>
+          </span>
+          <span class="guide-chev">▾</span>
+        </button>
+        <div class="guide-body"><div class="guide-body-inner">
+          <div class="tcard-block tcard-faith">
+            <span class="tcard-label" data-te="ఖురాన్" data-en="Quran">ఖురాన్</span>
+            <p data-te="&quot;…మరియు మేము ఇనుమును క్రిందికి పంపాము, దానిలో గొప్ప బలం మరియు మానవులకు ప్రయోజనాలు ఉన్నాయి…&quot;" data-en="&quot;…and We sent down iron, in which is great strength and benefits for the people…&quot;">&quot;…మరియు మేము ఇనుమును క్రిందికి పంపాము, దానిలో గొప్ప బలం మరియు మానవులకు ప్రయోజనాలు ఉన్నాయి…&quot;</p>
+            <p class="guide-ref"><strong data-te="ఆధారం:" data-en="Reference:">ఆధారం:</strong> Quran 57:25</p>
+          </div>
+          <div class="tcard-block tcard-science">
+            <span class="tcard-label" data-te="ఆధునిక శాస్త్రం" data-en="Modern Science">ఆధునిక శాస్త్రం</span>
+            <p data-te="ఖగోళ భౌతికశాస్త్రం ప్రకారం ఇనుము భూమిపై తయారవలేదు — ఇది భారీ నక్షత్రాలలో, సూపర్‌నోవా విస్ఫోటనాలలో ఏర్పడి, అంతరిక్షం నుండి భూమికి చేరింది. ఆయతులోని 'క్రిందికి పంపాము' అనే పదం దీనిని ఆసక్తికరంగా ప్రతిధ్వనిస్తుంది." data-en="Astrophysics shows that iron did not originate on earth — it forms inside massive stars and supernova explosions and reached earth from space. The verse's phrase 'sent down' resonates strikingly with this.">ఖగోళ భౌతికశాస్త్రం ప్రకారం ఇనుము భూమిపై తయారవలేదు — ఇది భారీ నక్షత్రాలలో, సూపర్‌నోవా విస్ఫోటనాలలో ఏర్పడి, అంతరిక్షం నుండి భూమికి చేరింది. ఆయతులోని 'క్రిందికి పంపాము' అనే పదం దీనిని ఆసక్తికరంగా ప్రతిధ్వనిస్తుంది.</p>
+          </div>
+        </div></div>
+      </div>
+
+    </div>
+
+    <p class="ml-note reveal" data-te="ముఖ్య గమనిక: ఖురాన్ యొక్క ముఖ్య ఉద్దేశ్యం మార్గదర్శనం, శాస్త్రబోధన కాదు. ఈ ఆయతులను శాస్త్రీయ 'రుజువులు'గా కాకుండా, సృష్టికర్తను గురించి ఆలోచించమని ఆహ్వానించే సూచనలు (ఆయాత్)గా చూడాలి. శాస్త్రీయ సిద్ధాంతాలు కాలంతో మారవచ్చు." data-en="Important note: the Quran's primary purpose is guidance, not the teaching of science. These verses are best seen not as scientific 'proofs' but as signs (ayat) inviting reflection on the Creator. Scientific theories may evolve over time.">ముఖ్య గమనిక: ఖురాన్ యొక్క ముఖ్య ఉద్దేశ్యం మార్గదర్శనం, శాస్త్రబోధన కాదు. ఈ ఆయతులను శాస్త్రీయ 'రుజువులు'గా కాకుండా, సృష్టికర్తను గురించి ఆలోచించమని ఆహ్వానించే సూచనలు (ఆయాత్)గా చూడాలి. శాస్త్రీయ సిద్ధాంతాలు కాలంతో మారవచ్చు.</p>
+  </div>
+</section>
+
+<!-- UNDERSTANDING ISLAM -- articles + FAQ accordion -->
+<section class="kc-sec faqs" id="faqs">
+  <div class="kc-inner">
+    <div class="sec-tag reveal" data-te="ఇస్లాం గురించి" data-en="Understanding Islam">ఇస్లాం గురించి</div>
+    <h2 class="sec-title reveal" data-te="తరచుగా అపార్థం చేసుకోబడే అంశాలు" data-en="Commonly Misunderstood Topics">తరచుగా అపార్థం చేసుకోబడే అంశాలు</h2>
+    <p class="sec-lead reveal" data-te="నిష్పాక్షిక, ఖురాన్ ఆధారిత వివరణలు — ప్రతి సమాధానం ప్రామాణిక ఆధారంతో." data-en="Fair, Quran-based explanations — every answer grounded in an authentic source.">నిష్పాక్షిక, ఖురాన్ ఆధారిత వివరణలు — ప్రతి సమాధానం ప్రామాణిక ఆధారంతో.</p>
+
+    <div class="qa-wrap reveal"><div id="qa-container"></div></div>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer class="kc-footer">
   <div class="kc-footer-inner">
-    <p class="kcf-brand">ఇస్లామిక్ ఫ్రంట్ · Islamic Front</p>
+    <p class="kcf-brand" data-te="ఇస్లామిక్ ఫ్రంట్" data-en="Islamic Front">ఇస్లామిక్ ఫ్రంట్</p>
     <p class="kcf-note" data-te="ఇస్లామిక్ నాలెడ్జ్ సెంటర్ — సమాజ సేవకు అనుబంధంగా అందించబడిన విజ్ఞాన వనరు." data-en="Islamic Knowledge Center — a knowledge resource offered alongside our community service.">ఇస్లామిక్ నాలెడ్జ్ సెంటర్ — సమాజ సేవకు అనుబంధంగా అందించబడిన విజ్ఞాన వనరు.</p>
     <a href="index.html" class="kcf-back" data-te="← హోమ్ పేజీకి తిరిగి వెళ్ళండి" data-en="← Back to Home">← హోమ్ పేజీకి తిరిగి వెళ్ళండి</a>
     <p class="kcf-copy">© 2026 Islamic Front, Mangalagiri.</p>
@@ -586,6 +1797,7 @@ function applyLang(l) {
   renderNextLabel();
   if (typeof updatePriceUI === 'function') updatePriceUI();
   if (typeof calcZakat === 'function') calcZakat();
+  if (typeof renderQA === 'function') renderQA(l);
 }
 function toggleLang() { lang = lang === 'te' ? 'en' : 'te'; applyLang(lang); }
 
@@ -657,7 +1869,7 @@ function epochFor(d, hf) { var H = Math.floor(hf), M = Math.round((hf - H) * 60)
 function renderSalah() {
   var ist = nowIST();
   var T = PrayTimes(ist.getUTCFullYear(), ist.getUTCMonth() + 1, ist.getUTCDate(), LAT, LNG, TZ, { hanafi: hanafi });
-  ['fajr','sunrise','dhuhr','asr','maghrib','isha'].forEach(function (k) {
+  ['fajr','dhuhr','asr','maghrib','isha'].forEach(function (k) {
     var el = document.getElementById('t-' + k); if (el) el.textContent = fmt(T[k]);
   });
   // dates (Gregorian + Hijri)
@@ -711,20 +1923,29 @@ function setAsr(isHanafi) {
   renderSalah();
 }
 
-/* ───────── Zakat calculator + live metal prices ─────────
-   Prices auto-fetched daily (keyless, CORS-enabled APIs) and cached in
-   localStorage. Per-gram INR = (USD/troy-oz ÷ 31.1034768) × USD→INR rate. */
+/* ───────── Zakat calculator + India metal prices ─────────
+   Gold & silver rates come from GoodReturns.in — the single source of truth
+   (https://www.goodreturns.in/gold-rates/ and /silver-rates/). They are the
+   24K gold and silver figures quoted in INR PER GRAM for India (retail; the
+   published rate is exclusive of GST/levies, matching how nisab is normally
+   reckoned). GoodReturns is a webpage (not an open API) and blocks cross-origin
+   fetches, so it cannot be scraped live from this static site — the latest
+   figures are mirrored here manually.
+   TO REFRESH: open goodreturns.in/gold-rates/ (24K, per gram) and
+   /silver-rates/ (per gram), copy the numbers into GR below, and bump GR.date. */
 function inr(n) { return '₹' + Math.round(n).toLocaleString('en-IN'); }
-var TROY = 31.1034768;            // grams per troy ounce
 var NISAB_SILVER_G = 612.36;      // nisab = value of 612.36g of silver
-var FALLBACK = { goldOz: 2400, silverOz: 30, usdInr: 83 }; // sane defaults
-var METAL = { goldG: 0, silverG: 0, ts: 0, state: 'loading' }; // INR per gram
+// Latest India rates per gram (INR), mirrored from GoodReturns.in. These are the
+// built-in fallback; on load we also fetch rates.json (refreshed daily by the
+// GitHub Action in .github/workflows/update-rates.yml) and use it when present.
+var GR = { goldG: 15611, silverG: 280, date: '04 Jun 2026' }; // 24K gold/gram, silver/gram
+var METAL = { goldG: 0, silverG: 0, ts: 0, state: 'gr' };      // INR per gram (India retail)
 
-function applyMetal(goldOzUsd, silverOzUsd, usdInr, ts, state) {
-  METAL.goldG = (goldOzUsd / TROY) * usdInr;
-  METAL.silverG = (silverOzUsd / TROY) * usdInr;
-  METAL.ts = ts || Date.now();
-  METAL.state = state || 'live';
+function applyMetal() {
+  METAL.goldG = GR.goldG;
+  METAL.silverG = GR.silverG;
+  METAL.ts = Date.now();
+  METAL.state = 'gr';
   updatePriceUI();
   calcZakat();
 }
@@ -738,63 +1959,31 @@ function updatePriceUI() {
   var dot = document.getElementById('lp-dot');
   var up = document.getElementById('lp-updated');
   if (!dot || !up) return;
-  dot.className = 'lp-dot';
-  var te, en;
-  if (METAL.state === 'loading') {
-    te = 'ధరలను తెస్తోంది…'; en = 'Fetching live prices…';
-  } else if (METAL.state === 'live') {
-    dot.classList.add('live');
-    var t = new Date(METAL.ts), hh = t.getHours(), mm = ('0' + t.getMinutes()).slice(-2);
-    var ap = hh >= 12 ? 'PM' : 'AM', h12 = hh % 12 || 12;
-    te = 'ప్రత్యక్ష ధరలు · ఈరోజు ' + h12 + ':' + mm + ' ' + ap + ' నాటికి';
-    en = 'Live prices · updated today ' + h12 + ':' + mm + ' ' + ap;
-  } else if (METAL.state === 'stale') {
-    dot.classList.add('stale');
-    var d = new Date(METAL.ts), dd = d.getDate(), mo = (d.getMonth() + 1);
-    te = 'సేవ్ చేసిన ధరలు (' + dd + '/' + mo + ') — తాజావి తేవడానికి ప్రయత్నిస్తోంది';
-    en = 'Saved prices (' + dd + '/' + mo + ') — retrying for latest';
-  } else { // err
-    dot.classList.add('err');
-    te = 'ప్రత్యక్ష ధరలు అందుబాటులో లేవు — సూచిక విలువలు చూపబడ్డాయి';
-    en = 'Live prices unavailable — showing indicative values';
-  }
+  dot.className = 'lp-dot live';
+  var te = 'భారత ధరలు · GoodReturns.in ఆధారంగా · ' + GR.date + ' నాటికి';
+  var en = 'India rates · sourced from GoodReturns.in · as of ' + GR.date;
   up.setAttribute('data-te', te); up.setAttribute('data-en', en);
   up.textContent = lang === 'te' ? te : en;
 }
 
-function cachePrices(goldOz, silverOz, usdInr) {
-  try { localStorage.setItem('if-metal-prices', JSON.stringify({ goldOz: goldOz, silverOz: silverOz, usdInr: usdInr, ts: Date.now() })); } catch (e) {}
-}
-function readCache() {
-  try { var c = JSON.parse(localStorage.getItem('if-metal-prices')); if (c && c.goldOz && c.silverOz && c.usdInr) return c; } catch (e) {}
-  return null;
-}
-
+// Show the built-in GoodReturns values immediately, then upgrade to rates.json
+// (refreshed daily from GoodReturns by the GitHub Action) if it's available.
+// rates.json is served from our own domain, so there is no CORS issue.
 function fetchMetalPrices() {
-  var cache = readCache();
-  var dayMs = 86400000;
-  if (cache) {
-    var fresh = (Date.now() - cache.ts) < dayMs;
-    applyMetal(cache.goldOz, cache.silverOz, cache.usdInr, cache.ts, fresh ? 'live' : 'stale');
-    if (fresh) return; // cached today — no network needed
-  } else {
-    applyMetal(FALLBACK.goldOz, FALLBACK.silverOz, FALLBACK.usdInr, Date.now(), 'loading');
-  }
-  var jget = function (url) { return fetch(url).then(function (r) { if (!r.ok) throw 0; return r.json(); }); };
-  Promise.all([
-    jget('https://api.gold-api.com/price/XAU'),
-    jget('https://api.gold-api.com/price/XAG'),
-    jget('https://open.er-api.com/v6/latest/USD')
-  ]).then(function (res) {
-    var goldOz = res[0] && res[0].price, silverOz = res[1] && res[1].price;
-    var usdInr = res[2] && res[2].rates && res[2].rates.INR;
-    if (!goldOz || !silverOz || !usdInr) throw 0;
-    cachePrices(goldOz, silverOz, usdInr);
-    applyMetal(goldOz, silverOz, usdInr, Date.now(), 'live');
-  }).catch(function () {
-    if (cache) { applyMetal(cache.goldOz, cache.silverOz, cache.usdInr, cache.ts, 'stale'); }
-    else { applyMetal(FALLBACK.goldOz, FALLBACK.silverOz, FALLBACK.usdInr, Date.now(), 'err'); }
-  });
+  applyMetal();
+  try {
+    fetch('rates.json?_=' + Date.now())
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (d) {
+        if (d && d.goldGramInr > 0 && d.silverGramInr > 0) {
+          GR.goldG = d.goldGramInr;
+          GR.silverG = d.silverGramInr;
+          if (d.date) GR.date = d.date;
+          applyMetal();
+        }
+      })
+      .catch(function () { /* keep built-in GoodReturns values */ });
+  } catch (e) { /* no fetch support — keep built-in values */ }
 }
 
 function calcZakat() {
@@ -846,6 +2035,277 @@ function initReveal() {
   els.forEach(function (el) { io.observe(el); });
 }
 
+/* ───────── FAQ accordion — 30 questions, 8 categories ───────── */
+var QA = [
+  { cat: { te: "వివాహం & కుటుంబం", en: "Marriage & Family" }, items: [
+    { q: { te: "ఇస్లాం ఒక పురుషుడికి నాలుగు వివాహాలు చేసుకోవడానికి ఎందుకు అనుమతిస్తుంది?", en: "Why does Islam allow a man to marry up to four wives?" },
+      a: { te: "ఖురాన్ (4:3) నాలుగు వివాహాలను ఒక్క షరత్‌తో అనుమతించింది: అన్ని భార్యలతో పూర్తి న్యాయంగా వ్యవహరించడం. వెంటనే 'న్యాయంగా వ్యవహరించలేమని భయపడితే, ఒక్కరినే వివాహం చేసుకో' అని చెప్పింది. ఇది ఉహుద్ యుద్ధం తర్వాత వితంతువులు, అనాథలను రక్షించడానికి అవతరించింది — సాధారణ లైసెన్స్ కాదు. ఖురాన్ 4:129 తానే అంటుంది 'పూర్తి సమానత్వం సాధించలేరు' — అందుకే ఏకభార్యత్వమే ఆదర్శం. ప్రపంచంలో 95%+ ముస్లిం పురుషులు ఏకభార్యత్వాన్నే పాటిస్తారు.", en: "The Quran (4:3) permits up to four wives under one strict condition: absolute equal justice to all. It immediately adds 'if you fear you cannot be just, then only one.' This was revealed after the Battle of Uhud left many widows and orphans without protection — a humanitarian provision, not a general licence. Quran 4:129 further says 'you will never achieve perfect equality' — meaning monogamy is the ideal. Over 95% of Muslim men worldwide are monogamous." } },
+    { q: { te: "ప్రవక్త ముహమ్మద్ (ﷺ) ఎందుకు అనేక వివాహాలు చేసుకున్నారు?", en: "Why did Prophet Muhammad ﷺ marry multiple women?" },
+      a: { te: "ప్రవక్త (ﷺ) 25 సంవత్సరాల వయస్సు నుండి హజ్రత్ ఖదీజా (ర.అ.) — తనకంటే పెద్దవయసు విధవరాలు — తో 25 సంవత్సరాలు ఏకభార్యత్వంలో జీవించారు. 50 సంవత్సరాల తర్వాత చేసిన వివాహాలు: యుద్ధంలో మరణించిన సహాబాల వితంతువులకు రక్షణ, తెగల మధ్య శాంతి కోసం, మహిళలకు ఇస్లామిక్ జ్ఞానాన్ని నేర్పించడానికి. ఒక్క ఆయేషా (ర.అ.) మినహా మిగతా భార్యలందరూ వితంతువులు లేదా విడాకులు పొందిన మహిళలు.", en: "The Prophet ﷺ was exclusively monogamous for 25 years with Khadijah (RA) — a widow older than him. His later marriages (after age 50) served specific purposes: protecting widows of companions killed in battle, building peace alliances between tribes, and enabling women to learn Islamic law through his wives. All but one wife (Aisha RA) were previously married." } },
+    { q: { te: "ప్రవక్త (ﷺ) ఆయేషా (ర.అ.) ను ఎందుకు వివాహం చేసుకున్నారు?", en: "Why did Prophet Muhammad ﷺ marry Aisha (RA)?" },
+      a: { te: "ఇది అత్యంత అపార్థం చేసుకోబడిన అంశం. పలు హదీస్ పండితులు ఇతర సంఘటనలతో క్రాస్-రెఫరెన్స్ చేసి ఆయేషా (ర.అ.) వయస్సు వివాహ సమయంలో 14–18 గా ఉందని నిర్ధారిస్తున్నారు. అప్పటి ప్రపంచంలో (తూర్పు-పడమర రెండింటిలో) బాల్య వివాహాలు సర్వసాధారణం. ఆయేషా (ర.అ.) ఇస్లాం యొక్క గొప్ప పండితురాలిగా ఎదిగారు — వేలాది హదీసులు ఆమె ద్వారా వచ్చాయి. 7వ శతాబ్దపు అరేబియాను 21వ శతాబ్దపు ప్రమాణాలతో అంచనా వేయడం చారిత్రకంగా సమంజసం కాదు.", en: "This is deeply misunderstood. Multiple hadith scholars, cross-referencing other events, conclude Aisha (RA) was likely 14–18 at marriage consummation. Regardless, child marriage was universal in the ancient world (East and West) in that era. Aisha (RA) became one of Islam's greatest scholars, narrating thousands of hadiths. Judging 7th-century Arabia by 21st-century standards is historically invalid." } }
+  ]},
+  { cat: { te: "జిహాద్ & హింస", en: "Jihad & Violence" }, items: [
+    { q: { te: "జిహాద్ అంటే ఏమిటి? ఇస్లాం హింసను ప్రోత్సహిస్తుందా?", en: "What is Jihad, and does Islam promote violence?" },
+      a: { te: "'జిహాద్' అంటే 'సంఘర్షణ' — ముఖ్యంగా మంచి మనిషిగా ఉండటానికి చేసే అంతరంగ పోరాటం (గొప్ప జిహాద్). ఆయుధ పోరాటం 'చిన్న జిహాద్' — కఠిన నియమాలతో: కేవలం స్వరక్షణ లేదా దౌర్జన్యాన్ని ఆపడానికి మాత్రమే; పౌరులపై దాడి నిషేధం. ఖురాన్ (5:32): 'ఒక నిర్దోషుని హత్య మానవాళి అంతటినీ హత్య చేసినట్లే.' ఉగ్రవాదానికి ఇస్లాంలో స్థానమే లేదు.", en: "'Jihad' means 'struggle' — primarily the internal struggle to be a good person (the 'greater Jihad'). Armed struggle (the 'lesser Jihad') has strict rules: only in self-defence or to stop oppression, never against civilians. Quran 5:32: 'Whoever kills an innocent person, it is as if he killed all of humanity.' Terrorism has absolutely no basis in Islam." } },
+    { q: { te: "ఉగ్రవాదం మరియు తీవ్రవాద సంస్థలపై ఇస్లాం అభిప్రాయం ఏమిటి?", en: "What is the Islamic view on terrorism and extremist groups?" },
+      a: { te: "ఇస్లాం ఉగ్రవాదాన్ని స్పష్టంగా ఖండిస్తుంది. ISIS, అల్-కాయిదా వంటి సంస్థలను ప్రపంచవ్యాప్త ఇస్లామిక్ పండితులు ఏకగ్రీవంగా ఖండిస్తున్నారు. ప్రవక్త (ﷺ): 'అతివాదం నుండి జాగ్రత్తపడండి — అది మీకు ముందు వారిని నాశనం చేసింది.' (సునన్ అన్-నసాయీ 3057). ఉగ్రవాదం ఒక ఆధునిక రాజకీయ సమస్య — మతపరమైన ఆదేశం కాదు. 1.9 బిలియన్ శాంతిప్రియ ముస్లింలను ఉగ్రవాదులు సూచించరు.", en: "Islam categorically condemns terrorism. ISIS, Al-Qaeda, and similar groups are condemned by the overwhelming majority of Islamic scholars worldwide. The Prophet ﷺ said: 'Beware of extremism — it destroyed those before you.' (Sunan an-Nasa'i 3057). Terrorism is a modern political phenomenon, not a religious prescription. 1.9 billion peaceful Muslims worldwide are not represented by extremists." } },
+    { q: { te: "ఇస్లామిక్ సామ్రాజ్యాలు ఎందుకు యుద్ధాలు మరియు జయాలలో నిమగ్నమయ్యాయి?", en: "Why did Islamic empires engage in wars and conquests?" },
+      a: { te: "అన్ని పురాతన నాగరికతలు — రోమన్, పర్షియన్, మొఘల్, బ్రిటిష్ — విస్తరణలో నిమగ్నమయ్యాయి. ఇస్లామిక్ విస్తరణ సంక్లిష్ట రాజకీయ, ఆర్థిక కారణాల వల్ల జరిగింది — బలవంతపు మత మార్పిడి కోసం కాదు. ఇస్లామిక్ యుద్ధ నీతి పౌరులను, మత స్థలాలను కఠినంగా రక్షిస్తుంది. అబ్బాసీ యుగంలో ఇస్లామిక్ స్వర్ణయుగం శాస్త్రం, వైద్యం, తత్వశాస్త్రంలో మొత్తం మానవాళికి సేవ చేసింది.", en: "All ancient civilisations — Roman, Persian, Mughal, British — engaged in wars and expansion. Islamic expansion happened for complex political and economic reasons, not purely forced conversion. Islamic rules of warfare strictly protect civilians and places of worship. The Islamic Golden Age produced extraordinary advances in science, medicine, and philosophy that benefited all of humanity." } }
+  ]},
+  { cat: { te: "ఇస్లామిక్ చట్టం (షరియా)", en: "Islamic Law (Sharia)" }, items: [
+    { q: { te: "ఇస్లామిక్ చట్టంలో (షరియా) శిక్షలు ఎందుకు ఉన్నాయి?", en: "Why are there punishments mentioned in Islamic law (Sharia)?" },
+      a: { te: "షరియా జీవితంలోని అన్ని రంగాలను — నమాజు, కుటుంబం, ఆర్థికం — కవర్ చేస్తుంది; కేవలం శిక్షలు కాదు. హుదూద్ శిక్షలకు అత్యంత కఠినమైన సాక్ష్య ప్రమాణాలు ఉంటాయి (ఉదా. దొంగతనానికి స్పష్టమైన ప్రత్యక్ష సాక్ష్యం). ఆచరణలో ఇవి నిరోధకాలుగా పనిచేస్తాయి. షరియా యొక్క 5 ముఖ్య లక్ష్యాలు: జీవితం, బుద్ధి, మతం, సంతానం, ఆస్తి రక్షించడం. చాలా ఆధునిక ముస్లిం దేశాలు హుదూద్‌ను అక్షరాలా అమలు చేయవు.", en: "Sharia covers all aspects of life — prayer, family, finance — not just criminal penalties. Severe criminal punishments (hudood) require extremely high evidence thresholds, functioning as deterrents rather than routine sentences. Sharia's five primary objectives: protect life, intellect, religion, lineage, and wealth. Most modern Muslim-majority nations do not apply hudood literally." } },
+    { q: { te: "మతం విడిచిపెట్టడం గురించి ఇస్లాం ఏమి చెప్తుంది?", en: "What does Islam say about apostasy (leaving Islam)?" },
+      a: { te: "ఖురాన్‌లో మతం విడిచిపెట్టడానికి ఈ లోకంలో శిక్ష ఎక్కడా లేదు. ఖురాన్ (2:256): 'మతంలో బలవంతం లేదు.' (18:29): 'ఎవడు విశ్వసించాలనుకుంటే విశ్వసించనీ, అవిశ్వాసిగా ఉండాలనుకుంటే అలా ఉండనీ.' నేటి అనేక ఇస్లామిక్ పండితులు — అల్-అజ్హర్ సహా — వ్యక్తిగత మతం విడిచిపెట్టడానికి ఈ లోకంలో శిక్ష లేదని అభిప్రాయపడతారు. ఆరంభకాల శిక్ష నియమాలు రాజ్య భద్రత సందర్భానికి చెందినవి.", en: "The Quran contains no earthly punishment for apostasy. Quran 2:256: 'There is no compulsion in religion.' 18:29: 'Whoever wills, let him believe; whoever wills, let him disbelieve.' Many contemporary scholars, including Al-Azhar, hold that personal apostasy carries no worldly punishment. Classical rulings were state-security judgements in specific historical contexts — not universal religious law." } },
+    { q: { te: "ఇస్లాం మత మార్పిడిని బలవంతం చేస్తుందా?", en: "Does Islam force people to convert?" },
+      a: { te: "'మతంలో బలవంతం లేదు.' — ఖురాన్ 2:256. ఇది స్పష్టమైన, అపభ్రంశం లేని ఆదేశం. ఖురాన్ (109:6): 'మీ మతం మీకు; నా మతం నాకు.' భారతదేశంలో ఇస్లామిక్ పాలన కాలంలో అత్యధిక హిందువులు తమ మతాన్ని నిలుపుకున్నారు. బలవంతపు మత మార్పిడి ఖురానిక్ సూత్రాలకు నేరుగా వ్యతిరేకం — ఎందుకంటే విశ్వాసం స్వచ్ఛందంగా ఉంటేనే సమర్థనీయం.", en: "'There is no compulsion in religion.' — Quran 2:256. This is unambiguous. Quran 109:6: 'For you is your religion, and for me is my religion.' During Islamic rule in India, the vast majority of Hindus retained their religion and temples were preserved. Forced conversion directly contradicts the Quranic principle that belief must be voluntary to be valid." } }
+  ]},
+  { cat: { te: "ఇస్లాంలో మహిళలు", en: "Women in Islam" }, items: [
+    { q: { te: "ఇస్లాంలో మహిళల హోదా ఏమిటి?", en: "What is the status of women in Islam?" },
+      a: { te: "ఇస్లాం మహిళలకు పశ్చిమ దేశాలకంటే శతాబ్దాల ముందే హక్కులు ఇచ్చింది: ఆస్తి హక్కు (7వ శతాబ్దం), వారసత్వ హక్కు, విడాకుల హక్కు (ఖుల్'), విద్య హక్కు. ఖురాన్ (33:35) స్త్రీ పురుషులు ఆత్మీయంగా సమానులని స్పష్టంగా చెప్తుంది. ప్రవక్త (ﷺ): 'మీలో ఉత్తముడు తన కుటుంబానికి ఉత్తముడైనవాడు.' (జామి అత్-తిర్మిజీ 3895). స్త్రీ పురుషులు అల్లాహ్ ముందు సమాన జవాబుదారులు.", en: "Islam gave women rights centuries before the Western world: the right to own property (7th century), inheritance, divorce (khul'), and education. Quran 33:35 explicitly declares men and women spiritually equal. The Prophet ﷺ said: 'The best of you are those who are best to their families.' (Jami at-Tirmidhi 3895). Women and men have equal spiritual standing and accountability before God." } },
+    { q: { te: "ముస్లిం మహిళలు హిజాబ్ ఎందుకు ధరిస్తారు?", en: "Why do Muslim women wear the hijab?" },
+      a: { te: "హిజాబ్ ముఖ్యంగా ఖురానిక్ వినయ ఆదేశం (24:31). ముస్లిం మహిళలకు ఇది ఒక విశ్వాస, గుర్తింపు, గౌరవ ప్రకటన — అణచివేత కాదు. చాలా మంది మహిళలు చట్టం అవసరం లేని దేశాల్లో కూడా స్వచ్ఛందంగా ధరిస్తారు. 'మహిళ ఏమి ధరించాలో ఎవరు నిర్ణయించాలి?' — ఇస్లాం సమాధానం: అల్లాహ్ మరియు ఆ మహిళ. భారతదేశంలో హిజాబ్ ధరించే రాజ్యాంగ హక్కు ఉంది.", en: "The hijab is primarily a Quranic instruction for modesty (24:31). For Muslim women, it is an expression of faith, identity, and dignity — not oppression. Many women choose it voluntarily even where it is not required by law. Who decides what a woman wears? Islam says: God and the woman herself. In India, women have a constitutional right to wear the hijab." } },
+    { q: { te: "ఇస్లాం పురుషులను మహిళలను సమానంగా చూస్తుందా?", en: "Does Islam treat men and women equally?" },
+      a: { te: "ఇస్లాం సమానత్వం (equality) మరియు ఈక్విటీ మధ్య తేడా పాటిస్తుంది. ఆత్మీయంగా స్త్రీ పురుషులు సమానులు; ఆస్తి, విద్య, న్యాయంలో సమాన హక్కులు ఉన్నాయి. కుటుంబ పాత్రలలో తేడాలు ఉన్నాయి — పురుషుడు ఆర్థిక బాధ్యత వహిస్తాడు; మహిళ తన సంపదను తాను ఉంచుకుంటుంది. వారసత్వంలో కొడుకు రెట్టింపు వాటా పొందినా, కుటుంబ ఆర్థిక బాధ్యత అతనిదే. ఇవి పూరక నిర్మాణాలు — విలువలో అసమానత కాదు.", en: "Islam distinguishes between equality and equity. Spiritually, men and women are equal, with equal rights to property, education, and justice. Differences exist in family roles — men are financial maintainers while women keep their own wealth. A son's double inheritance comes with his legal obligation to financially support the whole family, which daughters do not carry. These are complementary structures, not hierarchies of worth." } }
+  ]},
+  { cat: { te: "ఆహారం & జీవనశైలి", en: "Diet & Lifestyle" }, items: [
+    { q: { te: "ఇస్లాం మద్యపానం మరియు జూదాన్ని ఎందుకు నిషేధించింది?", en: "Why does Islam prohibit alcohol and gambling?" },
+      a: { te: "ఖురాన్ (2:219) మద్యపానం, జూదంలో 'కొంత ప్రయోజనం ఉందని' అంగీకరిస్తూ 'వాటి పాపం వాటి ప్రయోజనం కంటే ఎక్కువ' అని చెప్తుంది. మద్యపానం మేధస్సును కప్పుతుంది — నమాజు స్పష్టమైన మనస్సుతో చేయాలి (4:43). ప్రపంచవ్యాప్తంగా గృహ హింస, ప్రమాదాలకు మద్యపానం ప్రధాన కారణం. జూదం అబద్ధపు సంపదను, సామాజిక అసమానతను సృష్టిస్తుంది. మేధస్సు రక్షణ షరియా యొక్క 5 ముఖ్య లక్ష్యాలలో ఒకటి.", en: "Quran 2:219 acknowledges both have 'some benefit' but says 'their sin is greater than their benefit.' Alcohol clouds the mind — prayer requires clarity (4:43). Globally, alcohol is a leading cause of domestic violence and accidents. Gambling creates false wealth and social inequality. Protecting the intellect is one of Sharia's five primary objectives." } },
+    { q: { te: "ఇస్లాం పంది మాంసాన్ని ఎందుకు నిషేధించింది?", en: "Why does Islam prohibit pork?" },
+      a: { te: "ఖురాన్ (5:3) స్పష్టంగా పంది మాంసాన్ని నిషేధించింది. కారణాలు: ఆత్మీయ పవిత్రత మరియు శుభ్రత. శాస్త్రపరంగా పంది మాంసం ట్రిచినెల్లా, టేనియా వంటి పరాన్నజీవి సంక్రమణలకు ఎక్కువ అవకాశం ఉంది — రిఫ్రిజిరేషన్ లేని వేడి వాతావరణంలో ముఖ్యంగా ప్రమాదకరం. యూదు కోషర్ చట్టం కూడా పంది మాంసాన్ని నిషేధించింది. ఇది దైవ ఆదేశం మరియు సమగ్ర ఆరోగ్యానికి సంబంధించినది.", en: "Quran 5:3 explicitly prohibits pork. Reasons: spiritual purity and cleanliness. Scientifically, pork carries higher risks of parasitic infections (Trichinella, Taenia) — particularly dangerous in hot climates before refrigeration. Jewish kosher law similarly prohibits pork. The prohibition is about divine command and holistic health." } },
+    { q: { te: "కొన్ని ఇస్లామిక్ నియమాలలో కుక్కలు ఎందుకు సమస్యాత్మకంగా పరిగణించబడతాయి?", en: "Why are dogs considered problematic in some Islamic rulings?" },
+      a: { te: "ఇస్లాంలో కుక్కలు 'హరామ్' (పూర్తి నిషేధం) కావు. ఖురాన్ (18:18) కుక్కను సానుకూలంగా ప్రస్తావిస్తుంది. రక్షణ, వేట కోసం కుక్కలను పెంచుకోవడం అనుమతించబడింది. 'అపవిత్రత' నియమం కుక్క లాలాజలానికి సంబంధించింది — నమాజుకు ముందు ప్రత్యేక శుద్ధి అవసరం; ఇది పవిత్రత నియమం, కుక్కలపై నైతిక తీర్పు కాదు. దాహపడిన కుక్కకు నీళ్ళు ఇచ్చినందుకు ఒక వ్యక్తి స్వర్గానికి వెళ్ళిన ఉదంతాన్ని ప్రవక్త (ﷺ) చెప్పారు (సహీహ్ అల్-బుఖారీ 173; సహీహ్ ముస్లిం 2244).", en: "Dogs are not 'haram' (absolutely forbidden) in Islam. Quran 18:18 mentions a dog positively. Keeping dogs for guarding or hunting is permitted. The 'impurity' ruling concerns only dog saliva requiring specific ritual purification before prayer — a hygiene ruling, not a moral judgement on dogs. The Prophet ﷺ narrated that a person entered paradise for giving water to a thirsty dog (Sahih al-Bukhari 173; Sahih Muslim 2244)." } }
+  ]},
+  { cat: { te: "సామాజిక అంశాలు", en: "Social Issues" }, items: [
+    { q: { te: "ఇస్లాం బానిసత్వాన్ని సమర్థిస్తుందా?", en: "Does Islam support slavery?" },
+      a: { te: "ఇస్లాం బానిసత్వాన్ని సృష్టించలేదు — ఇది రోమన్, గ్రీక్, ఆఫ్రికన్ నాగరికతలన్నింటిలో ఉండేది. ఇస్లాం చేసిన పని: బానిసలకు కఠిన రక్షణలు ఏర్పాటు చేయడం, బానిసను విడిపించడాన్ని అత్యుత్తమ దాన కార్యంగా ప్రకటించడం. ఖురాన్ పాప ప్రాయశ్చిత్తంగా బానిసలను విడిపించమని పదే పదే చెప్పింది (2:177, 4:92, 5:89). నేటి ఇస్లాం బానిసత్వాన్ని ఏకగ్రీవంగా నిషేధంగా పరిగణిస్తుంది.", en: "Islam did not invent slavery — it existed throughout ancient Roman, Greek, and African civilisations. What Islam did: enforce strict protections for slaves and repeatedly declare freeing slaves the greatest charitable act. The Quran lists freeing slaves as expiation for sins multiple times (2:177, 4:92, 5:89). Modern Islam unanimously condemns slavery as prohibited." } },
+    { q: { te: "ఇస్లాం సమలింగత్వాన్ని ఎందుకు నిషేధిస్తుంది?", en: "Why does Islam prohibit homosexuality?" },
+      a: { te: "ఇస్లాం (యూదు, క్రైస్తవ మతాల వలెనే చారిత్రకంగా) ఖురానిక్ నిషేధాలు మరియు ప్రవక్త లూత్ (అ.స.) కథ ఆధారంగా సమలింగ సంపర్కాన్ని పాపంగా పరిగణిస్తుంది. ముఖ్యమైన విషయం: ఇస్లాం చర్యను ఖండిస్తుంది — వ్యక్తిని కాదు. సమలింగ ఆకర్షణ అనుభవించే వ్యక్తి స్వభావంలో పాపి కాదు. ఇస్లాం అందరి పట్ల కరుణను నేర్పిస్తుంది — ఎవరూ హింసకు, వేధింపులకు గురికాకూడదు.", en: "Islam, like traditional Judaism and Christianity historically, considers homosexual acts sinful based on Quranic prohibitions and the story of Prophet Lut. Important distinction: Islam condemns the act — not the person. A person experiencing same-sex attraction is not sinful by nature. Islam teaches compassion for all — no one should face violence or harassment for their personal struggles." } },
+    { q: { te: "ఇస్లాంలో వివిధ వర్గాలు (సున్నీ, షియా) ఎందుకు ఉన్నాయి?", en: "Why are there different sects in Islam (Sunni, Shia, etc.)?" },
+      a: { te: "ప్రధాన విభజన (సున్నీ-షియా) ఒక రాజకీయ ప్రశ్న నుండి పుట్టింది: ప్రవక్త (ﷺ) 632 CE లో మరణించిన తర్వాత ముస్లిం సమాజాన్ని ఎవరు నడిపించాలి? సున్నీలు అబూ బకర్ (ర.అ.) ని సమాజ ఏకాభిప్రాయంతో మొదటి ఖలీఫాగా అంగీకరించారు; షియాలు అలీ (ర.అ.) కి దైవ నియామకం ఉందని భావించారు. రెండు వర్గాలు ఒకే ఖురాన్, ఒకే ఐదు స్తంభాలు నమ్ముతాయి. ప్రవక్త (ﷺ) వర్గవాదానికి వ్యతిరేకంగా హెచ్చరించారు.", en: "The primary division (Sunni-Shia) arose from a political question after the Prophet ﷺ died in 632 CE: who should lead the Muslim community? Sunnis accepted Abu Bakr (RA) by community consensus; Shia believed Ali (RA) was the rightful leader by divine appointment. Both share the same Quran and five pillars. The Prophet ﷺ warned against sectarianism, and Muslims from all sects broadly coexist today." } }
+  ]},
+  { cat: { te: "ఖురాన్ & హదీస్", en: "Quran & Hadith" }, items: [
+    { q: { te: "ఖురాన్ మార్చబడిందా లేదా సంరక్షించబడిందా?", en: "Has the Quran been changed or preserved?" },
+      a: { te: "ఖురాన్ మానవ చరిత్రలో అత్యంత ఖచ్చితంగా సంరక్షించబడిన పురాతన గ్రంథాలలో ఒకటి. అల్లాహ్ వాగ్దానం: 'మేమే ఈ జిక్ర్‌ను అవతరింపజేశాం మరియు మేమే దాన్ని సంరక్షిస్తాం.' (15:9). బర్మింగ్‌హామ్, సనా'అ లో కనుగొన్న పురాతన పాండులిపులు నేటి ఖురాన్‌తో అక్షరం అక్షరం సరిపోతాయి. ప్రపంచంలో ఒకే ఖురాన్ — వేరే వెర్షన్లు లేవు. లక్షలాది హాఫిజ్‌లు దాన్ని పూర్తిగా కంఠస్తం చేశారు.", en: "The Quran is among the most precisely preserved ancient texts in history. Allah promised: 'We sent down the Quran and We will preserve it.' (15:9). Ancient manuscripts found in Birmingham and Sana'a match today's Quran letter for letter. There is only one version of the Quran worldwide. Millions of Muslims (hafiz) have it memorised entirely." } },
+    { q: { te: "ఖురాన్ ఎవరు రాశారు? అది ఎలా సంకలనం చేయబడింది?", en: "Who wrote the Quran, and how was it compiled?" },
+      a: { te: "ముస్లింలు ఖురాన్‌ను అల్లాహ్ యొక్క ప్రత్యక్ష వాక్కుగా నమ్ముతారు — జిబ్రీల్ (అ.స.) ద్వారా ప్రవక్త (ﷺ) కు 23 సంవత్సరాలపాటు అవతరించింది. ప్రవక్త (ﷺ) నిరక్షరాస్యుడు — ఇది దైవ మూలానికి సాక్ష్యంగా చూపబడుతుంది. ఆయన మరణానంతరం అబూ బకర్ (ర.అ.) జైద్ ఇబ్న్ ఠాబిత్ చే ఒక ప్రమాణ పాండులిపి సంకలనం చేయించారు. ఉస్మాన్ (ర.అ.) ప్రమాణ కాపీలను అన్ని ప్రాంతాలకు పంపారు (651 CE).", en: "Muslims believe the Quran is the direct word of God, revealed to the unlettered Prophet ﷺ over 23 years through Angel Jibreel. The Prophet could not read or write — cited as evidence of divine origin. After his death, Abu Bakr (RA) commissioned Zayd ibn Thabit to compile a standardised manuscript. Uthman (RA) distributed official copies to all regions (651 CE)." } },
+    { q: { te: "ఖురాన్‌లో శాస్త్రీయ అద్భుతాలు ఉన్నాయా?", en: "Are there scientific signs in the Quran?" },
+      a: { te: "ఖురాన్ అవతరించిన కాలంలో శాస్త్రీయంగా తెలియని దృగ్విషయాలను పేర్కొంటుంది: విస్తరిస్తున్న విశ్వం (51:47), పిండ అభివృద్ధి దశలు (23:12-14), నీటి చక్రం (30:48), రెండు సముద్రాల మధ్య అడ్డుగోడ (55:19-20 — హాలోక్లైన్). విమర్శకులు ఇవి వ్యాఖ్యానించదగిన వ్యాపక వివరణలు అని అంటారు; విశ్వాసులు వాటిని దైవ జ్ఞానంగా చూస్తారు. కనీసపక్షం, ఖురాన్ శాస్త్రంతో ఎప్పుడూ విరుద్ధంగా నిరూపించబడలేదు.", en: "The Quran mentions phenomena unknown at the time of revelation: the expanding universe (51:47), stages of embryonic development (23:12-14), the water cycle (30:48), and two seas not mixing (55:19-20 — haloclines). Critics argue these are broad, interpretable descriptions; believers see them as divine knowledge. At minimum, the Quran has never been scientifically disproved." } },
+    { q: { te: "ఖురాన్‌తోపాటు ముస్లింలు హదీస్‌ను ఎందుకు పాటిస్తారు?", en: "Why do Muslims follow Hadith in addition to the Quran?" },
+      a: { te: "ఖురాన్ పదే పదే ఆదేశిస్తుంది: 'అల్లాహ్‌కు మరియు రసూలుకు విధేయత చూపండి.' (4:59). ఖురాన్ 'ఏమి' చేయాలో చెప్తుంది — హదీస్ 'ఎలా' చేయాలో చెప్తుంది. ఖురాన్ 'నమాజు చేయండి' అంటుంది — రోజూ ఎన్నిసార్లు? ఏ రూపంలో? ఈ వివరాలు హదీసులో ఉన్నాయి. హదీస్ అనేది ఖురాన్ యొక్క ఆచరణాత్మక వ్యాఖ్యానం — ఒక ప్రమాణ కథనకర్తల గొలుసు (ఇస్నాద్) ద్వారా సంరక్షించబడింది.", en: "The Quran repeatedly commands: 'Obey Allah and obey the Messenger.' (4:59). The Quran tells us 'what' — Hadith tells us 'how.' The Quran says 'establish prayer' — how many times daily? In what form? The Hadith details all of this. Hadith is the practical commentary of the Quran, preserved through a rigorous chain of narrators (isnad)." } },
+    { q: { te: "హదీస్ సంకలనాలు ఎంత నమ్మదగినవి?", en: "How reliable are the Hadith collections?" },
+      a: { te: "హదీస్ శాస్త్రాలు (ఇల్మ్ అల్-హదీస్) ఆధునిక యుగానికి ముందు అభివృద్ధి చెందిన అత్యంత అధునాతన చారిత్రక ధృవీకరణ వ్యవస్థ. ప్రతి హదీస్‌కు మత్న్ (విషయం) మరియు ఇస్నాద్ (ప్రవక్త వరకు కథనకర్తల గొలుసు) ఉంటాయి. ఇమామ్ బుఖారీ సుమారు 6,00,000 హదీసులు పరీక్షించి అత్యంత కఠిన ప్రమాణాలతో కొద్ది వేలను మాత్రమే అంగీకరించారు. పండితులు హదీసులను సహీహ్/హసన్/దయీఫ్ గా వర్గీకరిస్తారు.", en: "Hadith sciences (ilm al-hadith) represent the most sophisticated historical verification system before the modern era. Each hadith has a matn (text) and isnad (chain of narrators back to the Prophet ﷺ). Imam Bukhari examined around 600,000 hadiths and accepted only a few thousand under the strictest standards. Scholars grade hadiths as sahih/hasan/da'if accordingly." } }
+  ]},
+  { cat: { te: "ధర్మ శాస్త్రం & విశ్వాసం", en: "Theology & Faith" }, items: [
+    { q: { te: "ఇస్లాం ఒక్క దేవునిపై విశ్వాసాన్ని (తౌహీద్) ఎందుకు నొక్కి చెప్తుంది?", en: "Why does Islam emphasise belief in one God (Tawhid)?" },
+      a: { te: "తౌహీద్ (ఏకేశ్వరవాదం) ఇస్లాం యొక్క పునాది. ఖురాన్ (21:22): 'ఆకాశాలలో, భూమిపై అల్లాహ్ తప్ప ఇతర దేవుళ్ళు ఉన్నట్లయితే, రెండూ నాశనమయ్యేవి.' విశ్వం ఒకే నిరంతర చట్టాల ప్రకారం పనిచేయడం ఒకే సృష్టికర్తను సూచిస్తుంది. ఏకేశ్వరవాదం మనిషిని మనిషికి లొంగిపోకుండా, కేవలం అల్లాహ్‌కు జవాబుదారిగా చేస్తుంది.", en: "Tawhid (monotheism) is the foundation of Islam. Quran 21:22: 'If there were gods besides Allah, both heaven and earth would be ruined.' The universe operating on one consistent set of laws points to one Creator. Monotheism frees humans from submission to other humans — answerable only to God." } },
+    { q: { te: "ప్రవక్త ముహమ్మద్ (ﷺ) చివరి ప్రవక్త అని ముస్లింలు ఎందుకు నమ్ముతారు?", en: "Why do Muslims believe Prophet Muhammad ﷺ is the final prophet?" },
+      a: { te: "ఖురాన్ స్పష్టంగా చెప్తుంది: 'ముహమ్మద్ ప్రవక్తల ముద్ర.' (33:40). పూర్తిగా సంరక్షించబడిన, సార్వత్రిక, చివరి అవతరణ అయిన ఖురాన్‌తో ప్రవచన గొలుసు పూర్తయింది. మునుపటి వెల్లడులు నిర్దిష్ట జాతులకు ఉద్దేశించినవి; ఖురాన్ ప్రళయం వరకు మొత్తం మానవాళికి. ప్రవక్త (ﷺ) తానే 'నా తర్వాత ప్రవక్త లేడు' అని చెప్పారు (సహీహ్ అల్-బుఖారీ 3455; సహీహ్ ముస్లిం 2286).", en: "Quran explicitly states: 'Muhammad is the seal of the prophets.' (33:40). With the Quran — a perfectly preserved, universal, final revelation — the chain of prophecy is complete. Previous revelations were for specific nations; the Quran is for all humanity till the end of time. The Prophet ﷺ said: 'There is no prophet after me.' (Sahih al-Bukhari 3455; Sahih Muslim 2286)." } },
+    { q: { te: "ప్రవక్త ముహమ్మద్ (ﷺ) ప్రవక్తృత్వానికి ఏ ఆధారాలు ఉన్నాయి?", en: "What evidence exists for the prophethood of Muhammad ﷺ?" },
+      a: { te: "బహుళ వాదనలు: (1) ఖురాన్ — నిరక్షరాస్యుని శ్రుతిలేఖనం అసమాన నాణ్యమైన అరబిక్ సాహిత్యాన్ని ఉత్పత్తి చేసింది; అరబ్బులే దీన్ని సవాలు చేయలేకపోయారు. (2) 23 సంవత్సరాలలో విచ్ఛిన్న గిరిజన సమాజం ఒక నాగరికతగా మారింది. (3) వ్యక్తిగత స్వభావం — శత్రువులు కూడా ప్రవచనానికి ముందే ఆయనను 'అల్-అమీన్' (నమ్మకమైనవాడు) అని పిలిచారు. (4) ఏ ప్రాపంచిక లాభం లేదు — ఆయన దాదాపు ఏమీ లేకుండా మరణించారు.", en: "Multiple arguments: (1) The Quran — an illiterate man's dictation produced unmatched Arabic literature that Arab poets themselves could not rival. (2) A fractured tribal society unified into a civilisation in 23 years. (3) Personal character — even enemies called him 'Al-Amin' (The Trustworthy) before prophethood. (4) No worldly gain — he died owning almost nothing." } },
+    { q: { te: "ఇస్లాం ప్రకారం మరణం తర్వాత ఏమి జరుగుతుంది?", en: "What happens after death according to Islam?" },
+      a: { te: "మరణం తర్వాత ఆత్మ 'బర్జఖ్' (మధ్యంతర స్థితి) లోకి ప్రవేశిస్తుంది. తీర్పు దినాన (యవ్మ్ అల్-ఖియామా) అన్ని ఆత్మలు పునరుత్థానమవుతాయి, వారి కర్మలు తూకానికి వేయబడతాయి. మంచి కర్మలు ఉన్నవారు జన్నత్ (స్వర్గం) లోకి ప్రవేశిస్తారు. 'నా కరుణ నా కోపాన్ని మించిపోతుంది' (హదీస్ ఖుద్సీ — సహీహ్ అల్-బుఖారీ 7404; సహీహ్ ముస్లిం 2751). అల్లాహ్ కరుణపై ఆశ, ఆయన న్యాయాన్ని గుర్తుంచుకోవడం రెండూ కలిసి ఉండాలని ఇస్లాం నేర్పిస్తుంది.", en: "After death the soul enters Barzakh — an intermediate state until the Day of Judgement. On that Day all souls are resurrected and their deeds weighed. Those with good deeds enter Jannah (Paradise). Allah says: 'My mercy prevails over My wrath' (hadith qudsi — Sahih al-Bukhari 7404; Sahih Muslim 2751). Islam teaches both hope in Allah's mercy and mindfulness of His justice." } },
+    { q: { te: "అల్లాహ్ దయాళువు అయితే నరకం ఎందుకు ఉంది?", en: "If Allah is Merciful, why is there Hell?" },
+      a: { te: "ఇది వేదాంతశాస్త్రంలో అత్యంత లోతైన ప్రశ్నలలో ఒకటి. ఇస్లామిక్ సమాధానం: (1) న్యాయానికి పరిణామాలు అవసరం — దుర్మార్గుడిని, సాధువును ఒకేలా చూసే దేవుడు న్యాయవంతుడు కాదు. (2) నరకం అనుపాతంలో ఉంటుంది: 'మీ రబ్ ఒక్క అణువు అన్యాయం చేయడు.' (4:40). (3) విశ్వాసులకు నరకం తాత్కాలిక శుద్ధి కావచ్చు. (4) అల్లాహ్ కరుణ అపారమైనది — హృదయపూర్వక పశ్చాత్తాపానికి ఆయన క్షమాపణ వాగ్దానం చేయబడింది.", en: "One of theology's deepest questions. Islamic response: (1) Justice requires consequences — a God who treated a tyrant and a saint identically would not be just. (2) Hell is proportional: 'Your Lord wrongs no one by even an atom's weight.' (4:40). (3) For believers, Hell may be temporary purification. (4) Allah's mercy is vast — His forgiveness is promised for sincere repentance." } }
+  ]},
+  { cat: { te: "భారత సందర్భం", en: "Indian Context" }, items: [
+    { q: { te: "హిందువుల అభ్యంతరాలు ఉన్నప్పటికీ కొంత మంది ముస్లింలు ఆవులను ఎందుకు వధిస్తారు?", en: "Why do some Muslims slaughter cows despite Hindu objections in India?" },
+      a: { te: "గోమాంసం ఇస్లాంలో హలాల్ — కానీ తప్పనిసరి కాదు; ఇది వ్యక్తిగత ఎంపిక మాత్రమే. రాష్ట్ర చట్టాలు గోవధను నిషేధించిన చోట, ఆ చట్టాన్ని పాటించడం ముస్లింల పౌర మరియు ఇస్లామిక్ బాధ్యత — ప్రవక్త (ﷺ) ఒప్పందాలను, దేశ చట్టాలను గౌరవించమని నేర్పారు. ఇస్లామిక్ ఫ్రంట్ మంగళగిరి సహజీవన నమూనాను బలంగా సమర్థిస్తుంది — హిందూ సోదరుల మనోభావాలను గౌరవించడం మన ఇస్లామిక్ విలువ.", en: "Beef is halal in Islam but not compulsory — it is purely a personal choice. Where state law prohibits cow slaughter, Muslims are obligated by both civic duty and Islamic teaching to obey that law — the Prophet ﷺ taught honouring covenants and the law of the land. Islamic Front Mangalagiri firmly upholds the coexistence model — respecting our Hindu neighbours' sentiments is an Islamic value." } },
+    { q: { te: "ఇస్లాం అముస్లింల గురించి ఏమి నేర్పిస్తుంది?", en: "What does Islam teach about non-Muslims?" },
+      a: { te: "ఖురాన్ (60:8): 'మతం విషయంలో మీతో పోరాడని వారతో మంచిగా, న్యాయంగా ఉండకుండా అల్లాహ్ మిమ్మల్ని నిషేధించడు.' ప్రవక్త (ﷺ): 'ధిమ్మీని (ఒప్పందంలో ఉన్న అముస్లిం వ్యక్తిని) హాని చేసేవాడికి ప్రళయదినాన నేను ప్రత్యర్థిని.' (సునన్ అబీ దావూద్ 3052). ఇస్లామిక్ వేదాంతశాస్త్రంలో ప్రతి జాతికి ప్రవక్త ఇవ్వబడ్డాడు (10:47). సహజీవనం, మర్యాద, న్యాయం అముస్లింల పట్ల ఇస్లామిక్ బాధ్యతలు.", en: "Quran 60:8: 'Allah does not forbid you from being kind and just to those who do not fight you on account of religion.' The Prophet ﷺ said: 'Whoever wrongs a dhimmi (a non-Muslim under covenant), I shall be his adversary on the Day of Resurrection.' (Sunan Abi Dawud 3052). In Islamic theology every nation received a prophet (10:47). Coexistence, dignity, and justice toward non-Muslims are Islamic obligations." } }
+  ]}
+];
+
+function renderQA(l) {
+  var container = document.getElementById('qa-container');
+  if (!container) return;
+  container.innerHTML = '';
+  QA.forEach(function (cat) {
+    var catDiv = document.createElement('div');
+    catDiv.className = 'qa-cat';
+    var catTitle = document.createElement('div');
+    catTitle.className = 'qa-cat-title';
+    catTitle.textContent = cat.cat[l] || cat.cat.te;
+    catDiv.appendChild(catTitle);
+    cat.items.forEach(function (item) {
+      var qItem = document.createElement('div');
+      qItem.className = 'qa-item';
+      var btn = document.createElement('button');
+      btn.className = 'qa-btn';
+      btn.type = 'button';
+      btn.setAttribute('aria-expanded', 'false');
+      var qSpan = document.createElement('span');
+      qSpan.textContent = item.q[l] || item.q.te;
+      var chevron = document.createElement('span');
+      chevron.className = 'qa-chevron';
+      chevron.setAttribute('aria-hidden', 'true');
+      chevron.textContent = '▾';
+      btn.appendChild(qSpan);
+      btn.appendChild(chevron);
+      var answerWrap = document.createElement('div');
+      answerWrap.className = 'qa-answer';
+      answerWrap.setAttribute('role', 'region');
+      var answerInner = document.createElement('div');
+      answerInner.className = 'qa-answer-inner';
+      answerInner.textContent = item.a[l] || item.a.te;
+      answerWrap.appendChild(answerInner);
+      qItem.appendChild(btn);
+      qItem.appendChild(answerWrap);
+      btn.addEventListener('click', function () {
+        var isOpen = qItem.classList.contains('qa-open');
+        var parent = qItem.parentElement.parentElement; // qa-container
+        parent.querySelectorAll('.qa-item.qa-open').forEach(function (other) {
+          if (other !== qItem) {
+            other.classList.remove('qa-open');
+            var ob = other.querySelector('.qa-btn'); if (ob) ob.setAttribute('aria-expanded', 'false');
+          }
+        });
+        qItem.classList.toggle('qa-open', !isOpen);
+        btn.setAttribute('aria-expanded', String(!isOpen));
+      });
+      catDiv.appendChild(qItem);
+    });
+    container.appendChild(catDiv);
+  });
+}
+
+/* ───────── Accordions (single-open, scoped per .guide-acc) ───────── */
+function initGuides() {
+  var accordions = document.querySelectorAll('.guide-acc');
+  if (!accordions.length) return;
+  accordions.forEach(function (acc) {
+    var items = acc.querySelectorAll('.guide-item');
+    items.forEach(function (item) {
+      var head = item.querySelector('.guide-head');
+      if (!head) return;
+      head.addEventListener('click', function () {
+        var isOpen = item.classList.contains('guide-open');
+        items.forEach(function (other) {
+          if (other !== item) {
+            other.classList.remove('guide-open');
+            var oh = other.querySelector('.guide-head'); if (oh) oh.setAttribute('aria-expanded', 'false');
+          }
+        });
+        item.classList.toggle('guide-open', !isOpen);
+        head.setAttribute('aria-expanded', String(!isOpen));
+      });
+    });
+  });
+}
+
+/* ───────── Generic interactive stepper (Wudu / Salah) ───────── */
+function initStepper(sectionId) {
+  var root = document.getElementById(sectionId);
+  if (!root) return;
+  var stage = root.querySelector('.ws-dots');
+  var steps = root.querySelectorAll('.ws-step');
+  if (!stage || !steps.length) return;
+  var total = steps.length;
+  var cur = 0;
+  var fill = root.querySelector('.ws-fill');
+  var curOut = root.querySelector('.ws-cur');
+  var totOut = root.querySelector('.ws-total');
+  var prev = root.querySelector('.ws-prev');
+  var next = root.querySelector('.ws-next');
+  if (totOut) totOut.textContent = String(total);
+
+  // Image slots: overlay an illustration on each step's emoji icon.
+  // Falls back to the emoji automatically if the image is missing (404 → self-remove),
+  // so AI-generated art can be dropped into assets/guides/<section>-<n>.jpg later.
+  steps.forEach(function (s, idx) {
+    var ic = s.querySelector('.ws-ic');
+    if (!ic || ic.querySelector('.ws-img')) return;
+    var emoji = ic.textContent.trim();
+    ic.textContent = '';
+    var img = document.createElement('img');
+    img.className = 'ws-img';
+    img.alt = '';
+    img.loading = 'lazy';
+    img.onerror = function () { this.remove(); };
+    var span = document.createElement('span');
+    span.className = 'ws-emoji';
+    span.textContent = emoji;
+    ic.appendChild(span);
+    ic.appendChild(img);
+    img.src = 'assets/guides/' + sectionId + '-' + (idx + 1) + '.jpg';
+  });
+
+  // build numbered dots
+  var dots = [];
+  for (var i = 0; i < total; i++) {
+    (function (n) {
+      var d = document.createElement('button');
+      d.type = 'button';
+      d.className = 'ws-dot';
+      d.textContent = String(n + 1);
+      d.setAttribute('aria-label', 'Step ' + (n + 1));
+      d.addEventListener('click', function () { go(n); });
+      stage.appendChild(d);
+      dots.push(d);
+    })(i);
+  }
+
+  function go(n) {
+    cur = Math.max(0, Math.min(total - 1, n));
+    steps.forEach(function (s, idx) { s.classList.toggle('is-active', idx === cur); });
+    dots.forEach(function (d, idx) {
+      d.classList.toggle('is-active', idx === cur);
+      d.classList.toggle('is-done', idx < cur);
+    });
+    if (fill) fill.style.width = ((cur + 1) / total * 100) + '%';
+    if (curOut) curOut.textContent = String(cur + 1);
+    if (prev) prev.disabled = (cur === 0);
+    if (next) next.disabled = (cur === total - 1);
+  }
+
+  if (prev) prev.addEventListener('click', function () { go(cur - 1); });
+  if (next) next.addEventListener('click', function () { go(cur + 1); });
+  root.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowRight') { go(cur + 1); }
+    else if (e.key === 'ArrowLeft') { go(cur - 1); }
+  });
+
+  go(0);
+}
+
+/* ───────── Sticky quick-jump nav ───────── */
+function initStickyNav() {
+  var bar = document.getElementById('kc-sticky');
+  var hero = document.querySelector('.kc-hero');
+  if (!bar || !hero) return;
+  var links = Array.prototype.slice.call(bar.querySelectorAll('a[data-spy]'));
+  var sections = links
+    .map(function (a) { return document.getElementById(a.getAttribute('data-spy')); })
+    .filter(Boolean);
+
+  function setActive(id) {
+    links.forEach(function (a) {
+      a.classList.toggle('is-active', a.getAttribute('data-spy') === id);
+    });
+  }
+
+  function onScroll() {
+    // Show the bar once the hero has scrolled out from under the fixed top nav.
+    bar.classList.toggle('is-visible', hero.getBoundingClientRect().bottom <= 80);
+    // Active = the last section whose top has passed the sticky band (~140px from top).
+    var current = sections.length ? sections[0] : null;
+    for (var i = 0; i < sections.length; i++) {
+      if (sections[i].getBoundingClientRect().top <= 140) current = sections[i];
+      else break;
+    }
+    if (current) setActive(current.id);
+  }
+
+  var ticking = false;
+  window.addEventListener('scroll', function () {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function () { onScroll(); ticking = false; });
+  }, { passive: true });
+  onScroll();
+}
+
 /* ───────── Boot ───────── */
 document.addEventListener('DOMContentLoaded', function () {
   document.getElementById('asr-hanafi').classList.toggle('active', hanafi);
@@ -855,6 +2315,10 @@ document.addEventListener('DOMContentLoaded', function () {
   fetchMetalPrices();
   calcZakat();
   tickCountdown();
+  initGuides();
+  initStepper('wudu');
+  initStepper('salah-guide');
+  initStickyNav();
   initReveal();
   setInterval(tickCountdown, 1000);
   setInterval(renderSalah, 60000);

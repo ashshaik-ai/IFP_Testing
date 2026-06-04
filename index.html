@@ -16,7 +16,17 @@
     --border: rgba(200,146,42,0.25);
   }
   html { scroll-behavior: smooth; }
-  body { font-family: 'DM Sans', 'Noto Sans Telugu', sans-serif; background: var(--cream); color: var(--text-dark); overflow-x: hidden; }
+  body { font-family: 'DM Sans', 'Noto Sans Telugu', sans-serif; background: var(--cream); color: var(--text-dark); overflow-x: hidden; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility; }
+
+  /* ── Global premium polish ── */
+  ::selection { background: rgba(200,146,42,0.28); color: var(--text-dark); }
+  ::-webkit-scrollbar { width: 11px; height: 11px; }
+  ::-webkit-scrollbar-track { background: var(--cream); }
+  ::-webkit-scrollbar-thumb { background: linear-gradient(var(--gold), var(--gold-light)); border-radius: 100px; border: 3px solid var(--cream); }
+  ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+  html { scrollbar-color: var(--gold) var(--cream); scrollbar-width: thin; }
+  a:focus-visible, button:focus-visible, [tabindex]:focus-visible { outline: 2px solid var(--gold-light); outline-offset: 3px; border-radius: 3px; }
+  img { -webkit-user-drag: none; }
 
   /* NAV */
   nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(13,59,30,0.96); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(200,146,42,0.3); padding: 0 5vw; display: flex; align-items: center; justify-content: space-between; height: 68px; }
@@ -48,28 +58,37 @@
   :lang(te) .hero-title { line-height: 1.4; }
   .hero-title span { color: var(--gold-light); display: block; }
   .hero-subtitle { font-family: 'Cormorant Garamond', 'Noto Sans Telugu', serif; font-size: clamp(16px, 2vw, 22px); color: rgba(245,230,192,0.75); margin-bottom: 36px; font-weight: 400; letter-spacing: 0.3px; line-height: 1.7; }
-  .hero-stats { display: flex; gap: 36px; margin-bottom: 44px; flex-wrap: wrap; }
+  .hero-stats { display: flex; gap: 16px; margin-bottom: 44px; flex-wrap: wrap; }
+  .hstat { background: rgba(255,255,255,0.045); border: 1px solid rgba(200,146,42,0.28); border-radius: 14px; padding: 16px 24px; min-width: 132px; backdrop-filter: blur(4px); transition: border-color .2s ease, transform .2s ease-out, box-shadow .2s ease; }
+  .hstat:hover { transform: translateY(-2px); border-color: rgba(200,146,42,0.5); box-shadow: 0 10px 26px -14px rgba(0,0,0,0.7); }
   .hstat-num { font-family: 'Playfair Display', serif; font-size: 38px; font-weight: 700; color: var(--gold-light); line-height: 1; }
-  .hstat-label { font-size: 12px; color: rgba(245,230,192,0.55); letter-spacing: 0.8px; margin-top: 4px; }
-  .hero-divider { width: 1px; background: rgba(200,146,42,0.2); align-self: stretch; }
+  .hstat-label { font-size: 12px; color: rgba(245,230,192,0.6); letter-spacing: 0.8px; margin-top: 6px; }
+  .hero-divider { display: none; }
   .hero-cta { display: inline-flex; align-items: center; gap: 10px; background: var(--gold); color: var(--green-deep); padding: 14px 32px; border-radius: 4px; font-weight: 500; font-size: 14px; letter-spacing: 0.5px; text-decoration: none; text-transform: uppercase; transition: background 0.2s, transform 0.15s; }
   .hero-cta:hover { background: var(--gold-light); transform: translateY(-1px); }
-  .leader-card { position: relative; width: 300px; flex-shrink: 0; }
-  .leader-photo-frame { width: 280px; height: 340px; border: 2px solid rgba(200,146,42,0.4); border-radius: 6px; position: relative; overflow: hidden; background: linear-gradient(145deg, rgba(200,146,42,0.08), rgba(200,146,42,0.02)); }
+  .leader-card { position: relative; width: 364px; flex-shrink: 0; justify-self: end; transform: translateX(5vw); }
+  .leader-photo-frame { width: 364px; height: 458px; border-radius: 18px; position: relative; overflow: hidden;
+    background: linear-gradient(145deg, rgba(200,146,42,0.12), rgba(200,146,42,0.02));
+    box-shadow: 0 28px 64px -22px rgba(0,0,0,0.7), 0 0 0 1px rgba(200,146,42,0.45), 0 0 0 7px rgba(200,146,42,0.06); }
   .leader-photo-placeholder { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; }
   .avatar-circle { width: 110px; height: 110px; border-radius: 50%; background: rgba(200,146,42,0.12); border: 2px solid rgba(200,146,42,0.35); display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 42px; font-weight: 700; color: var(--gold-light); }
   .leader-photo-placeholder p { font-size: 12px; color: rgba(200,146,42,0.5); text-align: center; letter-spacing: 0.5px; padding: 0 20px; }
-  .leader-nameplate { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(13,59,30,0.97) 60%, transparent); padding: 36px 20px 20px; }
-  .leader-name { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--white); line-height: 1.2; }
-.leader-title-text {
-  font-size: 11px;
-  color: var(--gold-light);
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  margin-top: 4px;
-  white-space: pre-line;
-  line-height: 1.5;
-}
+  .leader-nameplate { position: absolute; bottom: 0; left: 0; right: 0;
+    background: linear-gradient(to top, rgba(7,33,17,0.98) 24%, rgba(7,33,17,0.82) 58%, transparent 100%);
+    padding: 56px 24px 24px; }
+  .leader-nameplate::before { content: ''; display: block; width: 36px; height: 2px; border-radius: 2px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light)); margin-bottom: 13px; }
+  .leader-name { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: #fff; line-height: 1.22; letter-spacing: 0.2px; }
+  .leader-title-text {
+    font-size: 10.5px;
+    color: rgba(232,184,75,0.9);
+    letter-spacing: 1.1px;
+    text-transform: uppercase;
+    margin-top: 9px;
+    white-space: pre-line;
+    line-height: 1.85;
+    font-weight: 500;
+  }
   /* SECTIONS */
   section { padding: 90px 5vw; }
   .section-tag { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); font-weight: 500; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
@@ -240,12 +259,58 @@
 
   /* ANIMATIONS */
   @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
-  .hero-badge { animation: fadeUp 0.5s ease-out 0.1s both; }
-  .hero-title { animation: fadeUp 0.5s ease-out 0.2s both; }
-  .hero-subtitle { animation: fadeUp 0.5s ease-out 0.3s both; }
-  .hero-stats { animation: fadeUp 0.5s ease-out 0.4s both; }
-  .hero-cta { animation: fadeUp 0.5s ease-out 0.5s both; }
-  .leader-card { animation: fadeUp 0.5s ease-out 0.3s both; }
+  .hero-badge { animation: fadeUp 0.6s ease-out 0.1s both; }
+  .hero-title { animation: fadeUp 0.7s ease-out 0.2s both; }
+  .hero-subtitle { animation: fadeUp 0.7s ease-out 0.35s both; }
+  .hero-stats { animation: fadeUp 0.7s ease-out 0.45s both; }
+  .hero-cta { animation: fadeUp 0.7s ease-out 0.6s both; }
+  .leader-card { animation: heroCardIn 0.9s cubic-bezier(.22,.61,.36,1) 0.35s both; }
+  @keyframes heroCardIn { from { opacity:0; transform: translateY(26px) scale(.97); } to { opacity:1; transform:none; } }
+
+  /* ═══════════════════════════════════════
+     HERO — PREMIUM REDESIGN + ANIMATED LOGO
+  ═══════════════════════════════════════ */
+  .hero { isolation: isolate; }
+  /* Static premium gradient layer (overrides the base ::before paint) */
+  .hero::before {
+    background-image:
+      radial-gradient(ellipse 64% 58% at 76% 40%, rgba(200,146,42,0.13) 0%, transparent 62%),
+      radial-gradient(ellipse 55% 55% at 8% 92%, rgba(46,139,87,0.18) 0%, transparent 60%),
+      repeating-linear-gradient(45deg, transparent, transparent 42px, rgba(200,146,42,0.018) 42px, rgba(200,146,42,0.018) 43px);
+  }
+  /* The lone crescent is replaced by the brand emblem backdrop */
+  .hero::after { display: none; }
+
+  /* Brand emblem — clean, centered static background watermark */
+  .hero-bg-emblem { position: absolute; top: 50%; left: 47%; transform: translate(-50%, -50%);
+    width: min(380px, 32vw); aspect-ratio: 1; z-index: 0; pointer-events: none;
+    display: flex; align-items: center; justify-content: center;
+    animation: heroLogoIn 1.2s cubic-bezier(.22,.61,.36,1) both; }
+  .hero-bg-emblem img { width: 100%; height: 100%; object-fit: contain; opacity: .06;
+    filter: drop-shadow(0 0 50px rgba(200,146,42,.18)); }
+  @keyframes heroLogoIn {
+    from { opacity: 0; transform: translate(-50%, -50%) scale(.97); }
+    to   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  }
+
+  /* Premium static gold title accent */
+  .hero-title span {
+    background: linear-gradient(100deg, var(--gold) 0%, var(--gold-light) 50%, #fff3d0 70%, var(--gold-light) 100%);
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent;
+  }
+
+  /* CTA — premium lift + shine sweep */
+  .hero-cta { position: relative; overflow: hidden; box-shadow: 0 10px 28px -10px rgba(200,146,42,.55);
+    transition: background .25s, transform .2s cubic-bezier(.22,.61,.36,1), box-shadow .25s; }
+  .hero-cta::after { content: ''; position: absolute; top: 0; left: -130%; width: 55%; height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255,255,255,.5), transparent); transform: skewX(-20deg); pointer-events: none; }
+  .hero-cta:hover { transform: translateY(-3px); box-shadow: 0 16px 34px -8px rgba(200,146,42,.6); }
+  .hero-cta:hover::after { animation: ctaShine .85s ease; }
+  @keyframes ctaShine { from { left: -130%; } to { left: 150%; } }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero::before, .hero-bg-emblem { animation: none !important; }
+  }
 
   /* ═══════════════════════════════════════
      PROFESSIONAL ANIMATIONS & ENHANCEMENTS
@@ -277,8 +342,11 @@
     padding:16px 20px; transition:box-shadow .2s ease,transform .2s ease-out; cursor:default; }
   .mf-ring-item:hover { transform:translateY(-1px); box-shadow:0 4px 16px rgba(13,59,30,.07); }
   .mf-ring-wrap { position:relative; width:64px; height:64px; flex-shrink:0; }
-  .mf-ring-svg { width:64px; height:64px; transform:rotate(-90deg); display:block; }
-  .mf-ring-arc { stroke-dashoffset:100; transition:stroke-dashoffset 2s cubic-bezier(.4,0,.2,1) .4s; }
+  .mf-ring-svg { width:64px; height:64px; display:block; }
+  /* Rotate only the progress arc (so it starts at 12 o'clock) — the SVG itself
+     is no longer rotated, which keeps the % label text upright. */
+  .mf-ring-arc { stroke-dashoffset:100; transition:stroke-dashoffset 2s cubic-bezier(.4,0,.2,1) .4s;
+    transform:rotate(-90deg); transform-origin:center; transform-box:fill-box; }
   .mf-ring-inner { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; }
   .mf-ring-pct { font-family:'Playfair Display',serif; font-size:14px; font-weight:700; line-height:1; }
   .mf-ring-count { font-size:9px; color:var(--text-muted); margin-top:2px; }
@@ -320,9 +388,20 @@
     .infra-grid { grid-template-columns: repeat(2, 1fr); }
     .contact-grid { grid-template-columns: 1fr; }
   }
+  /* Mid / narrow desktop: the card is a fixed width and eats space as the
+     viewport shrinks, so pull the near-centre emblem progressively left
+     (and trim it) so the founder photo never overlaps the logo */
+  @media (min-width: 901px) and (max-width: 1200px) {
+    .hero-bg-emblem { left: 39%; }
+  }
+  @media (min-width: 769px) and (max-width: 900px) {
+    .hero-bg-emblem { left: 24%; width: min(240px, 30vw); }
+  }
   @media (max-width: 768px) {
     .hero-content { grid-template-columns: 1fr; }
     .leader-card { display: none; }
+    .hero-bg-emblem { top: 50%; left: 50%; transform: translate(-50%, -50%); width: min(330px, 70vw); }
+    .hero-bg-emblem img { opacity: .06; }
     .victory .inner { grid-template-columns: 1fr; }
     .scheme .inner { grid-template-columns: 1fr; }
     .about .inner { grid-template-columns: 1fr; }
@@ -333,10 +412,18 @@
     .nav-kc { padding: 6px 11px; font-size: 11px; }
     .nav-right { gap: 12px; }
     .kc-promo .inner { grid-template-columns: 1fr; gap: 36px; }
+    /* Keep the 3 manifesto progress rings in a horizontal row on mobile */
+    .mf-rings-row { gap: 8px; flex-wrap: nowrap; }
+    .mf-ring-item { flex-direction: column; align-items: center; text-align: center; gap: 8px; min-width: 0; padding: 14px 6px; }
+    .mf-ring-caption { flex: none; }
+    .mf-ring-title { margin-bottom: 2px; }
   }
   @media (max-width: 420px) {
     .nav-kc::after { display: none; }
     .kc-tools { grid-template-columns: 1fr; }
+    .mf-ring-wrap, .mf-ring-svg { width: 56px; height: 56px; }
+    .mf-ring-title { font-size: 12px; }
+    .mf-ring-sub { font-size: 10px; }
   }
 </style>
 </head>
@@ -374,6 +461,9 @@
 
 <!-- HERO -->
 <section class="hero">
+  <div class="hero-bg-emblem" aria-hidden="true">
+    <img src="assets/logo-emblem.png" alt="" onerror="this.parentElement.style.display='none'">
+  </div>
   <div class="hero-content">
     <div class="hero-left">
       <div class="hero-badge" data-key="hero_badge">మంగళగిరి, ఆంధ్రప్రదేశ్</div>
@@ -439,8 +529,8 @@
 
     <div class="mandate-stats">
       <div class="ms-chip reveal">
-        <div class="ms-num" data-count="15" data-suffix="+">15+</div>
-        <div class="ms-lab" data-key="ms_years">సంవత్సరాల సేవ</div>
+        <div class="ms-num" data-count="5" data-suffix="">5</div>
+        <div class="ms-lab" data-key="ms_schemes">సంక్షేమ పథకాలు</div>
       </div>
       <div class="ms-chip ms-hl reveal">
         <div class="ms-num" data-count="7" data-suffix="">7</div>
@@ -470,27 +560,9 @@
       <div class="lead-subhead reveal" data-key="victory_seats_label">7 మంది విజేత సభ్యులు</div>
       <div class="members-grid">
         <div class="member-card reveal">
-          <img src="assets/candidates/1.candidate.jpg" alt="Yaseen Shaik" class="member-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="member-fallback" style="display:none">1</div>
-          <div class="member-name" data-key="cand1_name">యాసీన్ షేక్</div>
-          <div class="member-role" data-key="member_role">ఎన్నికైన సభ్యుడు</div>
-        </div>
-        <div class="member-card reveal">
           <img src="assets/candidates/2.candidate.jpg" alt="Abdul Aleem" class="member-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
           <div class="member-fallback" style="display:none">2</div>
           <div class="member-name" data-key="cand2_name">అబ్దుల్ అలీమ్</div>
-          <div class="member-role" data-key="member_role">ఎన్నికైన సభ్యుడు</div>
-        </div>
-        <div class="member-card reveal">
-          <img src="assets/candidates/3.candidate.jpg" alt="Akbar Basha Shaik" class="member-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="member-fallback" style="display:none">3</div>
-          <div class="member-name" data-key="cand3_name">అక్బర్ బాషా షేక్</div>
-          <div class="member-role" data-key="member_role">ఎన్నికైన సభ్యుడు</div>
-        </div>
-        <div class="member-card reveal">
-          <img src="assets/candidates/4.candidate.jpg" alt="Hazrat Ali Shaik" class="member-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="member-fallback" style="display:none">4</div>
-          <div class="member-name" data-key="cand4_name">హజ్రత్ అలీ షేక్</div>
           <div class="member-role" data-key="member_role">ఎన్నికైన సభ్యుడు</div>
         </div>
         <div class="member-card reveal">
@@ -500,15 +572,33 @@
           <div class="member-role" data-key="member_role">ఎన్నికైన సభ్యుడు</div>
         </div>
         <div class="member-card reveal">
-          <img src="assets/candidates/6.candidate.jpg" alt="Hanifsha Shaik" class="member-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="member-fallback" style="display:none">6</div>
-          <div class="member-name" data-key="cand6_name">హనీఫ్షా షేక్</div>
+          <img src="assets/candidates/3.candidate.jpg" alt="Akbar Basha Shaik" class="member-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="member-fallback" style="display:none">3</div>
+          <div class="member-name" data-key="cand3_name">అక్బర్ బాషా షేక్</div>
           <div class="member-role" data-key="member_role">ఎన్నికైన సభ్యుడు</div>
         </div>
         <div class="member-card reveal">
           <img src="assets/candidates/7.candidate.jpg" alt="Hafeez Shaik" class="member-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
           <div class="member-fallback" style="display:none">7</div>
           <div class="member-name" data-key="cand7_name">హఫీజ్ షేక్</div>
+          <div class="member-role" data-key="member_role">ఎన్నికైన సభ్యుడు</div>
+        </div>
+        <div class="member-card reveal">
+          <img src="assets/candidates/6.candidate.jpg" alt="Hanifsha Shaik" class="member-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="member-fallback" style="display:none">6</div>
+          <div class="member-name" data-key="cand6_name">హనీఫ్షా షేక్</div>
+          <div class="member-role" data-key="member_role">ఎన్నికైన సభ్యుడు</div>
+        </div>
+        <div class="member-card reveal">
+          <img src="assets/candidates/4.candidate.jpg" alt="Hazrat Ali Shaik" class="member-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="member-fallback" style="display:none">4</div>
+          <div class="member-name" data-key="cand4_name">హజ్రత్ అలీ షేక్</div>
+          <div class="member-role" data-key="member_role">ఎన్నికైన సభ్యుడు</div>
+        </div>
+        <div class="member-card reveal">
+          <img src="assets/candidates/1.candidate.jpg" alt="Yaseen Shaik" class="member-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="member-fallback" style="display:none">1</div>
+          <div class="member-name" data-key="cand1_name">యాసీన్ షేక్</div>
           <div class="member-role" data-key="member_role">ఎన్నికైన సభ్యుడు</div>
         </div>
       </div>
@@ -839,7 +929,7 @@
 <section class="contact" id="contact">
   <div class="inner">
     <div class="section-tag" data-key="contact_tag">మా కార్యాలయాలు</div>
-    <h2 class="section-title" data-key="contact_title" data-html="true">సంప్రదించండి &​amp;<br>చిరునామా</h2>
+    <h2 class="section-title" data-key="contact_title" data-html="true">సంప్రదించండి &<br>చిరునామా</h2>
     <p class="section-lead" data-key="contact_lead">ఇస్లామిక్ ఫ్రంట్ మరియు అంజుమన్ కార్యాలయాలు మంగళగిరిలో మీ సేవలో ఉన్నాయి.</p>
     <div class="contact-grid">
       <div class="map-box">
@@ -853,7 +943,7 @@
         <div class="office-card">
           <div class="office-type" data-key="o1_type">ఇస్లామిక్ ఫ్రంట్</div>
           <div class="office-name" data-key="o1_name">ఇస్లామిక్ ఫ్రంట్ పార్టీ కార్యాలయం</div>
-          <div class="office-addr">
+          <div class="office-addr" data-key="o1_addr" data-html="true">
             మంగళగిరి, గుంటూరు జిల్లా<br>
             ఆంధ్రప్రదేశ్ – 522503<br>
             <a href="https://maps.google.com/?q=Mangalagiri,Andhra+Pradesh" target="_blank" rel="noopener">📍 గూగుల్ మ్యాప్‌లో చూడండి</a>
@@ -862,7 +952,7 @@
         <div class="office-card">
           <div class="office-type" data-key="o3_type">అంజుమన్ కార్యాలయం</div>
           <div class="office-name" data-key="o3_name">అంజుమన్‌- యి- హిమాయతుల్‌ ఇస్లాం</div>
-          <div class="office-addr">
+          <div class="office-addr" data-key="o3_addr" data-html="true">
             మంగళగిరి, గుంటూరు జిల్లా<br>
             ఆంధ్రప్రదేశ్ – 522503<br>
             <a href="https://maps.google.com/?q=Anjuman+Himmaythul+Islam+Mangalagiri" target="_blank" rel="noopener">📍 గూగుల్ మ్యాప్‌లో చూడండి</a>
@@ -926,10 +1016,10 @@
     <div class="footer-col">
       <h4 data-key="footer_contact_h">సంప్రదించండి</h4>
       <ul>
-        <li>మంగళగిరి, గుంటూరు జిల్లా</li>
-        <li>ఆంధ్రప్రదేశ్ – 522503</li>
+        <li data-key="footer_addr1">మంగళగిరి, గుంటూరు జిల్లా</li>
+        <li data-key="footer_addr2">ఆంధ్రప్రదేశ్ – 522503</li>
         <li data-key="footer_founded_li">స్థాపించబడింది: 2011</li>
-        <li>అంజుమన్‌- యి- హిమాయతుల్‌ ఇస్లాం</li>
+        <li data-key="footer_addr3">అంజుమన్‌- యి- హిమాయతుల్‌ ఇస్లాం</li>
       </ul>
     </div>
   </div>
@@ -969,6 +1059,7 @@ const T = {
     members_cap: "2023 ఎన్నికలు",
     member_role: "ఎన్నికైన సభ్యుడు",
     ms_years: "సంవత్సరాల సేవ",
+    ms_schemes: "సంక్షేమ పథకాలు",
     ms_seats: "2023 గెలిచిన సీట్లు",
     ms_voters: "నమోదిత ఓటర్లు",
     ms_families: "సేవ పొందిన కుటుంబాలు",
@@ -1069,6 +1160,8 @@ const T = {
     o1_name: "ఇస్లామిక్ ఫ్రంట్ పార్టీ కార్యాలయం",
     o3_type: "అంజుమన్ కార్యాలయం",
     o3_name: "అంజుమన్‌- యి- హిమాయతుల్‌ ఇస్లాం",
+    o1_addr: "మంగళగిరి, గుంటూరు జిల్లా<br>ఆంధ్రప్రదేశ్ – 522503<br><a href='https://maps.google.com/?q=Mangalagiri,Andhra+Pradesh' target='_blank' rel='noopener'>📍 గూగుల్ మ్యాప్‌లో చూడండి</a>",
+    o3_addr: "మంగళగిరి, గుంటూరు జిల్లా<br>ఆంధ్రప్రదేశ్ – 522503<br><a href='https://maps.google.com/?q=Anjuman+Himmaythul+Islam+Mangalagiri' target='_blank' rel='noopener'>📍 గూగుల్ మ్యాప్‌లో చూడండి</a>",
     kc_tag: "విజ్ఞాన వనరు",
     kc_title: "ఇస్లామిక్<br>నాలెడ్జ్ సెంటర్",
     kc_lead: "సమాజ సేవతో పాటు, ప్రతి ముస్లిం కుటుంబానికి ఉపయోగపడే ఇస్లామిక్ సాధనాలు మరియు విశ్వసనీయ వనరులు — జకాత్ లెక్కింపు, నమాజ్ వేళలు, ఖురాన్ మరియు హదీస్ వనరులు ఒకే చోట.",
@@ -1084,6 +1177,9 @@ const T = {
     footer_l1: "మా విజయం 2023", footer_l2: "సాధనలు", footer_l3: "మేనిఫెస్టో",
     footer_l4: "అంత్యక్రియల సహాయ పథకం", footer_l5: "స్థాపకుని గురించి",
     footer_contact_h: "సంప్రదించండి",
+    footer_addr1: "మంగళగిరి, గుంటూరు జిల్లా",
+    footer_addr2: "ఆంధ్రప్రదేశ్ – 522503",
+    footer_addr3: "అంజుమన్‌- యి- హిమాయతుల్‌ ఇస్లాం",
     footer_founded_li: "స్థాపించబడింది: 2011",
     footer_copy: "© 2026 ఇస్లామిక్ ఫ్రంట్, మంగళగిరి. అన్ని హక్కులు పరిరక్షించబడ్డాయి.",
     footer_founded: "జనాబ్ షేక్ అక్రమ్ స్థాపించారు · స్థా. 2011"
@@ -1117,6 +1213,7 @@ const T = {
     members_cap: "2023 Elections",
     member_role: "Elected Member",
     ms_years: "Years of Service",
+    ms_schemes: "Welfare Schemes",
     ms_seats: "Seats Won 2023",
     ms_voters: "Registered Voters",
     ms_families: "Families Served",
@@ -1217,9 +1314,11 @@ const T = {
     o1_name: "Islamic Front Party Office",
     o3_type: "Anjuman Office",
     o3_name: "Anjuman-e-Himayatul Islam",
+    o1_addr: "Mangalagiri, Guntur District<br>Andhra Pradesh – 522503<br><a href='https://maps.google.com/?q=Mangalagiri,Andhra+Pradesh' target='_blank' rel='noopener'>📍 View on Google Maps</a>",
+    o3_addr: "Mangalagiri, Guntur District<br>Andhra Pradesh – 522503<br><a href='https://maps.google.com/?q=Anjuman+Himmaythul+Islam+Mangalagiri' target='_blank' rel='noopener'>📍 View on Google Maps</a>",
     kc_tag: "Knowledge Resource",
     kc_title: "Islamic<br>Knowledge Center",
-    kc_lead: "Alongside our community work, a set of practical Islamic tools and trusted resources for every Muslim family — Zakat calculation, daily Salah timings, and Quran &amp; Hadith resources, all in one place.",
+    kc_lead: "Alongside our community work, a set of practical Islamic tools and trusted resources for every Muslim family — Zakat calculation, daily Salah timings, and Quran & Hadith resources, all in one place.",
     kc_cta: "Open Knowledge Center",
     kc_t1: "Zakat Calculator",
     kc_t2: "Daily Salah Timings",
@@ -1232,6 +1331,9 @@ const T = {
     footer_l1: "Our Victory 2023", footer_l2: "Achievements", footer_l3: "Manifesto",
     footer_l4: "Funeral Aid Scheme", footer_l5: "About the Founder",
     footer_contact_h: "Contact",
+    footer_addr1: "Mangalagiri, Guntur District",
+    footer_addr2: "Andhra Pradesh – 522503",
+    footer_addr3: "Anjuman-e-Himayatul Islam",
     footer_founded_li: "Founded: 2011",
     footer_copy: "© 2026 Islamic Front, Mangalagiri. All rights reserved.",
     footer_founded: "Founded by Janab Shaik Akram · Est. 2011"
