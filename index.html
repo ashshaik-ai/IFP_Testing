@@ -38,6 +38,53 @@
   .nav-links { display: flex; gap: 24px; list-style: none; }
   .nav-links a { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 13px; letter-spacing: 0.5px; font-weight: 400; transition: color 0.2s; }
   .nav-links a:hover { color: var(--gold-light); }
+  /* Active section highlight */
+  .nav-links a { position: relative; }
+  .nav-links a.nav-active { color: var(--gold-light) !important; }
+  .nav-links a.nav-active::after {
+    content: ''; position: absolute;
+    bottom: -5px; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    border-radius: 2px; box-shadow: 0 0 8px rgba(200,146,42,.5);
+  }
+  /* Hamburger */
+  .nav-burger { display: none; flex-direction: column; gap: 5px;
+    background: transparent; border: 1.5px solid rgba(200,146,42,.35);
+    border-radius: 8px; padding: 8px 10px; cursor: pointer;
+    transition: border-color .2s, background .2s; flex-shrink: 0; }
+  .nav-burger:hover { background: rgba(200,146,42,.1); border-color: rgba(200,146,42,.6); }
+  .nav-burger-bar { display: block; width: 20px; height: 2px;
+    background: var(--gold-light); border-radius: 2px; transition: transform .3s, opacity .3s; }
+  .nav-burger.open .nav-burger-bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-burger.open .nav-burger-bar:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .nav-burger.open .nav-burger-bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  /* Overlay */
+  .nav-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.55); z-index: 200;
+    opacity: 0; visibility: hidden; transition: opacity .3s, visibility .3s; }
+  .nav-overlay.open { opacity: 1; visibility: visible; }
+  /* Drawer */
+  .nav-drawer { position: fixed; top: 0; right: 0; bottom: 0; width: min(300px, 85vw);
+    background: linear-gradient(180deg, var(--green-deep) 0%, #0a2e17 100%);
+    border-left: 1px solid rgba(200,146,42,.25); z-index: 201;
+    transform: translateX(100%); transition: transform .35s cubic-bezier(.22,.61,.36,1);
+    display: flex; flex-direction: column; }
+  .nav-drawer.open { transform: translateX(0); }
+  .nav-drawer-header { display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 24px; border-bottom: 1px solid rgba(200,146,42,.18); }
+  .nav-drawer-brand { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; color: var(--gold-light); }
+  .nav-drawer-close { background: transparent; border: none; color: rgba(200,146,42,.7);
+    font-size: 18px; cursor: pointer; padding: 4px 8px; border-radius: 4px; transition: color .2s; line-height: 1; }
+  .nav-drawer-close:hover { color: var(--gold-light); }
+  .nav-drawer-links { list-style: none; padding: 12px 0; flex: 1; overflow-y: auto; }
+  .nav-drawer-links li { border-bottom: 1px solid rgba(200,146,42,.07); }
+  .nav-drawer-links a { display: flex; align-items: center; padding: 16px 24px;
+    color: rgba(255,255,255,.75); text-decoration: none; font-size: 15px; font-weight: 400;
+    letter-spacing: .3px; transition: color .2s, background .2s, padding-left .2s; }
+  .nav-drawer-links a:hover { color: var(--gold-light); background: rgba(200,146,42,.06); padding-left: 30px; }
+  .nav-drawer-links a.nav-active { color: var(--gold-light); background: rgba(200,146,42,.1);
+    border-left: 3px solid var(--gold); padding-left: 21px; font-weight: 500; }
+  .nav-drawer-links a.nav-active::before { content: '\2666'; font-size: 6px;
+    color: var(--gold); margin-right: 10px; flex-shrink: 0; }
   .lang-btn { display: flex; align-items: center; gap: 6px; background: rgba(200,146,42,0.12); border: 1.5px solid rgba(200,146,42,0.4); color: var(--gold-light); padding: 7px 16px; border-radius: 100px; font-size: 12px; font-weight: 500; cursor: pointer; letter-spacing: 0.8px; font-family: inherit; transition: background 0.2s, transform 0.15s; white-space: nowrap; flex-shrink: 0; }
   .lang-btn:hover { background: rgba(200,146,42,0.22); transform: translateY(-1px); }
   .lang-btn::before { content: '🌐'; font-size: 13px; }
@@ -411,6 +458,7 @@
     .lang-btn { padding: 6px 10px; font-size: 11px; }
     .nav-kc { padding: 6px 11px; font-size: 11px; }
     .nav-right { gap: 12px; }
+    .nav-burger { display: flex; }
     .kc-promo .inner { grid-template-columns: 1fr; gap: 36px; }
     /* Keep the 3 manifesto progress rings in a horizontal row on mobile */
     .mf-rings-row { gap: 8px; flex-wrap: nowrap; }
@@ -456,11 +504,33 @@
     </ul>
     <a href="islamic-knowledge.html" class="nav-kc" data-key="nav_knowledge">నాలెడ్జ్ సెంటర్</a>
     <button class="lang-btn" id="lang-btn" onclick="toggleLang()">English</button>
+    <button class="nav-burger" id="nav-burger" aria-label="Menu" aria-expanded="false">
+      <span class="nav-burger-bar"></span>
+      <span class="nav-burger-bar"></span>
+      <span class="nav-burger-bar"></span>
+    </button>
   </div>
 </nav>
+<!-- NAV MOBILE DRAWER -->
+<div class="nav-overlay" id="nav-overlay"></div>
+<div class="nav-drawer" id="nav-drawer" aria-hidden="true">
+  <div class="nav-drawer-header">
+    <span class="nav-drawer-brand" data-key="nav_title">ఇస్లామిక్ ఫ్రంట్</span>
+    <button class="nav-drawer-close" id="nav-drawer-close" aria-label="Close menu">&#x2715;</button>
+  </div>
+  <ul class="nav-drawer-links">
+    <li><a href="#home"         data-key="nav_home">హోమ్</a></li>
+    <li><a href="#victory"      data-key="nav_victory">మా విజయం</a></li>
+    <li><a href="#achievements" data-key="nav_achievements">సాధనలు</a></li>
+    <li><a href="#manifesto"    data-key="nav_manifesto">మేనిఫెస్టో</a></li>
+    <li><a href="#scheme"       data-key="nav_scheme">సహాయ పథకం</a></li>
+    <li><a href="#about"        data-key="nav_about">మా గురించి</a></li>
+    <li><a href="#contact"      data-key="nav_contact">సంప్రదించండి</a></li>
+  </ul>
+</div>
 
 <!-- HERO -->
-<section class="hero">
+<section class="hero" id="home">
   <div class="hero-bg-emblem" aria-hidden="true">
     <img src="assets/logo-emblem.png" alt="" onerror="this.parentElement.style.display='none'">
   </div>
@@ -609,6 +679,55 @@
 
 
 <!-- MANIFESTO -->
+<section class="achievements" id="achievements">
+  <div class="inner">
+    <div class="section-tag" data-key="ach_tag">మేము చేసినవి</div>
+    <h2 class="section-title" data-key="ach_title" data-html="true">ఈ పదవీకాలంలో<br>మా సాధనలు</h2>
+    <p class="section-lead" data-key="ach_lead">మౌలిక సదుపాయాల మార్పు నుండి ఆర్థిక వ్యవస్థ సంస్కరణ వరకు — ఇస్లామిక్ ఫ్రంట్ మంగళగిరి సమాజానికి అందించినవి ఇవే.</p>
+    <div class="achievements-grid">
+      <div class="ach-card">
+        <div class="ach-icon">🏛️</div>
+        <h3 class="ach-title" data-key="ach1_title">కన్వెన్షన్ హాల్ పరివర్తన</h3>
+        <p class="ach-desc" data-key="ach1_desc">అంజుమన్ షాదీ మహల్ మరియు ఈద్గా కమ్యూనిటీ హాల్ — రెండు హాళ్ళు AC లేని స్థితి నుండి పూర్తి ఎయిర్ కండిషన్డ్ సౌకర్యాలకు అప్‌గ్రేడ్ చేయబడ్డాయి. పూర్తి రీమోడలింగ్, సీలింగ్ పునరుద్ధరణ మరియు అంతర్గత మెరుగుదల పనులు చేపట్టబడ్డాయి.</p>
+        <span class="ach-tag" data-key="ach1_tag">మౌలిక సదుపాయాలు</span>
+      </div>
+      <div class="ach-card">
+        <div class="ach-icon">💰</div>
+        <h3 class="ach-title" data-key="ach2_title">అంజుమన్ ఆదాయంలో మెరుగుదల</h3>
+        <p class="ach-desc" data-key="ach2_desc">గత నాయకత్వం అద్దెదారులు అద్దె చెల్లించకుండా వదిలేసేది. ఇస్లామిక్ ఫ్రంట్ ఆధ్వర్యంలో క్రమశిక్షణతో కూడిన అద్దె వసూలు వ్యవస్థ అమలు చేయబడింది — అంజుమన్ ఆర్థిక వనరులు గణనీయంగా మెరుగుపడ్డాయి.</p>
+        <span class="ach-tag" data-key="ach2_tag">ఆర్థిక సంస్కరణ</span>
+      </div>
+      <div class="ach-card">
+        <div class="ach-icon">🔒</div>
+        <h3 class="ach-title" data-key="ach3_title">షాప్ ఆడిట్ & సబ్‌లీజ్ పరిష్కారం</h3>
+        <p class="ach-desc" data-key="ach3_desc">అద్దెదారులు అంజుమన్ ఆస్తులను మూడవ పక్షాలకు తిరిగి లీజుకు ఇచ్చే దోపిడీ సబ్‌లీజ్ పద్ధతి మా పాలనలో పూర్తిగా రద్దు చేయబడింది — సమాజ ఆస్తులు దీర్ఘకాలానికి రక్షించబడ్డాయి.</p>
+        <span class="ach-tag" data-key="ach3_tag">విధాన సంస్కరణ</span>
+      </div>
+      <div class="ach-card">
+        <div class="ach-icon">🤝</div>
+        <h3 class="ach-title" data-key="ach4_title">అంత్యక్రియల ఆర్థిక సహాయ పథకం</h3>
+        <p class="ach-desc" data-key="ach4_desc">మంగళగిరిలో అంత్యక్రియల ఖర్చులు భరించలేని ముస్లిం కుటుంబాలకు ₹10,000 ఆర్థిక సహాయం అందించే కరుణాపూర్వక పథకం ప్రారంభించబడింది. ఏ కుటుంబమూ ఆ భారాన్ని ఒంటరిగా మోయకూడదు.</p>
+        <span class="ach-tag" data-key="ach4_tag">సామాజిక సంక్షేమం</span>
+      </div>
+      <div class="ach-card">
+        <div class="ach-icon">🕌</div>
+        <h3 class="ach-title" data-key="ach5_title">18 మసీదుల నిర్వహణ</h3>
+        <p class="ach-desc" data-key="ach5_desc">మంగళగిరిలో 18 మసీదుల కార్యకలాపాలు మరియు నిర్వహణను ఇస్లామిక్ ఫ్రంట్ పర్యవేక్షిస్తుంది — సమాజ ఆధ్యాత్మిక అవసరాలకు అత్యున్నత ప్రమాణాలతో.</p>
+        <span class="ach-tag" data-key="ach5_tag">సమాజ ఆస్తులు</span>
+      </div>
+      <div class="ach-card">
+        <div class="ach-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 24" width="26" height="22" fill="none" stroke="#c8922a" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="19.5" width="26" height="4" rx="1.5" fill="rgba(200,146,42,0.15)"/><rect x="3" y="7.5" width="22" height="12" rx="2" fill="rgba(200,146,42,0.08)"/><path d="M3 7.5 Q3 3 8 3 L20 3 Q26 3 25 7.5"/><ellipse cx="14" cy="3" rx="3.5" ry="1.8" fill="rgba(200,146,42,0.2)"/><circle cx="7" cy="13.5" r="4.5" fill="rgba(200,146,42,0.06)"/><circle cx="7" cy="13.5" r="1.8" fill="rgba(200,146,42,0.4)"/><line x1="7" y1="9" x2="7" y2="18"/><line x1="2.5" y1="13.5" x2="11.5" y2="13.5"/><line x1="22" y1="11" x2="22" y2="23.5" stroke-width="2"/><line x1="19.5" y1="19.5" x2="24.5" y2="19.5" stroke-width="1.8"/><path d="M14 3 Q17 7 21 11" stroke-dasharray="2 1.5"/></svg></div>
+        <h3 class="ach-title" data-key="ach6_title">మహిళా కుట్టు శిక్షణా కేంద్రం</h3>
+        <p class="ach-desc" data-key="ach6_desc">ముస్లిం మహిళలకు ఆధునిక వసతులతో కుట్టు మిషన్ శిక్షణా కేంద్రం స్థాపించబడింది — ఉపాధి కల్పించడం మరియు ఆర్థిక స్వాతంత్ర్యం సాధించడం లక్ష్యం.</p>
+        <span class="ach-tag" data-key="ach6_tag">మహిళా సాధికారత</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- ACHIEVEMENTS -->
 <section class="manifesto" id="manifesto">
   <div class="inner">
     <div class="section-tag" data-key="mf_tag">మా వాగ్దానాలు</div>
@@ -715,55 +834,6 @@
         <span class="mf-badge b-done" data-key="mf_badge_done">✓ పూర్తయింది</span>
       </div>
 
-    </div>
-  </div>
-</section>
-
-
-
-<!-- ACHIEVEMENTS -->
-<section class="achievements" id="achievements">
-  <div class="inner">
-    <div class="section-tag" data-key="ach_tag">మేము చేసినవి</div>
-    <h2 class="section-title" data-key="ach_title" data-html="true">ఈ పదవీకాలంలో<br>మా సాధనలు</h2>
-    <p class="section-lead" data-key="ach_lead">మౌలిక సదుపాయాల మార్పు నుండి ఆర్థిక వ్యవస్థ సంస్కరణ వరకు — ఇస్లామిక్ ఫ్రంట్ మంగళగిరి సమాజానికి అందించినవి ఇవే.</p>
-    <div class="achievements-grid">
-      <div class="ach-card">
-        <div class="ach-icon">🏛️</div>
-        <h3 class="ach-title" data-key="ach1_title">కన్వెన్షన్ హాల్ పరివర్తన</h3>
-        <p class="ach-desc" data-key="ach1_desc">అంజుమన్ షాదీ మహల్ మరియు ఈద్గా కమ్యూనిటీ హాల్ — రెండు హాళ్ళు AC లేని స్థితి నుండి పూర్తి ఎయిర్ కండిషన్డ్ సౌకర్యాలకు అప్‌గ్రేడ్ చేయబడ్డాయి. పూర్తి రీమోడలింగ్, సీలింగ్ పునరుద్ధరణ మరియు అంతర్గత మెరుగుదల పనులు చేపట్టబడ్డాయి.</p>
-        <span class="ach-tag" data-key="ach1_tag">మౌలిక సదుపాయాలు</span>
-      </div>
-      <div class="ach-card">
-        <div class="ach-icon">💰</div>
-        <h3 class="ach-title" data-key="ach2_title">అంజుమన్ ఆదాయంలో మెరుగుదల</h3>
-        <p class="ach-desc" data-key="ach2_desc">గత నాయకత్వం అద్దెదారులు అద్దె చెల్లించకుండా వదిలేసేది. ఇస్లామిక్ ఫ్రంట్ ఆధ్వర్యంలో క్రమశిక్షణతో కూడిన అద్దె వసూలు వ్యవస్థ అమలు చేయబడింది — అంజుమన్ ఆర్థిక వనరులు గణనీయంగా మెరుగుపడ్డాయి.</p>
-        <span class="ach-tag" data-key="ach2_tag">ఆర్థిక సంస్కరణ</span>
-      </div>
-      <div class="ach-card">
-        <div class="ach-icon">🔒</div>
-        <h3 class="ach-title" data-key="ach3_title">షాప్ ఆడిట్ & సబ్‌లీజ్ పరిష్కారం</h3>
-        <p class="ach-desc" data-key="ach3_desc">అద్దెదారులు అంజుమన్ ఆస్తులను మూడవ పక్షాలకు తిరిగి లీజుకు ఇచ్చే దోపిడీ సబ్‌లీజ్ పద్ధతి మా పాలనలో పూర్తిగా రద్దు చేయబడింది — సమాజ ఆస్తులు దీర్ఘకాలానికి రక్షించబడ్డాయి.</p>
-        <span class="ach-tag" data-key="ach3_tag">విధాన సంస్కరణ</span>
-      </div>
-      <div class="ach-card">
-        <div class="ach-icon">🤝</div>
-        <h3 class="ach-title" data-key="ach4_title">అంత్యక్రియల ఆర్థిక సహాయ పథకం</h3>
-        <p class="ach-desc" data-key="ach4_desc">మంగళగిరిలో అంత్యక్రియల ఖర్చులు భరించలేని ముస్లిం కుటుంబాలకు ₹10,000 ఆర్థిక సహాయం అందించే కరుణాపూర్వక పథకం ప్రారంభించబడింది. ఏ కుటుంబమూ ఆ భారాన్ని ఒంటరిగా మోయకూడదు.</p>
-        <span class="ach-tag" data-key="ach4_tag">సామాజిక సంక్షేమం</span>
-      </div>
-      <div class="ach-card">
-        <div class="ach-icon">🕌</div>
-        <h3 class="ach-title" data-key="ach5_title">18 మసీదుల నిర్వహణ</h3>
-        <p class="ach-desc" data-key="ach5_desc">మంగళగిరిలో 18 మసీదుల కార్యకలాపాలు మరియు నిర్వహణను ఇస్లామిక్ ఫ్రంట్ పర్యవేక్షిస్తుంది — సమాజ ఆధ్యాత్మిక అవసరాలకు అత్యున్నత ప్రమాణాలతో.</p>
-        <span class="ach-tag" data-key="ach5_tag">సమాజ ఆస్తులు</span>
-      </div>
-      <div class="ach-card">
-        <div class="ach-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 24" width="26" height="22" fill="none" stroke="#c8922a" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="19.5" width="26" height="4" rx="1.5" fill="rgba(200,146,42,0.15)"/><rect x="3" y="7.5" width="22" height="12" rx="2" fill="rgba(200,146,42,0.08)"/><path d="M3 7.5 Q3 3 8 3 L20 3 Q26 3 25 7.5"/><ellipse cx="14" cy="3" rx="3.5" ry="1.8" fill="rgba(200,146,42,0.2)"/><circle cx="7" cy="13.5" r="4.5" fill="rgba(200,146,42,0.06)"/><circle cx="7" cy="13.5" r="1.8" fill="rgba(200,146,42,0.4)"/><line x1="7" y1="9" x2="7" y2="18"/><line x1="2.5" y1="13.5" x2="11.5" y2="13.5"/><line x1="22" y1="11" x2="22" y2="23.5" stroke-width="2"/><line x1="19.5" y1="19.5" x2="24.5" y2="19.5" stroke-width="1.8"/><path d="M14 3 Q17 7 21 11" stroke-dasharray="2 1.5"/></svg></div>
-        <h3 class="ach-title" data-key="ach6_title">మహిళా కుట్టు శిక్షణా కేంద్రం</h3>
-        <p class="ach-desc" data-key="ach6_desc">ముస్లిం మహిళలకు ఆధునిక వసతులతో కుట్టు మిషన్ శిక్షణా కేంద్రం స్థాపించబడింది — ఉపాధి కల్పించడం మరియు ఆర్థిక స్వాతంత్ర్యం సాధించడం లక్ష్యం.</p>
-        <span class="ach-tag" data-key="ach6_tag">మహిళా సాధికారత</span>
-      </div>
     </div>
   </div>
 </section>
@@ -1031,6 +1101,7 @@
 <script>
 const T = {
   te: {
+    nav_home: "హోమ్",
     nav_title: "ఇస్లామిక్ ఫ్రంట్",
     nav_sub: "మంగళగిరి · స్థా. 2011",
     nav_victory: "మా విజయం",
@@ -1185,6 +1256,7 @@ const T = {
     footer_founded: "జనాబ్ షేక్ అక్రమ్ స్థాపించారు · స్థా. 2011"
   },
   en: {
+    nav_home: "Home",
     nav_title: "Islamic Front",
     nav_sub: "Mangalagiri · Est. 2011",
     nav_victory: "Our Victory",
@@ -1421,7 +1493,48 @@ document.addEventListener('DOMContentLoaded', function () {
     }, { threshold: 0.05 }).observe(mfGrid);
   }
 
-  /* Animated counters — count up .ms-num[data-count] on scroll into view */
+
+  /* Active section tracking */
+  var TRACKED_IDS=['home','victory','achievements','manifesto','scheme','about','contact'];
+  var secVis={};
+  TRACKED_IDS.forEach(function(id){secVis[id]=false;});
+  function setNavActive(activeId){
+    document.querySelectorAll('.nav-links a,.nav-drawer-links a').forEach(function(a){
+      var href=a.getAttribute('href');
+      var id=(href==='#home'||href==='#')?'home':href.replace('#','');
+      a.classList.toggle('nav-active',id===activeId);
+    });
+  }
+  var sectionIO=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){secVis[e.target.id]=e.isIntersecting;});
+    var best=null;
+    TRACKED_IDS.forEach(function(id){
+      if(secVis[id]){var el=document.getElementById(id);
+        if(el&&(!best||el.offsetTop<best.offsetTop))best=el;}
+    });
+    setNavActive(best?best.id:null);
+  },{rootMargin:'-10% 0px -70% 0px',threshold:0});
+  TRACKED_IDS.forEach(function(id){var el=document.getElementById(id);if(el)sectionIO.observe(el);});
+  document.querySelectorAll('.nav-links a,.nav-drawer-links a').forEach(function(a){
+    a.addEventListener('click',function(){
+      var href=this.getAttribute('href');
+      var id=(href==='#home'||href==='#')?'home':href.replace('#','');
+      setNavActive(id);
+    });
+  });
+  /* Mobile drawer */
+  var navBurger=document.getElementById('nav-burger');
+  var navDrawer=document.getElementById('nav-drawer');
+  var navOverlay=document.getElementById('nav-overlay');
+  var navDrClose=document.getElementById('nav-drawer-close');
+  function openDrawer(){navDrawer.classList.add('open');navDrawer.setAttribute('aria-hidden','false');navOverlay.classList.add('open');navBurger.classList.add('open');navBurger.setAttribute('aria-expanded','true');document.body.style.overflow='hidden';}
+  function closeDrawer(){navDrawer.classList.remove('open');navDrawer.setAttribute('aria-hidden','true');navOverlay.classList.remove('open');navBurger.classList.remove('open');navBurger.setAttribute('aria-expanded','false');document.body.style.overflow='';}
+  if(navBurger)navBurger.addEventListener('click',function(){navDrawer.classList.contains('open')?closeDrawer():openDrawer();});
+  if(navOverlay)navOverlay.addEventListener('click',closeDrawer);
+  if(navDrClose)navDrClose.addEventListener('click',closeDrawer);
+  if(navDrawer)navDrawer.querySelectorAll('a').forEach(function(a){a.addEventListener('click',closeDrawer);});
+
+    /* Animated counters — count up .ms-num[data-count] on scroll into view */
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   function formatNum(n) { return Math.round(n).toLocaleString('en-IN'); }
   function runCounter(el) {
