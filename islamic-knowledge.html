@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="te" id="html-root">
 <head>
 <meta charset="UTF-8">
@@ -2283,6 +2283,13 @@ function initStickyNav() {
     links.forEach(function (a) {
       a.classList.toggle('is-active', a.getAttribute('data-spy') === id);
     });
+    // Auto-scroll the sticky nav so the active link stays centred
+    var inner = bar.querySelector('.kc-sticky-inner');
+    var activeLink = inner ? inner.querySelector('a.is-active') : null;
+    if (inner && activeLink) {
+      var target = activeLink.offsetLeft - (inner.offsetWidth / 2) + (activeLink.offsetWidth / 2);
+      inner.scrollTo({ left: Math.max(0, target), behavior: 'smooth' });
+    }
   }
 
   function onScroll() {

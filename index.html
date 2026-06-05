@@ -95,7 +95,7 @@
   .nav-kc:hover { background: linear-gradient(135deg, rgba(200,146,42,0.34), rgba(200,146,42,0.18)); transform: translateY(-1px); box-shadow: 0 3px 12px rgba(200,146,42,0.18); }
 
   /* HERO */
-  .hero { min-height: 100vh; background: linear-gradient(160deg, var(--green-deep) 0%, #0a2e17 50%, #122b0f 100%); display: flex; align-items: center; padding: 100px 5vw 80px; position: relative; overflow: hidden; }
+  .hero { min-height: 100vh; min-height: 100svh; background: linear-gradient(160deg, var(--green-deep) 0%, #0a2e17 50%, #122b0f 100%); display: flex; align-items: center; padding: 100px 5vw 80px; position: relative; overflow: hidden; }
   .hero::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(200,146,42,0.06) 0%, transparent 70%), repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(200,146,42,0.02) 40px, rgba(200,146,42,0.02) 41px); }
   .hero::after { content: '☽\FE0E'; position: absolute; right: 6vw; top: 12vh; font-size: clamp(160px, 20vw, 260px); color: rgba(200,146,42,0.06); line-height: 1; pointer-events: none; }
   .hero-content { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr auto; gap: 60px; align-items: center; max-width: 1100px; width: 100%; }
@@ -445,6 +445,7 @@
     .hero-bg-emblem { left: 24%; width: min(240px, 30vw); }
   }
   @media (max-width: 768px) {
+    .hero { align-items: flex-start; padding-top: max(88px, 68px + env(safe-area-inset-top, 0px)); padding-bottom: max(48px, env(safe-area-inset-bottom, 0px) + 24px); }
     .hero-content { grid-template-columns: 1fr; }
     .leader-card { display: none; }
     .hero-bg-emblem { top: 50%; left: 50%; transform: translate(-50%, -50%); width: min(330px, 70vw); }
