@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="te" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>అధునాతన పఠనం — Advanced Reading | Islamic Front</title>
+<meta name="description" content="Advanced Urdu reading: Islamic stories, articles, and speech excerpts in Nastaliq script. Level 6 of the Urdu Learning Portal.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Sans:wght@300;400;500&family=Noto+Sans+Telugu:wght@300;400;500;700&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --green-deep:#0d3b1e;--green-mid:#1a5c30;--green-light:#2e8b57;
+  --gold:#c8922a;--gold-light:#e8b84b;--gold-pale:#f5e6c0;
+  --cream:#faf6ee;--white:#ffffff;
+  --text-dark:#1a1208;--text-mid:#3d3018;--text-muted:#7a6840;
+  --border:rgba(200,146,42,0.25);--radius:14px;--shadow:0 4px 24px rgba(0,0,0,0.10);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;color:var(--text-dark);background:var(--cream);overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+
+.al-nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(13,59,30,0.92);backdrop-filter:blur(12px);padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:56px;border-bottom:1px solid rgba(200,146,42,0.18)}
+.al-nav-brand{display:flex;align-items:center;gap:10px;color:var(--gold-light);font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700}
+.al-nav-brand span{font-size:1.4rem}
+.al-nav-links{display:flex;align-items:center;gap:16px}
+.al-nav-links a{color:rgba(245,230,192,0.75);font-size:.82rem;font-weight:500;transition:color .2s}
+.al-nav-links a:hover{color:var(--gold-light)}
+.al-lang-btn{background:rgba(200,146,42,0.20);border:1px solid var(--gold);color:var(--gold-light);font-size:.78rem;font-weight:600;padding:5px 13px;border-radius:20px;cursor:pointer;transition:all .2s;font-family:'DM Sans',sans-serif}
+.al-lang-btn:hover{background:var(--gold);color:var(--green-deep)}
+
+/* LESSON NAV */
+.lesson-nav{position:fixed;top:56px;left:0;right:0;z-index:850;height:46px;background:rgba(13,59,30,0.95);backdrop-filter:blur(8px);border-bottom:1px solid rgba(200,146,42,0.18);display:flex;align-items:center;justify-content:space-between;padding:0 16px;gap:8px}
+.lnb-btn{font-size:.74rem;font-weight:600;color:rgba(245,230,192,.70);padding:4px 12px;border-radius:20px;border:1px solid rgba(200,146,42,0.22);transition:all .2s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:42%}
+.lnb-btn:hover{color:var(--gold-light);border-color:rgba(200,146,42,0.50);background:rgba(200,146,42,0.10)}
+.lnb-spacer{min-width:70px}
+.lnb-mid{font-size:.68rem;font-weight:700;color:var(--gold);letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;text-align:center;flex:1}
+
+.l-hero{background:linear-gradient(145deg,#071e0e,var(--green-deep));padding:142px 20px 56px;text-align:center}
+.l-breadcrumb{display:flex;align-items:center;justify-content:center;gap:8px;font-size:.76rem;color:rgba(245,230,192,.50);margin-bottom:20px;flex-wrap:wrap}
+.l-breadcrumb a{color:rgba(245,230,192,.50);transition:color .2s}
+.l-breadcrumb a:hover{color:var(--gold-light)}
+.l-breadcrumb span{color:rgba(245,230,192,.30)}
+.l-hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(200,146,42,0.15);border:1px solid rgba(200,146,42,0.35);color:var(--gold-light);font-size:.75rem;font-weight:600;padding:5px 14px;border-radius:20px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:18px}
+.l-hero h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,6vw,3.2rem);color:var(--white);font-weight:700;margin-bottom:6px}
+.l-hero-ur{font-family:'Noto Nastaliq Urdu',serif;font-size:clamp(1.6rem,4.5vw,2.6rem);color:var(--gold-light);direction:rtl;line-height:2.2;display:block;margin-bottom:12px}
+.l-hero-sub{font-size:.95rem;color:rgba(245,230,192,.65);max-width:520px;margin:0 auto;line-height:1.75}
+
+.tab-nav{background:var(--green-mid);padding:0 20px;display:flex;align-items:center;gap:0;overflow-x:auto;scrollbar-width:none;border-bottom:1px solid rgba(200,146,42,0.20);position:sticky;top:102px;z-index:800}
+.tab-nav::-webkit-scrollbar{display:none}
+.tab-nav a{white-space:nowrap;font-size:.80rem;font-weight:500;color:rgba(245,230,192,.60);padding:0 18px;height:46px;display:inline-flex;align-items:center;border-bottom:2px solid transparent;transition:all .2s;flex-shrink:0}
+.tab-nav a:hover,.tab-nav a.active{color:var(--gold-light);border-bottom-color:var(--gold)}
+
+.al-sec{padding:70px 20px}
+.al-inner{max-width:900px;margin:0 auto}
+.sec-label{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.sec-title{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3.5vw,2.2rem);font-weight:700;color:var(--text-dark);margin-bottom:8px}
+.sec-sub{font-size:.92rem;color:var(--text-muted);line-height:1.75;max-width:580px;margin-bottom:36px}
+
+/* READING PASSAGE */
+.passage{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:32px}
+.passage-head{background:linear-gradient(135deg,var(--green-deep),var(--green-mid));padding:20px 24px;display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.passage-level{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--gold);background:rgba(200,146,42,0.20);padding:3px 10px;border-radius:10px;flex-shrink:0}
+.passage-title-en{font-family:'Playfair Display',serif;font-size:1.05rem;color:var(--white);font-weight:600;margin-bottom:2px}
+.passage-title-ur{font-family:'Noto Nastaliq Urdu',serif;font-size:1.2rem;color:var(--gold-light);direction:rtl;line-height:2;display:block}
+.passage-body{padding:24px}
+.passage-ur{font-family:'Noto Nastaliq Urdu',serif;font-size:clamp(1.1rem,3vw,1.5rem);color:var(--green-mid);direction:rtl;line-height:3.2;text-align:right;border-bottom:1px solid var(--border);padding-bottom:20px;margin-bottom:16px}
+.passage-tr{font-size:.88rem;color:var(--text-muted);font-style:italic;line-height:1.85;margin-bottom:12px}
+.passage-en{font-size:.86rem;color:var(--text-mid);line-height:1.8;margin-bottom:16px}
+.passage-vocab{display:flex;flex-wrap:wrap;gap:8px;border-top:1px solid var(--border);padding-top:16px}
+.pv-chip{background:rgba(200,146,42,0.08);border:1px solid rgba(200,146,42,0.22);border-radius:8px;padding:5px 12px;font-size:.78rem}
+.pv-chip .pv-ur{font-family:'Noto Nastaliq Urdu',serif;direction:rtl;color:var(--green-mid);font-size:.95rem;margin-right:4px}
+.pv-chip .pv-en{color:var(--text-muted)}
+
+/* DARK SECTION */
+.dark-sec{background:var(--green-deep);padding:70px 20px}
+.dark-inner{max-width:900px;margin:0 auto}
+
+/* SPEECH CARDS */
+.speech-card{background:rgba(255,255,255,0.06);border:1px solid rgba(200,146,42,0.22);border-radius:14px;padding:24px;margin-bottom:20px}
+.speech-speaker{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--gold);margin-bottom:10px}
+.speech-ur{font-family:'Noto Nastaliq Urdu',serif;font-size:clamp(1.1rem,3vw,1.55rem);color:var(--gold-light);direction:rtl;line-height:3.0;text-align:right;margin-bottom:10px}
+.speech-tr{font-size:.88rem;color:rgba(245,230,192,.65);font-style:italic;margin-bottom:6px;line-height:1.8}
+.speech-en{font-size:.84rem;color:rgba(245,230,192,.50);line-height:1.75}
+.speech-ctx{display:inline-block;margin-top:10px;font-size:.74rem;background:rgba(200,146,42,0.12);border:1px solid rgba(200,146,42,0.20);color:var(--gold);padding:4px 10px;border-radius:8px}
+
+/* CALLOUT */
+.callout{background:linear-gradient(135deg,rgba(200,146,42,0.10),rgba(200,146,42,0.05));border:1px solid rgba(200,146,42,0.25);border-radius:12px;padding:20px 22px;display:flex;gap:14px;align-items:flex-start;margin-top:28px}
+.callout-icon{font-size:1.6rem;flex-shrink:0}
+.callout p{font-size:.88rem;color:var(--text-mid);line-height:1.75}
+.callout strong{color:var(--gold)}
+
+/* ARTICLE SECTION */
+.article-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:28px 24px;margin-bottom:24px;position:relative}
+.article-tag{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;padding:3px 10px;border-radius:10px;background:rgba(46,139,87,0.10);color:var(--green-light);border:1px solid rgba(46,139,87,0.20);display:inline-block;margin-bottom:12px}
+.article-title-ur{font-family:'Noto Nastaliq Urdu',serif;font-size:clamp(1.2rem,3.5vw,1.8rem);color:var(--green-mid);direction:rtl;line-height:2.4;display:block;margin-bottom:6px}
+.article-title-en{font-family:'Playfair Display',serif;font-size:1rem;color:var(--text-dark);margin-bottom:14px}
+.article-body-ur{font-family:'Noto Nastaliq Urdu',serif;font-size:clamp(1rem,2.5vw,1.25rem);color:var(--text-mid);direction:rtl;line-height:3.0;text-align:right;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:14px}
+.article-body-en{font-size:.86rem;color:var(--text-muted);line-height:1.8}
+.article-key{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.ak-word{font-family:'Noto Nastaliq Urdu',serif;font-size:1rem;direction:rtl;padding:3px 10px;background:rgba(200,146,42,0.07);border:1px solid rgba(200,146,42,0.20);border-radius:6px;color:var(--green-mid)}
+
+/* NEXT */
+.next-sec{background:var(--green-deep);padding:56px 20px;text-align:center}
+.next-inner{max-width:700px;margin:0 auto}
+.next-label{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.next-title{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3.5vw,2.2rem);font-weight:700;color:var(--white);margin-bottom:8px}
+.next-sub{font-size:.92rem;color:rgba(245,230,192,.60);margin-bottom:28px;line-height:1.75}
+.next-links{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.next-link{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:50px;font-size:.88rem;font-weight:600;transition:all .25s}
+.next-link.primary{background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--green-deep)}
+.next-link.primary:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(200,146,42,0.40)}
+.next-link.secondary{border:1px solid rgba(200,146,42,0.40);color:rgba(245,230,192,.80)}
+.next-link.secondary:hover{border-color:var(--gold);color:var(--gold-light)}
+
+.al-footer{background:var(--green-deep);border-top:1px solid rgba(200,146,42,0.15);padding:36px 20px;text-align:center}
+.al-footer-links{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:18px}
+.al-footer-links a{color:rgba(245,230,192,.60);font-size:.80rem;padding:6px 14px;border:1px solid rgba(200,146,42,0.20);border-radius:20px;transition:all .2s}
+.al-footer-links a:hover{color:var(--gold-light);border-color:rgba(200,146,42,0.50)}
+.al-footer p{font-size:.72rem;color:rgba(245,230,192,.25)}
+
+#btt{position:fixed;bottom:28px;right:22px;width:46px;height:46px;border-radius:50%;background:var(--gold);color:var(--green-deep);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(200,146,42,0.45);cursor:pointer;border:none;opacity:0;transform:translateY(16px);transition:all .3s;z-index:700;font-size:1.2rem}
+#btt.show{opacity:1;transform:translateY(0)}
+#btt:hover{transform:translateY(-3px)}
+
+@media print{.al-nav,.tab-nav,#btt,.al-lang-btn{display:none!important}}
+@media(max-width:600px){
+  .al-nav{height:auto;min-height:56px;padding:8px 16px;flex-wrap:wrap}
+  .al-nav-links a{display:none}
+  .al-nav-links{gap:8px}
+  .l-hero,.al-sec,.dark-sec,.next-sec{padding-left:16px;padding-right:16px}
+  .l-hero{padding-top:126px;padding-bottom:44px}
+  .al-sec,.dark-sec{padding-top:56px;padding-bottom:56px}
+  .passage-body{padding:18px 16px}
+  .passage-head{padding:16px 18px}
+  .article-card{padding:20px 16px}
+  .speech-card{padding:18px 16px}
+}
+</style>
+</head>
+<body>
+
+<nav class="al-nav">
+  <a class="al-nav-brand" href="../../index.html"><span>☪</span><span data-te="ఇస్లామిక్ ఫ్రంట్" data-en="Islamic Front">ఇస్లామిక్ ఫ్రంట్</span></a>
+  <div class="al-nav-links">
+    <a href="./index.html" data-te="ఉర్దూ పోర్టల్" data-en="Urdu Portal">Urdu Portal</a>
+    <a href="../../islamic-knowledge.html" data-te="జ్ఞాన కేంద్రం" data-en="KC">KC</a>
+    <button class="al-lang-btn" id="lang-btn" onclick="toggleLang()">English</button>
+  </div>
+</nav>
+
+<div class="lesson-nav">
+  <a href="./islamic-urdu.html" class="lnb-btn" data-te="← స్థాయి 5 · ఇస్లామిక్ ఉర్దూ" data-en="← Level 5 · Islamic Urdu">← Level 5 · Islamic Urdu</a>
+  <span class="lnb-mid" data-te="స్థాయి 6 · అధునాతన పఠనం" data-en="Level 6 · Advanced Reading">Level 6 · Advanced Reading</span>
+  <span class="lnb-spacer"></span>
+</div>
+
+<div class="l-hero">
+  <nav class="l-breadcrumb">
+    <a href="../../index.html" data-te="హోమ్" data-en="Home">హోమ్</a><span>›</span>
+    <a href="./index.html" data-te="ఉర్దూ నేర్చుకోండి" data-en="Learn Urdu">ఉర్దూ నేర్చుకోండి</a><span>›</span>
+    <span data-te="అధునాతన పఠనం" data-en="Advanced Reading">అధునాతన పఠనం</span>
+  </nav>
+  <div class="l-hero-badge"><span>۶</span><span data-te="స్థాయి 6" data-en="Level 6">Level 6</span></div>
+  <h1 data-te="అధునాతన పఠనం" data-en="Advanced Reading">Advanced Reading</h1>
+  <span class="l-hero-ur" lang="ur" dir="rtl">اعلیٰ پڑھائی</span>
+  <p class="l-hero-sub" data-te="నిజమైన ఉర్దూ వచనాలు చదవండి — ఇస్లామిక్ కథలు, వ్యాసాలు మరియు ఉపన్యాసాల అంశాలు. ఈ స్థాయిలో మీరు స్వతంత్రంగా ఉర్దూ చదవగలుగుతారు." data-en="Read authentic Urdu texts — Islamic stories, articles, and speech excerpts. At this level you will read Urdu independently.">Read authentic Urdu texts — Islamic stories, articles, and speech excerpts.</p>
+</div>
+
+<nav class="tab-nav">
+  <a href="#stories" class="active" data-te="కథలు" data-en="Stories">Stories</a>
+  <a href="#articles" data-te="వ్యాసాలు" data-en="Articles">Articles</a>
+  <a href="#speeches" data-te="ఉపన్యాసాలు" data-en="Speeches">Speeches</a>
+</nav>
+
+<!-- STORIES -->
+<section class="al-sec" id="stories">
+  <div class="al-inner">
+    <div class="sec-label" data-te="ఇస్లామిక్ కథలు" data-en="Islamic Stories">Islamic Stories</div>
+    <h2 class="sec-title" data-te="ఉర్దూలో కథలు చదవండి" data-en="Read Stories in Urdu">Read Stories in Urdu</h2>
+    <p class="sec-sub" data-te="ఉర్దూలో రాసిన ఇస్లామిక్ కథలు — సరళమైన వచనంతో, అనువాదంతో మరియు ముఖ్య పదాలతో. ప్రతి కథను చదివి అర్థం చేసుకోండి." data-en="Islamic stories in Urdu — with simple prose, translation, and key vocabulary. Read and understand each passage.">Islamic stories in Urdu with translations and key vocabulary.</p>
+
+    <!-- Story 1 -->
+    <div class="passage">
+      <div class="passage-head">
+        <div>
+          <div class="passage-title-en" data-te="కథ 1 · సత్యవంతుడైన వ్యాపారి" data-en="Story 1 · The Honest Merchant">Story 1 · The Honest Merchant</div>
+          <span class="passage-title-ur" lang="ur" dir="rtl">ایک سچا تاجر</span>
+        </div>
+        <span class="passage-level" data-te="మొదటి స్థాయి" data-en="Beginner">Beginner</span>
+      </div>
+      <div class="passage-body">
+        <div class="passage-ur" lang="ur" dir="rtl">ایک تاجر تھا جو ہمیشہ سچ بولتا تھا۔ وہ کبھی کسی کو دھوکہ نہیں دیتا تھا۔ لوگ اس پر بھروسہ کرتے تھے۔ ایک دن ایک غریب آدمی اس کے پاس آیا اور کہا: "مجھے کام چاہیے۔" تاجر نے کہا: "ٹھیک ہے، میرے ساتھ کام کرو۔" غریب آدمی نے محنت سے کام کیا اور تاجر نے اسے پوری مزدوری دی۔</div>
+        <div class="passage-tr" data-te="లిప్యంతరీకరణ" data-en="Transliteration">Ek taajir tha jo hamesha sach bolta tha. Woh kabhi kisi ko dhoka nahin deta tha. Log us par bharosa karte the. Ek din ek ghareeb aadmi us ke paas aaya aur kaha: "Mujhe kaam chahiye." Taajir ne kaha: "Theek hai, mere saath kaam karo." Ghareeb aadmi ne mehnat se kaam kiya aur taajir ne use poori mazdoori di.</div>
+        <div class="passage-en" data-te="అనువాదం: ఒక వ్యాపారి ఉండేవాడు, అతను ఎల్లప్పుడూ నిజం మాట్లాడేవాడు. అతను ఎవరినీ మోసం చేయలేదు. ప్రజలు అతనిపై నమ్మకం పెట్టుకున్నారు. ఒక రోజు ఒక పేద మనిషి అతని దగ్గరకు వచ్చి అన్నాడు: 'నాకు పని కావాలి.' వ్యాపారి 'సరే, నాతో పని చేయి' అన్నాడు. పేద మనిషి కష్టపడి పని చేశాడు మరియు వ్యాపారి అతనికి పూర్తి వేతనం ఇచ్చాడు." data-en="Translation: There was a merchant who always spoke the truth. He never deceived anyone. People trusted him. One day a poor man came to him and said: 'I need work.' The merchant said: 'Very well, come work with me.' The poor man worked diligently and the merchant paid him his full wage.">Translation: There was a merchant who always spoke the truth. He never deceived anyone. People trusted him. One day a poor man came to him and said: "I need work." The merchant said: "Very well, come work with me." The poor man worked diligently and the merchant paid him his full wage.</div>
+        <div class="passage-vocab">
+          <div class="pv-chip"><span class="pv-ur" lang="ur" dir="rtl">تاجر</span><span class="pv-en" data-te="వ్యాపారి" data-en="merchant">merchant</span></div>
+          <div class="pv-chip"><span class="pv-ur" lang="ur" dir="rtl">سچ</span><span class="pv-en" data-te="నిజం" data-en="truth">truth</span></div>
+          <div class="pv-chip"><span class="pv-ur" lang="ur" dir="rtl">بھروسہ</span><span class="pv-en" data-te="నమ్మకం" data-en="trust">trust</span></div>
+          <div class="pv-chip"><span class="pv-ur" lang="ur" dir="rtl">غریب</span><span class="pv-en" data-te="పేద" data-en="poor">poor</span></div>
+          <div class="pv-chip"><span class="pv-ur" lang="ur" dir="rtl">محنت</span><span class="pv-en" data-te="కష్టపడటం" data-en="hard work">hard work</span></div>
+          <div class="pv-chip"><span class="pv-ur" lang="ur" dir="rtl">مزدوری</span><span class="pv-en" data-te="వేతనం" data-en="wage">wage</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Story 2 -->
+    <div class="passage">
+      <div class="passage-head">
+        <div>
+          <div class="passage-title-en" data-te="కథ 2 · తల్లి దువా" data-en="Story 2 · A Mother's Prayer">Story 2 · A Mother's Prayer</div>
+          <span class="passage-title-ur" lang="ur" dir="rtl">ماں کی دعا</span>
+        </div>
+        <span class="passage-level" data-te="మధ్యస్థ స్థాయి" data-en="Intermediate">Intermediate</span>
+      </div>
+      <div class="passage-body">
+        <div class="passage-ur" lang="ur" dir="rtl">ماں کی دعا آسمان تک پہنچتی ہے۔ جو اپنی ماں کو خوش رکھے، اللہ اسے ہر مشکل میں مدد کرتا ہے۔ ایک بزرگ عالم نے کہا: "میری کامیابی کا سب سے بڑا سبب میری ماں کی دعائیں تھیں۔" جب کوئی مصیبت آتی، وہ اپنی ماں کے پاس جاتا اور کہتا: "امی، میرے لیے دعا کریں۔"</div>
+        <div class="passage-tr" data-te="లిప్యంతరీకరణ" data-en="Transliteration">Maan ki dua aasmaan tak pahunchti hai. Jo apni maan ko khush rakhe, Allah use har mushkil mein madad karta hai. Ek buzurg aalim ne kaha: "Meri kamyabi ka sabse bara sabab meri maan ki duayein thin." Jab koi museebat aati, woh apni maan ke paas jaata aur kahta: "Ammi, mere liye dua karo."</div>
+        <div class="passage-en" data-te="అనువాదం: తల్లి దువా ఆకాశం వరకు చేరుతుంది. తన తల్లిని సంతోషంగా ఉంచే వారికి అల్లాహ్ ప్రతి కష్టంలో సహాయం చేస్తాడు. ఒక వృద్ధ పండితుడు చెప్పాడు: 'నా విజయానికి అత్యంత ముఖ్యమైన కారణం నా తల్లి యొక్క దువాలు.' ఏ కష్టం వచ్చినా, అతను తన తల్లి దగ్గరకు వెళ్ళి అంటాడు: 'అమ్మీ, నా కోసం దువా చేయి.'" data-en="Translation: A mother's prayer reaches to the sky. Allah helps in every difficulty the one who keeps his mother happy. A respected scholar said: 'The greatest reason for my success was my mother's prayers.' When any difficulty came, he would go to his mother and say: 'Ammi, please pray for me.'">Translation: A mother's prayer reaches to the sky. Allah helps in every difficulty the one who keeps his mother happy. A respected scholar said: "The greatest reason for my success was my mother's prayers." When difficulty came, he went to his mother and said: "Ammi, please pray for me."</div>
+        <div class="passage-vocab">
+          <div class="pv-chip"><span class="pv-ur" lang="ur" dir="rtl">دعا</span><span class="pv-en" data-te="దువా" data-en="prayer/supplication">prayer</span></div>
+          <div class="pv-chip"><span class="pv-ur" lang="ur" dir="rtl">آسمان</span><span class="pv-en" data-te="ఆకాశం" data-en="sky/heaven">sky</span></div>
+          <div class="pv-chip"><span class="pv-ur" lang="ur" dir="rtl">کامیابی</span><span class="pv-en" data-te="విజయం" data-en="success">success</span></div>
+          <div class="pv-chip"><span class="pv-ur" lang="ur" dir="rtl">مصیبت</span><span class="pv-en" data-te="కష్టం" data-en="difficulty">difficulty</span></div>
+          <div class="pv-chip"><span class="pv-ur" lang="ur" dir="rtl">عالم</span><span class="pv-en" data-te="పండితుడు" data-en="scholar">scholar</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-icon">📖</div>
+      <p data-te="<strong>చదవడం చిట్కా:</strong> మొదట ఉర్దూ వచనం పూర్తిగా చదవండి. అర్థం కాని పదాలు గుర్తించండి. తర్వాత లిప్యంతరీకరణ చదవండి. చివరగా అనువాదంతో అర్థాన్ని నిర్ధారించండి. ముఖ్య పదజాలం మళ్ళీ మళ్ళీ చదవండి." data-en="<strong>Reading tip:</strong> First read the Urdu passage completely. Mark unfamiliar words. Then read the transliteration. Finally confirm meaning with the translation. Practise key vocabulary repeatedly."><strong>Reading tip:</strong> First read the full Urdu passage. Mark unfamiliar words. Then read the transliteration. Finally confirm meaning with the translation. Practise key vocabulary repeatedly.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ARTICLES -->
+<section class="dark-sec" id="articles">
+  <div class="dark-inner">
+    <div class="sec-label" style="color:var(--gold)" data-te="ఉర్దూ వ్యాసాలు" data-en="Urdu Articles">Urdu Articles</div>
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3.5vw,2.2rem);color:var(--white);margin-bottom:8px" data-te="ఇస్లామిక్ వ్యాసాలు చదవండి" data-en="Read Islamic Articles">Read Islamic Articles</h2>
+    <p style="font-size:.92rem;color:rgba(245,230,192,.60);line-height:1.75;max-width:540px;margin-bottom:36px" data-te="ఉర్దూ ఇస్లామిక్ పత్రికలు మరియు పుస్తకాల నుండి సరళమైన వ్యాసాలు — మీ పఠన నైపుణ్యాన్ని పెంచుకోండి." data-en="Simple articles from Urdu Islamic publications — develop your reading fluency in authentic Urdu prose.">Simple articles from Urdu Islamic publications — develop reading fluency in authentic prose.</p>
+
+    <div class="article-card">
+      <span class="article-tag" data-te="ఇస్లామిక్ జీవితం" data-en="Islamic Life">Islamic Life</span>
+      <span class="article-title-ur" lang="ur" dir="rtl">وقت کی قدر</span>
+      <div class="article-title-en" data-te="సమయ విలువ" data-en="The Value of Time">The Value of Time</div>
+      <div class="article-body-ur" lang="ur" dir="rtl">وقت اللہ کی بہت بڑی نعمت ہے۔ جو شخص وقت کو ضائع کرتا ہے وہ اپنی زندگی ضائع کرتا ہے۔ نبی کریم ﷺ نے فرمایا: "دو نعمتیں ایسی ہیں جن میں اکثر لوگ دھوکے میں ہیں — صحت اور فراغت۔" اس لیے ہمیں ہر لمحے کو قیمتی سمجھنا چاہیے۔</div>
+      <div class="article-body-en" data-te="అనువాదం: సమయం అల్లాహ్ యొక్క గొప్ప నియామతు. సమయాన్ని వృధా చేసే వ్యక్తి తన జీవితాన్ని వృధా చేస్తాడు. ప్రవక్త ﷺ ఇలా చెప్పారు: 'రెండు నియామతులు ఉన్నాయి, వాటిలో చాలా మంది మోసపోతారు — ఆరోగ్యం మరియు ఖాళీ సమయం.' అందుకే మనం ప్రతి క్షణాన్ని విలువైనదిగా భావించాలి." data-en="Translation: Time is a great blessing from Allah. The person who wastes time wastes his life. The Prophet ﷺ said: 'Two blessings in which many people are deceived — health and free time.' Therefore we must regard every moment as precious.">Translation: Time is a great blessing from Allah. The one who wastes time wastes his life. The Prophet ﷺ said: "Two blessings in which many people are deceived — health and free time." Therefore we must regard every moment as precious.</div>
+      <div class="article-key">
+        <span class="ak-word" lang="ur" dir="rtl">وقت</span>
+        <span class="ak-word" lang="ur" dir="rtl">نعمت</span>
+        <span class="ak-word" lang="ur" dir="rtl">زندگی</span>
+        <span class="ak-word" lang="ur" dir="rtl">صحت</span>
+        <span class="ak-word" lang="ur" dir="rtl">فراغت</span>
+      </div>
+    </div>
+
+    <div class="article-card" style="background:rgba(255,255,255,0.04);border-color:rgba(200,146,42,0.20)">
+      <span class="article-tag" data-te="సుభాషితాలు" data-en="Wisdom">Wisdom</span>
+      <span class="article-title-ur" lang="ur" dir="rtl">علم کی برکت</span>
+      <div class="article-title-en" style="color:rgba(245,230,192,0.80)" data-te="జ్ఞానం యొక్క ఆశీర్వాదం" data-en="The Blessing of Knowledge">The Blessing of Knowledge</div>
+      <div class="article-body-ur" lang="ur" dir="rtl">علم حاصل کرنا ہر مسلمان پر فرض ہے۔ نبی ﷺ نے فرمایا: "علم حاصل کرو، چاہے تمہیں چین جانا پڑے۔" علم سے انسان کا دل روشن ہوتا ہے۔ جاہل آدمی اندھیرے میں چلتا ہے، لیکن عالم آدمی روشنی میں چلتا ہے۔</div>
+      <div class="article-body-en" style="color:rgba(245,230,192,0.50)" data-te="అనువాదం: జ్ఞానం సంపాదించడం ప్రతి ముస్లింపై ఫర్జ్. ప్రవక్త ﷺ చెప్పారు: 'జ్ఞానం సంపాదించు, చైనా వెళ్ళవలసి వచ్చినా సరే.' జ్ఞానంతో మానవుని హృదయం వెలుగుతుంది. అజ్ఞాని చీకటిలో నడుస్తాడు, కానీ జ్ఞాని వెలుతురులో నడుస్తాడు." data-en="Translation: Seeking knowledge is obligatory upon every Muslim. The Prophet ﷺ said: 'Seek knowledge, even if you must go to China.' Knowledge illuminates the human heart. The ignorant walk in darkness, but the learned walk in light.">Translation: Seeking knowledge is obligatory upon every Muslim. The Prophet ﷺ said: "Seek knowledge, even if you must go to China." Knowledge illuminates the human heart. The ignorant walk in darkness, but the learned walk in light.</div>
+      <div class="article-key">
+        <span class="ak-word" lang="ur" dir="rtl" style="background:rgba(200,146,42,0.15);color:var(--gold-light)">علم</span>
+        <span class="ak-word" lang="ur" dir="rtl" style="background:rgba(200,146,42,0.15);color:var(--gold-light)">فرض</span>
+        <span class="ak-word" lang="ur" dir="rtl" style="background:rgba(200,146,42,0.15);color:var(--gold-light)">روشن</span>
+        <span class="ak-word" lang="ur" dir="rtl" style="background:rgba(200,146,42,0.15);color:var(--gold-light)">جاہل</span>
+        <span class="ak-word" lang="ur" dir="rtl" style="background:rgba(200,146,42,0.15);color:var(--gold-light)">عالم</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPEECHES -->
+<section class="al-sec" id="speeches">
+  <div class="al-inner">
+    <div class="sec-label" data-te="ఉర్దూ ఉపన్యాసాలు" data-en="Urdu Speeches &amp; Lectures">Urdu Speeches &amp; Lectures</div>
+    <h2 class="sec-title" data-te="ఉపన్యాసాల నుండి వాక్యాలు" data-en="Excerpts from Urdu Lectures">Excerpts from Urdu Lectures</h2>
+    <p class="sec-sub" data-te="ఉర్దూ ఇస్లామిక్ ఉపన్యాసాల నుండి ముఖ్యమైన వాక్యాలు — దర్స్ మరియు బయాన్‌లో విన్న భాషను అర్థం చేసుకోండి." data-en="Important passages from Urdu Islamic lectures — understand the language you hear in dars and bayans.">Passages from Urdu Islamic lectures — understand dars and bayan language.</p>
+
+    <div class="speech-card">
+      <div class="speech-speaker" data-te="ఉర్దూ ఉపన్యాసంలో — ఖుత్బా శైలి" data-en="Urdu Lecture — Khutbah Style">Urdu Lecture — Khutbah Style</div>
+      <div class="speech-ur" lang="ur" dir="rtl">اللہ تعالیٰ نے ہمیں اس دنیا میں اس لیے بھیجا ہے کہ ہم اس کی عبادت کریں اور اس کے احکام پر عمل کریں۔ دنیا عارضی ہے اور آخرت ابدی ہے۔ جو شخص دنیا کو آخرت پر ترجیح دیتا ہے وہ گھاٹے میں ہے۔</div>
+      <div class="speech-tr" data-te="లిప్యంతరీకరణ" data-en="Transliteration">Allah Ta'ala ne hamein is duniya mein isliye bheja hai ke hum us ki ibadat karein aur us ke ahkaam par amal karein. Duniya aarzi hai aur aakhirat abadi hai. Jo shaks duniya ko aakhirat par tarjeeh deta hai woh ghaate mein hai.</div>
+      <div class="speech-en" data-te="అనువాదం: అల్లాహ్ తో మనలను ఈ ప్రపంచంలోనికి పంపింది ఈ కారణంగా — మనం ఆయనను ఆరాధించాలి మరియు ఆయన ఆజ్ఞలపై అమలు చేయాలి. ప్రపంచం తాత్కాలికమైనది మరియు ఆఖిరత్ శాశ్వతమైనది. ఆఖిరత్ కంటే ప్రపంచాన్ని ప్రాధాన్యత ఇచ్చే వ్యక్తి నష్టపోతాడు." data-en="Translation: Allah has sent us into this world for the purpose that we worship Him and act upon His commands. The world is temporary and the hereafter is eternal. The person who gives preference to this world over the hereafter is at a loss.">Translation: Allah has sent us into this world to worship Him and act upon His commands. This world is temporary and the hereafter is eternal. The one who prefers this world over the hereafter is at a loss.</div>
+      <span class="speech-ctx" data-te="జుమ్మా ఖుత్బా, రమదాన్ బయాన్‌లలో తరచుగా వినే వాక్యాలు" data-en="Frequently heard in Jumu'ah khutbahs and Ramadan bayans">Frequently heard in Jumu'ah khutbahs</span>
+    </div>
+
+    <div class="speech-card">
+      <div class="speech-speaker" data-te="ఉర్దూ దర్స్ శైలి — ముఖ్య వాక్యాలు" data-en="Urdu Dars Style — Key Phrases">Urdu Dars Style — Key Phrases</div>
+      <div class="speech-ur" lang="ur" dir="rtl">آج ہم قرآن کریم کی ایک آیت پر غور کریں گے۔ اللہ تعالیٰ نے فرمایا: "إِنَّ اللَّهَ مَعَ الصَّابِرِينَ" — یعنی اللہ صبر کرنے والوں کے ساتھ ہے۔ صبر ایک بہت بڑی طاقت ہے۔ جب کوئی مشکل آئے، صبر کرو اور اللہ سے مدد مانگو۔</div>
+      <div class="speech-tr" data-te="లిప్యంతరీకరణ" data-en="Transliteration">Aaj hum Quran Kareem ki ek aayat par ghaur karenge. Allah Ta'ala ne farmaya: "Innallaha ma'as-sabirin" — yani Allah sabr karne walon ke saath hai. Sabr ek bahut badi taaqat hai. Jab koi mushkil aaye, sabr karo aur Allah se madad maango.</div>
+      <div class="speech-en" data-te="అనువాదం: ఈరోజు మనం ఖుర్ఆన్ యొక్క ఒక ఆయత్‌పై ఆలోచిద్దాం. అల్లాహ్ చెప్పాడు: 'ఇన్నల్లాహ మఆ-స్సాబిరీన్' — అంటే అల్లాహ్ సహనం చూపే వారితో ఉంటాడు. సహనం చాలా గొప్ప శక్తి. ఏ కష్టం వచ్చినా, సహనం పాటించు మరియు అల్లాహ్ నుండి సహాయం కోరు." data-en="Translation: Today we will reflect on one verse from the Noble Quran. Allah said: 'Innallaha ma'as-sabirin' — meaning Allah is with those who are patient. Patience is a very great power. When any difficulty comes, be patient and ask Allah for help.">Translation: Today we will reflect on one verse from the Quran. Allah said: "Innallaha ma'as-sabirin" — Allah is with those who are patient. Patience is a great power. When difficulty comes, be patient and ask Allah for help.</div>
+      <span class="speech-ctx" data-te="ఉర్దూ దర్స్‌లో ఖుర్ఆన్ ఆయత్‌ను వివరించే పద్ధతి" data-en="The standard way of explaining a Quranic verse in an Urdu dars">Standard Urdu dars method for explaining a verse</span>
+    </div>
+
+    <div class="speech-card">
+      <div class="speech-speaker" data-te="ఉర్దూలో దువా — ఇమాం శైలి" data-en="Urdu Dua — Imam Style">Urdu Dua — Imam Style</div>
+      <div class="speech-ur" lang="ur" dir="rtl">اے اللہ! ہمارے گناہوں کو معاف فرما۔ ہمارے دلوں کو پاک فرما۔ ہمیں سیدھا راستہ دکھا۔ ہمارے والدین کو معاف فرما اور انہیں جنت میں جگہ دے۔ تمام مسلمانوں کو اپنی حفاظت میں رکھ۔ آمین۔</div>
+      <div class="speech-tr" data-te="లిప్యంతరీకరణ" data-en="Transliteration">Ae Allah! Hamare gunaahon ko maaf farma. Hamare dilon ko paak farma. Hamein seedha raasta dikha. Hamare walidain ko maaf farma aur unhein jannat mein jagah de. Tamaam musalmaanon ko apni hifazat mein rakh. Ameen.</div>
+      <div class="speech-en" data-te="అనువాదం: ఓ అల్లాహ్! మా పాపాలను క్షమించు. మా హృదయాలను పవిత్రం చేయి. మాకు సరళమైన మార్గం చూపించు. మా తల్లిదండ్రులను క్షమించి వారికి జన్నత్‌లో చోటు ఇవ్వు. సమస్త ముస్లింలను నీ రక్షణలో ఉంచు. ఆమీన్." data-en="Translation: O Allah! Forgive our sins. Purify our hearts. Show us the straight path. Forgive our parents and give them a place in paradise. Keep all Muslims under Your protection. Ameen.">Translation: O Allah! Forgive our sins. Purify our hearts. Show us the straight path. Forgive our parents and grant them paradise. Keep all Muslims under Your protection. Ameen.</div>
+      <span class="speech-ctx" data-te="నమాజ్ తర్వాత ఇమాం చదివే దువా శైలి — ప్రతి ఉర్దూ బయాన్‌లో వినిపిస్తుంది" data-en="The style of dua recited by imams after prayer — heard in every Urdu bayan">Heard after every prayer and bayan — imam's closing dua</span>
+    </div>
+  </div>
+</section>
+
+<section class="next-sec">
+  <div class="next-inner">
+    <div class="next-label" data-te="పూర్తయింది!" data-en="Completed!">Completed!</div>
+    <h2 class="next-title" data-te="ఉర్దూ పోర్టల్ పూర్తయింది" data-en="Urdu Learning Portal Complete">Urdu Learning Portal Complete</h2>
+    <p class="next-sub" data-te="మీరు అన్ని 6 స్థాయిలూ పూర్తి చేశారు — అక్షరమాల నుండి అధునాతన పఠనం వరకు. ఇప్పుడు ఉర్దూ ఇస్లామిక్ పుస్తకాలు చదవడం ప్రారంభించండి!" data-en="You have completed all 6 levels — from alphabet to advanced reading. Now begin reading Urdu Islamic books independently!">You have completed all 6 levels — from alphabet to advanced reading. Begin reading Urdu Islamic texts independently!</p>
+    <div class="next-links">
+      <a class="next-link primary" href="./index.html" data-te="పోర్టల్ పదిలప్పడండి →" data-en="Return to Portal →">Return to Portal →</a>
+      <a class="next-link secondary" href="./islamic-urdu.html" data-te="ఇస్లామిక్ ఉర్దూ" data-en="Islamic Urdu">Islamic Urdu</a>
+      <a class="next-link secondary" href="../learn-arabic/index.html" data-te="అరబిక్ నేర్చుకోండి" data-en="Learn Arabic">Learn Arabic</a>
+    </div>
+  </div>
+</section>
+
+<footer class="al-footer">
+  <div class="al-footer-links">
+    <a href="../../index.html" data-te="హోమ్" data-en="Home">Home</a>
+    <a href="../../islamic-knowledge.html" data-te="జ్ఞాన కేంద్రం" data-en="Knowledge Center">Knowledge Center</a>
+    <a href="./index.html" data-te="ఉర్దూ పోర్టల్" data-en="Urdu Portal">Urdu Portal</a>
+    <a href="./daily-urdu.html" data-te="రోజువారీ ఉర్దూ" data-en="Daily Urdu">Daily Urdu</a>
+    <a href="./islamic-urdu.html" data-te="ఇస్లామిక్ ఉర్దూ" data-en="Islamic Urdu">Islamic Urdu</a>
+  </div>
+  <p>Islamic Front · Urdu Learning Portal · Level 6</p>
+</footer>
+
+<button id="btt" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+var LANG = localStorage.getItem('if-lang') || 'te';
+
+function applyLang(l) {
+  LANG = l;
+  localStorage.setItem('if-lang', l);
+  document.documentElement.lang = (l === 'te') ? 'te' : 'en';
+  document.querySelectorAll('[data-te]').forEach(function(el) {
+    var val = el.getAttribute('data-' + l);
+    if (val) el.innerHTML = val;
+  });
+  var btn = document.getElementById('lang-btn');
+  if (btn) btn.textContent = l === 'te' ? 'English' : 'తెలుగు';
+}
+
+function toggleLang() { applyLang(LANG === 'te' ? 'en' : 'te'); }
+
+applyLang(LANG);
+
+var sections = ['stories','articles','speeches'];
+var tabLinks = document.querySelectorAll('.tab-nav a');
+window.addEventListener('scroll', function() {
+  var pos = window.scrollY + 120;
+  var active = 'stories';
+  sections.forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el && el.offsetTop <= pos) active = id;
+  });
+  tabLinks.forEach(function(a) {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + active);
+  });
+  var btt = document.getElementById('btt');
+  if (btt) btt.classList.toggle('show', window.scrollY > 300);
+});
+</script>
+</body>
+</html>

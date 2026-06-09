@@ -27,9 +27,14 @@
   html { scrollbar-color: var(--gold) var(--cream); scrollbar-width: thin; }
   a:focus-visible, button:focus-visible, [tabindex]:focus-visible { outline: 2px solid var(--gold-light); outline-offset: 3px; border-radius: 3px; }
   img { -webkit-user-drag: none; }
+  /* Skip-to-main link — hidden until focused by keyboard */
+  .skip-link { position: absolute; top: -100%; left: 5vw; padding: 10px 20px; background: var(--gold); color: var(--green-deep); font-weight: 600; font-size: 14px; border-radius: 0 0 6px 6px; z-index: 9999; text-decoration: none; transition: top .2s; letter-spacing: .3px; }
+  .skip-link:focus { top: 0; outline: none; box-shadow: 0 4px 14px rgba(0,0,0,.35); }
+  /* Scroll margin — keeps section headings below the 68px fixed nav on anchor jump */
+  section[id] { scroll-margin-top: 68px; }
 
   /* NAV */
-  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(13,59,30,0.96); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(200,146,42,0.3); padding: 0 5vw; display: flex; align-items: center; justify-content: space-between; height: 68px; }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(13,59,30,0.90); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(200,146,42,0.3); padding: 0 5vw; display: flex; align-items: center; justify-content: space-between; height: 68px; }
   .nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
   .nav-logo { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; }
   .nav-title { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: var(--gold-light); letter-spacing: 0.5px; line-height: 1.2; }
@@ -288,7 +293,7 @@
   .kc-cta::after { content: '↗'; font-size: 15px; }
   .kc-cta:hover { background: var(--gold-light); transform: translateY(-1px); }
   .kc-tools { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-  .kc-tool { display: flex; align-items: center; gap: 13px; background: rgba(255,255,255,0.04); border: 1px solid rgba(200,146,42,0.22); border-radius: 10px; padding: 16px 18px; transition: background 0.2s, transform 0.2s, box-shadow 0.2s; }
+  .kc-tool { display: flex; align-items: center; gap: 13px; background: rgba(255,255,255,0.04); border: 1px solid rgba(200,146,42,0.22); border-radius: 10px; padding: 16px 18px; transition: background 0.2s, transform 0.2s, box-shadow 0.2s; text-decoration: none; color: inherit; }
   .kc-tool:hover { background: rgba(200,146,42,0.1); transform: translateY(-2px); box-shadow: 0 4px 14px rgba(0,0,0,0.18); }
   .kc-tool-ic { font-size: 24px; flex-shrink: 0; line-height: 1; }
   .kc-tool-tx { font-size: 13px; font-weight: 500; color: rgba(245,230,192,0.92); line-height: 1.4; }
@@ -474,9 +479,433 @@
     .mf-ring-title { font-size: 12px; }
     .mf-ring-sub { font-size: 10px; }
   }
+
+  /* ═══════════════════════════════════════
+     ULTRA PREMIUM OVERHAUL
+  ═══════════════════════════════════════ */
+
+  /* ── Global section padding ── */
+  section { padding: 100px 5vw; }
+  .victory { padding: 100px 5vw; }
+  .scheme  { padding: 100px 5vw; }
+  .infra   { padding: 100px 5vw; }
+  .about   { padding: 100px 5vw; }
+  .contact { padding: 100px 5vw; }
+  .kc-promo { padding: 100px 5vw; }
+
+  /* ── Gold accent line under every section title ── */
+  .section-title { position: relative; }
+  .section-title::after {
+    content: '';
+    display: block;
+    width: 44px; height: 2px; border-radius: 2px;
+    margin-top: 16px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light), transparent);
+  }
+  .victory .section-title::after,
+  .kc-promo .section-title::after {
+    background: linear-gradient(90deg, var(--gold-light), rgba(232,184,75,0.4), transparent);
+  }
+
+  /* ── Hero: glass stat cards ── */
+  .hstat {
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    background: rgba(255,255,255,0.065);
+    border: 1px solid rgba(200,146,42,0.3);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
+    border-radius: 16px;
+    padding: 18px 26px;
+    min-width: 138px;
+  }
+  .hstat:hover {
+    background: rgba(255,255,255,0.10);
+    border-color: rgba(200,146,42,0.58);
+    transform: translateY(-4px);
+    box-shadow: 0 22px 52px -14px rgba(0,0,0,0.72), inset 0 1px 0 rgba(255,255,255,0.08);
+  }
+  .hstat-num {
+    background: linear-gradient(135deg, var(--gold-light) 0%, #fff8cc 55%, var(--gold-light) 100%);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; color: transparent;
+  }
+
+  /* ── Hero CTA: premium gradient + stronger shadow ── */
+  .hero-cta {
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+    font-size: 12px; letter-spacing: 1.5px;
+    padding: 16px 40px; border-radius: 6px;
+    box-shadow: 0 10px 32px -10px rgba(200,146,42,0.58), inset 0 1px 0 rgba(255,255,255,0.18);
+  }
+  .hero-cta:hover {
+    background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 18px 44px -8px rgba(200,146,42,0.62);
+  }
+
+  /* ── Manifesto progress bar: thicker, more vivid ── */
+  .hmfp-bar { height: 9px; gap: 4px; }
+
+  /* ── Victory: mandate stat chips ── all equal, no ms-hl ── */
+  .ms-chip {
+    background: rgba(255,255,255,0.045);
+    border: 1px solid rgba(200,146,42,0.16);
+    border-radius: 16px;
+    padding: 28px 16px;
+    position: relative; overflow: hidden;
+    transition: all .32s cubic-bezier(.22,.61,.36,1);
+  }
+  .ms-chip::after {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(200,146,42,0.55), transparent);
+    pointer-events: none;
+  }
+  .ms-chip:hover {
+    transform: translateY(-6px);
+    background: rgba(255,255,255,0.075);
+    border-color: rgba(200,146,42,0.44);
+    box-shadow: 0 22px 52px -12px rgba(0,0,0,0.52);
+  }
+  .ms-num {
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 50%, #fff8cc 100%);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; color: transparent;
+    font-size: 42px;
+  }
+
+  /* ── Member cards: refined borders + stronger hover lift ── */
+  .member-card {
+    border-radius: 18px;
+    background: rgba(255,255,255,0.045);
+    border: 1px solid rgba(200,146,42,0.14);
+    transition: all .32s cubic-bezier(.22,.61,.36,1);
+  }
+  .member-card:hover {
+    transform: translateY(-9px);
+    background: rgba(255,255,255,0.08);
+    border-color: rgba(200,146,42,0.52);
+    box-shadow: 0 28px 64px -14px rgba(0,0,0,0.64);
+  }
+  .member-photo, .member-fallback {
+    border: 2.5px solid var(--gold);
+    box-shadow: 0 0 0 4px rgba(200,146,42,0.14), 0 8px 24px rgba(0,0,0,0.32);
+  }
+
+  /* ── Achievements: floating card grid (replaces the divider grid) ── */
+  .achievements-grid {
+    border: none; background: transparent;
+    overflow: visible; border-radius: 0;
+    gap: 20px; margin-top: 52px;
+  }
+  .ach-card {
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    box-shadow: 0 2px 10px rgba(13,59,30,0.05);
+    transition: all .32s cubic-bezier(.22,.61,.36,1);
+  }
+  .ach-card:hover {
+    transform: translateY(-6px);
+    background: linear-gradient(145deg, #fffef8, #fffaec);
+    border-color: rgba(200,146,42,0.44);
+    box-shadow: 0 18px 52px rgba(13,59,30,0.13);
+  }
+  .ach-icon {
+    width: 54px; height: 54px; border-radius: 12px; font-size: 27px;
+    background: linear-gradient(135deg, rgba(200,146,42,0.10), rgba(200,146,42,0.04));
+    border: 1px solid rgba(200,146,42,0.18);
+    box-shadow: 0 2px 8px rgba(200,146,42,0.08);
+  }
+
+  /* ── Manifesto: subtle card depth ── */
+  .mf-card { border-radius: 12px; box-shadow: 0 2px 8px rgba(13,59,30,0.05); }
+  .mf-card:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(13,59,30,0.10); }
+  .mf-ring-item { border-radius: 14px; box-shadow: 0 2px 8px rgba(13,59,30,0.05); }
+  .mf-ring-item:hover { transform: translateY(-3px); box-shadow: 0 8px 26px rgba(13,59,30,0.10); }
+
+  /* ── Scheme: richer dark gradient + gold gradient amount ── */
+  .scheme-card {
+    background: linear-gradient(148deg, var(--green-deep) 0%, #081d10 100%);
+    border-radius: 16px;
+    box-shadow: 0 28px 64px rgba(0,0,0,0.24), 0 0 0 1px rgba(200,146,42,0.16);
+  }
+  .scheme-amount {
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 52%, #fff3c0 100%);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; color: transparent;
+  }
+
+  /* ── Infrastructure: gold gradient numbers + better hover ── */
+  .infra-card {
+    border-radius: 14px;
+    box-shadow: 0 2px 10px rgba(13,59,30,0.05);
+    transition: all .32s cubic-bezier(.22,.61,.36,1);
+  }
+  .infra-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(200,146,42,0.44);
+    box-shadow: 0 18px 44px rgba(13,59,30,0.13);
+  }
+  .infra-num {
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; color: transparent;
+  }
+  .infra-img {
+    height: 142px;
+    background: linear-gradient(160deg, var(--green-deep) 0%, var(--green-mid) 100%);
+  }
+
+  /* ── About: timeline glow on hover ── */
+  .tl-dot {
+    box-shadow: 0 0 0 4px rgba(200,146,42,0.07);
+    transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+  }
+  .tl-item:hover .tl-dot {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 6px rgba(200,146,42,0.14);
+  }
+
+  /* ── Contact: premium office cards ── */
+  .office-card {
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(13,59,30,0.05);
+    transition: all .3s cubic-bezier(.22,.61,.36,1);
+  }
+  .office-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(200,146,42,0.44);
+    box-shadow: 0 12px 36px rgba(13,59,30,0.12);
+  }
+
+  /* ── KC Promo: premium tool cards ── */
+  .kc-tool {
+    border-radius: 12px;
+    transition: all .3s cubic-bezier(.22,.61,.36,1);
+  }
+  .kc-tool:hover {
+    background: rgba(200,146,42,0.12);
+    border-color: rgba(200,146,42,0.48);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.24);
+  }
+
+  /* ── Footer: premium gradient + link polish ── */
+  footer { background: linear-gradient(162deg, var(--green-deep) 0%, #07160c 100%); }
+  .footer-col ul li a {
+    color: rgba(245,230,192,0.55);
+    text-decoration: none; font-size: 13px;
+    display: inline-flex; align-items: center; gap: 6px;
+    line-height: 1.9;
+    transition: color .2s, padding-left .2s;
+  }
+  .footer-col ul li a::before {
+    content: '›'; font-size: 15px;
+    color: rgba(200,146,42,0.38);
+    transition: color .2s, transform .2s;
+  }
+  .footer-col ul li a:hover { color: var(--gold-light); padding-left: 4px; }
+  .footer-col ul li a:hover::before { color: var(--gold-light); transform: translateX(2px); }
+
+  /* ── Back-to-top button ── */
+  .back-to-top {
+    position: fixed; bottom: 28px; right: 22px;
+    width: 46px; height: 46px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    color: var(--green-deep); border: none;
+    font-size: 18px; font-weight: 700; line-height: 1;
+    cursor: pointer; z-index: 60;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; transform: translateY(16px) scale(0.88);
+    transition: opacity .32s, transform .32s cubic-bezier(.22,.61,.36,1);
+    box-shadow: 0 6px 22px rgba(200,146,42,0.38);
+  }
+  .back-to-top.is-visible { opacity: 1; transform: translateY(0) scale(1); }
+  .back-to-top:hover {
+    transform: translateY(-3px) scale(1.06);
+    box-shadow: 0 12px 30px rgba(200,146,42,0.52);
+  }
+  .back-to-top:focus-visible { outline: 2px solid var(--gold-light); outline-offset: 3px; }
+
+  /* ══ MOBILE PREMIUM — comprehensive ══ */
+  @media (max-width: 768px) {
+    section, .victory, .scheme, .infra, .about, .contact, .kc-promo { padding: 72px 5vw; }
+
+    /* Hero on mobile */
+    .hero-stats { flex-wrap: nowrap; gap: 10px; }
+    .hstat { flex: 1; min-width: 0; padding: 14px 14px; border-radius: 12px; }
+    .hstat-num { font-size: 28px; }
+    .hstat-label { font-size: 10px; letter-spacing: .4px; line-height: 1.4; }
+    .hero-cta { width: 100%; justify-content: center; padding: 15px; font-size: 12px; letter-spacing: 1px; }
+    .hero-mf-progress { max-width: 100%; }
+    .hmfp-bar { height: 10px; }
+
+    /* Victory chips on mobile */
+    .mandate-stats { gap: 12px; margin-top: 28px; }
+    .ms-chip { padding: 20px 12px; border-radius: 12px; }
+    .ms-num { font-size: 32px; }
+    .ms-lab { font-size: 10px; letter-spacing: .8px; }
+
+    /* Achievement cards on mobile */
+    .achievements-grid { gap: 12px; }
+    .ach-card { padding: 28px 22px; }
+    .ach-icon { width: 48px; height: 48px; font-size: 24px; margin-bottom: 16px; }
+    .ach-title { font-size: 17px; }
+    .ach-desc { font-size: 13.5px; }
+
+    /* Scheme on mobile */
+    .scheme-card { padding: 36px 28px; border-radius: 14px; }
+    .scheme-amount { font-size: 56px; }
+    .scheme-title-big { font-size: 22px; }
+
+    /* Infra on mobile */
+    .infra-grid { gap: 14px; }
+    .infra-body { padding: 18px; }
+    .infra-num { font-size: 30px; }
+    .infra-title { font-size: 15px; }
+
+    /* Contact on mobile */
+    .map-box { height: 260px; }
+
+    /* Footer on mobile */
+    footer { padding: 56px 5vw 32px; }
+    .footer-inner { gap: 32px; }
+
+    /* Back to top: smaller, tucked into corner */
+    .back-to-top { bottom: 18px; right: 14px; width: 42px; height: 42px; font-size: 16px; }
+  }
+
+  @media (max-width: 420px) {
+    section, .victory, .scheme, .infra, .about, .contact, .kc-promo { padding: 56px 5vw; }
+    .hstat { padding: 12px 12px; }
+    .hstat-num { font-size: 26px; }
+    .hstat-label { font-size: 9.5px; }
+    .ms-num { font-size: 28px; }
+    /* Member photos: fit 2-col grid on tiny screens */
+    .member-photo, .member-fallback { width: 100px; height: 100px; }
+    .member-card { padding: 18px 6px 14px; }
+    .member-name { font-size: 12.5px; }
+    .member-role { font-size: 9px; }
+  }
+
+  /* Mobile founder strip — replaces the hidden leader-card on small screens */
+  .hero-founder-mobile { display: none; }
+  @media (max-width: 768px) {
+    .hero-founder-mobile { display: flex; align-items: center; gap: 14px; margin-top: 24px;
+      padding: 14px 18px; background: rgba(255,255,255,0.045);
+      border: 1px solid rgba(200,146,42,0.28); border-radius: 10px; }
+    .hfm-photo { width: 50px; height: 50px; border-radius: 50%; object-fit: cover;
+      object-position: top; border: 2px solid var(--gold); flex-shrink: 0; }
+    .hfm-info { flex: 1; min-width: 0; }
+    .hfm-name { font-family: 'Playfair Display', serif; font-size: 14px; font-weight: 700;
+      color: var(--white); line-height: 1.3; }
+    .hfm-role { font-size: 10px; color: rgba(232,184,75,0.75); letter-spacing: 0.8px;
+      text-transform: uppercase; margin-top: 3px; }
+  }
+
+  /* ── SVG status badges — replaces text emoji with clean inline icons ── */
+  .mf-badge.b-done::before,
+  .mf-badge.b-progress::before,
+  .mf-badge.b-pending::before {
+    content: ''; display: block; width: 14px; height: 14px;
+    flex-shrink: 0; background-size: contain;
+    background-repeat: no-repeat; background-position: center;
+  }
+  .mf-badge.b-done::before {
+    background-image: url("data:image/svg+xml,%3Csvg width='14' height='14' viewBox='0 0 14 14' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='7' cy='7' r='6.5' fill='%2316a34a' fill-opacity='0.15' stroke='%2316a34a' stroke-width='1.2'/%3E%3Cpath d='M4.5 7l2 2L9.5 4.5' stroke='%2316a34a' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  }
+  .mf-badge.b-progress::before {
+    background-image: url("data:image/svg+xml,%3Csvg width='14' height='14' viewBox='0 0 14 14' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='7' cy='7' r='6.5' fill='%23ca8a04' fill-opacity='0.12' stroke='%23ca8a04' stroke-width='1.2'/%3E%3Cpath d='M7 4.5V7.2l1.8 1' stroke='%23ca8a04' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  }
+  .mf-badge.b-pending::before {
+    background-image: url("data:image/svg+xml,%3Csvg width='14' height='14' viewBox='0 0 14 14' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='7' cy='7' r='6.5' stroke='%237a6840' stroke-opacity='0.45' stroke-width='1.2' stroke-dasharray='2.5 2'/%3E%3Cpath d='M5 7h4M7.5 5l2 2-2 2' stroke='%237a6840' stroke-opacity='0.7' stroke-width='1.3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  }
+
+  /* ── Bottom navigation (mobile only) ── */
+  .bottom-nav { display: none; }
+  @media (max-width: 768px) {
+    body { padding-bottom: calc(62px + env(safe-area-inset-bottom, 0px)); }
+    .bottom-nav {
+      display: flex; position: fixed; bottom: 0; left: 0; right: 0; z-index: 80;
+      background: rgba(7,23,12,0.97);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border-top: 1px solid rgba(200,146,42,0.28);
+      padding-bottom: env(safe-area-inset-bottom, 0px);
+      box-shadow: 0 -4px 28px rgba(0,0,0,0.42);
+    }
+    .bn-item {
+      flex: 1; display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 10px 4px 8px; text-decoration: none;
+      color: rgba(255,255,255,0.38);
+      transition: color .18s, background .18s;
+      gap: 3px; position: relative; min-width: 0;
+    }
+    .bn-item.bn-active { color: var(--gold-light); }
+    .bn-item.bn-active::before {
+      content: ''; position: absolute; top: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 28px; height: 2px;
+      background: var(--gold); border-radius: 0 0 3px 3px;
+    }
+    .bn-item:active { background: rgba(200,146,42,0.07); }
+    .bn-icon { width: 22px; height: 22px; flex-shrink: 0; }
+    .bn-item.bn-active .bn-icon { filter: drop-shadow(0 0 5px rgba(200,146,42,0.48)); }
+    .bn-label {
+      font-size: 9px; font-weight: 500; letter-spacing: 0.2px;
+      text-align: center; line-height: 1.2;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%;
+    }
+    .back-to-top { bottom: calc(76px + env(safe-area-inset-bottom, 0px)); right: 14px; }
+  }
+  @media (max-width: 380px) { .bn-label { display: none; } }
+
+  /* ── Mobile tap feedback (touch devices) ── */
+  @media (max-width: 768px) and (hover: none) {
+    .ach-card:active, .mf-card:active, .infra-card:active,
+    .ms-chip:active, .member-card:active, .office-card:active,
+    .kc-tool:active { transform: scale(0.97) !important; transition: transform .1s; }
+    .hero-cta:active, .mf-download-btn:active, .kc-cta:active,
+    .nav-kc:active { transform: scale(0.95) !important; transition: transform .1s; }
+  }
+
+  /* ── Print styles ── */
+  @media print {
+    nav, .nav-drawer, .nav-overlay, .back-to-top, .bottom-nav,
+    .hero-cta, .kc-promo { display: none !important; }
+    body { background: white !important; color: black !important; font-size: 11pt; }
+    section, .victory, .scheme, .infra, .about, .contact { padding: 18pt 5vw !important; }
+    .hero { padding: 18pt 5vw 14pt !important; min-height: auto !important; }
+    .hero::before, .hero::after { display: none !important; }
+    .hero-stats { display: none !important; }
+    .section-title { color: black !important; -webkit-text-fill-color: black !important; }
+    .section-lead { color: #444 !important; }
+    .ach-title, .infra-title { color: black !important; }
+    .ach-card { background: white !important; box-shadow: none !important; break-inside: avoid; }
+    .ach-card:hover { background: white !important; }
+    .infra-card { box-shadow: none !important; break-inside: avoid; }
+    .victory { background: white !important; border: 1pt solid #ccc !important; }
+    .lead-head .section-title { color: black !important; }
+    .lead-head .section-lead { color: #444 !important; }
+    .ms-chip { background: #f5f5f5 !important; border: 1pt solid #ccc !important; break-inside: avoid; }
+    .ms-num { -webkit-text-fill-color: black !important; color: black !important; }
+    .mf-card { break-inside: avoid; }
+    .mf-badge { border: 1pt solid #ccc !important; background: #f5f5f5 !important; color: black !important; }
+    .mf-badge::before { display: none; }
+    .scheme { background: white !important; }
+    .scheme-card { background: white !important; border: 1pt solid #ccc !important; }
+    .scheme-amount { -webkit-text-fill-color: black !important; color: black !important; }
+    .scheme-card * { color: black !important; }
+    .reveal, .reveal.reveal-in { opacity: 1 !important; transform: none !important; transition: none !important; }
+    .hstat { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; background: white !important; box-shadow: none !important; }
+    footer { background: white !important; border-top: 2pt solid #c8922a; }
+    .footer-col ul li a, .footer-col ul li a::before { color: #333 !important; }
+  }
+
 </style>
 </head>
 <body>
+<a href="#home" class="skip-link" data-key="skip_link">ప్రధాన విషయానికి వెళ్ళండి</a>
 <!-- NAV -->
 <nav>
   <a href="#" class="nav-brand">
@@ -504,7 +933,9 @@
       <li><a href="#contact"      data-key="nav_contact">సంప్రదించండి</a></li>
     </ul>
     <a href="islamic-knowledge.html" class="nav-kc" data-key="nav_knowledge">నాలెడ్జ్ సెంటర్</a>
-    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">English</button>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()"
+            title="ప్రస్తుతం: తెలుగు — ఆంగ్లంలోకి మారడానికి నొక్కండి"
+            aria-label="Switch to English (currently viewing in Telugu)">English</button>
     <button class="nav-burger" id="nav-burger" aria-label="Menu" aria-expanded="false">
       <span class="nav-burger-bar"></span>
       <span class="nav-burger-bar"></span>
@@ -567,6 +998,15 @@
         </div>
       </div>
       <a href="#achievements" class="hero-cta" data-key="hero_cta">మా సాధనలు →</a>
+      <!-- Mobile-only founder strip (desktop shows the full leader-card at right) -->
+      <div class="hero-founder-mobile">
+        <img src="assets/founder/shaik-akram-2.jpg" class="hfm-photo" alt=""
+             onerror="this.style.display='none'">
+        <div class="hfm-info">
+          <div class="hfm-name" data-key="leader_name">జనాబ్ షేక్ అక్రమ్</div>
+          <div class="hfm-role" data-key="leader_title_short">సంస్థాపకుడు, ఇస్లామిక్ ఫ్రంట్</div>
+        </div>
+      </div>
     </div>
     <div class="leader-card">
       <div class="leader-photo-frame">
@@ -603,7 +1043,7 @@
         <div class="ms-num" data-count="5" data-suffix="">5</div>
         <div class="ms-lab" data-key="ms_schemes">సంక్షేమ పథకాలు</div>
       </div>
-      <div class="ms-chip ms-hl reveal">
+      <div class="ms-chip reveal">
         <div class="ms-num" data-count="7" data-suffix="">7</div>
         <div class="ms-lab" data-key="ms_seats">2023 గెలిచిన సీట్లు</div>
       </div>
@@ -631,43 +1071,43 @@
       <div class="lead-subhead reveal" data-key="victory_seats_label">7 మంది విజేత సభ్యులు</div>
       <div class="members-grid">
         <div class="member-card reveal">
-          <img src="assets/candidates/2.candidate.jpg" alt="Abdul Aleem" class="member-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <img src="assets/candidates/2.candidate.jpg" alt="Abdul Aleem" class="member-photo" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
           <div class="member-fallback" style="display:none">2</div>
           <div class="member-name" data-key="cand2_name">అబ్దుల్ అలీమ్</div>
           <div class="member-role" data-key="member_role">ఎన్నికైన సభ్యుడు</div>
         </div>
         <div class="member-card reveal">
-          <img src="assets/candidates/5.candidate.jpg" alt="Abdul Saleem" class="member-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <img src="assets/candidates/5.candidate.jpg" alt="Abdul Saleem" class="member-photo" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
           <div class="member-fallback" style="display:none">5</div>
           <div class="member-name" data-key="cand5_name">అబ్దుల్ సలీమ్</div>
           <div class="member-role" data-key="member_role">ఎన్నికైన సభ్యుడు</div>
         </div>
         <div class="member-card reveal">
-          <img src="assets/candidates/3.candidate.jpg" alt="Akbar Basha Shaik" class="member-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <img src="assets/candidates/3.candidate.jpg" alt="Akbar Basha Shaik" class="member-photo" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
           <div class="member-fallback" style="display:none">3</div>
           <div class="member-name" data-key="cand3_name">అక్బర్ బాషా షేక్</div>
           <div class="member-role" data-key="member_role">ఎన్నికైన సభ్యుడు</div>
         </div>
         <div class="member-card reveal">
-          <img src="assets/candidates/7.candidate.jpg" alt="Hafeez Shaik" class="member-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <img src="assets/candidates/7.candidate.jpg" alt="Hafeez Shaik" class="member-photo" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
           <div class="member-fallback" style="display:none">7</div>
           <div class="member-name" data-key="cand7_name">హఫీజ్ షేక్</div>
           <div class="member-role" data-key="member_role">ఎన్నికైన సభ్యుడు</div>
         </div>
         <div class="member-card reveal">
-          <img src="assets/candidates/6.candidate.jpg" alt="Hanifsha Shaik" class="member-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <img src="assets/candidates/6.candidate.jpg" alt="Hanifsha Shaik" class="member-photo" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
           <div class="member-fallback" style="display:none">6</div>
           <div class="member-name" data-key="cand6_name">హనీఫ్షా షేక్</div>
           <div class="member-role" data-key="member_role">ఎన్నికైన సభ్యుడు</div>
         </div>
         <div class="member-card reveal">
-          <img src="assets/candidates/4.candidate.jpg" alt="Hazrat Ali Shaik" class="member-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <img src="assets/candidates/4.candidate.jpg" alt="Hazrat Ali Shaik" class="member-photo" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
           <div class="member-fallback" style="display:none">4</div>
           <div class="member-name" data-key="cand4_name">హజ్రత్ అలీ షేక్</div>
           <div class="member-role" data-key="member_role">ఎన్నికైన సభ్యుడు</div>
         </div>
         <div class="member-card reveal">
-          <img src="assets/candidates/1.candidate.jpg" alt="Yaseen Shaik" class="member-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <img src="assets/candidates/1.candidate.jpg" alt="Yaseen Shaik" class="member-photo" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
           <div class="member-fallback" style="display:none">1</div>
           <div class="member-name" data-key="cand1_name">యాసీన్ షేక్</div>
           <div class="member-role" data-key="member_role">ఎన్నికైన సభ్యుడు</div>
@@ -948,7 +1388,7 @@
     <div class="founder-frame">
       <div class="founder-photo-box">
         <!-- FOUNDER PHOTO: place image at founder/shaik-akram.jpg -->
-        <img src="assets/founder/shaik-akram.jpg" alt="జనాబ్ షేక్ అక్రమ్"
+        <img src="assets/founder/shaik-akram.jpg" alt="జనాబ్ షేక్ అక్రమ్" loading="lazy"
              onerror="this.style.display='none';document.getElementById('about-ph').style.display='flex'">
         <div id="about-ph" class="big-avatar" style="display:none">SA</div>
         <div class="founder-ribbon">
@@ -1060,8 +1500,11 @@
       <a href="islamic-knowledge.html#hadith" class="kc-tool">
         <span class="kc-tool-ic">📜</span><span class="kc-tool-tx" data-key="kc_t5">హదీస్ వనరులు</span>
       </a>
-      <a href="islamic-knowledge.html#learn" class="kc-tool">
-        <span class="kc-tool-ic">🎓</span><span class="kc-tool-tx" data-key="kc_t6">ఇస్లామిక్ అభ్యాసం</span>
+      <a href="knowledge-center/learn-arabic/index.html" class="kc-tool">
+        <span class="kc-tool-ic" style="font-family:'serif';font-size:22px;line-height:1">ع</span><span class="kc-tool-tx" data-key="kc_t6">అరబిక్ నేర్చుకోండి</span>
+      </a>
+      <a href="knowledge-center/learn-urdu/index.html" class="kc-tool">
+        <span class="kc-tool-ic" style="font-family:'Noto Nastaliq Urdu','serif';font-size:20px;line-height:1.6">و</span><span class="kc-tool-tx" data-key="kc_t7">ఉర్దూ నేర్చుకోండి</span>
       </a>
     </div>
   </div>
@@ -1077,11 +1520,13 @@
     <div class="footer-col">
       <h4 data-key="footer_links_h">త్వరిత లింకులు</h4>
       <ul>
-        <li data-key="footer_l1">మా విజయం 2023</li>
-        <li data-key="footer_l2">సాధనలు</li>
-        <li data-key="footer_l3">మేనిఫెస్టో</li>
-        <li data-key="footer_l4">అంత్యక్రియల సహాయ పథకం</li>
-        <li data-key="footer_l5">స్థాపకుని గురించి</li>
+        <li><a href="#victory"      data-key="footer_l1">మా విజయం 2023</a></li>
+        <li><a href="#achievements" data-key="footer_l2">సాధనలు</a></li>
+        <li><a href="#manifesto"    data-key="footer_l3">మేనిఫెస్టో</a></li>
+        <li><a href="#scheme"       data-key="footer_l4">అంత్యక్రియల సహాయ పథకం</a></li>
+        <li><a href="#about"        data-key="footer_l5">స్థాపకుని గురించి</a></li>
+        <li><a href="knowledge-center/learn-arabic/index.html" data-key="footer_l6">అరబిక్ నేర్చుకోండి</a></li>
+        <li><a href="knowledge-center/learn-urdu/index.html" data-key="footer_l7">ఉర్దూ నేర్చుకోండి</a></li>
       </ul>
     </div>
     <div class="footer-col">
@@ -1099,9 +1544,13 @@
     <p style="color:rgba(200,146,42,0.4);" data-key="footer_founded">జనాబ్ షేక్ అక్రమ్ స్థాపించారు · స్థా. 2011</p>
   </div>
 </footer>
+<!-- BACK TO TOP -->
+<button class="back-to-top" id="back-to-top" aria-label="Back to top" title="Back to top">↑</button>
 <script>
 const T = {
   te: {
+    skip_link: "ప్రధాన విషయానికి వెళ్ళండి",
+    leader_title_short: "సంస్థాపకుడు, ఇస్లామిక్ ఫ్రంట్",
     nav_home: "హోమ్",
     nav_title: "ఇస్లామిక్ ఫ్రంట్",
     nav_sub: "మంగళగిరి · స్థా. 2011",
@@ -1200,9 +1649,9 @@ const T = {
     mf_ring1_title: "పూర్తయింది", mf_ring1_sub: "4 వాగ్దానాలు",
     mf_ring2_title: "పురోగతిలో", mf_ring2_sub: "4 వాగ్దానాలు",
     mf_ring3_title: "రాబోతున్నది", mf_ring3_sub: "2 వాగ్దానాలు",
-    mf_badge_done: "✓ పూర్తయింది",
-    mf_badge_progress: "⏳ పురోగతిలో ఉంది",
-    mf_badge_pending: "○ రాబోతున్నది",
+    mf_badge_done: "పూర్తయింది",
+    mf_badge_progress: "పురోగతిలో ఉంది",
+    mf_badge_pending: "రాబోతున్నది",
     mf_p1: "వాగ్దానం 1", mf_p2: "వాగ్దానం 2", mf_p3: "వాగ్దానం 3",
     mf_p4: "వాగ్దానం 4", mf_p5: "వాగ్దానం 5", mf_p6: "వాగ్దానం 6",
     mf_p7: "వాగ్దానం 7", mf_p8: "వాగ్దానం 8", mf_p9: "వాగ్దానం 9",
@@ -1243,11 +1692,12 @@ const T = {
     kc_t3: "తదుపరి నమాజ్ కౌంట్‌డౌన్",
     kc_t4: "ఖురాన్ వనరులు",
     kc_t5: "హదీస్ వనరులు",
-    kc_t6: "ఇస్లామిక్ అభ్యాస సామగ్రి",
+    kc_t6: "అరబిక్ నేర్చుకోండి",
+    kc_t7: "ఉర్దూ నేర్చుకోండి",
     footer_desc: "2011 నుండి మంగళగిరి, ఆంధ్రప్రదేశ్ ముస్లిం సమాజానికి సేవ చేస్తున్నాము.<br>జనాబ్ షేక్ అక్రమ్ నాయకత్వంలో, అంజుమన్‌- యి- హిమాయతుల్‌ ఇస్లాం ద్వారా<br>పారదర్శక, అభివృద్ధి-కేంద్రిత పాలనకు కట్టుబడి ఉన్నాము.",
     footer_links_h: "త్వరిత లింకులు",
     footer_l1: "మా విజయం 2023", footer_l2: "సాధనలు", footer_l3: "మేనిఫెస్టో",
-    footer_l4: "అంత్యక్రియల సహాయ పథకం", footer_l5: "స్థాపకుని గురించి",
+    footer_l4: "అంత్యక్రియల సహాయ పథకం", footer_l5: "స్థాపకుని గురించి", footer_l6: "అరబిక్ నేర్చుకోండి", footer_l7: "ఉర్దూ నేర్చుకోండి",
     footer_contact_h: "సంప్రదించండి",
     footer_addr1: "మంగళగిరి, గుంటూరు జిల్లా",
     footer_addr2: "ఆంధ్రప్రదేశ్ – 522503",
@@ -1257,6 +1707,8 @@ const T = {
     footer_founded: "జనాబ్ షేక్ అక్రమ్ స్థాపించారు · స్థా. 2011"
   },
   en: {
+    skip_link: "Skip to main content",
+    leader_title_short: "Founder, Islamic Front",
     nav_home: "Home",
     nav_title: "Islamic Front",
     nav_sub: "Mangalagiri · Est. 2011",
@@ -1355,9 +1807,9 @@ const T = {
     mf_ring1_title: "Completed", mf_ring1_sub: "4 Promises",
     mf_ring2_title: "In Progress", mf_ring2_sub: "4 Promises",
     mf_ring3_title: "Upcoming", mf_ring3_sub: "2 Promises",
-    mf_badge_done: "✓ Completed",
-    mf_badge_progress: "⏳ In Progress",
-    mf_badge_pending: "○ Upcoming",
+    mf_badge_done: "Completed",
+    mf_badge_progress: "In Progress",
+    mf_badge_pending: "Upcoming",
     mf_p1: "Promise 1", mf_p2: "Promise 2", mf_p3: "Promise 3",
     mf_p4: "Promise 4", mf_p5: "Promise 5", mf_p6: "Promise 6",
     mf_p7: "Promise 7", mf_p8: "Promise 8", mf_p9: "Promise 9",
@@ -1398,11 +1850,12 @@ const T = {
     kc_t3: "Next Salah Countdown",
     kc_t4: "Quran Resources",
     kc_t5: "Hadith Resources",
-    kc_t6: "Islamic Learning Content",
+    kc_t6: "Learn Arabic",
+    kc_t7: "Learn Urdu",
     footer_desc: "Serving the Muslim community of Mangalagiri, Andhra Pradesh since 2011.<br>Under the leadership of Janab Shaik Akram, committed to transparent,<br>development-focused governance through Anjuman-e-Himayatul Islam.",
     footer_links_h: "Quick Links",
     footer_l1: "Our Victory 2023", footer_l2: "Achievements", footer_l3: "Manifesto",
-    footer_l4: "Funeral Aid Scheme", footer_l5: "About the Founder",
+    footer_l4: "Funeral Aid Scheme", footer_l5: "About the Founder", footer_l6: "Learn Arabic", footer_l7: "Learn Urdu",
     footer_contact_h: "Contact",
     footer_addr1: "Mangalagiri, Guntur District",
     footer_addr2: "Andhra Pradesh – 522503",
@@ -1426,8 +1879,11 @@ function applyLang(l) {
   });
   document.getElementById('html-root').lang = l;
   document.title = l === 'te' ? 'ఇస్లామిక్ ఫ్రంట్ – మంగళగిరి' : 'Islamic Front – Mangalagiri';
-  document.getElementById('lang-btn').textContent = l === 'te' ? 'English' : 'తెలుగు';
-  document.getElementById('lang-btn').style.fontFamily = l === 'te' ? "'DM Sans', sans-serif" : "'Noto Sans Telugu', sans-serif";
+  var langBtn = document.getElementById('lang-btn');
+  langBtn.textContent = l === 'te' ? 'English' : 'తెలుగు';
+  langBtn.style.fontFamily = l === 'te' ? "'DM Sans', sans-serif" : "'Noto Sans Telugu', sans-serif";
+  langBtn.title = l === 'te' ? 'Currently: Telugu — Click for English' : 'Currently: English — Click for Telugu';
+  langBtn.setAttribute('aria-label', l === 'te' ? 'Switch to English (currently Telugu)' : 'Switch to Telugu (currently English)');
 }
 
 function toggleLang() {
@@ -1505,6 +1961,14 @@ document.addEventListener('DOMContentLoaded', function () {
       var id=(href==='#home'||href==='#')?'home':href.replace('#','');
       a.classList.toggle('nav-active',id===activeId);
     });
+    /* Sync bottom nav tabs */
+    document.querySelectorAll('.bn-item').forEach(function(item){
+      item.classList.toggle('bn-active', item.dataset.section === activeId);
+    });
+    /* Update the URL hash so users can share direct section links */
+    if(activeId && window.history && window.history.replaceState){
+      window.history.replaceState(null,'','#'+activeId);
+    }
   }
   var sectionIO=new IntersectionObserver(function(entries){
     entries.forEach(function(e){secVis[e.target.id]=e.isIntersecting;});
@@ -1528,12 +1992,47 @@ document.addEventListener('DOMContentLoaded', function () {
   var navDrawer=document.getElementById('nav-drawer');
   var navOverlay=document.getElementById('nav-overlay');
   var navDrClose=document.getElementById('nav-drawer-close');
-  function openDrawer(){navDrawer.classList.add('open');navDrawer.setAttribute('aria-hidden','false');navOverlay.classList.add('open');navBurger.classList.add('open');navBurger.setAttribute('aria-expanded','true');document.body.style.overflow='hidden';}
-  function closeDrawer(){navDrawer.classList.remove('open');navDrawer.setAttribute('aria-hidden','true');navOverlay.classList.remove('open');navBurger.classList.remove('open');navBurger.setAttribute('aria-expanded','false');document.body.style.overflow='';}
+  function openDrawer(){
+    navDrawer.classList.add('open');
+    navDrawer.setAttribute('aria-hidden','false');
+    navOverlay.classList.add('open');
+    navBurger.classList.add('open');
+    navBurger.setAttribute('aria-expanded','true');
+    document.body.style.overflow='hidden';
+    /* Move focus into the first drawer link after the slide-in animation completes */
+    var firstLink = navDrawer.querySelector('a');
+    if(firstLink) setTimeout(function(){ firstLink.focus(); }, 360);
+  }
+  function closeDrawer(){
+    navDrawer.classList.remove('open');
+    navDrawer.setAttribute('aria-hidden','true');
+    navOverlay.classList.remove('open');
+    navBurger.classList.remove('open');
+    navBurger.setAttribute('aria-expanded','false');
+    document.body.style.overflow='';
+  }
   if(navBurger)navBurger.addEventListener('click',function(){navDrawer.classList.contains('open')?closeDrawer():openDrawer();});
   if(navOverlay)navOverlay.addEventListener('click',closeDrawer);
   if(navDrClose)navDrClose.addEventListener('click',closeDrawer);
   if(navDrawer)navDrawer.querySelectorAll('a').forEach(function(a){a.addEventListener('click',closeDrawer);});
+  /* Bottom nav — close drawer on tap and sync active state on click */
+  document.querySelectorAll('.bn-item').forEach(function(a){
+    a.addEventListener('click', function(){ closeDrawer(); });
+  });
+  /* Back to top */
+  var bttBtn = document.getElementById('back-to-top');
+  if(bttBtn){
+    window.addEventListener('scroll', function(){ bttBtn.classList.toggle('is-visible', window.scrollY > 480); }, { passive: true });
+    bttBtn.addEventListener('click', function(){ window.scrollTo({ top: 0, behavior: 'smooth' }); });
+  }
+
+  /* Escape key closes the drawer and returns focus to the hamburger button */
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape' && navDrawer && navDrawer.classList.contains('open')){
+      closeDrawer();
+      if(navBurger) navBurger.focus();
+    }
+  });
 
     /* Animated counters — count up .ms-num[data-count] on scroll into view */
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -1566,5 +2065,29 @@ document.addEventListener('DOMContentLoaded', function () {
 
 document.addEventListener('DOMContentLoaded', () => applyLang(lang));
 </script>
+
+<!-- BOTTOM NAVIGATION (mobile only) -->
+<nav class="bottom-nav" id="bottom-nav" aria-label="Page navigation">
+  <a href="#home" class="bn-item bn-active" data-section="home">
+    <svg class="bn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span class="bn-label" data-key="nav_home">హోమ్</span>
+  </a>
+  <a href="#achievements" class="bn-item" data-section="achievements">
+    <svg class="bn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+    <span class="bn-label" data-key="nav_achievements">సాధనలు</span>
+  </a>
+  <a href="#manifesto" class="bn-item" data-section="manifesto">
+    <svg class="bn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+    <span class="bn-label" data-key="nav_manifesto">మేనిఫెస్టో</span>
+  </a>
+  <a href="#scheme" class="bn-item" data-section="scheme">
+    <svg class="bn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+    <span class="bn-label" data-key="nav_scheme">సహాయ పథకం</span>
+  </a>
+  <a href="#contact" class="bn-item" data-section="contact">
+    <svg class="bn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+    <span class="bn-label" data-key="nav_contact">సంప్రదించండి</span>
+  </a>
+</nav>
 </body>
 </html>

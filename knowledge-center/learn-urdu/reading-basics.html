@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="te" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ఉర్దూ చదవడం బేసిక్స్ — Reading Basics | Islamic Front</title>
+<meta name="description" content="Learn how Urdu letters join, form words, and build simple sentences. Level 2 of the Islamic Front Urdu Learning Portal.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Sans:wght@300;400;500&family=Noto+Sans+Telugu:wght@300;400;500;700&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --green-deep:#0d3b1e;--green-mid:#1a5c30;--green-light:#2e8b57;
+  --gold:#c8922a;--gold-light:#e8b84b;--gold-pale:#f5e6c0;
+  --cream:#faf6ee;--white:#ffffff;
+  --text-dark:#1a1208;--text-mid:#3d3018;--text-muted:#7a6840;
+  --border:rgba(200,146,42,0.25);--radius:14px;--shadow:0 4px 24px rgba(0,0,0,0.10);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;color:var(--text-dark);background:var(--cream);overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+.al-nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(13,59,30,0.92);backdrop-filter:blur(12px);padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:56px;border-bottom:1px solid rgba(200,146,42,0.18)}
+.al-nav-brand{display:flex;align-items:center;gap:10px;color:var(--gold-light);font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700}
+.al-nav-brand span{font-size:1.4rem}
+.al-nav-links{display:flex;align-items:center;gap:16px}
+.al-nav-links a{color:rgba(245,230,192,0.75);font-size:.82rem;font-weight:500;transition:color .2s}
+.al-nav-links a:hover{color:var(--gold-light)}
+.al-lang-btn{background:rgba(200,146,42,0.20);border:1px solid var(--gold);color:var(--gold-light);font-size:.78rem;font-weight:600;padding:5px 13px;border-radius:20px;cursor:pointer;transition:all .2s;font-family:'DM Sans',sans-serif}
+.al-lang-btn:hover{background:var(--gold);color:var(--green-deep)}
+
+/* LESSON NAV */
+.lesson-nav{position:fixed;top:56px;left:0;right:0;z-index:850;height:46px;background:rgba(13,59,30,0.95);backdrop-filter:blur(8px);border-bottom:1px solid rgba(200,146,42,0.18);display:flex;align-items:center;justify-content:space-between;padding:0 16px;gap:8px}
+.lnb-btn{font-size:.74rem;font-weight:600;color:rgba(245,230,192,.70);padding:4px 12px;border-radius:20px;border:1px solid rgba(200,146,42,0.22);transition:all .2s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:42%}
+.lnb-btn:hover{color:var(--gold-light);border-color:rgba(200,146,42,0.50);background:rgba(200,146,42,0.10)}
+.lnb-spacer{min-width:70px}
+.lnb-mid{font-size:.68rem;font-weight:700;color:var(--gold);letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;text-align:center;flex:1}
+
+.l-hero{background:linear-gradient(145deg,#071e0e,var(--green-deep));padding:142px 20px 56px;text-align:center}
+.l-breadcrumb{display:flex;align-items:center;justify-content:center;gap:8px;font-size:.76rem;color:rgba(245,230,192,.50);margin-bottom:20px;flex-wrap:wrap}
+.l-breadcrumb a,.l-breadcrumb a:visited{color:rgba(245,230,192,.50);transition:color .2s}
+.l-breadcrumb a:hover{color:var(--gold-light)}
+.l-breadcrumb span{color:rgba(245,230,192,.30)}
+.l-hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(200,146,42,0.15);border:1px solid rgba(200,146,42,0.35);color:var(--gold-light);font-size:.75rem;font-weight:600;padding:5px 14px;border-radius:20px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:18px}
+.l-hero h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,6vw,3.2rem);color:var(--white);font-weight:700;margin-bottom:6px}
+.l-hero-ur{font-family:'Noto Nastaliq Urdu',serif;font-size:clamp(1.6rem,4.5vw,2.6rem);color:var(--gold-light);direction:rtl;line-height:2.2;display:block;margin-bottom:12px}
+.l-hero-sub{font-size:.95rem;color:rgba(245,230,192,.65);max-width:500px;margin:0 auto;line-height:1.75}
+
+.tab-nav{background:var(--green-mid);padding:0 20px;display:flex;align-items:center;gap:0;overflow-x:auto;scrollbar-width:none;border-bottom:1px solid rgba(200,146,42,0.20);position:sticky;top:102px;z-index:800}
+.tab-nav::-webkit-scrollbar{display:none}
+.tab-nav a{white-space:nowrap;font-size:.80rem;font-weight:500;color:rgba(245,230,192,.60);padding:0 18px;height:46px;display:inline-flex;align-items:center;border-bottom:2px solid transparent;transition:all .2s;flex-shrink:0}
+.tab-nav a:hover,.tab-nav a.active{color:var(--gold-light);border-bottom-color:var(--gold)}
+
+.al-sec{padding:70px 20px}
+.al-inner{max-width:1000px;margin:0 auto}
+.sec-label{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.sec-title{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3.5vw,2.2rem);font-weight:700;color:var(--text-dark);margin-bottom:8px}
+.sec-sub{font-size:.92rem;color:var(--text-muted);line-height:1.75;max-width:580px;margin-bottom:36px}
+
+/* JOINING TABLE */
+.join-table{width:100%;border-collapse:collapse;font-size:.88rem;margin-bottom:28px}
+.join-table th{background:var(--green-mid);color:rgba(245,230,192,.85);font-weight:600;font-size:.73rem;text-transform:uppercase;letter-spacing:.06em;padding:10px 14px;text-align:left}
+.join-table td{padding:12px 14px;border-bottom:1px solid var(--border);vertical-align:middle}
+.join-table tr:hover td{background:rgba(200,146,42,0.03)}
+.join-table .ur{font-family:'Noto Nastaliq Urdu',serif;font-size:1.8rem;color:var(--green-mid);direction:rtl;line-height:1.8}
+.join-table .ex-word{font-family:'Noto Nastaliq Urdu',serif;font-size:1.5rem;color:var(--green-deep);direction:rtl;line-height:1.8}
+
+/* WORD CARDS */
+.word-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;margin-top:8px;direction:rtl}
+.wc{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:20px 18px;text-align:center;transition:all .28s;direction:ltr}
+.wc:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.wc-ur{font-family:'Noto Nastaliq Urdu',serif;font-size:2.2rem;color:var(--green-mid);direction:rtl;line-height:2;display:block;margin-bottom:4px}
+.wc-tr{font-size:.85rem;color:var(--text-mid);font-weight:600;margin-bottom:3px}
+.wc-en{font-size:.78rem;color:var(--text-muted)}
+
+/* READING EXERCISE */
+.read-sec{background:var(--green-deep);padding:70px 20px}
+.read-inner{max-width:900px;margin:0 auto}
+.read-card{background:rgba(255,255,255,0.06);border:1px solid rgba(200,146,42,0.25);border-radius:16px;padding:32px 28px;margin-bottom:20px}
+.read-ur{font-family:'Noto Nastaliq Urdu',serif;font-size:clamp(1.4rem,4vw,2.2rem);color:var(--gold-light);direction:rtl;line-height:2.5;text-align:right;margin-bottom:12px}
+.read-tr{font-size:.92rem;color:rgba(245,230,192,.65);margin-bottom:6px;font-style:italic}
+.read-en{font-size:.88rem;color:rgba(245,230,192,.50)}
+.read-context{font-size:.78rem;background:rgba(200,146,42,0.10);border:1px solid rgba(200,146,42,0.20);color:var(--gold);padding:6px 12px;border-radius:8px;display:inline-block;margin-top:10px}
+
+/* CALLOUT */
+.callout{background:linear-gradient(135deg,rgba(200,146,42,0.10),rgba(200,146,42,0.05));border:1px solid rgba(200,146,42,0.25);border-radius:12px;padding:20px 22px;margin-top:28px;display:flex;gap:14px;align-items:flex-start}
+.callout-icon{font-size:1.6rem;flex-shrink:0;line-height:1}
+.callout p{font-size:.88rem;color:var(--text-mid);line-height:1.75}
+.callout p strong{color:var(--gold)}
+
+/* NON-CONNECTING LETTERS */
+.nc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(80px,1fr));gap:12px;margin-top:8px;direction:rtl}
+.nc-card{background:rgba(255,255,255,0.07);border:1px solid rgba(200,146,42,0.20);border-radius:10px;padding:14px 10px;text-align:center;direction:ltr}
+.nc-letter{font-family:'Noto Nastaliq Urdu',serif;font-size:2.2rem;color:var(--gold-light);direction:rtl;line-height:1.8;display:block}
+.nc-name{font-size:.70rem;color:rgba(245,230,192,.60)}
+
+.al-footer{background:var(--green-deep);border-top:1px solid rgba(200,146,42,0.15);padding:36px 20px;text-align:center}
+.al-footer-links{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:18px}
+.al-footer-links a{color:rgba(245,230,192,.60);font-size:.80rem;padding:6px 14px;border:1px solid rgba(200,146,42,0.20);border-radius:20px;transition:all .2s}
+.al-footer-links a:hover{color:var(--gold-light);border-color:rgba(200,146,42,0.50)}
+.al-footer p{font-size:.72rem;color:rgba(245,230,192,.25)}
+
+#btt{position:fixed;bottom:28px;right:22px;width:46px;height:46px;border-radius:50%;background:var(--gold);color:var(--green-deep);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(200,146,42,0.45);cursor:pointer;border:none;opacity:0;transform:translateY(16px);transition:all .3s;z-index:700}
+#btt.show{opacity:1;transform:translateY(0)}
+#btt:hover{transform:translateY(-3px)}
+
+@media print{.al-nav,.tab-nav,#btt,.al-lang-btn{display:none!important}}
+@media(max-width:600px){
+  .al-nav{height:auto;min-height:56px;padding:8px 16px;flex-wrap:wrap}
+  .al-nav-links a{display:none}
+  .al-nav-links{gap:8px}
+  .l-hero{padding:80px 16px 44px}
+  .al-sec,.read-sec{padding:52px 16px}
+  .word-grid{grid-template-columns:repeat(auto-fill,minmax(140px,1fr))}
+  .nc-grid{grid-template-columns:repeat(auto-fill,minmax(64px,1fr))}
+}
+</style>
+</head>
+<body>
+
+<nav class="al-nav">
+  <a class="al-nav-brand" href="../../index.html"><span>☪</span><span data-te="ఇస్లామిక్ ఫ్రంట్" data-en="Islamic Front">ఇస్లామిక్ ఫ్రంట్</span></a>
+  <div class="al-nav-links">
+    <a href="./index.html" data-te="ఉర్దూ పోర్టల్" data-en="Urdu Portal">Urdu Portal</a>
+    <a href="../../islamic-knowledge.html" data-te="జ్ఞాన కేంద్రం" data-en="KC">KC</a>
+    <button class="al-lang-btn" id="lang-btn" onclick="toggleLang()">English</button>
+  </div>
+</nav>
+
+<div class="lesson-nav">
+  <a href="./alphabet.html" class="lnb-btn" data-te="← స్థాయి 1 · అక్షరమాల" data-en="← Level 1 · Alphabet">← Level 1 · Alphabet</a>
+  <span class="lnb-mid" data-te="స్థాయి 2 · చదవడం బేసిక్స్" data-en="Level 2 · Reading Basics">Level 2 · Reading Basics</span>
+  <a href="./writing-skills.html" class="lnb-btn" data-te="స్థాయి 3 · రాయడం →" data-en="Level 3 · Writing →">Level 3 · Writing →</a>
+</div>
+
+<div class="l-hero">
+  <nav class="l-breadcrumb">
+    <a href="../../index.html" data-te="హోమ్" data-en="Home">Home</a><span>›</span>
+    <a href="./index.html" data-te="ఉర్దూ నేర్చుకోండి" data-en="Learn Urdu">Learn Urdu</a><span>›</span>
+    <span data-te="చదవడం బేసిక్స్" data-en="Reading Basics">Reading Basics</span>
+  </nav>
+  <div class="l-hero-badge"><span>۲</span><span data-te="స్థాయి 2" data-en="Level 2">Level 2</span></div>
+  <h1 data-te="ఉర్దూ చదవడం బేసిక్స్" data-en="Reading Basics">Reading Basics</h1>
+  <span class="l-hero-ur" lang="ur" dir="rtl">پڑھنے کی بنیادیں</span>
+  <p class="l-hero-sub" data-te="అక్షరాలు ఎలా కలుస్తాయో, పదాలు ఎలా ఏర్పడతాయో నేర్చుకోండి — మరియు మీ మొదటి ఉర్దూ వాక్యాలు చదవండి." data-en="Learn how letters join and form words — then read your first Urdu sentences.">Learn how letters join and form words — then read your first Urdu sentences.</p>
+</div>
+
+<nav class="tab-nav">
+  <a href="#joining" class="active" data-te="అక్షరాల కలయిక" data-en="Joining Letters">Joining Letters</a>
+  <a href="#words" data-te="పద నిర్మాణం" data-en="Word Formation">Word Formation</a>
+  <a href="#reading" data-te="చదవడం" data-en="Simple Reading">Simple Reading</a>
+</nav>
+
+<!-- JOINING LETTERS -->
+<section class="al-sec" id="joining">
+  <div class="al-inner">
+    <div class="sec-label" data-te="అడుగు 1" data-en="Step 1">Step 1</div>
+    <h2 class="sec-title" data-te="అక్షరాల కలయిక" data-en="How Letters Join">How Letters Join</h2>
+    <p class="sec-sub" data-te="ఉర్దూలో చాలా అక్షరాలు కలిసి రాయబడతాయి — అరబిక్ లాగే. కానీ కొన్ని అక్షరాలు ముందుకు కలువకుండా వేరే ఉంటాయి." data-en="Most Urdu letters connect to each other in a word. But some letters never connect forward — these are called 'non-connectors'.">Most Urdu letters connect to each other in a word. But some letters never connect forward — these are called 'non-connectors'.</p>
+
+    <div style="overflow-x:auto">
+    <table class="join-table">
+      <thead><tr>
+        <th data-te="అక్షరం" data-en="Letter">Letter</th>
+        <th data-te="ప్రారంభ రూపం" data-en="Initial Form">Initial</th>
+        <th data-te="మధ్య రూపం" data-en="Medial Form">Medial</th>
+        <th data-te="చివరి రూపం" data-en="Final Form">Final</th>
+        <th data-te="ఉదాహరణ పదం" data-en="Example Word">Example Word</th>
+        <th data-te="అర్థం" data-en="Meaning">Meaning</th>
+      </tr></thead>
+      <tbody>
+        <tr><td class="ur" lang="ur" dir="rtl">ب</td><td class="ur" lang="ur" dir="rtl">بـ</td><td class="ur" lang="ur" dir="rtl">ـبـ</td><td class="ur" lang="ur" dir="rtl">ـب</td><td class="ex-word" lang="ur" dir="rtl">کتاب</td><td>Kitaab — Book</td></tr>
+        <tr><td class="ur" lang="ur" dir="rtl">پ</td><td class="ur" lang="ur" dir="rtl">پـ</td><td class="ur" lang="ur" dir="rtl">ـپـ</td><td class="ur" lang="ur" dir="rtl">ـپ</td><td class="ex-word" lang="ur" dir="rtl">پانی</td><td>Paani — Water</td></tr>
+        <tr><td class="ur" lang="ur" dir="rtl">ت</td><td class="ur" lang="ur" dir="rtl">تـ</td><td class="ur" lang="ur" dir="rtl">ـتـ</td><td class="ur" lang="ur" dir="rtl">ـت</td><td class="ex-word" lang="ur" dir="rtl">بات</td><td>Baat — Talk/Matter</td></tr>
+        <tr><td class="ur" lang="ur" dir="rtl">م</td><td class="ur" lang="ur" dir="rtl">مـ</td><td class="ur" lang="ur" dir="rtl">ـمـ</td><td class="ur" lang="ur" dir="rtl">ـم</td><td class="ex-word" lang="ur" dir="rtl">محبت</td><td>Muhabbat — Love</td></tr>
+        <tr><td class="ur" lang="ur" dir="rtl">ن</td><td class="ur" lang="ur" dir="rtl">نـ</td><td class="ur" lang="ur" dir="rtl">ـنـ</td><td class="ur" lang="ur" dir="rtl">ـن</td><td class="ex-word" lang="ur" dir="rtl">انسان</td><td>Insaan — Human being</td></tr>
+        <tr><td class="ur" lang="ur" dir="rtl">ک</td><td class="ur" lang="ur" dir="rtl">کـ</td><td class="ur" lang="ur" dir="rtl">ـکـ</td><td class="ur" lang="ur" dir="rtl">ـک</td><td class="ex-word" lang="ur" dir="rtl">مکان</td><td>Makaan — House</td></tr>
+        <tr><td class="ur" lang="ur" dir="rtl">گ</td><td class="ur" lang="ur" dir="rtl">گـ</td><td class="ur" lang="ur" dir="rtl">ـگـ</td><td class="ur" lang="ur" dir="rtl">ـگ</td><td class="ex-word" lang="ur" dir="rtl">گھر</td><td>Ghar — Home</td></tr>
+        <tr><td class="ur" lang="ur" dir="rtl">ل</td><td class="ur" lang="ur" dir="rtl">لـ</td><td class="ur" lang="ur" dir="rtl">ـلـ</td><td class="ur" lang="ur" dir="rtl">ـل</td><td class="ex-word" lang="ur" dir="rtl">علم</td><td>Ilm — Knowledge</td></tr>
+        <tr><td class="ur" lang="ur" dir="rtl">ی</td><td class="ur" lang="ur" dir="rtl">یـ</td><td class="ur" lang="ur" dir="rtl">ـیـ</td><td class="ur" lang="ur" dir="rtl">ـی</td><td class="ex-word" lang="ur" dir="rtl">یاد</td><td>Yaad — Memory</td></tr>
+        <tr><td class="ur" lang="ur" dir="rtl">ہ</td><td class="ur" lang="ur" dir="rtl">ہـ</td><td class="ur" lang="ur" dir="rtl">ـہـ</td><td class="ur" lang="ur" dir="rtl">ـہ</td><td class="ex-word" lang="ur" dir="rtl">ہدایت</td><td>Hidayat — Guidance</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div style="margin-top:36px">
+      <div class="sec-label" style="margin-bottom:14px" data-te="ముందుకు కలువని అక్షరాలు" data-en="Non-Connecting Letters">Non-Connecting Letters</div>
+      <p style="font-size:.88rem;color:var(--text-muted);line-height:1.75;margin-bottom:20px" data-te="ఈ అక్షరాలు పదంలో తదుపరి అక్షరంతో కలువకుండా ఉంటాయి — అరబిక్‌లో లాగే. వీటి తర్వాత ఒక చిన్న అంతరం ఉంటుంది." data-en="These letters never connect to the following letter in a word — just like in Arabic. A small gap appears after them.">These letters never connect to the following letter — a small gap appears after them.</p>
+      <div class="nc-grid">
+        <div class="nc-card"><span class="nc-letter" lang="ur" dir="rtl">ا</span><div class="nc-name">Alif</div></div>
+        <div class="nc-card"><span class="nc-letter" lang="ur" dir="rtl">د</span><div class="nc-name">Dal</div></div>
+        <div class="nc-card"><span class="nc-letter" lang="ur" dir="rtl">ڈ</span><div class="nc-name">Ḍal</div></div>
+        <div class="nc-card"><span class="nc-letter" lang="ur" dir="rtl">ذ</span><div class="nc-name">Zal</div></div>
+        <div class="nc-card"><span class="nc-letter" lang="ur" dir="rtl">ر</span><div class="nc-name">Re</div></div>
+        <div class="nc-card"><span class="nc-letter" lang="ur" dir="rtl">ڑ</span><div class="nc-name">Ṛe</div></div>
+        <div class="nc-card"><span class="nc-letter" lang="ur" dir="rtl">ز</span><div class="nc-name">Ze</div></div>
+        <div class="nc-card"><span class="nc-letter" lang="ur" dir="rtl">ژ</span><div class="nc-name">Zhe</div></div>
+        <div class="nc-card"><span class="nc-letter" lang="ur" dir="rtl">و</span><div class="nc-name">Wao</div></div>
+        <div class="nc-card"><span class="nc-letter" lang="ur" dir="rtl">ء</span><div class="nc-name">Hamza</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORD FORMATION -->
+<section class="al-sec" id="words" style="background:var(--white)">
+  <div class="al-inner">
+    <div class="sec-label" data-te="అడుగు 2" data-en="Step 2">Step 2</div>
+    <h2 class="sec-title" data-te="ఉర్దూ పద నిర్మాణం" data-en="Urdu Word Formation">Urdu Word Formation</h2>
+    <p class="sec-sub" data-te="ఉర్దూ పదాలు ఎలా నిర్మించబడతాయో చూడండి — ఒక్కో అక్షరం కలిపి పదం అవుతుంది." data-en="See how Urdu words are built — letter by letter joining together to form meaningful words.">See how Urdu words are built — letter by letter joining together to form meaningful words.</p>
+    <div class="word-grid">
+      <div class="wc"><span class="wc-ur" lang="ur" dir="rtl">اللہ</span><div class="wc-tr">Allah</div><div class="wc-en">God (The One)</div></div>
+      <div class="wc"><span class="wc-ur" lang="ur" dir="rtl">رحمت</span><div class="wc-tr">Rahmat</div><div class="wc-en">Mercy</div></div>
+      <div class="wc"><span class="wc-ur" lang="ur" dir="rtl">محبت</span><div class="wc-tr">Muhabbat</div><div class="wc-en">Love</div></div>
+      <div class="wc"><span class="wc-ur" lang="ur" dir="rtl">علم</span><div class="wc-tr">Ilm</div><div class="wc-en">Knowledge</div></div>
+      <div class="wc"><span class="wc-ur" lang="ur" dir="rtl">صبر</span><div class="wc-tr">Sabr</div><div class="wc-en">Patience</div></div>
+      <div class="wc"><span class="wc-ur" lang="ur" dir="rtl">دل</span><div class="wc-tr">Dil</div><div class="wc-en">Heart</div></div>
+      <div class="wc"><span class="wc-ur" lang="ur" dir="rtl">زندگی</span><div class="wc-tr">Zindagi</div><div class="wc-en">Life</div></div>
+      <div class="wc"><span class="wc-ur" lang="ur" dir="rtl">خدا</span><div class="wc-tr">Khuda</div><div class="wc-en">God</div></div>
+      <div class="wc"><span class="wc-ur" lang="ur" dir="rtl">دعا</span><div class="wc-tr">Dua</div><div class="wc-en">Prayer/Supplication</div></div>
+      <div class="wc"><span class="wc-ur" lang="ur" dir="rtl">ایمان</span><div class="wc-tr">Iman</div><div class="wc-en">Faith</div></div>
+      <div class="wc"><span class="wc-ur" lang="ur" dir="rtl">نماز</span><div class="wc-tr">Namaz</div><div class="wc-en">Prayer (Salah)</div></div>
+      <div class="wc"><span class="wc-ur" lang="ur" dir="rtl">روزہ</span><div class="wc-tr">Roza</div><div class="wc-en">Fasting (Sawm)</div></div>
+      <div class="wc"><span class="wc-ur" lang="ur" dir="rtl">قرآن</span><div class="wc-tr">Quran</div><div class="wc-en">The Quran</div></div>
+      <div class="wc"><span class="wc-ur" lang="ur" dir="rtl">جنت</span><div class="wc-tr">Jannat</div><div class="wc-en">Paradise</div></div>
+      <div class="wc"><span class="wc-ur" lang="ur" dir="rtl">برکت</span><div class="wc-tr">Barkat</div><div class="wc-en">Blessing</div></div>
+      <div class="wc"><span class="wc-ur" lang="ur" dir="rtl">شکر</span><div class="wc-tr">Shukar</div><div class="wc-en">Gratitude</div></div>
+      <div class="wc"><span class="wc-ur" lang="ur" dir="rtl">گھر</span><div class="wc-tr">Ghar</div><div class="wc-en">Home</div></div>
+      <div class="wc"><span class="wc-ur" lang="ur" dir="rtl">پانی</span><div class="wc-tr">Paani</div><div class="wc-en">Water</div></div>
+    </div>
+
+    <div class="callout" style="margin-top:32px">
+      <div class="callout-icon">💡</div>
+      <p data-te="ఉర్దూ పదాలు ఎడమ నుండి కుడి వైపుకు కాదు — <strong>కుడి నుండి ఎడమ వైపుకు</strong> చదువుతాం. పైన ఉన్న పదాలు చదువుతున్నప్పుడు కుడి వైపు మొదటి అక్షరం నుండి మొదలుపెట్టండి." data-en="Urdu words are read <strong>right to left</strong> — not left to right. When reading the words above, start from the rightmost letter and move left.">Urdu words are read <strong>right to left</strong> — not left to right. Start from the rightmost letter and move left.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SIMPLE READING -->
+<section class="read-sec" id="reading">
+  <div class="read-inner">
+    <div class="sec-label" style="color:var(--gold)" data-te="అడుగు 3" data-en="Step 3">Step 3</div>
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3.5vw,2.2rem);color:var(--white);margin-bottom:8px" data-te="మొదటి ఉర్దూ వాక్యాలు" data-en="Your First Urdu Sentences">Your First Urdu Sentences</h2>
+    <p style="font-size:.92rem;color:rgba(245,230,192,.60);line-height:1.75;max-width:540px;margin-bottom:36px" data-te="ఈ ముఖ్యమైన ఇస్లామిక్ ఉర్దూ వాక్యాలు చదవండి — ప్రతి రోజు ఉర్దూ ఉపన్యాసాల్లో వినే వాక్యాలు." data-en="Read these important Islamic Urdu sentences — phrases you will hear in every Urdu lecture and bayan.">Read these important Islamic Urdu sentences — phrases you will hear in every Urdu lecture and bayan.</p>
+
+    <div class="read-card">
+      <div class="read-ur" lang="ur" dir="rtl">بسم اللہ الرحمٰن الرحیم</div>
+      <div class="read-tr">Bismillāh ir-Raḥmān ir-Raḥīm</div>
+      <div class="read-en" data-te="ఉర్దూలో బిస్మిల్లాహ్ — అరబిక్ అక్షరాల వలె ఉర్దూ స్క్రిప్ట్‌లో రాయబడింది" data-en="Bismillah in Urdu — written in Nastaliq script">Bismillah in Urdu — written in Nastaliq script</div>
+      <div class="read-context" data-te="ప్రతి పని మొదలు పెట్టే ముందు చదవాలి" data-en="Said before beginning any good action">Said before beginning any good action</div>
+    </div>
+
+    <div class="read-card">
+      <div class="read-ur" lang="ur" dir="rtl">السلام علیکم ورحمۃ اللہ وبرکاتہ</div>
+      <div class="read-tr">As-salāmu ʿalaykum wa raḥmatullāhi wa barakātuh</div>
+      <div class="read-en" data-te="పూర్తి ఇస్లామిక్ శుభాకాంక్షలు" data-en="The complete Islamic greeting">The complete Islamic greeting</div>
+      <div class="read-context" data-te="ఉర్దూ మాట్లాడే ముస్లిం సమాజాల్లో ఉపయోగించే శుభాకాంక్ష" data-en="The greeting used in all Urdu-speaking Muslim communities">Used in all Urdu-speaking Muslim communities</div>
+    </div>
+
+    <div class="read-card">
+      <div class="read-ur" lang="ur" dir="rtl">اللہ اکبر</div>
+      <div class="read-tr">Allāhu Akbar</div>
+      <div class="read-en" data-te="అల్లాహ్ గొప్పవాడు — అజాన్ మరియు నమాజ్‌లో" data-en="Allah is the Greatest — heard in adhan and salah">Allah is the Greatest — heard in adhan and salah</div>
+      <div class="read-context" data-te="ఉర్దూ అజాన్ మరియు నమాజ్‌లో తరచుగా వినే వాక్యం" data-en="Heard constantly in Urdu lectures and during salah">Heard constantly in Urdu lectures and during salah</div>
+    </div>
+
+    <div class="read-card">
+      <div class="read-ur" lang="ur" dir="rtl">ماشاء اللہ — سبحان اللہ — الحمد للہ</div>
+      <div class="read-tr">Māshā Allāh — Subḥān Allāh — Al-Ḥamdulillāh</div>
+      <div class="read-en" data-te="మాషాఅల్లాహ్ — సుభానల్లాహ్ — అల్‌హమ్దులిల్లాహ్" data-en="As Allah wills — Glory be to Allah — All praise is for Allah">As Allah wills — Glory be to Allah — All praise is for Allah</div>
+      <div class="read-context" data-te="ఉర్దూ ముస్లిం జీవితంలో ప్రతిరోజూ వాడే వాక్యాలు" data-en="Daily expressions heard in every Urdu lecture">Daily expressions heard in every Urdu lecture</div>
+    </div>
+
+    <div class="read-card">
+      <div class="read-ur" lang="ur" dir="rtl">محمد ﷺ اللہ کے آخری نبی ہیں</div>
+      <div class="read-tr">Muhammad ﷺ Allah ke aakhri Nabi hain</div>
+      <div class="read-en" data-te="ముహమ్మద్ ﷺ అల్లాహ్ యొక్క చివరి ప్రవక్త" data-en="Muhammad ﷺ is the last Prophet of Allah">Muhammad ﷺ is the last Prophet of Allah</div>
+      <div class="read-context" data-te="ఉర్దూ ఉపన్యాసాల్లో తరచుగా వినే వాక్యం" data-en="A sentence heard in every Urdu Islamic lecture">A sentence heard in every Urdu Islamic lecture</div>
+    </div>
+
+    <div class="read-card">
+      <div class="read-ur" lang="ur" dir="rtl">قرآن اللہ کی کتاب ہے</div>
+      <div class="read-tr">Quran Allah ki kitaab hai</div>
+      <div class="read-en" data-te="ఖుర్ఆన్ అల్లాహ్ యొక్క పుస్తకం" data-en="The Quran is the Book of Allah">The Quran is the Book of Allah</div>
+      <div class="read-context" data-te="సాధారణ ఉర్దూ వాక్య నిర్మాణం: Subject + Object + Verb" data-en="Simple Urdu sentence structure: Subject + Object + Verb">Simple Urdu sentence structure: Subject + ki (of) + Object + hai (is)</div>
+    </div>
+  </div>
+</section>
+
+<footer class="al-footer">
+  <div class="al-footer-links">
+    <a href="./alphabet.html" data-te="← స్థాయి 1: అక్షరమాల" data-en="← Level 1: Alphabet">← Alphabet</a>
+    <a href="./index.html" data-te="ఉర్దూ పోర్టల్" data-en="Urdu Portal">Urdu Portal</a>
+    <a href="./writing-skills.html" data-te="తదుపరి: రాయడం →" data-en="Next: Writing Skills →">Next: Writing Skills →</a>
+  </div>
+  <p data-te="© 2025 ఇస్లామిక్ ఫ్రంట్" data-en="© 2025 Islamic Front">© 2025 Islamic Front</p>
+</footer>
+
+<button id="btt" onclick="scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+
+<script>
+var LANG = localStorage.getItem('if-lang') || 'te';
+function applyLang(l){LANG=l;localStorage.setItem('if-lang',l);document.documentElement.lang=(l==='te')?'te':'en';document.querySelectorAll('[data-te]').forEach(function(el){var v=el.getAttribute('data-'+l);if(v)el.innerHTML=v;});var btn=document.getElementById('lang-btn');if(btn)btn.textContent=l==='te'?'English':'తెలుగు';}
+function toggleLang(){applyLang(LANG==='te'?'en':'te');}
+applyLang(LANG);
+
+(function(){
+  var links=document.querySelectorAll('.tab-nav a');
+  var secs=['joining','words','reading'].map(function(id){return document.getElementById(id);});
+  var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){var id=e.target.id;links.forEach(function(a){a.classList.toggle('active',a.getAttribute('href')==='#'+id);});}});},{rootMargin:'-70px 0px -60% 0px',threshold:0});
+  secs.forEach(function(s){if(s)obs.observe(s);});
+})();
+
+window.addEventListener('scroll',function(){document.getElementById('btt').classList.toggle('show',window.scrollY>400);},{passive:true});
+</script>
+</body>
+</html>

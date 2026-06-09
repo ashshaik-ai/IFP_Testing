@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="te" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ఉర్దూ రాయడం నేర్చుకోవడం — Writing Skills | Islamic Front</title>
+<meta name="description" content="Learn to write Urdu letters, words, and sentences in Nastaliq script. Level 3 of the Islamic Front Urdu Learning Portal.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Sans:wght@300;400;500&family=Noto+Sans+Telugu:wght@300;400;500;700&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --green-deep:#0d3b1e;--green-mid:#1a5c30;--green-light:#2e8b57;
+  --gold:#c8922a;--gold-light:#e8b84b;--gold-pale:#f5e6c0;
+  --cream:#faf6ee;--white:#ffffff;
+  --text-dark:#1a1208;--text-mid:#3d3018;--text-muted:#7a6840;
+  --border:rgba(200,146,42,0.25);--radius:14px;--shadow:0 4px 24px rgba(0,0,0,0.10);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;color:var(--text-dark);background:var(--cream);overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+.al-nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(13,59,30,0.92);backdrop-filter:blur(12px);padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:56px;border-bottom:1px solid rgba(200,146,42,0.18)}
+.al-nav-brand{display:flex;align-items:center;gap:10px;color:var(--gold-light);font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700}
+.al-nav-brand span{font-size:1.4rem}
+.al-nav-links{display:flex;align-items:center;gap:16px}
+.al-nav-links a{color:rgba(245,230,192,0.75);font-size:.82rem;font-weight:500;transition:color .2s}
+.al-nav-links a:hover{color:var(--gold-light)}
+.al-lang-btn{background:rgba(200,146,42,0.20);border:1px solid var(--gold);color:var(--gold-light);font-size:.78rem;font-weight:600;padding:5px 13px;border-radius:20px;cursor:pointer;transition:all .2s;font-family:'DM Sans',sans-serif}
+.al-lang-btn:hover{background:var(--gold);color:var(--green-deep)}
+
+/* LESSON NAV */
+.lesson-nav{position:fixed;top:56px;left:0;right:0;z-index:850;height:46px;background:rgba(13,59,30,0.95);backdrop-filter:blur(8px);border-bottom:1px solid rgba(200,146,42,0.18);display:flex;align-items:center;justify-content:space-between;padding:0 16px;gap:8px}
+.lnb-btn{font-size:.74rem;font-weight:600;color:rgba(245,230,192,.70);padding:4px 12px;border-radius:20px;border:1px solid rgba(200,146,42,0.22);transition:all .2s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:42%}
+.lnb-btn:hover{color:var(--gold-light);border-color:rgba(200,146,42,0.50);background:rgba(200,146,42,0.10)}
+.lnb-spacer{min-width:70px}
+.lnb-mid{font-size:.68rem;font-weight:700;color:var(--gold);letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;text-align:center;flex:1}
+
+.l-hero{background:linear-gradient(145deg,#071e0e,var(--green-deep));padding:142px 20px 56px;text-align:center}
+.l-breadcrumb{display:flex;align-items:center;justify-content:center;gap:8px;font-size:.76rem;color:rgba(245,230,192,.50);margin-bottom:20px;flex-wrap:wrap}
+.l-breadcrumb a{color:rgba(245,230,192,.50)}
+.l-breadcrumb a:hover{color:var(--gold-light)}
+.l-breadcrumb span{color:rgba(245,230,192,.30)}
+.l-hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(200,146,42,0.15);border:1px solid rgba(200,146,42,0.35);color:var(--gold-light);font-size:.75rem;font-weight:600;padding:5px 14px;border-radius:20px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:18px}
+.l-hero h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,6vw,3.2rem);color:var(--white);font-weight:700;margin-bottom:6px}
+.l-hero-ur{font-family:'Noto Nastaliq Urdu',serif;font-size:clamp(1.6rem,4.5vw,2.6rem);color:var(--gold-light);direction:rtl;line-height:2.2;display:block;margin-bottom:12px}
+.l-hero-sub{font-size:.95rem;color:rgba(245,230,192,.65);max-width:500px;margin:0 auto;line-height:1.75}
+
+.tab-nav{background:var(--green-mid);padding:0 20px;display:flex;align-items:center;gap:0;overflow-x:auto;scrollbar-width:none;border-bottom:1px solid rgba(200,146,42,0.20);position:sticky;top:102px;z-index:800}
+.tab-nav::-webkit-scrollbar{display:none}
+.tab-nav a{white-space:nowrap;font-size:.80rem;font-weight:500;color:rgba(245,230,192,.60);padding:0 18px;height:46px;display:inline-flex;align-items:center;border-bottom:2px solid transparent;transition:all .2s;flex-shrink:0}
+.tab-nav a:hover,.tab-nav a.active{color:var(--gold-light);border-bottom-color:var(--gold)}
+
+.al-sec{padding:70px 20px}
+.al-inner{max-width:1000px;margin:0 auto}
+.sec-label{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.sec-title{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3.5vw,2.2rem);font-weight:700;color:var(--text-dark);margin-bottom:8px}
+.sec-sub{font-size:.92rem;color:var(--text-muted);line-height:1.75;max-width:580px;margin-bottom:36px}
+
+/* STROKE CARDS */
+.stroke-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
+.stroke-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:24px 22px}
+.stroke-num{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--green-deep);font-weight:700;font-size:.85rem;display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+.stroke-card h4{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--text-dark);margin-bottom:8px}
+.stroke-card p{font-size:.84rem;color:var(--text-muted);line-height:1.7;margin-bottom:12px}
+.stroke-example{font-family:'Noto Nastaliq Urdu',serif;font-size:2rem;color:var(--green-mid);direction:rtl;line-height:1.8;background:var(--cream);border:1px solid var(--border);border-radius:8px;padding:10px 14px;text-align:center}
+
+/* PRACTICE WORDS */
+.practice-sec{background:var(--green-deep);padding:70px 20px}
+.practice-inner{max-width:1000px;margin:0 auto}
+.pw-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
+.pw-card{background:rgba(255,255,255,0.06);border:1px solid rgba(200,146,42,0.22);border-radius:12px;padding:22px 20px}
+.pw-word{font-family:'Noto Nastaliq Urdu',serif;font-size:2.4rem;color:var(--gold-light);direction:rtl;line-height:2;display:block;margin-bottom:6px}
+.pw-breakdown{font-size:.80rem;color:rgba(245,230,192,.60);margin-bottom:4px;line-height:1.7}
+.pw-tr{font-size:.82rem;color:rgba(245,230,192,.50);font-style:italic}
+
+/* SENTENCE SECTION */
+.sent-grid{display:grid;gap:16px}
+.sent-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center}
+.sent-ur{font-family:'Noto Nastaliq Urdu',serif;font-size:1.8rem;color:var(--green-mid);direction:rtl;line-height:2;text-align:right}
+.sent-info{text-align:left;max-width:240px}
+.sent-tr{font-size:.85rem;color:var(--text-mid);font-weight:500;margin-bottom:3px}
+.sent-en{font-size:.80rem;color:var(--text-muted)}
+@media(max-width:600px){.sent-card{grid-template-columns:1fr}.sent-info{max-width:100%;text-align:right;direction:rtl}}
+
+.callout{background:linear-gradient(135deg,rgba(200,146,42,0.10),rgba(200,146,42,0.05));border:1px solid rgba(200,146,42,0.25);border-radius:12px;padding:20px 22px;display:flex;gap:14px;align-items:flex-start;margin-top:28px}
+.callout-icon{font-size:1.6rem;flex-shrink:0}
+.callout p{font-size:.88rem;color:var(--text-mid);line-height:1.75}
+.callout strong{color:var(--gold)}
+
+.al-footer{background:var(--green-deep);border-top:1px solid rgba(200,146,42,0.15);padding:36px 20px;text-align:center}
+.al-footer-links{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:18px}
+.al-footer-links a{color:rgba(245,230,192,.60);font-size:.80rem;padding:6px 14px;border:1px solid rgba(200,146,42,0.20);border-radius:20px;transition:all .2s}
+.al-footer-links a:hover{color:var(--gold-light);border-color:rgba(200,146,42,0.50)}
+.al-footer p{font-size:.72rem;color:rgba(245,230,192,.25)}
+#btt{position:fixed;bottom:28px;right:22px;width:46px;height:46px;border-radius:50%;background:var(--gold);color:var(--green-deep);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(200,146,42,0.45);cursor:pointer;border:none;opacity:0;transform:translateY(16px);transition:all .3s;z-index:700}
+#btt.show{opacity:1;transform:translateY(0)}
+#btt:hover{transform:translateY(-3px)}
+@media print{.al-nav,.tab-nav,#btt,.al-lang-btn{display:none!important}}
+@media(max-width:600px){
+  .al-nav{height:auto;min-height:56px;padding:8px 16px;flex-wrap:wrap}
+  .al-nav-links a{display:none}
+  .al-nav-links{gap:8px}
+  .l-hero{padding-left:16px;padding-right:16px;padding-top:80px}
+  .al-sec,.practice-sec{padding-left:16px;padding-right:16px;padding-top:52px}
+}
+</style>
+</head>
+<body>
+
+<nav class="al-nav">
+  <a class="al-nav-brand" href="../../index.html"><span>☪</span><span data-te="ఇస్లామిక్ ఫ్రంట్" data-en="Islamic Front">ఇస్లామిక్ ఫ్రంట్</span></a>
+  <div class="al-nav-links">
+    <a href="./index.html" data-te="ఉర్దూ పోర్టల్" data-en="Urdu Portal">Urdu Portal</a>
+    <a href="../../islamic-knowledge.html" data-te="జ్ఞాన కేంద్రం" data-en="KC">KC</a>
+    <button class="al-lang-btn" id="lang-btn" onclick="toggleLang()">English</button>
+  </div>
+</nav>
+
+<div class="lesson-nav">
+  <a href="./reading-basics.html" class="lnb-btn" data-te="← స్థాయి 2 · చదవడం" data-en="← Level 2 · Reading">← Level 2 · Reading</a>
+  <span class="lnb-mid" data-te="స్థాయి 3 · రాయడం నైపుణ్యాలు" data-en="Level 3 · Writing Skills">Level 3 · Writing Skills</span>
+  <a href="./daily-urdu.html" class="lnb-btn" data-te="స్థాయి 4 · రోజువారీ ఉర్దూ →" data-en="Level 4 · Daily Urdu →">Level 4 · Daily Urdu →</a>
+</div>
+
+<div class="l-hero" style="padding-top:142px">
+  <nav class="l-breadcrumb">
+    <a href="../../index.html" data-te="హోమ్" data-en="Home">Home</a><span>›</span>
+    <a href="./index.html" data-te="ఉర్దూ నేర్చుకోండి" data-en="Learn Urdu">Learn Urdu</a><span>›</span>
+    <span data-te="రాయడం నేర్చుకోవడం" data-en="Writing Skills">Writing Skills</span>
+  </nav>
+  <div class="l-hero-badge"><span>۳</span><span data-te="స్థాయి 3" data-en="Level 3">Level 3</span></div>
+  <h1 data-te="ఉర్దూ రాయడం నేర్చుకోండి" data-en="Writing Skills">Writing Skills</h1>
+  <span class="l-hero-ur" lang="ur" dir="rtl">لکھنے کی مہارت</span>
+  <p class="l-hero-sub" data-te="నస్తాలీఖ్ లిపిలో అక్షరాలు, పదాలు మరియు వాక్యాలు రాయడం నేర్చుకోండి — ప్రపంచంలో అత్యంత అందమైన లిపులలో ఒకటి." data-en="Learn to write Urdu letters, words, and sentences in the elegant Nastaliq script — one of the most beautiful scripts in the world.">Learn to write Urdu letters, words, and sentences in the elegant Nastaliq script.</p>
+</div>
+
+<nav class="tab-nav">
+  <a href="#letters" class="active" data-te="అక్షరాలు రాయడం" data-en="Writing Letters">Writing Letters</a>
+  <a href="#words" data-te="పదాలు రాయడం" data-en="Writing Words">Writing Words</a>
+  <a href="#sentences" data-te="వాక్యాలు రాయడం" data-en="Writing Sentences">Writing Sentences</a>
+</nav>
+
+<!-- WRITING LETTERS -->
+<section class="al-sec" id="letters">
+  <div class="al-inner">
+    <div class="sec-label" data-te="స్ట్రోక్ మార్గదర్శకం" data-en="Stroke Guide">Stroke Guide</div>
+    <h2 class="sec-title" data-te="నస్తాలీఖ్ స్ట్రోక్‌లు" data-en="Nastaliq Strokes">Nastaliq Strokes</h2>
+    <p class="sec-sub" data-te="నస్తాలీఖ్ రాయడం అభ్యాసం చేయడానికి ఈ ముఖ్యమైన స్ట్రోక్ నమూనాలు నేర్చుకోండి." data-en="Learn these essential stroke patterns to practice Nastaliq writing.">Learn these essential stroke patterns to practice Nastaliq writing.</p>
+    <div class="stroke-grid">
+      <div class="stroke-card">
+        <div class="stroke-num">1</div>
+        <h4 data-te="సమాంతర స్ట్రోక్" data-en="Horizontal Stroke">Horizontal Stroke</h4>
+        <p data-te="ب, ت, ث, ن, ی — ఈ అక్షరాల ఆధారం ఒక చదునైన/కొద్దిగా వంగిన రేఖ. కుడి నుండి ఎడమకు రాయండి." data-en="ب, ت, ث, ن, ی — The base of these letters is a flat or slightly curved line. Always write right to left.">ب, ت, ث, ن, ی — The base of these letters is a flat or slightly curved line. Write right to left.</p>
+        <div class="stroke-example" lang="ur" dir="rtl">بـ  تـ  نـ  یـ</div>
+      </div>
+      <div class="stroke-card">
+        <div class="stroke-num">2</div>
+        <h4 data-te="వృత్తాకార స్ట్రోక్" data-en="Circular Stroke">Circular Stroke</h4>
+        <p data-te="م, ق, ف — ఈ అక్షరాలు గుండ్రంగా ఉంటాయి. వలయాన్ని గడియారపు సూచిక వ్యతిరేక దిశలో గీయండి." data-en="م, ق, ف — These letters have a circular or oval shape. Draw the circle counter-clockwise.">م, ق, ف — These letters have a circular or oval shape. Draw counter-clockwise.</p>
+        <div class="stroke-example" lang="ur" dir="rtl">مـ  قـ  فـ</div>
+      </div>
+      <div class="stroke-card">
+        <div class="stroke-num">3</div>
+        <h4 data-te="వంగిన స్ట్రోక్" data-en="Curved Stroke">Curved Stroke</h4>
+        <p data-te="ع, غ, ح, خ — ఈ అక్షరాలు లోపలికి వంగిన రేఖను కలిగి ఉంటాయి. మూత్రపాండులో పళ్ళు లేకుండా ఉంటాయి." data-en="ع, غ, ح, خ — These letters have an inward curve. Draw a smooth, deep curved stroke.">ع, غ, ح, خ — These letters feature smooth, inward-curving strokes.</p>
+        <div class="stroke-example" lang="ur" dir="rtl">عـ  غـ  حـ  خـ</div>
+      </div>
+      <div class="stroke-card">
+        <div class="stroke-num">4</div>
+        <h4 data-te="నిలువు స్ట్రోక్" data-en="Vertical Drop">Vertical Drop</h4>
+        <p data-te="ل, ک, گ — ఈ అక్షరాలు పైన నుండి కిందికి వంగిన రేఖను కలిగి ఉంటాయి. ఒక్కో అక్షరానికి ముందు రేఖ తర్వాత కర్వ్ రాయండి." data-en="ل, ک, گ — These letters have a vertical or diagonal drop stroke. Practice the drop then the base.">ل, ک, گ — Vertical drop combined with a base stroke. Practice each component.</p>
+        <div class="stroke-example" lang="ur" dir="rtl">لـ  کـ  گـ</div>
+      </div>
+      <div class="stroke-card">
+        <div class="stroke-num">5</div>
+        <h4 data-te="నుక్తా (చుక్కలు)" data-en="Dots (Nuqta)">Dots (Nuqta)</h4>
+        <p data-te="నస్తాలీఖ్‌లో చుక్కలు రాయడం ముఖ్యం. అక్షరం పూర్తయిన తర్వాత చుక్కలు వేయండి — మొదట కాదు." data-en="In Nastaliq, always add dots after completing the main letter shape — never before. Dots are small, round, and well-placed.">Always add dots after completing the main stroke — small, round, and precisely placed.</p>
+        <div class="stroke-example" lang="ur" dir="rtl">ب  ت  ث  ن  پ  چ</div>
+      </div>
+      <div class="stroke-card">
+        <div class="stroke-num">6</div>
+        <h4 data-te="నస్తాలీఖ్ వాలు" data-en="Nastaliq Diagonal">Nastaliq Diagonal</h4>
+        <p data-te="నస్తాలీఖ్ స్టైల్‌కు కీలక ఆకర్షణ — అక్షరాలు కొంచెం వాలుగా రాయబడతాయి. ప్రతి పదంలో కొంచెం కిందికి వాలు అనుభవిస్తారు." data-en="The defining feature of Nastaliq — letters cascade diagonally downward from right to left within a word, creating the flowing, tilted look.">Letters cascade diagonally downward right-to-left within each word — the signature Nastaliq look.</p>
+        <div class="stroke-example" lang="ur" dir="rtl">رحمت</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-icon">✍️</div>
+      <p data-te="రాయడం అభ్యాసం చేయడానికి — నస్తాలీఖ్ రేఖాగ్రంధికలు (grid sheets) డౌన్లోడ్ చేసుకోండి. ప్రతి రోజు 15 నిమిషాలు అభ్యాసం చేయండి. మొదట <strong>అక్షరాలు</strong>, తర్వాత <strong>పదాలు</strong>, తర్వాత <strong>వాక్యాలు</strong> రాయండి." data-en="For writing practice: download Nastaliq practice sheets. 15 minutes daily practice is enough. Always start with <strong>individual letters</strong>, then <strong>words</strong>, then <strong>sentences</strong>.">For practice: 15 minutes daily works well. Always start with <strong>individual letters</strong>, then <strong>words</strong>, then <strong>sentences</strong>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WRITING WORDS -->
+<section class="practice-sec" id="words">
+  <div class="practice-inner">
+    <div class="sec-label" style="color:var(--gold)" data-te="పద రాయడం" data-en="Word Writing">Word Writing</div>
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3.5vw,2.2rem);color:var(--white);margin-bottom:8px" data-te="ఉర్దూ పదాలు రాయడం అభ్యాసం" data-en="Practice Writing Urdu Words">Practice Writing Urdu Words</h2>
+    <p style="font-size:.92rem;color:rgba(245,230,192,.60);line-height:1.75;max-width:540px;margin-bottom:36px" data-te="ఈ ముఖ్యమైన ఇస్లామిక్ పదాలు రాయడం అభ్యాసం చేయండి. ప్రతి పదంలో అక్షరాల కలయికను గమనించండి." data-en="Practice writing these important Islamic words. Observe how the letters join in each word.">Practice writing these important Islamic words. Observe how the letters join in each word.</p>
+    <div class="pw-grid">
+      <div class="pw-card">
+        <span class="pw-word" lang="ur" dir="rtl">اللہ</span>
+        <div class="pw-breakdown" data-te="ا + ل + ل + ہ" data-en="ا + ل + ل + ہ">ا + ل + ل + ہ</div>
+        <div class="pw-tr">Allah — God</div>
+      </div>
+      <div class="pw-card">
+        <span class="pw-word" lang="ur" dir="rtl">رحمت</span>
+        <div class="pw-breakdown">ر + ح + م + ت</div>
+        <div class="pw-tr">Rahmat — Mercy</div>
+      </div>
+      <div class="pw-card">
+        <span class="pw-word" lang="ur" dir="rtl">محبت</span>
+        <div class="pw-breakdown">م + ح + ب + ت</div>
+        <div class="pw-tr">Muhabbat — Love</div>
+      </div>
+      <div class="pw-card">
+        <span class="pw-word" lang="ur" dir="rtl">سلام</span>
+        <div class="pw-breakdown">س + ل + ا + م</div>
+        <div class="pw-tr">Salaam — Peace</div>
+      </div>
+      <div class="pw-card">
+        <span class="pw-word" lang="ur" dir="rtl">قرآن</span>
+        <div class="pw-breakdown">ق + ر + آ + ن</div>
+        <div class="pw-tr">Quran — The Quran</div>
+      </div>
+      <div class="pw-card">
+        <span class="pw-word" lang="ur" dir="rtl">نماز</span>
+        <div class="pw-breakdown">ن + م + ا + ز</div>
+        <div class="pw-tr">Namaz — Prayer</div>
+      </div>
+      <div class="pw-card">
+        <span class="pw-word" lang="ur" dir="rtl">ایمان</span>
+        <div class="pw-breakdown">ا + ی + م + ا + ن</div>
+        <div class="pw-tr">Iman — Faith</div>
+      </div>
+      <div class="pw-card">
+        <span class="pw-word" lang="ur" dir="rtl">صبر</span>
+        <div class="pw-breakdown">ص + ب + ر</div>
+        <div class="pw-tr">Sabr — Patience</div>
+      </div>
+      <div class="pw-card">
+        <span class="pw-word" lang="ur" dir="rtl">زندگی</span>
+        <div class="pw-breakdown">ز + ن + د + گ + ی</div>
+        <div class="pw-tr">Zindagi — Life</div>
+      </div>
+      <div class="pw-card">
+        <span class="pw-word" lang="ur" dir="rtl">خدا</span>
+        <div class="pw-breakdown">خ + د + ا</div>
+        <div class="pw-tr">Khuda — God</div>
+      </div>
+      <div class="pw-card">
+        <span class="pw-word" lang="ur" dir="rtl">تقویٰ</span>
+        <div class="pw-breakdown">ت + ق + و + یٰ</div>
+        <div class="pw-tr">Taqwa — God-consciousness</div>
+      </div>
+      <div class="pw-card">
+        <span class="pw-word" lang="ur" dir="rtl">توبہ</span>
+        <div class="pw-breakdown">ت + و + ب + ہ</div>
+        <div class="pw-tr">Tawbah — Repentance</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WRITING SENTENCES -->
+<section class="al-sec" id="sentences" style="background:var(--white)">
+  <div class="al-inner">
+    <div class="sec-label" data-te="వాక్య రాయడం" data-en="Sentence Writing">Sentence Writing</div>
+    <h2 class="sec-title" data-te="ఉర్దూ వాక్యాలు రాయడం" data-en="Writing Urdu Sentences">Writing Urdu Sentences</h2>
+    <p class="sec-sub" data-te="ఈ ముఖ్యమైన ఉర్దూ వాక్యాలు రాయడం అభ్యాసం చేయండి — ప్రతి రోజు ఇస్లామిక్ జీవితంలో వాడే వాక్యాలు." data-en="Practice writing these important Urdu sentences — phrases used daily in Islamic life.">Practice writing these important Urdu sentences — phrases used daily in Islamic life.</p>
+    <div class="sent-grid">
+      <div class="sent-card">
+        <div class="sent-ur" lang="ur" dir="rtl">بسم اللہ الرحمٰن الرحیم</div>
+        <div class="sent-info">
+          <div class="sent-tr">Bismillāh ir-Raḥmān ir-Raḥīm</div>
+          <div class="sent-en" data-te="ప్రతి మంచి పని మొదలుపెట్టే ముందు" data-en="Said before every good action">Said before every good action</div>
+        </div>
+      </div>
+      <div class="sent-card">
+        <div class="sent-ur" lang="ur" dir="rtl">الحمد للہ رب العالمین</div>
+        <div class="sent-info">
+          <div class="sent-tr">Al-Ḥamdu lillāhi Rabbil ʿĀlamīn</div>
+          <div class="sent-en" data-te="అన్ని ప్రశంసలు అల్లాహ్‌కు" data-en="All praise is for Allah, Lord of the worlds">All praise is for Allah, Lord of the worlds</div>
+        </div>
+      </div>
+      <div class="sent-card">
+        <div class="sent-ur" lang="ur" dir="rtl">لا اِلٰہَ اِلَّا اللّٰہُ مُحَمَّدٌ رَّسُوْلُ اللّٰہِ</div>
+        <div class="sent-info">
+          <div class="sent-tr">Lā ilāha illallāh Muḥammadur rasūlullāh</div>
+          <div class="sent-en" data-te="ఇస్లాం యొక్క కలిమా" data-en="The Kalimah — the declaration of faith">The Kalimah — declaration of faith</div>
+        </div>
+      </div>
+      <div class="sent-card">
+        <div class="sent-ur" lang="ur" dir="rtl">علم حاصل کرنا ہر مسلمان پر فرض ہے</div>
+        <div class="sent-info">
+          <div class="sent-tr">Ilm ḥāsil karnā har Musalman par farz hai</div>
+          <div class="sent-en" data-te="జ్ఞానం సంపాదించడం ప్రతి ముస్లిం పై ఫర్జ్" data-en="Seeking knowledge is obligatory on every Muslim">Seeking knowledge is obligatory on every Muslim</div>
+        </div>
+      </div>
+      <div class="sent-card">
+        <div class="sent-ur" lang="ur" dir="rtl">اللہ ہر چیز پر قادر ہے</div>
+        <div class="sent-info">
+          <div class="sent-tr">Allah har cheez par qadir hai</div>
+          <div class="sent-en" data-te="అల్లాహ్ ప్రతి విషయంపై సర్వశక్తిమంతుడు" data-en="Allah has power over all things">Allah has power over all things</div>
+        </div>
+      </div>
+      <div class="sent-card">
+        <div class="sent-ur" lang="ur" dir="rtl">صبر ایمان کا آدھا حصہ ہے</div>
+        <div class="sent-info">
+          <div class="sent-tr">Sabr imān kā ādhā ḥissa hai</div>
+          <div class="sent-en" data-te="సబర్ ఈమాన్‌లో సగం భాగం" data-en="Patience is half of faith">Patience is half of faith</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-icon">📝</div>
+      <p data-te="ఉర్దూ రాయడం మెరుగుపరచడానికి: <strong>ప్రతి రోజు ఒక వాక్యం</strong> 5 సార్లు రాయండి. మొదట స్లో గా, తర్వాత స్పీడ్ పెంచండి. నస్తాలీఖ్ అభ్యాసానికి సరైన కాగితం మరియు పెన్ ఉపయోగించండి." data-en="To improve your Urdu writing: <strong>write one sentence five times per day</strong>. Start slow, then increase speed. Use proper paper and a fine-tipped pen for Nastaliq practice.">To improve: <strong>write one sentence five times daily</strong>. Start slow, then increase speed. Use a fine-tipped pen for Nastaliq practice.</p>
+    </div>
+  </div>
+</section>
+
+<footer class="al-footer">
+  <div class="al-footer-links">
+    <a href="./reading-basics.html" data-te="← స్థాయి 2: చదవడం" data-en="← Level 2: Reading">← Reading Basics</a>
+    <a href="./index.html" data-te="ఉర్దూ పోర్టల్" data-en="Urdu Portal">Urdu Portal</a>
+    <a href="./islamic-urdu.html" data-te="తదుపరి: ఇస్లామిక్ ఉర్దూ →" data-en="Next: Islamic Urdu →">Next: Islamic Urdu →</a>
+  </div>
+  <p data-te="© 2025 ఇస్లామిక్ ఫ్రంట్" data-en="© 2025 Islamic Front">© 2025 Islamic Front</p>
+</footer>
+
+<button id="btt" onclick="scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+
+<script>
+var LANG = localStorage.getItem('if-lang') || 'te';
+function applyLang(l){LANG=l;localStorage.setItem('if-lang',l);document.documentElement.lang=(l==='te')?'te':'en';document.querySelectorAll('[data-te]').forEach(function(el){var v=el.getAttribute('data-'+l);if(v)el.innerHTML=v;});var btn=document.getElementById('lang-btn');if(btn)btn.textContent=l==='te'?'English':'తెలుగు';}
+function toggleLang(){applyLang(LANG==='te'?'en':'te');}
+applyLang(LANG);
+
+(function(){
+  var links=document.querySelectorAll('.tab-nav a');
+  var secs=['letters','words','sentences'].map(function(id){return document.getElementById(id);});
+  var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){var id=e.target.id;links.forEach(function(a){a.classList.toggle('active',a.getAttribute('href')==='#'+id);});}});},{rootMargin:'-70px 0px -60% 0px',threshold:0});
+  secs.forEach(function(s){if(s)obs.observe(s);});
+})();
+
+window.addEventListener('scroll',function(){document.getElementById('btt').classList.toggle('show',window.scrollY>400);},{passive:true});
+</script>
+</body>
+</html>

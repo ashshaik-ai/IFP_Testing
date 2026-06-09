@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en" id="html-root">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Harakat &amp; Reading — Level 2 | Learn Arabic | Islamic Front</title>
+<meta name="description" content="Master Arabic vowel marks (harakat): Fatha, Kasra, Damma, Sukoon, and Tanween. Level 2 of the Islamic Front Arabic Learning roadmap.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:wght@300;400;500&family=Noto+Sans+Telugu:wght@300;400;500;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--green-deep:#0d3b1e;--green-mid:#1a5c30;--green-light:#2e8b57;--gold:#c8922a;--gold-light:#e8b84b;--gold-pale:#f5e6c0;--cream:#faf6ee;--white:#ffffff;--text-dark:#1a1208;--text-mid:#3d3018;--text-muted:#7a6840;--border:rgba(200,146,42,0.25)}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text-dark);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+[id]{scroll-margin-top:110px}
+::selection{background:rgba(200,146,42,0.28)}
+::-webkit-scrollbar{width:10px}::-webkit-scrollbar-track{background:var(--cream)}::-webkit-scrollbar-thumb{background:linear-gradient(var(--gold),var(--gold-light));border-radius:100px;border:3px solid var(--cream)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--gold-light);outline-offset:3px;border-radius:3px}
+
+/* NAV */
+body>nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,59,30,0.96);backdrop-filter:blur(10px);border-bottom:1px solid rgba(200,146,42,0.3);padding:0 5vw;display:flex;align-items:center;justify-content:space-between;height:68px}
+.nav-brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.nav-logo{width:42px;height:42px;border-radius:50%;object-fit:cover}
+.nav-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--gold-light);letter-spacing:.5px;line-height:1.2}
+.nav-sub{font-size:10px;color:rgba(232,184,75,0.7);letter-spacing:1.5px;text-transform:uppercase}
+.nav-right{display:flex;align-items:center;gap:14px}
+.nav-back{display:inline-flex;align-items:center;gap:6px;color:rgba(255,255,255,0.8);text-decoration:none;font-size:13px;transition:color .2s;white-space:nowrap}
+.nav-back:hover{color:var(--gold-light)}
+.lang-btn{background:rgba(200,146,42,0.12);border:1px solid rgba(200,146,42,0.4);color:var(--gold-light);font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;padding:6px 14px;border-radius:100px;cursor:pointer;transition:background .2s}
+.lang-btn:hover{background:rgba(200,146,42,0.22)}
+
+/* HERO */
+.lesson-hero{padding:120px 5vw 64px;background:linear-gradient(155deg,var(--green-deep) 0%,#0a2a14 55%,#122b10 100%);position:relative;overflow:hidden}
+.lesson-hero::before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 65% 55% at 85% 38%,rgba(200,146,42,0.12) 0%,transparent 65%)}
+.lh-wm{position:absolute;right:4vw;top:50%;transform:translateY(-50%);font-family:'Amiri',serif;font-size:clamp(100px,16vw,200px);color:rgba(200,146,42,0.06);line-height:1;direction:rtl;pointer-events:none;user-select:none}
+.lh-inner{max-width:860px;position:relative;z-index:1}
+.lh-breadcrumb{display:flex;align-items:center;gap:7px;font-size:12px;color:rgba(245,230,192,0.5);margin-bottom:18px;flex-wrap:wrap}
+.lh-breadcrumb a{color:rgba(245,230,192,0.5);text-decoration:none;transition:color .2s}
+.lh-breadcrumb a:hover{color:var(--gold-light)}
+.lh-breadcrumb span{color:rgba(245,230,192,0.28)}
+.lh-level{display:inline-flex;align-items:center;gap:8px;background:rgba(200,146,42,0.1);border:1px solid rgba(200,146,42,0.32);border-radius:100px;padding:6px 16px;margin-bottom:20px;font-size:11px;color:var(--gold-light);letter-spacing:1.5px;text-transform:uppercase}
+.lh-ar{font-family:'Amiri',serif;font-size:clamp(26px,4vw,50px);color:var(--gold-light);direction:rtl;line-height:1.3;margin-bottom:4px}
+.lesson-hero h1{font-family:'Playfair Display',serif;font-size:clamp(26px,4vw,48px);font-weight:900;color:var(--white);line-height:1.12;margin-bottom:16px}
+.lesson-hero p{font-family:'Cormorant Garamond',serif;font-size:clamp(15px,1.8vw,19px);color:rgba(245,230,192,0.72);max-width:540px;line-height:1.75}
+
+/* JUMP TABS */
+.harakat-tabs{display:flex;gap:8px;overflow-x:auto;padding:22px 5vw 0;background:var(--green-deep);scrollbar-width:none}
+.harakat-tabs::-webkit-scrollbar{display:none}
+.ht-tab{white-space:nowrap;flex-shrink:0;font-size:12px;color:rgba(245,230,192,0.7);text-decoration:none;border:1px solid rgba(200,146,42,0.22);background:rgba(200,146,42,0.05);padding:8px 14px;border-radius:8px 8px 0 0;transition:background .18s,color .18s,border-color .18s}
+.ht-tab:hover,.ht-tab.active{background:var(--cream);color:var(--green-deep);border-color:var(--gold);font-weight:700}
+.ht-tab .ar{font-family:'Amiri',serif;font-size:16px;margin-right:6px;direction:rtl}
+
+/* SECTION */
+.hs{padding:60px 5vw}
+.hs-inner{max-width:980px;margin:0 auto}
+.sec-tag{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.sec-tag::before{content:'';display:block;width:26px;height:1px;background:var(--gold)}
+.sec-title{font-family:'Playfair Display',serif;font-size:clamp(24px,3vw,36px);font-weight:700;color:var(--green-deep);line-height:1.2;margin-bottom:12px}
+.sec-title::after{content:'';display:block;width:40px;height:2px;border-radius:2px;margin-top:14px;background:linear-gradient(90deg,var(--gold),var(--gold-light),transparent)}
+
+/* HARAKAT CARD */
+.hk-card{background:var(--white);border:1px solid var(--border);border-radius:20px;overflow:hidden;margin-top:32px;box-shadow:0 4px 24px rgba(13,59,30,0.06)}
+.hk-head{background:linear-gradient(135deg,var(--green-deep),var(--green-mid));padding:32px 36px 28px;display:flex;align-items:center;gap:28px;flex-wrap:wrap}
+.hk-symbol{font-family:'Amiri',serif;font-size:80px;color:var(--gold-light);line-height:1;direction:rtl;text-shadow:0 4px 20px rgba(200,146,42,0.3);flex-shrink:0}
+.hk-head-info h2{font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,32px);font-weight:700;color:var(--white);margin-bottom:4px}
+.hk-head-info p{font-size:14px;color:rgba(245,230,192,0.7);line-height:1.7;max-width:480px}
+.hk-body{padding:32px 36px}
+.hk-examples{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px;margin-bottom:24px;direction:rtl}
+.hk-ex{background:var(--cream);border:1px solid var(--border);border-radius:12px;padding:18px 16px;text-align:center;direction:ltr}
+.hk-ex-ar{font-family:'Amiri',serif;font-size:40px;color:var(--green-deep);direction:rtl;line-height:1.2;display:block;margin-bottom:6px}
+.hk-ex-tr{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:16px;color:var(--gold);display:block}
+.hk-ex-en{font-size:12px;color:var(--text-muted);display:block;margin-top:3px}
+.hk-rule{background:linear-gradient(135deg,rgba(200,146,42,0.07),rgba(46,139,87,0.05));border:1px solid var(--border);border-radius:12px;padding:18px 22px;font-size:14px;color:var(--text-mid);line-height:1.8;border-left:3px solid var(--gold)}
+.hk-rule strong{color:var(--green-deep)}
+
+/* COMPARISON TABLE */
+.hk-compare{width:100%;border-collapse:collapse;margin-top:24px}
+.hk-compare th{background:var(--green-deep);color:var(--gold-light);font-size:11px;letter-spacing:1px;text-transform:uppercase;padding:12px 18px;text-align:center;font-weight:600}
+.hk-compare td{padding:14px 18px;border-bottom:1px solid var(--border);text-align:center;font-size:14px;color:var(--text-mid)}
+.hk-compare td.ar{font-family:'Amiri',serif;font-size:30px;direction:rtl;color:var(--green-deep)}
+.hk-compare tr:nth-child(even) td{background:rgba(200,146,42,0.04)}
+.hk-compare tr:hover td{background:rgba(200,146,42,0.08)}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1)}
+.reveal.reveal-in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1!important;transform:none!important;transition:none!important}}
+
+/* LESSON NAV */
+.lesson-nav{background:var(--green-deep);padding:30px 5vw;border-top:3px solid var(--gold)}
+.lesson-nav-inner{max-width:980px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.ln-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:8px;font-size:13px;font-weight:600;text-decoration:none;transition:transform .18s,box-shadow .18s}
+.ln-btn.primary{background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--green-deep);box-shadow:0 6px 20px -6px rgba(200,146,42,0.5)}
+.ln-btn.primary:hover{transform:translateY(-2px)}
+.ln-btn.secondary{border:1px solid rgba(200,146,42,0.35);color:rgba(245,230,192,0.8)}
+.ln-btn.secondary:hover{background:rgba(200,146,42,0.1);color:var(--gold-light)}
+.ln-center{font-size:12px;color:rgba(245,230,192,0.45);text-align:center}
+
+/* RESPONSIVE */
+@media(max-width:680px){.hk-head{padding:22px 22px 18px;gap:16px}.hk-body{padding:22px 22px}.hk-symbol{font-size:60px}.hk-examples{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){body>nav .nav-sub{display:none}body>nav .nav-back span{display:none}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="../../index.html" class="nav-brand">
+    <img src="../../assets/logo.png" class="nav-logo" alt="Islamic Front Logo"
+         onerror="this.style.display='none';document.getElementById('nav-svg-hk').style.display='block'">
+    <svg id="nav-svg-hk" style="display:none;width:42px;height:42px" viewBox="0 0 42 42" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <circle cx="21" cy="21" r="20" fill="none" stroke="#c8922a" stroke-width="1.5"/>
+      <text x="21" y="17" text-anchor="middle" font-family="serif" font-size="13" fill="#e8b84b" font-weight="700">إسلامی</text>
+      <text x="21" y="30" text-anchor="middle" font-family="sans-serif" font-size="7" fill="#c8922a" letter-spacing="1">FRONT</text>
+    </svg>
+    <div>
+      <div class="nav-title" data-te="ఇస్లామిక్ ఫ్రంట్" data-en="Islamic Front">ఇస్లామిక్ ఫ్రంట్</div>
+      <div class="nav-sub" data-te="అరబిక్ నేర్చుకోండి" data-en="Learn Arabic">Learn Arabic</div>
+    </div>
+  </a>
+  <div class="nav-right">
+    <a href="index.html" class="nav-back">← <span data-te="అరబిక్ పోర్టల్" data-en="Arabic Portal">Arabic Portal</span></a>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">తెలుగు</button>
+  </div>
+</nav>
+
+<header class="lesson-hero" id="home">
+  <div class="lh-wm" aria-hidden="true">بَ بِ بُ</div>
+  <div class="lh-inner">
+    <nav class="lh-breadcrumb">
+      <a href="../../index.html" data-te="హోమ్" data-en="Home">Home</a><span>›</span>
+      <a href="../../islamic-knowledge.html" data-te="విజ్ఞాన వనరు" data-en="KC">KC</a><span>›</span>
+      <a href="index.html" data-te="అరబిక్ నేర్చుకోండి" data-en="Learn Arabic">Learn Arabic</a><span>›</span>
+      <span data-te="హరకాత్" data-en="Harakat">Harakat</span>
+    </nav>
+    <div class="lh-level" data-te="స్థాయి 2 · పాఠం 2.1–2.5" data-en="Level 2 · Lessons 2.1–2.5">Level 2 · Lessons 2.1–2.5</div>
+    <div class="lh-ar" dir="rtl" lang="ar">التشكيل والقراءة</div>
+    <h1 data-te="హరకాత్ మరియు పఠనం" data-en="Harakat &amp; Reading">Harakat &amp; Reading</h1>
+    <p data-te="అరబిక్ స్వర చిహ్నాలను నేర్చుకోండి. ఇవి అక్షరాలను పఠించేలా చేస్తాయి — ఖురాన్ సరిగ్గా చదవడానికి ఇవి అత్యవసరం." data-en="Learn the Arabic vowel marks that tell you how to pronounce each letter. Mastering harakat is essential for correct Quranic recitation.">Learn the Arabic vowel marks that tell you how to pronounce each letter. Mastering harakat is essential for correct Quranic recitation.</p>
+  </div>
+</header>
+
+<nav class="harakat-tabs" aria-label="Harakat sections">
+  <a href="#fatha" class="ht-tab active"><span class="ar">&#x064E;</span> <span data-te="ఫత్హా" data-en="Fatha">Fatha</span></a>
+  <a href="#kasra" class="ht-tab"><span class="ar">&#x0650;</span> <span data-te="కస్రా" data-en="Kasra">Kasra</span></a>
+  <a href="#damma" class="ht-tab"><span class="ar">&#x064F;</span> <span data-te="దమ్మా" data-en="Damma">Damma</span></a>
+  <a href="#sukoon" class="ht-tab"><span class="ar">&#x0652;</span> <span data-te="సుకూన్" data-en="Sukoon">Sukoon</span></a>
+  <a href="#tanween" class="ht-tab"><span class="ar">&#x064B;</span> <span data-te="తన్వీన్" data-en="Tanween">Tanween</span></a>
+</nav>
+
+<!-- FATHA -->
+<section class="hs" id="fatha" style="background:var(--white)">
+  <div class="hs-inner">
+    <div class="reveal">
+      <div class="sec-tag" data-te="పాఠం 2.1" data-en="Lesson 2.1">Lesson 2.1</div>
+      <h2 class="sec-title" data-te="ఫత్హా — పైన చిన్న గీత" data-en="Fatha — Short A Vowel">Fatha — Short A Vowel</h2>
+    </div>
+    <div class="hk-card reveal" style="transition-delay:.1s">
+      <div class="hk-head">
+        <div class="hk-symbol" dir="rtl" lang="ar">بَ</div>
+        <div class="hk-head-info">
+          <h2 data-te="ఫత్హా (الفتحة)" data-en="Fatha (الفتحة)">Fatha (الفتحة)</h2>
+          <p data-te="అక్షరం పైన ఒక చిన్న సమాంతర రేఖ (◌َ). 'అ' లేదా 'ఆ' వలె ఉచ్చరిస్తారు — 'cat' లో 'a' వలె." data-en="A small diagonal stroke above the letter (◌َ). Pronounced like a short 'a' as in 'cat' — the most common Arabic vowel.">A small diagonal stroke above the letter (◌َ). Pronounced like a short 'a' as in 'cat' — the most common Arabic vowel.</p>
+        </div>
+      </div>
+      <div class="hk-body">
+        <div class="hk-examples">
+          <div class="hk-ex">
+            <span class="hk-ex-ar" dir="rtl" lang="ar">بَ</span>
+            <span class="hk-ex-tr">ba</span>
+            <span class="hk-ex-en">Bā + Fatha</span>
+          </div>
+          <div class="hk-ex">
+            <span class="hk-ex-ar" dir="rtl" lang="ar">كَ</span>
+            <span class="hk-ex-tr">ka</span>
+            <span class="hk-ex-en">Kāf + Fatha</span>
+          </div>
+          <div class="hk-ex">
+            <span class="hk-ex-ar" dir="rtl" lang="ar">رَحْمَة</span>
+            <span class="hk-ex-tr">raḥmah</span>
+            <span class="hk-ex-en">Mercy</span>
+          </div>
+          <div class="hk-ex">
+            <span class="hk-ex-ar" dir="rtl" lang="ar">كَتَبَ</span>
+            <span class="hk-ex-tr">kataba</span>
+            <span class="hk-ex-en">He wrote</span>
+          </div>
+        </div>
+        <div class="hk-rule">
+          <strong data-te="గుర్తుంచుకోండి:" data-en="Remember:">Remember:</strong>
+          <span data-te=" ఫత్హా అత్యంత సాధారణ హరకత్. ఇది అక్షరం పైన ఉంటుంది మరియు 'అ' శబ్దం ఇస్తుంది." data-en=" Fatha is the most common harakat. It sits above the letter and gives it a short 'a' sound. If you see a letter with no harakat, it often has a fatha in spoken Arabic."> Fatha is the most common harakat. It sits above the letter and gives it a short 'a' sound. If you see a letter with no harakat, it often has a fatha in spoken Arabic.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KASRA -->
+<section class="hs" id="kasra" style="background:var(--cream)">
+  <div class="hs-inner">
+    <div class="reveal">
+      <div class="sec-tag" data-te="పాఠం 2.2" data-en="Lesson 2.2">Lesson 2.2</div>
+      <h2 class="sec-title" data-te="కస్రా — 'ఇ' స్వరం" data-en="Kasra — Short I Vowel">Kasra — Short I Vowel</h2>
+    </div>
+    <div class="hk-card reveal" style="transition-delay:.1s">
+      <div class="hk-head">
+        <div class="hk-symbol" dir="rtl" lang="ar">بِ</div>
+        <div class="hk-head-info">
+          <h2 data-te="కస్రా (الكسرة)" data-en="Kasra (الكسرة)">Kasra (الكسرة)</h2>
+          <p data-te="అక్షరం కింద ఒక చిన్న గీత (◌ِ). 'ఇ' వలె ఉచ్చరిస్తారు — 'bit' లో 'i' వలె." data-en="A small stroke below the letter (◌ِ). Pronounced like a short 'i' as in 'bit'. It 'breaks' the letter downward.">A small stroke below the letter (◌ِ). Pronounced like a short 'i' as in 'bit'. It 'breaks' the letter downward.</p>
+        </div>
+      </div>
+      <div class="hk-body">
+        <div class="hk-examples">
+          <div class="hk-ex">
+            <span class="hk-ex-ar" dir="rtl" lang="ar">بِ</span>
+            <span class="hk-ex-tr">bi</span>
+            <span class="hk-ex-en">Bā + Kasra</span>
+          </div>
+          <div class="hk-ex">
+            <span class="hk-ex-ar" dir="rtl" lang="ar">بِسْمِ</span>
+            <span class="hk-ex-tr">bismi</span>
+            <span class="hk-ex-en">In the name of</span>
+          </div>
+          <div class="hk-ex">
+            <span class="hk-ex-ar" dir="rtl" lang="ar">رَبِّ</span>
+            <span class="hk-ex-tr">rabbi</span>
+            <span class="hk-ex-en">My Lord</span>
+          </div>
+          <div class="hk-ex">
+            <span class="hk-ex-ar" dir="rtl" lang="ar">عِلْم</span>
+            <span class="hk-ex-tr">ʿilm</span>
+            <span class="hk-ex-en">Knowledge</span>
+          </div>
+        </div>
+        <div class="hk-rule">
+          <strong data-te="గుర్తుంచుకోండి:" data-en="Remember:">Remember:</strong>
+          <span data-te=" 'بِسْمِ اللَّهِ' (Bismillah) లో మూడు కస్రాలు ఉన్నాయి. ఈ మూడు అక్షరాలు 'ఇ' శబ్దంతో పలుకుతాయి." data-en=" The word بِسْمِ (bismi — 'in the name of') contains two kasras. This is one of the first words you'll recognize in Quranic recitation."> The word بِسْمِ (bismi — 'in the name of') contains two kasras. This is one of the first words you'll recognize in Quranic recitation.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DAMMA -->
+<section class="hs" id="damma" style="background:var(--white)">
+  <div class="hs-inner">
+    <div class="reveal">
+      <div class="sec-tag" data-te="పాఠం 2.3" data-en="Lesson 2.3">Lesson 2.3</div>
+      <h2 class="sec-title" data-te="దమ్మా — 'ఉ' స్వరం" data-en="Damma — Short U Vowel">Damma — Short U Vowel</h2>
+    </div>
+    <div class="hk-card reveal" style="transition-delay:.1s">
+      <div class="hk-head">
+        <div class="hk-symbol" dir="rtl" lang="ar">بُ</div>
+        <div class="hk-head-info">
+          <h2 data-te="దమ్మా (الضمة)" data-en="Damma (الضمة)">Damma (الضمة)</h2>
+          <p data-te="అక్షరం పైన ఒక చిన్న 'ు' ఆకారం (◌ُ). 'ఉ' వలె ఉచ్చరిస్తారు — 'put' లో 'u' వలె." data-en="A small hook above the letter (◌ُ), shaped like a miniature wāw. Pronounced like a short 'u' as in 'put'.">A small hook above the letter (◌ُ), shaped like a miniature wāw. Pronounced like a short 'u' as in 'put'.</p>
+        </div>
+      </div>
+      <div class="hk-body">
+        <div class="hk-examples">
+          <div class="hk-ex">
+            <span class="hk-ex-ar" dir="rtl" lang="ar">بُ</span>
+            <span class="hk-ex-tr">bu</span>
+            <span class="hk-ex-en">Bā + Damma</span>
+          </div>
+          <div class="hk-ex">
+            <span class="hk-ex-ar" dir="rtl" lang="ar">كُلّ</span>
+            <span class="hk-ex-tr">kull</span>
+            <span class="hk-ex-en">Every / All</span>
+          </div>
+          <div class="hk-ex">
+            <span class="hk-ex-ar" dir="rtl" lang="ar">رُوحٌ</span>
+            <span class="hk-ex-tr">rūḥun</span>
+            <span class="hk-ex-en">Soul</span>
+          </div>
+          <div class="hk-ex">
+            <span class="hk-ex-ar" dir="rtl" lang="ar">قُرْآن</span>
+            <span class="hk-ex-tr">qurʾān</span>
+            <span class="hk-ex-en">The Quran</span>
+          </div>
+        </div>
+        <div class="hk-rule">
+          <strong data-te="గుర్తుంచుకోండి:" data-en="Remember:">Remember:</strong>
+          <span data-te=" 'قُرْآن' (Qur'ān) అనే పదంలో మొదటి అక్షరం 'ق' పై దమ్మా ఉంది — 'కు' అని పలుకుతారు. ఇది చాలా ముఖ్యమైన పదం!" data-en=" The word قُرْآن (Quran) begins with qāf + damma — pronounced 'qu'. Recognizing this mark helps you read this sacred word correctly."> The word قُرْآن (Quran) begins with qāf + damma — pronounced 'qu'. Recognizing this mark helps you read this sacred word correctly.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SUKOON -->
+<section class="hs" id="sukoon" style="background:var(--cream)">
+  <div class="hs-inner">
+    <div class="reveal">
+      <div class="sec-tag" data-te="పాఠం 2.4" data-en="Lesson 2.4">Lesson 2.4</div>
+      <h2 class="sec-title" data-te="సుకూన్ — స్వరం లేదు" data-en="Sukoon — No Vowel">Sukoon — No Vowel</h2>
+    </div>
+    <div class="hk-card reveal" style="transition-delay:.1s">
+      <div class="hk-head">
+        <div class="hk-symbol" dir="rtl" lang="ar">بْ</div>
+        <div class="hk-head-info">
+          <h2 data-te="సుకూన్ (السكون)" data-en="Sukoon (السكون)">Sukoon (السكون)</h2>
+          <p data-te="అక్షరం పైన ఒక చిన్న వృత్తం (◌ْ). ఈ అక్షరానికి స్వరం లేదు — ఆగు. మునుపటి స్వరం తరువాత నేరుగా ఈ హల్లు వస్తుంది." data-en="A small circle above the letter (◌ْ) indicating no vowel follows — the letter is 'silent' or stops abruptly. It creates closed syllables.">A small circle above the letter (◌ْ) indicating no vowel follows — the letter is 'silent' or stops abruptly. It creates closed syllables.</p>
+        </div>
+      </div>
+      <div class="hk-body">
+        <div class="hk-examples">
+          <div class="hk-ex">
+            <span class="hk-ex-ar" dir="rtl" lang="ar">بِسْمِ</span>
+            <span class="hk-ex-tr">bismi</span>
+            <span class="hk-ex-en">Sīn has sukoon</span>
+          </div>
+          <div class="hk-ex">
+            <span class="hk-ex-ar" dir="rtl" lang="ar">قُلْ</span>
+            <span class="hk-ex-tr">qul</span>
+            <span class="hk-ex-en">Say (command)</span>
+          </div>
+          <div class="hk-ex">
+            <span class="hk-ex-ar" dir="rtl" lang="ar">أَلْحَمْدُ</span>
+            <span class="hk-ex-tr">al-ḥamdu</span>
+            <span class="hk-ex-en">All praise</span>
+          </div>
+          <div class="hk-ex">
+            <span class="hk-ex-ar" dir="rtl" lang="ar">عَبْد</span>
+            <span class="hk-ex-tr">ʿabd</span>
+            <span class="hk-ex-en">Servant / Slave of Allah</span>
+          </div>
+        </div>
+        <div class="hk-rule">
+          <strong data-te="గుర్తుంచుకోండి:" data-en="Remember:">Remember:</strong>
+          <span data-te=" سُكُون అంటే 'నిశ్శబ్దం'. ఈ చిహ్నం ఉన్న అక్షరం స్వరం లేకుండా పలుకుతారు. 'بِسْمِ' లో 'سْ' ని గమనించండి." data-en=" Sukoon means 'stillness'. The letter with this mark has no following vowel — it closes the syllable. Notice سْ in بِسْمِ (bismi) — the sīn stops cleanly."> Sukoon means 'stillness'. The letter with this mark has no following vowel — it closes the syllable. Notice سْ in بِسْمِ (bismi) — the sīn stops cleanly.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TANWEEN -->
+<section class="hs" id="tanween" style="background:var(--white)">
+  <div class="hs-inner">
+    <div class="reveal">
+      <div class="sec-tag" data-te="పాఠం 2.5" data-en="Lesson 2.5">Lesson 2.5</div>
+      <h2 class="sec-title" data-te="తన్వీన్ — నూనేషన్" data-en="Tanween — Nunation">Tanween — Nunation</h2>
+    </div>
+    <div class="hk-card reveal" style="transition-delay:.1s">
+      <div class="hk-head">
+        <div class="hk-symbol" dir="rtl" lang="ar">بً بٍ بٌ</div>
+        <div class="hk-head-info">
+          <h2 data-te="తన్వీన్ (التنوين)" data-en="Tanween (التنوين)">Tanween (التنوين)</h2>
+          <p data-te="హరకత్ ద్విగుణం — పదం చివరలో 'న్' శబ్దం అదనంగా వస్తుంది. పదం నిర్వచిత కానిదని (అనిర్వాచక) సూచిస్తుంది." data-en="Double harakat at the end of a word, adding an 'n' sound. It marks indefinite nouns — like 'a' in English (a book, a house).">Double harakat at the end of a word, adding an 'n' sound. It marks indefinite nouns — like 'a' in English (a book, a house).</p>
+        </div>
+      </div>
+      <div class="hk-body">
+        <div class="reveal" style="overflow-x:auto">
+          <table class="hk-compare">
+            <thead>
+              <tr>
+                <th data-te="రకం" data-en="Type">Type</th>
+                <th data-te="చిహ్నం" data-en="Symbol">Symbol</th>
+                <th data-te="ఉదాహరణ" data-en="Example">Example</th>
+                <th data-te="పఠనం" data-en="Reading">Reading</th>
+                <th data-te="అర్థం" data-en="Meaning">Meaning</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-te="తన్వీన్ ఫత్హ్" data-en="Tanween Fath">Tanween Fath</td>
+                <td class="ar" dir="rtl" lang="ar">◌ً</td>
+                <td class="ar" dir="rtl" lang="ar">كِتَابًا</td>
+                <td>kitāban</td>
+                <td data-te="ఒక పుస్తకాన్ని" data-en="a book (obj.)">a book (obj.)</td>
+              </tr>
+              <tr>
+                <td data-te="తన్వీన్ కస్ర్" data-en="Tanween Kasr">Tanween Kasr</td>
+                <td class="ar" dir="rtl" lang="ar">◌ٍ</td>
+                <td class="ar" dir="rtl" lang="ar">كِتَابٍ</td>
+                <td>kitābin</td>
+                <td data-te="ఒక పుస్తకానికి" data-en="of a book">of a book</td>
+              </tr>
+              <tr>
+                <td data-te="తన్వీన్ దమ్మ్" data-en="Tanween Damm">Tanween Damm</td>
+                <td class="ar" dir="rtl" lang="ar">◌ٌ</td>
+                <td class="ar" dir="rtl" lang="ar">كِتَابٌ</td>
+                <td>kitābun</td>
+                <td data-te="ఒక పుస్తకం" data-en="a book (subj.)">a book (subj.)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="hk-rule" style="margin-top:20px">
+          <strong data-te="గుర్తుంచుకోండి:" data-en="Remember:">Remember:</strong>
+          <span data-te=" పదం చివర ద్విగుణ హరకత్ (◌ً ◌ٍ ◌ٌ) ఉంటే, అదనంగా 'న్' శబ్దం వస్తుంది. ఖురానీ పఠనంలో ఇవి చాలా సాధారణం." data-en=" When you see double harakat at the end of a word (◌ً ◌ٍ ◌ٌ), add an 'n' sound. These are extremely common in Quranic recitation."> When you see double harakat at the end of a word (◌ً ◌ٍ ◌ٌ), add an 'n' sound. These are extremely common in Quranic recitation.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="lesson-nav">
+  <div class="lesson-nav-inner">
+    <a href="alphabet.html" class="ln-btn secondary">← <span data-te="అక్షరమాల" data-en="Alphabet">Alphabet</span></a>
+    <div class="ln-center" data-te="స్థాయి 2 · పాఠం 2.1–2.5" data-en="Level 2 · Lessons 2.1–2.5">Level 2 · Lessons 2.1–2.5</div>
+    <a href="vocabulary.html" class="ln-btn primary"><span data-te="తదుపరి: పదజాలం" data-en="Next: Vocabulary">Next: Vocabulary</span> →</a>
+  </div>
+</footer>
+
+<script>
+(function(){
+'use strict';
+var lang=localStorage.getItem('if-lang')||'te';
+function applyLang(l){
+  lang=l;
+  document.querySelectorAll('[data-te],[data-en]').forEach(function(el){
+    var v=l==='te'?el.getAttribute('data-te'):el.getAttribute('data-en');
+    if(v!=null)el.innerHTML=v;
+  });
+  var btn=document.getElementById('lang-btn');
+  if(btn)btn.textContent=l==='te'?'English':'తెలుగు';
+  var hr=document.getElementById('html-root');
+  if(hr)hr.lang=l==='te'?'te':'en';
+  localStorage.setItem('if-lang',l);
+}
+function toggleLang(){applyLang(lang==='te'?'en':'te')}
+window.toggleLang=toggleLang;
+
+/* tabs active state on scroll */
+function initTabs(){
+  var tabs=document.querySelectorAll('.ht-tab');
+  var ids=['fatha','kasra','damma','sukoon','tanween'];
+  if(!window.IntersectionObserver)return;
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        var id=e.target.id;
+        tabs.forEach(function(t){t.classList.toggle('active',t.getAttribute('href')==='#'+id)});
+      }
+    });
+  },{threshold:.4});
+  ids.forEach(function(id){var el=document.getElementById(id);if(el)io.observe(el)});
+}
+
+function initReveal(){
+  if(!window.IntersectionObserver)return;
+  var io=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('reveal-in');io.unobserve(e.target)}})},{threshold:.06});
+  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+}
+
+document.addEventListener('DOMContentLoaded',function(){
+  applyLang(lang);
+  initReveal();
+  initTabs();
+});
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="en" id="html-root">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Learn Arabic — Islamic Front Knowledge Center</title>
+<meta name="description" content="A structured roadmap to learn Arabic from the alphabet to Quranic Arabic. Free lessons by Islamic Front, Mangalagiri.">
+<meta name="keywords" content="learn Arabic, Arabic alphabet, Quranic Arabic, Islamic learning, Arabic for beginners">
+<meta property="og:title" content="Learn Arabic | Islamic Front Knowledge Center">
+<meta property="og:description" content="From alphabet to Quran — a structured Arabic learning roadmap, free for all.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:wght@300;400;500&family=Noto+Sans+Telugu:wght@300;400;500;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --green-deep:#0d3b1e;--green-mid:#1a5c30;--green-light:#2e8b57;
+  --gold:#c8922a;--gold-light:#e8b84b;--gold-pale:#f5e6c0;
+  --cream:#faf6ee;--white:#ffffff;
+  --text-dark:#1a1208;--text-mid:#3d3018;--text-muted:#7a6840;
+  --border:rgba(200,146,42,0.25);
+  --radius:14px;--shadow:0 4px 24px rgba(0,0,0,0.10);
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text-dark);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+[id]{scroll-margin-top:130px}
+a{color:inherit;text-decoration:none}
+::selection{background:rgba(200,146,42,0.28);color:var(--text-dark)}
+::-webkit-scrollbar{width:10px}
+::-webkit-scrollbar-track{background:var(--cream)}
+::-webkit-scrollbar-thumb{background:linear-gradient(var(--gold),var(--gold-light));border-radius:100px;border:3px solid var(--cream)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--gold-light);outline-offset:3px;border-radius:3px}
+
+/* NAV */
+body>nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(13,59,30,0.96);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid rgba(200,146,42,0.3);padding:0 5vw;display:flex;align-items:center;justify-content:space-between;height:68px}
+.nav-brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.nav-logo{width:42px;height:42px;border-radius:50%;object-fit:cover}
+.nav-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--gold-light);letter-spacing:0.5px;line-height:1.2}
+.nav-sub{font-size:10px;color:rgba(232,184,75,0.7);letter-spacing:1.5px;text-transform:uppercase}
+.nav-right{display:flex;align-items:center;gap:14px}
+.nav-back{display:inline-flex;align-items:center;gap:6px;color:rgba(255,255,255,0.8);text-decoration:none;font-size:13px;letter-spacing:0.3px;transition:color .2s;white-space:nowrap}
+.nav-back:hover{color:var(--gold-light)}
+.lang-btn{background:rgba(200,146,42,0.12);border:1px solid rgba(200,146,42,0.4);color:var(--gold-light);font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;letter-spacing:0.5px;padding:6px 14px;border-radius:100px;cursor:pointer;transition:background .2s}
+.lang-btn:hover{background:rgba(200,146,42,0.22)}
+
+/* HERO — PREMIUM (reference design, shared with Urdu portal) */
+.al-hero{padding:130px 5vw 80px;background:linear-gradient(155deg,var(--green-deep) 0%,#0a2a14 55%,#122b10 100%);position:relative;overflow:hidden;isolation:isolate}
+.al-hero::before{content:'';position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse 70% 60% at 82% 38%,rgba(200,146,42,0.13) 0%,transparent 65%),radial-gradient(ellipse 45% 50% at 8% 88%,rgba(46,139,87,0.14) 0%,transparent 55%)}
+.al-hero-wm{position:absolute;right:-2vw;top:50%;transform:translateY(-52%);font-family:'Amiri',serif;font-size:clamp(120px,20vw,260px);color:rgba(200,146,42,0.06);line-height:1;white-space:nowrap;letter-spacing:-8px;direction:rtl;user-select:none;pointer-events:none;animation:wmFade 1.4s ease both}
+@keyframes wmFade{from{opacity:0;transform:translateY(-52%) translateX(40px)}to{opacity:1;transform:translateY(-52%) translateX(0)}}
+.al-hero-inner{max-width:840px;position:relative;z-index:1}
+.al-breadcrumb{display:flex;align-items:center;gap:7px;font-size:12px;color:rgba(245,230,192,0.5);margin-bottom:20px;flex-wrap:wrap}
+.al-breadcrumb a{color:rgba(245,230,192,0.5);text-decoration:none;transition:color .2s}
+.al-breadcrumb a:hover{color:var(--gold-light)}
+.al-breadcrumb span{color:rgba(245,230,192,0.28)}
+.al-phase{display:inline-flex;align-items:center;gap:8px;background:rgba(200,146,42,0.1);border:1px solid rgba(200,146,42,0.32);border-radius:100px;padding:6px 16px;margin-bottom:22px;font-size:11px;color:var(--gold-light);letter-spacing:1.5px;text-transform:uppercase}
+.al-phase::before{content:'★\FE0E';font-size:9px}
+.al-hero-ar{font-family:'Amiri',serif;font-size:clamp(34px,5.5vw,64px);color:var(--gold-light);direction:rtl;line-height:1.3;margin-bottom:6px;animation:slideUp .8s cubic-bezier(.16,1,.3,1) .1s both}
+.al-hero h1{font-family:'Playfair Display','Noto Sans Telugu',serif;font-size:clamp(32px,5vw,58px);font-weight:900;color:var(--white);line-height:1.1;margin-bottom:18px;animation:slideUp .8s cubic-bezier(.16,1,.3,1) .2s both}
+.al-hero h1 span{background:linear-gradient(135deg,var(--gold-light),#fff8cc);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.al-hero-lead{font-family:'Cormorant Garamond','Noto Sans Telugu',serif;font-size:clamp(15px,1.9vw,20px);color:rgba(245,230,192,0.78);max-width:580px;line-height:1.75;margin-bottom:34px;animation:slideUp .8s cubic-bezier(.16,1,.3,1) .3s both}
+@keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+.al-cta-row{display:flex;align-items:center;gap:16px;flex-wrap:wrap;animation:slideUp .8s cubic-bezier(.16,1,.3,1) .4s both}
+.al-cta{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--green-deep);font-weight:700;font-size:12px;letter-spacing:1.2px;text-transform:uppercase;padding:15px 34px;border-radius:6px;text-decoration:none;transition:transform .2s,box-shadow .2s;box-shadow:0 10px 32px -10px rgba(200,146,42,0.55),inset 0 1px 0 rgba(255,255,255,0.2)}
+.al-cta:hover{transform:translateY(-2px);box-shadow:0 16px 42px -10px rgba(200,146,42,0.65)}
+.al-cta svg{width:16px;height:16px}
+.al-hero-stats{display:flex;gap:30px;margin-top:42px;flex-wrap:wrap;animation:slideUp .8s cubic-bezier(.16,1,.3,1) .5s both}
+.al-stat{display:flex;flex-direction:column;gap:2px}
+.al-stat-num{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;background:linear-gradient(135deg,var(--gold-light),#fffbe0);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
+.al-stat-label{font-size:10.5px;color:rgba(245,230,192,0.5);letter-spacing:0.8px;text-transform:uppercase}
+@media(prefers-reduced-motion:reduce){.al-hero-ar,.al-hero h1,.al-hero-lead,.al-cta-row,.al-hero-stats,.al-hero-wm{animation:none!important}}
+
+/* STICKY NAV */
+.al-sticky{position:fixed;top:68px;left:0;right:0;z-index:90;background:rgba(13,59,30,0.97);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid rgba(200,146,42,0.28);box-shadow:0 4px 18px rgba(0,0,0,0.16);transform:translateY(-130%);transition:transform .32s cubic-bezier(.16,1,.3,1)}
+.al-sticky.sticky-on{transform:translateY(0)}
+.al-sticky-inner{max-width:1200px;margin:0 auto;display:flex;gap:6px;overflow-x:auto;padding:9px 5vw;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.al-sticky-inner::-webkit-scrollbar{display:none}
+.al-sticky a{white-space:nowrap;flex-shrink:0;font-size:12px;color:rgba(245,230,192,0.78);text-decoration:none;border:1px solid rgba(200,146,42,0.22);background:rgba(200,146,42,0.05);padding:6px 13px;border-radius:100px;transition:background .18s,color .18s,border-color .18s}
+.al-sticky a:hover,.al-sticky a.spy-active{background:var(--gold);color:var(--green-deep);border-color:var(--gold);font-weight:600}
+.al-sticky-home{border-right:1px solid rgba(200,146,42,0.28) !important;padding-right:16px !important;margin-right:4px !important}
+
+/* SECTIONS (Urdu design system) */
+.lu-sec{padding:80px 5vw}
+.lu-sec-inner{max-width:1100px;margin:0 auto}
+.lu-sec-label{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.lu-sec-title{font-family:'Playfair Display','Noto Sans Telugu',serif;font-size:clamp(1.7rem,4vw,2.4rem);font-weight:700;color:var(--text-dark);margin-bottom:10px;line-height:1.25}
+.lu-sec-title span{color:var(--green-light)}
+.lu-sec-subtitle{font-size:1rem;color:var(--text-muted);max-width:560px;line-height:1.75}
+.lu-sec-hdr{margin-bottom:50px}
+
+/* WHY CARDS */
+.why-sec{background:var(--white)}
+.why-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:22px}
+.why-card{background:var(--cream);border:1px solid var(--border);border-radius:var(--radius);padding:28px 24px;transition:all .3s cubic-bezier(.16,1,.3,1);position:relative;overflow:hidden}
+.why-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold-light));transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.why-card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.why-card:hover::before{transform:scaleX(1)}
+.why-icon{width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,rgba(200,146,42,0.12),rgba(200,146,42,0.06));display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-size:1.5rem}
+.why-card h3{font-family:'Playfair Display','Noto Sans Telugu',serif;font-size:1.05rem;font-weight:700;color:var(--text-dark);margin-bottom:8px}
+.why-card p{font-size:.87rem;color:var(--text-muted);line-height:1.7}
+.why-card-ar{font-family:'Amiri',serif;font-size:1.15rem;color:var(--gold);direction:rtl;margin-top:14px;line-height:1.6;border-top:1px solid var(--border);padding-top:12px}
+
+/* ROADMAP */
+.rm-sec{background:var(--green-deep);padding:80px 5vw}
+.rm-sec-inner{max-width:1100px;margin:0 auto}
+.rm-label{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.rm-title{font-family:'Playfair Display','Noto Sans Telugu',serif;font-size:clamp(1.7rem,4vw,2.4rem);font-weight:700;color:var(--white);margin-bottom:10px}
+.rm-title span{color:var(--gold-light)}
+.rm-subtitle{font-size:.95rem;color:rgba(245,230,192,.65);max-width:520px;line-height:1.7;margin-bottom:52px}
+.rm-track{display:flex;align-items:flex-start;gap:0;position:relative;padding-bottom:12px}
+.rm-track::before{content:'';position:absolute;top:28px;left:28px;right:28px;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold-light) 50%,rgba(200,146,42,0.18) 100%);border-radius:3px;z-index:0}
+.rm-node{display:flex;flex-direction:column;align-items:center;flex:1;position:relative;z-index:1;text-decoration:none}
+.rm-dot{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Amiri',serif;font-weight:700;font-size:1.35rem;margin-bottom:14px;transition:transform .3s;flex-shrink:0}
+.rm-dot.done{background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--green-deep);box-shadow:0 4px 16px rgba(200,146,42,0.40)}
+.rm-dot.soon{background:rgba(255,255,255,0.08);border:2px solid rgba(200,146,42,0.30);color:rgba(245,230,192,0.50)}
+.rm-node:hover .rm-dot{transform:translateY(-4px) scale(1.08);box-shadow:0 8px 22px rgba(200,146,42,0.50)}
+.rm-node-title{font-family:'Playfair Display','Noto Sans Telugu',serif;font-size:.82rem;font-weight:600;color:var(--white);text-align:center;margin-bottom:4px}
+.rm-node-ar{font-family:'Amiri',serif;font-size:1rem;color:var(--gold-light);direction:rtl;line-height:1.6;text-align:center}
+.rm-node-tag{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:3px 9px;border-radius:12px;margin-top:6px}
+.rm-node-tag.avail{background:rgba(46,139,87,0.25);color:#7de0a4}
+.rm-node-tag.soon{background:rgba(255,255,255,0.08);color:rgba(245,230,192,0.45)}
+/* Mobile roadmap */
+.rm-mobile{display:none;flex-direction:column;gap:0}
+.rm-mnode{display:flex;align-items:flex-start;gap:16px;padding:16px 0;position:relative}
+.rm-mnode::after{content:'';position:absolute;left:27px;top:62px;bottom:-16px;width:2px;background:rgba(200,146,42,0.25)}
+.rm-mnode:last-child::after{display:none}
+.rm-mdot{width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Amiri',serif;font-weight:700;font-size:1.3rem;flex-shrink:0}
+.rm-mdot.done{background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--green-deep);box-shadow:0 4px 14px rgba(200,146,42,0.35)}
+.rm-mdot.soon{background:rgba(255,255,255,0.08);border:2px solid rgba(200,146,42,0.25);color:rgba(245,230,192,0.45)}
+.rm-minfo{padding-top:6px}
+.rm-minfo strong{display:block;font-family:'Playfair Display','Noto Sans Telugu',serif;font-size:.92rem;color:var(--white);margin-bottom:3px}
+.rm-minfo .ar{font-family:'Amiri',serif;font-size:1rem;color:var(--gold-light);direction:rtl;display:block;line-height:1.6}
+.rm-minfo em{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:2px 8px;border-radius:10px;margin-top:6px;display:inline-block;font-style:normal}
+.rm-minfo em.avail{background:rgba(46,139,87,0.25);color:#7de0a4}
+.rm-minfo em.soon{background:rgba(255,255,255,0.08);color:rgba(245,230,192,0.45)}
+@media(max-width:700px){.rm-track{display:none}.rm-mobile{display:flex}}
+
+/* LEVEL CARDS */
+.lvl-sec{background:var(--cream);padding:80px 5vw}
+.lc{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:14px;overflow:hidden;transition:box-shadow .3s}
+.lc.lc-open{box-shadow:0 8px 32px rgba(0,0,0,0.10)}
+.lc-head{display:flex;align-items:center;gap:16px;padding:20px 24px;cursor:pointer;user-select:none;transition:background .2s}
+.lc-head:hover{background:rgba(200,146,42,0.04)}
+.lc-num{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,var(--green-deep),var(--green-mid));color:var(--gold-light);font-family:'Amiri',serif;font-weight:700;font-size:1.3rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.lc-info{flex:1;min-width:0}
+.lc-info h3{font-family:'Playfair Display','Noto Sans Telugu',serif;font-size:1.1rem;font-weight:700;color:var(--text-dark);margin-bottom:3px;overflow-wrap:break-word;word-break:break-word}
+.lc-ar{font-family:'Amiri',serif;font-size:1.05rem;color:var(--text-muted);direction:rtl;line-height:1.5;display:block}
+.lc-tag{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:3px 10px;border-radius:12px}
+.lc-tag.avail{background:rgba(46,139,87,0.12);color:var(--green-light);border:1px solid rgba(46,139,87,0.25)}
+.lc-tag.soon{background:rgba(200,146,42,0.08);color:var(--gold);border:1px solid rgba(200,146,42,0.20)}
+.lc-chevron{color:var(--text-muted);transition:transform .3s;flex-shrink:0}
+.lc.lc-open .lc-chevron{transform:rotate(180deg)}
+.lc-body{max-height:0;overflow:hidden;transition:max-height .5s ease}
+.lc.lc-open .lc-body{max-height:2000px}
+.lc-inner{padding:0 24px 24px 24px;border-top:1px solid var(--border)}
+.lc-desc{font-size:.88rem;color:var(--text-muted);line-height:1.75;margin:18px 0 0}
+.lc-lessons{display:flex;flex-direction:column;gap:9px;margin:18px 0 0}
+.ll{display:flex;align-items:center;gap:14px;padding:12px 16px;border:1px solid rgba(200,146,42,0.14);border-radius:10px;text-decoration:none;background:rgba(200,146,42,0.02);transition:background .18s,border-color .18s,transform .18s}
+.ll:hover{background:rgba(200,146,42,0.08);border-color:rgba(200,146,42,0.36);transform:translateX(4px)}
+.ll-num{font-size:10.5px;font-weight:700;color:var(--gold);background:rgba(200,146,42,0.1);border-radius:100px;padding:2px 9px;flex-shrink:0;white-space:nowrap}
+.ll-info{flex:1;min-width:0}
+.ll-name{display:block;font-size:13.5px;font-weight:600;color:var(--text-dark)}
+.ll-ar{display:block;font-family:'Amiri',serif;font-size:15px;color:var(--text-muted);margin-top:2px;direction:rtl;line-height:1.5}
+.ll-go{flex-shrink:0;font-size:12px;font-weight:600;color:var(--gold);white-space:nowrap}
+
+/* WORD OF THE DAY */
+.word-sec{background:var(--green-deep);padding:80px 5vw}
+.word-inner{max-width:900px;margin:0 auto;text-align:center}
+.word-label{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.word-title{font-family:'Playfair Display','Noto Sans Telugu',serif;font-size:clamp(1.7rem,4vw,2.4rem);font-weight:700;color:var(--white);margin-bottom:8px}
+.word-subtitle{font-size:.92rem;color:rgba(245,230,192,.60);margin-bottom:44px}
+.word-card{background:rgba(255,255,255,0.05);border:1px solid rgba(200,146,42,0.25);border-radius:20px;padding:40px 36px;max-width:580px;margin:0 auto 28px;position:relative;overflow:hidden}
+.word-card::before{content:'';position:absolute;top:-60px;right:-60px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(200,146,42,0.08),transparent 70%)}
+#word-ar{font-family:'Amiri',serif;font-size:clamp(2.8rem,9vw,5rem);color:var(--gold-light);direction:rtl;line-height:1.4;margin-bottom:10px;display:block}
+#word-tr{font-family:'Cormorant Garamond',serif;font-size:clamp(1.1rem,3vw,1.5rem);color:rgba(245,230,192,.70);font-style:italic;margin-bottom:10px}
+#word-en{font-size:clamp(.95rem,2.5vw,1.1rem);color:var(--gold);font-weight:600;margin-bottom:16px}
+#word-note{font-size:.87rem;color:rgba(245,230,192,.60);line-height:1.8;font-style:italic;border-top:1px solid rgba(200,146,42,0.18);padding-top:16px;margin-top:4px}
+.word-nav{display:flex;align-items:center;justify-content:center;gap:16px}
+.word-btn{background:rgba(255,255,255,0.07);border:1px solid rgba(200,146,42,0.25);color:rgba(245,230,192,.70);width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;font-size:1.1rem}
+.word-btn:hover{background:rgba(200,146,42,0.20);color:var(--gold-light)}
+#word-counter{font-size:.8rem;color:rgba(245,230,192,.45);min-width:60px;text-align:center}
+
+/* COMING SOON */
+.coming-sec{background:var(--cream);padding:80px 5vw}
+.coming-inner{max-width:1100px;margin:0 auto}
+.coming-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px}
+.cm-card{border:1px solid var(--border);border-radius:var(--radius);padding:22px 20px;background:var(--white);display:flex;align-items:flex-start;gap:14px;transition:all .28s;position:relative}
+.cm-card.live{cursor:pointer}
+.cm-card.live:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:rgba(200,146,42,0.40)}
+.cm-card.dim{opacity:.62}
+.cm-icon{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0}
+.cm-card.live .cm-icon{background:linear-gradient(135deg,rgba(46,139,87,0.12),rgba(46,139,87,0.06))}
+.cm-card.dim .cm-icon{background:rgba(0,0,0,0.04)}
+.cm-icon.ar{font-family:'Amiri',serif;direction:rtl}
+.cm-body h4{font-family:'Playfair Display','Noto Sans Telugu',serif;font-size:.97rem;font-weight:700;color:var(--text-dark);margin-bottom:4px}
+.cm-body p{font-size:.80rem;color:var(--text-muted);line-height:1.6;margin-bottom:8px}
+.cm-badge{font-size:.60rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;padding:3px 9px;border-radius:10px;display:inline-block}
+.cm-badge.avail{background:rgba(46,139,87,0.12);color:var(--green-light)}
+.cm-badge.soon{background:rgba(200,146,42,0.10);color:var(--gold)}
+
+/* FOOTER */
+.lu-footer{background:var(--green-deep);border-top:1px solid rgba(200,146,42,0.18);padding:48px 5vw 36px;text-align:center}
+.lu-footer-brand{font-family:'Amiri',serif;font-size:2.4rem;color:var(--gold-light);direction:rtl;display:block;margin-bottom:6px;line-height:1.4}
+.lu-footer-tag{font-size:.85rem;color:rgba(245,230,192,.55);margin-bottom:28px}
+.lu-footer-links{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:28px}
+.lu-footer-links a{color:rgba(245,230,192,.60);font-size:.82rem;padding:7px 16px;border:1px solid rgba(200,146,42,0.20);border-radius:20px;transition:all .2s}
+.lu-footer-links a:hover{color:var(--gold-light);border-color:rgba(200,146,42,0.50)}
+.lu-footer-copy{font-size:.75rem;color:rgba(245,230,192,.30)}
+
+/* BACK TO TOP */
+#btt{position:fixed;bottom:28px;right:22px;width:46px;height:46px;border-radius:50%;background:var(--gold);color:var(--green-deep);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(200,146,42,0.45);cursor:pointer;border:none;opacity:0;transform:translateY(16px);transition:all .3s;z-index:700}
+#btt.show{opacity:1;transform:translateY(0)}
+#btt:hover{background:var(--gold-light);transform:translateY(-3px)}
+
+/* SCROLL REVEAL */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .6s ease}
+.reveal-in{opacity:1;transform:translateY(0)}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1 !important;transform:none !important;transition:none !important}}
+
+/* RESPONSIVE — TABLET */
+@media(max-width:900px){
+  .rm-node-title{font-size:.75rem}
+}
+/* RESPONSIVE — MOBILE */
+@media(max-width:768px){
+  .al-hero{padding:108px 5vw 58px}
+  .al-hero-wm{font-size:100px;opacity:.04}
+  body>nav .nav-title{font-size:15px}
+  body>nav .nav-sub{display:none}
+}
+@media(max-width:600px){
+  .al-cta{width:100%;justify-content:center}
+  .al-hero-stats{gap:22px}
+  .al-stat-num{font-size:24px}
+  .lu-sec,.rm-sec,.lvl-sec,.word-sec,.coming-sec{padding:60px 16px}
+  .lc-head{padding:16px;gap:10px}
+  .lc-num{width:38px;height:38px;font-size:1.05rem;border-radius:10px}
+  .lc-info h3{font-size:.98rem}
+  .lc-inner{padding:0 14px 18px}
+  .why-grid,.coming-grid{grid-template-columns:1fr}
+  .word-card{padding:28px 20px}
+  body>nav .nav-back span{display:none}
+}
+
+/* PRINT */
+@media print{
+  body>nav,.al-sticky,#btt,.word-nav,.lang-btn{display:none !important}
+  .al-hero{padding:14pt 5vw !important;background:white !important}
+  .al-hero h1,.al-hero-ar{color:black !important;-webkit-text-fill-color:black !important}
+  .rm-sec,.word-sec,.lu-footer{background:white !important}
+  body{background:white;color:black}
+}
+</style>
+</head>
+<body>
+
+<!-- TOP NAV -->
+<nav>
+  <a href="../../index.html" class="nav-brand">
+    <img src="../../assets/logo.png" class="nav-logo" alt="Islamic Front Logo"
+         onerror="this.style.display='none';document.getElementById('nav-svg-al').style.display='block'">
+    <svg id="nav-svg-al" style="display:none;width:42px;height:42px" viewBox="0 0 42 42" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <circle cx="21" cy="21" r="20" fill="none" stroke="#c8922a" stroke-width="1.5"/>
+      <text x="21" y="17" text-anchor="middle" font-family="serif" font-size="13" fill="#e8b84b" font-weight="700">إسلامی</text>
+      <text x="21" y="30" text-anchor="middle" font-family="sans-serif" font-size="7" fill="#c8922a" letter-spacing="1">FRONT</text>
+    </svg>
+    <div>
+      <div class="nav-title" data-te="ఇస్లామిక్ ఫ్రంట్" data-en="Islamic Front">ఇస్లామిక్ ఫ్రంట్</div>
+      <div class="nav-sub" data-te="మంగళగిరి · స్థా. 2011" data-en="Mangalagiri · Est. 2011">మంగళగిరి · స్థా. 2011</div>
+    </div>
+  </a>
+  <div class="nav-right">
+    <a href="../../islamic-knowledge.html" class="nav-back">
+      <span data-te="విజ్ఞాన వనరు" data-en="Knowledge Center">Knowledge Center</span>
+    </a>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">తెలుగు</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="al-hero" id="home">
+  <div class="al-hero-wm" aria-hidden="true">تعلُّم</div>
+  <div class="al-hero-inner">
+    <nav class="al-breadcrumb" aria-label="Breadcrumb">
+      <a href="../../index.html" data-te="హోమ్" data-en="Home">Home</a>
+      <span>›</span>
+      <a href="../../islamic-knowledge.html" data-te="విజ్ఞాన వనరు" data-en="Knowledge Center">Knowledge Center</a>
+      <span>›</span>
+      <span data-te="అరబిక్ నేర్చుకోండి" data-en="Learn Arabic">Learn Arabic</span>
+    </nav>
+    <div class="al-phase" data-te="ఇస్లామిక్ జ్ఞాన కేంద్రం" data-en="Islamic Knowledge Center">Islamic Knowledge Center</div>
+    <div class="al-hero-ar" dir="rtl" lang="ar">تعلُّم العربية</div>
+    <h1 data-te="అరబిక్ <span>నేర్చుకోండి</span>" data-en="Learn <span>Arabic</span>">Learn <span>Arabic</span></h1>
+    <p class="al-hero-lead" data-te="అక్షరమాల నుండి ఖురానీ అరబిక్ వరకు — ప్రతి ముస్లింకోసం ఉచిత, నిర్మాణబద్ధమైన అభ్యాస మార్గం." data-en="From the alphabet to Quranic Arabic — a structured, free learning roadmap crafted for every Muslim.">From the alphabet to Quranic Arabic — a structured, free learning roadmap crafted for every Muslim.</p>
+    <div class="al-cta-row">
+      <a href="#levels" class="al-cta">
+        <span data-te="అభ్యాసం ప్రారంభించండి" data-en="Start Learning">Start Learning</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+    <div class="al-hero-stats">
+      <div class="al-stat">
+        <span class="al-stat-num">6</span>
+        <span class="al-stat-label" data-te="స్థాయిలు" data-en="Levels">Levels</span>
+      </div>
+      <div class="al-stat">
+        <span class="al-stat-num">20+</span>
+        <span class="al-stat-label" data-te="పాఠాలు" data-en="Lessons">Lessons</span>
+      </div>
+      <div class="al-stat">
+        <span class="al-stat-num">∞</span>
+        <span class="al-stat-label" data-te="ఖురాన్ పదాలు" data-en="Quran Words">Quran Words</span>
+      </div>
+      <div class="al-stat">
+        <span class="al-stat-num" data-te="ఉచితం" data-en="Free">Free</span>
+        <span class="al-stat-label" data-te="ఎల్లప్పుడూ" data-en="Always">Always</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- STICKY NAV -->
+<nav class="al-sticky" id="al-sticky" aria-label="Section navigation">
+  <div class="al-sticky-inner">
+    <a href="../../islamic-knowledge.html" class="al-sticky-home" data-te="← విజ్ఞాన వనరు" data-en="← KC">← KC</a>
+    <a href="#why" data-spy="why" data-te="ఎందుకు అరబిక్?" data-en="Why Arabic?">Why Arabic?</a>
+    <a href="#roadmap" data-spy="roadmap" data-te="మార్గం" data-en="Roadmap">Roadmap</a>
+    <a href="#levels" data-spy="levels" data-te="స్థాయిలు" data-en="Levels">Levels</a>
+    <a href="#word" data-spy="word" data-te="నేటి పదం" data-en="Word of Day">Word of Day</a>
+    <a href="#coming" data-spy="coming" data-te="మాడ్యూల్స్" data-en="Modules">Modules</a>
+  </div>
+</nav>
+
+<!-- WHY LEARN ARABIC -->
+<section class="lu-sec why-sec" id="why">
+  <div class="lu-sec-inner">
+    <div class="lu-sec-hdr reveal">
+      <div class="lu-sec-label" data-te="ప్రేరణ" data-en="Motivation">Motivation</div>
+      <h2 class="lu-sec-title" data-te="అరబిక్ నేర్చుకోవడం <span>ఎందుకు ముఖ్యం</span>?" data-en="Why Learn <span>Arabic</span>?">అరబిక్ నేర్చుకోవడం <span>ఎందుకు ముఖ్యం</span>?</h2>
+      <p class="lu-sec-subtitle" data-te="అరబిక్ ఖురాన్ భాష. దానిని నేర్చుకోవడం అల్లాహ్‌తో మీ సంబంధాన్ని లోతుగా చేస్తుంది మరియు శతాబ్దాల ఇస్లామిక్ జ్ఞానాన్ని తెరుస్తుంది." data-en="Arabic is the language of the Quran. Learning it deepens your connection with Allah and unlocks centuries of Islamic knowledge.">అరబిక్ ఖురాన్ భాష. దానిని నేర్చుకోవడం అల్లాహ్‌తో మీ సంబంధాన్ని లోతుగా చేస్తుంది మరియు శతాబ్దాల ఇస్లామిక్ జ్ఞానాన్ని తెరుస్తుంది.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <div class="why-icon">📖</div>
+        <h3 data-te="ఖురాన్ అర్థం చేసుకోండి" data-en="Understand the Quran">Understand the Quran</h3>
+        <p data-te="ఖురాన్ అరబిక్‌లో అవతరించింది. అరబిక్ నేర్చుకోవడం వల్ల మీరు అల్లాహ్ వాక్కులను అనువాదం లేకుండా నేరుగా అర్థం చేసుకోగలరు." data-en="The Quran was revealed in Arabic. By learning Arabic, you connect directly with Allah's words — without depending on a translation.">The Quran was revealed in Arabic. By learning Arabic, you connect directly with Allah's words — without depending on a translation.</p>
+        <div class="why-card-ar" dir="rtl" lang="ar">وَقُرْآنًا عَرَبِيًّا</div>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon">🕌</div>
+        <h3 data-te="నమాజ్‌ను సజీవంగా చేయండి" data-en="Enrich Your Salah">Enrich Your Salah</h3>
+        <p data-te="ప్రతి నమాజ్ పఠనం అరబిక్‌లో ఉంటుంది. మాటలు అర్థమైతే, మీ నమాజ్ కేవలం ఆచారం కాదు — అల్లాహ్‌తో సంభాషణగా మారుతుంది." data-en="Every Salah recitation is in Arabic. Understanding the words transforms your prayer from ritual to a living conversation with Allah.">Every Salah recitation is in Arabic. Understanding the words transforms your prayer from ritual to a living conversation with Allah.</p>
+        <div class="why-card-ar" dir="rtl" lang="ar">قَدْ أَفْلَحَ الْمُؤْمِنُونَ</div>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon">🌟</div>
+        <h3 data-te="ఇస్లామిక్ జ్ఞానం అన్‌లాక్ చేయండి" data-en="Unlock Islamic Knowledge">Unlock Islamic Knowledge</h3>
+        <p data-te="శతాబ్దాల ఇస్లామిక్ పండిత్యాన్ని అన్‌లాక్ చేయండి. అరబిక్ అర్థమైతే హదీస్, ఫిఖ్ మరియు తఫ్సీర్‌లను అసలు రూపంలో చదువగలరు." data-en="Unlock centuries of Islamic scholarship. Understanding Arabic gives you direct access to Hadith, Fiqh, and Tafsir in their original form.">Unlock centuries of Islamic scholarship. Understanding Arabic gives you direct access to Hadith, Fiqh, and Tafsir in their original form.</p>
+        <div class="why-card-ar" dir="rtl" lang="ar">طَلَبُ الْعِلْمِ فَرِيضَةٌ</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROADMAP -->
+<section class="rm-sec" id="roadmap">
+  <div class="rm-sec-inner">
+    <div class="rm-label" data-te="మీ ప్రయాణం" data-en="Your Journey">Your Journey</div>
+    <h2 class="rm-title reveal" data-te="6-స్థాయి <span>నేర్చుకునే మార్గం</span>" data-en="6-Level <span>Learning Roadmap</span>">6-స్థాయి <span>నేర్చుకునే మార్గం</span></h2>
+    <p class="rm-subtitle reveal" data-te="అక్షరమాల నుండి ఖురానీ అరబిక్ వరకు — దశలవారీగా అరబిక్ నేర్చుకోండి." data-en="From alphabet to Quranic Arabic — learn Arabic step by step.">అక్షరమాల నుండి ఖురానీ అరబిక్ వరకు — దశలవారీగా అరబిక్ నేర్చుకోండి.</p>
+
+    <!-- Desktop roadmap -->
+    <div class="rm-track" role="list">
+      <a href="#lc1" class="rm-node" role="listitem">
+        <div class="rm-dot done">١</div>
+        <div class="rm-node-title" data-te="అక్షరమాల" data-en="Alphabet">Alphabet</div>
+        <div class="rm-node-ar" lang="ar" dir="rtl">الحروف الهجائية</div>
+        <span class="rm-node-tag avail" data-te="అందుబాటు" data-en="Available">Available</span>
+      </a>
+      <a href="#lc2" class="rm-node" role="listitem">
+        <div class="rm-dot done">٢</div>
+        <div class="rm-node-title" data-te="హరకాత్" data-en="Harakat">Harakat</div>
+        <div class="rm-node-ar" lang="ar" dir="rtl">التشكيل والقراءة</div>
+        <span class="rm-node-tag avail" data-te="అందుబాటు" data-en="Available">Available</span>
+      </a>
+      <a href="#lc3" class="rm-node" role="listitem">
+        <div class="rm-dot done">٣</div>
+        <div class="rm-node-title" data-te="పదజాలం" data-en="Vocabulary">Vocabulary</div>
+        <div class="rm-node-ar" lang="ar" dir="rtl">المفردات الأساسية</div>
+        <span class="rm-node-tag avail" data-te="అందుబాటు" data-en="Available">Available</span>
+      </a>
+      <a href="#lc4" class="rm-node" role="listitem">
+        <div class="rm-dot done">٤</div>
+        <div class="rm-node-title" data-te="రోజువారీ అరబిక్" data-en="Daily Arabic">Daily Arabic</div>
+        <div class="rm-node-ar" lang="ar" dir="rtl">العربية اليومية</div>
+        <span class="rm-node-tag avail" data-te="అందుబాటు" data-en="Available">Available</span>
+      </a>
+      <a href="#lc5" class="rm-node" role="listitem">
+        <div class="rm-dot done">٥</div>
+        <div class="rm-node-title" data-te="ఖురానీ అరబిక్" data-en="Quranic Arabic">Quranic Arabic</div>
+        <div class="rm-node-ar" lang="ar" dir="rtl">عربية القرآن</div>
+        <span class="rm-node-tag avail" data-te="అందుబాటు" data-en="Available">Available</span>
+      </a>
+      <a href="#lc6" class="rm-node" role="listitem">
+        <div class="rm-dot done">٦</div>
+        <div class="rm-node-title" data-te="వ్యాకరణం" data-en="Grammar">Grammar</div>
+        <div class="rm-node-ar" lang="ar" dir="rtl">قواعد النحو</div>
+        <span class="rm-node-tag avail" data-te="అందుబాటు" data-en="Available">Available</span>
+      </a>
+    </div>
+
+    <!-- Mobile roadmap -->
+    <div class="rm-mobile" role="list">
+      <div class="rm-mnode" role="listitem">
+        <div class="rm-mdot done">١</div>
+        <div class="rm-minfo">
+          <strong data-te="స్థాయి 1 · అక్షరమాల" data-en="Level 1 · Alphabet">Level 1 · Alphabet</strong>
+          <span class="ar" lang="ar" dir="rtl">الحروف الهجائية</span>
+          <em class="avail" data-te="అందుబాటు" data-en="Available">Available</em>
+        </div>
+      </div>
+      <div class="rm-mnode" role="listitem">
+        <div class="rm-mdot done">٢</div>
+        <div class="rm-minfo">
+          <strong data-te="స్థాయి 2 · హరకాత్" data-en="Level 2 · Harakat">Level 2 · Harakat</strong>
+          <span class="ar" lang="ar" dir="rtl">التشكيل والقراءة</span>
+          <em class="avail" data-te="అందుబాటు" data-en="Available">Available</em>
+        </div>
+      </div>
+      <div class="rm-mnode" role="listitem">
+        <div class="rm-mdot done">٣</div>
+        <div class="rm-minfo">
+          <strong data-te="స్థాయి 3 · పదజాలం" data-en="Level 3 · Vocabulary">Level 3 · Vocabulary</strong>
+          <span class="ar" lang="ar" dir="rtl">المفردات الأساسية</span>
+          <em class="avail" data-te="అందుబాటు" data-en="Available">Available</em>
+        </div>
+      </div>
+      <div class="rm-mnode" role="listitem">
+        <div class="rm-mdot done">٤</div>
+        <div class="rm-minfo">
+          <strong data-te="స్థాయి 4 · రోజువారీ అరబిక్" data-en="Level 4 · Daily Arabic">Level 4 · Daily Arabic</strong>
+          <span class="ar" lang="ar" dir="rtl">العربية اليومية</span>
+          <em class="avail" data-te="అందుబాటు" data-en="Available">Available</em>
+        </div>
+      </div>
+      <div class="rm-mnode" role="listitem">
+        <div class="rm-mdot done">٥</div>
+        <div class="rm-minfo">
+          <strong data-te="స్థాయి 5 · ఖురానీ అరబిక్" data-en="Level 5 · Quranic Arabic">Level 5 · Quranic Arabic</strong>
+          <span class="ar" lang="ar" dir="rtl">عربية القرآن</span>
+          <em class="avail" data-te="అందుబాటు" data-en="Available">Available</em>
+        </div>
+      </div>
+      <div class="rm-mnode" role="listitem">
+        <div class="rm-mdot done">٦</div>
+        <div class="rm-minfo">
+          <strong data-te="స్థాయి 6 · వ్యాకరణం" data-en="Level 6 · Grammar">Level 6 · Grammar</strong>
+          <span class="ar" lang="ar" dir="rtl">قواعد النحو</span>
+          <em class="avail" data-te="అందుబాటు" data-en="Available">Available</em>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEVEL CARDS -->
+<section class="lvl-sec" id="levels">
+  <div class="lu-sec-inner">
+    <div class="lu-sec-hdr reveal">
+      <div class="lu-sec-label" data-te="పాఠ్య ప్రణాళిక" data-en="Curriculum">Curriculum</div>
+      <h2 class="lu-sec-title" data-te="స్థాయి-వారీ <span>పాఠ్య ప్రణాళిక</span>" data-en="Level-by-Level <span>Curriculum</span>">స్థాయి-వారీ <span>పాఠ్య ప్రణాళిక</span></h2>
+      <p class="lu-sec-subtitle" data-te="ప్రతి స్థాయిని విస్తరించి పాఠాలను అన్వేషించి నేర్చుకోవడం ప్రారంభించండి." data-en="Expand each level to explore lessons and start learning.">ప్రతి స్థాయిని విస్తరించి పాఠాలను అన్వేషించి నేర్చుకోవడం ప్రారంభించండి.</p>
+    </div>
+
+    <!-- Level 1 -->
+    <div class="lc reveal" id="lc1">
+      <div class="lc-head" onclick="toggleLC('lc1')" role="button" aria-expanded="false">
+        <div class="lc-num">١</div>
+        <div class="lc-info">
+          <h3 data-te="అరబిక్ అక్షరమాల" data-en="Arabic Alphabet">Arabic Alphabet</h3>
+          <span class="lc-ar" lang="ar" dir="rtl">الحروف الهجائية</span>
+        </div>
+        <span class="lc-tag avail" data-te="అందుబాటు" data-en="Available">Available</span>
+        <svg class="lc-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="lc-body">
+        <div class="lc-inner">
+          <p class="lc-desc" data-te="28 అరబిక్ అక్షరాలను నేర్చుకోవడం ద్వారా మీ అరబిక్ ప్రయాణాన్ని ప్రారంభించండి. ప్రతి అక్షరానికి పదంలో స్థానాన్ని బట్టి 4 రూపాలు ఉంటాయి. ఉచ్చారణ మార్గదర్శితో వాటిని నేర్చుకోండి." data-en="Begin your Arabic journey by learning the 28 letters of the Arabic alphabet. Each letter has up to 4 forms depending on its position in a word. Master them with our pronunciation guide.">28 అరబిక్ అక్షరాలను నేర్చుకోవడం ద్వారా మీ అరబిక్ ప్రయాణాన్ని ప్రారంభించండి. ప్రతి అక్షరానికి పదంలో స్థానాన్ని బట్టి 4 రూపాలు ఉంటాయి. ఉచ్చారణ మార్గదర్శితో వాటిని నేర్చుకోండి.</p>
+          <div class="lc-lessons">
+            <a class="ll" href="alphabet.html">
+              <span class="ll-num">1.1</span>
+              <div class="ll-info">
+                <span class="ll-name" data-te="అరబిక్ అక్షరాలు" data-en="Arabic Letters">Arabic Letters</span>
+                <span class="ll-ar" lang="ar" dir="rtl">الحروف الهجائية</span>
+              </div>
+              <span class="ll-go" data-te="ప్రారంభించండి" data-en="Start">Start</span>
+            </a>
+            <a class="ll" href="alphabet.html#pronunciation">
+              <span class="ll-num">1.2</span>
+              <div class="ll-info">
+                <span class="ll-name" data-te="ఉచ్చారణ మార్గదర్శి" data-en="Pronunciation Guide">Pronunciation Guide</span>
+                <span class="ll-ar" lang="ar" dir="rtl">دليل النطق</span>
+              </div>
+              <span class="ll-go" data-te="ప్రారంభించండి" data-en="Start">Start</span>
+            </a>
+            <a class="ll" href="alphabet.html#forms">
+              <span class="ll-num">1.3</span>
+              <div class="ll-info">
+                <span class="ll-name" data-te="అక్షర రూపాలు" data-en="Letter Forms">Letter Forms</span>
+                <span class="ll-ar" lang="ar" dir="rtl">أشكال الحروف</span>
+              </div>
+              <span class="ll-go" data-te="ప్రారంభించండి" data-en="Start">Start</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Level 2 -->
+    <div class="lc reveal" id="lc2">
+      <div class="lc-head" onclick="toggleLC('lc2')" role="button" aria-expanded="false">
+        <div class="lc-num">٢</div>
+        <div class="lc-info">
+          <h3 data-te="హరకాత్ మరియు పఠనం" data-en="Harakat &amp; Reading">Harakat &amp; Reading</h3>
+          <span class="lc-ar" lang="ar" dir="rtl">التشكيل والقراءة</span>
+        </div>
+        <span class="lc-tag avail" data-te="అందుబాటు" data-en="Available">Available</span>
+        <svg class="lc-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="lc-body">
+        <div class="lc-inner">
+          <p class="lc-desc" data-te="అరబిక్ అక్షరాలను జీవంతో నింపే స్వర చిహ్నాలను (హరకాత్) నేర్చుకోండి. హరకాత్ నేర్చుకోవడం వల్ల ఏ ఖురానీ వచనాన్నైనా సరైన ఉచ్చారణతో చదవగలరు." data-en="Learn the vowel marks (harakat) that bring Arabic letters to life. Mastering harakat enables you to read any Quranic text with correct pronunciation.">అరబిక్ అక్షరాలను జీవంతో నింపే స్వర చిహ్నాలను (హరకాత్) నేర్చుకోండి. హరకాత్ నేర్చుకోవడం వల్ల ఏ ఖురానీ వచనాన్నైనా సరైన ఉచ్చారణతో చదవగలరు.</p>
+          <div class="lc-lessons">
+            <a class="ll" href="harakat.html">
+              <span class="ll-num">2.1</span>
+              <div class="ll-info">
+                <span class="ll-name" data-te="ఫత్హా (ఆ స్వరం)" data-en="Fatha — Short A vowel">Fatha — Short A vowel</span>
+                <span class="ll-ar" lang="ar" dir="rtl">الفتحة &#x064E;</span>
+              </div>
+              <span class="ll-go" data-te="ప్రారంభించండి" data-en="Start">Start</span>
+            </a>
+            <a class="ll" href="harakat.html#kasra">
+              <span class="ll-num">2.2</span>
+              <div class="ll-info">
+                <span class="ll-name" data-te="కస్రా (ఇ స్వరం)" data-en="Kasra — Short I vowel">Kasra — Short I vowel</span>
+                <span class="ll-ar" lang="ar" dir="rtl">الكسرة &#x0650;</span>
+              </div>
+              <span class="ll-go" data-te="ప్రారంభించండి" data-en="Start">Start</span>
+            </a>
+            <a class="ll" href="harakat.html#damma">
+              <span class="ll-num">2.3</span>
+              <div class="ll-info">
+                <span class="ll-name" data-te="దమ్మా (ఉ స్వరం)" data-en="Damma — Short U vowel">Damma — Short U vowel</span>
+                <span class="ll-ar" lang="ar" dir="rtl">الضمة &#x064F;</span>
+              </div>
+              <span class="ll-go" data-te="ప్రారంభించండి" data-en="Start">Start</span>
+            </a>
+            <a class="ll" href="harakat.html#sukoon">
+              <span class="ll-num">2.4</span>
+              <div class="ll-info">
+                <span class="ll-name" data-te="సుకూన్ (హల్లు)" data-en="Sukoon — No vowel">Sukoon — No vowel</span>
+                <span class="ll-ar" lang="ar" dir="rtl">السكون &#x0652;</span>
+              </div>
+              <span class="ll-go" data-te="ప్రారంభించండి" data-en="Start">Start</span>
+            </a>
+            <a class="ll" href="harakat.html#tanween">
+              <span class="ll-num">2.5</span>
+              <div class="ll-info">
+                <span class="ll-name" data-te="తన్వీన్ (నూనేషన్)" data-en="Tanween — Nunation">Tanween — Nunation</span>
+                <span class="ll-ar" lang="ar" dir="rtl">التنوين &#x064B;&#x064C;&#x064D;</span>
+              </div>
+              <span class="ll-go" data-te="ప్రారంభించండి" data-en="Start">Start</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Level 3 -->
+    <div class="lc reveal" id="lc3">
+      <div class="lc-head" onclick="toggleLC('lc3')" role="button" aria-expanded="false">
+        <div class="lc-num">٣</div>
+        <div class="lc-info">
+          <h3 data-te="మూల పదజాలం" data-en="Basic Vocabulary">Basic Vocabulary</h3>
+          <span class="lc-ar" lang="ar" dir="rtl">المفردات الأساسية</span>
+        </div>
+        <span class="lc-tag avail" data-te="అందుబాటు" data-en="Available">Available</span>
+        <svg class="lc-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="lc-body">
+        <div class="lc-inner">
+          <p class="lc-desc" data-te="రోజువారీ ఇస్లామిక్ జీవితంలో ఉపయోగపడే మొదటి అరబిక్ పదజాలాన్ని నేర్చుకోండి. సంఖ్యలు, శుభాకాంక్షలు మరియు సాధారణ పదాలతో ప్రారంభించండి." data-en="Build your first Arabic vocabulary with essential words used in daily Islamic life. Start with numbers, greetings, and common words.">రోజువారీ ఇస్లామిక్ జీవితంలో ఉపయోగపడే మొదటి అరబిక్ పదజాలాన్ని నేర్చుకోండి. సంఖ్యలు, శుభాకాంక్షలు మరియు సాధారణ పదాలతో ప్రారంభించండి.</p>
+          <div class="lc-lessons">
+            <a class="ll" href="vocabulary.html">
+              <span class="ll-num">3.1</span>
+              <div class="ll-info">
+                <span class="ll-name" data-te="సంఖ్యలు 1–10" data-en="Numbers 1–10">Numbers 1–10</span>
+                <span class="ll-ar" lang="ar" dir="rtl">الأرقام من ١ إلى ١٠</span>
+              </div>
+              <span class="ll-go" data-te="ప్రారంభించండి" data-en="Start">Start</span>
+            </a>
+            <a class="ll" href="vocabulary.html#greetings">
+              <span class="ll-num">3.2</span>
+              <div class="ll-info">
+                <span class="ll-name" data-te="ఇస్లామిక్ శుభాకాంక్షలు" data-en="Islamic Greetings">Islamic Greetings</span>
+                <span class="ll-ar" lang="ar" dir="rtl">التحيات الإسلامية</span>
+              </div>
+              <span class="ll-go" data-te="ప్రారంభించండి" data-en="Start">Start</span>
+            </a>
+            <a class="ll" href="vocabulary.html#common">
+              <span class="ll-num">3.3</span>
+              <div class="ll-info">
+                <span class="ll-name" data-te="సాధారణ పదాలు" data-en="Common Words">Common Words</span>
+                <span class="ll-ar" lang="ar" dir="rtl">الكلمات الشائعة</span>
+              </div>
+              <span class="ll-go" data-te="ప్రారంభించండి" data-en="Start">Start</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Level 4 -->
+    <div class="lc reveal" id="lc4">
+      <div class="lc-head" onclick="toggleLC('lc4')" role="button" aria-expanded="false">
+        <div class="lc-num">٤</div>
+        <div class="lc-info">
+          <h3 data-te="రోజువారీ అరబిక్" data-en="Daily Arabic">Daily Arabic</h3>
+          <span class="lc-ar" lang="ar" dir="rtl">العربية اليومية</span>
+        </div>
+        <span class="lc-tag avail" data-te="అందుబాటు" data-en="Available">Available</span>
+        <svg class="lc-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="lc-body">
+        <div class="lc-inner">
+          <p class="lc-desc" data-te="ఒంటరి పదాల నుండి ఇస్లామిక్ సందర్భంలో ఉపయోగించే ఆచరణాత్మక వాక్యాల వైపు వెళ్ళండి." data-en="Move beyond isolated words to practical phrases used in Islamic contexts and daily conversation.">ఒంటరి పదాల నుండి ఇస్లామిక్ సందర్భంలో ఉపయోగించే ఆచరణాత్మక వాక్యాల వైపు వెళ్ళండి.</p>
+          <div class="lc-lessons">
+            <a class="ll" href="./daily-arabic.html#phrases">
+              <span class="ll-num">4.1</span>
+              <div class="ll-info">
+                <span class="ll-name" data-te="ఉపయోగకరమైన వాక్యాలు" data-en="Useful Phrases">Useful Phrases</span>
+                <span class="ll-ar" lang="ar" dir="rtl">عبارات مفيدة</span>
+              </div>
+              <span class="ll-go" data-te="ప్రారంభించండి" data-en="Start">Start</span>
+            </a>
+            <a class="ll" href="./daily-arabic.html#expressions">
+              <span class="ll-num">4.2</span>
+              <div class="ll-info">
+                <span class="ll-name" data-te="ఇస్లామిక్ అభివ్యక్తులు" data-en="Islamic Expressions">Islamic Expressions</span>
+                <span class="ll-ar" lang="ar" dir="rtl">التعبيرات الإسلامية</span>
+              </div>
+              <span class="ll-go" data-te="ప్రారంభించండి" data-en="Start">Start</span>
+            </a>
+            <a class="ll" href="./daily-arabic.html#conversations">
+              <span class="ll-num">4.3</span>
+              <div class="ll-info">
+                <span class="ll-name" data-te="రోజువారీ సంభాషణలు" data-en="Daily Conversations">Daily Conversations</span>
+                <span class="ll-ar" lang="ar" dir="rtl">المحادثات اليومية</span>
+              </div>
+              <span class="ll-go" data-te="ప్రారంభించండి" data-en="Start">Start</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Level 5 -->
+    <div class="lc reveal" id="lc5">
+      <div class="lc-head" onclick="toggleLC('lc5')" role="button" aria-expanded="false">
+        <div class="lc-num">٥</div>
+        <div class="lc-info">
+          <h3 data-te="ఖురానీ అరబిక్" data-en="Quranic Arabic">Quranic Arabic</h3>
+          <span class="lc-ar" lang="ar" dir="rtl">عربية القرآن</span>
+        </div>
+        <span class="lc-tag avail" data-te="అందుబాటు" data-en="Available">Available</span>
+        <svg class="lc-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="lc-body">
+        <div class="lc-inner">
+          <p class="lc-desc" data-te="ఖురాన్ భాషను అర్థం చేసుకోండి. అత్యంత ఉపయోగించే ఖురానీ పదాలు, మూల నమూనాలు నేర్చుకుని నేరుగా ఆయతులను అర్థం చేసుకోవడం ప్రారంభించండి." data-en="Understand the language of the Quran. Learn the most frequently used Quranic words, root patterns, and begin comprehending verses directly.">ఖురాన్ భాషను అర్థం చేసుకోండి. అత్యంత ఉపయోగించే ఖురానీ పదాలు, మూల నమూనాలు నేర్చుకుని నేరుగా ఆయతులను అర్థం చేసుకోవడం ప్రారంభించండి.</p>
+          <div class="lc-lessons">
+            <a class="ll" href="./quranic-arabic.html#words">
+              <span class="ll-num">5.1</span>
+              <div class="ll-info">
+                <span class="ll-name" data-te="అత్యంత ఉపయోగించే పదాలు" data-en="High-Frequency Words">High-Frequency Words</span>
+                <span class="ll-ar" lang="ar" dir="rtl">أكثر الكلمات استخداماً</span>
+              </div>
+              <span class="ll-go" data-te="ప్రారంభించండి" data-en="Start">Start</span>
+            </a>
+            <a class="ll" href="./quranic-arabic.html#roots">
+              <span class="ll-num">5.2</span>
+              <div class="ll-info">
+                <span class="ll-name" data-te="అరబిక్ మూలాలు" data-en="Arabic Root Words">Arabic Root Words</span>
+                <span class="ll-ar" lang="ar" dir="rtl">الجذور اللغوية</span>
+              </div>
+              <span class="ll-go" data-te="ప్రారంభించండి" data-en="Start">Start</span>
+            </a>
+            <a class="ll" href="./quranic-arabic.html#verses">
+              <span class="ll-num">5.3</span>
+              <div class="ll-info">
+                <span class="ll-name" data-te="ఆయతులను అర్థం చేసుకోవడం" data-en="Understanding Verses">Understanding Verses</span>
+                <span class="ll-ar" lang="ar" dir="rtl">فهم الآيات</span>
+              </div>
+              <span class="ll-go" data-te="ప్రారంభించండి" data-en="Start">Start</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Level 6 -->
+    <div class="lc reveal" id="lc6">
+      <div class="lc-head" onclick="toggleLC('lc6')" role="button" aria-expanded="false">
+        <div class="lc-num">٦</div>
+        <div class="lc-info">
+          <h3 data-te="వ్యాకరణ పునాదులు" data-en="Grammar Foundations">Grammar Foundations</h3>
+          <span class="lc-ar" lang="ar" dir="rtl">قواعد النحو</span>
+        </div>
+        <span class="lc-tag avail" data-te="అందుబాటు" data-en="Available">Available</span>
+        <svg class="lc-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="lc-body">
+        <div class="lc-inner">
+          <p class="lc-desc" data-te="ప్రధాన వ్యాకరణ భావనలతో అధిక స్థాయి అరబిక్‌కు పునాది వేయండి. నామవాచకాలు, క్రియలు మరియు వాక్య నిర్మాణం అర్థమైతే అరబిక్‌ను స్వతంత్రంగా నిర్మించగలరు." data-en="Lay the foundation for advanced Arabic with core grammar. Understanding nouns, verbs, and sentence structure will unlock your ability to construct Arabic independently.">ప్రధాన వ్యాకరణ భావనలతో అధిక స్థాయి అరబిక్‌కు పునాది వేయండి. నామవాచకాలు, క్రియలు మరియు వాక్య నిర్మాణం అర్థమైతే అరబిక్‌ను స్వతంత్రంగా నిర్మించగలరు.</p>
+          <div class="lc-lessons">
+            <a class="ll" href="./grammar.html#nouns">
+              <span class="ll-num">6.1</span>
+              <div class="ll-info">
+                <span class="ll-name" data-te="నామవాచకాలు (ఇస్మ్)" data-en="Nouns (Ism)">Nouns (Ism)</span>
+                <span class="ll-ar" lang="ar" dir="rtl">الأسماء</span>
+              </div>
+              <span class="ll-go" data-te="ప్రారంభించండి" data-en="Start">Start</span>
+            </a>
+            <a class="ll" href="./grammar.html#verbs">
+              <span class="ll-num">6.2</span>
+              <div class="ll-info">
+                <span class="ll-name" data-te="క్రియలు (ఫిఇ'ల్)" data-en="Verbs (Fi'l)">Verbs (Fi'l)</span>
+                <span class="ll-ar" lang="ar" dir="rtl">الأفعال</span>
+              </div>
+              <span class="ll-go" data-te="ప్రారంభించండి" data-en="Start">Start</span>
+            </a>
+            <a class="ll" href="./grammar.html#sentences">
+              <span class="ll-num">6.3</span>
+              <div class="ll-info">
+                <span class="ll-name" data-te="వాక్య నిర్మాణం" data-en="Sentence Structure">Sentence Structure</span>
+                <span class="ll-ar" lang="ar" dir="rtl">تركيب الجملة</span>
+              </div>
+              <span class="ll-go" data-te="ప్రారంభించండి" data-en="Start">Start</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORD OF THE DAY -->
+<section class="word-sec" id="word">
+  <div class="word-inner">
+    <div class="word-label" data-te="ప్రతి రోజు ఒక పదం" data-en="Daily Word">Daily Word</div>
+    <h2 class="word-title" data-te="రోజువారీ అరబిక్ పదం" data-en="Arabic Word of the Day">Arabic Word of the Day</h2>
+    <p class="word-subtitle" data-te="ప్రతి రోజు ఒక కొత్త అరబిక్ పదం — రోమన్ లిప్యంతరీకరణ మరియు అర్థంతో." data-en="A new Arabic word every day — with Roman transliteration and meaning.">ప్రతి రోజు ఒక కొత్త అరబిక్ పదం — రోమన్ లిప్యంతరీకరణ మరియు అర్థంతో.</p>
+    <div class="word-card">
+      <span id="word-ar" lang="ar" dir="rtl"></span>
+      <div id="word-tr"></div>
+      <div id="word-en"></div>
+      <div id="word-note"></div>
+    </div>
+    <div class="word-nav">
+      <button class="word-btn" onclick="prevWord()" title="Previous word" aria-label="Previous word">‹</button>
+      <div id="word-counter"></div>
+      <button class="word-btn" onclick="nextWord()" title="Next word" aria-label="Next word">›</button>
+    </div>
+  </div>
+</section>
+
+<!-- COMING SOON MODULES -->
+<section class="coming-sec" id="coming">
+  <div class="coming-inner">
+    <div class="lu-sec-hdr reveal">
+      <div class="lu-sec-label" data-te="జ్ఞాన కేంద్రం" data-en="Knowledge Center">Knowledge Center</div>
+      <h2 class="lu-sec-title" data-te="మొత్తం <span>ఇస్లామిక్ నేర్చుకునే విభాగాలు</span>" data-en="All <span>Islamic Learning Modules</span>">మొత్తం <span>ఇస్లామిక్ నేర్చుకునే విభాగాలు</span></h2>
+      <p class="lu-sec-subtitle" data-te="ఇస్లామిక్ ఫ్రంట్ జ్ఞాన కేంద్రంలో అందుబాటులో ఉన్న మరియు త్వరలో వచ్చే అన్ని విభాగాలు." data-en="All modules available and coming soon in the Islamic Front Knowledge Center.">ఇస్లామిక్ ఫ్రంట్ జ్ఞాన కేంద్రంలో అందుబాటులో ఉన్న మరియు త్వరలో వచ్చే అన్ని విభాగాలు.</p>
+    </div>
+    <div class="coming-grid">
+      <div class="cm-card live reveal">
+        <div class="cm-icon ar" lang="ar" dir="rtl">ع</div>
+        <div class="cm-body">
+          <h4 data-te="అరబిక్ నేర్చుకోండి" data-en="Learn Arabic">Learn Arabic</h4>
+          <p data-te="అరబిక్ అక్షరమాల నుండి ఖురానీ అరబిక్ వరకు" data-en="From Arabic alphabet to Quranic Arabic">From Arabic alphabet to Quranic Arabic</p>
+          <span class="cm-badge avail" data-te="మీరు ఇక్కడ ఉన్నారు ✦" data-en="You Are Here ✦">You Are Here ✦</span>
+        </div>
+      </div>
+      <a class="cm-card live reveal" href="../learn-urdu/index.html">
+        <div class="cm-icon ar" lang="ur" dir="rtl" style="font-family:'Noto Nastaliq Urdu','Amiri',serif;font-size:1.1rem">اردو</div>
+        <div class="cm-body">
+          <h4 data-te="ఉర్దూ నేర్చుకోండి" data-en="Learn Urdu">Learn Urdu</h4>
+          <p data-te="నస్తాలీఖ్ లిపి నుండి ఇస్లామిక్ ఉర్దూ సాహిత్యం వరకు" data-en="Nastaliq script to Islamic Urdu literature">Nastaliq script to Islamic Urdu literature</p>
+          <span class="cm-badge avail" data-te="అందుబాటు" data-en="Available Now">Available Now</span>
+        </div>
+      </a>
+      <div class="cm-card dim reveal">
+        <div class="cm-icon">📿</div>
+        <div class="cm-body">
+          <h4 data-te="ఖుర్ఆన్ నేర్చుకోండి" data-en="Learn Quran">Learn Quran</h4>
+          <p data-te="తజ్వీద్, హిఫ్జ్ మరియు తఫ్‌సీర్" data-en="Tajweed, Hifz, and Tafseer">Tajweed, Hifz, and Tafseer</p>
+          <span class="cm-badge soon" data-te="త్వరలో" data-en="Coming Soon">Coming Soon</span>
+        </div>
+      </div>
+      <div class="cm-card dim reveal">
+        <div class="cm-icon">🌙</div>
+        <div class="cm-body">
+          <h4 data-te="నమాజ్ నేర్చుకోండి" data-en="Learn Salah">Learn Salah</h4>
+          <p data-te="నమాజ్ పాఠాలు మరియు దువాలు" data-en="Prayer steps, duas, and conditions">Prayer steps, duas, and conditions</p>
+          <span class="cm-badge soon" data-te="త్వరలో" data-en="Coming Soon">Coming Soon</span>
+        </div>
+      </div>
+      <div class="cm-card dim reveal">
+        <div class="cm-icon">💧</div>
+        <div class="cm-body">
+          <h4 data-te="వుదూ నేర్చుకోండి" data-en="Learn Wudu">Learn Wudu</h4>
+          <p data-te="పరిశుద్ధత, వుదూ మరియు గుస్ల్" data-en="Purification, wudu and ghusl">Purification, wudu and ghusl</p>
+          <span class="cm-badge soon" data-te="త్వరలో" data-en="Coming Soon">Coming Soon</span>
+        </div>
+      </div>
+      <div class="cm-card dim reveal">
+        <div class="cm-icon">📖</div>
+        <div class="cm-body">
+          <h4 data-te="సీరా" data-en="Seerah">Seerah</h4>
+          <p data-te="ప్రవక్త జీవితం ﷺ" data-en="Life of the Prophet ﷺ">Life of the Prophet ﷺ</p>
+          <span class="cm-badge soon" data-te="త్వరలో" data-en="Coming Soon">Coming Soon</span>
+        </div>
+      </div>
+      <div class="cm-card dim reveal">
+        <div class="cm-icon">🏛️</div>
+        <div class="cm-body">
+          <h4 data-te="ఇస్లామిక్ చరిత్ర" data-en="Islamic History">Islamic History</h4>
+          <p data-te="ఖిలాఫత్ నుండి ఆధునిక కాలం వరకు" data-en="From Caliphate to modern era">From Caliphate to modern era</p>
+          <span class="cm-badge soon" data-te="త్వరలో" data-en="Coming Soon">Coming Soon</span>
+        </div>
+      </div>
+      <div class="cm-card dim reveal">
+        <div class="cm-icon">🌟</div>
+        <div class="cm-body">
+          <h4 data-te="పిల్లల ఇస్లాం" data-en="Kids' Islam">Kids' Islam</h4>
+          <p data-te="పిల్లలకు ఇస్లామిక్ విద్య" data-en="Islamic education for children">Islamic education for children</p>
+          <span class="cm-badge soon" data-te="త్వరలో" data-en="Coming Soon">Coming Soon</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="lu-footer">
+  <span class="lu-footer-brand" lang="ar" dir="rtl">تعلُّم العربية</span>
+  <p class="lu-footer-tag" data-te="ఇస్లామిక్ ఫ్రంట్ జ్ఞాన కేంద్రం" data-en="Islamic Front Knowledge Center">Islamic Front Knowledge Center</p>
+  <div class="lu-footer-links">
+    <a href="../../index.html" data-te="← హోమ్" data-en="← Home">← Home</a>
+    <a href="../../islamic-knowledge.html" data-te="జ్ఞాన కేంద్రం" data-en="Knowledge Center">Knowledge Center</a>
+    <a href="../learn-urdu/index.html" data-te="ఉర్దూ నేర్చుకోండి" data-en="Learn Urdu">Learn Urdu</a>
+    <a href="alphabet.html" data-te="అక్షరమాల" data-en="Start: Alphabet">Start: Alphabet</a>
+  </div>
+  <p class="lu-footer-copy" data-te="© 2025 ఇస్లామిక్ ఫ్రంట్, మంగళగిరి. సర్వహక్కులు సురక్షితం." data-en="© 2025 Islamic Front, Mangalagiri. All rights reserved.">© 2025 Islamic Front, Mangalagiri. All rights reserved.</p>
+</footer>
+
+<button id="btt" onclick="scrollTo({top:0,behavior:'smooth'})" title="Back to top" aria-label="Back to top">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+
+<script>
+(function(){
+'use strict';
+
+/* ── WORDS ── */
+var WORDS=[
+  {ar:'رَحْمَة',tr:'Raḥmah',en:'Mercy',te:'కరుణ',note:'Used 114 times in the Quran — once in every Bismillah.',note_te:'ఖురాన్‌లో 114 సార్లు వాడబడింది — ప్రతి బిస్మిల్లాహ్‌లో ఒకసారి.'},
+  {ar:'صَبْر',tr:'Ṣabr',en:'Patience',te:'సహనం',note:'Allah is with the patient (Quran 2:153).',note_te:'అల్లాహ్ సహనం గలవారితో ఉంటాడు (ఖుర్ఆన్ 2:153).'},
+  {ar:'إِيمَان',tr:'Īmān',en:'Faith',te:'విశ్వాసం',note:'The foundation of a Muslim\'s life.',note_te:'ముస్లిం జీవితానికి పునాది.'},
+  {ar:'تَوْبَة',tr:'Tawbah',en:'Repentance',te:'పశ్చాత్తాపం',note:'Allah loves those who repent (Quran 2:222).',note_te:'అల్లాహ్ పశ్చాత్తాప పడేవారిని ప్రేమిస్తాడు (ఖుర్ఆన్ 2:222).'},
+  {ar:'شُكْر',tr:'Shukr',en:'Gratitude',te:'కృతజ్ఞత',note:'If you are grateful, I will give you more (Quran 14:7).',note_te:'మీరు కృతజ్ఞులైతే నేను మీకు మరింత ఇస్తాను (ఖుర్ఆన్ 14:7).'},
+  {ar:'نِيَّة',tr:'Niyyah',en:'Intention',te:'ఉద్దేశ్యం',note:'Actions are judged by their intentions (Hadith).',note_te:'చర్యలు వాటి ఉద్దేశ్యాలచే తీర్మానించబడతాయి (హదీస్).'},
+  {ar:'جَنَّة',tr:'Jannah',en:'Paradise',te:'స్వర్గం',note:'The eternal abode of the righteous.',note_te:'సద్గుణవంతుల శాశ్వత నివాసం.'},
+  {ar:'تَقْوَى',tr:'Taqwā',en:'God-consciousness',te:'అల్లాహ్ భయం',note:'The best provision is taqwā (Quran 2:197).',note_te:'ఉత్తమ వనరు తఖ్వా (ఖుర్ఆన్ 2:197).'},
+  {ar:'عِلْم',tr:'ʿIlm',en:'Knowledge',te:'జ్ఞానం',note:'Seeking knowledge is an obligation on every Muslim.',note_te:'జ్ఞానాన్వేషణ ప్రతి ముస్లిముపై విధి.'},
+  {ar:'ذِكْر',tr:'Dhikr',en:'Remembrance',te:'స్మరణ',note:'Hearts find peace in the remembrance of Allah (Quran 13:28).',note_te:'అల్లాహ్ స్మరణలో హృదయాలు శాంతి పొందుతాయి (ఖుర్ఆన్ 13:28).'},
+  {ar:'دُعَاء',tr:'Duʿāʾ',en:'Supplication',te:'దువా',note:'Duʿāʾ is the essence of worship (Hadith).',note_te:'దువా ఆరాధన యొక్క సారాంశం (హదీస్).'},
+  {ar:'بَرَكَة',tr:'Barakah',en:'Blessing',te:'దీవెన',note:'Divine abundance in all matters.',note_te:'అన్ని విషయాలలో దైవిక సమృద్ధి.'},
+  {ar:'هُدَى',tr:'Hudā',en:'Guidance',te:'మార్గదర్శనం',note:'The Quran is guidance for mankind (Quran 2:185).',note_te:'ఖురాన్ మానవాళికి మార్గదర్శనం (ఖుర్ఆన్ 2:185).'},
+  {ar:'مَغْفِرَة',tr:'Maghfirah',en:'Forgiveness',te:'క్షమాపణ',note:'Al-Ghaffār (The Oft-Forgiving) is a name of Allah.',note_te:'అల్-గఫ్ఫార్ (మన్నించేవాడు) అల్లాహ్ నామం.'},
+  {ar:'حِكْمَة',tr:'Ḥikmah',en:'Wisdom',te:'వివేకం',note:'He who is given wisdom has been given much good (Quran 2:269).',note_te:'వివేకం పొందినవాడు ఎంతో మేలు పొందాడు (ఖుర్ఆన్ 2:269).'},
+  {ar:'أَمَانَة',tr:'Amānah',en:'Trust',te:'విశ్వసనీయత',note:'Fulfilling trust is a mark of true faith.',note_te:'అమానత్ నిలబెట్టడం నిజమైన విశ్వాస చిహ్నం.'},
+  {ar:'عَدْل',tr:'ʿAdl',en:'Justice',te:'న్యాయం',note:'Allah commands justice and good conduct (Quran 16:90).',note_te:'అల్లాహ్ న్యాయాన్ని మరియు మంచి ప్రవర్తనను ఆదేశిస్తాడు (ఖుర్ఆన్ 16:90).'},
+  {ar:'تَوَكُّل',tr:'Tawakkul',en:'Trust in Allah',te:'అల్లాహ్‌పై నమ్మకం',note:'Tie your camel, then put your trust in Allah.',note_te:'ఒంటెను కట్టు, ఆపై అల్లాహ్‌పై నమ్మకం ఉంచు.'},
+  {ar:'إِخْلَاص',tr:'Ikhlāṣ',en:'Sincerity',te:'నిష్కాపట్యం',note:'Pure devotion for Allah alone — also a Surah name.',note_te:'అల్లాహ్ కోసం మాత్రమే స్వచ్ఛమైన భక్తి — ఒక సూరహ్ పేరు కూడా.'},
+  {ar:'سَكِينَة',tr:'Sakīnah',en:'Tranquility',te:'ప్రశాంతత',note:'Allah sent tranquility into the hearts of believers (Quran 48:4).',note_te:'అల్లాహ్ విశ్వాసుల హృదయాలలో ప్రశాంతత పంపాడు (ఖుర్ఆన్ 48:4).'},
+  {ar:'رِزْق',tr:'Rizq',en:'Provision',te:'జీవనాధారం',note:'All provision comes from Allah (Quran 51:58).',note_te:'అన్ని జీవనాధారం అల్లాహ్ నుండే వస్తుంది (ఖుర్ఆన్ 51:58).'},
+  {ar:'يَقِين',tr:'Yaqīn',en:'Certainty',te:'నిశ్చయత',note:'Worship your Lord until certainty comes to you (Quran 15:99).',note_te:'నిశ్చయత వచ్చేవరకు నీ ప్రభువును ఆరాధించు (ఖుర్ఆన్ 15:99).'},
+  {ar:'صِدْق',tr:'Ṣidq',en:'Truthfulness',te:'సత్యం',note:'Be with the truthful (Quran 9:119).',note_te:'సత్యవాదులతో ఉండండి (ఖుర్ఆన్ 9:119).'},
+  {ar:'خَشْيَة',tr:'Khashyah',en:'Reverence',te:'భయభక్తి',note:'Only those who know truly fear Allah (Quran 35:28).',note_te:'జ్ఞానులు మాత్రమే అల్లాహ్‌ను నిజంగా భయపడతారు (ఖుర్ఆన్ 35:28).'},
+  {ar:'حَيَاء',tr:'Ḥayāʾ',en:'Modesty',te:'సిగ్గు',note:'Modesty is entirely goodness (Hadith).',note_te:'సిగ్గు పూర్తిగా మంచిదే (హదీస్).'},
+  {ar:'تَفَكُّر',tr:'Tafakkur',en:'Reflection',te:'ఆలోచన',note:'An hour of reflection is better than a year of worship.',note_te:'ఒక గంట ఆలోచన ఏడాది ఆరాధన కంటే మేలు.'},
+  {ar:'وَفَاء',tr:'Wafāʾ',en:'Loyalty',te:'విధేయత',note:'Fulfilling covenants is highly praised in Islam.',note_te:'ఒప్పందాలు నెరవేర్చడం ఇస్లాంలో ప్రశంసనీయం.'},
+  {ar:'قَنَاعَة',tr:'Qanāʿah',en:'Contentment',te:'సంతృప్తి',note:'Contentment is an everlasting treasure (Hadith).',note_te:'సంతృప్తి శాశ్వత నిధి (హదీస్).'},
+  {ar:'تَوَاضُع',tr:'Tawāḍuʿ',en:'Humility',te:'వినమ్రత',note:'Whoever humbles himself for Allah, Allah elevates him.',note_te:'అల్లాహ్ కోసం వినమ్రత చూపేవారిని అల్లాహ్ ఉన్నతం చేస్తాడు.'},
+  {ar:'إِحْسَان',tr:'Iḥsān',en:'Excellence',te:'శ్రేష్ఠత',note:'To worship Allah as if you see Him (Hadith of Jibreel).',note_te:'అల్లాహ్‌ను చూస్తున్నట్లు ఆరాధించడం (జిబ్రీల్ హదీస్).'}
+];
+
+/* ── LANG ── */
+var LANG=localStorage.getItem('if-lang')||'te';
+function applyLang(l){
+  LANG=l; localStorage.setItem('if-lang',l);
+  document.documentElement.lang=(l==='te')?'te':'en';
+  document.querySelectorAll('[data-te]').forEach(function(el){
+    var v=el.getAttribute('data-'+l);
+    if(v!=null) el.innerHTML=v;
+  });
+  var btn=document.getElementById('lang-btn');
+  if(btn) btn.textContent=l==='te'?'English':'తెలుగు';
+  if(typeof WORDS!=='undefined') renderWord();
+}
+function toggleLang(){ applyLang(LANG==='te'?'en':'te'); }
+window.toggleLang=toggleLang;
+
+/* ── WORD OF THE DAY ── */
+var TODAY_IDX=Math.floor(Date.now()/86400000)%WORDS.length;
+var curIdx=TODAY_IDX;
+function renderWord(){
+  var w=WORDS[curIdx];
+  var arEl=document.getElementById('word-ar');
+  var trEl=document.getElementById('word-tr');
+  var enEl=document.getElementById('word-en');
+  var noteEl=document.getElementById('word-note');
+  var counterEl=document.getElementById('word-counter');
+  if(!arEl) return;
+  [arEl,trEl,enEl,noteEl].forEach(function(e){ if(e) e.style.opacity='0'; });
+  setTimeout(function(){
+    arEl.textContent=w.ar;
+    trEl.textContent=w.tr;
+    enEl.textContent=LANG==='te'?w.te:w.en;
+    noteEl.textContent=LANG==='te'?w.note_te:w.note;
+    counterEl.textContent=(curIdx+1)+' / '+WORDS.length;
+    [arEl,trEl,enEl,noteEl].forEach(function(e){ if(e){e.style.opacity='1';e.style.transition='opacity .4s';} });
+  },180);
+}
+function prevWord(){ curIdx=(curIdx-1+WORDS.length)%WORDS.length; renderWord(); }
+function nextWord(){ curIdx=(curIdx+1)%WORDS.length; renderWord(); }
+window.prevWord=prevWord; window.nextWord=nextWord;
+
+/* ── LEVEL CARD ACCORDION ── */
+function toggleLC(id){
+  var el=document.getElementById(id);
+  var isOpen=el.classList.contains('lc-open');
+  document.querySelectorAll('.lc').forEach(function(c){
+    c.classList.remove('lc-open');
+    var h=c.querySelector('.lc-head'); if(h) h.setAttribute('aria-expanded','false');
+  });
+  if(!isOpen){ el.classList.add('lc-open'); el.querySelector('.lc-head').setAttribute('aria-expanded','true'); }
+}
+window.toggleLC=toggleLC;
+
+/* ── STICKY NAV on hero exit ── */
+function initSticky(){
+  var hero=document.getElementById('home');
+  var sticky=document.getElementById('al-sticky');
+  if(!hero||!sticky) return;
+  var io=new IntersectionObserver(function(entries){
+    sticky.classList.toggle('sticky-on',!entries[0].isIntersecting);
+  },{threshold:0,rootMargin:'-68px 0px 0px 0px'});
+  io.observe(hero);
+}
+
+/* ── SPY ACTIVE ── */
+function initSpy(){
+  var links=document.querySelectorAll('.al-sticky a[data-spy]');
+  if(!links.length) return;
+  var secs=Array.from(links).map(function(a){ return document.getElementById(a.dataset.spy); }).filter(Boolean);
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        links.forEach(function(a){ a.classList.toggle('spy-active',a.dataset.spy===e.target.id); });
+      }
+    });
+  },{rootMargin:'-70px 0px -60% 0px',threshold:0});
+  secs.forEach(function(s){ io.observe(s); });
+}
+
+/* ── SCROLL REVEAL ── */
+function initReveal(){
+  if(!window.IntersectionObserver){ document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('reveal-in')}); return; }
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('reveal-in'); io.unobserve(e.target); } });
+  },{threshold:.08});
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+}
+
+/* ── BACK TO TOP ── */
+function initBTT(){
+  var btn=document.getElementById('btt');
+  if(!btn) return;
+  window.addEventListener('scroll',function(){ btn.classList.toggle('show',window.scrollY>500); },{passive:true});
+}
+
+/* ── BOOT ── */
+document.addEventListener('DOMContentLoaded',function(){
+  applyLang(LANG);
+  renderWord();
+  initSticky();
+  initSpy();
+  initReveal();
+  initBTT();
+});
+})();
+</script>
+</body>
+</html>

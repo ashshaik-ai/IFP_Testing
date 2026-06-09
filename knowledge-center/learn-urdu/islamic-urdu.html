@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="te" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ఇస్లామిక్ ఉర్దూ — Islamic Urdu | Islamic Front</title>
+<meta name="description" content="Learn Islamic terminology in Urdu, understand Urdu dars and bayans, and start reading Islamic books. Level 5 of the Urdu Learning Portal.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Sans:wght@300;400;500&family=Noto+Sans+Telugu:wght@300;400;500;700&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --green-deep:#0d3b1e;--green-mid:#1a5c30;--green-light:#2e8b57;
+  --gold:#c8922a;--gold-light:#e8b84b;--gold-pale:#f5e6c0;
+  --cream:#faf6ee;--white:#ffffff;
+  --text-dark:#1a1208;--text-mid:#3d3018;--text-muted:#7a6840;
+  --border:rgba(200,146,42,0.25);--radius:14px;--shadow:0 4px 24px rgba(0,0,0,0.10);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;color:var(--text-dark);background:var(--cream);overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+.al-nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(13,59,30,0.92);backdrop-filter:blur(12px);padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:56px;border-bottom:1px solid rgba(200,146,42,0.18)}
+.al-nav-brand{display:flex;align-items:center;gap:10px;color:var(--gold-light);font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700}
+.al-nav-brand span{font-size:1.4rem}
+.al-nav-links{display:flex;align-items:center;gap:16px}
+.al-nav-links a{color:rgba(245,230,192,0.75);font-size:.82rem;font-weight:500;transition:color .2s}
+.al-nav-links a:hover{color:var(--gold-light)}
+.al-lang-btn{background:rgba(200,146,42,0.20);border:1px solid var(--gold);color:var(--gold-light);font-size:.78rem;font-weight:600;padding:5px 13px;border-radius:20px;cursor:pointer;transition:all .2s;font-family:'DM Sans',sans-serif}
+.al-lang-btn:hover{background:var(--gold);color:var(--green-deep)}
+
+/* LESSON NAV */
+.lesson-nav{position:fixed;top:56px;left:0;right:0;z-index:850;height:46px;background:rgba(13,59,30,0.95);backdrop-filter:blur(8px);border-bottom:1px solid rgba(200,146,42,0.18);display:flex;align-items:center;justify-content:space-between;padding:0 16px;gap:8px}
+.lnb-btn{font-size:.74rem;font-weight:600;color:rgba(245,230,192,.70);padding:4px 12px;border-radius:20px;border:1px solid rgba(200,146,42,0.22);transition:all .2s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:42%}
+.lnb-btn:hover{color:var(--gold-light);border-color:rgba(200,146,42,0.50);background:rgba(200,146,42,0.10)}
+.lnb-spacer{min-width:70px}
+.lnb-mid{font-size:.68rem;font-weight:700;color:var(--gold);letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;text-align:center;flex:1}
+
+.l-hero{background:linear-gradient(145deg,#071e0e,var(--green-deep));padding:142px 20px 56px;text-align:center}
+.l-breadcrumb{display:flex;align-items:center;justify-content:center;gap:8px;font-size:.76rem;color:rgba(245,230,192,.50);margin-bottom:20px;flex-wrap:wrap}
+.l-breadcrumb a{color:rgba(245,230,192,.50)}
+.l-breadcrumb a:hover{color:var(--gold-light)}
+.l-breadcrumb span{color:rgba(245,230,192,.30)}
+.l-hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(200,146,42,0.15);border:1px solid rgba(200,146,42,0.35);color:var(--gold-light);font-size:.75rem;font-weight:600;padding:5px 14px;border-radius:20px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:18px}
+.l-hero h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,6vw,3.2rem);color:var(--white);font-weight:700;margin-bottom:6px}
+.l-hero-ur{font-family:'Noto Nastaliq Urdu',serif;font-size:clamp(1.6rem,4.5vw,2.6rem);color:var(--gold-light);direction:rtl;line-height:2.2;display:block;margin-bottom:12px}
+.l-hero-sub{font-size:.95rem;color:rgba(245,230,192,.65);max-width:520px;margin:0 auto;line-height:1.75}
+
+.tab-nav{background:var(--green-mid);padding:0 20px;display:flex;align-items:center;gap:0;overflow-x:auto;scrollbar-width:none;border-bottom:1px solid rgba(200,146,42,0.20);position:sticky;top:102px;z-index:800}
+.tab-nav::-webkit-scrollbar{display:none}
+.tab-nav a{white-space:nowrap;font-size:.80rem;font-weight:500;color:rgba(245,230,192,.60);padding:0 18px;height:46px;display:inline-flex;align-items:center;border-bottom:2px solid transparent;transition:all .2s;flex-shrink:0}
+.tab-nav a:hover,.tab-nav a.active{color:var(--gold-light);border-bottom-color:var(--gold)}
+
+.al-sec{padding:70px 20px}
+.al-inner{max-width:1000px;margin:0 auto}
+.sec-label{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.sec-title{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3.5vw,2.2rem);font-weight:700;color:var(--text-dark);margin-bottom:8px}
+.sec-sub{font-size:.92rem;color:var(--text-muted);line-height:1.75;max-width:580px;margin-bottom:36px}
+
+/* VOCAB GRID */
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;direction:rtl}
+.vc{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:18px 16px;transition:all .25s;direction:ltr}
+.vc:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:rgba(200,146,42,0.40)}
+.vc-ur{font-family:'Noto Nastaliq Urdu',serif;font-size:1.9rem;color:var(--green-mid);direction:rtl;line-height:2;display:block;margin-bottom:4px}
+.vc-tr{font-size:.82rem;font-weight:600;color:var(--text-mid);margin-bottom:2px}
+.vc-en{font-size:.76rem;color:var(--text-muted);margin-bottom:6px}
+.vc-note{font-size:.74rem;color:var(--text-muted);font-style:italic;border-top:1px solid var(--border);padding-top:6px;margin-top:4px;line-height:1.6}
+
+/* LECTURE PHRASES */
+.lecture-sec{background:var(--green-deep);padding:70px 20px}
+.lecture-inner{max-width:1000px;margin:0 auto}
+.phrase-grid{display:grid;gap:16px}
+.phrase-card{background:rgba(255,255,255,0.06);border:1px solid rgba(200,146,42,0.22);border-radius:14px;padding:22px 24px}
+.phrase-ur{font-family:'Noto Nastaliq Urdu',serif;font-size:clamp(1.3rem,3.5vw,2rem);color:var(--gold-light);direction:rtl;line-height:2.5;text-align:right;margin-bottom:8px}
+.phrase-tr{font-size:.88rem;color:rgba(245,230,192,.70);font-style:italic;margin-bottom:4px}
+.phrase-en{font-size:.84rem;color:rgba(245,230,192,.55);margin-bottom:8px}
+.phrase-ctx{font-size:.76rem;background:rgba(200,146,42,0.12);border:1px solid rgba(200,146,42,0.20);color:var(--gold);padding:5px 12px;border-radius:8px;display:inline-block}
+
+/* BOOKS SECTION */
+.books-sec{background:var(--cream);padding:70px 20px}
+.books-inner{max-width:1000px;margin:0 auto}
+.book-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
+.book-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:24px 22px;transition:all .28s;display:flex;align-items:flex-start;gap:16px}
+.book-card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.book-icon{width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,var(--green-deep),var(--green-mid));color:var(--gold-light);display:flex;align-items:center;justify-content:center;font-family:'Noto Nastaliq Urdu',serif;font-size:1.4rem;flex-shrink:0;line-height:1}
+.book-info h4{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--text-dark);margin-bottom:3px}
+.book-info .book-author{font-size:.80rem;color:var(--gold);font-weight:500;margin-bottom:6px}
+.book-info p{font-size:.82rem;color:var(--text-muted);line-height:1.65}
+.book-tag{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:3px 9px;border-radius:10px;background:rgba(200,146,42,0.10);color:var(--gold);display:inline-block;margin-top:8px}
+
+.callout{background:linear-gradient(135deg,rgba(200,146,42,0.10),rgba(200,146,42,0.05));border:1px solid rgba(200,146,42,0.25);border-radius:12px;padding:20px 22px;display:flex;gap:14px;align-items:flex-start;margin-top:28px}
+.callout-icon{font-size:1.6rem;flex-shrink:0}
+.callout p{font-size:.88rem;color:var(--text-mid);line-height:1.75}
+.callout strong{color:var(--gold)}
+
+.al-footer{background:var(--green-deep);border-top:1px solid rgba(200,146,42,0.15);padding:36px 20px;text-align:center}
+.al-footer-links{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:18px}
+.al-footer-links a{color:rgba(245,230,192,.60);font-size:.80rem;padding:6px 14px;border:1px solid rgba(200,146,42,0.20);border-radius:20px;transition:all .2s}
+.al-footer-links a:hover{color:var(--gold-light);border-color:rgba(200,146,42,0.50)}
+.al-footer p{font-size:.72rem;color:rgba(245,230,192,.25)}
+#btt{position:fixed;bottom:28px;right:22px;width:46px;height:46px;border-radius:50%;background:var(--gold);color:var(--green-deep);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(200,146,42,0.45);cursor:pointer;border:none;opacity:0;transform:translateY(16px);transition:all .3s;z-index:700}
+#btt.show{opacity:1;transform:translateY(0)}
+#btt:hover{transform:translateY(-3px)}
+@media print{.al-nav,.tab-nav,#btt,.al-lang-btn{display:none!important}}
+@media(max-width:600px){
+  .al-nav{height:auto;min-height:56px;padding:8px 16px;flex-wrap:wrap}
+  .al-nav-links a{display:none}
+  .al-nav-links{gap:8px}
+  .l-hero,.al-sec,.lecture-sec,.books-sec{padding-left:16px;padding-right:16px}
+  .l-hero{padding-top:80px}
+  .vocab-grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}
+  .book-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav class="al-nav">
+  <a class="al-nav-brand" href="../../index.html"><span>☪</span><span data-te="ఇస్లామిక్ ఫ్రంట్" data-en="Islamic Front">ఇస్లామిక్ ఫ్రంట్</span></a>
+  <div class="al-nav-links">
+    <a href="./index.html" data-te="ఉర్దూ పోర్టల్" data-en="Urdu Portal">Urdu Portal</a>
+    <a href="../../islamic-knowledge.html" data-te="జ్ఞాన కేంద్రం" data-en="KC">KC</a>
+    <button class="al-lang-btn" id="lang-btn" onclick="toggleLang()">English</button>
+  </div>
+</nav>
+
+<div class="lesson-nav">
+  <a href="./daily-urdu.html" class="lnb-btn" data-te="← స్థాయి 4 · రోజువారీ ఉర్దూ" data-en="← Level 4 · Daily Urdu">← Level 4 · Daily Urdu</a>
+  <span class="lnb-mid" data-te="స్థాయి 5 · ఇస్లామిక్ ఉర్దూ" data-en="Level 5 · Islamic Urdu">Level 5 · Islamic Urdu</span>
+  <a href="./advanced-reading.html" class="lnb-btn" data-te="స్థాయి 6 · అధునాతన పఠనం →" data-en="Level 6 · Advanced Reading →">Level 6 · Advanced Reading →</a>
+</div>
+
+<div class="l-hero" style="padding-top:142px">
+  <nav class="l-breadcrumb">
+    <a href="../../index.html" data-te="హోమ్" data-en="Home">Home</a><span>›</span>
+    <a href="./index.html" data-te="ఉర్దూ నేర్చుకోండి" data-en="Learn Urdu">Learn Urdu</a><span>›</span>
+    <span data-te="ఇస్లామిక్ ఉర్దూ" data-en="Islamic Urdu">Islamic Urdu</span>
+  </nav>
+  <div class="l-hero-badge"><span>۵</span><span data-te="స్థాయి 5" data-en="Level 5">Level 5</span></div>
+  <h1 data-te="ఇస్లామిక్ ఉర్దూ" data-en="Islamic Urdu">Islamic Urdu</h1>
+  <span class="l-hero-ur" lang="ur" dir="rtl">اسلامی اردو</span>
+  <p class="l-hero-sub" data-te="ఉర్దూ ఇస్లామిక్ పరిభాష నేర్చుకోండి, దర్స్ మరియు బయాన్‌లు అర్థం చేసుకోండి, మరియు ఇస్లామిక్ పుస్తకాలు చదవడం మొదలు పెట్టండి." data-en="Learn Islamic terminology in Urdu, understand dars and bayans, and begin reading Islamic books and articles.">Learn Islamic terminology in Urdu, understand dars and bayans, and begin reading Islamic books and articles.</p>
+</div>
+
+<nav class="tab-nav">
+  <a href="#terminology" class="active" data-te="ఇస్లామిక్ పరిభాష" data-en="Terminology">Terminology</a>
+  <a href="#lectures" data-te="ఉపన్యాస పదాలు" data-en="Lecture Phrases">Lecture Phrases</a>
+  <a href="#books" data-te="ఇస్లామిక్ పుస్తకాలు" data-en="Islamic Books">Islamic Books</a>
+</nav>
+
+<!-- ISLAMIC TERMINOLOGY -->
+<section class="al-sec" id="terminology">
+  <div class="al-inner">
+    <div class="sec-label" data-te="ఇస్లామిక్ పరిభాష" data-en="Islamic Vocabulary">Islamic Vocabulary</div>
+    <h2 class="sec-title" data-te="ఉర్దూలో ఇస్లామిక్ పదాలు" data-en="Islamic Terms in Urdu">Islamic Terms in Urdu</h2>
+    <p class="sec-sub" data-te="ఉర్దూ ఇస్లామిక్ ఉపన్యాసాల్లో మరియు పుస్తకాల్లో తరచుగా కనిపించే ముఖ్యమైన పదాలు." data-en="Essential words you will encounter frequently in Urdu Islamic lectures, books, and articles.">Essential words you will encounter frequently in Urdu Islamic lectures, books, and articles.</p>
+    <div class="vocab-grid">
+      <div class="vc"><span class="vc-ur" lang="ur" dir="rtl">نماز</span><div class="vc-tr">Namaz</div><div class="vc-en">Prayer (Salah)</div><div class="vc-note">The five daily prayers — called Salah in Arabic, Namaz in Urdu/Persian</div></div>
+      <div class="vc"><span class="vc-ur" lang="ur" dir="rtl">روزہ</span><div class="vc-tr">Roza</div><div class="vc-en">Fasting (Sawm)</div><div class="vc-note">Fasting in Ramadan — Urdu word for Sawm. Roza rakhna = to keep a fast</div></div>
+      <div class="vc"><span class="vc-ur" lang="ur" dir="rtl">زکات</span><div class="vc-tr">Zakat</div><div class="vc-en">Obligatory Charity</div><div class="vc-note">The third pillar of Islam — annual charity on wealth</div></div>
+      <div class="vc"><span class="vc-ur" lang="ur" dir="rtl">حج</span><div class="vc-tr">Hajj</div><div class="vc-en">Pilgrimage</div><div class="vc-note">The pilgrimage to Makkah — fifth pillar of Islam</div></div>
+      <div class="vc"><span class="vc-ur" lang="ur" dir="rtl">تفسیر</span><div class="vc-tr">Tafseer</div><div class="vc-en">Quranic Exegesis</div><div class="vc-note">Commentary and explanation of the Quran — vast tradition in Urdu</div></div>
+      <div class="vc"><span class="vc-ur" lang="ur" dir="rtl">حدیث</span><div class="vc-tr">Hadith</div><div class="vc-en">Prophetic Traditions</div><div class="vc-note">Sayings and actions of the Prophet ﷺ — extensively documented in Urdu</div></div>
+      <div class="vc"><span class="vc-ur" lang="ur" dir="rtl">فقہ</span><div class="vc-tr">Fiqh</div><div class="vc-en">Islamic Jurisprudence</div><div class="vc-note">Islamic law and rulings — major Urdu books exist in all four madhabs</div></div>
+      <div class="vc"><span class="vc-ur" lang="ur" dir="rtl">اجتہاد</span><div class="vc-tr">Ijtihad</div><div class="vc-en">Independent Legal Reasoning</div><div class="vc-note">Scholarly effort to derive rulings from Quran and Sunnah</div></div>
+      <div class="vc"><span class="vc-ur" lang="ur" dir="rtl">شریعت</span><div class="vc-tr">Shariah</div><div class="vc-en">Islamic Law/Path</div><div class="vc-note">The complete way of life ordained by Allah for Muslims</div></div>
+      <div class="vc"><span class="vc-ur" lang="ur" dir="rtl">سنت</span><div class="vc-tr">Sunnah</div><div class="vc-en">Prophetic Practice</div><div class="vc-note">The way of the Prophet ﷺ — his practices that Muslims follow</div></div>
+      <div class="vc"><span class="vc-ur" lang="ur" dir="rtl">دار العلوم</span><div class="vc-tr">Darul Uloom</div><div class="vc-en">House of Knowledge</div><div class="vc-note">Islamic seminary — famously Darul Uloom Deoband in India</div></div>
+      <div class="vc"><span class="vc-ur" lang="ur" dir="rtl">علماء</span><div class="vc-tr">Ulama</div><div class="vc-en">Islamic Scholars</div><div class="vc-note">Plural of Alim — learned Islamic scholars</div></div>
+      <div class="vc"><span class="vc-ur" lang="ur" dir="rtl">مفتی</span><div class="vc-tr">Mufti</div><div class="vc-en">Islamic Jurist</div><div class="vc-note">Scholar qualified to issue Islamic legal opinions (fatawa)</div></div>
+      <div class="vc"><span class="vc-ur" lang="ur" dir="rtl">آخرت</span><div class="vc-tr">Aakhirat</div><div class="vc-en">The Hereafter</div><div class="vc-note">Life after death — a central concern in Islamic teaching</div></div>
+      <div class="vc"><span class="vc-ur" lang="ur" dir="rtl">دعوت</span><div class="vc-tr">Dawat</div><div class="vc-en">Invitation to Islam</div><div class="vc-note">Calling people to Islam — Dawat-e-Tabligh is a major Urdu movement</div></div>
+      <div class="vc"><span class="vc-ur" lang="ur" dir="rtl">تبلیغ</span><div class="vc-tr">Tabligh</div><div class="vc-en">Propagation of Islam</div><div class="vc-note">Spreading the message of Islam — Tabligh Jamaat operates in Urdu</div></div>
+      <div class="vc"><span class="vc-ur" lang="ur" dir="rtl">رمضان</span><div class="vc-tr">Ramadan</div><div class="vc-en">Month of Fasting</div><div class="vc-note">The blessed ninth month of the Islamic calendar</div></div>
+      <div class="vc"><span class="vc-ur" lang="ur" dir="rtl">صدقہ</span><div class="vc-tr">Sadaqah</div><div class="vc-en">Voluntary Charity</div><div class="vc-note">Voluntary giving for the sake of Allah — sadaqah jariyah = ongoing charity</div></div>
+      <div class="vc"><span class="vc-ur" lang="ur" dir="rtl">توحید</span><div class="vc-tr">Tawheed</div><div class="vc-en">Oneness of Allah</div><div class="vc-note">The fundamental Islamic belief in the absolute oneness of Allah</div></div>
+      <div class="vc"><span class="vc-ur" lang="ur" dir="rtl">مسجد</span><div class="vc-tr">Masjid</div><div class="vc-en">Mosque</div><div class="vc-note">Place of prostration — the center of Muslim community life</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- LECTURE PHRASES -->
+<section class="lecture-sec" id="lectures">
+  <div class="lecture-inner">
+    <div class="sec-label" style="color:var(--gold)" data-te="దర్స్ మరియు బయాన్ పదాలు" data-en="Dars and Bayan Phrases">Dars and Bayan Phrases</div>
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3.5vw,2.2rem);color:var(--white);margin-bottom:8px" data-te="ఉర్దూ ఉపన్యాసాల్లో వినే వాక్యాలు" data-en="Phrases from Urdu Islamic Lectures">Phrases from Urdu Islamic Lectures</h2>
+    <p style="font-size:.92rem;color:rgba(245,230,192,.60);line-height:1.75;max-width:540px;margin-bottom:36px" data-te="ఉర్దూ దర్స్ మరియు బయాన్‌లలో తరచుగా వినే ముఖ్యమైన వాక్యాలు — వాటిని అర్థం చేసుకోవడం ప్రారంభించండి." data-en="Key phrases you will hear frequently in Urdu dars and bayans — begin to understand the language of Urdu Islamic lectures.">Key phrases you will hear in every Urdu dars and bayan — begin to understand the language of Islamic lectures.</p>
+    <div class="phrase-grid">
+      <div class="phrase-card">
+        <div class="phrase-ur" lang="ur" dir="rtl">اللہ تعالیٰ فرماتے ہیں</div>
+        <div class="phrase-tr">Allah Ta'ala farmatay hain</div>
+        <div class="phrase-en" data-te="అల్లాహ్ ఇలా చెప్తున్నారు (ఖుర్ఆన్ ఉల్లేఖనం ముందు)" data-en="Allah says... (used before citing the Quran)">Allah says... (used before citing the Quran)</div>
+        <span class="phrase-ctx" data-te="ఖుర్ఆన్ ఆయత్‌ను పరిచయం చేసేటప్పుడు" data-en="Used to introduce a Quranic verse">Introduces a Quranic verse</span>
+      </div>
+      <div class="phrase-card">
+        <div class="phrase-ur" lang="ur" dir="rtl">نبی کریم ﷺ نے ارشاد فرمایا</div>
+        <div class="phrase-tr">Nabi Kareem ﷺ ne irshad farmaya</div>
+        <div class="phrase-en" data-te="ప్రవక్త ﷺ ఇలా చెప్పారు (హదీస్ ఉల్లేఖనం ముందు)" data-en="The noble Prophet ﷺ said... (before citing a hadith)">The noble Prophet ﷺ said... (before citing a hadith)</div>
+        <span class="phrase-ctx" data-te="హదీస్‌ను పరిచయం చేసేటప్పుడు" data-en="Introduces a hadith narration">Introduces a hadith narration</span>
+      </div>
+      <div class="phrase-card">
+        <div class="phrase-ur" lang="ur" dir="rtl">بھائیو اور بہنو!</div>
+        <div class="phrase-tr">Bhaiyo aur behnon!</div>
+        <div class="phrase-en" data-te="సోదర సోదరీమణులారా! (ఉర్దూ ఉపన్యాసాల్లో సంబోధన)" data-en="Brothers and sisters! (Common address in Urdu lectures)">Brothers and sisters! (Common address in Urdu lectures)</div>
+        <span class="phrase-ctx" data-te="ప్రతి ఉర్దూ ఉపన్యాసంలో వినిపిస్తుంది" data-en="Heard in every single Urdu lecture">Heard in virtually every Urdu lecture</span>
+      </div>
+      <div class="phrase-card">
+        <div class="phrase-ur" lang="ur" dir="rtl">اللہ ہمیں توفیق دے</div>
+        <div class="phrase-tr">Allah hamein taufeeq dey</div>
+        <div class="phrase-en" data-te="అల్లాహ్ మనకు సామర్థ్యం ఇవ్వాలి" data-en="May Allah give us the ability/guidance to act">May Allah give us the ability to act on this</div>
+        <span class="phrase-ctx" data-te="ఉపన్యాసంలో తరచుగా వినే దువా" data-en="Frequent dua heard in Urdu lectures">A frequent dua in Urdu lectures</span>
+      </div>
+      <div class="phrase-card">
+        <div class="phrase-ur" lang="ur" dir="rtl">اللہ تعالیٰ ہم سب کی مغفرت فرمائے</div>
+        <div class="phrase-tr">Allah Ta'ala hum sab ki maghfirat farmaey</div>
+        <div class="phrase-en" data-te="అల్లాహ్ మనందరినీ మన్నించాలి" data-en="May Allah forgive all of us">May Allah forgive all of us</div>
+        <span class="phrase-ctx" data-te="ఉపన్యాసం చివర తరచుగా వినే దువా" data-en="Often heard at the close of a lecture">Often heard at the close of a lecture</span>
+      </div>
+      <div class="phrase-card">
+        <div class="phrase-ur" lang="ur" dir="rtl">صلوٰۃ و سلام اس نبی ﷺ پر</div>
+        <div class="phrase-tr">Salawaat wa salaam us nabi ﷺ par</div>
+        <div class="phrase-en" data-te="ఆ ప్రవక్త ﷺ పై దరూద్ మరియు సలాం" data-en="Blessings and peace upon that Prophet ﷺ">Blessings and peace upon that Prophet ﷺ</div>
+        <span class="phrase-ctx" data-te="ప్రవక్త పేరు తర్వాత చదవాలి" data-en="Said when the Prophet's name is mentioned">Said when the Prophet's name is mentioned</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ISLAMIC BOOKS -->
+<section class="books-sec" id="books">
+  <div class="books-inner">
+    <div class="sec-label" data-te="ఉర్దూ ఇస్లామిక్ గ్రంథాలు" data-en="Urdu Islamic Literature">Urdu Islamic Literature</div>
+    <h2 class="sec-title" data-te="ముఖ్య ఉర్దూ ఇస్లామిక్ పుస్తకాలు" data-en="Key Urdu Islamic Books">Key Urdu Islamic Books</h2>
+    <p class="sec-sub" data-te="ఉర్దూ భాష ఇస్లామిక్ గ్రంథాల్లో ఒక అపూర్వ స్థానాన్ని కలిగి ఉంది. ఈ పుస్తకాలు అభ్యాసకులకు ఉర్దూ చదవడం ప్రారంభించడానికి సహాయపడతాయి." data-en="Urdu holds a unique place in Islamic literature. These books are milestones you can work toward as your Urdu reading improves.">Urdu holds a unique place in Islamic literature. These books are milestones to work toward as your reading improves.</p>
+    <div class="book-grid">
+      <div class="book-card">
+        <div class="book-icon" lang="ur" dir="rtl">ف</div>
+        <div class="book-info">
+          <h4 data-te="فضائل اعمال" data-en="Fazail-e-Amal">Fazail-e-Amal</h4>
+          <div class="book-author" data-te="మౌలానా జకరియ్యా కాందలావీ" data-en="Maulana Zakariyya Kandhlawi">Maulana Zakariyya Kandhlawi</div>
+          <p data-te="ఇబాదత్ మరియు ఇస్లామిక్ అమల్‌ల ప్రాముఖ్యత మరియు ఫజీలత్‌పై ముఖ్యమైన ఉర్దూ గ్రంథం." data-en="A widely read Urdu book on the virtues and importance of Islamic practices — used in Tabligh Jamaat worldwide.">A widely read Urdu book on the virtues and importance of Islamic practices.</p>
+          <span class="book-tag" data-te="అభ్యాస గ్రంథం" data-en="Devotional">Devotional</span>
+        </div>
+      </div>
+      <div class="book-card">
+        <div class="book-icon" lang="ur" dir="rtl">ت</div>
+        <div class="book-info">
+          <h4 data-te="تفہیم القرآن" data-en="Tafheem ul Quran">Tafheem ul Quran</h4>
+          <div class="book-author" data-te="సయ్యద్ అబుల్ అలా మౌదూది" data-en="Syed Abul Ala Maududi">Syed Abul Ala Maududi</div>
+          <p data-te="ఖుర్ఆన్ యొక్క సమగ్ర ఉర్దూ తఫ్‌సీర్ — ఆధునిక ఉర్దూ పాఠకులకు అత్యుత్తమ గ్రంథం." data-en="A comprehensive Urdu tafseer of the Quran — one of the most widely read Urdu Islamic works of the 20th century.">A comprehensive Urdu tafseer of the Quran — one of the most widely read Urdu Islamic works.</p>
+          <span class="book-tag" data-te="తఫ్‌సీర్" data-en="Tafseer">Tafseer</span>
+        </div>
+      </div>
+      <div class="book-card">
+        <div class="book-icon" lang="ur" dir="rtl">ب</div>
+        <div class="book-info">
+          <h4 data-te="بہشتی زیور" data-en="Bahishti Zewar">Bahishti Zewar</h4>
+          <div class="book-author" data-te="మౌలానా అశ్రఫ్ అలీ తన్వీ" data-en="Maulana Ashraf Ali Thanvi">Maulana Ashraf Ali Thanvi</div>
+          <p data-te="ఇస్లామిక్ ఆచారాలు, ఫిఖ్హ్ మరియు నైతికత పై ఒక సమగ్ర ఉర్దూ మార్గదర్శిక గ్రంథం." data-en="A comprehensive Urdu guide on Islamic practices, fiqh, and ethics — an essential text in South Asian Muslim homes.">A comprehensive Urdu guide on Islamic practices, fiqh, and ethics.</p>
+          <span class="book-tag" data-te="ఫిఖ్హ్" data-en="Fiqh">Fiqh</span>
+        </div>
+      </div>
+      <div class="book-card">
+        <div class="book-icon" lang="ur" dir="rtl">س</div>
+        <div class="book-info">
+          <h4 data-te="سیرت النبی ﷺ" data-en="Seerat un-Nabi ﷺ">Seerat un-Nabi ﷺ</h4>
+          <div class="book-author" data-te="అల్లామా షిబ్లీ నూమాని" data-en="Allama Shibli Nomani">Allama Shibli Nomani</div>
+          <p data-te="ప్రవక్త ﷺ జీవితంపై ఒక మహత్తరమైన ఉర్దూ జీవిత చరిత్ర గ్రంథం." data-en="A monumental Urdu biographical work on the life of the Prophet ﷺ — one of the greatest works of Urdu Islamic scholarship.">A monumental Urdu work on the life of the Prophet ﷺ.</p>
+          <span class="book-tag" data-te="సీరా" data-en="Seerah">Seerah</span>
+        </div>
+      </div>
+      <div class="book-card">
+        <div class="book-icon" lang="ur" dir="rtl">ر</div>
+        <div class="book-info">
+          <h4 data-te="ریاض الصالحین" data-en="Riyad us-Saliheen (Urdu)">Riyad us-Saliheen (Urdu)</h4>
+          <div class="book-author" data-te="ఇమాం నవావి (ఉర్దూ అనువాదం)" data-en="Imam Nawawi (Urdu Translation)">Imam Nawawi (Urdu Translation)</div>
+          <p data-te="హదీస్ మరియు ఇస్లామిక్ నైతికత పై ఇమాం నవావి యొక్క మహత్తరమైన గ్రంథం — ఉర్దూ అనువాదంలో అత్యంత ప్రజాదరణ పొందింది." data-en="Imam Nawawi's classic hadith collection on righteous conduct — widely available and read in Urdu translation.">Imam Nawawi's classic hadith collection — widely read in Urdu translation.</p>
+          <span class="book-tag" data-te="హదీస్" data-en="Hadith">Hadith</span>
+        </div>
+      </div>
+      <div class="book-card">
+        <div class="book-icon" lang="ur" dir="rtl">ن</div>
+        <div class="book-info">
+          <h4 data-te="نفحات القرآن" data-en="Nafahat ul Quran">Nafahat ul Quran</h4>
+          <div class="book-author" data-te="మౌలానా తారిఖ్ జమీల్" data-en="Maulana Tariq Jameel">Maulana Tariq Jameel</div>
+          <p data-te="ఉర్దూ ఇస్లామిక్ సాహిత్యంలో ఆధునిక రచనలలో ప్రముఖమైనది — తారిఖ్ జమీల్ యొక్క ఖుర్ఆన్ తఫ్‌సీర్ ఉపన్యాసాల సంకలనం." data-en="A modern Urdu work by one of the most widely listened Urdu Islamic scholars — compiled from his Quran lectures.">A modern Urdu work by one of the most widely listened Urdu Islamic scholars.</p>
+          <span class="book-tag" data-te="ఆధునిక" data-en="Contemporary">Contemporary</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-icon">📖</div>
+      <p data-te="ఉర్దూ చదవడం నేర్చుకున్న తర్వాత మీ మొదటి ఇస్లామిక్ పుస్తకం: <strong>ఫజాయిల్-ఎ-అమల్</strong> లేదా <strong>బహిష్తీ జేవర్</strong> — ఉర్దూ సాధారణంగా ఉంటుంది మరియు ప్రారంభకులకు సరైనది. నిత్యం ఒక పేజీ చదవడం అలవాటు చేసుకోండి." data-en="Your first Urdu Islamic book recommendation: <strong>Fazail-e-Amal</strong> or <strong>Bahishti Zewar</strong> — both use accessible Urdu. Build the habit of reading one page per day, and your fluency will grow steadily.">First Urdu book recommendation: <strong>Fazail-e-Amal</strong> or <strong>Bahishti Zewar</strong> — both use accessible Urdu. Read one page per day to build fluency steadily.</p>
+    </div>
+  </div>
+</section>
+
+<footer class="al-footer">
+  <div class="al-footer-links">
+    <a href="./writing-skills.html" data-te="← స్థాయి 3: రాయడం" data-en="← Level 3: Writing">← Writing Skills</a>
+    <a href="./index.html" data-te="ఉర్దూ పోర్టల్" data-en="Urdu Portal">Urdu Portal</a>
+    <a href="../../islamic-knowledge.html" data-te="జ్ఞాన కేంద్రం" data-en="Knowledge Center">Knowledge Center</a>
+  </div>
+  <p data-te="© 2025 ఇస్లామిక్ ఫ్రంట్" data-en="© 2025 Islamic Front">© 2025 Islamic Front</p>
+</footer>
+
+<button id="btt" onclick="scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+
+<script>
+var LANG = localStorage.getItem('if-lang') || 'te';
+function applyLang(l){LANG=l;localStorage.setItem('if-lang',l);document.documentElement.lang=(l==='te')?'te':'en';document.querySelectorAll('[data-te]').forEach(function(el){var v=el.getAttribute('data-'+l);if(v)el.innerHTML=v;});var btn=document.getElementById('lang-btn');if(btn)btn.textContent=l==='te'?'English':'తెలుగు';}
+function toggleLang(){applyLang(LANG==='te'?'en':'te');}
+applyLang(LANG);
+
+(function(){
+  var links=document.querySelectorAll('.tab-nav a');
+  var secs=['terminology','lectures','books'].map(function(id){return document.getElementById(id);});
+  var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){var id=e.target.id;links.forEach(function(a){a.classList.toggle('active',a.getAttribute('href')==='#'+id);});}});},{rootMargin:'-70px 0px -60% 0px',threshold:0});
+  secs.forEach(function(s){if(s)obs.observe(s);});
+})();
+
+window.addEventListener('scroll',function(){document.getElementById('btt').classList.toggle('show',window.scrollY>400);},{passive:true});
+</script>
+</body>
+</html>

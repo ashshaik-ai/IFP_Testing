@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="te" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>రోజువారీ ఉర్దూ — Daily Urdu | Islamic Front</title>
+<meta name="description" content="Learn everyday Urdu: greetings, daily conversations, common Islamic expressions, and numbers. Level 4 of the Urdu Learning Portal.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Sans:wght@300;400;500&family=Noto+Sans+Telugu:wght@300;400;500;700&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --green-deep:#0d3b1e;--green-mid:#1a5c30;--green-light:#2e8b57;
+  --gold:#c8922a;--gold-light:#e8b84b;--gold-pale:#f5e6c0;
+  --cream:#faf6ee;--white:#ffffff;
+  --text-dark:#1a1208;--text-mid:#3d3018;--text-muted:#7a6840;
+  --border:rgba(200,146,42,0.25);--radius:14px;--shadow:0 4px 24px rgba(0,0,0,0.10);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;color:var(--text-dark);background:var(--cream);overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+
+/* NAV */
+.al-nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(13,59,30,0.92);backdrop-filter:blur(12px);padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:56px;border-bottom:1px solid rgba(200,146,42,0.18)}
+.al-nav-brand{display:flex;align-items:center;gap:10px;color:var(--gold-light);font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700}
+.al-nav-brand span{font-size:1.4rem}
+.al-nav-links{display:flex;align-items:center;gap:16px}
+.al-nav-links a{color:rgba(245,230,192,0.75);font-size:.82rem;font-weight:500;transition:color .2s}
+.al-nav-links a:hover{color:var(--gold-light)}
+.al-lang-btn{background:rgba(200,146,42,0.20);border:1px solid var(--gold);color:var(--gold-light);font-size:.78rem;font-weight:600;padding:5px 13px;border-radius:20px;cursor:pointer;transition:all .2s;font-family:'DM Sans',sans-serif}
+.al-lang-btn:hover{background:var(--gold);color:var(--green-deep)}
+
+/* LESSON NAV */
+.lesson-nav{position:fixed;top:56px;left:0;right:0;z-index:850;height:46px;background:rgba(13,59,30,0.95);backdrop-filter:blur(8px);border-bottom:1px solid rgba(200,146,42,0.18);display:flex;align-items:center;justify-content:space-between;padding:0 16px;gap:8px}
+.lnb-btn{font-size:.74rem;font-weight:600;color:rgba(245,230,192,.70);padding:4px 12px;border-radius:20px;border:1px solid rgba(200,146,42,0.22);transition:all .2s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:42%}
+.lnb-btn:hover{color:var(--gold-light);border-color:rgba(200,146,42,0.50);background:rgba(200,146,42,0.10)}
+.lnb-spacer{min-width:70px}
+.lnb-mid{font-size:.68rem;font-weight:700;color:var(--gold);letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;text-align:center;flex:1}
+
+/* HERO */
+.l-hero{background:linear-gradient(145deg,#071e0e,var(--green-deep));padding:142px 20px 56px;text-align:center}
+.l-breadcrumb{display:flex;align-items:center;justify-content:center;gap:8px;font-size:.76rem;color:rgba(245,230,192,.50);margin-bottom:20px;flex-wrap:wrap}
+.l-breadcrumb a{color:rgba(245,230,192,.50);transition:color .2s}
+.l-breadcrumb a:hover{color:var(--gold-light)}
+.l-breadcrumb span{color:rgba(245,230,192,.30)}
+.l-hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(200,146,42,0.15);border:1px solid rgba(200,146,42,0.35);color:var(--gold-light);font-size:.75rem;font-weight:600;padding:5px 14px;border-radius:20px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:18px}
+.l-hero h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,6vw,3.2rem);color:var(--white);font-weight:700;margin-bottom:6px}
+.l-hero-ur{font-family:'Noto Nastaliq Urdu',serif;font-size:clamp(1.6rem,4.5vw,2.6rem);color:var(--gold-light);direction:rtl;line-height:2.2;display:block;margin-bottom:12px}
+.l-hero-sub{font-size:.95rem;color:rgba(245,230,192,.65);max-width:520px;margin:0 auto;line-height:1.75}
+
+/* TAB NAV */
+.tab-nav{background:var(--green-mid);padding:0 20px;display:flex;align-items:center;gap:0;overflow-x:auto;scrollbar-width:none;border-bottom:1px solid rgba(200,146,42,0.20);position:sticky;top:102px;z-index:800}
+.tab-nav::-webkit-scrollbar{display:none}
+.tab-nav a{white-space:nowrap;font-size:.80rem;font-weight:500;color:rgba(245,230,192,.60);padding:0 18px;height:46px;display:inline-flex;align-items:center;border-bottom:2px solid transparent;transition:all .2s;flex-shrink:0}
+.tab-nav a:hover,.tab-nav a.active{color:var(--gold-light);border-bottom-color:var(--gold)}
+
+/* SECTIONS */
+.al-sec{padding:70px 20px}
+.al-inner{max-width:1000px;margin:0 auto}
+.sec-label{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.sec-title{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3.5vw,2.2rem);font-weight:700;color:var(--text-dark);margin-bottom:8px}
+.sec-sub{font-size:.92rem;color:var(--text-muted);line-height:1.75;max-width:580px;margin-bottom:36px}
+
+/* GREETING CARDS (vocab-style) */
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;direction:rtl}
+.vc{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:18px 16px;transition:all .25s;direction:ltr}
+.vc:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:rgba(200,146,42,0.40)}
+.vc-ur{font-family:'Noto Nastaliq Urdu',serif;font-size:1.9rem;color:var(--green-mid);direction:rtl;line-height:2;display:block;margin-bottom:4px}
+.vc-tr{font-size:.82rem;font-weight:600;color:var(--text-mid);margin-bottom:2px}
+.vc-en{font-size:.76rem;color:var(--text-muted);margin-bottom:6px}
+.vc-note{font-size:.74rem;color:var(--text-muted);font-style:italic;border-top:1px solid var(--border);padding-top:6px;margin-top:4px;line-height:1.6}
+
+/* PHRASE CARDS (for conversations) */
+.dark-sec{background:var(--green-deep);padding:70px 20px}
+.dark-inner{max-width:1000px;margin:0 auto}
+.phrase-grid{display:grid;gap:16px}
+.phrase-card{background:rgba(255,255,255,0.06);border:1px solid rgba(200,146,42,0.22);border-radius:14px;padding:22px 24px}
+.phrase-ur{font-family:'Noto Nastaliq Urdu',serif;font-size:clamp(1.3rem,3.5vw,2rem);color:var(--gold-light);direction:rtl;line-height:2.5;text-align:right;margin-bottom:6px}
+.phrase-tr{font-size:.88rem;color:rgba(245,230,192,.70);font-style:italic;margin-bottom:4px}
+.phrase-en{font-size:.84rem;color:rgba(245,230,192,.55);margin-bottom:8px}
+.phrase-ctx{font-size:.76rem;background:rgba(200,146,42,0.12);border:1px solid rgba(200,146,42,0.20);color:var(--gold);padding:5px 12px;border-radius:8px;display:inline-block}
+
+/* EXPRESSION CARDS */
+.expr-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin-top:28px}
+.expr-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:22px 20px;transition:all .28s;position:relative;overflow:hidden}
+.expr-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold-light))}
+.expr-card:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+.expr-ar{font-family:'Noto Nastaliq Urdu',serif;font-size:clamp(1.5rem,4vw,2.2rem);color:var(--green-mid);direction:rtl;line-height:2;display:block;text-align:center;margin-bottom:8px}
+.expr-tr{font-size:.88rem;font-weight:600;color:var(--text-mid);text-align:center;margin-bottom:4px}
+.expr-en{font-size:.80rem;color:var(--text-muted);text-align:center;margin-bottom:10px}
+.expr-meaning{font-size:.76rem;color:var(--text-muted);font-style:italic;text-align:center;line-height:1.6;border-top:1px solid var(--border);padding-top:8px;margin-top:4px}
+
+/* NUMBER GRID */
+.num-sec{background:var(--cream);padding:70px 20px}
+.num-inner{max-width:1000px;margin:0 auto}
+.num-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:12px;margin-top:28px}
+.num-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:16px 12px;text-align:center;transition:all .25s;cursor:default}
+.num-card:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:rgba(200,146,42,0.40)}
+.num-digit{font-family:'Noto Nastaliq Urdu',serif;font-size:1.7rem;color:var(--green-mid);direction:rtl;line-height:1.8;display:block}
+.num-tr{font-size:.82rem;font-weight:600;color:var(--text-mid);margin-bottom:2px}
+.num-val{font-size:.70rem;color:var(--text-muted)}
+
+/* TIME EXPRESSIONS */
+.time-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-top:24px}
+.time-card{background:rgba(200,146,42,0.06);border:1px solid rgba(200,146,42,0.20);border-radius:10px;padding:14px 16px;direction:ltr}
+.time-ur{font-family:'Noto Nastaliq Urdu',serif;font-size:1.3rem;color:var(--green-mid);direction:rtl;line-height:1.8;display:block;margin-bottom:2px}
+.time-tr{font-size:.80rem;font-weight:600;color:var(--text-mid);margin-bottom:1px}
+.time-en{font-size:.74rem;color:var(--text-muted)}
+
+/* CALLOUT */
+.callout{background:linear-gradient(135deg,rgba(200,146,42,0.10),rgba(200,146,42,0.05));border:1px solid rgba(200,146,42,0.25);border-radius:12px;padding:20px 22px;display:flex;gap:14px;align-items:flex-start;margin-top:36px}
+.callout-icon{font-size:1.6rem;flex-shrink:0}
+.callout p{font-size:.88rem;color:var(--text-mid);line-height:1.75}
+.callout strong{color:var(--gold)}
+
+/* NEXT LESSON BANNER */
+.next-sec{background:var(--green-deep);padding:56px 20px;text-align:center}
+.next-inner{max-width:700px;margin:0 auto}
+.next-label{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.next-title{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3.5vw,2.2rem);font-weight:700;color:var(--white);margin-bottom:8px}
+.next-sub{font-size:.92rem;color:rgba(245,230,192,.60);margin-bottom:28px;line-height:1.75}
+.next-links{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.next-link{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:50px;font-size:.88rem;font-weight:600;transition:all .25s}
+.next-link.primary{background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--green-deep)}
+.next-link.primary:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(200,146,42,0.40)}
+.next-link.secondary{border:1px solid rgba(200,146,42,0.40);color:rgba(245,230,192,.80)}
+.next-link.secondary:hover{border-color:var(--gold);color:var(--gold-light)}
+
+/* FOOTER */
+.al-footer{background:var(--green-deep);border-top:1px solid rgba(200,146,42,0.15);padding:36px 20px;text-align:center}
+.al-footer-links{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:18px}
+.al-footer-links a{color:rgba(245,230,192,.60);font-size:.80rem;padding:6px 14px;border:1px solid rgba(200,146,42,0.20);border-radius:20px;transition:all .2s}
+.al-footer-links a:hover{color:var(--gold-light);border-color:rgba(200,146,42,0.50)}
+.al-footer p{font-size:.72rem;color:rgba(245,230,192,.25)}
+
+/* BACK TO TOP */
+#btt{position:fixed;bottom:28px;right:22px;width:46px;height:46px;border-radius:50%;background:var(--gold);color:var(--green-deep);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(200,146,42,0.45);cursor:pointer;border:none;opacity:0;transform:translateY(16px);transition:all .3s;z-index:700;font-size:1.2rem}
+#btt.show{opacity:1;transform:translateY(0)}
+#btt:hover{transform:translateY(-3px)}
+
+/* PRINT */
+@media print{.al-nav,.tab-nav,#btt,.al-lang-btn{display:none!important}}
+
+/* RESPONSIVE */
+@media(max-width:600px){
+  .al-nav{height:auto;min-height:56px;padding:8px 16px;flex-wrap:wrap}
+  .al-nav-links a{display:none}
+  .al-nav-links{gap:8px}
+  .l-hero,.al-sec,.dark-sec,.num-sec,.next-sec{padding-left:16px;padding-right:16px}
+  .l-hero{padding-top:80px;padding-bottom:44px}
+  .al-sec,.dark-sec,.num-sec{padding-top:56px;padding-bottom:56px}
+  .vocab-grid{grid-template-columns:1fr 1fr}
+  .expr-grid{grid-template-columns:1fr}
+  .num-grid{grid-template-columns:repeat(4,1fr)}
+  .time-grid{grid-template-columns:1fr}
+  .phrase-card{padding:18px 16px}
+}
+@media(max-width:400px){
+  .vocab-grid{grid-template-columns:1fr}
+  .num-grid{grid-template-columns:repeat(3,1fr)}
+}
+</style>
+</head>
+<body>
+
+<nav class="al-nav">
+  <a class="al-nav-brand" href="../../index.html"><span>☪</span><span data-te="ఇస్లామిక్ ఫ్రంట్" data-en="Islamic Front">ఇస్లామిక్ ఫ్రంట్</span></a>
+  <div class="al-nav-links">
+    <a href="./index.html" data-te="ఉర్దూ పోర్టల్" data-en="Urdu Portal">Urdu Portal</a>
+    <a href="../../islamic-knowledge.html" data-te="జ్ఞాన కేంద్రం" data-en="KC">KC</a>
+    <button class="al-lang-btn" id="lang-btn" onclick="toggleLang()">English</button>
+  </div>
+</nav>
+
+<div class="lesson-nav">
+  <a href="./writing-skills.html" class="lnb-btn" data-te="← స్థాయి 3 · రాయడం" data-en="← Level 3 · Writing">← Level 3 · Writing</a>
+  <span class="lnb-mid" data-te="స్థాయి 4 · రోజువారీ ఉర్దూ" data-en="Level 4 · Daily Urdu">Level 4 · Daily Urdu</span>
+  <a href="./islamic-urdu.html" class="lnb-btn" data-te="స్థాయి 5 · ఇస్లామిక్ ఉర్దూ →" data-en="Level 5 · Islamic Urdu →">Level 5 · Islamic Urdu →</a>
+</div>
+
+<div class="l-hero">
+  <nav class="l-breadcrumb">
+    <a href="../../index.html" data-te="హోమ్" data-en="Home">హోమ్</a><span>›</span>
+    <a href="./index.html" data-te="ఉర్దూ నేర్చుకోండి" data-en="Learn Urdu">ఉర్దూ నేర్చుకోండి</a><span>›</span>
+    <span data-te="రోజువారీ ఉర్దూ" data-en="Daily Urdu">రోజువారీ ఉర్దూ</span>
+  </nav>
+  <div class="l-hero-badge"><span>۴</span><span data-te="స్థాయి 4" data-en="Level 4">Level 4</span></div>
+  <h1 data-te="రోజువారీ ఉర్దూ" data-en="Daily Urdu">Daily Urdu</h1>
+  <span class="l-hero-ur" lang="ur" dir="rtl">روزمرہ اردو</span>
+  <p class="l-hero-sub" data-te="రోజువారీ ఉర్దూ శుభాకాంక్షలు, సంభాషణలు, సాధారణ వ్యక్తీకరణలు మరియు సంఖ్యలు నేర్చుకోండి. ఉర్దూ మాట్లాడే వారితో ఆత్మవిశ్వాసంతో సంభాషించండి." data-en="Learn everyday Urdu greetings, conversations, common expressions, and numbers — communicate confidently with Urdu speakers.">Learn everyday Urdu greetings, conversations, common expressions, and numbers — communicate confidently with Urdu speakers.</p>
+</div>
+
+<nav class="tab-nav">
+  <a href="#greetings" class="active" data-te="శుభాకాంక్షలు" data-en="Greetings">Greetings</a>
+  <a href="#conversations" data-te="సంభాషణలు" data-en="Conversations">Conversations</a>
+  <a href="#expressions" data-te="వ్యక్తీకరణలు" data-en="Expressions">Expressions</a>
+  <a href="#numbers" data-te="సంఖ్యలు" data-en="Numbers">Numbers</a>
+</nav>
+
+<!-- GREETINGS -->
+<section class="al-sec" id="greetings">
+  <div class="al-inner">
+    <div class="sec-label" data-te="శుభాకాంక్షలు మరియు మర్యాదలు" data-en="Greetings &amp; Courtesies">Greetings &amp; Courtesies</div>
+    <h2 class="sec-title" data-te="ఉర్దూ శుభాకాంక్షలు" data-en="Urdu Greetings">Urdu Greetings</h2>
+    <p class="sec-sub" data-te="ఉర్దూ సంస్కృతిలో శుభాకాంక్షలు చాలా ముఖ్యమైనవి. ఇస్లామిక్ పదాలతో మొదలుపెట్టి రోజువారీ మర్యాదల వరకు నేర్చుకోండి." data-en="Greetings carry deep meaning in Urdu culture. Learn from Islamic salutations to everyday courtesies.">Greetings carry deep meaning in Urdu culture. Learn from Islamic salutations to everyday courtesies.</p>
+    <div class="vocab-grid">
+      <div class="vc">
+        <span class="vc-ur" lang="ur" dir="rtl">اَلسَّلَامُ عَلَيْكُمْ</span>
+        <div class="vc-tr">As-salamu alaykum</div>
+        <div class="vc-en" data-te="మీకు శాంతి కలుగుగాక" data-en="Peace be upon you">Peace be upon you</div>
+        <div class="vc-note" data-te="ముస్లింల ప్రధాన శుభాకాంక్ష — ఎవరినైనా కలిసినప్పుడు ముందుగా చెప్పేది" data-en="The primary Islamic greeting — said first when meeting anyone">The primary Islamic greeting</div>
+      </div>
+      <div class="vc">
+        <span class="vc-ur" lang="ur" dir="rtl">وَعَلَيْكُمُ السَّلَام</span>
+        <div class="vc-tr">Wa alaykum assalam</div>
+        <div class="vc-en" data-te="మీకు కూడా శాంతి కలుగుగాక" data-en="And upon you peace">And upon you peace</div>
+        <div class="vc-note" data-te="సలాం కు సమాధానం — ఇది తప్పనిసరి" data-en="The reply to As-salamu alaykum — obligatory to respond">The obligatory reply to salam</div>
+      </div>
+      <div class="vc">
+        <span class="vc-ur" lang="ur" dir="rtl">آداب</span>
+        <div class="vc-tr">Adaab</div>
+        <div class="vc-en" data-te="ఆదాబ్ — గౌరవపూర్వక శుభాకాంక్ష" data-en="Adaab — a formal respectful greeting">Adaab — formal respectful greeting</div>
+        <div class="vc-note" data-te="చేతిని నొసట్లో పెట్టి చెప్పే గౌరవసూచక శుభాకాంక్ష" data-en="Formal greeting with hand raised to forehead — shows deep respect">Formal salute showing deep respect</div>
+      </div>
+      <div class="vc">
+        <span class="vc-ur" lang="ur" dir="rtl">خوش آمدید</span>
+        <div class="vc-tr">Khush amdeed</div>
+        <div class="vc-en" data-te="స్వాగతం" data-en="Welcome">Welcome</div>
+        <div class="vc-note" data-te="ఇంటికో, కార్యక్రమానికో వచ్చిన వారిని ఆహ్వానించేటప్పుడు" data-en="Used to welcome guests to your home or an event">Used to welcome guests</div>
+      </div>
+      <div class="vc">
+        <span class="vc-ur" lang="ur" dir="rtl">شُکریہ</span>
+        <div class="vc-tr">Shukriya</div>
+        <div class="vc-en" data-te="ధన్యవాదాలు" data-en="Thank you">Thank you</div>
+        <div class="vc-note" data-te="మర్యాదపూర్వకంగా కృతజ్ఞత తెలుపడం — రోజువారీ ఉర్దూలో చాలా వాడే పదం" data-en="Polite expression of gratitude — used constantly in daily Urdu">Common daily expression of thanks</div>
+      </div>
+      <div class="vc">
+        <span class="vc-ur" lang="ur" dir="rtl">معاف کیجیے</span>
+        <div class="vc-tr">Maaf kijiye</div>
+        <div class="vc-en" data-te="క్షమించండి / మన్నించండి" data-en="Please forgive me / Excuse me">Please forgive me / Excuse me</div>
+        <div class="vc-note" data-te="క్షమాపణ కోరేటప్పుడు లేదా ఎవరినైనా వ్యతిరేకించేటప్పుడు" data-en="To apologize or to politely interrupt someone">To apologize or politely interrupt</div>
+      </div>
+      <div class="vc">
+        <span class="vc-ur" lang="ur" dir="rtl">اللہ حافظ</span>
+        <div class="vc-tr">Allah Hafiz</div>
+        <div class="vc-en" data-te="వీడ్కోలు — అల్లాహ్ మిమ్మల్ని కాపాడాలి" data-en="Goodbye — May Allah protect you">Goodbye — May Allah protect you</div>
+        <div class="vc-note" data-te="ముస్లింల నడుమ వీడ్కోలు చెప్పే ఆధునిక పద్ధతి" data-en="The modern Islamic farewell — widely used by Muslims today">The modern Islamic farewell</div>
+      </div>
+      <div class="vc">
+        <span class="vc-ur" lang="ur" dir="rtl">خدا حافظ</span>
+        <div class="vc-tr">Khuda Hafiz</div>
+        <div class="vc-en" data-te="వీడ్కోలు — దేవుడు మిమ్మల్ని కాపాడాలి" data-en="Goodbye — May God protect you">Goodbye — May God protect you</div>
+        <div class="vc-note" data-te="సాంప్రదాయిక ఉర్దూ వీడ్కోలు — ఇప్పటికీ పెద్దలు ఉపయోగిస్తారు" data-en="Traditional Urdu farewell — still used by elders">Traditional farewell, still used by elders</div>
+      </div>
+      <div class="vc">
+        <span class="vc-ur" lang="ur" dir="rtl">کیا حال ہے؟</span>
+        <div class="vc-tr">Kya haal hai?</div>
+        <div class="vc-en" data-te="మీరు ఎలా ఉన్నారు?" data-en="How are you?">How are you?</div>
+        <div class="vc-note" data-te="ఆత్మీయంగా విచారించే మాట — సలాం తర్వాత చెప్పేది" data-en="Warm inquiry after salam — the most common follow-up greeting">Common follow-up to salam</div>
+      </div>
+      <div class="vc">
+        <span class="vc-ur" lang="ur" dir="rtl">بَخیر ہوں</span>
+        <div class="vc-tr">Ba-khair hoon</div>
+        <div class="vc-en" data-te="నేను బాగున్నాను (అల్లాహ్ దయతో)" data-en="I am well (by God's grace)">I am well (by God's grace)</div>
+        <div class="vc-note" data-te="కీ హాల్ హై? కు మర్యాదపూర్వక సమాధానం" data-en="Gracious reply to Kya haal hai? — implies wellbeing by God's grace">Gracious reply to how are you</div>
+      </div>
+      <div class="vc">
+        <span class="vc-ur" lang="ur" dir="rtl">صبح بَخیر</span>
+        <div class="vc-tr">Subah bakhair</div>
+        <div class="vc-en" data-te="శుభోదయం" data-en="Good morning">Good morning</div>
+        <div class="vc-note" data-te="ఉదయం శుభాకాంక్ష — బఖైర్ అంటే 'శుభంగా' అని అర్థం" data-en="Morning greeting — bakhair means 'in goodness'">Morning greeting with blessings</div>
+      </div>
+      <div class="vc">
+        <span class="vc-ur" lang="ur" dir="rtl">ملتے ہیں</span>
+        <div class="vc-tr">Milte hain</div>
+        <div class="vc-en" data-te="తర్వాత కలుద్దాం" data-en="See you later">See you later</div>
+        <div class="vc-note" data-te="సౌహార్ద్రపూర్వకంగా వీడ్కోలు చెప్పే అనౌపచారిక మాట" data-en="Informal friendly farewell — we will meet">Informal friendly farewell</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-icon">💡</div>
+      <p data-te="<strong>గుర్తుంచుకోండి:</strong> ముస్లింలకు 'అస్సలాముఅలైకుం' వినడానికి అలవాటు ఉన్నది. ఇది మీరు ముస్లిం సమాజంలో భాగమని గుర్తింపు పొందే సరళమైన మార్గం. ఒక ఉర్దూ సంభాషణను ఎల్లప్పుడూ సలాంతో ప్రారంభించండి." data-en="<strong>Remember:</strong> As-salamu alaykum is universally recognized by Muslims worldwide. Starting any Urdu conversation with salam immediately builds warmth and trust. Always lead with salam."><strong>Remember:</strong> As-salamu alaykum is universally recognized by Muslims worldwide. Starting any Urdu conversation with salam immediately builds warmth and trust. Always lead with salam.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONVERSATIONS -->
+<section class="dark-sec" id="conversations">
+  <div class="dark-inner">
+    <div class="sec-label" style="color:var(--gold)" data-te="రోజువారీ సంభాషణలు" data-en="Daily Conversations">Daily Conversations</div>
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3.5vw,2.2rem);color:var(--white);margin-bottom:8px" data-te="ఉర్దూలో మాట్లాడండి" data-en="Speak in Urdu">Speak in Urdu</h2>
+    <p style="font-size:.92rem;color:rgba(245,230,192,.60);line-height:1.75;max-width:540px;margin-bottom:36px" data-te="ఉర్దూ మాట్లాడేవారితో మీకు ఉపయోగపడే ముఖ్యమైన సంభాషణలు — పరిచయం, జవాబులు మరియు అభ్యర్థనలు." data-en="Essential conversation phrases for speaking with Urdu speakers — introductions, responses, and requests.">Essential phrases for daily conversations in Urdu.</p>
+    <div class="phrase-grid">
+      <div class="phrase-card">
+        <div class="phrase-ur" lang="ur" dir="rtl">آپ کا نام کیا ہے؟</div>
+        <div class="phrase-tr">Aap ka naam kya hai?</div>
+        <div class="phrase-en" data-te="మీ పేరేమిటి?" data-en="What is your name?">What is your name?</div>
+        <span class="phrase-ctx" data-te="పరిచయ సందర్భంలో" data-en="For introductions">For introductions</span>
+      </div>
+      <div class="phrase-card">
+        <div class="phrase-ur" lang="ur" dir="rtl">میرا نام ... ہے</div>
+        <div class="phrase-tr">Mera naam ... hai</div>
+        <div class="phrase-en" data-te="నా పేరు ... (మీ పేరు చెప్పండి)" data-en="My name is... (fill your name)">My name is... (fill your name)</div>
+        <span class="phrase-ctx" data-te="తనను తాను పరిచయం చేసుకోవడానికి" data-en="To introduce yourself">To introduce yourself</span>
+      </div>
+      <div class="phrase-card">
+        <div class="phrase-ur" lang="ur" dir="rtl">آپ کہاں سے ہیں؟</div>
+        <div class="phrase-tr">Aap kahan se hain?</div>
+        <div class="phrase-en" data-te="మీరు ఎక్కడ నుండి వచ్చారు?" data-en="Where are you from?">Where are you from?</div>
+        <span class="phrase-ctx" data-te="మొదట కలిసేటప్పుడు సాధారణ ప్రశ్న" data-en="Common when meeting someone for the first time">Common first meeting question</span>
+      </div>
+      <div class="phrase-card">
+        <div class="phrase-ur" lang="ur" dir="rtl">میں ... سے ہوں</div>
+        <div class="phrase-tr">Main ... se hoon</div>
+        <div class="phrase-en" data-te="నేను ... నుండి వచ్చాను (ప్రదేశం చెప్పండి)" data-en="I am from... (fill your place)">I am from... (fill your place)</div>
+        <span class="phrase-ctx" data-te="ఉదా: میں ہندوستان سے ہوں — నేను భారతదేశం నుండి" data-en="e.g. Main Hindustan se hoon — I am from India">e.g. Main Hindustan se hoon</span>
+      </div>
+      <div class="phrase-card">
+        <div class="phrase-ur" lang="ur" dir="rtl">کیا آپ اردو بولتے ہیں؟</div>
+        <div class="phrase-tr">Kya aap Urdu bolte hain?</div>
+        <div class="phrase-en" data-te="మీరు ఉర్దూ మాట్లాడతారా?" data-en="Do you speak Urdu?">Do you speak Urdu?</div>
+        <span class="phrase-ctx" data-te="భాష నిర్ధారించుకోవడానికి" data-en="To confirm if someone speaks Urdu">Confirming language</span>
+      </div>
+      <div class="phrase-card">
+        <div class="phrase-ur" lang="ur" dir="rtl">ہاں، تھوڑا تھوڑا</div>
+        <div class="phrase-tr">Haan, thoda thoda</div>
+        <div class="phrase-en" data-te="అవును, కొంచెం కొంచెం" data-en="Yes, a little bit">Yes, a little bit</div>
+        <span class="phrase-ctx" data-te="కొంచెం ఉర్దూ వచ్చినప్పుడు చెప్పే వినయ వాక్యం" data-en="Humble reply when you know a little Urdu">Humble beginner's reply</span>
+      </div>
+      <div class="phrase-card">
+        <div class="phrase-ur" lang="ur" dir="rtl">مجھے سمجھ نہیں آئی</div>
+        <div class="phrase-tr">Mujhe samajh nahin aayi</div>
+        <div class="phrase-en" data-te="నాకు అర్థం కాలేదు" data-en="I did not understand">I did not understand</div>
+        <span class="phrase-ctx" data-te="అర్థం కాలేదని తెలియజేయడానికి" data-en="To express that you didn't understand">When something is unclear</span>
+      </div>
+      <div class="phrase-card">
+        <div class="phrase-ur" lang="ur" dir="rtl">ذرا آہستہ بولیے</div>
+        <div class="phrase-tr">Zara aahista boliye</div>
+        <div class="phrase-en" data-te="దయచేసి నెమ్మదిగా మాట్లాడండి" data-en="Please speak a little slowly">Please speak a little slowly</div>
+        <span class="phrase-ctx" data-te="చాలా వేగంగా మాట్లాడుతుంటే అడగడానికి" data-en="Ask this when someone speaks too fast">When someone speaks too fast</span>
+      </div>
+      <div class="phrase-card">
+        <div class="phrase-ur" lang="ur" dir="rtl">دوبارہ بولیے</div>
+        <div class="phrase-tr">Dobaara boliye</div>
+        <div class="phrase-en" data-te="మళ్ళీ చెప్పండి" data-en="Please say that again">Please say that again</div>
+        <span class="phrase-ctx" data-te="వినకపోయినప్పుడు లేదా అర్థం కాలేదనప్పుడు" data-en="When you didn't hear or understand">To ask for a repeat</span>
+      </div>
+      <div class="phrase-card">
+        <div class="phrase-ur" lang="ur" dir="rtl">کتنا ہے؟</div>
+        <div class="phrase-tr">Kitna hai?</div>
+        <div class="phrase-en" data-te="ఎంత (ధర)?" data-en="How much is it?">How much is it?</div>
+        <span class="phrase-ctx" data-te="సంత లేదా దుకాణంలో ధర అడగడానికి" data-en="In markets and shops to ask the price">In markets and shops</span>
+      </div>
+      <div class="phrase-card">
+        <div class="phrase-ur" lang="ur" dir="rtl">مجھے اردو آتی ہے</div>
+        <div class="phrase-tr">Mujhe Urdu aati hai</div>
+        <div class="phrase-en" data-te="నాకు ఉర్దూ వచ్చు" data-en="I know Urdu (I speak Urdu)">I know Urdu</div>
+        <span class="phrase-ctx" data-te="ఆత్మవిశ్వాసంతో ఉర్దూ వచ్చని చెప్పేటప్పుడు" data-en="Saying confidently that you speak Urdu">For when you're confident</span>
+      </div>
+      <div class="phrase-card">
+        <div class="phrase-ur" lang="ur" dir="rtl">آپ سے مل کر خوشی ہوئی</div>
+        <div class="phrase-tr">Aap se milkar khushi hui</div>
+        <div class="phrase-en" data-te="మీతో కలవడం చాలా సంతోషంగా ఉంది" data-en="It was a pleasure to meet you">It was a pleasure to meet you</div>
+        <span class="phrase-ctx" data-te="వీడ్కోలు సమయంలో మర్యాదపూర్వకంగా చెప్పే వాక్యం" data-en="Polite farewell expression">Warm farewell expression</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPRESSIONS -->
+<section class="al-sec" id="expressions">
+  <div class="al-inner">
+    <div class="sec-label" data-te="ఇస్లామిక్ మరియు సాధారణ వ్యక్తీకరణలు" data-en="Islamic &amp; Common Expressions">Islamic &amp; Common Expressions</div>
+    <h2 class="sec-title" data-te="తరచుగా వాడే వ్యక్తీకరణలు" data-en="Frequently Used Expressions">Frequently Used Expressions</h2>
+    <p class="sec-sub" data-te="ఈ వ్యక్తీకరణలు ఉర్దూ సంభాషణలో నిత్యం వినిపిస్తాయి. వీటిని నేర్చుకుంటే ఉర్దూ మాట్లాడేవారికి మీరు సహజంగా కనిపిస్తారు." data-en="These expressions appear constantly in Urdu speech. Learning them makes your Urdu sound natural and authentic.">These expressions are heard constantly in Urdu speech — mastering them is essential.</p>
+    <div class="expr-grid">
+      <div class="expr-card">
+        <span class="expr-ar" lang="ur" dir="rtl">اِنْ شَاء اللہ</span>
+        <div class="expr-tr">Insha Allah</div>
+        <div class="expr-en" data-te="అల్లాహ్ ఇచ్ఛిస్తే" data-en="If Allah wills">If Allah wills</div>
+        <div class="expr-meaning" data-te="భవిష్యత్తు పనులు చెప్పేటప్పుడు తప్పనిసరిగా చెప్పాలి — 'రేపు వస్తాను ఇన్షా అల్లాహ్'" data-en="Said for any future plan — 'I'll come tomorrow, Insha Allah'">Said for any future intention or plan</div>
+      </div>
+      <div class="expr-card">
+        <span class="expr-ar" lang="ur" dir="rtl">اَلْحَمْدُ للہ</span>
+        <div class="expr-tr">Alhamdulillah</div>
+        <div class="expr-en" data-te="అల్లాహ్ కు అన్ని స్తుతులు" data-en="All praise is due to Allah">All praise is due to Allah</div>
+        <div class="expr-meaning" data-te="నలుపు-తెలుపు అన్ని పరిస్థితులలోనూ అల్లాహ్ కు కృతజ్ఞత తెలిపేటప్పుడు" data-en="Express gratitude to Allah in all circumstances — good and difficult">Gratitude to Allah in all circumstances</div>
+      </div>
+      <div class="expr-card">
+        <span class="expr-ar" lang="ur" dir="rtl">مَاشَاء اللہ</span>
+        <div class="expr-tr">Masha Allah</div>
+        <div class="expr-en" data-te="అల్లాహ్ ఇచ్ఛించినది (ఎంత అద్భుతం!)" data-en="What Allah has willed (How wonderful!)">What Allah has willed</div>
+        <div class="expr-meaning" data-te="మెచ్చుకోవడానికి మరియు నజర్ (దృష్టి దోషం) నివారించడానికి చెప్తారు" data-en="Said to express admiration and ward off evil eye">Admiration — also guards against evil eye</div>
+      </div>
+      <div class="expr-card">
+        <span class="expr-ar" lang="ur" dir="rtl">سُبْحَان اللہ</span>
+        <div class="expr-tr">Subhan Allah</div>
+        <div class="expr-en" data-te="అల్లాహ్ కు మహిమ కలుగుగాక" data-en="Glory be to Allah">Glory be to Allah</div>
+        <div class="expr-meaning" data-te="అల్లాహ్ సృష్టిలోని అందాన్ని లేదా మహిమను చూసినప్పుడు చెప్తారు" data-en="Said when witnessing the beauty of Allah's creation or His glory">Witnessing divine beauty or greatness</div>
+      </div>
+      <div class="expr-card">
+        <span class="expr-ar" lang="ur" dir="rtl">بِسْمِ اللہ</span>
+        <div class="expr-tr">Bismillah</div>
+        <div class="expr-en" data-te="అల్లాహ్ పేరుతో (ప్రారంభం)" data-en="In the name of Allah (beginning)">In the name of Allah</div>
+        <div class="expr-meaning" data-te="ఏ పని ప్రారంభించినా ముందు చెప్తారు — తినడం, రాయడం, ప్రయాణం" data-en="Said before beginning any action — eating, writing, a journey">Before beginning any action</div>
+      </div>
+      <div class="expr-card">
+        <span class="expr-ar" lang="ur" dir="rtl">اَللہُ اَکْبَر</span>
+        <div class="expr-tr">Allahu Akbar</div>
+        <div class="expr-en" data-te="అల్లాహ్ అత్యంత గొప్పవాడు" data-en="Allah is the Greatest">Allah is the Greatest</div>
+        <div class="expr-meaning" data-te="నమాజులో పదే పదే వినిపిస్తుంది — ఆశ్చర్యం, కృతజ్ఞత, స్తుతి అన్నింటికీ" data-en="Heard constantly in prayer — also used to express awe, gratitude, and praise">In prayer and daily expression of awe</div>
+      </div>
+      <div class="expr-card">
+        <span class="expr-ar" lang="ur" dir="rtl">اَسْتَغْفِراللہ</span>
+        <div class="expr-tr">Astaghfirullah</div>
+        <div class="expr-en" data-te="అల్లాహ్ వద్ద క్షమాపణ కోరుతున్నాను" data-en="I seek forgiveness from Allah">I seek forgiveness from Allah</div>
+        <div class="expr-meaning" data-te="పాపం జరిగినప్పుడు లేదా పరులు చేసిన తప్పులు చూసినప్పుడు" data-en="Said when one has sinned or witnesses wrongdoing">After sin or witnessing wrongdoing</div>
+      </div>
+      <div class="expr-card">
+        <span class="expr-ar" lang="ur" dir="rtl">جَزَاکَ اللہُ خَیْرًا</span>
+        <div class="expr-tr">Jazakallah Khayran</div>
+        <div class="expr-en" data-te="అల్లాహ్ మీకు మంచి ప్రతిఫలం ఇవ్వాలి" data-en="May Allah reward you with goodness">May Allah reward you with goodness</div>
+        <div class="expr-meaning" data-te="ధన్యవాదాల కంటే లోతైనది — అల్లాహ్ ప్రతిఫలం కోరే దువా" data-en="Deeper than a simple thank you — a dua that Allah rewards them">Deeper than 'thank you' — a dua</div>
+      </div>
+      <div class="expr-card">
+        <span class="expr-ar" lang="ur" dir="rtl">بَارَک اللہُ فِیک</span>
+        <div class="expr-tr">Barakallah Feek</div>
+        <div class="expr-en" data-te="అల్లాహ్ మీకు బర్కత్ ఇవ్వాలి" data-en="May Allah bless you">May Allah bless you</div>
+        <div class="expr-meaning" data-te="మీకు శుభాశీస్సులు ఇవ్వాలని చెప్పే మర్యాద — జజాకల్లాహ్ కు సమాధానంగా కూడా" data-en="A blessed response to Jazakallah — or a standalone prayer of blessing">Response to Jazakallah Khayran</div>
+      </div>
+      <div class="expr-card">
+        <span class="expr-ar" lang="ur" dir="rtl">تَوَکَّلتُ عَلَی اللہ</span>
+        <div class="expr-tr">Tawakkaltu alallah</div>
+        <div class="expr-en" data-te="నేను అల్లాహ్ పై అన్ని విషయాలనూ అప్పగించాను" data-en="I put my trust in Allah">I put my trust in Allah</div>
+        <div class="expr-meaning" data-te="ఒక ముఖ్యమైన పనిని ప్రారంభించేముందు — అల్లాహ్ పై నమ్మకం" data-en="Before undertaking something important — full reliance on Allah">Before a significant endeavour</div>
+      </div>
+      <div class="expr-card">
+        <span class="expr-ar" lang="ur" dir="rtl">لَا حَوْلَ وَلَا قُوَّۃَ</span>
+        <div class="expr-tr">La hawla wa la quwwata illa billah</div>
+        <div class="expr-en" data-te="అల్లాహ్ తో తప్ప శక్తి లేదు" data-en="There is no power or strength except with Allah">No power except with Allah</div>
+        <div class="expr-meaning" data-te="కష్టాలలో లేదా కష్టమైన పరిస్థితిలో చదివే తస్బీహ్ — చాలా శక్తివంతమైనది" data-en="A powerful dhikr said in difficult moments — also known as 'hauqala'">Said in hardship — known as hauqala</div>
+      </div>
+      <div class="expr-card">
+        <span class="expr-ar" lang="ur" dir="rtl">اِنَّا لِلّٰہِ وَاِنَّا اِلَیْہِ رٰجِعُوْن</span>
+        <div class="expr-tr">Inna lillahi wa inna ilayhi raji'un</div>
+        <div class="expr-en" data-te="మేము అల్లాహ్ కు చెందినవారం, ఆయన వద్దకే తిరిగి వెళ్తాం" data-en="We belong to Allah and to Him we return">Truly we belong to Allah</div>
+        <div class="expr-meaning" data-te="మృత్యువు లేదా నష్టం గురించి విన్నప్పుడు చదివేది — ఇన్నా లిల్లాహీ అని పిలుస్తారు" data-en="Said upon hearing of a death or loss — called 'inna lillahi'">Upon hearing of death or loss</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NUMBERS -->
+<section class="num-sec" id="numbers">
+  <div class="num-inner">
+    <div class="sec-label" data-te="సంఖ్యలు" data-en="Numbers">Numbers</div>
+    <h2 class="sec-title" data-te="ఉర్దూ సంఖ్యలు" data-en="Urdu Numbers">Urdu Numbers</h2>
+    <p class="sec-sub" data-te="ఉర్దూ లో సంఖ్యలు ఫారసీ నుండి వచ్చాయి. ప్రస్తుత ఉర్దూ మాట్లాడేవారు తరచుగా అరబిక్ నంబర్ వ్యవస్థను ఉపయోగిస్తారు, కానీ ఈ సంఖ్య పదాలు తెలుసుకోవడం అవసరం." data-en="Urdu numbers are derived from Persian. While Arabic numerals are commonly written, knowing number words is essential for speech.">Urdu numbers are derived from Persian — essential for daily speech.</p>
+    <div class="num-grid">
+      <div class="num-card"><span class="num-digit" lang="ur" dir="rtl">ایک</span><div class="num-tr">ek</div><div class="num-val">1</div></div>
+      <div class="num-card"><span class="num-digit" lang="ur" dir="rtl">دو</span><div class="num-tr">do</div><div class="num-val">2</div></div>
+      <div class="num-card"><span class="num-digit" lang="ur" dir="rtl">تین</span><div class="num-tr">teen</div><div class="num-val">3</div></div>
+      <div class="num-card"><span class="num-digit" lang="ur" dir="rtl">چار</span><div class="num-tr">char</div><div class="num-val">4</div></div>
+      <div class="num-card"><span class="num-digit" lang="ur" dir="rtl">پانچ</span><div class="num-tr">paanch</div><div class="num-val">5</div></div>
+      <div class="num-card"><span class="num-digit" lang="ur" dir="rtl">چھ</span><div class="num-tr">chhe</div><div class="num-val">6</div></div>
+      <div class="num-card"><span class="num-digit" lang="ur" dir="rtl">سات</span><div class="num-tr">saat</div><div class="num-val">7</div></div>
+      <div class="num-card"><span class="num-digit" lang="ur" dir="rtl">آٹھ</span><div class="num-tr">aath</div><div class="num-val">8</div></div>
+      <div class="num-card"><span class="num-digit" lang="ur" dir="rtl">نو</span><div class="num-tr">nau</div><div class="num-val">9</div></div>
+      <div class="num-card"><span class="num-digit" lang="ur" dir="rtl">دس</span><div class="num-tr">das</div><div class="num-val">10</div></div>
+      <div class="num-card"><span class="num-digit" lang="ur" dir="rtl">گیارہ</span><div class="num-tr">gyarah</div><div class="num-val">11</div></div>
+      <div class="num-card"><span class="num-digit" lang="ur" dir="rtl">بارہ</span><div class="num-tr">barah</div><div class="num-val">12</div></div>
+      <div class="num-card"><span class="num-digit" lang="ur" dir="rtl">تیرہ</span><div class="num-tr">terah</div><div class="num-val">13</div></div>
+      <div class="num-card"><span class="num-digit" lang="ur" dir="rtl">چودہ</span><div class="num-tr">chaudah</div><div class="num-val">14</div></div>
+      <div class="num-card"><span class="num-digit" lang="ur" dir="rtl">پندرہ</span><div class="num-tr">pandrah</div><div class="num-val">15</div></div>
+      <div class="num-card"><span class="num-digit" lang="ur" dir="rtl">سولہ</span><div class="num-tr">solah</div><div class="num-val">16</div></div>
+      <div class="num-card"><span class="num-digit" lang="ur" dir="rtl">سترہ</span><div class="num-tr">satrah</div><div class="num-val">17</div></div>
+      <div class="num-card"><span class="num-digit" lang="ur" dir="rtl">اٹھارہ</span><div class="num-tr">atharah</div><div class="num-val">18</div></div>
+      <div class="num-card"><span class="num-digit" lang="ur" dir="rtl">انیس</span><div class="num-tr">unees</div><div class="num-val">19</div></div>
+      <div class="num-card"><span class="num-digit" lang="ur" dir="rtl">بیس</span><div class="num-tr">bees</div><div class="num-val">20</div></div>
+    </div>
+
+    <div style="margin-top:44px">
+      <div class="sec-label" data-te="అదనపు సంఖ్యలు" data-en="Additional Numbers">Additional Numbers</div>
+      <p style="font-size:.88rem;color:var(--text-muted);margin-bottom:20px;line-height:1.7" data-te="పెద్ద సంఖ్యలు — ఉర్దూలో తరచుగా వాడేవి." data-en="Larger numbers used frequently in daily Urdu speech.">Larger numbers frequently used in daily speech.</p>
+      <div class="time-grid">
+        <div class="time-card"><span class="time-ur" lang="ur" dir="rtl">تیس</span><div class="time-tr">tees</div><div class="time-en">30</div></div>
+        <div class="time-card"><span class="time-ur" lang="ur" dir="rtl">چالیس</span><div class="time-tr">chaalis</div><div class="time-en">40</div></div>
+        <div class="time-card"><span class="time-ur" lang="ur" dir="rtl">پچاس</span><div class="time-tr">pachaas</div><div class="time-en">50</div></div>
+        <div class="time-card"><span class="time-ur" lang="ur" dir="rtl">ساٹھ</span><div class="time-tr">saath</div><div class="time-en">60</div></div>
+        <div class="time-card"><span class="time-ur" lang="ur" dir="rtl">ستّر</span><div class="time-tr">sattar</div><div class="time-en">70</div></div>
+        <div class="time-card"><span class="time-ur" lang="ur" dir="rtl">اسّی</span><div class="time-tr">assi</div><div class="time-en">80</div></div>
+        <div class="time-card"><span class="time-ur" lang="ur" dir="rtl">نوّے</span><div class="time-tr">nabbe</div><div class="time-en">90</div></div>
+        <div class="time-card"><span class="time-ur" lang="ur" dir="rtl">سو</span><div class="time-tr">sau</div><div class="time-en">100</div></div>
+        <div class="time-card"><span class="time-ur" lang="ur" dir="rtl">پانچ سو</span><div class="time-tr">paanch sau</div><div class="time-en">500</div></div>
+        <div class="time-card"><span class="time-ur" lang="ur" dir="rtl">ہزار</span><div class="time-tr">hazaar</div><div class="time-en">1,000</div></div>
+        <div class="time-card"><span class="time-ur" lang="ur" dir="rtl">دس ہزار</span><div class="time-tr">das hazaar</div><div class="time-en">10,000</div></div>
+        <div class="time-card"><span class="time-ur" lang="ur" dir="rtl">لاکھ</span><div class="time-tr">laakh</div><div class="time-en">100,000</div></div>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top:36px">
+      <div class="callout-icon">📚</div>
+      <p data-te="<strong>ఉర్దూ సంఖ్య వ్యవస్థ:</strong> ఉర్దూలో ఇంగ్లీష్ 'వందలు-వేలు' వ్యవస్థ బదులు <strong>లక్ష (1,00,000)</strong> మరియు <strong>కరోడ్ (1,00,00,000)</strong> వ్యవస్థ ఉపయోగిస్తారు. ఇది భారత-పాకిస్తాన్ మొత్తం ఉర్దూ, హిందీ మాట్లాడేవారు ఉపయోగించే వ్యవస్థ." data-en="<strong>Urdu numbering system:</strong> Urdu uses <strong>lakh (100,000)</strong> and <strong>crore (10,000,000)</strong> instead of millions/billions. This Indian numbering system is used across all Urdu and Hindi speakers."><strong>Note:</strong> Urdu uses lakh (100,000) and crore (10,000,000) — not the million/billion system. Lakh and crore are used throughout South Asian Urdu speech.</p>
+    </div>
+  </div>
+</section>
+
+<!-- NEXT LESSON -->
+<section class="next-sec">
+  <div class="next-inner">
+    <div class="next-label" data-te="తదుపరి అడుగు" data-en="Next Step">Next Step</div>
+    <h2 class="next-title" data-te="ఇస్లామిక్ ఉర్దూ నేర్చుకోండి" data-en="Continue to Islamic Urdu">Continue to Islamic Urdu</h2>
+    <p class="next-sub" data-te="రోజువారీ ఉర్దూ నేర్చుకున్నారు — ఇప్పుడు ఇస్లామిక్ పరిభాష, దర్స్ మరియు ఉర్దూ ఇస్లామిక్ పుస్తకాలు నేర్చుకోండి." data-en="You have mastered daily Urdu — now explore Islamic terminology, dars phrases, and Urdu Islamic books.">You've mastered daily Urdu — now explore Islamic terminology and dars phrases.</p>
+    <div class="next-links">
+      <a class="next-link primary" href="./islamic-urdu.html" data-te="ఇస్లామిక్ ఉర్దూ →" data-en="Islamic Urdu →">Islamic Urdu →</a>
+      <a class="next-link secondary" href="./index.html" data-te="పోర్టల్ కి తిరిగి" data-en="Back to Portal">Back to Portal</a>
+    </div>
+  </div>
+</section>
+
+<footer class="al-footer">
+  <div class="al-footer-links">
+    <a href="../../index.html" data-te="హోమ్" data-en="Home">Home</a>
+    <a href="../../islamic-knowledge.html" data-te="జ్ఞాన కేంద్రం" data-en="Knowledge Center">Knowledge Center</a>
+    <a href="./index.html" data-te="ఉర్దూ పోర్టల్" data-en="Urdu Portal">Urdu Portal</a>
+    <a href="./alphabet.html" data-te="అక్షరమాల" data-en="Alphabet">Alphabet</a>
+    <a href="./islamic-urdu.html" data-te="ఇస్లామిక్ ఉర్దూ" data-en="Islamic Urdu">Islamic Urdu</a>
+    <a href="../learn-arabic/index.html" data-te="అరబిక్ నేర్చుకోండి" data-en="Learn Arabic">Learn Arabic</a>
+  </div>
+  <p>Islamic Front · Urdu Learning Portal · Level 4</p>
+</footer>
+
+<button id="btt" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+var LANG = localStorage.getItem('if-lang') || 'te';
+
+function applyLang(l) {
+  LANG = l;
+  localStorage.setItem('if-lang', l);
+  document.documentElement.lang = (l === 'te') ? 'te' : 'en';
+  document.querySelectorAll('[data-te]').forEach(function(el) {
+    var val = el.getAttribute('data-' + l);
+    if (val) el.innerHTML = val;
+  });
+  var btn = document.getElementById('lang-btn');
+  if (btn) btn.textContent = l === 'te' ? 'English' : 'తెలుగు';
+}
+
+function toggleLang() { applyLang(LANG === 'te' ? 'en' : 'te'); }
+
+applyLang(LANG);
+
+// Tab nav scroll spy
+var sections = ['greetings','conversations','expressions','numbers'];
+var tabLinks = document.querySelectorAll('.tab-nav a');
+window.addEventListener('scroll', function() {
+  var pos = window.scrollY + 120;
+  var active = 'greetings';
+  sections.forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el && el.offsetTop <= pos) active = id;
+  });
+  tabLinks.forEach(function(a) {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + active);
+  });
+  var btt = document.getElementById('btt');
+  if (btt) btt.classList.toggle('show', window.scrollY > 300);
+});
+</script>
+</body>
+</html>

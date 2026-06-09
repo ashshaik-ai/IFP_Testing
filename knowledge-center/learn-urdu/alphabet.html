@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="te" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ఉర్దూ అక్షరమాల — Urdu Alphabet | Islamic Front</title>
+<meta name="description" content="Learn all 38 Urdu letters with pronunciation, forms, and writing tips. Complete Urdu alphabet guide with Nastaliq script.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Sans:wght@300;400;500&family=Noto+Sans+Telugu:wght@300;400;500;700&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --green-deep:#0d3b1e;--green-mid:#1a5c30;--green-light:#2e8b57;
+  --gold:#c8922a;--gold-light:#e8b84b;--gold-pale:#f5e6c0;
+  --cream:#faf6ee;--white:#ffffff;
+  --text-dark:#1a1208;--text-mid:#3d3018;--text-muted:#7a6840;
+  --border:rgba(200,146,42,0.25);--radius:14px;--shadow:0 4px 24px rgba(0,0,0,0.10);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;color:var(--text-dark);background:var(--cream);overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+
+/* NAV */
+.al-nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(13,59,30,0.92);backdrop-filter:blur(12px);padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:56px;border-bottom:1px solid rgba(200,146,42,0.18)}
+.al-nav-brand{display:flex;align-items:center;gap:10px;color:var(--gold-light);font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700}
+.al-nav-brand span{font-size:1.4rem}
+.al-nav-links{display:flex;align-items:center;gap:16px}
+.al-nav-links a{color:rgba(245,230,192,0.75);font-size:.82rem;font-weight:500;transition:color .2s}
+.al-nav-links a:hover{color:var(--gold-light)}
+.al-lang-btn{background:rgba(200,146,42,0.20);border:1px solid var(--gold);color:var(--gold-light);font-size:.78rem;font-weight:600;padding:5px 13px;border-radius:20px;cursor:pointer;transition:all .2s;font-family:'DM Sans',sans-serif}
+.al-lang-btn:hover{background:var(--gold);color:var(--green-deep)}
+
+/* LESSON NAV */
+.lesson-nav{position:fixed;top:56px;left:0;right:0;z-index:850;height:46px;background:rgba(13,59,30,0.95);backdrop-filter:blur(8px);border-bottom:1px solid rgba(200,146,42,0.18);display:flex;align-items:center;justify-content:space-between;padding:0 16px;gap:8px}
+.lnb-btn{font-size:.74rem;font-weight:600;color:rgba(245,230,192,.70);padding:4px 12px;border-radius:20px;border:1px solid rgba(200,146,42,0.22);transition:all .2s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:42%}
+.lnb-btn:hover{color:var(--gold-light);border-color:rgba(200,146,42,0.50);background:rgba(200,146,42,0.10)}
+.lnb-spacer{min-width:70px}
+.lnb-mid{font-size:.68rem;font-weight:700;color:var(--gold);letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;text-align:center;flex:1}
+
+/* HERO */
+.l-hero{background:linear-gradient(145deg,#071e0e,var(--green-deep));padding:142px 20px 56px;text-align:center}
+.l-breadcrumb{display:flex;align-items:center;justify-content:center;gap:8px;font-size:.76rem;color:rgba(245,230,192,.50);margin-bottom:20px;flex-wrap:wrap}
+.l-breadcrumb a{color:rgba(245,230,192,.50);transition:color .2s}
+.l-breadcrumb a:hover{color:var(--gold-light)}
+.l-breadcrumb span{color:rgba(245,230,192,.30)}
+.l-hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(200,146,42,0.15);border:1px solid rgba(200,146,42,0.35);color:var(--gold-light);font-size:.75rem;font-weight:600;padding:5px 14px;border-radius:20px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:18px}
+.l-hero h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,6vw,3.4rem);color:var(--white);font-weight:700;margin-bottom:6px}
+.l-hero-ur{font-family:'Noto Nastaliq Urdu',serif;font-size:clamp(1.8rem,5vw,3rem);color:var(--gold-light);direction:rtl;line-height:2.2;display:block;margin-bottom:10px}
+.l-hero-sub{font-size:.95rem;color:rgba(245,230,192,.65);max-width:500px;margin:0 auto 28px;line-height:1.75}
+.l-hero-stats{display:flex;gap:28px;justify-content:center;flex-wrap:wrap}
+.l-stat{text-align:center}
+.l-stat strong{display:block;font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--gold-light)}
+.l-stat span{font-size:.72rem;color:rgba(245,230,192,.55);text-transform:uppercase;letter-spacing:.07em}
+
+/* TAB NAV */
+.tab-nav{background:var(--green-mid);padding:0 20px;display:flex;align-items:center;gap:0;overflow-x:auto;scrollbar-width:none;border-bottom:1px solid rgba(200,146,42,0.20);position:sticky;top:102px;z-index:800}
+.tab-nav::-webkit-scrollbar{display:none}
+.tab-nav a{white-space:nowrap;font-size:.80rem;font-weight:500;color:rgba(245,230,192,.60);padding:0 18px;height:46px;display:inline-flex;align-items:center;border-bottom:2px solid transparent;transition:all .2s;flex-shrink:0}
+.tab-nav a:hover,.tab-nav a.active{color:var(--gold-light);border-bottom-color:var(--gold)}
+
+/* SECTIONS */
+.al-sec{padding:70px 20px}
+.al-inner{max-width:1100px;margin:0 auto}
+.sec-label{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.sec-title{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3.5vw,2.2rem);font-weight:700;color:var(--text-dark);margin-bottom:8px}
+.sec-sub{font-size:.92rem;color:var(--text-muted);line-height:1.75;max-width:560px;margin-bottom:36px}
+
+/* ALPHABET GRID */
+.alpha-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:12px;direction:rtl}
+.lt-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:16px 12px;text-align:center;cursor:pointer;transition:all .28s;position:relative;direction:ltr}
+.lt-card:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:rgba(200,146,42,0.50)}
+.lt-card.selected{border-color:var(--gold);background:rgba(200,146,42,0.06);box-shadow:0 0 0 3px rgba(200,146,42,0.15)}
+.lt-letter{font-family:'Noto Nastaliq Urdu',serif;font-size:2.4rem;color:var(--green-mid);direction:rtl;line-height:2.0;margin-bottom:4px}
+.lt-name{font-size:.72rem;font-weight:600;color:var(--text-mid);margin-bottom:2px;line-height:1.4;word-break:break-word}
+.lt-tr{font-size:.66rem;color:var(--text-muted);line-height:1.3;overflow-wrap:break-word;word-break:break-word}
+.lt-unique{position:absolute;top:6px;right:6px;width:6px;height:6px;border-radius:50%;background:var(--gold)}
+
+/* DETAIL PANEL */
+#detail-panel{background:var(--white);border:2px solid rgba(200,146,42,0.35);border-radius:16px;padding:28px 24px;margin-top:24px;display:none}
+#detail-panel.show{display:block}
+.dp-top{display:flex;align-items:flex-start;gap:24px;flex-wrap:wrap;margin-bottom:20px}
+.dp-letter{font-family:'Noto Nastaliq Urdu',serif;font-size:5rem;color:var(--green-mid);direction:rtl;line-height:1.8;min-width:100px;text-align:center}
+.dp-info{flex:1;min-width:200px}
+.dp-info h3{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--text-dark);margin-bottom:4px}
+.dp-info .dp-tr{font-size:.95rem;color:var(--text-muted);margin-bottom:10px}
+.dp-info .dp-note{font-size:.88rem;color:var(--text-mid);line-height:1.75;background:rgba(200,146,42,0.05);border-left:3px solid var(--gold);padding:10px 14px;border-radius:0 8px 8px 0}
+.dp-forms{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:16px}
+.dp-form{background:var(--cream);border:1px solid var(--border);border-radius:10px;padding:14px 10px;text-align:center}
+.dp-form-letter{font-family:'Noto Nastaliq Urdu',serif;font-size:2rem;color:var(--green-mid);direction:rtl;line-height:1.8;display:block}
+.dp-form-label{font-size:.70rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.06em;margin-top:4px}
+.dp-close{background:none;border:1px solid var(--border);color:var(--text-muted);font-size:.78rem;padding:6px 14px;border-radius:8px;cursor:pointer;margin-top:16px;transition:all .2s}
+.dp-close:hover{border-color:var(--gold);color:var(--gold)}
+
+/* UNIQUE LETTERS */
+.unique-sec{background:var(--green-deep);padding:70px 20px}
+.unique-inner{max-width:1100px;margin:0 auto}
+.unique-title{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3.5vw,2.2rem);color:var(--white);margin-bottom:8px}
+.unique-sub{font-size:.92rem;color:rgba(245,230,192,.62);line-height:1.75;max-width:540px;margin-bottom:32px}
+.unique-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px}
+.uq-card{background:rgba(255,255,255,0.06);border:1px solid rgba(200,146,42,0.25);border-radius:12px;padding:20px 18px;display:flex;align-items:center;gap:16px}
+.uq-letter{font-family:'Noto Nastaliq Urdu',serif;font-size:3rem;color:var(--gold-light);direction:rtl;min-width:60px;text-align:center;line-height:1.8}
+.uq-info strong{display:block;font-size:.95rem;color:var(--white);margin-bottom:1px}
+.uq-info em{font-size:.74rem;color:rgba(245,230,192,.45);font-style:normal}
+.uq-info span{display:block;font-size:.80rem;color:rgba(245,230,192,.60);line-height:1.6;margin-top:5px}
+
+/* PRONUNCIATION GUIDE */
+.pron-sec{background:var(--cream);padding:70px 20px}
+.pron-inner{max-width:1100px;margin:0 auto}
+.pron-table{width:100%;border-collapse:collapse;margin-top:8px;font-size:.88rem}
+.pron-table th{background:var(--green-mid);color:rgba(245,230,192,.85);font-weight:600;font-size:.75rem;text-transform:uppercase;letter-spacing:.06em;padding:11px 14px;text-align:left}
+.pron-table td{padding:11px 14px;border-bottom:1px solid var(--border);vertical-align:middle}
+.pron-table tr:hover td{background:rgba(200,146,42,0.04)}
+.pron-table td:first-child{font-family:'Noto Nastaliq Urdu',serif;font-size:1.8rem;color:var(--green-mid);direction:rtl;line-height:1.8;text-align:center;width:80px}
+.pron-callout{background:linear-gradient(135deg,rgba(200,146,42,0.10),rgba(200,146,42,0.05));border:1px solid rgba(200,146,42,0.25);border-radius:12px;padding:20px 22px;margin-top:28px;display:flex;gap:14px}
+.pron-callout-icon{font-size:1.8rem;flex-shrink:0}
+.pron-callout p{font-size:.88rem;color:var(--text-mid);line-height:1.75}
+
+/* WRITING TIPS */
+.write-sec{background:var(--white);padding:70px 20px}
+.write-inner{max-width:1100px;margin:0 auto}
+.tips-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:20px;margin-top:8px}
+.tip-card{background:var(--cream);border:1px solid var(--border);border-radius:12px;padding:22px 20px}
+.tip-num{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--green-deep);font-weight:700;font-size:.9rem;display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+.tip-card h4{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--text-dark);margin-bottom:6px}
+.tip-card p{font-size:.84rem;color:var(--text-muted);line-height:1.7}
+
+/* FOOTER */
+.al-footer{background:var(--green-deep);padding:36px 20px;text-align:center}
+.al-footer-links{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:18px}
+.al-footer-links a{color:rgba(245,230,192,.60);font-size:.80rem;padding:6px 14px;border:1px solid rgba(200,146,42,0.20);border-radius:20px;transition:all .2s}
+.al-footer-links a:hover{color:var(--gold-light);border-color:rgba(200,146,42,0.50)}
+.al-footer p{font-size:.72rem;color:rgba(245,230,192,.25)}
+
+/* BACK TO TOP */
+#btt{position:fixed;bottom:28px;right:22px;width:46px;height:46px;border-radius:50%;background:var(--gold);color:var(--green-deep);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(200,146,42,0.45);cursor:pointer;border:none;opacity:0;transform:translateY(16px);transition:all .3s;z-index:700}
+#btt.show{opacity:1;transform:translateY(0)}
+#btt:hover{transform:translateY(-3px)}
+
+@media print{.al-nav,.al-lang-btn,.tab-nav,#btt{display:none!important}.l-hero{padding:30px 20px}}
+@media(max-width:600px){
+  .al-nav{height:auto;min-height:56px;padding:8px 16px;flex-wrap:wrap}
+  .al-nav-links a{display:none}
+  .al-nav-links{gap:8px}
+  .alpha-grid{grid-template-columns:repeat(auto-fill,minmax(90px,1fr))}
+  .dp-forms{grid-template-columns:repeat(2,1fr)}
+  .l-hero{padding:80px 16px 44px}
+  .al-sec{padding:52px 16px}
+  .dp-top{gap:16px}
+  .dp-letter{font-size:4rem;min-width:80px}
+}
+@media(max-width:400px){
+  .alpha-grid{grid-template-columns:repeat(auto-fill,minmax(76px,1fr))}
+}
+</style>
+</head>
+<body>
+
+<nav class="al-nav">
+  <a class="al-nav-brand" href="../../index.html">
+    <span>☪</span>
+    <span data-te="ఇస్లామిక్ ఫ్రంట్" data-en="Islamic Front">ఇస్లామిక్ ఫ్రంట్</span>
+  </a>
+  <div class="al-nav-links">
+    <a href="./index.html" data-te="ఉర్దూ పోర్టల్" data-en="Urdu Portal">Urdu Portal</a>
+    <a href="../../islamic-knowledge.html" data-te="జ్ఞాన కేంద్రం" data-en="Knowledge Center">KC</a>
+    <button class="al-lang-btn" id="lang-btn" onclick="toggleLang()">English</button>
+  </div>
+</nav>
+
+<div class="lesson-nav">
+  <span class="lnb-spacer"></span>
+  <span class="lnb-mid" data-te="స్థాయి 1 · ఉర్దూ అక్షరమాల" data-en="Level 1 · Urdu Alphabet">Level 1 · Urdu Alphabet</span>
+  <a href="./reading-basics.html" class="lnb-btn" data-te="స్థాయి 2 · చదవడం →" data-en="Level 2 · Reading →">Level 2 · Reading →</a>
+</div>
+
+<div class="l-hero">
+  <nav class="l-breadcrumb" aria-label="Breadcrumb">
+    <a href="../../index.html" data-te="హోమ్" data-en="Home">Home</a>
+    <span>›</span>
+    <a href="../../islamic-knowledge.html" data-te="జ్ఞాన కేంద్రం" data-en="KC">KC</a>
+    <span>›</span>
+    <a href="./index.html" data-te="ఉర్దూ నేర్చుకోండి" data-en="Learn Urdu">Learn Urdu</a>
+    <span>›</span>
+    <span data-te="అక్షరమాల" data-en="Alphabet">Alphabet</span>
+  </nav>
+  <div class="l-hero-badge">
+    <span>۱</span>
+    <span data-te="స్థాయి 1" data-en="Level 1">Level 1</span>
+  </div>
+  <h1 data-te="ఉర్దూ అక్షరమాల" data-en="Urdu Alphabet">Urdu Alphabet</h1>
+  <span class="l-hero-ur" lang="ur" dir="rtl">اردو حروفِ تہجی</span>
+  <p class="l-hero-sub" data-te="ఉర్దూ 38 అక్షరాల నస్తాలీఖ్ లిపిలో రాయబడుతుంది. ప్రతి అక్షరాన్ని నేర్చుకోండి — రూపాలు, ఉచ్చారణ మరియు రాయడం." data-en="Urdu is written in the beautiful Nastaliq script with 38 letters. Learn each letter — forms, pronunciation, and writing.">Urdu is written in the beautiful Nastaliq script with 38 letters. Learn each letter — forms, pronunciation, and writing.</p>
+  <div class="l-hero-stats">
+    <div class="l-stat"><strong>38</strong><span data-te="అక్షరాలు" data-en="Letters">Letters</span></div>
+    <div class="l-stat"><strong>10</strong><span data-te="ప్రత్యేక" data-en="Unique to Urdu">Unique to Urdu</span></div>
+    <div class="l-stat"><strong>RTL</strong><span data-te="కుడి నుండి ఎడమ" data-en="Right to Left">Right to Left</span></div>
+  </div>
+</div>
+
+<nav class="tab-nav" aria-label="Lesson sections">
+  <a href="#alphabet" class="active" data-te="38 అక్షరాలు" data-en="38 Letters">38 Letters</a>
+  <a href="#unique" data-te="ప్రత్యేక అక్షరాలు" data-en="Unique Letters">Unique Letters</a>
+  <a href="#pronunciation" data-te="ఉచ్చారణ" data-en="Pronunciation">Pronunciation</a>
+  <a href="#writing" data-te="రాయడం సూచనలు" data-en="Writing Tips">Writing Tips</a>
+</nav>
+
+<!-- ALPHABET GRID -->
+<section class="al-sec" id="alphabet">
+  <div class="al-inner">
+    <div class="sec-label" data-te="పూర్తి అక్షరమాల" data-en="Complete Alphabet">Complete Alphabet</div>
+    <h2 class="sec-title" data-te="38 ఉర్దూ అక్షరాలు" data-en="38 Urdu Letters">38 Urdu Letters</h2>
+    <p class="sec-sub" data-te="అక్షరంపై నొక్కండి — దాని రూపాలు, ఉచ్చారణ మరియు వివరాలు చూడండి. బంగారు చుక్క ఉన్న అక్షరాలు ఉర్దూకు ప్రత్యేకమైనవి." data-en="Click any letter to see its forms, pronunciation, and details. Letters with a gold dot are unique to Urdu.">Click any letter to see its forms, pronunciation, and details. Letters with a gold dot are unique to Urdu.</p>
+    <div class="alpha-grid" id="alpha-grid"></div>
+    <div id="detail-panel" role="region" aria-live="polite"></div>
+  </div>
+</section>
+
+<!-- UNIQUE LETTERS -->
+<section class="unique-sec" id="unique">
+  <div class="unique-inner">
+    <div class="sec-label" style="color:var(--gold)" data-te="ఉర్దూకు ప్రత్యేకం" data-en="Unique to Urdu">Unique to Urdu</div>
+    <h2 class="unique-title" data-te="ఉర్దూ ప్రత్యేక అక్షరాలు" data-en="Letters Unique to Urdu">Letters Unique to Urdu</h2>
+    <p class="unique-sub" data-te="ఈ 10 అక్షరాలు ఉర్దూ/పర్షియన్ ధ్వనులకు ప్రత్యేకం — అరబిక్ అక్షరమాలలో లేని వాటిని ఉర్దూ ఈ అదనపు అక్షరాలతో పూరించింది." data-en="These 10 letters represent sounds unique to Urdu and Persian — added to the Arabic alphabet for South Asian phonetics.">These 10 letters represent sounds unique to Urdu and Persian — added to the Arabic alphabet for South Asian phonetics.</p>
+    <div class="unique-grid" id="unique-grid"></div>
+  </div>
+</section>
+
+<!-- PRONUNCIATION -->
+<section class="pron-sec" id="pronunciation">
+  <div class="pron-inner">
+    <div class="sec-label" data-te="ఉచ్చారణ మార్గదర్శకం" data-en="Pronunciation Guide">Pronunciation Guide</div>
+    <h2 class="sec-title" data-te="అక్షరాల ఉచ్చారణ" data-en="Letter Pronunciation">Letter Pronunciation</h2>
+    <p class="sec-sub" data-te="ప్రతి ఉర్దూ అక్షరాన్ని ఎలా పలకాలో నేర్చుకోండి — ఆంగ్ల పదాలతో పోలిక చేయండి." data-en="Learn how to pronounce each Urdu letter — with English word comparisons.">Learn how to pronounce each Urdu letter — with English word comparisons.</p>
+    <div style="overflow-x:auto">
+    <table class="pron-table">
+      <thead><tr>
+        <th data-te="అక్షరం" data-en="Letter">Letter</th>
+        <th data-te="పేరు" data-en="Name">Name</th>
+        <th data-te="ఉచ్చారణ" data-en="Sound">Sound</th>
+        <th data-te="ఉదాహరణ పదం" data-en="Example (Urdu)">Example (Urdu)</th>
+        <th data-te="ఆంగ్ల పోలిక" data-en="English Comparison">English Comparison</th>
+      </tr></thead>
+      <tbody id="pron-tbody"></tbody>
+    </table>
+    </div>
+    <div class="pron-callout">
+      <div class="pron-callout-icon">💡</div>
+      <p data-te="ఉర్దూలో హరకాత్ (అ-ఆ-ఇ వంటి స్వర సంకేతాలు) సాధారణంగా రాయబడవు — చదువరులు సందర్భం నుండి అర్థం చేసుకుంటారు. ఖుర్ఆన్ లాగా కాదు. అందుకే పఠన అభ్యాసం చాలా ముఖ్యం!" data-en="Urdu typically omits vowel markers (harakat) in everyday writing — unlike the Quran. Readers infer vowels from context. This is why reading practice is so important!">Urdu typically omits vowel markers (harakat) in everyday writing — unlike the Quran. Readers infer vowels from context. This is why reading practice is so important!</p>
+    </div>
+  </div>
+</section>
+
+<!-- WRITING TIPS -->
+<section class="write-sec" id="writing">
+  <div class="write-inner">
+    <div class="sec-label" data-te="రాయడం నేర్చుకోవడం" data-en="Writing Tips">Writing Tips</div>
+    <h2 class="sec-title" data-te="నస్తాలీఖ్ లిపిలో రాయడం" data-en="Writing in Nastaliq Script">Writing in Nastaliq Script</h2>
+    <p class="sec-sub" data-te="నస్తాలీఖ్ లిపి ప్రపంచంలో అత్యంత అందమైన లిపులలో ఒకటి. ఈ సూచనలతో మీ రాయడం నైపుణ్యాన్ని మెరుగుపరచండి." data-en="Nastaliq is considered one of the most beautiful scripts in the world. Use these tips to develop your writing skills.">Nastaliq is considered one of the most beautiful scripts in the world. Use these tips to develop your writing skills.</p>
+    <div class="tips-grid">
+      <div class="tip-card">
+        <div class="tip-num">1</div>
+        <h4 data-te="కుడి నుండి ఎడమకు" data-en="Right to Left">Right to Left</h4>
+        <p data-te="ఉర్దూ ఎప్పుడూ కుడి వైపు నుండి ఎడమ వైపుకు రాయబడుతుంది. పేజీ కుడి అంచు నుండి మొదలుపెట్టండి." data-en="Urdu is always written from right to left. Start from the right edge of your page and move left.">Urdu is always written from right to left. Start from the right edge of your page and move left.</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-num">2</div>
+        <h4 data-te="అక్షరాల కలయిక" data-en="Connecting Letters">Connecting Letters</h4>
+        <p data-te="చాలా ఉర్దూ అక్షరాలు తదుపరి అక్షరంతో కలుస్తాయి. కానీ ا د ڈ ذ ر ڑ ز ژ و ﻪ ء — ఈ అక్షరాలు ముందుకు కలువని అక్షరాలు." data-en="Most Urdu letters connect to the following letter. But ا د ڈ ذ ر ڑ ز ژ و ه ء do not connect to the following letter.">Most Urdu letters connect to the next letter. But several letters (ا د ر و etc.) do not connect forward.</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-num">3</div>
+        <h4 data-te="నస్తాలీఖ్ శైలి" data-en="Nastaliq Style">Nastaliq Style</h4>
+        <p data-te="నస్తాలీఖ్ లిపి కుడి వైపు నుండి ఎడమ వైపుకు కొద్దిగా వాలుగా ఉంటుంది. అక్షరాలు కొంచెం గుండ్రంగా, ప్రవాహంగా ఉంటాయి." data-en="Nastaliq script has a distinctive diagonal, flowing style — letters are written at a slight angle with smooth, curved strokes.">Nastaliq has a distinctive diagonal, flowing style — smooth, curved strokes at a slight angle.</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-num">4</div>
+        <h4 data-te="నుక్తా (చుక్కలు)" data-en="Nuqta (Dots)">Nuqta (Dots)</h4>
+        <p data-te="చుక్కలు (నుక్తా) అక్షరాల్ని గుర్తించడానికి అత్యంత ముఖ్యం. ب (ఒక చుక్క క్రింద), ت (రెండు పైన), ث (మూడు పైన) — చుక్కలు అర్థాన్ని మారుస్తాయి." data-en="Dots (nuqta) are critical for distinguishing letters. ب has one dot below, ت two above, ث three above — dots change the letter completely.">Dots (nuqta) are critical. ب (one dot below), ت (two above), ث (three above) — dots completely change the letter.</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-num">5</div>
+        <h4 data-te="పదాల మధ్య స్థలం" data-en="Word Spacing">Word Spacing</h4>
+        <p data-te="ఉర్దూ పదాల మధ్య చిన్న స్థలం ఉంటుంది. ఒకే పదంలో అక్షరాలు కలిపి రాయబడతాయి — పదాల మధ్య విరామం ఉంటుంది." data-en="Leave a small, consistent space between Urdu words. Letters within a word are connected; spaces separate words.">Leave a small, consistent space between Urdu words. Letters within a word are connected; spaces separate words.</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-num">6</div>
+        <h4 data-te="నిలువు పంక్తి" data-en="Baseline">Baseline</h4>
+        <p data-te="నస్తాలీఖ్‌లో అక్షరాలు నిలువు పంక్తిపై కూర్చోవు — వాటి ఆకారాన్ని బట్టి కొంచెం పైకి లేదా కిందికి వంగుతాయి. ఇది నస్తాలీఖ్ అందానికి కీలకం." data-en="Nastaliq letters don't sit on a strict baseline — they cascade diagonally. This cascading flow is the hallmark of Nastaliq beauty.">Nastaliq letters cascade diagonally rather than on a strict baseline — this cascading flow is the hallmark of its beauty.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="al-footer">
+  <div class="al-footer-links">
+    <a href="./index.html" data-te="← ఉర్దూ పోర్టల్" data-en="← Urdu Portal">← Urdu Portal</a>
+    <a href="./reading-basics.html" data-te="తదుపరి: చదవడం →" data-en="Next: Reading Basics →">Next: Reading Basics →</a>
+    <a href="../../islamic-knowledge.html" data-te="జ్ఞాన కేంద్రం" data-en="Knowledge Center">Knowledge Center</a>
+  </div>
+  <p data-te="© 2025 ఇస్లామిక్ ఫ్రంట్" data-en="© 2025 Islamic Front">© 2025 Islamic Front</p>
+</footer>
+
+<button id="btt" onclick="scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+
+<script>
+/* LANG */
+var LANG = localStorage.getItem('if-lang') || 'te';
+var openDetailIdx = -1;
+function applyLang(l){
+  LANG = l; localStorage.setItem('if-lang', l);
+  document.documentElement.lang = (l==='te')?'te':'en';
+  document.querySelectorAll('[data-te]').forEach(function(el){
+    var val = el.getAttribute('data-'+l);
+    if(val) el.innerHTML = val;
+  });
+  var btn = document.getElementById('lang-btn');
+  if(btn) btn.textContent = l==='te' ? 'English' : 'తెలుగు';
+  if(openDetailIdx >= 0){
+    var lt = LETTERS[openDetailIdx];
+    var noteEl = document.querySelector('#detail-panel .dp-note');
+    if(noteEl) noteEl.textContent = l==='te' ? lt.note_te : lt.note;
+    var FL = {te:['ప్రారంభం','మధ్య','చివర','ఒంటరి'],en:['Initial','Medial','Final','Isolated']};
+    document.querySelectorAll('#detail-panel .dp-form-label').forEach(function(el,j){el.textContent=FL[l][j];});
+    var trEl = document.querySelector('#detail-panel .dp-tr');
+    if(trEl){
+      var lbl = l==='te' ? 'లిప్యంతరీకరణ: ' : 'Transliteration: ';
+      var uniqueSpan = lt.unique ? ' &nbsp;<span style="background:rgba(200,146,42,0.15);color:var(--gold);font-size:.70rem;padding:2px 8px;border-radius:10px;font-weight:600">'+(l==='te'?'ఉర్దూకు ప్రత్యేకం':'Unique to Urdu')+'</span>' : '';
+      trEl.innerHTML = lbl + '<strong>'+lt.tr+'</strong>' + uniqueSpan;
+    }
+    var fhEl = document.querySelector('#detail-panel h4');
+    if(fhEl) fhEl.textContent = l==='te' ? 'అక్షర రూపాలు' : 'Letter Forms';
+    var exEl = document.querySelector('#detail-panel .dp-ex-label');
+    if(exEl) exEl.textContent = l==='te' ? 'ఉదాహరణ:' : 'Example:';
+    var exValEl = document.getElementById('dp-ex-val');
+    if(exValEl) exValEl.textContent = (l==='te'&&lt.ex_te) ? lt.ex_te : lt.ex;
+    var h3El = document.querySelector('#detail-panel h3');
+    if(h3El) h3El.innerHTML = (l==='te'?lt.name_te:lt.name)+' <small style="font-size:.7em;color:var(--text-muted)">('+lt.tr+')</small>';
+  }
+}
+function toggleLang(){ applyLang(LANG==='te'?'en':'te'); }
+
+/* URDU LETTERS DATA */
+var LETTERS = [
+  {ur:'ا',name:'Alif',name_te:'అలిఫ్',tr:'a / ā',ini:'ا',med:'ـا',fin:'ـا',iso:'ا',note:'The first letter. Represents a long "aa" sound or a glottal stop when carrying hamza.',note_te:'మొదటి అక్షరం. దీర్ఘ "ఆ" స్వరం లేదా గొంతులో కొద్ది క్షణం ఆగే హంజా శబ్దం రెండు పాత్రలు పోషిస్తుంది.',unique:false,ex:'اللہ (Allah)',ex_te:'اللہ (అల్లాహ్)'},
+  {ur:'ب',name:'Be',name_te:'బే',tr:'b',ini:'بـ',med:'ـبـ',fin:'ـب',iso:'ب',note:'Like "b" in "book". Has one dot below.',note_te:'తెలుగు "బ" వలె పలుకుతారు. కింద ఒక చుక్క ఉంటుంది.',unique:false,ex:'بسم (Bismi — name)',ex_te:'بسم (Bismi — పేరు)'},
+  {ur:'پ',name:'Pe',name_te:'పే',tr:'p',ini:'پـ',med:'ـپـ',fin:'ـپ',iso:'پ',note:'Like "p" in "pen". Three dots below. Unique to Urdu and Persian.',note_te:'తెలుగు "ప" వలె పలుకుతారు. కింద మూడు చుక్కలు. ఉర్దూ మరియు పర్షియన్‌కు ప్రత్యేకం.',unique:true,ex:'پانی (Paani — water)',ex_te:'پانی (Paani — నీళ్ళు)'},
+  {ur:'ت',name:'Te',name_te:'తే',tr:'t',ini:'تـ',med:'ـتـ',fin:'ـت',iso:'ت',note:'Like "t" in "top". Two dots above.',note_te:'తెలుగు "త" వలె పలుకుతారు. పైన రెండు చుక్కలు.',unique:false,ex:'تم (Tum — you)',ex_te:'تم (Tum — నీవు)'},
+  {ur:'ٹ',name:'Heavy Te',name_te:'హెవీ టే',tr:'t',ini:'ٹـ',med:'ـٹـ',fin:'ـٹ',iso:'ٹ',note:'A heavy "t" — tongue curls back to the roof of the mouth. Unique to South Asian languages.',note_te:'నాలుక వెనుకకు వంచే "ట" శబ్దం. దక్షిణాసియా భాషలకు ప్రత్యేకం.',unique:true,ex:'ٹوپی (Topi — cap)',ex_te:'ٹوپی (Topi — టోపీ)'},
+  {ur:'ث',name:'Se',name_te:'సే',tr:'s',ini:'ثـ',med:'ـثـ',fin:'ـث',iso:'ث',note:'Pronounced as "s" in Urdu. Three dots above. Same sound as س in Urdu.',note_te:'ఉర్దూలో "స" అని పలుకుతారు. పైన మూడు చుక్కలు. "س" తో ఒకే శబ్దం.',unique:false,ex:'ثواب (Sawaab — reward)',ex_te:'ثواب (Sawaab — పుణ్యం)'},
+  {ur:'ج',name:'Jeem',name_te:'జీమ్',tr:'j',ini:'جـ',med:'ـجـ',fin:'ـج',iso:'ج',note:'Like "j" in "jump". One dot inside the curve.',note_te:'తెలుగు "జ" వలె పలుకుతారు. వక్రం లోపల ఒక చుక్క.',unique:false,ex:'جان (Jaan — life)',ex_te:'جان (Jaan — జీవితం)'},
+  {ur:'چ',name:'Che',name_te:'చే',tr:'ch',ini:'چـ',med:'ـچـ',fin:'ـچ',iso:'چ',note:'Like "ch" in "chair". Three dots inside. Unique to Urdu and Persian.',note_te:'తెలుగు "చ" వలె పలుకుతారు. లోపల మూడు చుక్కలు. ఉర్దూ మరియు పర్షియన్‌కు ప్రత్యేకం.',unique:true,ex:'چاند (Chaand — moon)',ex_te:'چاند (Chaand — చంద్రుడు)'},
+  {ur:'ح',name:'Deep He',name_te:'డీప్ హే',tr:'h',ini:'حـ',med:'ـحـ',fin:'ـح',iso:'ح',note:'A breathy "h" from deep in the throat — heavier than ہ. No dot. Same as Arabic ح.',note_te:'గొంతు లోతు నుండి వచ్చే "హ" శ్వాస శబ్దం. ہ కంటే బరువుగా. చుక్క లేదు.',unique:false,ex:'حق (Haq — truth/right)',ex_te:'حق (Haq — సత్యం)'},
+  {ur:'خ',name:'Khe',name_te:'ఖే',tr:'kh',ini:'خـ',med:'ـخـ',fin:'ـخ',iso:'خ',note:'Like "ch" in Scottish "loch". A guttural sound. One dot above ح.',note_te:'గొంతు వెనుక నుండి వచ్చే "ఖ" శబ్దం. "ح" పైన ఒక చుక్క.',unique:false,ex:'خدا (Khuda — God)',ex_te:'خدا (Khuda — దేవుడు)'},
+  {ur:'د',name:'Dal',name_te:'దాల్',tr:'d',ini:'د',med:'ـد',fin:'ـد',iso:'د',note:'Like "d" in "door". Does not connect to the following letter.',note_te:'తెలుగు "డ" వలె పలుకుతారు. తదుపరి అక్షరంతో కలవదు.',unique:false,ex:'دل (Dil — heart)',ex_te:'دل (Dil — హృదయం)'},
+  {ur:'ڈ',name:'Heavy Dal',name_te:'హెవీ డాల్',tr:'d',ini:'ڈ',med:'ـڈ',fin:'ـڈ',iso:'ڈ',note:'A heavy "d" — tongue curls back. Unique to Urdu and South Asian languages.',note_te:'నాలుక వెనుకకు వంచే "డ" శబ్దం. ఉర్దూకు ప్రత్యేకం.',unique:true,ex:'ڈر (Dar — fear)',ex_te:'ڈر (Dar — భయం)'},
+  {ur:'ذ',name:'Zal',name_te:'జాల్',tr:'z',ini:'ذ',med:'ـذ',fin:'ـذ',iso:'ذ',note:'Pronounced as "z" in Urdu. One dot above. Does not connect forward.',note_te:'ఉర్దూలో "జ" అని పలుకుతారు. పైన ఒక చుక్క. ముందుకు కలవదు.',unique:false,ex:'ذکر (Zikr — remembrance)',ex_te:'ذکر (Zikr — స్మరణ)'},
+  {ur:'ر',name:'Re',name_te:'రే',tr:'r',ini:'ر',med:'ـر',fin:'ـر',iso:'ر',note:'A rolled/flapped "r". Does not connect to the following letter.',note_te:'నాలుక వంచే "ర" శబ్దం. తదుపరి అక్షరంతో కలవదు.',unique:false,ex:'رحمت (Rahmat — mercy)',ex_te:'رحمت (Rahmat — కరుణ)'},
+  {ur:'ڑ',name:'Heavy Re',name_te:'హెవీ రే',tr:'r',ini:'ڑ',med:'ـڑ',fin:'ـڑ',iso:'ڑ',note:'A flapped "r" with tongue curling back. Unique to South Asian languages. Looks like ر with a mark.',note_te:'నాలుక వెనుకకు వంచే "ఱ" శబ్దం. దక్షిణాసియా భాషలకు ప్రత్యేకమైన శబ్దం.',unique:true,ex:'بڑا (Bara — big)',ex_te:'بڑا (Bara — పెద్ద)'},
+  {ur:'ز',name:'Ze',name_te:'జే',tr:'z',ini:'ز',med:'ـز',fin:'ـز',iso:'ز',note:'Like "z" in "zebra". One dot above. Does not connect forward.',note_te:'తెలుగు "జ" వలె పలుకుతారు. పైన ఒక చుక్క. ముందుకు కలవదు.',unique:false,ex:'زندگی (Zindagi — life)',ex_te:'زندگی (Zindagi — జీవితం)'},
+  {ur:'ژ',name:'Zhe',name_te:'జే (అరుదు)',tr:'zh',ini:'ژ',med:'ـژ',fin:'ـژ',iso:'ژ',note:'Like "s" in "measure". Three dots above ز. Rare in Urdu, used in loanwords.',note_te:'జ మరియు శ మధ్య మృదువైన శబ్దం (zh). "ز" పైన మూడు చుక్కలు. ఉర్దూలో అరుదు — అప్పుచేసిన పదాలలో వాడతారు.',unique:false,ex:'ژالہ (Zhaalah — hail)',ex_te:'ژالہ (Zhaalah — వడగళ్ళు)'},
+  {ur:'س',name:'Sin',name_te:'సీన్',tr:'s',ini:'سـ',med:'ـسـ',fin:'ـس',iso:'س',note:'Like "s" in "sun". The three teeth distinguish it. Most common "s" letter in Urdu.',note_te:'తెలుగు "స" వలె పలుకుతారు. మూడు "పళ్ళు" ఉంటాయి. ఉర్దూలో చాలా సాధారణ "స" అక్షరం.',unique:false,ex:'سلام (Salaam — peace)',ex_te:'سلام (Salaam — శాంతి)'},
+  {ur:'ش',name:'Shin',name_te:'శీన్',tr:'sh',ini:'شـ',med:'ـشـ',fin:'ـش',iso:'ش',note:'Like "sh" in "ship". Three dots above سـ.',note_te:'తెలుగు "శ" వలె పలుకుతారు. "سـ" పైన మూడు చుక్కలు.',unique:false,ex:'شکر (Shukar — gratitude)',ex_te:'شکر (Shukar — కృతజ్ఞత)'},
+  {ur:'ص',name:'Suad',name_te:'స్వాద్',tr:'s',ini:'صـ',med:'ـصـ',fin:'ـص',iso:'ص',note:'An emphatic "s". The sound comes from the back of the mouth. Heavier than س.',note_te:'నొక్కుకున్న "స" శబ్దం — నోటి వెనుక భాగం నుండి పలుకుతారు. "స" కంటే బరువుగా.',unique:false,ex:'صبر (Sabr — patience)',ex_te:'صبر (Sabr — సహనం)'},
+  {ur:'ض',name:'Zuad',name_te:'జ్వాద్',tr:'z',ini:'ضـ',med:'ـضـ',fin:'ـض',iso:'ض',note:'An emphatic "z". In Urdu spoken as a heavy "z". One dot above ص.',note_te:'నొక్కుకున్న "జ" శబ్దం. ఉర్దూలో బరువైన "జ" అని పలుకుతారు. "ص" పైన ఒక చుక్క.',unique:false,ex:'ضرور (Zaroor — definitely)',ex_te:'ضرور (Zaroor — తప్పకుండా)'},
+  {ur:'ط',name:'Toe',name_te:'తో',tr:'t',ini:'طـ',med:'ـطـ',fin:'ـط',iso:'ط',note:'Emphatic "t". Heavier and more full-mouthed than ت.',note_te:'నొక్కుకున్న "ట" శబ్దం. "ت" కంటే నోటి లోపల నుండి పలుకుతారు.',unique:false,ex:'طاقت (Taaqat — power)',ex_te:'طاقت (Taaqat — శక్తి)'},
+  {ur:'ظ',name:'Zoe',name_te:'జో',tr:'z',ini:'ظـ',med:'ـظـ',fin:'ـظ',iso:'ظ',note:'Emphatic "z". In Urdu, pronounced as heavy "z". One dot above ط.',note_te:'నొక్కుకున్న "జ" శబ్దం. ఉర్దూలో బరువైన "జ". "ط" పైన ఒక చుక్క.',unique:false,ex:'ظالم (Zaalim — oppressor)',ex_te:'ظالم (Zaalim — అన్యాయపరుడు)'},
+  {ur:'ع',name:'Ain',name_te:'ఐన్',tr:'aa/oo/ee',ini:'عـ',med:'ـعـ',fin:'ـع',iso:'ع',note:'A unique throat constriction sound. Changes with the following vowel — ع = aa, عو = oo, عی = ee.',note_te:'ప్రత్యేక గొంతు సంకోచ శబ్దం. తర్వాత వచ్చే స్వరానుసారం మారుతుంది — ع=ఆ, عو=ఊ, عی=ఈ.',unique:false,ex:'علم (Ilm — knowledge)',ex_te:'علم (Ilm — జ్ఞానం)'},
+  {ur:'غ',name:'Ghain',name_te:'గైన్',tr:'gh',ini:'غـ',med:'ـغـ',fin:'ـغ',iso:'غ',note:'A gargling sound, like a French "r". One dot above ع.',note_te:'గొంతు లోతు నుండి గురగురమనే "ఘ" శబ్దం. "ع" పైన ఒక చుక్క.',unique:false,ex:'غرور (Gharoor — pride)',ex_te:'غرور (Gharoor — గర్వం)'},
+  {ur:'ف',name:'Fe',name_te:'ఫే',tr:'f',ini:'فـ',med:'ـفـ',fin:'ـف',iso:'ف',note:'Like "f" in "fan". One dot above the form.',note_te:'తెలుగు "ఫ" వలె పలుకుతారు. రూపం పైన ఒక చుక్క.',unique:false,ex:'فضل (Fazl — grace/favour)',ex_te:'فضل (Fazl — అనుగ్రహం)'},
+  {ur:'ق',name:'Qaf',name_te:'కాఫ్',tr:'q',ini:'قـ',med:'ـقـ',fin:'ـق',iso:'ق',note:'A deep "k" from the very back of the throat. Two dots above. Deeper than ک.',note_te:'గొంతు వెనుక నుండి వచ్చే లోతైన "క" శబ్దం. పైన రెండు చుక్కలు. "ک" కంటే లోతుగా.',unique:false,ex:'قرآن (Quran)',ex_te:'قرآن (ఖురాన్)'},
+  {ur:'ک',name:'Kaf',name_te:'కాఫ్',tr:'k',ini:'کـ',med:'ـکـ',fin:'ـک',iso:'ک',note:'Like "k" in "king". Lighter than ق. Common in Urdu words.',note_te:'తెలుగు "క" వలె పలుకుతారు. "ق" కంటే తేలికగా. ఉర్దూ పదాలలో సాధారణం.',unique:false,ex:'کتاب (Kitaab — book)',ex_te:'کتاب (Kitaab — పుస్తకం)'},
+  {ur:'گ',name:'Gaf',name_te:'గాఫ్',tr:'g',ini:'گـ',med:'ـگـ',fin:'ـگ',iso:'گ',note:'Like "g" in "go". Unique to Urdu/Persian. Has a small mark on top of ک.',note_te:'తెలుగు "గ" వలె పలుకుతారు. ఉర్దూ/పర్షియన్‌కు ప్రత్యేకం. "ک" పైన ఒక చిన్న గుర్తు.',unique:true,ex:'گھر (Ghar — home)',ex_te:'گھر (Ghar — ఇల్లు)'},
+  {ur:'ل',name:'Lam',name_te:'లామ్',tr:'l',ini:'لـ',med:'ـلـ',fin:'ـل',iso:'ل',note:'Like "l" in "lamp". Common letter, appears in اللہ (Allah).',note_te:'తెలుగు "ల" వలె పలుకుతారు. اللہ (అల్లాహ్) లో కనిపించే సాధారణ అక్షరం.',unique:false,ex:'لمحہ (Lamha — moment)',ex_te:'لمحہ (Lamha — క్షణం)'},
+  {ur:'م',name:'Mim',name_te:'మీమ్',tr:'m',ini:'مـ',med:'ـمـ',fin:'ـم',iso:'م',note:'Like "m" in "moon". Very common letter in Urdu.',note_te:'తెలుగు "మ" వలె పలుకుతారు. ఉర్దూలో చాలా సాధారణ అక్షరం.',unique:false,ex:'محبت (Muhabbat — love)',ex_te:'محبت (Muhabbat — ప్రేమ)'},
+  {ur:'ن',name:'Nun',name_te:'నూన్',tr:'n',ini:'نـ',med:'ـنـ',fin:'ـن',iso:'ن',note:'Like "n" in "noon". One dot above in isolated and initial forms.',note_te:'తెలుగు "న" వలె పలుకుతారు. ఒంటరి మరియు ప్రారంభ రూపాల్లో పైన ఒక చుక్క.',unique:false,ex:'نیت (Niyyat — intention)',ex_te:'نیت (Niyyat — ఉద్దేశ్యం)'},
+  {ur:'ں',name:'Nasal Nun',name_te:'నేసల్ నూన్',tr:'ṅ',ini:'ں',med:'ـں',fin:'ـں',iso:'ں',note:'A nasalized sound unique to Urdu — like a French nasal vowel. Only occurs at the end of words.',note_te:'ఉర్దూకు ప్రత్యేకమైన నాసిక శబ్దం — నాసిక స్వరం పలికేటప్పుడు "న" అంటారు. పదాల చివర మాత్రమే వస్తుంది.',unique:true,ex:'میں (Main — I/me)',ex_te:'میں (Main — నేను)'},
+  {ur:'و',name:'Wao',name_te:'వావ్',tr:'w / oo / o',ini:'و',med:'ـو',fin:'ـو',iso:'و',note:'Acts as "w", long "oo" or "o" depending on context. Does not connect forward.',note_te:'తెలుగు "వ" లేదా దీర్ఘ "ఊ"/"ఓ" శబ్దంగా వస్తుంది. ముందుకు కలవదు.',unique:false,ex:'وفا (Wafa — loyalty)',ex_te:'وفا (Wafa — విశ్వాసం)'},
+  {ur:'ہ',name:'Light He',name_te:'లైట్ హే',tr:'h',ini:'ہـ',med:'ـہـ',fin:'ـہ',iso:'ہ',note:'A light "h" — softer than ح. Its form changes significantly by position, very distinctive in Nastaliq.',note_te:'తేలికపాటి "హ" శబ్దం — ح కంటే మృదువుగా. వివిధ స్థానాల్లో రూపం చాలా మారుతుంది.',unique:false,ex:'ہدایت (Hidayat — guidance)',ex_te:'ہدایت (Hidayat — మార్గదర్శనం)'},
+  {ur:'ھ',name:'Aspiration He',name_te:'ఆస్పిరేషన్ హే',tr:'h',ini:'ھ',med:'ـھـ',fin:'ـھ',iso:'ھ',note:'Creates aspirated consonants: بھ=bh, پھ=ph, تھ=th, کھ=kh, گھ=gh. Essential for Urdu pronunciation.',note_te:'ప్రాసంగిక వ్యంజనాలను సృష్టిస్తుంది: بھ=భ, پھ=ఫ, تھ=థ, کھ=ఖ, گھ=ఘ. ఉర్దూ ఉచ్చారణకు అవసరం.',unique:true,ex:'گھر (Ghar — home)',ex_te:'گھر (Ghar — ఇల్లు)'},
+  {ur:'ء',name:'Hamza',name_te:'హంజా',tr:"'",ini:'ء',med:'ء',fin:'ء',iso:'ء',note:'A glottal stop — a brief pause in speech. Can appear alone or combined with a letter.',note_te:'గొంతులో కొద్ది క్షణం ఆగడం — "అ...ఆ" పలికేటప్పుడు మధ్యలో ఆగినట్లు. ఒంటరిగా లేదా అక్షరంతో కలిపి వస్తుంది.',unique:false,ex:'آء (Aao — come)',ex_te:'آء (Aao — రండి)'},
+  {ur:'ی',name:'Ye',name_te:'యే',tr:'y / ee',ini:'یـ',med:'ـیـ',fin:'ـی',iso:'ی',note:'Like "y" or long "ee". Two dots below in initial/medial forms.',note_te:'తెలుగు "య" లేదా దీర్ఘ "ఈ" శబ్దంగా. ప్రారంభ/మధ్య రూపాల్లో కింద రెండు చుక్కలు.',unique:false,ex:'یاد (Yaad — memory)',ex_te:'یاد (Yaad — జ్ఞాపకం)'},
+  {ur:'ے',name:'Long Ay',name_te:'లాంగ్ ఏ',tr:'ay',ini:'—',med:'—',fin:'ـے',iso:'ے',note:'The "ay" vowel sound at word endings. Only used at the end of words. Unique to Urdu.',note_te:'పదాల చివర వచ్చే "ఎ/యే" స్వర శబ్దం. పదాల చివర మాత్రమే వాడతారు. ఉర్దూకు ప్రత్యేకం.',unique:true,ex:'گئے (Gaye — went)',ex_te:'گئے (Gaye — వెళ్ళారు)'}
+];
+
+var UNIQUE = LETTERS.filter(function(l){ return l.unique; });
+
+/* PRON TABLE DATA (subset for pronunciation guide) */
+var PRON_DATA = [
+  {ur:'پ',name:'Pe',name_te:'పే',sound:'p',sound_te:'ప',ex_ur:'پانی',ex_en:'Like "p" in "pen"',ex_te:'తెలుగు "ప" వలె పలుకుతారు'},
+  {ur:'ٹ',name:'Heavy Te',name_te:'హెవీ టే',sound:'t (curl back)',sound_te:'ట (వెనుకకు)',ex_ur:'ٹوپی',ex_en:'Like "t" but tongue curls back',ex_te:'నాలుక వెనుకకు వంచి "ట" పలుకుతారు'},
+  {ur:'چ',name:'Che',name_te:'చే',sound:'ch',sound_te:'చ',ex_ur:'چاند',ex_en:'Like "ch" in "chair"',ex_te:'తెలుగు "చ" వలె పలుకుతారు'},
+  {ur:'ڈ',name:'Heavy Dal',name_te:'హెవీ డాల్',sound:'d (curl back)',sound_te:'డ (వెనుకకు)',ex_ur:'ڈر',ex_en:'Like "d" but tongue curls back',ex_te:'నాలుక వెనుకకు వంచి "డ" పలుకుతారు'},
+  {ur:'ڑ',name:'Heavy Re',name_te:'హెవీ రే',sound:'r (flap)',sound_te:'ఱ (అల్లడం)',ex_ur:'بڑا',ex_en:'A flapped "r" with tongue curling back',ex_te:'నాలుక వెనుకకు వంచే "ఱ" శబ్దం'},
+  {ur:'ع',name:'Ain',name_te:'ఐన్',sound:'aa/oo/ee',sound_te:'ఆ/ఊ/ఈ',ex_ur:'علم',ex_en:'Throat constriction + vowel',ex_te:'గొంతు సంకోచ + స్వరం'},
+  {ur:'غ',name:'Ghain',name_te:'గైన్',sound:'gh',sound_te:'ఘ',ex_ur:'غیب',ex_en:'Like French "r" — gargled',ex_te:'గొంతు లోతు నుండి గురగురమనే "ఘ" శబ్దం'},
+  {ur:'ق',name:'Qaf',name_te:'కాఫ్',sound:'q (deep k)',sound_te:'క్ (లోతైన)',ex_ur:'قلم',ex_en:'Like "k" but from back of throat',ex_te:'గొంతు వెనుక నుండి లోతైన "క"'},
+  {ur:'ح',name:'Deep He',name_te:'డీప్ హే',sound:'h (breathy)',sound_te:'హ (శ్వాస)',ex_ur:'حق',ex_en:'Breathy "h" from deep throat',ex_te:'గొంతు లోతు నుండి "హ" శ్వాస'},
+  {ur:'خ',name:'Khe',name_te:'ఖే',sound:'kh',sound_te:'ఖ',ex_ur:'خدا',ex_en:'Like "ch" in "loch" (Scottish)',ex_te:'గొంతు వెనుక నుండి వచ్చే "ఖ" శబ్దం'},
+  {ur:'ں',name:'Nasal Nun',name_te:'నేసల్ నూన్',sound:'nasal n',sound_te:'నాసిక న',ex_ur:'میں',ex_en:'A nasal vowel sound at word endings',ex_te:'పదాల చివర నాసిక స్వర శబ్దం'},
+  {ur:'ھ',name:'Aspiration He',name_te:'ఆస్పిరేషన్ హే',sound:'h (breath)',sound_te:'హ (శ్వాస పఫ్)',ex_ur:'گھر',ex_en:'Adds a breathed puff to the previous letter',ex_te:'ముందు అక్షరానికి శ్వాస జోడిస్తుంది'}
+];
+
+/* BUILD ALPHABET GRID */
+function buildGrid(){
+  var grid = document.getElementById('alpha-grid');
+  LETTERS.forEach(function(l, i){
+    var card = document.createElement('div');
+    card.className = 'lt-card';
+    card.setAttribute('role','button');
+    card.setAttribute('tabindex','0');
+    card.setAttribute('aria-label', l.name + ' — ' + l.tr);
+    if(l.unique) card.innerHTML += '<div class="lt-unique" title="Unique to Urdu"></div>';
+    card.innerHTML += '<div class="lt-letter" lang="ur" dir="rtl">'+l.ur+'</div><div class="lt-name" data-te="'+l.name_te+'" data-en="'+l.name+'">'+l.name+'</div><div class="lt-tr">'+l.tr+'</div>';
+    card.addEventListener('click', function(){ showDetail(i); });
+    card.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' ') showDetail(i); });
+    grid.appendChild(card);
+  });
+}
+
+function showDetail(i){
+  var l = LETTERS[i];
+  var panel = document.getElementById('detail-panel');
+  var cards = document.querySelectorAll('.lt-card');
+  cards.forEach(function(c){ c.classList.remove('selected'); });
+  cards[i].classList.add('selected');
+  openDetailIdx = i;
+  panel.className = 'show';
+  var te = LANG === 'te';
+  var trLbl = te ? 'లిప్యంతరీకరణ: ' : 'Transliteration: ';
+  var uniqueText = te ? 'ఉర్దూకు ప్రత్యేకం' : 'Unique to Urdu';
+  var uniqueSpan = l.unique ? ' &nbsp;<span style="background:rgba(200,146,42,0.15);color:var(--gold);font-size:.70rem;padding:2px 8px;border-radius:10px;font-weight:600">'+uniqueText+'</span>' : '';
+  var exLbl = te ? 'ఉదాహరణ:' : 'Example:';
+  var formsHdr = te ? 'అక్షర రూపాలు' : 'Letter Forms';
+  var FL = te ? ['ప్రారంభం','మధ్య','చివర','ఒంటరి'] : ['Initial','Medial','Final','Isolated'];
+  var closeTxt = te ? '✕ మూసుకోండి' : '✕ Close';
+  panel.innerHTML =
+    '<div class="dp-top">' +
+      '<div class="dp-letter" lang="ur" dir="rtl">'+l.ur+'</div>' +
+      '<div class="dp-info">' +
+        '<h3>'+(te?l.name_te:l.name)+' <small style="font-size:.7em;color:var(--text-muted)">('+l.tr+')</small></h3>' +
+        '<div class="dp-tr">'+trLbl+'<strong>'+l.tr+'</strong>'+uniqueSpan+'</div>' +
+        '<div class="dp-note">'+(te?l.note_te:l.note)+'</div>' +
+        '<div style="margin-top:10px;font-size:.85rem;color:var(--text-muted)"><span class="dp-ex-label">'+exLbl+'</span> <span id="dp-ex-val" lang="ur" dir="rtl" style="font-family:\'Noto Nastaliq Urdu\',serif;font-size:1.2rem;color:var(--green-mid);">'+(te&&l.ex_te?l.ex_te:l.ex)+'</span></div>' +
+      '</div>' +
+    '</div>' +
+    '<h4 style="font-family:\'Playfair Display\',serif;font-size:.95rem;margin-bottom:12px;color:var(--text-mid)">'+formsHdr+'</h4>' +
+    '<div class="dp-forms">' +
+      '<div class="dp-form"><span class="dp-form-letter" lang="ur" dir="rtl">'+l.ini+'</span><div class="dp-form-label">'+FL[0]+'</div></div>' +
+      '<div class="dp-form"><span class="dp-form-letter" lang="ur" dir="rtl">'+l.med+'</span><div class="dp-form-label">'+FL[1]+'</div></div>' +
+      '<div class="dp-form"><span class="dp-form-letter" lang="ur" dir="rtl">'+l.fin+'</span><div class="dp-form-label">'+FL[2]+'</div></div>' +
+      '<div class="dp-form"><span class="dp-form-letter" lang="ur" dir="rtl">'+l.iso+'</span><div class="dp-form-label">'+FL[3]+'</div></div>' +
+    '</div>' +
+    '<button class="dp-close" onclick="closeDetail()">'+closeTxt+'</button>';
+  panel.scrollIntoView({behavior:'smooth', block:'nearest'});
+}
+
+function closeDetail(){
+  var panel = document.getElementById('detail-panel');
+  panel.className = '';
+  document.querySelectorAll('.lt-card').forEach(function(c){ c.classList.remove('selected'); });
+  openDetailIdx = -1;
+}
+
+/* escape text for use inside HTML attribute values */
+function ea(s){ return s ? s.replace(/&/g,'&amp;').replace(/"/g,'&quot;') : ''; }
+
+/* BUILD UNIQUE GRID */
+function buildUniqueGrid(){
+  var grid = document.getElementById('unique-grid');
+  UNIQUE.forEach(function(l){
+    var card = document.createElement('div');
+    card.className = 'uq-card';
+    card.innerHTML = '<div class="uq-letter" lang="ur" dir="rtl">'+l.ur+'</div><div class="uq-info"><strong data-te="'+ea(l.name_te)+'" data-en="'+ea(l.name)+'">'+l.name+'</strong> <em>('+l.tr+')</em><span data-te="'+ea(l.note_te)+'" data-en="'+ea(l.note)+'">'+l.note+'</span></div>';
+    grid.appendChild(card);
+  });
+}
+
+/* BUILD PRON TABLE */
+function buildPronTable(){
+  var tbody = document.getElementById('pron-tbody');
+  PRON_DATA.forEach(function(p){
+    var tr = document.createElement('tr');
+    var soundVal=LANG==='te'?p.sound_te:p.sound;
+    tr.innerHTML = '<td lang="ur" dir="rtl">'+p.ur+'</td><td data-te="'+ea(p.name_te)+'" data-en="'+ea(p.name)+'">'+(LANG==='te'?p.name_te:p.name)+'</td><td><code data-te="'+ea(p.sound_te)+'" data-en="'+ea(p.sound)+'" style="background:rgba(200,146,42,0.10);padding:2px 7px;border-radius:5px;font-size:.82rem">'+soundVal+'</code></td><td lang="ur" dir="rtl" style="font-family:\'Noto Nastaliq Urdu\',serif;font-size:1.4rem;line-height:1.8">'+p.ex_ur+'</td><td data-te="'+ea(p.ex_te)+'" data-en="'+ea(p.ex_en)+'">'+(LANG==='te'?p.ex_te:p.ex_en)+'</td>';
+    tbody.appendChild(tr);
+  });
+}
+
+buildGrid();
+buildUniqueGrid();
+buildPronTable();
+applyLang(LANG);
+
+/* TAB SPY */
+(function(){
+  var links = document.querySelectorAll('.tab-nav a');
+  var secs = ['alphabet','unique','pronunciation','writing'].map(function(id){ return document.getElementById(id); });
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        var id = e.target.id;
+        links.forEach(function(a){ a.classList.toggle('active', a.getAttribute('href')==='#'+id); });
+      }
+    });
+  },{rootMargin:'-70px 0px -60% 0px',threshold:0});
+  secs.forEach(function(s){ if(s) obs.observe(s); });
+})();
+
+/* BACK TO TOP */
+window.addEventListener('scroll', function(){
+  document.getElementById('btt').classList.toggle('show', window.scrollY > 400);
+},{passive:true});
+</script>
+</body>
+</html>

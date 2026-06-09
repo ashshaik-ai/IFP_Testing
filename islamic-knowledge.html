@@ -420,6 +420,73 @@
     .tcard-block > p, .tcard-list li { font-size: 13px; }
     .ml-note { padding: 14px 16px; }
   }
+
+  /* ── Back-to-top button ── */
+  .back-to-top {
+    position: fixed; bottom: 28px; right: 22px;
+    width: 46px; height: 46px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    color: var(--green-deep); border: none; font-size: 18px; font-weight: 700;
+    cursor: pointer; z-index: 60;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; transform: translateY(16px) scale(0.88);
+    transition: opacity .32s, transform .32s cubic-bezier(.22,.61,.36,1);
+    box-shadow: 0 6px 22px rgba(200,146,42,0.38);
+  }
+  .back-to-top.is-visible { opacity: 1; transform: translateY(0) scale(1); }
+
+  /* ── Jump links: horizontal scroll on very small screens ── */
+  @media (max-width: 420px) {
+    .kc-jump { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 8px;
+      scrollbar-width: none; -ms-overflow-style: none; }
+    .kc-jump::-webkit-scrollbar { display: none; }
+    .kc-jump a { flex-shrink: 0; }
+  }
+
+  /* ── Sticky nav home link separator ── */
+  .kc-sticky a.kc-sticky-home {
+    border-right: 1px solid rgba(200,146,42,0.3);
+    padding-right: 16px; margin-right: 4px;
+  }
+
+  /* ── Print styles ── */
+  @media print {
+    body > nav, .kc-sticky, .back-to-top { display: none !important; }
+    body { background: white !important; font-size: 11pt; }
+    section.kc-sec { padding: 16pt 5vw !important; background: white !important; }
+    .kc-hero { padding: 18pt 5vw 14pt !important; min-height: auto !important; background: white !important; }
+    .kc-hero h1 { color: black !important; font-size: 24pt !important; }
+    .kc-hero h1 span { color: #c8922a !important; }
+    .kc-hero p, .kc-badge { color: #333 !important; }
+    .kc-jump, .asr-toggle, .ws-nav, .ws-dots { display: none !important; }
+    /* Show all wudu/salah steps when printing */
+    .ws-step { display: block !important; border-bottom: 1pt solid #eee; padding: 8pt 0; }
+    .guide-item.guide-open .guide-body { max-height: none !important; }
+    .guide-body { max-height: none !important; overflow: visible !important; }
+    .qa-item.qa-open .qa-answer { max-height: none !important; }
+    .qa-answer { max-height: none !important; overflow: visible !important; }
+    .salah-times { break-inside: avoid; }
+    .salah-loc { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .countdown-card { background: white !important; color: black !important; border: 1pt solid #ccc !important; }
+    .countdown-card * { color: black !important; }
+    .zakat-form { break-inside: avoid; }
+    .zakat-result { background: white !important; border: 1pt solid #ccc !important; break-inside: avoid; }
+    .zakat-result * { color: black !important; -webkit-text-fill-color: black !important; }
+    .sec-title { color: black !important; }
+    .res-card, .learn-card, .pillar-card, .guide-item, .qa-item { break-inside: avoid; }
+    .res-card { box-shadow: none !important; }
+    .wudu-stepper { break-inside: avoid; box-shadow: none !important; }
+    .wudu-dua { background: white !important; border: 1pt solid #ccc !important; }
+    .wudu-dua * { color: black !important; }
+    .reveal, .reveal.reveal-in { opacity: 1 !important; transform: none !important; transition: none !important; }
+    .kc-footer { background: white !important; border-top: 2pt solid #c8922a; }
+    .kc-footer * { color: #333 !important; }
+    .kcf-back { display: none !important; }
+    a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 8pt; color: #666; }
+    .res-card a::after { content: ""; }
+    .live-prices { break-inside: avoid; }
+  }
+
 </style>
 </head>
 <body>
@@ -456,6 +523,8 @@
     <h1 data-te="ఇస్లామిక్ <span>నాలెడ్జ్ సెంటర్</span>" data-en="Islamic <span>Knowledge Center</span>">ఇస్లామిక్ <span>నాలెడ్జ్ సెంటర్</span></h1>
     <p data-te="ప్రతి ముస్లిం కుటుంబానికి ఉపయోగపడే ఇస్లామిక్ సాధనాలు మరియు విశ్వసనీయ వనరులు — జకాత్ లెక్కింపు, నమాజ్ వేళలు, తదుపరి నమాజ్ కౌంట్‌డౌన్, ఖురాన్ మరియు హదీస్ వనరులు ఒకే చోట." data-en="Practical Islamic tools and trusted resources for every Muslim family — Zakat calculation, daily Salah timings, a next-prayer countdown, and authentic Quran &amp; Hadith resources, all in one place.">ప్రతి ముస్లిం కుటుంబానికి ఉపయోగపడే ఇస్లామిక్ సాధనాలు మరియు విశ్వసనీయ వనరులు — జకాత్ లెక్కింపు, నమాజ్ వేళలు, తదుపరి నమాజ్ కౌంట్‌డౌన్, ఖురాన్ మరియు హదీస్ వనరులు ఒకే చోట.</p>
     <nav class="kc-jump">
+      <a href="#learn-arabic" data-te="✦ అరబిక్ నేర్చుకోండి" data-en="✦ Learn Arabic" style="background:rgba(200,146,42,0.12);border-color:rgba(200,146,42,0.42);color:var(--gold-light);font-weight:600">✦ Learn Arabic</a>
+      <a href="#learn-urdu" data-te="✦ ఉర్దూ నేర్చుకోండి" data-en="✦ Learn Urdu" style="background:rgba(200,146,42,0.12);border-color:rgba(200,146,42,0.42);color:var(--gold-light);font-weight:600">✦ Learn Urdu</a>
       <a href="#basics" data-te="ఇక్కడ మొదలుపెట్టండి" data-en="Start Here">ఇక్కడ మొదలుపెట్టండి</a>
       <a href="#pillars" data-te="ఐదు మూలస్తంభాలు" data-en="Five Pillars">ఐదు మూలస్తంభాలు</a>
       <a href="#wudu" data-te="వుజూ మార్గదర్శి" data-en="Wudu Guide">వుజూ మార్గదర్శి</a>
@@ -476,6 +545,9 @@
 <!-- STICKY QUICK-JUMP NAV (appears after hero scrolls away) -->
 <nav class="kc-sticky" id="kc-sticky" aria-label="Knowledge Center sections">
   <div class="kc-sticky-inner">
+    <a href="index.html" class="kc-sticky-home" data-te="← హోమ్" data-en="← Home">← హోమ్</a>
+    <a href="#learn-arabic"  data-spy="learn-arabic"  data-te="✦ అరబిక్ నేర్చుకోండి" data-en="✦ Learn Arabic" style="background:rgba(200,146,42,0.1);border-color:rgba(200,146,42,0.36);color:var(--gold-light);font-weight:600">✦ Learn Arabic</a>
+    <a href="#learn-urdu"    data-spy="learn-urdu"    data-te="✦ ఉర్దూ నేర్చుకోండి" data-en="✦ Learn Urdu" style="background:rgba(200,146,42,0.1);border-color:rgba(200,146,42,0.36);color:var(--gold-light);font-weight:600">✦ Learn Urdu</a>
     <a href="#basics"      data-spy="basics"      data-te="ఇక్కడ మొదలుపెట్టండి" data-en="Start Here">ఇక్కడ మొదలుపెట్టండి</a>
     <a href="#pillars"     data-spy="pillars"     data-te="ఐదు మూలస్తంభాలు" data-en="Five Pillars">ఐదు మూలస్తంభాలు</a>
     <a href="#wudu"        data-spy="wudu"        data-te="వుజూ మార్గదర్శి" data-en="Wudu Guide">వుజూ మార్గదర్శి</a>
@@ -488,9 +560,34 @@
     <a href="#akhlaq"      data-spy="akhlaq"      data-te="నైతికత (అఖ్లాఖ్)" data-en="Manners (Akhlaq)">నైతికత (అఖ్లాఖ్)</a>
     <a href="#modern-life" data-spy="modern-life" data-te="ఇస్లాం & ఆధునిక జీవితం" data-en="Islam & Modern Life">ఇస్లాం & ఆధునిక జీవితం</a>
     <a href="#quran-science" data-spy="quran-science" data-te="ఖురాన్ & సైన్స్" data-en="Quran & Science">ఖురాన్ & సైన్స్</a>
-    <a href="#faqs"        data-spy="faqs"        data-te="ఇస్లాం గురించి" data-en="Understanding Islam">ఇస్లాం గురించి</a>
+    <a href="#faqs"          data-spy="faqs"          data-te="ఇస్లాం గురించి" data-en="Understanding Islam">ఇస్లాం గురించి</a>
   </div>
 </nav>
+
+<!-- LANGUAGE LEARNING PORTALS — FEATURED AT TOP -->
+<section class="kc-sec" id="lang-portals" style="background:linear-gradient(135deg,#071e0e,var(--green-deep));padding:56px 20px">
+  <div class="kc-inner">
+    <div class="sec-tag reveal" style="color:var(--gold-light)" data-te="ఇప్పుడే అందుబాటులో ఉన్నాయి" data-en="Available Now">Available Now</div>
+    <h2 class="sec-title reveal" style="color:var(--white);margin-bottom:10px" data-te="భాషా అభ్యాస పోర్టల్స్" data-en="Language Learning Portals">Language Learning Portals</h2>
+    <p class="sec-lead reveal" style="color:rgba(245,230,192,.70);max-width:580px;margin-bottom:36px" data-te="అరబిక్ మరియు ఉర్దూ రెండింటిలోనూ నిర్మాణాత్మక, ఉచిత అభ్యాస మార్గాలు — ఇప్పుడే మొదలు పెట్టండి." data-en="Structured, free learning paths in both Arabic and Urdu — start learning today.">Structured, free learning paths in both Arabic and Urdu — start learning today.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px">
+      <a href="knowledge-center/learn-arabic/index.html" style="text-decoration:none;display:block;background:rgba(255,255,255,0.07);border:1px solid rgba(200,146,42,0.40);border-radius:14px;padding:28px 24px;transition:all .25s;position:relative;overflow:hidden" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(200,146,42,0.70)'" onmouseout="this.style.transform='';this.style.borderColor='rgba(200,146,42,0.40)'">
+        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold-light))"></div>
+        <div style="font-family:'Amiri',serif;font-size:2.4rem;color:var(--gold-light);direction:rtl;line-height:1.4;margin-bottom:12px" lang="ar" dir="rtl">ع</div>
+        <h3 style="font-family:'Playfair Display',serif;font-size:1.25rem;color:var(--white);font-weight:700;margin-bottom:8px" data-te="అరబిక్ నేర్చుకోండి" data-en="Learn Arabic">Learn Arabic</h3>
+        <p style="font-size:.88rem;color:rgba(245,230,192,.65);line-height:1.75;margin-bottom:14px" data-te="అక్షరమాల నుండి రోజువారీ అరబిక్ వరకు — 6 స్థాయిలు, 4 అందుబాటులో ఉన్నాయి." data-en="From the alphabet to Daily Arabic — 6 levels, 4 now available.">From the alphabet to Daily Arabic — 6 levels, 4 now available.</p>
+        <span style="font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(46,139,87,0.25);color:#7de0a4;border:1px solid rgba(46,139,87,0.40);border-radius:20px;padding:4px 12px" data-te="స్థాయిలు 1–4 అందుబాటులో ఉన్నాయి" data-en="Levels 1–4 Available">Levels 1–4 Available</span>
+      </a>
+      <a href="knowledge-center/learn-urdu/index.html" style="text-decoration:none;display:block;background:rgba(255,255,255,0.07);border:1px solid rgba(200,146,42,0.40);border-radius:14px;padding:28px 24px;transition:all .25s;position:relative;overflow:hidden" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(200,146,42,0.70)'" onmouseout="this.style.transform='';this.style.borderColor='rgba(200,146,42,0.40)'">
+        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold-light))"></div>
+        <div style="font-family:'Noto Nastaliq Urdu','Amiri',serif;font-size:2.4rem;color:var(--gold-light);direction:rtl;line-height:2;margin-bottom:4px" lang="ur" dir="rtl">اردو</div>
+        <h3 style="font-family:'Playfair Display',serif;font-size:1.25rem;color:var(--white);font-weight:700;margin-bottom:8px" data-te="ఉర్దూ నేర్చుకోండి" data-en="Learn Urdu">Learn Urdu</h3>
+        <p style="font-size:.88rem;color:rgba(245,230,192,.65);line-height:1.75;margin-bottom:14px" data-te="నస్తాలీఖ్ అక్షరమాల నుండి అధ్యయనం వరకు — 6 స్థాయిలు, అన్నీ అందుబాటులో ఉన్నాయి." data-en="From Nastaliq alphabet to advanced reading — all 6 levels now available.">From Nastaliq alphabet to advanced reading — all 6 levels now available.</p>
+        <span style="font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(46,139,87,0.25);color:#7de0a4;border:1px solid rgba(46,139,87,0.40);border-radius:20px;padding:4px 12px" data-te="అన్ని 6 స్థాయిలు అందుబాటులో ఉన్నాయి" data-en="All 6 Levels Available">All 6 Levels Available</span>
+      </a>
+    </div>
+  </div>
+</section>
 
 <!-- LEARN THE BASICS OF ISLAM -->
 <section class="kc-sec basics" id="basics">
@@ -1770,12 +1867,74 @@
   </div>
 </section>
 
+<!-- LEARN ARABIC — FEATURED SECTION -->
+<section class="kc-sec learn" id="learn-arabic">
+  <div class="kc-inner">
+    <div class="sec-tag reveal" data-te="కొత్త మాడ్యూల్" data-en="New Module">New Module</div>
+    <h2 class="sec-title reveal" data-te="అరబిక్ నేర్చుకోండి" data-en="Learn Arabic">Learn Arabic</h2>
+    <p class="sec-lead reveal" data-te="అక్షరమాల నుండి ఖురానీ అరబిక్ వరకు — 6 స్థాయిల ఉచిత, నిర్మాణబద్ధమైన అభ్యాస మార్గం. ఇప్పుడు స్థాయిలు 1–4 అందుబాటులో ఉన్నాయి." data-en="A structured, free roadmap from the alphabet to Quranic Arabic — 6 levels, with Levels 1–4 available now.">A structured, free roadmap from the alphabet to Quranic Arabic — 6 levels, with Levels 1–4 available now.</p>
+    <div class="learn-grid reveal" style="transition-delay:.1s">
+      <a href="knowledge-center/learn-arabic/alphabet.html" class="learn-card" style="text-decoration:none;display:block">
+        <h3 data-te="స్థాయి 1 · అక్షరమాల" data-en="Level 1 · Arabic Alphabet">Level 1 · Arabic Alphabet</h3>
+        <p data-te="28 అరబిక్ అక్షరాలు, ఉచ్చారణ మరియు 4 అక్షర రూపాలు నేర్చుకోండి." data-en="Learn all 28 Arabic letters, pronunciation, and 4 letter forms.">Learn all 28 Arabic letters, pronunciation, and 4 letter forms.</p>
+        <span class="learn-ref" style="font-family:'Amiri',serif;font-size:14px;direction:rtl;padding:5px 14px" dir="rtl" lang="ar">الحروف الهجائية →</span>
+      </a>
+      <a href="knowledge-center/learn-arabic/harakat.html" class="learn-card" style="text-decoration:none;display:block">
+        <h3 data-te="స్థాయి 2 · హరకాత్ మరియు పఠనం" data-en="Level 2 · Harakat &amp; Reading">Level 2 · Harakat &amp; Reading</h3>
+        <p data-te="ఫత్హా, కస్రా, దమ్మా, సుకూన్ మరియు తన్వీన్ నేర్చుకుని సరిగ్గా చదవండి." data-en="Master Fatha, Kasra, Damma, Sukoon and Tanween for correct recitation.">Master Fatha, Kasra, Damma, Sukoon and Tanween for correct recitation.</p>
+        <span class="learn-ref" style="font-family:'Amiri',serif;font-size:14px;direction:rtl;padding:5px 14px" dir="rtl" lang="ar">التشكيل والقراءة →</span>
+      </a>
+      <a href="knowledge-center/learn-arabic/vocabulary.html" class="learn-card" style="text-decoration:none;display:block">
+        <h3 data-te="స్థాయి 3 · మూల పదజాలం" data-en="Level 3 · Basic Vocabulary">Level 3 · Basic Vocabulary</h3>
+        <p data-te="అరబిక్ సంఖ్యలు, ఇస్లామిక్ శుభాకాంక్షలు మరియు సాధారణ పదాలు నేర్చుకోండి." data-en="Learn Arabic numbers, Islamic greetings, and essential daily words.">Learn Arabic numbers, Islamic greetings, and essential daily words.</p>
+        <span class="learn-ref" style="font-family:'Amiri',serif;font-size:14px;direction:rtl;padding:5px 14px" dir="rtl" lang="ar">المفردات الأساسية →</span>
+      </a>
+    </div>
+    <div style="text-align:center;margin-top:32px" class="reveal" style="transition-delay:.2s">
+      <a href="knowledge-center/learn-arabic/index.html" style="display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--green-deep);font-weight:700;font-size:13px;letter-spacing:1px;text-transform:uppercase;padding:15px 36px;border-radius:6px;text-decoration:none;box-shadow:0 8px 28px -8px rgba(200,146,42,0.5)" data-te="పూర్తి అభ్యాస పోర్టల్ తెరవండి" data-en="Open Full Learning Portal">Open Full Learning Portal ↗</a>
+    </div>
+  </div>
+</section>
+
+<!-- LEARN URDU — FEATURED SECTION -->
+<section class="kc-sec learn" id="learn-urdu">
+  <div class="kc-inner">
+    <div class="sec-tag reveal" data-te="కొత్త మాడ్యూల్" data-en="New Module">New Module</div>
+    <h2 class="sec-title reveal" data-te="ఉర్దూ నేర్చుకోండి" data-en="Learn Urdu">Learn Urdu</h2>
+    <p class="sec-lead reveal" data-te="నస్తాలీఖ్ లిపి నుండి ఇస్లామిక్ సాహిత్యం వరకు — 6 స్థాయిల ఉచిత, నిర్మాణబద్ధమైన ఉర్దూ అభ్యాస మార్గం. అన్ని 6 స్థాయిలు ఇప్పుడు అందుబాటులో ఉన్నాయి." data-en="A structured, free roadmap from Nastaliq script to Islamic literature — 6 levels, all now available.">A structured, free roadmap from Nastaliq script to Islamic literature — 6 levels, all now available.</p>
+    <div class="learn-grid reveal" style="transition-delay:.1s">
+      <a href="knowledge-center/learn-urdu/alphabet.html" class="learn-card" style="text-decoration:none;display:block">
+        <h3 data-te="స్థాయి 1 · అక్షరమాల" data-en="Level 1 · Urdu Alphabet">Level 1 · Urdu Alphabet</h3>
+        <p data-te="38 ఉర్దూ అక్షరాలు, ఉచ్చారణ మరియు అక్షర రూపాలు నేర్చుకోండి." data-en="Learn all 38 Urdu letters, pronunciation, and letter forms in Nastaliq script.">Learn all 38 Urdu letters, pronunciation, and letter forms in Nastaliq script.</p>
+        <span class="learn-ref" style="font-family:'Noto Nastaliq Urdu','Amiri',serif;font-size:14px;direction:rtl;padding:5px 14px;line-height:2" dir="rtl" lang="ur">حروفِ تہجی →</span>
+      </a>
+      <a href="knowledge-center/learn-urdu/reading-basics.html" class="learn-card" style="text-decoration:none;display:block">
+        <h3 data-te="స్థాయి 2 · చదవడం బేసిక్స్" data-en="Level 2 · Reading Basics">Level 2 · Reading Basics</h3>
+        <p data-te="అక్షరాల కలయిక, పద నిర్మాణం మరియు మొదటి ఉర్దూ వాక్యాలు చదవండి." data-en="Learn how letters join, form words, and read your first Urdu sentences.">Learn how letters join, form words, and read your first Urdu sentences.</p>
+        <span class="learn-ref" style="font-family:'Noto Nastaliq Urdu','Amiri',serif;font-size:14px;direction:rtl;padding:5px 14px;line-height:2" dir="rtl" lang="ur">پڑھنے کی بنیادیں →</span>
+      </a>
+      <a href="knowledge-center/learn-urdu/islamic-urdu.html" class="learn-card" style="text-decoration:none;display:block">
+        <h3 data-te="స్థాయి 5 · ఇస్లామిక్ ఉర్దూ" data-en="Level 5 · Islamic Urdu">Level 5 · Islamic Urdu</h3>
+        <p data-te="ఉర్దూ ఇస్లామిక్ పరిభాష, దర్స్ వాక్యాలు మరియు ఉర్దూ ఇస్లామిక్ పుస్తకాలు." data-en="Islamic terminology, dars phrases, and start reading Urdu Islamic books.">Islamic terminology, dars phrases, and start reading Urdu Islamic books.</p>
+        <span class="learn-ref" style="font-family:'Noto Nastaliq Urdu','Amiri',serif;font-size:14px;direction:rtl;padding:5px 14px;line-height:2" dir="rtl" lang="ur">اسلامی اردو →</span>
+      </a>
+    </div>
+    <div style="text-align:center;margin-top:32px" class="reveal">
+      <a href="knowledge-center/learn-urdu/index.html" style="display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--green-deep);font-weight:700;font-size:13px;letter-spacing:1px;text-transform:uppercase;padding:15px 36px;border-radius:6px;text-decoration:none;box-shadow:0 8px 28px -8px rgba(200,146,42,0.5)" data-te="ఉర్దూ లెర్నింగ్ పోర్టల్ తెరవండి" data-en="Open Urdu Learning Portal">Open Urdu Learning Portal ↗</a>
+    </div>
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer class="kc-footer">
   <div class="kc-footer-inner">
     <p class="kcf-brand" data-te="ఇస్లామిక్ ఫ్రంట్" data-en="Islamic Front">ఇస్లామిక్ ఫ్రంట్</p>
     <p class="kcf-note" data-te="ఇస్లామిక్ నాలెడ్జ్ సెంటర్ — సమాజ సేవకు అనుబంధంగా అందించబడిన విజ్ఞాన వనరు." data-en="Islamic Knowledge Center — a knowledge resource offered alongside our community service.">ఇస్లామిక్ నాలెడ్జ్ సెంటర్ — సమాజ సేవకు అనుబంధంగా అందించబడిన విజ్ఞాన వనరు.</p>
-    <a href="index.html" class="kcf-back" data-te="← హోమ్ పేజీకి తిరిగి వెళ్ళండి" data-en="← Back to Home">← హోమ్ పేజీకి తిరిగి వెళ్ళండి</a>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:18px">
+      <a href="index.html" class="kcf-back" data-te="← హోమ్" data-en="← Home">← హోమ్</a>
+      <a href="knowledge-center/learn-arabic/index.html" class="kcf-back" style="border-color:rgba(200,146,42,0.5)" data-te="అరబిక్ నేర్చుకోండి ↗" data-en="Learn Arabic ↗">Learn Arabic ↗</a>
+      <a href="knowledge-center/learn-urdu/index.html" class="kcf-back" style="border-color:rgba(200,146,42,0.5)" data-te="ఉర్దూ నేర్చుకోండి ↗" data-en="Learn Urdu ↗">Learn Urdu ↗</a>
+    </div>
     <p class="kcf-copy">© 2026 Islamic Front, Mangalagiri.</p>
   </div>
 </footer>
@@ -1972,17 +2131,32 @@ function updatePriceUI() {
 function fetchMetalPrices() {
   applyMetal();
   try {
-    fetch('rates.json?_=' + Date.now())
-      .then(function (r) { return r.ok ? r.json() : null; })
+    var ctrl = typeof AbortController !== 'undefined' ? new AbortController() : null;
+    var tid = ctrl ? setTimeout(function () { ctrl.abort(); }, 5000) : null;
+    fetch('rates.json?_=' + Date.now(), ctrl ? { signal: ctrl.signal } : {})
+      .then(function (r) { if (tid) clearTimeout(tid); return r.ok ? r.json() : null; })
       .then(function (d) {
         if (d && d.goldGramInr > 0 && d.silverGramInr > 0) {
           GR.goldG = d.goldGramInr;
           GR.silverG = d.silverGramInr;
           if (d.date) GR.date = d.date;
           applyMetal();
+        } else {
+          var dot = document.getElementById('lp-dot');
+          if (dot) dot.className = 'lp-dot stale';
         }
       })
-      .catch(function () { /* keep built-in GoodReturns values */ });
+      .catch(function () {
+        var dot = document.getElementById('lp-dot');
+        var up = document.getElementById('lp-updated');
+        if (dot) dot.className = 'lp-dot stale';
+        if (up) {
+          var te = 'ధరలు అప్‌డేట్ చేయబడలేదు — అంతర్నిర్మిత విలువలు · ' + GR.date;
+          var en = 'Live prices unavailable — showing built-in values · ' + GR.date;
+          up.setAttribute('data-te', te); up.setAttribute('data-en', en);
+          up.textContent = lang === 'te' ? te : en;
+        }
+      });
   } catch (e) { /* no fetch support — keep built-in values */ }
 }
 
@@ -2329,7 +2503,18 @@ document.addEventListener('DOMContentLoaded', function () {
   initReveal();
   setInterval(tickCountdown, 1000);
   setInterval(renderSalah, 60000);
+  var bttBtn = document.getElementById('back-to-top');
+  if (bttBtn) {
+    window.addEventListener('scroll', function () { bttBtn.classList.toggle('is-visible', window.scrollY > 480); }, { passive: true });
+    bttBtn.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+  }
+  /* Set dir + lang on Arabic-text elements for correct bidi & screen-reader language */
+  document.querySelectorAll('.quran-arabic, .wd-ar, .ws-ar, .gstep-ar, .pc-ar').forEach(function (el) {
+    el.setAttribute('dir', 'rtl');
+    el.setAttribute('lang', 'ar');
+  });
 });
 </script>
+<button class="back-to-top" id="back-to-top" aria-label="Back to top" title="Back to top">↑</button>
 </body>
 </html>
