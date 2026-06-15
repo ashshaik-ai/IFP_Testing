@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="te" dir="ltr">
+<html lang="te" id="html-root">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -20,9 +20,12 @@
 html{scroll-behavior:smooth}
 body{font-family:'DM Sans',sans-serif;color:var(--text-dark);background:var(--cream);overflow-x:hidden}
 a{color:inherit;text-decoration:none}
-.al-nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(13,59,30,0.92);backdrop-filter:blur(12px);padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:56px;border-bottom:1px solid rgba(200,146,42,0.18)}
+[id]{scroll-margin-top:114px}
+::selection{background:rgba(200,146,42,0.28)}
+.al-nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(13,59,30,0.92);backdrop-filter:blur(12px);padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:68px;border-bottom:1px solid rgba(200,146,42,0.18)}
 .al-nav-brand{display:flex;align-items:center;gap:10px;color:var(--gold-light);font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700}
-.al-nav-brand span{font-size:1.4rem}
+.al-nav-logo{width:38px;height:38px;border-radius:50%;object-fit:cover;flex-shrink:0}
+.al-nav-logo-svg{display:none;width:38px;height:38px;flex-shrink:0}
 .al-nav-links{display:flex;align-items:center;gap:16px}
 .al-nav-links a{color:rgba(245,230,192,0.75);font-size:.82rem;font-weight:500;transition:color .2s}
 .al-nav-links a:hover{color:var(--gold-light)}
@@ -30,13 +33,13 @@ a{color:inherit;text-decoration:none}
 .al-lang-btn:hover{background:var(--gold);color:var(--green-deep)}
 
 /* LESSON NAV */
-.lesson-nav{position:fixed;top:56px;left:0;right:0;z-index:850;height:46px;background:rgba(13,59,30,0.95);backdrop-filter:blur(8px);border-bottom:1px solid rgba(200,146,42,0.18);display:flex;align-items:center;justify-content:space-between;padding:0 16px;gap:8px}
+.lesson-nav{position:fixed;top:68px;left:0;right:0;z-index:850;height:46px;background:rgba(13,59,30,0.95);backdrop-filter:blur(8px);border-bottom:1px solid rgba(200,146,42,0.18);display:flex;align-items:center;justify-content:space-between;padding:0 16px;gap:8px}
 .lnb-btn{font-size:.74rem;font-weight:600;color:rgba(245,230,192,.70);padding:4px 12px;border-radius:20px;border:1px solid rgba(200,146,42,0.22);transition:all .2s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:42%}
 .lnb-btn:hover{color:var(--gold-light);border-color:rgba(200,146,42,0.50);background:rgba(200,146,42,0.10)}
 .lnb-spacer{min-width:70px}
 .lnb-mid{font-size:.68rem;font-weight:700;color:var(--gold);letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;text-align:center;flex:1}
 
-.l-hero{background:linear-gradient(145deg,#071e0e,var(--green-deep));padding:142px 20px 56px;text-align:center}
+.l-hero{background:linear-gradient(145deg,#071e0e,var(--green-deep));padding:154px 20px 56px;text-align:center}
 .l-breadcrumb{display:flex;align-items:center;justify-content:center;gap:8px;font-size:.76rem;color:rgba(245,230,192,.50);margin-bottom:20px;flex-wrap:wrap}
 .l-breadcrumb a{color:rgba(245,230,192,.50)}
 .l-breadcrumb a:hover{color:var(--gold-light)}
@@ -46,7 +49,7 @@ a{color:inherit;text-decoration:none}
 .l-hero-ur{font-family:'Noto Nastaliq Urdu',serif;font-size:clamp(1.6rem,4.5vw,2.6rem);color:var(--gold-light);direction:rtl;line-height:2.2;display:block;margin-bottom:12px}
 .l-hero-sub{font-size:.95rem;color:rgba(245,230,192,.65);max-width:500px;margin:0 auto;line-height:1.75}
 
-.tab-nav{background:var(--green-mid);padding:0 20px;display:flex;align-items:center;gap:0;overflow-x:auto;scrollbar-width:none;border-bottom:1px solid rgba(200,146,42,0.20);position:sticky;top:102px;z-index:800}
+.tab-nav{background:var(--green-mid);padding:0 20px;display:flex;align-items:center;gap:0;overflow-x:auto;scrollbar-width:none;border-bottom:1px solid rgba(200,146,42,0.20);position:sticky;top:114px;z-index:800}
 .tab-nav::-webkit-scrollbar{display:none}
 .tab-nav a{white-space:nowrap;font-size:.80rem;font-weight:500;color:rgba(245,230,192,.60);padding:0 18px;height:46px;display:inline-flex;align-items:center;border-bottom:2px solid transparent;transition:all .2s;flex-shrink:0}
 .tab-nav a:hover,.tab-nav a.active{color:var(--gold-light);border-bottom-color:var(--gold)}
@@ -98,18 +101,35 @@ a{color:inherit;text-decoration:none}
 #btt:hover{transform:translateY(-3px)}
 @media print{.al-nav,.tab-nav,#btt,.al-lang-btn{display:none!important}}
 @media(max-width:600px){
-  .al-nav{height:auto;min-height:56px;padding:8px 16px;flex-wrap:wrap}
+  .al-nav{height:auto;min-height:68px;padding:8px 16px;flex-wrap:wrap}
   .al-nav-links a{display:none}
   .al-nav-links{gap:8px}
-  .l-hero{padding-left:16px;padding-right:16px;padding-top:80px}
+  .l-hero{padding-left:16px;padding-right:16px;padding-top:92px}
   .al-sec,.practice-sec{padding-left:16px;padding-right:16px;padding-top:52px}
 }
 </style>
+<link rel="stylesheet" href="../../assets/css/if-standard.css">
+<script defer src="../../assets/js/if-engage.js"></script>
+<script defer src="../../assets/js/if-search.js"></script>
+<script defer src="../../assets/js/if-media.js"></script>
+<script defer src="../../assets/js/if-xp.js"></script>
+<script defer src="../../assets/js/if-profile.js"></script>
+<script defer src="../../assets/js/if-order.js"></script>
+<script defer src="../../assets/js/if-jsonld.js"></script>
 </head>
 <body>
 
 <nav class="al-nav">
-  <a class="al-nav-brand" href="../../index.html"><span>☪</span><span data-te="ఇస్లామిక్ ఫ్రంట్" data-en="Islamic Front">ఇస్లామిక్ ఫ్రంట్</span></a>
+  <a class="al-nav-brand" href="../../index.html">
+    <img src="../../assets/logo-emblem.png" class="al-nav-logo" alt="Islamic Front Logo"
+         onerror="this.style.display='none';document.getElementById('nav-svg-ur-ws').style.display='block'">
+    <svg id="nav-svg-ur-ws" class="al-nav-logo-svg" viewBox="0 0 42 42" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <circle cx="21" cy="21" r="20" fill="none" stroke="#c8922a" stroke-width="1.5"/>
+      <text x="21" y="17" text-anchor="middle" font-family="serif" font-size="13" fill="#e8b84b" font-weight="700">اردو</text>
+      <text x="21" y="30" text-anchor="middle" font-family="sans-serif" font-size="7" fill="#c8922a" letter-spacing="1">FRONT</text>
+    </svg>
+    <span data-te="ఇస్లామిక్ ఫ్రంట్" data-en="Islamic Front">ఇస్లామిక్ ఫ్రంట్</span>
+  </a>
   <div class="al-nav-links">
     <a href="./index.html" data-te="ఉర్దూ పోర్టల్" data-en="Urdu Portal">Urdu Portal</a>
     <a href="../../islamic-knowledge.html" data-te="జ్ఞాన కేంద్రం" data-en="KC">KC</a>
@@ -123,7 +143,7 @@ a{color:inherit;text-decoration:none}
   <a href="./daily-urdu.html" class="lnb-btn" data-te="స్థాయి 4 · రోజువారీ ఉర్దూ →" data-en="Level 4 · Daily Urdu →">Level 4 · Daily Urdu →</a>
 </div>
 
-<div class="l-hero" style="padding-top:142px">
+<div class="l-hero" style="padding-top:154px">
   <nav class="l-breadcrumb">
     <a href="../../index.html" data-te="హోమ్" data-en="Home">Home</a><span>›</span>
     <a href="./index.html" data-te="ఉర్దూ నేర్చుకోండి" data-en="Learn Urdu">Learn Urdu</a><span>›</span>
@@ -188,7 +208,7 @@ a{color:inherit;text-decoration:none}
 
     <div class="callout">
       <div class="callout-icon">✍️</div>
-      <p data-te="రాయడం అభ్యాసం చేయడానికి — నస్తాలీఖ్ రేఖాగ్రంధికలు (grid sheets) డౌన్లోడ్ చేసుకోండి. ప్రతి రోజు 15 నిమిషాలు అభ్యాసం చేయండి. మొదట <strong>అక్షరాలు</strong>, తర్వాత <strong>పదాలు</strong>, తర్వాత <strong>వాక్యాలు</strong> రాయండి." data-en="For writing practice: download Nastaliq practice sheets. 15 minutes daily practice is enough. Always start with <strong>individual letters</strong>, then <strong>words</strong>, then <strong>sentences</strong>.">For practice: 15 minutes daily works well. Always start with <strong>individual letters</strong>, then <strong>words</strong>, then <strong>sentences</strong>.</p>
+      <p data-te="రాయడం అభ్యాసం చేయడానికి — నస్తాలీఖ్ గడుల కాగితాలు డౌన్‌లోడ్ చేసుకోండి. ప్రతి రోజు 15 నిమిషాలు అభ్యాసం చేయండి. మొదట <strong>అక్షరాలు</strong>, తర్వాత <strong>పదాలు</strong>, తర్వాత <strong>వాక్యాలు</strong> రాయండి." data-en="For writing practice: download Nastaliq practice sheets. 15 minutes daily practice is enough. Always start with <strong>individual letters</strong>, then <strong>words</strong>, then <strong>sentences</strong>.">For practice: 15 minutes daily works well. Always start with <strong>individual letters</strong>, then <strong>words</strong>, then <strong>sentences</strong>.</p>
     </div>
   </div>
 </section>
@@ -317,11 +337,31 @@ a{color:inherit;text-decoration:none}
 
     <div class="callout">
       <div class="callout-icon">📝</div>
-      <p data-te="ఉర్దూ రాయడం మెరుగుపరచడానికి: <strong>ప్రతి రోజు ఒక వాక్యం</strong> 5 సార్లు రాయండి. మొదట స్లో గా, తర్వాత స్పీడ్ పెంచండి. నస్తాలీఖ్ అభ్యాసానికి సరైన కాగితం మరియు పెన్ ఉపయోగించండి." data-en="To improve your Urdu writing: <strong>write one sentence five times per day</strong>. Start slow, then increase speed. Use proper paper and a fine-tipped pen for Nastaliq practice.">To improve: <strong>write one sentence five times daily</strong>. Start slow, then increase speed. Use a fine-tipped pen for Nastaliq practice.</p>
+      <p data-te="ఉర్దూ రాయడం మెరుగుపరచడానికి: <strong>ప్రతి రోజు ఒక వాక్యం</strong> 5 సార్లు రాయండి. మొదట నెమ్మదిగా, తర్వాత వేగం పెంచండి. నస్తాలీఖ్ అభ్యాసానికి సరైన కాగితం మరియు కలం ఉపయోగించండి." data-en="To improve your Urdu writing: <strong>write one sentence five times per day</strong>. Start slow, then increase speed. Use proper paper and a fine-tipped pen for Nastaliq practice.">To improve: <strong>write one sentence five times daily</strong>. Start slow, then increase speed. Use a fine-tipped pen for Nastaliq practice.</p>
     </div>
   </div>
 </section>
 
+<style>
+.lnav{max-width:780px;margin:48px auto 8px;padding:0 16px;display:flex;align-items:stretch;gap:14px}
+.lnav a{flex:1 1 0;display:flex;flex-direction:column;justify-content:center;gap:4px;min-height:62px;padding:14px 20px;border-radius:var(--radius,16px);border:1px solid var(--border);background:var(--white);text-decoration:none;transition:transform .2s,box-shadow .2s,border-color .2s;min-width:0}
+.lnav a:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(13,59,30,0.10);border-color:rgba(200,146,42,0.45)}
+.lnav-prev{align-items:flex-start;text-align:left}
+.lnav-next{align-items:flex-end;text-align:right}
+.lnav-dir{font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
+.lnav-title{font-size:.95rem;font-weight:700;line-height:1.2;color:var(--text-dark);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+@media(max-width:520px){.lnav{gap:10px;margin:36px auto 8px}.lnav a{padding:12px 14px;min-height:56px}.lnav-title{font-size:.84rem}}
+</style>
+<nav class="lnav" aria-label="Lesson navigation">
+  <a class="lnav-prev" href="reading-basics.html">
+    <span class="lnav-dir">← <span data-te="మునుపటి" data-en="Previous">Previous</span></span>
+    <span class="lnav-title" data-te="చదవడం బేసిక్స్" data-en="Reading Basics">Reading Basics</span>
+  </a>
+  <a class="lnav-next" href="daily-urdu.html">
+    <span class="lnav-dir"><span data-te="తదుపరి" data-en="Next">Next</span> →</span>
+    <span class="lnav-title" data-te="రోజువారీ ఉర్దూ" data-en="Daily Urdu">Daily Urdu</span>
+  </a>
+</nav>
 <footer class="al-footer">
   <div class="al-footer-links">
     <a href="./reading-basics.html" data-te="← స్థాయి 2: చదవడం" data-en="← Level 2: Reading">← Reading Basics</a>
@@ -337,7 +377,7 @@ a{color:inherit;text-decoration:none}
 
 <script>
 var LANG = localStorage.getItem('if-lang') || 'te';
-function applyLang(l){LANG=l;localStorage.setItem('if-lang',l);document.documentElement.lang=(l==='te')?'te':'en';document.querySelectorAll('[data-te]').forEach(function(el){var v=el.getAttribute('data-'+l);if(v)el.innerHTML=v;});var btn=document.getElementById('lang-btn');if(btn)btn.textContent=l==='te'?'English':'తెలుగు';}
+function applyLang(l){LANG=l;localStorage.setItem('if-lang',l);document.documentElement.lang=(l==='te')?'te':'en';document.querySelectorAll('[data-te]').forEach(function(el){var v=el.getAttribute('data-'+l);if(v)el.innerHTML=v;});var btn=document.getElementById('lang-btn');if(btn){btn.textContent=l==='te'?'English':'తెలుగు';btn.setAttribute('aria-label',l==='te'?'Switch to English':'Switch to Telugu');}}
 function toggleLang(){applyLang(LANG==='te'?'en':'te');}
 applyLang(LANG);
 
@@ -350,5 +390,7 @@ applyLang(LANG);
 
 window.addEventListener('scroll',function(){document.getElementById('btt').classList.toggle('show',window.scrollY>400);},{passive:true});
 </script>
+<script defer src="../../assets/data/sublesson-data.js"></script>
+<script defer src="../../assets/js/if-sublesson.js"></script>
 </body>
 </html>

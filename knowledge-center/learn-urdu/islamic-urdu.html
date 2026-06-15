@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="te" dir="ltr">
+<html lang="te" id="html-root">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -20,9 +20,12 @@
 html{scroll-behavior:smooth}
 body{font-family:'DM Sans',sans-serif;color:var(--text-dark);background:var(--cream);overflow-x:hidden}
 a{color:inherit;text-decoration:none}
-.al-nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(13,59,30,0.92);backdrop-filter:blur(12px);padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:56px;border-bottom:1px solid rgba(200,146,42,0.18)}
+[id]{scroll-margin-top:114px}
+::selection{background:rgba(200,146,42,0.28)}
+.al-nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(13,59,30,0.92);backdrop-filter:blur(12px);padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:68px;border-bottom:1px solid rgba(200,146,42,0.18)}
 .al-nav-brand{display:flex;align-items:center;gap:10px;color:var(--gold-light);font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700}
-.al-nav-brand span{font-size:1.4rem}
+.al-nav-logo{width:38px;height:38px;border-radius:50%;object-fit:cover;flex-shrink:0}
+.al-nav-logo-svg{display:none;width:38px;height:38px;flex-shrink:0}
 .al-nav-links{display:flex;align-items:center;gap:16px}
 .al-nav-links a{color:rgba(245,230,192,0.75);font-size:.82rem;font-weight:500;transition:color .2s}
 .al-nav-links a:hover{color:var(--gold-light)}
@@ -30,7 +33,7 @@ a{color:inherit;text-decoration:none}
 .al-lang-btn:hover{background:var(--gold);color:var(--green-deep)}
 
 /* LESSON NAV */
-.lesson-nav{position:fixed;top:56px;left:0;right:0;z-index:850;height:46px;background:rgba(13,59,30,0.95);backdrop-filter:blur(8px);border-bottom:1px solid rgba(200,146,42,0.18);display:flex;align-items:center;justify-content:space-between;padding:0 16px;gap:8px}
+.lesson-nav{position:fixed;top:68px;left:0;right:0;z-index:850;height:46px;background:rgba(13,59,30,0.95);backdrop-filter:blur(8px);border-bottom:1px solid rgba(200,146,42,0.18);display:flex;align-items:center;justify-content:space-between;padding:0 16px;gap:8px}
 .lnb-btn{font-size:.74rem;font-weight:600;color:rgba(245,230,192,.70);padding:4px 12px;border-radius:20px;border:1px solid rgba(200,146,42,0.22);transition:all .2s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:42%}
 .lnb-btn:hover{color:var(--gold-light);border-color:rgba(200,146,42,0.50);background:rgba(200,146,42,0.10)}
 .lnb-spacer{min-width:70px}
@@ -46,7 +49,7 @@ a{color:inherit;text-decoration:none}
 .l-hero-ur{font-family:'Noto Nastaliq Urdu',serif;font-size:clamp(1.6rem,4.5vw,2.6rem);color:var(--gold-light);direction:rtl;line-height:2.2;display:block;margin-bottom:12px}
 .l-hero-sub{font-size:.95rem;color:rgba(245,230,192,.65);max-width:520px;margin:0 auto;line-height:1.75}
 
-.tab-nav{background:var(--green-mid);padding:0 20px;display:flex;align-items:center;gap:0;overflow-x:auto;scrollbar-width:none;border-bottom:1px solid rgba(200,146,42,0.20);position:sticky;top:102px;z-index:800}
+.tab-nav{background:var(--green-mid);padding:0 20px;display:flex;align-items:center;gap:0;overflow-x:auto;scrollbar-width:none;border-bottom:1px solid rgba(200,146,42,0.20);position:sticky;top:114px;z-index:800}
 .tab-nav::-webkit-scrollbar{display:none}
 .tab-nav a{white-space:nowrap;font-size:.80rem;font-weight:500;color:rgba(245,230,192,.60);padding:0 18px;height:46px;display:inline-flex;align-items:center;border-bottom:2px solid transparent;transition:all .2s;flex-shrink:0}
 .tab-nav a:hover,.tab-nav a.active{color:var(--gold-light);border-bottom-color:var(--gold)}
@@ -70,7 +73,7 @@ a{color:inherit;text-decoration:none}
 .lecture-sec{background:var(--green-deep);padding:70px 20px}
 .lecture-inner{max-width:1000px;margin:0 auto}
 .phrase-grid{display:grid;gap:16px}
-.phrase-card{background:rgba(255,255,255,0.06);border:1px solid rgba(200,146,42,0.22);border-radius:14px;padding:22px 24px}
+.phrase-card{background:rgba(255,255,255,0.06);border:1px solid rgba(200,146,42,0.22);border-radius:var(--radius,16px);padding:22px 24px}
 .phrase-ur{font-family:'Noto Nastaliq Urdu',serif;font-size:clamp(1.3rem,3.5vw,2rem);color:var(--gold-light);direction:rtl;line-height:2.5;text-align:right;margin-bottom:8px}
 .phrase-tr{font-size:.88rem;color:rgba(245,230,192,.70);font-style:italic;margin-bottom:4px}
 .phrase-en{font-size:.84rem;color:rgba(245,230,192,.55);margin-bottom:8px}
@@ -103,20 +106,37 @@ a{color:inherit;text-decoration:none}
 #btt:hover{transform:translateY(-3px)}
 @media print{.al-nav,.tab-nav,#btt,.al-lang-btn{display:none!important}}
 @media(max-width:600px){
-  .al-nav{height:auto;min-height:56px;padding:8px 16px;flex-wrap:wrap}
+  .al-nav{height:auto;min-height:68px;padding:8px 16px;flex-wrap:wrap}
   .al-nav-links a{display:none}
   .al-nav-links{gap:8px}
   .l-hero,.al-sec,.lecture-sec,.books-sec{padding-left:16px;padding-right:16px}
-  .l-hero{padding-top:80px}
+  .l-hero{padding-top:92px}
   .vocab-grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}
   .book-grid{grid-template-columns:1fr}
 }
 </style>
+<link rel="stylesheet" href="../../assets/css/if-standard.css">
+<script defer src="../../assets/js/if-engage.js"></script>
+<script defer src="../../assets/js/if-search.js"></script>
+<script defer src="../../assets/js/if-media.js"></script>
+<script defer src="../../assets/js/if-xp.js"></script>
+<script defer src="../../assets/js/if-profile.js"></script>
+<script defer src="../../assets/js/if-order.js"></script>
+<script defer src="../../assets/js/if-jsonld.js"></script>
 </head>
 <body>
 
 <nav class="al-nav">
-  <a class="al-nav-brand" href="../../index.html"><span>☪</span><span data-te="ఇస్లామిక్ ఫ్రంట్" data-en="Islamic Front">ఇస్లామిక్ ఫ్రంట్</span></a>
+  <a class="al-nav-brand" href="../../index.html">
+    <img src="../../assets/logo-emblem.png" class="al-nav-logo" alt="Islamic Front Logo"
+         onerror="this.style.display='none';document.getElementById('nav-svg-ur-iu').style.display='block'">
+    <svg id="nav-svg-ur-iu" class="al-nav-logo-svg" viewBox="0 0 42 42" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <circle cx="21" cy="21" r="20" fill="none" stroke="#c8922a" stroke-width="1.5"/>
+      <text x="21" y="17" text-anchor="middle" font-family="serif" font-size="13" fill="#e8b84b" font-weight="700">اردو</text>
+      <text x="21" y="30" text-anchor="middle" font-family="sans-serif" font-size="7" fill="#c8922a" letter-spacing="1">FRONT</text>
+    </svg>
+    <span data-te="ఇస్లామిక్ ఫ్రంట్" data-en="Islamic Front">ఇస్లామిక్ ఫ్రంట్</span>
+  </a>
   <div class="al-nav-links">
     <a href="./index.html" data-te="ఉర్దూ పోర్టల్" data-en="Urdu Portal">Urdu Portal</a>
     <a href="../../islamic-knowledge.html" data-te="జ్ఞాన కేంద్రం" data-en="KC">KC</a>
@@ -130,7 +150,7 @@ a{color:inherit;text-decoration:none}
   <a href="./advanced-reading.html" class="lnb-btn" data-te="స్థాయి 6 · అధునాతన పఠనం →" data-en="Level 6 · Advanced Reading →">Level 6 · Advanced Reading →</a>
 </div>
 
-<div class="l-hero" style="padding-top:142px">
+<div class="l-hero" style="padding-top:154px">
   <nav class="l-breadcrumb">
     <a href="../../index.html" data-te="హోమ్" data-en="Home">Home</a><span>›</span>
     <a href="./index.html" data-te="ఉర్దూ నేర్చుకోండి" data-en="Learn Urdu">Learn Urdu</a><span>›</span>
@@ -155,26 +175,26 @@ a{color:inherit;text-decoration:none}
     <h2 class="sec-title" data-te="ఉర్దూలో ఇస్లామిక్ పదాలు" data-en="Islamic Terms in Urdu">Islamic Terms in Urdu</h2>
     <p class="sec-sub" data-te="ఉర్దూ ఇస్లామిక్ ఉపన్యాసాల్లో మరియు పుస్తకాల్లో తరచుగా కనిపించే ముఖ్యమైన పదాలు." data-en="Essential words you will encounter frequently in Urdu Islamic lectures, books, and articles.">Essential words you will encounter frequently in Urdu Islamic lectures, books, and articles.</p>
     <div class="vocab-grid">
-      <div class="vc"><span class="vc-ur" lang="ur" dir="rtl">نماز</span><div class="vc-tr">Namaz</div><div class="vc-en">Prayer (Salah)</div><div class="vc-note">The five daily prayers — called Salah in Arabic, Namaz in Urdu/Persian</div></div>
-      <div class="vc"><span class="vc-ur" lang="ur" dir="rtl">روزہ</span><div class="vc-tr">Roza</div><div class="vc-en">Fasting (Sawm)</div><div class="vc-note">Fasting in Ramadan — Urdu word for Sawm. Roza rakhna = to keep a fast</div></div>
-      <div class="vc"><span class="vc-ur" lang="ur" dir="rtl">زکات</span><div class="vc-tr">Zakat</div><div class="vc-en">Obligatory Charity</div><div class="vc-note">The third pillar of Islam — annual charity on wealth</div></div>
-      <div class="vc"><span class="vc-ur" lang="ur" dir="rtl">حج</span><div class="vc-tr">Hajj</div><div class="vc-en">Pilgrimage</div><div class="vc-note">The pilgrimage to Makkah — fifth pillar of Islam</div></div>
-      <div class="vc"><span class="vc-ur" lang="ur" dir="rtl">تفسیر</span><div class="vc-tr">Tafseer</div><div class="vc-en">Quranic Exegesis</div><div class="vc-note">Commentary and explanation of the Quran — vast tradition in Urdu</div></div>
-      <div class="vc"><span class="vc-ur" lang="ur" dir="rtl">حدیث</span><div class="vc-tr">Hadith</div><div class="vc-en">Prophetic Traditions</div><div class="vc-note">Sayings and actions of the Prophet ﷺ — extensively documented in Urdu</div></div>
-      <div class="vc"><span class="vc-ur" lang="ur" dir="rtl">فقہ</span><div class="vc-tr">Fiqh</div><div class="vc-en">Islamic Jurisprudence</div><div class="vc-note">Islamic law and rulings — major Urdu books exist in all four madhabs</div></div>
-      <div class="vc"><span class="vc-ur" lang="ur" dir="rtl">اجتہاد</span><div class="vc-tr">Ijtihad</div><div class="vc-en">Independent Legal Reasoning</div><div class="vc-note">Scholarly effort to derive rulings from Quran and Sunnah</div></div>
-      <div class="vc"><span class="vc-ur" lang="ur" dir="rtl">شریعت</span><div class="vc-tr">Shariah</div><div class="vc-en">Islamic Law/Path</div><div class="vc-note">The complete way of life ordained by Allah for Muslims</div></div>
-      <div class="vc"><span class="vc-ur" lang="ur" dir="rtl">سنت</span><div class="vc-tr">Sunnah</div><div class="vc-en">Prophetic Practice</div><div class="vc-note">The way of the Prophet ﷺ — his practices that Muslims follow</div></div>
-      <div class="vc"><span class="vc-ur" lang="ur" dir="rtl">دار العلوم</span><div class="vc-tr">Darul Uloom</div><div class="vc-en">House of Knowledge</div><div class="vc-note">Islamic seminary — famously Darul Uloom Deoband in India</div></div>
-      <div class="vc"><span class="vc-ur" lang="ur" dir="rtl">علماء</span><div class="vc-tr">Ulama</div><div class="vc-en">Islamic Scholars</div><div class="vc-note">Plural of Alim — learned Islamic scholars</div></div>
-      <div class="vc"><span class="vc-ur" lang="ur" dir="rtl">مفتی</span><div class="vc-tr">Mufti</div><div class="vc-en">Islamic Jurist</div><div class="vc-note">Scholar qualified to issue Islamic legal opinions (fatawa)</div></div>
-      <div class="vc"><span class="vc-ur" lang="ur" dir="rtl">آخرت</span><div class="vc-tr">Aakhirat</div><div class="vc-en">The Hereafter</div><div class="vc-note">Life after death — a central concern in Islamic teaching</div></div>
-      <div class="vc"><span class="vc-ur" lang="ur" dir="rtl">دعوت</span><div class="vc-tr">Dawat</div><div class="vc-en">Invitation to Islam</div><div class="vc-note">Calling people to Islam — Dawat-e-Tabligh is a major Urdu movement</div></div>
-      <div class="vc"><span class="vc-ur" lang="ur" dir="rtl">تبلیغ</span><div class="vc-tr">Tabligh</div><div class="vc-en">Propagation of Islam</div><div class="vc-note">Spreading the message of Islam — Tabligh Jamaat operates in Urdu</div></div>
-      <div class="vc"><span class="vc-ur" lang="ur" dir="rtl">رمضان</span><div class="vc-tr">Ramadan</div><div class="vc-en">Month of Fasting</div><div class="vc-note">The blessed ninth month of the Islamic calendar</div></div>
-      <div class="vc"><span class="vc-ur" lang="ur" dir="rtl">صدقہ</span><div class="vc-tr">Sadaqah</div><div class="vc-en">Voluntary Charity</div><div class="vc-note">Voluntary giving for the sake of Allah — sadaqah jariyah = ongoing charity</div></div>
-      <div class="vc"><span class="vc-ur" lang="ur" dir="rtl">توحید</span><div class="vc-tr">Tawheed</div><div class="vc-en">Oneness of Allah</div><div class="vc-note">The fundamental Islamic belief in the absolute oneness of Allah</div></div>
-      <div class="vc"><span class="vc-ur" lang="ur" dir="rtl">مسجد</span><div class="vc-tr">Masjid</div><div class="vc-en">Mosque</div><div class="vc-note">Place of prostration — the center of Muslim community life</div></div>
+      <div class="vc"><span class="vc-ur" lang="ur" dir="rtl">نماز</span><div class="vc-tr">Namaz</div><div class="vc-en" data-te="నమాజ్ (సలాహ్)" data-en="Prayer (Salah)">Prayer (Salah)</div><div class="vc-note" data-te="రోజుకు ఐదుసార్లు చేసే నమాజ్ — అరబిక్‌లో సలాహ్, ఉర్దూ/పర్షియన్‌లో నమాజ్" data-en="The five daily prayers — called Salah in Arabic, Namaz in Urdu/Persian">The five daily prayers — called Salah in Arabic, Namaz in Urdu/Persian</div></div>
+      <div class="vc"><span class="vc-ur" lang="ur" dir="rtl">روزہ</span><div class="vc-tr">Roza</div><div class="vc-en" data-te="ఉపవాసం (సౌమ్)" data-en="Fasting (Sawm)">Fasting (Sawm)</div><div class="vc-note" data-te="రమజాన్‌లో ఉపవాసం — సౌమ్‌కు ఉర్దూ పదం. రోజా రఖ్నా = ఉపవాసం ఉండటం" data-en="Fasting in Ramadan — Urdu word for Sawm. Roza rakhna = to keep a fast">Fasting in Ramadan — Urdu word for Sawm. Roza rakhna = to keep a fast</div></div>
+      <div class="vc"><span class="vc-ur" lang="ur" dir="rtl">زکات</span><div class="vc-tr">Zakat</div><div class="vc-en" data-te="తప్పనిసరి దానం" data-en="Obligatory Charity">Obligatory Charity</div><div class="vc-note" data-te="ఇస్లాం మూడవ స్తంభం — సంపదపై వార్షిక దానం" data-en="The third pillar of Islam — annual charity on wealth">The third pillar of Islam — annual charity on wealth</div></div>
+      <div class="vc"><span class="vc-ur" lang="ur" dir="rtl">حج</span><div class="vc-tr">Hajj</div><div class="vc-en" data-te="తీర్థయాత్ర" data-en="Pilgrimage">Pilgrimage</div><div class="vc-note" data-te="మక్కా యాత్ర — ఇస్లాం ఐదవ స్తంభం" data-en="The pilgrimage to Makkah — fifth pillar of Islam">The pilgrimage to Makkah — fifth pillar of Islam</div></div>
+      <div class="vc"><span class="vc-ur" lang="ur" dir="rtl">تفسیر</span><div class="vc-tr">Tafseer</div><div class="vc-en" data-te="ఖురాన్ వ్యాఖ్యానం" data-en="Quranic Exegesis">Quranic Exegesis</div><div class="vc-note" data-te="ఖురాన్‌కు వ్యాఖ్యానం మరియు వివరణ — ఉర్దూలో విస్తృత సంప్రదాయం" data-en="Commentary and explanation of the Quran — vast tradition in Urdu">Commentary and explanation of the Quran — vast tradition in Urdu</div></div>
+      <div class="vc"><span class="vc-ur" lang="ur" dir="rtl">حدیث</span><div class="vc-tr">Hadith</div><div class="vc-en" data-te="ప్రవక్త సంప్రదాయాలు" data-en="Prophetic Traditions">Prophetic Traditions</div><div class="vc-note" data-te="ప్రవక్త ﷺ వాక్కులు మరియు చర్యలు — ఉర్దూలో విస్తృతంగా నమోదు చేయబడ్డాయి" data-en="Sayings and actions of the Prophet ﷺ — extensively documented in Urdu">Sayings and actions of the Prophet ﷺ — extensively documented in Urdu</div></div>
+      <div class="vc"><span class="vc-ur" lang="ur" dir="rtl">فقہ</span><div class="vc-tr">Fiqh</div><div class="vc-en" data-te="ఇస్లామిక్ న్యాయశాస్త్రం" data-en="Islamic Jurisprudence">Islamic Jurisprudence</div><div class="vc-note" data-te="ఇస్లామిక్ చట్టం మరియు తీర్పులు — నాలుగు మజహబ్‌లలో ప్రధాన ఉర్దూ గ్రంథాలు ఉన్నాయి" data-en="Islamic law and rulings — major Urdu books exist in all four madhabs">Islamic law and rulings — major Urdu books exist in all four madhabs</div></div>
+      <div class="vc"><span class="vc-ur" lang="ur" dir="rtl">اجتہاد</span><div class="vc-tr">Ijtihad</div><div class="vc-en" data-te="స్వతంత్ర న్యాయ విచారణ" data-en="Independent Legal Reasoning">Independent Legal Reasoning</div><div class="vc-note" data-te="ఖురాన్ మరియు సున్నహ్ నుండి తీర్పులు రాబట్టే పండిత ప్రయత్నం" data-en="Scholarly effort to derive rulings from Quran and Sunnah">Scholarly effort to derive rulings from Quran and Sunnah</div></div>
+      <div class="vc"><span class="vc-ur" lang="ur" dir="rtl">شریعت</span><div class="vc-tr">Shariah</div><div class="vc-en" data-te="ఇస్లామిక్ చట్టం/మార్గం" data-en="Islamic Law/Path">Islamic Law/Path</div><div class="vc-note" data-te="ముస్లింల కోసం అల్లాహ్ నిర్దేశించిన సంపూర్ణ జీవన విధానం" data-en="The complete way of life ordained by Allah for Muslims">The complete way of life ordained by Allah for Muslims</div></div>
+      <div class="vc"><span class="vc-ur" lang="ur" dir="rtl">سنت</span><div class="vc-tr">Sunnah</div><div class="vc-en" data-te="ప్రవక్త ఆచరణ" data-en="Prophetic Practice">Prophetic Practice</div><div class="vc-note" data-te="ప్రవక్త ﷺ మార్గం — ముస్లింలు అనుసరించే ఆయన ఆచరణలు" data-en="The way of the Prophet ﷺ — his practices that Muslims follow">The way of the Prophet ﷺ — his practices that Muslims follow</div></div>
+      <div class="vc"><span class="vc-ur" lang="ur" dir="rtl">دار العلوم</span><div class="vc-tr">Darul Uloom</div><div class="vc-en" data-te="జ్ఞాన గృహం" data-en="House of Knowledge">House of Knowledge</div><div class="vc-note" data-te="ఇస్లామిక్ విద్యాలయం — భారతదేశంలో ప్రసిద్ధ దారుల్ ఉలూమ్ డియోబంద్" data-en="Islamic seminary — famously Darul Uloom Deoband in India">Islamic seminary — famously Darul Uloom Deoband in India</div></div>
+      <div class="vc"><span class="vc-ur" lang="ur" dir="rtl">علماء</span><div class="vc-tr">Ulama</div><div class="vc-en" data-te="ఇస్లామిక్ పండితులు" data-en="Islamic Scholars">Islamic Scholars</div><div class="vc-note" data-te="ఆలిమ్ బహువచనం — విద్వాంసులైన ఇస్లామిక్ పండితులు" data-en="Plural of Alim — learned Islamic scholars">Plural of Alim — learned Islamic scholars</div></div>
+      <div class="vc"><span class="vc-ur" lang="ur" dir="rtl">مفتی</span><div class="vc-tr">Mufti</div><div class="vc-en" data-te="ఇస్లామిక్ న్యాయవేత్త" data-en="Islamic Jurist">Islamic Jurist</div><div class="vc-note" data-te="ఇస్లామిక్ న్యాయ అభిప్రాయాలు (ఫత్వా) ఇవ్వగల అర్హత గల పండితుడు" data-en="Scholar qualified to issue Islamic legal opinions (fatawa)">Scholar qualified to issue Islamic legal opinions (fatawa)</div></div>
+      <div class="vc"><span class="vc-ur" lang="ur" dir="rtl">آخرت</span><div class="vc-tr">Aakhirat</div><div class="vc-en" data-te="పరలోకం" data-en="The Hereafter">The Hereafter</div><div class="vc-note" data-te="మరణానంతర జీవితం — ఇస్లామిక్ బోధనలో కేంద్ర అంశం" data-en="Life after death — a central concern in Islamic teaching">Life after death — a central concern in Islamic teaching</div></div>
+      <div class="vc"><span class="vc-ur" lang="ur" dir="rtl">دعوت</span><div class="vc-tr">Dawat</div><div class="vc-en" data-te="ఇస్లాం వైపు ఆహ్వానం" data-en="Invitation to Islam">Invitation to Islam</div><div class="vc-note" data-te="ప్రజలను ఇస్లాం వైపు పిలవడం — దావత్-ఎ-తబ్లీగ్ ప్రధాన ఉర్దూ ఉద్యమం" data-en="Calling people to Islam — Dawat-e-Tabligh is a major Urdu movement">Calling people to Islam — Dawat-e-Tabligh is a major Urdu movement</div></div>
+      <div class="vc"><span class="vc-ur" lang="ur" dir="rtl">تبلیغ</span><div class="vc-tr">Tabligh</div><div class="vc-en" data-te="ఇస్లాం ప్రచారం" data-en="Propagation of Islam">Propagation of Islam</div><div class="vc-note" data-te="ఇస్లాం సందేశ వ్యాప్తి — తబ్లీగ్ జమాత్ ఉర్దూలో పనిచేస్తుంది" data-en="Spreading the message of Islam — Tabligh Jamaat operates in Urdu">Spreading the message of Islam — Tabligh Jamaat operates in Urdu</div></div>
+      <div class="vc"><span class="vc-ur" lang="ur" dir="rtl">رمضان</span><div class="vc-tr">Ramadan</div><div class="vc-en" data-te="ఉపవాస మాసం" data-en="Month of Fasting">Month of Fasting</div><div class="vc-note" data-te="ఇస్లామిక్ క్యాలెండర్‌లో పవిత్ర తొమ్మిదవ మాసం" data-en="The blessed ninth month of the Islamic calendar">The blessed ninth month of the Islamic calendar</div></div>
+      <div class="vc"><span class="vc-ur" lang="ur" dir="rtl">صدقہ</span><div class="vc-tr">Sadaqah</div><div class="vc-en" data-te="స్వచ్ఛంద దానం" data-en="Voluntary Charity">Voluntary Charity</div><div class="vc-note" data-te="అల్లాహ్ కోసం స్వచ్ఛందంగా ఇవ్వడం — సదఖా జారియా = నిరంతర దానం" data-en="Voluntary giving for the sake of Allah — sadaqah jariyah = ongoing charity">Voluntary giving for the sake of Allah — sadaqah jariyah = ongoing charity</div></div>
+      <div class="vc"><span class="vc-ur" lang="ur" dir="rtl">توحید</span><div class="vc-tr">Tawheed</div><div class="vc-en" data-te="అల్లాహ్ ఏకత్వం" data-en="Oneness of Allah">Oneness of Allah</div><div class="vc-note" data-te="అల్లాహ్ సంపూర్ణ ఏకత్వంపై మౌలిక ఇస్లామిక్ విశ్వాసం" data-en="The fundamental Islamic belief in the absolute oneness of Allah">The fundamental Islamic belief in the absolute oneness of Allah</div></div>
+      <div class="vc"><span class="vc-ur" lang="ur" dir="rtl">مسجد</span><div class="vc-tr">Masjid</div><div class="vc-en" data-te="మసీదు" data-en="Mosque">Mosque</div><div class="vc-note" data-te="సజ్దా చేసే స్థలం — ముస్లిం సమాజ జీవితానికి కేంద్రం" data-en="Place of prostration — the center of Muslim community life">Place of prostration — the center of Muslim community life</div></div>
     </div>
   </div>
 </section>
@@ -296,6 +316,26 @@ a{color:inherit;text-decoration:none}
   </div>
 </section>
 
+<style>
+.lnav{max-width:780px;margin:48px auto 8px;padding:0 16px;display:flex;align-items:stretch;gap:14px}
+.lnav a{flex:1 1 0;display:flex;flex-direction:column;justify-content:center;gap:4px;min-height:62px;padding:14px 20px;border-radius:var(--radius,16px);border:1px solid var(--border);background:var(--white);text-decoration:none;transition:transform .2s,box-shadow .2s,border-color .2s;min-width:0}
+.lnav a:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(13,59,30,0.10);border-color:rgba(200,146,42,0.45)}
+.lnav-prev{align-items:flex-start;text-align:left}
+.lnav-next{align-items:flex-end;text-align:right}
+.lnav-dir{font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
+.lnav-title{font-size:.95rem;font-weight:700;line-height:1.2;color:var(--text-dark);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+@media(max-width:520px){.lnav{gap:10px;margin:36px auto 8px}.lnav a{padding:12px 14px;min-height:56px}.lnav-title{font-size:.84rem}}
+</style>
+<nav class="lnav" aria-label="Lesson navigation">
+  <a class="lnav-prev" href="daily-urdu.html">
+    <span class="lnav-dir">← <span data-te="మునుపటి" data-en="Previous">Previous</span></span>
+    <span class="lnav-title" data-te="రోజువారీ ఉర్దూ" data-en="Daily Urdu">Daily Urdu</span>
+  </a>
+  <a class="lnav-next" href="advanced-reading.html">
+    <span class="lnav-dir"><span data-te="తదుపరి" data-en="Next">Next</span> →</span>
+    <span class="lnav-title" data-te="అధునాతన పఠనం" data-en="Advanced Reading">Advanced Reading</span>
+  </a>
+</nav>
 <footer class="al-footer">
   <div class="al-footer-links">
     <a href="./writing-skills.html" data-te="← స్థాయి 3: రాయడం" data-en="← Level 3: Writing">← Writing Skills</a>
@@ -311,7 +351,7 @@ a{color:inherit;text-decoration:none}
 
 <script>
 var LANG = localStorage.getItem('if-lang') || 'te';
-function applyLang(l){LANG=l;localStorage.setItem('if-lang',l);document.documentElement.lang=(l==='te')?'te':'en';document.querySelectorAll('[data-te]').forEach(function(el){var v=el.getAttribute('data-'+l);if(v)el.innerHTML=v;});var btn=document.getElementById('lang-btn');if(btn)btn.textContent=l==='te'?'English':'తెలుగు';}
+function applyLang(l){LANG=l;localStorage.setItem('if-lang',l);document.documentElement.lang=(l==='te')?'te':'en';document.querySelectorAll('[data-te]').forEach(function(el){var v=el.getAttribute('data-'+l);if(v)el.innerHTML=v;});var btn=document.getElementById('lang-btn');if(btn){btn.textContent=l==='te'?'English':'తెలుగు';btn.setAttribute('aria-label',l==='te'?'Switch to English':'Switch to Telugu');}}
 function toggleLang(){applyLang(LANG==='te'?'en':'te');}
 applyLang(LANG);
 
@@ -324,5 +364,7 @@ applyLang(LANG);
 
 window.addEventListener('scroll',function(){document.getElementById('btt').classList.toggle('show',window.scrollY>400);},{passive:true});
 </script>
+<script defer src="../../assets/data/sublesson-data.js"></script>
+<script defer src="../../assets/js/if-sublesson.js"></script>
 </body>
 </html>

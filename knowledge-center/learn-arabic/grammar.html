@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="te" dir="ltr">
+<html lang="te" id="html-root">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -20,11 +20,14 @@
 html{scroll-behavior:smooth}
 body{font-family:'DM Sans',sans-serif;color:var(--text-dark);background:var(--cream);overflow-x:hidden}
 a{color:inherit;text-decoration:none}
+[id]{scroll-margin-top:114px}
+::selection{background:rgba(200,146,42,0.28)}
 
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(13,59,30,0.92);backdrop-filter:blur(12px);padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:56px;border-bottom:1px solid rgba(200,146,42,0.18)}
+nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(13,59,30,0.92);backdrop-filter:blur(12px);padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:68px;border-bottom:1px solid rgba(200,146,42,0.18)}
 .nav-brand{display:flex;align-items:center;gap:10px;color:var(--gold-light);font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700}
-.nav-brand span{font-size:1.4rem}
+.nav-logo{width:38px;height:38px;border-radius:50%;object-fit:cover;flex-shrink:0}
+.nav-logo-svg{display:none;width:38px;height:38px;flex-shrink:0}
 .nav-links{display:flex;align-items:center;gap:16px}
 .nav-links a{color:rgba(245,230,192,0.75);font-size:.82rem;font-weight:500;transition:color .2s}
 .nav-links a:hover{color:var(--gold-light)}
@@ -32,7 +35,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(13,59,30,0.9
 .lang-btn:hover{background:var(--gold);color:var(--green-deep)}
 
 /* HERO */
-.lesson-hero{background:linear-gradient(145deg,#071e0e,var(--green-deep));padding:96px 20px 56px;text-align:center}
+.lesson-hero{background:linear-gradient(145deg,#071e0e,var(--green-deep));padding:108px 20px 56px;text-align:center}
 .breadcrumb{display:flex;align-items:center;justify-content:center;gap:8px;font-size:.76rem;color:rgba(245,230,192,.50);margin-bottom:20px;flex-wrap:wrap}
 .breadcrumb a{color:rgba(245,230,192,.50);transition:color .2s}
 .breadcrumb a:hover{color:var(--gold-light)}
@@ -43,7 +46,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(13,59,30,0.9
 .lesson-sub{font-size:.95rem;color:rgba(245,230,192,.65);max-width:520px;margin:0 auto;line-height:1.75}
 
 /* TAB NAV */
-.tab-nav{background:var(--green-mid);padding:0 20px;display:flex;align-items:center;overflow-x:auto;scrollbar-width:none;border-bottom:1px solid rgba(200,146,42,0.20);position:sticky;top:56px;z-index:800}
+.tab-nav{background:var(--green-mid);padding:0 20px;display:flex;align-items:center;overflow-x:auto;scrollbar-width:none;border-bottom:1px solid rgba(200,146,42,0.20);position:sticky;top:68px;z-index:800}
 .tab-nav::-webkit-scrollbar{display:none}
 .tab-nav a{white-space:nowrap;font-size:.80rem;font-weight:500;color:rgba(245,230,192,.60);padding:0 18px;height:46px;display:inline-flex;align-items:center;border-bottom:2px solid transparent;transition:all .2s;flex-shrink:0}
 .tab-nav a:hover,.tab-nav a.active{color:var(--gold-light);border-bottom-color:var(--gold)}
@@ -136,11 +139,11 @@ nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(13,59,30,0.9
 
 @media print{nav,.tab-nav,#btt,.lang-btn{display:none!important}}
 @media(max-width:600px){
-  nav{height:auto;min-height:56px;padding:8px 16px;flex-wrap:wrap}
+  nav{height:auto;min-height:68px;padding:8px 16px;flex-wrap:wrap}
   .nav-links a{display:none}
   .nav-links{gap:8px}
   .lesson-hero,.sec,.dark-sec,.next-sec{padding-left:16px;padding-right:16px}
-  .lesson-hero{padding-top:80px;padding-bottom:44px}
+  .lesson-hero{padding-top:92px;padding-bottom:44px}
   .sec,.dark-sec{padding-top:56px;padding-bottom:56px}
   .gram-table{font-size:.80rem}
   .gram-table th,.gram-table td{padding:10px 12px}
@@ -149,11 +152,28 @@ nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(13,59,30,0.9
   .pattern-breakdown{flex-direction:column}
 }
 </style>
+<link rel="stylesheet" href="../../assets/css/if-standard.css">
+<script defer src="../../assets/js/if-engage.js"></script>
+<script defer src="../../assets/js/if-search.js"></script>
+<script defer src="../../assets/js/if-media.js"></script>
+<script defer src="../../assets/js/if-xp.js"></script>
+<script defer src="../../assets/js/if-profile.js"></script>
+<script defer src="../../assets/js/if-order.js"></script>
+<script defer src="../../assets/js/if-jsonld.js"></script>
 </head>
 <body>
 
 <nav>
-  <a class="nav-brand" href="../../index.html"><span>☪</span><span data-te="ఇస్లామిక్ ఫ్రంట్" data-en="Islamic Front">ఇస్లామిక్ ఫ్రంట్</span></a>
+  <a class="nav-brand" href="../../index.html">
+    <img src="../../assets/logo-emblem.png" class="nav-logo" alt="Islamic Front Logo"
+         onerror="this.style.display='none';document.getElementById('nav-svg-ar-gr').style.display='block'">
+    <svg id="nav-svg-ar-gr" class="nav-logo-svg" viewBox="0 0 42 42" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <circle cx="21" cy="21" r="20" fill="none" stroke="#c8922a" stroke-width="1.5"/>
+      <text x="21" y="17" text-anchor="middle" font-family="serif" font-size="13" fill="#e8b84b" font-weight="700">إسلامی</text>
+      <text x="21" y="30" text-anchor="middle" font-family="sans-serif" font-size="7" fill="#c8922a" letter-spacing="1">FRONT</text>
+    </svg>
+    <span data-te="ఇస్లామిక్ ఫ్రంట్" data-en="Islamic Front">ఇస్లామిక్ ఫ్రంట్</span>
+  </a>
   <div class="nav-links">
     <a href="./index.html" data-te="అరబిక్ పోర్టల్" data-en="Arabic Portal">Arabic Portal</a>
     <a href="../../islamic-knowledge.html" data-te="జ్ఞాన కేంద్రం" data-en="KC">KC</a>
@@ -186,7 +206,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(13,59,30,0.9
     <h2 class="sec-title" data-te="అరబిక్ నామవాచకాలు (الأسماء)" data-en="Arabic Nouns (الأسماء)">Arabic Nouns (الأسماء)</h2>
     <p class="sec-sub" data-te="అరబిక్‌లో నామవాచకాలకు లింగం (పురుష/స్త్రీ), వచనం (ఒకటి/రెండు/పలు) మరియు నిర్దిష్టత (ال తో) ఉంటాయి." data-en="Arabic nouns have gender (masculine/feminine), number (singular/dual/plural), and definiteness (with ال).">Arabic nouns have gender (masculine/feminine), number (singular/dual/plural), and definiteness (with ال).</p>
 
-    <h3 style="font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--text-dark);margin-bottom:14px" data-te="లింగం — పురుషలింగ vs స్త్రీలింగ" data-en="Gender — Masculine vs Feminine">Gender — Masculine vs Feminine</h3>
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--text-dark);margin-bottom:14px" data-te="లింగం — పురుషలింగ మరియు స్త్రీలింగ" data-en="Gender — Masculine vs Feminine">Gender — Masculine vs Feminine</h3>
     <div style="overflow-x:auto;-webkit-overflow-scrolling:touch">
     <table class="gram-table">
       <thead>
@@ -202,7 +222,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(13,59,30,0.9
           <td><span class="td-ar" lang="ar" dir="rtl">مُسْلِم</span><div class="td-tr">muslim</div></td>
           <td><span class="td-ar" lang="ar" dir="rtl">مُسْلِمَة</span><div class="td-tr">muslima</div></td>
           <td data-te="ముస్లిం" data-en="Muslim">Muslim</td>
-          <td data-te="ة (tā marbūta) స్త్రీలింగ జోడిస్తుంది" data-en="ة (tā marbūta) marks feminine">ة marks feminine</td>
+          <td data-te="ة (తా మర్బూతా) స్త్రీలింగాన్ని సూచిస్తుంది" data-en="ة (tā marbūta) marks feminine">ة marks feminine</td>
         </tr>
         <tr>
           <td><span class="td-ar" lang="ar" dir="rtl">طَالِب</span><div class="td-tr">tālib</div></td>
@@ -229,21 +249,21 @@ nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(13,59,30,0.9
     <h3 style="font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--text-dark);margin:24px 0 14px" data-te="నిర్దిష్టత — ال (Al-)" data-en="Definiteness — ال (Al-)">Definiteness — ال (Al-)</h3>
     <div class="ex-grid">
       <div class="ex-card">
-        <div class="ex-type" data-te="నిర్దిష్టత లేకుండా (Indefinite)" data-en="Indefinite">Indefinite</div>
+        <div class="ex-type" data-te="నిర్దిష్టత లేకుండా" data-en="Indefinite">Indefinite</div>
         <span class="ex-ar" lang="ar" dir="rtl">كِتَاب</span>
         <div class="ex-tr">kitāb</div>
         <div class="ex-en" data-te="ఒక పుస్తకం (ఏదైనా)" data-en="A book (any book)">A book (any book)</div>
-        <div class="ex-note" data-te="ال లేకుండా — నిర్దిష్టత లేని నామవాచకం. ఉచ్చారణ: -un/-in/-an (tanwin) వస్తుంది." data-en="Without ال — indefinite noun. Pronunciation has tanwin endings: -un, -in, or -an.">Without ال — indefinite. Tanwin endings (-un/-in/-an) in speech.</div>
+        <div class="ex-note" data-te="ال లేకుండా — నిర్దిష్టత లేని నామవాచకం. చివర తన్వీన్ శబ్దం (-ున్/-ిన్/-అన్) వస్తుంది." data-en="Without ال — indefinite noun. Pronunciation has tanwin endings: -un, -in, or -an.">Without ال — indefinite. Tanwin endings (-un/-in/-an) in speech.</div>
       </div>
       <div class="ex-card">
-        <div class="ex-type" data-te="నిర్దిష్టత తో (Definite)" data-en="Definite">Definite</div>
+        <div class="ex-type" data-te="నిర్దిష్టత తో" data-en="Definite">Definite</div>
         <span class="ex-ar" lang="ar" dir="rtl">الْكِتَاب</span>
         <div class="ex-tr">al-kitāb</div>
         <div class="ex-en" data-te="ఆ పుస్తకం (నిర్దిష్టంగా)" data-en="The book (specific one)">The book (specific one)</div>
         <div class="ex-note" data-te="ال (ألف لام) జోడించడం ద్వారా నిర్దిష్ట నామవాచకం. ఇది ఖురాన్‌లో వేలసార్లు వస్తుంది." data-en="Add ال to make a noun definite (like English 'the'). It appears thousands of times in the Quran.">Add ال to make definite (like English 'the'). Appears thousands of times in the Quran.</div>
       </div>
       <div class="ex-card">
-        <div class="ex-type" data-te="Quranic ఉదాహరణ" data-en="Quranic Example">Quranic Example</div>
+        <div class="ex-type" data-te="ఖురానీ ఉదాహరణ" data-en="Quranic Example">Quranic Example</div>
         <span class="ex-ar" lang="ar" dir="rtl">الرَّحْمَٰن الرَّحِيم</span>
         <div class="ex-tr">ar-rahmāni r-rahīm</div>
         <div class="ex-en" data-te="అత్యంత కరుణామయుడు, నిరంతర కరుణాశీలుడు" data-en="The Most Gracious, The Most Merciful">The Most Gracious, The Most Merciful</div>
@@ -272,17 +292,17 @@ nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(13,59,30,0.9
         <div class="conj-cell">
           <div class="conj-tense" data-te="గతకాలం (مَاضِي)" data-en="Past (Mādi)">Past (Mādi)</div>
           <span class="conj-ar" lang="ar" dir="rtl">كَتَبَ</span>
-          <div class="conj-en">kataba · he wrote</div>
+          <div class="conj-en" data-te="kataba · అతను రాశాడు" data-en="kataba · he wrote">kataba · he wrote</div>
         </div>
         <div class="conj-cell">
           <div class="conj-tense" data-te="వర్తమానం (مُضَارِع)" data-en="Present (Mudāri')">Present (Mudāri')</div>
           <span class="conj-ar" lang="ar" dir="rtl">يَكْتُبُ</span>
-          <div class="conj-en">yaktub · he writes</div>
+          <div class="conj-en" data-te="yaktub · అతను రాస్తాడు" data-en="yaktub · he writes">yaktub · he writes</div>
         </div>
         <div class="conj-cell">
           <div class="conj-tense" data-te="ఆజ్ఞ (أَمْر)" data-en="Command (Amr)">Command (Amr)</div>
           <span class="conj-ar" lang="ar" dir="rtl">اكْتُبْ</span>
-          <div class="conj-en">uktub · Write!</div>
+          <div class="conj-en" data-te="uktub · రాయి!" data-en="uktub · Write!">uktub · Write!</div>
         </div>
       </div>
     </div>
@@ -294,17 +314,17 @@ nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(13,59,30,0.9
         <div class="conj-cell">
           <div class="conj-tense" data-te="గతకాలం (مَاضِي)" data-en="Past (Mādi)">Past (Mādi)</div>
           <span class="conj-ar" lang="ar" dir="rtl">قَرَأَ</span>
-          <div class="conj-en">qara'a · he read</div>
+          <div class="conj-en" data-te="qara'a · అతను చదివాడు" data-en="qara'a · he read">qara'a · he read</div>
         </div>
         <div class="conj-cell">
           <div class="conj-tense" data-te="వర్తమానం (مُضَارِع)" data-en="Present (Mudāri')">Present (Mudāri')</div>
           <span class="conj-ar" lang="ar" dir="rtl">يَقْرَأُ</span>
-          <div class="conj-en">yaqra'u · he reads</div>
+          <div class="conj-en" data-te="yaqra'u · అతను చదువుతాడు" data-en="yaqra'u · he reads">yaqra'u · he reads</div>
         </div>
         <div class="conj-cell">
           <div class="conj-tense" data-te="ఆజ్ఞ (أَمْر)" data-en="Command (Amr)">Command (Amr)</div>
           <span class="conj-ar" lang="ar" dir="rtl">اقْرَأْ</span>
-          <div class="conj-en">iqra' · Read!</div>
+          <div class="conj-en" data-te="iqra' · చదువు!" data-en="iqra' · Read!">iqra' · Read!</div>
         </div>
       </div>
     </div>
@@ -316,17 +336,17 @@ nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(13,59,30,0.9
         <div class="conj-cell">
           <div class="conj-tense" data-te="గతకాలం (مَاضِي)" data-en="Past (Mādi)">Past (Mādi)</div>
           <span class="conj-ar" lang="ar" dir="rtl">ذَكَرَ</span>
-          <div class="conj-en">dhakara · he remembered</div>
+          <div class="conj-en" data-te="dhakara · అతను స్మరించాడు" data-en="dhakara · he remembered">dhakara · he remembered</div>
         </div>
         <div class="conj-cell">
           <div class="conj-tense" data-te="వర్తమానం (مُضَارِع)" data-en="Present (Mudāri')">Present (Mudāri')</div>
           <span class="conj-ar" lang="ar" dir="rtl">يَذْكُرُ</span>
-          <div class="conj-en">yadhkuru · he remembers</div>
+          <div class="conj-en" data-te="yadhkuru · అతను స్మరిస్తాడు" data-en="yadhkuru · he remembers">yadhkuru · he remembers</div>
         </div>
         <div class="conj-cell">
           <div class="conj-tense" data-te="ఆజ్ఞ (أَمْر)" data-en="Command (Amr)">Command (Amr)</div>
           <span class="conj-ar" lang="ar" dir="rtl">اذْكُرْ</span>
-          <div class="conj-en">udhkur · Remember!</div>
+          <div class="conj-en" data-te="udhkur · స్మరించు!" data-en="udhkur · Remember!">udhkur · Remember!</div>
         </div>
       </div>
     </div>
@@ -359,7 +379,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(13,59,30,0.9
     </div>
 
     <div class="pattern-card ism" style="margin-top:16px">
-      <div class="pattern-name" data-te="జుమ్లా ఇస్మియ్యా — Quranic ఉదాహరణ" data-en="Jumlah Ismiyyah — Quranic Example">Jumlah Ismiyyah — Quranic Example</div>
+      <div class="pattern-name" data-te="జుమ్లా ఇస్మియ్యా — ఖురానీ ఉదాహరణ" data-en="Jumlah Ismiyyah — Quranic Example">Jumlah Ismiyyah — Quranic Example</div>
       <p class="pattern-formula" data-te="సూరహ్ ఇఖ్లాస్ 112:2 — నామ వాక్యం" data-en="Surah Al-Ikhlas 112:2 — Nominal sentence">Surah Al-Ikhlas 112:2 — Nominal sentence</p>
 
       <span class="pattern-example-ar" lang="ar" dir="rtl">اللَّهُ الصَّمَدُ</span>
@@ -385,7 +405,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(13,59,30,0.9
     </div>
 
     <div class="pattern-card fil" style="margin-top:16px">
-      <div class="pattern-name" data-te="జుమ్లా ఫిఇ'లియ్యా — Quranic ఉదాహరణ" data-en="Jumlah Fi'liyyah — Quranic Example">Jumlah Fi'liyyah — Quranic Example</div>
+      <div class="pattern-name" data-te="జుమ్లా ఫిఇ'లియ్యా — ఖురానీ ఉదాహరణ" data-en="Jumlah Fi'liyyah — Quranic Example">Jumlah Fi'liyyah — Quranic Example</div>
       <p class="pattern-formula" data-te="సూరహ్ బఖరా 2:37 — క్రియా వాక్యం" data-en="Surah Al-Baqarah 2:37 — Verbal sentence">Surah Al-Baqarah 2:37 — Verbal sentence</p>
 
       <span class="pattern-example-ar" lang="ar" dir="rtl">وَعَلَّمَ آدَمَ الْأَسْمَاءَ</span>
@@ -419,6 +439,26 @@ nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(13,59,30,0.9
   </div>
 </section>
 
+<style>
+.lnav{max-width:780px;margin:48px auto 8px;padding:0 16px;display:flex;align-items:stretch;gap:14px}
+.lnav a{flex:1 1 0;display:flex;flex-direction:column;justify-content:center;gap:4px;min-height:62px;padding:14px 20px;border-radius:var(--radius,16px);border:1px solid var(--border);background:var(--white);text-decoration:none;transition:transform .2s,box-shadow .2s,border-color .2s;min-width:0}
+.lnav a:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(13,59,30,0.10);border-color:rgba(200,146,42,0.45)}
+.lnav-prev{align-items:flex-start;text-align:left}
+.lnav-next{align-items:flex-end;text-align:right}
+.lnav-dir{font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
+.lnav-title{font-size:.95rem;font-weight:700;line-height:1.2;color:var(--text-dark);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+@media(max-width:520px){.lnav{gap:10px;margin:36px auto 8px}.lnav a{padding:12px 14px;min-height:56px}.lnav-title{font-size:.84rem}}
+</style>
+<nav class="lnav" aria-label="Lesson navigation">
+  <a class="lnav-prev" href="quranic-arabic.html">
+    <span class="lnav-dir">← <span data-te="మునుపటి" data-en="Previous">Previous</span></span>
+    <span class="lnav-title" data-te="ఖురానీ అరబిక్" data-en="Quranic Arabic">Quranic Arabic</span>
+  </a>
+  <a class="lnav-next" href="index.html">
+    <span class="lnav-dir"><span data-te="తదుపరి" data-en="Next">Next</span> →</span>
+    <span class="lnav-title" data-te="అరబిక్ పోర్టల్" data-en="Arabic Portal">Arabic Portal</span>
+  </a>
+</nav>
 <footer class="site-footer">
   <div class="site-footer-links">
     <a href="../../index.html" data-te="← హోమ్" data-en="← Home">← Home</a>
@@ -441,7 +481,7 @@ function applyLang(l){
     if(val) el.innerHTML = val;
   });
   var btn = document.getElementById('lang-btn');
-  if(btn) btn.textContent = l === 'te' ? 'English' : 'తెలుగు';
+  if(btn){btn.textContent=l==='te'?'English':'తెలుగు';btn.setAttribute('aria-label',l==='te'?'Switch to English':'Switch to Telugu');}
 }
 function toggleLang(){ applyLang(lang === 'te' ? 'en' : 'te'); }
 applyLang(lang);
@@ -463,5 +503,7 @@ window.addEventListener('scroll', function(){
   document.getElementById('btt').classList.toggle('show', window.scrollY > 500);
 }, {passive:true});
 </script>
+<script defer src="../../assets/data/sublesson-data.js"></script>
+<script defer src="../../assets/js/if-sublesson.js"></script>
 </body>
 </html>

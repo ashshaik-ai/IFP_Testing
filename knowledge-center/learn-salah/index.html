@@ -1,0 +1,1892 @@
+<!DOCTYPE html>
+<html lang="te" id="html-root">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Learn Salah — Islamic Front Knowledge Center</title>
+<meta name="description" content="A structured Salah learning journey — purification, wudu, ghusl, prayer steps, duas and conditions. Free, beginner-friendly lessons by Islamic Front, Mangalagiri.">
+<meta name="keywords" content="learn Salah, how to pray, wudu, ghusl, taharah, prayer steps, duas, salah for beginners, namaz, Islamic learning">
+<meta name="robots" content="index,follow">
+<meta property="og:title" content="Learn Salah | Islamic Front Knowledge Center">
+<meta property="og:description" content="Learn to pray step by step — purification, wudu, ghusl, the prayer positions, and daily duas. Free for all.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="te_IN">
+<meta property="og:locale:alternate" content="en_US">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:wght@300;400;500&family=Noto+Sans+Telugu:wght@300;400;500;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --green-deep:#0d3b1e;--green-mid:#1a5c30;--green-light:#2e8b57;
+  --gold:#c8922a;--gold-light:#e8b84b;--gold-pale:#f5e6c0;
+  --cream:#faf6ee;--white:#ffffff;
+  --text-dark:#1a1208;--text-mid:#3d3018;--text-muted:#7a6840;
+  --border:rgba(200,146,42,0.25);
+  --radius:14px;--shadow:0 4px 24px rgba(0,0,0,0.10);
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text-dark);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+[id]{scroll-margin-top:130px}
+a{color:inherit;text-decoration:none}
+::selection{background:rgba(200,146,42,0.28);color:var(--text-dark)}
+::-webkit-scrollbar{width:10px}
+::-webkit-scrollbar-track{background:var(--cream)}
+::-webkit-scrollbar-thumb{background:linear-gradient(var(--gold),var(--gold-light));border-radius:100px;border:3px solid var(--cream)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--gold-light);outline-offset:3px;border-radius:3px}
+
+/* NAV */
+body>nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(13,59,30,0.96);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid rgba(200,146,42,0.3);padding:0 5vw;display:flex;align-items:center;justify-content:space-between;height:68px}
+.nav-brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.nav-logo{width:42px;height:42px;border-radius:50%;object-fit:cover}
+.nav-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--gold-light);letter-spacing:0.5px;line-height:1.2}
+.nav-sub{font-size:10px;color:rgba(232,184,75,0.7);letter-spacing:1.5px;text-transform:uppercase}
+.nav-right{display:flex;align-items:center;gap:14px}
+.nav-back{display:inline-flex;align-items:center;gap:6px;color:rgba(255,255,255,0.8);text-decoration:none;font-size:13px;letter-spacing:0.3px;transition:color .2s;white-space:nowrap}
+.nav-back::before{content:'\2190';font-size:15px}
+.nav-back:hover{color:var(--gold-light)}
+.lang-btn{background:rgba(200,146,42,0.12);border:1px solid rgba(200,146,42,0.4);color:var(--gold-light);font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;letter-spacing:0.5px;padding:6px 14px;border-radius:100px;cursor:pointer;transition:background .2s}
+.lang-btn:hover{background:rgba(200,146,42,0.22)}
+
+/* HERO — PREMIUM (reference design, shared with Arabic, Urdu & Quran portals) */
+.al-hero{padding:130px 5vw 80px;background:linear-gradient(155deg,var(--green-deep) 0%,#0a2a14 55%,#122b10 100%);position:relative;overflow:hidden;isolation:isolate}
+.al-hero::before{content:'';position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse 70% 60% at 82% 38%,rgba(200,146,42,0.13) 0%,transparent 65%),radial-gradient(ellipse 45% 50% at 8% 88%,rgba(46,139,87,0.14) 0%,transparent 55%)}
+.al-hero-inner{max-width:1140px;margin:0 auto;position:relative;z-index:1;display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:48px}
+.al-hero-content{min-width:0}
+.al-hero-display{position:relative;display:flex;align-items:center;justify-content:center;min-width:0}
+.al-hero-display::before{content:'';position:absolute;width:min(440px,92%);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(200,146,42,0.18),transparent 68%);z-index:-1;pointer-events:none}
+.al-hero-calligraphy{font-family:'Amiri',serif;direction:rtl;text-align:center;font-size:clamp(50px,7.5vw,108px);line-height:1.45;color:var(--gold-light);background:linear-gradient(135deg,#fff3cf 0%,var(--gold-light) 42%,var(--gold) 78%,#a9741c 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 10px 30px rgba(200,146,42,0.28));animation:alCalliIn 1s cubic-bezier(.16,1,.3,1) .25s both}
+@keyframes alCalliIn{from{opacity:0;transform:translateY(18px) scale(.96)}to{opacity:1;transform:none}}
+.al-breadcrumb{display:flex;align-items:center;gap:7px;font-size:12px;color:rgba(245,230,192,0.5);margin-bottom:20px;flex-wrap:wrap}
+.al-breadcrumb a{color:rgba(245,230,192,0.5);text-decoration:none;transition:color .2s}
+.al-breadcrumb a:hover{color:var(--gold-light)}
+.al-breadcrumb span{color:rgba(245,230,192,0.28)}
+.al-phase{display:inline-flex;align-items:center;gap:8px;background:rgba(200,146,42,0.1);border:1px solid rgba(200,146,42,0.32);border-radius:100px;padding:6px 16px;margin-bottom:22px;font-size:11px;color:var(--gold-light);letter-spacing:1.5px;text-transform:uppercase;animation:slideUp .7s cubic-bezier(.16,1,.3,1) .05s both}
+.al-phase::before{content:'★\FE0E';font-size:9px}
+.al-hero h1{font-family:'Playfair Display','Noto Sans Telugu',serif;font-size:clamp(32px,5vw,58px);font-weight:900;color:var(--white);line-height:1.1;margin-bottom:18px;animation:slideUp .8s cubic-bezier(.16,1,.3,1) .2s both}
+.al-hero h1 span{background:linear-gradient(135deg,var(--gold-light),#fff8cc);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.al-hero-lead{font-family:'Cormorant Garamond','Noto Sans Telugu',serif;font-size:clamp(15px,1.9vw,20px);color:rgba(245,230,192,0.78);max-width:580px;line-height:1.75;margin-bottom:34px;animation:slideUp .8s cubic-bezier(.16,1,.3,1) .3s both}
+@keyframes slideUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes slideUpSm{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.al-cta-row{display:flex;align-items:center;gap:16px;flex-wrap:wrap;animation:slideUp .8s cubic-bezier(.16,1,.3,1) .4s both}
+.al-cta{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--green-deep);font-weight:700;font-size:12px;letter-spacing:1.2px;text-transform:uppercase;padding:15px 34px;border-radius:6px;text-decoration:none;transition:transform .2s,box-shadow .2s;box-shadow:0 10px 32px -10px rgba(200,146,42,0.55),inset 0 1px 0 rgba(255,255,255,0.2)}
+.al-cta:hover{transform:translateY(-2px);box-shadow:0 16px 42px -10px rgba(200,146,42,0.65)}
+.al-cta svg{width:16px;height:16px}
+.al-cta.ghost{background:transparent;color:var(--gold-light);border:1px solid rgba(200,146,42,0.45);box-shadow:none}
+.al-cta.ghost:hover{background:rgba(200,146,42,0.12);box-shadow:none}
+.al-hero-stats{display:flex;gap:30px;margin-top:42px;flex-wrap:wrap;animation:slideUp .8s cubic-bezier(.16,1,.3,1) .5s both}
+.al-stat{display:flex;flex-direction:column;gap:2px}
+.al-stat-num{font-family:'Playfair Display','Noto Sans Telugu',serif;font-size:28px;font-weight:700;background:linear-gradient(135deg,var(--gold-light),#fffbe0);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
+.al-stat-label{font-size:10.5px;color:rgba(245,230,192,0.5);letter-spacing:0.8px;text-transform:uppercase}
+@media(prefers-reduced-motion:reduce){.al-phase,.al-hero-calligraphy,.al-hero h1,.al-hero-lead,.al-cta-row,.al-hero-stats{animation:none!important}}
+
+/* STICKY NAV */
+.al-sticky{position:fixed;top:68px;left:0;right:0;z-index:90;background:rgba(13,59,30,0.97);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid rgba(200,146,42,0.28);box-shadow:0 4px 18px rgba(0,0,0,0.16);transform:translateY(-130%);transition:transform .32s cubic-bezier(.16,1,.3,1)}
+.al-sticky.sticky-on{transform:translateY(0)}
+.al-sticky-inner{max-width:1200px;margin:0 auto;display:flex;gap:6px;overflow-x:auto;padding:9px 5vw;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.al-sticky-inner::-webkit-scrollbar{display:none}
+.al-sticky a{white-space:nowrap;flex-shrink:0;font-size:12px;color:rgba(245,230,192,0.78);text-decoration:none;border:1px solid rgba(200,146,42,0.22);background:rgba(200,146,42,0.05);padding:6px 13px;border-radius:100px;transition:background .18s,color .18s,border-color .18s}
+.al-sticky a:hover,.al-sticky a.spy-active{background:var(--gold);color:var(--green-deep);border-color:var(--gold);font-weight:600}
+.al-sticky-home{border-right:1px solid rgba(200,146,42,0.28) !important;padding-right:16px !important;margin-right:4px !important}
+
+/* SECTIONS (shared portal design system) */
+.lu-sec{padding:80px 5vw}
+.lu-sec-inner{max-width:1100px;margin:0 auto}
+.lu-sec-label{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.lu-sec-title{font-family:'Playfair Display','Noto Sans Telugu',serif;font-size:clamp(1.7rem,4vw,2.4rem);font-weight:700;color:var(--text-dark);margin-bottom:10px;line-height:1.25}
+.lu-sec-title span{color:var(--green-light)}
+.lu-sec-subtitle{font-size:1rem;color:var(--text-muted);max-width:560px;line-height:1.75}
+.lu-sec-hdr{margin-bottom:50px}
+
+/* WHY CARDS */
+.why-sec{background:var(--white)}
+.why-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:22px}
+.why-card{background:var(--cream);border:1px solid var(--border);border-radius:var(--radius);padding:28px 24px;transition:all .3s cubic-bezier(.16,1,.3,1);position:relative;overflow:hidden}
+.why-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold-light));transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.why-card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.why-card:hover::before{transform:scaleX(1)}
+.why-icon{width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,rgba(200,146,42,0.12),rgba(200,146,42,0.06));display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-size:1.5rem}
+.why-card h3{font-family:'Playfair Display','Noto Sans Telugu',serif;font-size:1.05rem;font-weight:700;color:var(--text-dark);margin-bottom:8px}
+.why-card p{font-size:.87rem;color:var(--text-muted);line-height:1.7}
+.why-card-ar{font-family:'Amiri',serif;font-size:1.15rem;color:var(--gold);direction:rtl;margin-top:14px;line-height:1.6;border-top:1px solid var(--border);padding-top:12px}
+
+/* ROADMAP */
+.rm-sec{background:var(--green-deep);padding:80px 5vw}
+.rm-sec-inner{max-width:1100px;margin:0 auto}
+.rm-label{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.rm-title{font-family:'Playfair Display','Noto Sans Telugu',serif;font-size:clamp(1.7rem,4vw,2.4rem);font-weight:700;color:var(--white);margin-bottom:10px}
+.rm-title span{color:var(--gold-light)}
+.rm-subtitle{font-size:.95rem;color:rgba(245,230,192,.65);max-width:520px;line-height:1.7;margin-bottom:52px}
+.rm-track{display:flex;align-items:flex-start;gap:0;position:relative;padding-bottom:12px}
+.rm-track::before{content:'';position:absolute;top:28px;left:28px;right:28px;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold-light) 50%,rgba(200,146,42,0.18) 100%);border-radius:3px;z-index:0}
+.rm-node{display:flex;flex-direction:column;align-items:center;flex:1;position:relative;z-index:1;text-decoration:none}
+.rm-dot{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Amiri',serif;font-weight:700;font-size:1.35rem;margin-bottom:14px;transition:transform .3s;flex-shrink:0}
+.rm-dot.done{background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--green-deep);box-shadow:0 4px 16px rgba(200,146,42,0.40)}
+.rm-dot.soon{background:rgba(255,255,255,0.08);border:2px solid rgba(200,146,42,0.30);color:rgba(245,230,192,0.50)}
+.rm-node:hover .rm-dot{transform:translateY(-4px) scale(1.08);box-shadow:0 8px 22px rgba(200,146,42,0.50)}
+.rm-node-title{font-family:'Playfair Display','Noto Sans Telugu',serif;font-size:.82rem;font-weight:600;color:var(--white);text-align:center;margin-bottom:4px}
+.rm-node-ar{font-family:'Amiri',serif;font-size:1rem;color:var(--gold-light);direction:rtl;line-height:1.6;text-align:center}
+.rm-node-tag{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:3px 9px;border-radius:12px;margin-top:6px}
+.rm-node-tag.avail{background:rgba(46,139,87,0.25);color:#7de0a4}
+.rm-node-tag.soon{background:rgba(255,255,255,0.08);color:rgba(245,230,192,0.45)}
+/* Mobile roadmap */
+.rm-mobile{display:none;flex-direction:column;gap:0}
+.rm-mnode{display:flex;align-items:flex-start;gap:16px;padding:16px 0;position:relative}
+.rm-mnode::after{content:'';position:absolute;left:27px;top:62px;bottom:-16px;width:2px;background:rgba(200,146,42,0.25)}
+.rm-mnode:last-child::after{display:none}
+.rm-mdot{width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Amiri',serif;font-weight:700;font-size:1.3rem;flex-shrink:0}
+.rm-mdot.done{background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--green-deep);box-shadow:0 4px 14px rgba(200,146,42,0.35)}
+.rm-mdot.soon{background:rgba(255,255,255,0.08);border:2px solid rgba(200,146,42,0.25);color:rgba(245,230,192,0.45)}
+.rm-minfo{padding-top:6px}
+.rm-minfo strong{display:block;font-family:'Playfair Display','Noto Sans Telugu',serif;font-size:.92rem;color:var(--white);margin-bottom:3px}
+.rm-minfo .ar{font-family:'Amiri',serif;font-size:1rem;color:var(--gold-light);direction:rtl;display:block;line-height:1.6}
+@media(max-width:700px){.rm-track{display:none}.rm-mobile{display:flex}}
+
+/* LEVEL CARDS */
+.lvl-sec{background:var(--cream);padding:80px 5vw}
+.lc{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:14px;overflow:hidden;transition:box-shadow .3s}
+.lc.lc-open{box-shadow:0 8px 32px rgba(0,0,0,0.10)}
+.lc-head{display:flex;align-items:center;gap:16px;padding:20px 24px;cursor:pointer;user-select:none;transition:background .2s}
+.lc-head:hover{background:rgba(200,146,42,0.04)}
+.lc-num{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,var(--green-deep),var(--green-mid));color:var(--gold-light);font-family:'Amiri',serif;font-weight:700;font-size:1.3rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.lc-info{flex:1;min-width:0}
+.lc-info h3{font-family:'Playfair Display','Noto Sans Telugu',serif;font-size:1.1rem;font-weight:700;color:var(--text-dark);margin-bottom:3px;overflow-wrap:break-word;word-break:break-word}
+.lc-ar{font-family:'Amiri',serif;font-size:1.05rem;color:var(--text-muted);direction:rtl;line-height:1.5;display:block}
+.lc-tag{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:3px 10px;border-radius:12px}
+.lc-tag.avail{background:rgba(46,139,87,0.12);color:var(--green-light);border:1px solid rgba(46,139,87,0.25)}
+.lc-tag.soon{background:rgba(200,146,42,0.08);color:var(--gold);border:1px solid rgba(200,146,42,0.20)}
+.lc-chevron{color:var(--text-muted);transition:transform .3s;flex-shrink:0}
+.lc.lc-open .lc-chevron{transform:rotate(180deg)}
+.lc-body{max-height:0;overflow:hidden;transition:max-height .5s ease}
+.lc.lc-open .lc-body{max-height:2200px}
+#lc5.lc-open .lc-body{max-height:3600px}
+.lc-inner{padding:0 24px 24px 24px;border-top:1px solid var(--border)}
+.lc-desc{font-size:.88rem;color:var(--text-muted);line-height:1.75;margin:18px 0 0}
+/* syllabus topic chips */
+.lc-sub{font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin:20px 0 12px}
+.lc-topics{display:flex;flex-wrap:wrap;gap:8px}
+.lc-topic{display:inline-flex;align-items:center;gap:7px;font-size:.82rem;color:var(--text-mid);background:rgba(200,146,42,0.05);border:1px solid rgba(200,146,42,0.18);border-radius:100px;padding:7px 14px;transition:background .18s,border-color .18s}
+.lc-topic::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0}
+.lc-topic:hover{background:rgba(200,146,42,0.1);border-color:rgba(200,146,42,0.38)}
+.lc-goal{display:flex;align-items:flex-start;gap:12px;margin-top:22px;padding:14px 18px;background:linear-gradient(135deg,rgba(46,139,87,0.08),rgba(46,139,87,0.03));border:1px solid rgba(46,139,87,0.2);border-radius:12px}
+.lc-goal-ic{font-size:1.2rem;flex-shrink:0;line-height:1.4}
+.lc-goal-txt strong{display:block;font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--green-light);margin-bottom:3px}
+.lc-goal-txt p{font-size:.9rem;color:var(--text-dark);line-height:1.6}
+
+/* SALAH STEP-BY-STEP (Level 5 special component) */
+.salah-steps{display:flex;flex-direction:column;gap:12px;margin-top:6px}
+.ss-step{display:flex;gap:14px;align-items:flex-start;padding:16px 18px;border:1px solid var(--border);border-radius:12px;background:rgba(200,146,42,0.04);transition:background .2s,border-color .2s}
+.ss-step:hover{background:rgba(200,146,42,0.08);border-color:rgba(200,146,42,0.38)}
+.ss-num{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--green-deep),var(--green-mid));color:var(--gold-light);font-family:'Amiri',serif;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1rem}
+.ss-body{flex:1;min-width:0}
+.ss-name{font-family:'Playfair Display','Noto Sans Telugu',serif;font-weight:700;font-size:1.02rem;color:var(--text-dark)}
+.ss-pos{font-size:.72rem;color:var(--green-light);font-weight:600;text-transform:uppercase;letter-spacing:.05em;margin-bottom:9px}
+.ss-ar{font-family:'Amiri',serif;direction:rtl;font-size:1.45rem;color:var(--gold);line-height:1.85;margin-bottom:6px}
+.ss-tr{font-size:.84rem;color:var(--text-mid);font-style:italic;margin-bottom:3px}
+.ss-trans{font-size:.84rem;color:var(--text-muted);line-height:1.6}
+
+/* INTERACTIVE PRAYER GUIDE (reuses surah-* classes + prayer meta) */
+.surah-sec{background:var(--white)}
+.surah-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(265px,1fr));gap:20px}
+.surah-card{background:var(--cream);border:1px solid var(--border);border-radius:var(--radius);padding:24px 22px;transition:all .3s cubic-bezier(.16,1,.3,1);position:relative;overflow:hidden;display:flex;flex-direction:column}
+.surah-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold-light));transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.surah-card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.surah-card:hover::before{transform:scaleX(1)}
+.surah-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:12px}
+.surah-ar{font-family:'Amiri',serif;font-size:2.1rem;color:var(--gold);direction:rtl;line-height:1.5}
+.surah-no{font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--gold);background:rgba(200,146,42,0.1);border:1px solid var(--border);border-radius:100px;padding:4px 10px;white-space:nowrap;height:fit-content}
+.surah-en{font-family:'Playfair Display','Noto Sans Telugu',serif;font-size:1.12rem;font-weight:700;color:var(--text-dark);margin-bottom:2px}
+.surah-meaning{font-size:.8rem;color:var(--green-light);font-weight:600;margin-bottom:10px}
+.surah-meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.surah-meta span{display:inline-flex;align-items:center;gap:5px;font-size:.7rem;font-weight:600;color:var(--text-mid);background:rgba(200,146,42,0.07);border:1px solid var(--border);border-radius:100px;padding:4px 11px}
+.surah-virtue{font-size:.83rem;color:var(--text-muted);line-height:1.65;margin-bottom:16px;flex:1}
+.surah-btns{display:flex;gap:8px}
+.surah-btn{flex:1;min-width:0;display:inline-flex;align-items:center;justify-content:center;gap:5px;font-size:.7rem;font-weight:600;padding:9px 6px;border-radius:8px;border:1px solid var(--border);background:var(--white);color:var(--text-mid);text-decoration:none;transition:all .18s;white-space:nowrap;cursor:pointer;font-family:inherit}
+.surah-btn:hover{background:var(--gold);color:var(--green-deep);border-color:var(--gold)}
+.surah-btn.primary{background:linear-gradient(135deg,var(--green-deep),var(--green-mid));color:var(--gold-light);border-color:transparent}
+.surah-btn.primary:hover{background:linear-gradient(135deg,var(--green-mid),var(--green-light));color:#fff}
+/* WUDU STEPS */
+.step-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
+.step-card{background:var(--cream);border:1px solid var(--border);border-radius:var(--radius);padding:22px 18px;position:relative;overflow:hidden;transition:all .3s cubic-bezier(.16,1,.3,1)}
+.step-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--dc,var(--gold))}
+.step-card:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
+.step-num{position:absolute;top:14px;right:14px;width:28px;height:28px;border-radius:50%;background:var(--dc,var(--gold));color:#fff;font-weight:800;font-size:.85rem;display:flex;align-items:center;justify-content:center}
+.step-ic{font-size:2rem;margin-bottom:10px;display:block}
+.step-t{font-family:'Playfair Display','Noto Sans Telugu',serif;font-weight:700;font-size:1.05rem;color:var(--text-dark);margin-bottom:6px}
+.step-d{font-size:.86rem;color:var(--text-mid);line-height:1.55}
+
+/* COMMON MISTAKES */
+.miss-sec{background:var(--cream);padding:80px 5vw}
+.miss-inner{max-width:1100px;margin:0 auto}
+.miss-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px}
+.miss-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:24px 22px;transition:all .3s cubic-bezier(.16,1,.3,1)}
+.miss-card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.miss-head{display:flex;align-items:center;gap:12px;margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--border)}
+.miss-ic{width:42px;height:42px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;background:linear-gradient(135deg,rgba(200,146,42,0.12),rgba(200,146,42,0.06));flex-shrink:0}
+.miss-head h3{font-family:'Playfair Display','Noto Sans Telugu',serif;font-size:1.05rem;font-weight:700;color:var(--text-dark)}
+.miss-rows{display:flex;flex-direction:column;gap:14px}
+.miss-row{display:flex;flex-direction:column;gap:6px}
+.miss-bad,.miss-good{display:flex;align-items:flex-start;gap:9px;font-size:.84rem;line-height:1.55}
+.miss-bad{color:var(--text-mid)}
+.miss-good{color:var(--green-light)}
+.miss-bad b,.miss-good b{flex-shrink:0;font-size:.9rem;line-height:1.4}
+.miss-bad b{color:#c0392b}
+.miss-good b{color:var(--green-light)}
+
+/* DAILY CHALLENGE */
+.ch-sec{background:var(--green-deep);padding:80px 5vw}
+.ch-inner{max-width:1080px;margin:0 auto}
+.ch-hdr{margin-bottom:44px}
+.ch-hdr .rm-title{margin-bottom:10px}
+.ch-grid{display:grid;grid-template-columns:1.25fr .85fr;gap:22px;align-items:start}
+@media(max-width:820px){.ch-grid{grid-template-columns:1fr}}
+.ch-panel{background:rgba(255,255,255,0.05);border:1px solid rgba(200,146,42,0.25);border-radius:18px;padding:28px;position:relative;overflow:hidden}
+.ch-panel::before{content:'';position:absolute;top:-50px;right:-50px;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle,rgba(200,146,42,0.08),transparent 70%);pointer-events:none}
+.ch-panel-title{font-family:'Playfair Display','Noto Sans Telugu',serif;font-size:1.15rem;font-weight:700;color:var(--white);margin-bottom:3px;display:flex;align-items:center;gap:10px}
+.ch-date{font-size:.78rem;color:rgba(245,230,192,.5);margin-bottom:22px}
+.ch-list{display:flex;flex-direction:column;gap:10px;margin-bottom:24px}
+.ch-item{display:flex;align-items:center;gap:14px;padding:14px 16px;border:1px solid rgba(200,146,42,0.2);border-radius:12px;background:rgba(200,146,42,0.04);cursor:pointer;transition:all .2s;text-align:left;width:100%;font-family:inherit}
+.ch-item:hover{background:rgba(200,146,42,0.1);border-color:rgba(200,146,42,0.4)}
+.ch-check{width:26px;height:26px;border-radius:8px;border:2px solid rgba(200,146,42,0.45);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .25s;color:transparent;font-size:14px;font-weight:700}
+.ch-item.done .ch-check{background:linear-gradient(135deg,var(--gold),var(--gold-light));border-color:var(--gold);color:var(--green-deep);transform:scale(1.05)}
+.ch-ic{font-size:1.25rem;line-height:1}
+.ch-item-txt{flex:1;font-size:.92rem;color:rgba(245,230,192,.9);font-weight:500;transition:all .2s}
+.ch-item.done .ch-item-txt{color:rgba(245,230,192,.45);text-decoration:line-through}
+.ch-progress-label{display:flex;justify-content:space-between;align-items:baseline;font-size:.8rem;color:rgba(245,230,192,.65);margin-bottom:9px}
+.ch-progress-label b{color:var(--gold-light);font-size:1rem;font-family:'Playfair Display',serif}
+.ch-bar{height:11px;border-radius:100px;background:rgba(255,255,255,0.08);overflow:hidden}
+.ch-bar-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-light));border-radius:100px;transition:width .55s cubic-bezier(.16,1,.3,1);width:0}
+.ch-done-msg{margin-top:16px;font-size:.85rem;color:#7de0a4;font-weight:600;text-align:center;opacity:0;max-height:0;overflow:hidden;transition:opacity .3s,max-height .3s}
+.ch-done-msg.show{opacity:1;max-height:40px}
+/* side column */
+.ch-side{display:flex;flex-direction:column;gap:22px}
+.ch-streak{background:rgba(255,255,255,0.05);border:1px solid rgba(200,146,42,0.25);border-radius:18px;padding:24px;text-align:center}
+.ch-streak-flame{font-size:2.4rem;line-height:1;margin-bottom:6px}
+.ch-streak-num{font-family:'Playfair Display',serif;font-size:2.6rem;font-weight:700;background:linear-gradient(135deg,var(--gold-light),#fffbe0);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
+.ch-streak-label{font-size:.74rem;color:rgba(245,230,192,.55);letter-spacing:.06em;text-transform:uppercase;margin-top:4px}
+.ch-streak-sub{font-size:.78rem;color:rgba(245,230,192,.5);margin-top:10px;border-top:1px solid rgba(200,146,42,0.18);padding-top:10px}
+.ch-streak-sub b{color:var(--gold-light)}
+.ch-badges{background:rgba(255,255,255,0.05);border:1px solid rgba(200,146,42,0.25);border-radius:18px;padding:22px 24px}
+.ch-badges-title{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+.ch-badge-row{display:flex;gap:12px;justify-content:space-between}
+.ch-badge{display:flex;flex-direction:column;align-items:center;gap:6px;flex:1;text-align:center}
+.ch-badge-ic{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.4rem;background:rgba(255,255,255,0.05);border:1px solid rgba(200,146,42,0.2);filter:grayscale(1);opacity:.4;transition:all .3s}
+.ch-badge.unlocked .ch-badge-ic{filter:none;opacity:1;background:linear-gradient(135deg,rgba(200,146,42,0.2),rgba(200,146,42,0.08));border-color:var(--gold);box-shadow:0 4px 14px rgba(200,146,42,0.3)}
+.ch-badge-name{font-size:.62rem;color:rgba(245,230,192,.5);line-height:1.3}
+.ch-badge.unlocked .ch-badge-name{color:rgba(245,230,192,.85)}
+/* dua reflection */
+.ch-ayah{background:linear-gradient(135deg,rgba(200,146,42,0.1),rgba(200,146,42,0.03));border:1px solid rgba(200,146,42,0.25);border-radius:18px;padding:26px;margin-top:22px;text-align:center;position:relative;overflow:hidden}
+.ch-ayah-label{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+#ch-ayah-ar{font-family:'Amiri',serif;font-size:clamp(1.6rem,5vw,2.3rem);color:var(--gold-light);direction:rtl;line-height:1.9;margin-bottom:14px;display:block}
+#ch-ayah-tr{font-size:.95rem;color:rgba(245,230,192,.85);line-height:1.7;max-width:640px;margin:0 auto 8px;font-style:italic}
+#ch-ayah-ref{font-size:.8rem;color:var(--gold);font-weight:600}
+
+/* MOTIVATION STRIP */
+.mot-card{display:flex;align-items:center;gap:18px;background:rgba(255,255,255,0.05);border:1px solid rgba(200,146,42,0.25);border-radius:16px;padding:20px 24px;margin-top:22px}
+.mot-ic{font-size:1.8rem;flex-shrink:0}
+.mot-txt{font-size:.9rem;color:rgba(245,230,192,.85);line-height:1.7;font-style:italic}
+
+/* COMING SOON */
+.coming-sec{background:var(--cream);padding:80px 5vw}
+.coming-inner{max-width:1100px;margin:0 auto}
+.coming-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px}
+.cm-card{border:1px solid var(--border);border-radius:var(--radius);padding:22px 20px;background:var(--white);display:flex;align-items:flex-start;gap:14px;transition:all .28s;position:relative}
+.cm-card.live{cursor:pointer}
+.cm-card.live:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:rgba(200,146,42,0.40)}
+.cm-card.dim{opacity:.62}
+.cm-icon{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0}
+.cm-card.live .cm-icon{background:linear-gradient(135deg,rgba(46,139,87,0.12),rgba(46,139,87,0.06))}
+.cm-card.dim .cm-icon{background:rgba(0,0,0,0.04)}
+.cm-icon.ar{font-family:'Amiri',serif;direction:rtl}
+.cm-body h4{font-family:'Playfair Display','Noto Sans Telugu',serif;font-size:.97rem;font-weight:700;color:var(--text-dark);margin-bottom:4px}
+.cm-body p{font-size:.80rem;color:var(--text-muted);line-height:1.6;margin-bottom:8px}
+.cm-badge{font-size:.60rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;padding:3px 9px;border-radius:10px;display:inline-block}
+.cm-badge.avail{background:rgba(46,139,87,0.12);color:var(--green-light)}
+.cm-badge.soon{background:rgba(200,146,42,0.10);color:var(--gold)}
+
+/* ═══ PROGRESS DASHBOARD (new) ═══ */
+.dash-sec{background:var(--cream);padding:80px 5vw}
+.dash-inner{max-width:1100px;margin:0 auto}
+.dash-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:18px}
+.dash-tile{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:24px 18px;text-align:center;position:relative;overflow:hidden;transition:transform .3s,box-shadow .3s}
+.dash-tile::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold-light));transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.dash-tile:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.dash-tile:hover::before{transform:scaleX(1)}
+.dash-tile-ic{font-size:1.55rem;margin-bottom:8px;line-height:1}
+.dash-tile-num{font-family:'Playfair Display','Noto Sans Telugu',serif;font-size:2rem;font-weight:700;color:var(--green-deep);line-height:1.05;word-break:break-word}
+.dash-tile-num.sm{font-size:1.15rem;padding-top:6px}
+.dash-tile-label{font-size:.7rem;color:var(--text-muted);letter-spacing:.04em;text-transform:uppercase;margin-top:8px;line-height:1.3}
+.dash-mastery{background:linear-gradient(135deg,var(--green-deep),var(--green-mid));border-radius:18px;padding:26px 28px;color:#fff;position:relative;overflow:hidden}
+.dash-mastery::after{content:'';position:absolute;top:-40px;right:-40px;width:150px;height:150px;border-radius:50%;background:radial-gradient(circle,rgba(200,146,42,0.12),transparent 70%);pointer-events:none}
+.dash-mastery-top{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.dash-mastery-title{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-light)}
+.dash-mastery-level{font-family:'Playfair Display','Noto Sans Telugu',serif;font-size:1.4rem;font-weight:700;color:#fff}
+.dash-mbar{height:12px;border-radius:100px;background:rgba(255,255,255,0.12);overflow:hidden}
+.dash-mbar-fill{height:100%;border-radius:100px;background:linear-gradient(90deg,var(--gold),var(--gold-light));transition:width .85s cubic-bezier(.16,1,.3,1);width:0}
+.dash-mastery-sub{font-size:.8rem;color:rgba(245,230,192,.72);margin-top:11px}
+@media(max-width:700px){.dash-grid{grid-template-columns:repeat(2,1fr)}.dash-tile-num{font-size:1.7rem}}
+
+/* ═══ LEVEL MARK-COMPLETE (new) ═══ */
+.lc.done .lc-num{background:linear-gradient(135deg,var(--green-mid),var(--green-light));color:#fff}
+.lc-complete{display:inline-flex;align-items:center;gap:9px;margin-top:18px;font-family:inherit;font-size:.8rem;font-weight:600;color:var(--green-light);background:rgba(46,139,87,0.08);border:1px solid rgba(46,139,87,0.28);border-radius:100px;padding:9px 18px;cursor:pointer;transition:all .2s}
+.lc-complete:hover{background:rgba(46,139,87,0.16)}
+.lc-complete.done{background:linear-gradient(135deg,var(--green-mid),var(--green-light));color:#fff;border-color:transparent}
+.lc-complete .lc-check{width:18px;height:18px;border-radius:50%;border:2px solid currentColor;display:flex;align-items:center;justify-content:center;font-size:11px;line-height:1;flex-shrink:0}
+.lc-complete.done .lc-check{background:#fff;color:var(--green-mid);border-color:#fff}
+
+/* ═══ SALAH SIMULATOR (new flagship) ═══ */
+.sim-sec{background:var(--green-deep);padding:80px 5vw}
+.sim-inner{max-width:1080px;margin:0 auto}
+.sim-stage{background:rgba(255,255,255,0.04);border:1px solid rgba(200,146,42,0.25);border-radius:22px;padding:30px;margin-top:34px;position:relative;overflow:hidden}
+.sim-stage::before{content:'';position:absolute;top:-60px;right:-60px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(200,146,42,0.08),transparent 70%);pointer-events:none}
+.sim-dots{display:flex;gap:5px;margin-bottom:10px}
+.sim-dot{flex:1;min-width:14px;height:6px;border-radius:100px;background:rgba(255,255,255,0.1);cursor:pointer;border:none;padding:0;transition:background .3s}
+.sim-dot.seen{background:rgba(200,146,42,0.45)}
+.sim-dot.active{background:linear-gradient(90deg,var(--gold),var(--gold-light))}
+.sim-counter{font-size:.78rem;color:rgba(245,230,192,.6);margin-bottom:22px;letter-spacing:.03em}
+.sim-counter b{color:var(--gold-light);font-family:'Playfair Display',serif;font-size:.95rem}
+.sim-body{display:grid;grid-template-columns:.82fr 1.18fr;gap:30px;align-items:start}
+.sim-figure{background:linear-gradient(160deg,rgba(200,146,42,0.08),rgba(46,139,87,0.06));border:1px solid rgba(200,146,42,0.22);border-radius:18px;padding:24px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:290px}
+.sim-figure svg{width:130px;height:160px;color:var(--gold-light)}
+.sim-figure-label{margin-top:16px;font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(245,230,192,.45);text-align:center}
+.sim-media{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap;justify-content:center}
+.sim-media button{display:inline-flex;align-items:center;gap:6px;font-family:inherit;font-size:.72rem;font-weight:600;color:var(--gold-light);background:rgba(200,146,42,0.1);border:1px solid rgba(200,146,42,0.3);border-radius:100px;padding:7px 14px;cursor:pointer;transition:background .2s}
+.sim-media button:hover{background:rgba(200,146,42,0.2)}
+.sim-name{font-family:'Playfair Display','Noto Sans Telugu',serif;font-size:1.5rem;font-weight:700;color:#fff;margin-bottom:5px;line-height:1.2}
+.sim-pos{font-size:.74rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#7de0a4;margin-bottom:18px}
+.sim-do{display:flex;gap:11px;align-items:flex-start;background:rgba(255,255,255,0.04);border:1px solid rgba(200,146,42,0.18);border-radius:12px;padding:14px 16px;margin-bottom:18px}
+.sim-do-ic{font-size:1.1rem;line-height:1.3}
+.sim-do-txt strong{display:block;font-size:.64rem;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-bottom:4px}
+.sim-do-txt p{font-size:.9rem;color:rgba(245,230,192,.9);line-height:1.6}
+.sim-say-label{font-size:.64rem;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.sim-ar{font-family:'Amiri',serif;direction:rtl;font-size:clamp(1.6rem,4.4vw,2.3rem);color:var(--gold-light);line-height:1.95;margin-bottom:9px}
+.sim-tr{font-size:.9rem;color:rgba(245,230,192,.85);font-style:italic;margin-bottom:5px}
+.sim-mean{font-size:.9rem;color:rgba(245,230,192,.68);line-height:1.6;margin-bottom:18px}
+.sim-mistake{display:flex;gap:10px;align-items:flex-start;background:rgba(192,57,43,0.1);border:1px solid rgba(192,57,43,0.3);border-radius:12px;padding:13px 16px}
+.sim-mistake-ic{font-size:1rem;line-height:1.3}
+.sim-mistake p{font-size:.84rem;color:rgba(245,230,192,.85);line-height:1.55}
+.sim-mistake b{color:#ef9a9a}
+.sim-nav{display:flex;justify-content:space-between;align-items:center;margin-top:26px;gap:12px}
+.sim-btn{display:inline-flex;align-items:center;gap:8px;font-family:inherit;font-size:.8rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:13px 26px;border-radius:8px;cursor:pointer;transition:all .2s;border:1px solid rgba(200,146,42,0.4);background:transparent;color:var(--gold-light)}
+.sim-btn:hover:not(:disabled){background:rgba(200,146,42,0.12)}
+.sim-btn:disabled{opacity:.3;cursor:not-allowed}
+.sim-btn.primary{background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--green-deep);border-color:transparent}
+.sim-btn.primary:hover{box-shadow:0 8px 24px -6px rgba(200,146,42,0.6)}
+@media(max-width:760px){.sim-body{grid-template-columns:1fr;gap:20px}.sim-figure{min-height:210px}.sim-figure svg{width:104px;height:128px}.sim-stage{padding:22px 18px}.sim-btn{padding:12px 18px;font-size:.74rem}}
+
+/* ═══ TOAST (new) ═══ */
+.sim-toast{position:fixed;left:50%;bottom:84px;transform:translateX(-50%) translateY(20px);background:rgba(13,59,30,0.97);color:var(--gold-light);border:1px solid rgba(200,146,42,0.4);padding:12px 22px;border-radius:100px;font-size:.85rem;font-weight:500;z-index:800;opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;box-shadow:0 8px 30px rgba(0,0,0,0.35);max-width:90vw;text-align:center}
+.sim-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* ═══ BADGE GRID (expanded to 6) ═══ */
+.ch-badge-row{flex-wrap:wrap;gap:12px 10px}
+.ch-badge{flex:0 0 calc(33.333% - 7px)}
+@media(prefers-reduced-motion:reduce){.dash-mbar-fill{transition:none}}
+
+/* FOOTER */
+.lu-footer{background:var(--green-deep);border-top:1px solid rgba(200,146,42,0.18);padding:48px 5vw 36px;text-align:center}
+.lu-footer-brand{font-family:'Amiri',serif;font-size:2.4rem;color:var(--gold-light);direction:rtl;display:block;margin-bottom:6px;line-height:1.5}
+.lu-footer-tag{font-size:.85rem;color:rgba(245,230,192,.55);margin-bottom:28px}
+.lu-footer-links{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:28px}
+.lu-footer-links a{color:rgba(245,230,192,.60);font-size:.82rem;padding:7px 16px;border:1px solid rgba(200,146,42,0.20);border-radius:20px;transition:all .2s}
+.lu-footer-links a:hover{color:var(--gold-light);border-color:rgba(200,146,42,0.50)}
+.lu-footer-copy{font-size:.75rem;color:rgba(245,230,192,.30)}
+
+/* BACK TO TOP */
+#btt{position:fixed;bottom:28px;right:22px;width:46px;height:46px;border-radius:50%;background:var(--gold);color:var(--green-deep);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(200,146,42,0.45);cursor:pointer;border:none;opacity:0;transform:translateY(16px);transition:all .3s;z-index:700}
+#btt.show{opacity:1;transform:translateY(0)}
+#btt:hover{background:var(--gold-light);transform:translateY(-3px)}
+
+/* SCROLL REVEAL */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .6s ease}
+.reveal-in{opacity:1;transform:translateY(0)}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1 !important;transform:none !important;transition:none !important}}
+
+/* RESPONSIVE — TABLET */
+@media(max-width:900px){
+  .rm-node-title{font-size:.75rem}
+}
+/* RESPONSIVE — MOBILE */
+@media(max-width:768px){
+  .al-hero{padding:108px 5vw 58px}
+  .al-hero-inner{grid-template-columns:1fr;gap:30px}
+  .al-hero-calligraphy{font-size:clamp(48px,15vw,86px)}
+  body>nav .nav-title{font-size:15px}
+  body>nav .nav-sub{display:none}
+  .al-phase,.al-hero h1,.al-hero-lead,.al-cta-row,.al-hero-stats{animation-name:slideUpSm;animation-duration:.5s;animation-delay:.05s}
+  .al-hero-calligraphy{animation-duration:.6s;animation-delay:.08s}
+}
+@media(max-width:600px){
+  .al-cta{width:100%;justify-content:center}
+  .al-hero-stats{gap:22px}
+  .al-stat-num{font-size:24px}
+  .lu-sec,.rm-sec,.lvl-sec,.ch-sec,.miss-sec,.coming-sec{padding:60px 16px}
+  .lc-head{padding:16px;gap:10px}
+  .lc-num{width:38px;height:38px;font-size:1.05rem;border-radius:10px}
+  .lc-info h3{font-size:.98rem}
+  .lc-inner{padding:0 14px 18px}
+  .why-grid,.coming-grid,.surah-grid,.miss-grid{grid-template-columns:1fr}
+  .ch-panel{padding:22px 18px}
+  .ch-badge-ic{width:42px;height:42px;font-size:1.2rem}
+  body>nav .nav-back span{display:none}
+}
+
+/* PRINT */
+@media print{
+  body>nav,.al-sticky,#btt,.lang-btn,.ch-side,.surah-btns{display:none !important}
+  .al-hero{padding:14pt 5vw !important;background:white !important}
+  .al-hero h1,.al-hero-calligraphy{color:black !important;-webkit-text-fill-color:black !important}
+  .rm-sec,.ch-sec,.lu-footer{background:white !important}
+  body{background:white;color:black}
+}
+</style>
+<link rel="stylesheet" href="../../assets/css/if-shared.css">
+<script defer src="../../assets/js/if-core.js"></script>
+<script>window.IF_FLASHCARDS={deck:'salah-steps',title_en:'Salah Flashcards',title_te:'నమాజ్ ఫ్లాష్ కార్డులు',sub_en:'Memorise what to say at each step. Tap to reveal, then rate yourself.',sub_te:'ప్రతి దశలో ఏం చెప్పాలో కంఠస్థం చేయండి. తిప్పి చూసి, మిమ్మల్ని రేట్ చేసుకోండి.',cards:[
+{id:'qiyam',ar:'سُبْحَانَكَ اللَّهُمَّ',back_en:'Thana — the opening supplication after Takbir',back_te:'సనా — తక్బీర్ తర్వాత తెరిచే దువా'},
+{id:'fatiha-s',ar:'الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ',back_en:'Al-Fatihah — recited standing in every rakah',back_te:'ఫాతిహా — ప్రతి రకాత్‌లో నిలబడి పఠిస్తారు'},
+{id:'ruku',ar:'سُبْحَانَ رَبِّيَ الْعَظِيم',back_en:'Ruku — Glory to my Lord the Most Great (×3)',back_te:'రుకూ — నా ప్రభువు మహోన్నతుడు (×3)'},
+{id:'sujood',ar:'سُبْحَانَ رَبِّيَ الْأَعْلَى',back_en:'Sujood — Glory to my Lord the Most High (×3)',back_te:'సజ్దా — నా ప్రభువు అత్యున్నతుడు (×3)'},
+{id:'jalsa',ar:'رَبِّ اغْفِرْ لِي',back_en:'Jalsa — My Lord, forgive me (between prostrations)',back_te:'జల్సా — నా ప్రభూ, నన్ను క్షమించు (సజ్దాల మధ్య)'},
+{id:'tashahhud',ar:'التَّحِيَّاتُ لِلَّهِ',back_en:'Tashahhud — the sitting testimony',back_te:'తషహ్హుద్ — కూర్చొని చదివే సాక్ష్యం'},
+{id:'salam',ar:'السَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللَّه',back_en:'Salam — ends the prayer (turn right, then left)',back_te:'సలామ్ — నమాజ్ ముగింపు (కుడి, తర్వాత ఎడమ)'},
+{id:'takbir',ar:'اللَّهُ أَكْبَر',back_en:'Takbir — Allah is the Greatest (begins the prayer)',back_te:'తక్బీర్ — అల్లాహ్ అందరికంటే గొప్పవాడు (నమాజ్ ప్రారంభం)'}
+]};</script>
+<script defer src="../../assets/js/if-flashcards.js"></script>
+<script>/* superseded by assets/data/salah-lessons.js */window.__OLD_SALAH={title_en:'Purification Lessons',title_te:'పరిశుద్ధత పాఠాలు',lessons:[
+{id:'wudu',title_en:'Wudu — Step by Step',title_te:'వుదూ — దశలవారీగా',cite:{url:'https://quran.com/5/6',label:'Quran 5:6'},sections:[
+{h_en:'What is Wudu',h_te:'వుదూ అంటే ఏమిటి',ar:'يَا أَيُّهَا الَّذِينَ آمَنُوا إِذَا قُمْتُمْ إِلَى الصَّلَاةِ فَاغْسِلُوا وُجُوهَكُمْ',b_en:'Wudu is the ablution a Muslim performs to be in a state of purity before prayer. Allah commands it in the Quran before standing for Salah.',b_te:'వుదూ అంటే నమాజ్‌కు ముందు పరిశుద్ధ స్థితిలో ఉండటానికి ముస్లిం చేసే ప్రక్షాళన. నమాజ్‌కు నిలబడే ముందు దీన్ని అల్లాహ్ ఖురాన్‌లో ఆదేశించాడు.'},
+{h_en:'The obligatory acts (Fard)',h_te:'విధి (ఫర్జ్) చర్యలు',b_en:'Four are mentioned in the Quran: wash the face, wash the arms up to the elbows, wipe over the head, and wash the feet up to the ankles.',b_te:'ఖురాన్‌లో నాలుగు పేర్కొనబడ్డాయి: ముఖాన్ని కడగడం, మోచేతుల వరకు చేతులను కడగడం, తలను తుడవడం, మడమల వరకు పాదాలను కడగడం.'},
+{h_en:'Step by step (the Sunnah method)',h_te:'దశలవారీ (సున్నత్ విధానం)',b_en:'Make the intention; say Bismillah; wash the hands three times; rinse the mouth three times; rinse the nose three times; wash the face three times; wash the right then the left arm to the elbow three times; wipe the head and ears once; wash the right then the left foot to the ankle three times.',b_te:'సంకల్పం చేయండి; బిస్మిల్లాహ్ అనండి; చేతులను మూడుసార్లు కడగండి; నోటిని మూడుసార్లు పుక్కిలించండి; ముక్కును మూడుసార్లు శుభ్రం చేయండి; ముఖాన్ని మూడుసార్లు కడగండి; కుడి తర్వాత ఎడమ చేతిని మోచేతి వరకు మూడుసార్లు కడగండి; తల, చెవులను ఒకసారి తుడవండి; కుడి తర్వాత ఎడమ పాదాన్ని మడమ వరకు మూడుసార్లు కడగండి.'},
+{h_en:'What breaks Wudu',h_te:'వుదూను భంగపరిచేవి',b_en:'Using the toilet, passing wind, deep sleep, and loss of consciousness. After these, Wudu is repeated before prayer.',b_te:'మరుగుదొడ్డిని వాడటం, గాలి విడుదల, గాఢ నిద్ర, స్పృహ కోల్పోవడం. వీటి తర్వాత నమాజ్‌కు ముందు వుదూను మళ్ళీ చేయాలి.'},
+{h_en:'Common mistakes',h_te:'సాధారణ తప్పులు',b_en:'Leaving parts of a limb dry (such as the heels or elbows), and wasting water. Make sure water reaches every part, and use water moderately.',b_te:'అవయవంలో కొంత భాగాన్ని తడపకుండా వదలడం (మడమలు లేదా మోచేతులు వంటివి), నీటిని వృథా చేయడం. ప్రతి భాగానికి నీరు చేరేలా చూసుకోండి, నీటిని మితంగా వాడండి.'}
+],takeaways:[{en:'Purity of body supports focus and reverence in prayer.',te:'శరీర పరిశుద్ధత నమాజ్‌లో ఏకాగ్రత, భక్తికి తోడ్పడుతుంది.'},{en:'Performing wudu well is itself an act of worship.',te:'వుదూను చక్కగా చేయడం స్వయంగా ఒక ఆరాధన.'}],reflect:[{en:'Do I perform wudu carefully, or rush through it?',te:'నేను వుదూను శ్రద్ధగా చేస్తానా, లేక తొందరగా ముగిస్తానా?'}],quiz:[{q_en:'How many obligatory acts of wudu are named in the Quran?',q_te:'ఖురాన్‌లో వుదూ ఎన్ని విధి చర్యలు పేర్కొనబడ్డాయి?',opts:[{en:'Three',te:'మూడు'},{en:'Four',te:'నాలుగు'},{en:'Five',te:'ఐదు'}],ans:1},{q_en:'Which of these breaks wudu?',q_te:'వీటిలో ఏది వుదూను భంగపరుస్తుంది?',opts:[{en:'Smiling',te:'నవ్వడం'},{en:'Deep sleep',te:'గాఢ నిద్ర'},{en:'Walking',te:'నడవడం'}],ans:1}],reading:[{label:'SeekersGuidance',url:'https://seekersguidance.org'}]},
+{id:'ghusl',title_en:'Ghusl — When and How',title_te:'గుస్ల్ — ఎప్పుడు, ఎలా',cite:{url:'https://sunnah.com',label:'Sunnah.com'},sections:[
+{h_en:'What is Ghusl',h_te:'గుస్ల్ అంటే ఏమిటి',b_en:'Ghusl is the full ritual washing of the whole body to return to a state of purity after major impurity.',b_te:'గుస్ల్ అంటే పెద్ద అపరిశుద్ధత తర్వాత పరిశుద్ధ స్థితికి తిరిగి రావడానికి శరీరమంతటినీ కడిగే పూర్తి స్నానం.'},
+{h_en:'When it is required',h_te:'ఎప్పుడు తప్పనిసరి',b_en:'After marital relations or seminal discharge (janabah), and at the end of menstruation and postnatal bleeding. It is also recommended before Jumuah and the two Eids.',b_te:'దాంపత్య సంబంధాలు లేదా వీర్యస్ఖలనం (జనాబత్) తర్వాత, రుతుస్రావం, ప్రసవానంతర రక్తస్రావం ముగిసిన తర్వాత. జుమా, రెండు ఈద్‌లకు ముందు కూడా ఇది సిఫారసు చేయబడింది.'},
+{h_en:'The essentials',h_te:'ముఖ్య అంశాలు',b_en:'Make the intention, and ensure water reaches the entire body, including rinsing the mouth and nose (according to many scholars).',b_te:'సంకల్పం చేయండి, శరీరమంతటికీ నీరు చేరేలా చూసుకోండి — చాలా మంది పండితుల ప్రకారం నోరు, ముక్కును శుభ్రం చేయడంతో సహా.'},
+{h_en:'Step by step (the Sunnah method)',h_te:'దశలవారీ (సున్నత్ విధానం)',b_en:'Wash the hands; wash the private parts; perform a complete Wudu; pour water over the head three times; then pour water over the whole body, beginning with the right side and then the left, rubbing the skin so no part is left dry.',b_te:'చేతులను కడగండి; మర్మాంగాలను శుభ్రం చేయండి; పూర్తి వుదూ చేయండి; తలపై మూడుసార్లు నీరు పోయండి; తర్వాత కుడివైపు మొదలుపెట్టి, ఆపై ఎడమవైపు శరీరమంతటిపై నీరు పోసి, ఏ భాగం తడవకుండా ఉండకుండా చర్మాన్ని రుద్దండి.'}
+],takeaways:[{en:'Ghusl restores full purity after major impurity.',te:'పెద్ద అపరిశుద్ధత తర్వాత గుస్ల్ పూర్తి పరిశుద్ధతను పునరుద్ధరిస్తుంది.'},{en:'Cleanliness is a valued part of faith.',te:'పరిశుభ్రత విశ్వాసంలో విలువైన భాగం.'}],reflect:[{en:'How does being clean help me feel ready to worship?',te:'శుభ్రంగా ఉండటం ఆరాధనకు సిద్ధంగా ఉన్న భావనను ఎలా కలిగిస్తుంది?'}],quiz:[{q_en:'Ghusl washes...?',q_te:'గుస్ల్ దేన్ని కడుగుతుంది?',opts:[{en:'only the hands',te:'చేతులను మాత్రమే'},{en:'the whole body',te:'శరీరమంతటినీ'},{en:'only the face',te:'ముఖాన్ని మాత్రమే'}],ans:1},{q_en:'Ghusl is recommended before...?',q_te:'గుస్ల్ దేనికి ముందు సిఫారసు చేయబడింది?',opts:[{en:'shopping',te:'షాపింగ్'},{en:'Jumuah and the two Eids',te:'జుమా, రెండు ఈద్‌లు'},{en:'sleeping',te:'నిద్ర'}],ans:1}],reading:[{label:'SeekersGuidance',url:'https://seekersguidance.org'}]}
+]};</script>
+<script defer src="../../assets/data/salah-lessons.js"></script>
+<script defer src="../../assets/js/if-lesson.js"></script>
+<script>window.IF_DIAGRAMS={title_en:'Prayer Postures',title_te:'నమాజ్ భంగిమలు',sub_en:'The main positions of the prayer at a glance (schematic illustrations).',sub_te:'నమాజ్ ముఖ్య స్థానాలు ఒక్క చూపులో (సూచనాత్మక చిత్రాలు).',items:[
+{cap_en:'Qiyam — standing upright',cap_te:'ఖియామ్ — నిటారుగా నిలబడటం',svg:'<svg viewBox="0 0 100 150" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="50" cy="18" r="11"/><path d="M50 29 V96"/><path d="M50 46 C40 54 38 70 47 76 M50 46 C60 54 62 70 53 76"/><path d="M50 96 L41 138 M50 96 L59 138"/><line x1="22" y1="140" x2="78" y2="140" stroke-width="2.2" opacity=".6"/></svg>'},
+{cap_en:'Ruku — bowing',cap_te:'రుకూ — వంగడం',svg:'<svg viewBox="0 0 130 130" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="98" cy="40" r="10"/><path d="M90 46 L34 58"/><path d="M34 58 L31 112 M40 57 L48 112"/><path d="M64 53 L70 88"/><line x1="16" y1="116" x2="116" y2="116" stroke-width="2.2" opacity=".6"/></svg>'},
+{cap_en:'Sujood — prostration',cap_te:'సజ్దా — సాష్టాంగం',svg:'<svg viewBox="0 0 150 100" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="30" cy="62" r="9"/><path d="M39 60 L96 40"/><path d="M96 40 L100 80 M104 42 L112 80"/><path d="M44 62 L74 80"/><line x1="14" y1="84" x2="134" y2="84" stroke-width="2.2" opacity=".6"/></svg>'},
+{cap_en:'Jalsa / Tashahhud — sitting',cap_te:'జల్సా / తషహ్హుద్ — కూర్చోవడం',svg:'<svg viewBox="0 0 120 130" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="58" cy="22" r="10"/><path d="M58 32 V74"/><path d="M58 74 L30 92 L74 92"/><path d="M58 48 L80 72"/><line x1="20" y1="96" x2="100" y2="96" stroke-width="2.2" opacity=".6"/></svg>'}
+]};</script>
+<script defer src="../../assets/js/if-diagrams.js"></script>
+<script>window.IF_QUIZ={deck:'salah',title_en:'Salah Quiz',title_te:'నమాజ్ క్విజ్',sub_en:'Check what you know about prayer, purity and the prayer steps.',sub_te:'నమాజ్, పరిశుద్ధత, నమాజ్ దశలపై మీకు తెలిసింది పరీక్షించుకోండి.',questions:[
+{q_en:'How many obligatory prayers are there each day?',q_te:'రోజుకు ఎన్ని విధిగా చేయవలసిన నమాజులు ఉన్నాయి?',opts:[{en:'Five',te:'ఐదు'},{en:'Three',te:'మూడు'},{en:'Seven',te:'ఏడు'}],ans:0},
+{q_en:'What must you do before salah to be pure?',q_te:'నమాజ్‌కు ముందు పరిశుద్ధంగా ఉండటానికి ఏం చేయాలి?',opts:[{en:'Make wudu',te:'వుదూ చేయాలి'},{en:'Nothing',te:'ఏమీ అక్కర్లేదు'},{en:'Only sleep',te:'నిద్ర మాత్రమే'}],ans:0},
+{q_en:'Which direction do Muslims face in prayer?',q_te:'నమాజ్‌లో ముస్లింలు ఏ దిశ వైపు తిరుగుతారు?',opts:[{en:'The Kaaba (qiblah)',te:'కాబా (ఖిబ్లా)'},{en:'The sun',te:'సూర్యుడు'},{en:'The north',te:'ఉత్తరం'}],ans:0},
+{q_en:'What is said to begin the prayer?',q_te:'నమాజ్ ప్రారంభించడానికి ఏమంటారు?',opts:[{en:'Allahu akbar',te:'అల్లాహు అక్బర్'},{en:'Ameen',te:'ఆమీన్'},{en:'Salam',te:'సలామ్'}],ans:0},
+{q_en:'The prostration in prayer is called?',q_te:'నమాజ్‌లో సాష్టాంగాన్ని ఏమంటారు?',opts:[{en:'Sujood',te:'సుజూద్'},{en:'Ruku',te:'రుకూ'},{en:'Qiyam',te:'ఖియామ్'}],ans:0}
+]};</script>
+<script defer src="../../assets/js/if-quiz.js"></script>
+<link rel="stylesheet" href="../../assets/css/if-standard.css">
+<script defer src="../../assets/js/if-engage.js"></script>
+<script defer src="../../assets/js/if-search.js"></script>
+<script defer src="../../assets/js/if-media.js"></script>
+<script defer src="../../assets/data/visuals-data.js"></script>
+<script defer src="../../assets/js/if-visuals.js"></script>
+<script defer src="../../assets/js/if-recent.js"></script>
+<script defer src="../../assets/js/if-xp.js"></script>
+<script defer src="../../assets/js/if-profile.js"></script>
+<script defer src="../../assets/js/if-order.js"></script>
+<script defer src="../../assets/js/if-salah-visuals.js"></script>
+<script defer src="../../assets/js/if-jsonld.js"></script>
+</head>
+<body>
+
+<!-- TOP NAV -->
+<nav>
+  <a href="../../index.html" class="nav-brand">
+    <img src="../../assets/logo-emblem.png" class="nav-logo" alt="Islamic Front Logo"
+         onerror="this.style.display='none';document.getElementById('nav-svg-sl').style.display='block'">
+    <svg id="nav-svg-sl" style="display:none;width:42px;height:42px" viewBox="0 0 42 42" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <circle cx="21" cy="21" r="20" fill="none" stroke="#c8922a" stroke-width="1.5"/>
+      <text x="21" y="17" text-anchor="middle" font-family="serif" font-size="13" fill="#e8b84b" font-weight="700">إسلامی</text>
+      <text x="21" y="30" text-anchor="middle" font-family="sans-serif" font-size="7" fill="#c8922a" letter-spacing="1">FRONT</text>
+    </svg>
+    <div>
+      <div class="nav-title" data-te="ఇస్లామిక్ ఫ్రంట్" data-en="Islamic Front">Islamic Front</div>
+      <div class="nav-sub" data-te="మంగళగిరి · స్థా. 2011" data-en="Mangalagiri · Est. 2011">Mangalagiri · Est. 2011</div>
+    </div>
+  </a>
+  <div class="nav-right">
+    <a href="../../islamic-knowledge.html" class="nav-back">
+      <span data-te="విజ్ఞాన వనరు" data-en="Knowledge Center">Knowledge Center</span>
+    </a>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">తెలుగు</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="al-hero" id="home">
+  <div class="al-hero-inner">
+    <div class="al-hero-content">
+      <nav class="al-breadcrumb" aria-label="Breadcrumb">
+        <a href="../../index.html" data-te="హోమ్" data-en="Home">Home</a>
+        <span>›</span>
+        <a href="../../islamic-knowledge.html" data-te="విజ్ఞాన వనరు" data-en="Knowledge Center">Knowledge Center</a>
+        <span>›</span>
+        <span data-te="నమాజ్ నేర్చుకోండి" data-en="Learn Salah">Learn Salah</span>
+      </nav>
+      <div class="al-phase" data-te="ఇస్లామిక్ జ్ఞాన కేంద్రం" data-en="Islamic Knowledge Center">Islamic Knowledge Center</div>
+      <h1 data-te="నమాజ్ <span>నేర్చుకోండి</span>" data-en="Learn <span>Salah</span>">Learn <span>Salah</span></h1>
+      <p class="al-hero-lead" data-te="పరిశుద్ధత నుండి నమాజ్ పూర్తి విధానం వరకు — వుదూ, గుస్ల్, నమాజ్ దశలు, దువాలు మరియు షరతులను దశలవారీగా నేర్చుకోండి." data-en="From purification to the full prayer — learn wudu, ghusl, the prayer steps, duas, and conditions one step at a time.">From purification to the full prayer — learn wudu, ghusl, the prayer steps, duas, and conditions one step at a time.</p>
+      <div class="al-cta-row">
+        <a href="#journey" class="al-cta">
+          <span data-te="ప్రయాణం ప్రారంభించండి" data-en="Start the Journey">Start the Journey</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#challenge" class="al-cta ghost">
+          <span data-te="నేటి సవాల్" data-en="Today's Challenge">Today's Challenge</span>
+        </a>
+      </div>
+      <div class="al-hero-stats">
+        <div class="al-stat">
+          <span class="al-stat-num">6</span>
+          <span class="al-stat-label" data-te="స్థాయిలు" data-en="Levels">Levels</span>
+        </div>
+        <div class="al-stat">
+          <span class="al-stat-num">8</span>
+          <span class="al-stat-label" data-te="నమాజ్ దశలు" data-en="Prayer Steps">Prayer Steps</span>
+        </div>
+        <div class="al-stat">
+          <span class="al-stat-num">8</span>
+          <span class="al-stat-label" data-te="నమాజులు" data-en="Prayers">Prayers</span>
+        </div>
+        <div class="al-stat">
+          <span class="al-stat-num" data-te="ఉచితం" data-en="Free">Free</span>
+          <span class="al-stat-label" data-te="ఎల్లప్పుడూ" data-en="Always">Always</span>
+        </div>
+      </div>
+    </div>
+    <div class="al-hero-display">
+      <div class="al-hero-calligraphy" lang="ar" dir="rtl">الصَّلَاة</div>
+    </div>
+  </div>
+</header>
+
+<!-- STICKY NAV -->
+<nav class="al-sticky" id="al-sticky" aria-label="Section navigation">
+  <div class="al-sticky-inner">
+    <a href="../../islamic-knowledge.html" class="al-sticky-home" data-te="← విజ్ఞాన వనరు" data-en="← KC">← KC</a>
+    <a href="#why" data-spy="why" data-te="ఎందుకు నమాజ్?" data-en="Why Salah?">Why Salah?</a>
+    <a href="#journey" data-spy="journey" data-te="ప్రయాణం" data-en="Journey">Journey</a>
+    <a href="#levels" data-spy="levels" data-te="స్థాయిలు" data-en="Levels">Levels</a>
+    <a href="#wudu" data-spy="wudu" data-te="వుదూ" data-en="Wudu">Wudu</a>
+    <a href="#simulator" data-spy="simulator" data-te="అభ్యాసం" data-en="Practice">Practice</a>
+    <a href="#guide" data-spy="guide" data-te="నమాజులు" data-en="Prayers">Prayers</a>
+    <a href="#mistakes" data-spy="mistakes" data-te="తప్పులు" data-en="Mistakes">Mistakes</a>
+    <a href="#progress" data-spy="progress" data-te="పురోగతి" data-en="Progress">Progress</a>
+    <a href="#challenge" data-spy="challenge" data-te="నేటి సవాల్" data-en="Challenge">Challenge</a>
+    <a href="#knowledge" data-spy="knowledge" data-te="జ్ఞానం" data-en="Knowledge">Knowledge</a>
+  </div>
+</nav>
+
+<!-- WHY LEARN SALAH -->
+<section class="lu-sec why-sec" id="why">
+  <div class="lu-sec-inner">
+    <div class="lu-sec-hdr reveal">
+      <div class="lu-sec-label" data-te="ప్రేరణ" data-en="Motivation">Motivation</div>
+      <h2 class="lu-sec-title" data-te="నమాజ్ నేర్చుకోవడం <span>ఎందుకు ముఖ్యం</span>?" data-en="Why Learn <span>Salah</span>?">Why Learn <span>Salah</span>?</h2>
+      <p class="lu-sec-subtitle" data-te="నమాజ్ ఇస్లాం యొక్క రెండవ స్తంభం మరియు బానిసకు అల్లాహ్‌తో రోజువారీ అనుబంధం. దానిని సరిగ్గా నేర్చుకోవడం ప్రతి ముస్లిం జీవితంలో అత్యంత ముఖ్యమైన దశ." data-en="Salah is the second pillar of Islam and a servant's daily connection with Allah. Learning it correctly is the most important step in a Muslim's life.">Salah is the second pillar of Islam and a servant's daily connection with Allah. Learning it correctly is the most important step in a Muslim's life.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <div class="why-icon">🕌</div>
+        <h3 data-te="ఇస్లాం స్తంభం" data-en="The Pillar of Islam">The Pillar of Islam</h3>
+        <p data-te="నమాజ్ ఈమాన్ తర్వాత ఇస్లాం యొక్క మొదటి ఆచరణాత్మక స్తంభం. ప్రళయదినాన మొట్టమొదట లెక్క అడిగేది నమాజ్ గురించే." data-en="Salah is the first practical pillar of Islam after faith. The very first deed we will be questioned about on Judgement Day is the prayer.">Salah is the first practical pillar of Islam after faith. The very first deed we will be questioned about on Judgement Day is the prayer.</p>
+        <div class="why-card-ar" dir="rtl" lang="ar">إِنَّ الصَّلَاةَ كَانَتْ عَلَى الْمُؤْمِنِينَ كِتَابًا مَّوْقُوتًا</div>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon">🤲</div>
+        <h3 data-te="అల్లాహ్‌తో నేరుగా అనుబంధం" data-en="Direct Connection with Allah">Direct Connection with Allah</h3>
+        <p data-te="రోజుకు ఐదుసార్లు నమాజ్ ద్వారా బానిస తన ప్రభువుతో నేరుగా మాట్లాడతాడు. ఇది హృదయానికి శాంతి, ఆత్మకు బలం." data-en="Five times a day, the worshipper speaks directly with their Lord through prayer. It is peace for the heart and strength for the soul.">Five times a day, the worshipper speaks directly with their Lord through prayer. It is peace for the heart and strength for the soul.</p>
+        <div class="why-card-ar" dir="rtl" lang="ar">وَأَقِمِ الصَّلَاةَ لِذِكْرِي</div>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon">🌿</div>
+        <h3 data-te="నైతికత & క్రమశిక్షణ" data-en="Character & Discipline">Character &amp; Discipline</h3>
+        <p data-te="నమాజ్ చెడు, అశ్లీలత నుండి దూరం చేస్తుంది, రోజును క్రమబద్ధం చేస్తుంది మరియు నిజమైన క్రమశిక్షణను నేర్పుతుంది." data-en="Prayer restrains from wrongdoing and indecency, structures the day, and instils true discipline and self-control.">Prayer restrains from wrongdoing and indecency, structures the day, and instils true discipline and self-control.</p>
+        <div class="why-card-ar" dir="rtl" lang="ar">إِنَّ الصَّلَاةَ تَنْهَىٰ عَنِ الْفَحْشَاءِ وَالْمُنكَرِ</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SALAH LEARNING JOURNEY (ROADMAP) -->
+<section class="rm-sec" id="journey">
+  <div class="rm-sec-inner">
+    <div class="rm-label" data-te="మీ ప్రయాణం" data-en="Your Journey">Your Journey</div>
+    <h2 class="rm-title reveal" data-te="నమాజ్ <span>నేర్చుకునే ప్రయాణం</span>" data-en="Salah <span>Learning Journey</span>">Salah <span>Learning Journey</span></h2>
+    <p class="rm-subtitle reveal" data-te="పునాదుల నుండి అధునాతన నమాజుల వరకు — పరిశుద్ధత, వుదూ, గుస్ల్, నమాజ్ దశలు మరియు దువాలను దశలవారీగా నేర్చుకోండి." data-en="From foundations to advanced prayers — learn purification, wudu, ghusl, the prayer steps, and duas step by step.">From foundations to advanced prayers — learn purification, wudu, ghusl, the prayer steps, and duas step by step.</p>
+
+    <!-- Desktop roadmap -->
+    <div class="rm-track" role="list">
+      <a href="#lc1" class="rm-node" role="listitem">
+        <div class="rm-dot done">١</div>
+        <div class="rm-node-title" data-te="పునాదులు" data-en="Foundations">Foundations</div>
+        <div class="rm-node-ar" lang="ar" dir="rtl">أساسيات الصلاة</div>      </a>
+      <a href="#lc2" class="rm-node" role="listitem">
+        <div class="rm-dot done">٢</div>
+        <div class="rm-node-title" data-te="తహారత్" data-en="Taharah">Taharah</div>
+        <div class="rm-node-ar" lang="ar" dir="rtl">الطهارة</div>      </a>
+      <a href="#lc3" class="rm-node" role="listitem">
+        <div class="rm-dot done">٣</div>
+        <div class="rm-node-title" data-te="వుదూ" data-en="Wudu">Wudu</div>
+        <div class="rm-node-ar" lang="ar" dir="rtl">الوضوء</div>      </a>
+      <a href="#lc4" class="rm-node" role="listitem">
+        <div class="rm-dot done">٤</div>
+        <div class="rm-node-title" data-te="గుస్ల్ & సిద్ధత" data-en="Ghusl &amp; Prep">Ghusl &amp; Prep</div>
+        <div class="rm-node-ar" lang="ar" dir="rtl">الغسل والاستعداد</div>      </a>
+      <a href="#lc5" class="rm-node" role="listitem">
+        <div class="rm-dot done">٥</div>
+        <div class="rm-node-title" data-te="నమాజ్ దశలు" data-en="Prayer Steps">Prayer Steps</div>
+        <div class="rm-node-ar" lang="ar" dir="rtl">الصلاة خطوة بخطوة</div>      </a>
+      <a href="#lc6" class="rm-node" role="listitem">
+        <div class="rm-dot done">٦</div>
+        <div class="rm-node-title" data-te="దువాలు & అధునాతనం" data-en="Duas &amp; Advanced">Duas &amp; Advanced</div>
+        <div class="rm-node-ar" lang="ar" dir="rtl">الأدعية والصلوات</div>      </a>
+    </div>
+
+    <!-- Mobile roadmap -->
+    <div class="rm-mobile" role="list">
+      <div class="rm-mnode" role="listitem">
+        <div class="rm-mdot done">١</div>
+        <div class="rm-minfo">
+          <strong data-te="స్థాయి 1 · నమాజ్ పునాదులు" data-en="Level 1 · Foundations of Salah">Level 1 · Foundations of Salah</strong>
+          <span class="ar" lang="ar" dir="rtl">أساسيات الصلاة</span>        </div>
+      </div>
+      <div class="rm-mnode" role="listitem">
+        <div class="rm-mdot done">٢</div>
+        <div class="rm-minfo">
+          <strong data-te="స్థాయి 2 · పరిశుద్ధత (తహారత్)" data-en="Level 2 · Purification (Taharah)">Level 2 · Purification (Taharah)</strong>
+          <span class="ar" lang="ar" dir="rtl">الطهارة</span>        </div>
+      </div>
+      <div class="rm-mnode" role="listitem">
+        <div class="rm-mdot done">٣</div>
+        <div class="rm-minfo">
+          <strong data-te="స్థాయి 3 · వుదూ ప్రావీణ్యం" data-en="Level 3 · Wudu Mastery">Level 3 · Wudu Mastery</strong>
+          <span class="ar" lang="ar" dir="rtl">الوضوء</span>        </div>
+      </div>
+      <div class="rm-mnode" role="listitem">
+        <div class="rm-mdot done">٤</div>
+        <div class="rm-minfo">
+          <strong data-te="స్థాయి 4 · గుస్ల్ & నమాజ్ సన్నద్ధత" data-en="Level 4 · Ghusl & Prayer Preparation">Level 4 · Ghusl &amp; Prayer Preparation</strong>
+          <span class="ar" lang="ar" dir="rtl">الغسل والاستعداد</span>        </div>
+      </div>
+      <div class="rm-mnode" role="listitem">
+        <div class="rm-mdot done">٥</div>
+        <div class="rm-minfo">
+          <strong data-te="స్థాయి 5 · నమాజ్ దశలవారీగా" data-en="Level 5 · Salah Step-by-Step">Level 5 · Salah Step-by-Step</strong>
+          <span class="ar" lang="ar" dir="rtl">الصلاة خطوة بخطوة</span>        </div>
+      </div>
+      <div class="rm-mnode" role="listitem">
+        <div class="rm-mdot done">٦</div>
+        <div class="rm-minfo">
+          <strong data-te="స్థాయి 6 · దువాలు & అధునాతన నమాజులు" data-en="Level 6 · Duas & Advanced Salah">Level 6 · Duas &amp; Advanced Salah</strong>
+          <span class="ar" lang="ar" dir="rtl">الأدعية والصلوات</span>        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEVEL CARDS -->
+<section class="lvl-sec" id="levels">
+  <div class="lu-sec-inner">
+    <div class="lu-sec-hdr reveal">
+      <div class="lu-sec-label" data-te="పాఠ్య ప్రణాళిక" data-en="Curriculum">Curriculum</div>
+      <h2 class="lu-sec-title" data-te="స్థాయి-వారీ <span>పాఠ్య ప్రణాళిక</span>" data-en="Level-by-Level <span>Curriculum</span>">Level-by-Level <span>Curriculum</span></h2>
+      <p class="lu-sec-subtitle" data-te="ప్రతి స్థాయిని విస్తరించి మీరు నేర్చుకునే అంశాలను మరియు లక్ష్యాన్ని చూడండి." data-en="Expand each level to see what you'll learn and the goal you'll achieve.">Expand each level to see what you'll learn and the goal you'll achieve.</p>
+    </div>
+
+    <!-- Level 1 -->
+    <div class="lc reveal" id="lc1">
+      <div class="lc-head" onclick="toggleLC('lc1')" role="button" aria-expanded="false">
+        <div class="lc-num">١</div>
+        <div class="lc-info">
+          <h3 data-te="నమాజ్ పునాదులు" data-en="Foundations of Salah">Foundations of Salah</h3>
+          <span class="lc-ar" lang="ar" dir="rtl">أساسيات الصلاة</span>
+        </div>
+        <span class="lc-tag avail" data-te="ప్రారంభం" data-en="Beginner">Beginner</span>
+        <svg class="lc-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="lc-body">
+        <div class="lc-inner">
+          <p class="lc-desc" data-te="నమాజ్ యొక్క ప్రాముఖ్యత, ఐదు రోజువారీ నమాజులు, ముస్లింలు ఎందుకు నమాజ్ చేస్తారు మరియు దాని ప్రతిఫలాలను అర్థం చేసుకోండి. ఇది మీ నమాజ్ ప్రయాణానికి పునాది." data-en="Understand the importance of Salah, the five daily prayers, why Muslims pray, and its rewards. This is the foundation of your prayer journey.">Understand the importance of Salah, the five daily prayers, why Muslims pray, and its rewards. This is the foundation of your prayer journey.</p>
+          <div class="lc-sub" data-te="మీరు నేర్చుకునేది" data-en="What you'll learn">What you'll learn</div>
+          <div class="lc-topics">
+            <span class="lc-topic" data-te="నమాజ్ ప్రాముఖ్యత" data-en="Importance of Salah">Importance of Salah</span>
+            <span class="lc-topic" data-te="ఐదు రోజువారీ నమాజులు" data-en="Five Daily Prayers">Five Daily Prayers</span>
+            <span class="lc-topic" data-te="ముస్లింలు ఎందుకు నమాజ్ చేస్తారు" data-en="Why Muslims Pray">Why Muslims Pray</span>
+            <span class="lc-topic" data-te="నమాజ్ ప్రతిఫలాలు" data-en="Rewards of Salah">Rewards of Salah</span>
+            <span class="lc-topic" data-te="నమాజ్ షరతులు" data-en="Conditions of Salah">Conditions of Salah</span>
+          </div>
+          <div class="lc-goal">
+            <span class="lc-goal-ic">🎯</span>
+            <div class="lc-goal-txt">
+              <strong data-te="లక్ష్యం" data-en="Goal">Goal</strong>
+              <p data-te="నమాజ్ యొక్క ఉద్దేశ్యాన్ని మరియు ప్రాముఖ్యతను అర్థం చేసుకోండి." data-en="Understand the purpose and importance of prayer.">Understand the purpose and importance of prayer.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Level 2 -->
+    <div class="lc reveal" id="lc2">
+      <div class="lc-head" onclick="toggleLC('lc2')" role="button" aria-expanded="false">
+        <div class="lc-num">٢</div>
+        <div class="lc-info">
+          <h3 data-te="పరిశుద్ధత (తహారత్)" data-en="Purification (Taharah)">Purification (Taharah)</h3>
+          <span class="lc-ar" lang="ar" dir="rtl">الطهارة</span>
+        </div>
+        <span class="lc-tag avail" data-te="ప్రారంభం" data-en="Beginner">Beginner</span>
+        <svg class="lc-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="lc-body">
+        <div class="lc-inner">
+          <p class="lc-desc" data-te="నమాజ్ చెల్లుబాటు కావడానికి పరిశుద్ధత తప్పనిసరి. తహారత్ అంటే ఏమిటి, పరిశుద్ధత రకాలు, ఇస్లాంలో పరిశుభ్రత మరియు నజాసత్ (అపరిశుద్ధతలు) గురించి నేర్చుకోండి." data-en="Purity is essential for a valid prayer. Learn what Taharah is, the types of purification, cleanliness in Islam, and najasah (impurities).">Purity is essential for a valid prayer. Learn what Taharah is, the types of purification, cleanliness in Islam, and najasah (impurities).</p>
+          <div class="lc-sub" data-te="మీరు నేర్చుకునేది" data-en="What you'll learn">What you'll learn</div>
+          <div class="lc-topics">
+            <span class="lc-topic" data-te="తహారత్ అంటే ఏమిటి?" data-en="What is Taharah?">What is Taharah?</span>
+            <span class="lc-topic" data-te="పరిశుద్ధత రకాలు" data-en="Types of Purification">Types of Purification</span>
+            <span class="lc-topic" data-te="ఇస్లాంలో పరిశుభ్రత" data-en="Cleanliness in Islam">Cleanliness in Islam</span>
+            <span class="lc-topic" data-te="నజాసత్ (అపరిశుద్ధతలు)" data-en="Najasah (Impurities)">Najasah (Impurities)</span>
+          </div>
+          <div class="lc-goal">
+            <span class="lc-goal-ic">🎯</span>
+            <div class="lc-goal-txt">
+              <strong data-te="లక్ష్యం" data-en="Goal">Goal</strong>
+              <p data-te="నమాజ్‌కు ముందు పరిశుద్ధతను అర్థం చేసుకోండి." data-en="Understand purification before prayer.">Understand purification before prayer.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Level 3 -->
+    <div class="lc reveal" id="lc3">
+      <div class="lc-head" onclick="toggleLC('lc3')" role="button" aria-expanded="false">
+        <div class="lc-num">٣</div>
+        <div class="lc-info">
+          <h3 data-te="వుదూ ప్రావీణ్యం" data-en="Wudu Mastery">Wudu Mastery</h3>
+          <span class="lc-ar" lang="ar" dir="rtl">الوضوء</span>
+        </div>
+        <span class="lc-tag avail" data-te="ప్రారంభం" data-en="Beginner">Beginner</span>
+        <svg class="lc-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="lc-body">
+        <div class="lc-inner">
+          <p class="lc-desc" data-te="వుదూ షరతులు, దశలవారీ వుదూ విధానం, వుదూ సున్నతులు, వుదూను భంగపరిచే విషయాలు మరియు సాధారణ తప్పులను నేర్చుకోండి. దృశ్యమాన దశల కార్డులు మరియు ఆచరణ చెక్‌లిస్ట్‌తో." data-en="Learn the conditions of Wudu, the step-by-step method, the sunnahs, what breaks Wudu, and common mistakes — with visual step cards and a practice checklist.">Learn the conditions of Wudu, the step-by-step method, the sunnahs, what breaks Wudu, and common mistakes — with visual step cards and a practice checklist.</p>
+          <div class="lc-sub" data-te="మీరు నేర్చుకునేది" data-en="What you'll learn">What you'll learn</div>
+          <div class="lc-topics">
+            <span class="lc-topic" data-te="వుదూ షరతులు" data-en="Conditions of Wudu">Conditions of Wudu</span>
+            <span class="lc-topic" data-te="దశలవారీ వుదూ" data-en="Step-by-Step Wudu">Step-by-Step Wudu</span>
+            <span class="lc-topic" data-te="వుదూ సున్నతులు" data-en="Sunnahs of Wudu">Sunnahs of Wudu</span>
+            <span class="lc-topic" data-te="వుదూను భంగపరిచేవి" data-en="Things that Break Wudu">Things that Break Wudu</span>
+            <span class="lc-topic" data-te="సాధారణ తప్పులు" data-en="Common Mistakes">Common Mistakes</span>
+            <span class="lc-topic" data-te="ఆచరణ చెక్‌లిస్ట్" data-en="Practice Checklist">Practice Checklist</span>
+          </div>
+          <div class="lc-goal">
+            <span class="lc-goal-ic">🎯</span>
+            <div class="lc-goal-txt">
+              <strong data-te="లక్ష్యం" data-en="Goal">Goal</strong>
+              <p data-te="వుదూను సరిగ్గా చేయండి." data-en="Perform Wudu correctly.">Perform Wudu correctly.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Level 4 -->
+    <div class="lc reveal" id="lc4">
+      <div class="lc-head" onclick="toggleLC('lc4')" role="button" aria-expanded="false">
+        <div class="lc-num">٤</div>
+        <div class="lc-info">
+          <h3 data-te="గుస్ల్ & నమాజ్ సన్నద్ధత" data-en="Ghusl &amp; Prayer Preparation">Ghusl &amp; Prayer Preparation</h3>
+          <span class="lc-ar" lang="ar" dir="rtl">الغسل والاستعداد</span>
+        </div>
+        <span class="lc-tag avail" data-te="మధ్యస్థం" data-en="Intermediate">Intermediate</span>
+        <svg class="lc-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="lc-body">
+        <div class="lc-inner">
+          <p class="lc-desc" data-te="గుస్ల్ ఎప్పుడు తప్పనిసరి, దశలవారీ గుస్ల్ విధానం, దుస్తుల షరతులు, నమాజ్ స్థల షరతులు మరియు ఖిబ్లా దిశను ఎదుర్కోవడం నేర్చుకోండి." data-en="Learn when Ghusl is required, the step-by-step method, clothing requirements, prayer place requirements, and facing the Qiblah.">Learn when Ghusl is required, the step-by-step method, clothing requirements, prayer place requirements, and facing the Qiblah.</p>
+          <div class="lc-sub" data-te="మీరు నేర్చుకునేది" data-en="What you'll learn">What you'll learn</div>
+          <div class="lc-topics">
+            <span class="lc-topic" data-te="గుస్ల్ ఎప్పుడు తప్పనిసరి" data-en="When Ghusl is Required">When Ghusl is Required</span>
+            <span class="lc-topic" data-te="దశలవారీ గుస్ల్" data-en="Step-by-Step Ghusl">Step-by-Step Ghusl</span>
+            <span class="lc-topic" data-te="దుస్తుల షరతులు" data-en="Clothing Requirements">Clothing Requirements</span>
+            <span class="lc-topic" data-te="నమాజ్ స్థల షరతులు" data-en="Prayer Place Requirements">Prayer Place Requirements</span>
+            <span class="lc-topic" data-te="ఖిబ్లా దిశ" data-en="Facing the Qiblah">Facing the Qiblah</span>
+          </div>
+          <div class="lc-goal">
+            <span class="lc-goal-ic">🎯</span>
+            <div class="lc-goal-txt">
+              <strong data-te="లక్ష్యం" data-en="Goal">Goal</strong>
+              <p data-te="నమాజ్ కోసం సరిగ్గా సిద్ధం కండి." data-en="Prepare correctly for Salah.">Prepare correctly for Salah.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Level 5 — Salah step-by-step (special component) -->
+    <div class="lc reveal" id="lc5">
+      <div class="lc-head" onclick="toggleLC('lc5')" role="button" aria-expanded="false">
+        <div class="lc-num">٥</div>
+        <div class="lc-info">
+          <h3 data-te="నమాజ్ దశలవారీగా" data-en="Learn Salah Step-by-Step">Learn Salah Step-by-Step</h3>
+          <span class="lc-ar" lang="ar" dir="rtl">الصلاة خطوة بخطوة</span>
+        </div>
+        <span class="lc-tag avail" data-te="ముఖ్యం" data-en="Core">Core</span>
+        <svg class="lc-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="lc-body">
+        <div class="lc-inner">
+          <p class="lc-desc" data-te="నమాజ్ యొక్క ప్రతి దశను అరబిక్ పాఠం, ఉచ్చారణ (ట్రాన్స్‌లిటరేషన్) మరియు అర్థంతో సహా నేర్చుకోండి. తక్బీర్ నుండి సలామ్ వరకు — ప్రతి స్థానాన్ని నమ్మకంగా అభ్యసించండి." data-en="Learn every step of the prayer with the Arabic text, transliteration, and translation. From Takbir to Salam — practise each position with confidence.">Learn every step of the prayer with the Arabic text, transliteration, and translation. From Takbir to Salam — practise each position with confidence.</p>
+          <div class="lc-sub" data-te="నమాజ్ దశలు" data-en="The Prayer Steps">The Prayer Steps</div>
+          <div class="salah-steps">
+
+            <div class="ss-step">
+              <div class="ss-num">١</div>
+              <div class="ss-body">
+                <div class="ss-name">Takbir <span lang="ar" dir="rtl" style="color:var(--text-muted);font-weight:400">· التكبير</span></div>
+                <div class="ss-pos" data-te="నిలబడి, చేతులు చెవుల వరకు ఎత్తి" data-en="Standing, raise the hands to the ears">Standing, raise the hands to the ears</div>
+                <div class="ss-ar" lang="ar" dir="rtl">اللَّهُ أَكْبَر</div>
+                <div class="ss-tr">Allāhu Akbar</div>
+                <div class="ss-trans" data-te="“అల్లాహ్ అందరికంటే గొప్పవాడు” — ఈ తక్బీర్‌తో నమాజ్ ప్రారంభమవుతుంది." data-en="“Allah is the Greatest” — the prayer begins with this Takbir.">“Allah is the Greatest” — the prayer begins with this Takbir.</div>
+              </div>
+            </div>
+
+            <div class="ss-step">
+              <div class="ss-num">٢</div>
+              <div class="ss-body">
+                <div class="ss-name">Qiyam <span lang="ar" dir="rtl" style="color:var(--text-muted);font-weight:400">· القيام</span></div>
+                <div class="ss-pos" data-te="నిలబడి, కుడిచేతిని ఎడమచేతిపై ఉంచి" data-en="Standing, right hand over the left">Standing, right hand over the left</div>
+                <div class="ss-ar" lang="ar" dir="rtl">سُبْحَانَكَ اللَّهُمَّ وَبِحَمْدِكَ</div>
+                <div class="ss-tr">Subḥānaka Allāhumma wa biḥamdik</div>
+                <div class="ss-trans" data-te="“ఓ అల్లాహ్, నీవు పరిశుద్ధుడవు, నీ స్తోత్రంతో” — తెరిచే దువా (సనా)." data-en="“Glory be to You, O Allah, and praise be to You” — the opening supplication (Thana).">“Glory be to You, O Allah, and praise be to You” — the opening supplication (Thana).</div>
+              </div>
+            </div>
+
+            <div class="ss-step">
+              <div class="ss-num">٣</div>
+              <div class="ss-body">
+                <div class="ss-name">Surah Al-Fatihah <span lang="ar" dir="rtl" style="color:var(--text-muted);font-weight:400">· الفاتحة</span></div>
+                <div class="ss-pos" data-te="నిలబడి, ఫాతిహా పఠించి" data-en="Standing, recite Al-Fatihah">Standing, recite Al-Fatihah</div>
+                <div class="ss-ar" lang="ar" dir="rtl">الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ</div>
+                <div class="ss-tr">Al-ḥamdu lillāhi rabbil-ʿālamīn</div>
+                <div class="ss-trans" data-te="“సర్వలోక ప్రభువైన అల్లాహ్‌కే సర్వస్తోత్రాలు” — ప్రతి రకాత్‌లో ఫాతిహా చదవాలి." data-en="“All praise is for Allah, Lord of all worlds” — Al-Fatihah is recited in every unit.">“All praise is for Allah, Lord of all worlds” — Al-Fatihah is recited in every unit.</div>
+              </div>
+            </div>
+
+            <div class="ss-step">
+              <div class="ss-num">٤</div>
+              <div class="ss-body">
+                <div class="ss-name">Ruku <span lang="ar" dir="rtl" style="color:var(--text-muted);font-weight:400">· الركوع</span></div>
+                <div class="ss-pos" data-te="వంగి, చేతులు మోకాళ్లపై ఉంచి" data-en="Bowing, hands on the knees">Bowing, hands on the knees</div>
+                <div class="ss-ar" lang="ar" dir="rtl">سُبْحَانَ رَبِّيَ الْعَظِيم</div>
+                <div class="ss-tr">Subḥāna Rabbiyal-ʿAẓīm</div>
+                <div class="ss-trans" data-te="“నా ప్రభువు మహోన్నతుడు, ఆయన పరిశుద్ధుడు” — మూడుసార్లు చెప్పాలి." data-en="“Glory to my Lord, the Most Great” — said three times.">“Glory to my Lord, the Most Great” — said three times.</div>
+              </div>
+            </div>
+
+            <div class="ss-step">
+              <div class="ss-num">٥</div>
+              <div class="ss-body">
+                <div class="ss-name">Sujood <span lang="ar" dir="rtl" style="color:var(--text-muted);font-weight:400">· السجود</span></div>
+                <div class="ss-pos" data-te="సాష్టాంగం — నుదురు, ముక్కు నేలపై" data-en="Prostration — forehead and nose on the ground">Prostration — forehead and nose on the ground</div>
+                <div class="ss-ar" lang="ar" dir="rtl">سُبْحَانَ رَبِّيَ الْأَعْلَى</div>
+                <div class="ss-tr">Subḥāna Rabbiyal-Aʿlā</div>
+                <div class="ss-trans" data-te="“నా ప్రభువు అత్యున్నతుడు, ఆయన పరిశుద్ధుడు” — మూడుసార్లు; బానిస అల్లాహ్‌కు అత్యంత దగ్గరగా ఉండే స్థానం." data-en="“Glory to my Lord, the Most High” — said three times; the closest a servant is to Allah.">“Glory to my Lord, the Most High” — said three times; the closest a servant is to Allah.</div>
+              </div>
+            </div>
+
+            <div class="ss-step">
+              <div class="ss-num">٦</div>
+              <div class="ss-body">
+                <div class="ss-name">Jalsa <span lang="ar" dir="rtl" style="color:var(--text-muted);font-weight:400">· الجلسة</span></div>
+                <div class="ss-pos" data-te="రెండు సజ్దాల మధ్య కూర్చొని" data-en="Sitting between the two prostrations">Sitting between the two prostrations</div>
+                <div class="ss-ar" lang="ar" dir="rtl">رَبِّ اغْفِرْ لِي</div>
+                <div class="ss-tr">Rabbighfir lī</div>
+                <div class="ss-trans" data-te="“నా ప్రభూ, నన్ను క్షమించు” — తర్వాత మరో సజ్దా చేయాలి." data-en="“My Lord, forgive me” — then make the second prostration.">“My Lord, forgive me” — then make the second prostration.</div>
+              </div>
+            </div>
+
+            <div class="ss-step">
+              <div class="ss-num">٧</div>
+              <div class="ss-body">
+                <div class="ss-name">Tashahhud <span lang="ar" dir="rtl" style="color:var(--text-muted);font-weight:400">· التشهد</span></div>
+                <div class="ss-pos" data-te="కూర్చొని, చూపుడు వేలును ఎత్తి" data-en="Sitting, raising the index finger">Sitting, raising the index finger</div>
+                <div class="ss-ar" lang="ar" dir="rtl">التَّحِيَّاتُ لِلَّهِ وَالصَّلَوَاتُ وَالطَّيِّبَاتُ</div>
+                <div class="ss-tr">At-taḥiyyātu lillāhi waṣ-ṣalawātu waṭ-ṭayyibāt</div>
+                <div class="ss-trans" data-te="“అన్ని వందనాలు, నమాజులు మరియు మంచి విషయాలు అల్లాహ్‌కే” — తర్వాత దురూద్ చదవాలి." data-en="“All greetings, prayers and good things are for Allah” — followed by the salutation on the Prophet ﷺ.">“All greetings, prayers and good things are for Allah” — followed by the salutation on the Prophet ﷺ.</div>
+              </div>
+            </div>
+
+            <div class="ss-step">
+              <div class="ss-num">٨</div>
+              <div class="ss-body">
+                <div class="ss-name">Salam <span lang="ar" dir="rtl" style="color:var(--text-muted);font-weight:400">· السلام</span></div>
+                <div class="ss-pos" data-te="తలను కుడివైపు, తర్వాత ఎడమవైపు తిప్పి" data-en="Turning the head right, then left">Turning the head right, then left</div>
+                <div class="ss-ar" lang="ar" dir="rtl">السَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللَّه</div>
+                <div class="ss-tr">As-salāmu ʿalaykum wa raḥmatullāh</div>
+                <div class="ss-trans" data-te="“మీపై శాంతి మరియు అల్లాహ్ కరుణ కురియుగాక” — దీనితో నమాజ్ ముగుస్తుంది." data-en="“Peace and mercy of Allah be upon you” — this completes the prayer.">“Peace and mercy of Allah be upon you” — this completes the prayer.</div>
+              </div>
+            </div>
+
+          </div>
+          <div class="lc-goal">
+            <span class="lc-goal-ic">🎯</span>
+            <div class="lc-goal-txt">
+              <strong data-te="లక్ష్యం" data-en="Goal">Goal</strong>
+              <p data-te="నమాజ్‌ను నమ్మకంగా చేయండి." data-en="Perform Salah confidently.">Perform Salah confidently.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Level 6 -->
+    <div class="lc reveal" id="lc6">
+      <div class="lc-head" onclick="toggleLC('lc6')" role="button" aria-expanded="false">
+        <div class="lc-num">٦</div>
+        <div class="lc-info">
+          <h3 data-te="దువాలు & అధునాతన నమాజులు" data-en="Duas &amp; Advanced Salah">Duas &amp; Advanced Salah</h3>
+          <span class="lc-ar" lang="ar" dir="rtl">الأدعية والصلوات</span>
+        </div>
+        <span class="lc-tag soon" data-te="అధునాతనం" data-en="Advanced">Advanced</span>
+        <svg class="lc-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="lc-body">
+        <div class="lc-inner">
+          <p class="lc-desc" data-te="రోజువారీ దువాలు, ఉదయ-సాయంత్ర అజ్కార్, నమాజ్‌లోని దువాలు మరియు విత్ర్, జుమా, ఈద్, జనాజా, తరావీహ్ వంటి అధునాతన నమాజులను నేర్చుకొని పూర్తి ప్రార్థనా జీవనశైలిని పెంపొందించుకోండి." data-en="Learn the daily duas, morning and evening adhkar, the duas within Salah, and advanced prayers — Witr, Jumu'ah, Eid, Janazah, and Taraweeh — to develop a complete prayer lifestyle.">Learn the daily duas, morning and evening adhkar, the duas within Salah, and advanced prayers — Witr, Jumu'ah, Eid, Janazah, and Taraweeh — to develop a complete prayer lifestyle.</p>
+          <div class="lc-sub" data-te="మీరు నేర్చుకునేది" data-en="What you'll learn">What you'll learn</div>
+          <div class="lc-topics">
+            <span class="lc-topic" data-te="రోజువారీ దువాలు" data-en="Daily Duas">Daily Duas</span>
+            <span class="lc-topic" data-te="ఉదయ & సాయంత్ర అజ్కార్" data-en="Morning &amp; Evening Adhkar">Morning &amp; Evening Adhkar</span>
+            <span class="lc-topic" data-te="నమాజ్‌లోని దువాలు" data-en="Duas in Salah">Duas in Salah</span>
+            <span class="lc-topic" data-te="విత్ర్ నమాజ్" data-en="Witr Prayer">Witr Prayer</span>
+            <span class="lc-topic" data-te="జుమా నమాజ్" data-en="Jumu'ah Prayer">Jumu'ah Prayer</span>
+            <span class="lc-topic" data-te="ఈద్ నమాజ్" data-en="Eid Prayer">Eid Prayer</span>
+            <span class="lc-topic" data-te="జనాజా నమాజ్" data-en="Janazah Prayer">Janazah Prayer</span>
+            <span class="lc-topic" data-te="తరావీహ్ ప్రాథమికాలు" data-en="Taraweeh Basics">Taraweeh Basics</span>
+          </div>
+          <div class="lc-goal">
+            <span class="lc-goal-ic">🎯</span>
+            <div class="lc-goal-txt">
+              <strong data-te="లక్ష్యం" data-en="Goal">Goal</strong>
+              <p data-te="పూర్తి ప్రార్థనా జీవనశైలిని పెంపొందించుకోండి." data-en="Develop a complete prayer lifestyle.">Develop a complete prayer lifestyle.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SALAH SIMULATOR (interactive step wizard) -->
+<!-- WUDU — PURIFICATION BEFORE PRAYER -->
+<section class="lu-sec" id="wudu">
+  <div class="lu-sec-inner">
+    <div class="lu-sec-hdr reveal">
+      <div class="lu-sec-label" data-te="తహారత్ · పరిశుద్ధత" data-en="Taharah · Purification">Taharah · Purification</div>
+      <h2 class="lu-sec-title" data-te="వుదూ <span>ఎలా చేయాలి</span>" data-en="How to Make <span>Wudu</span>">How to Make <span>Wudu</span></h2>
+      <p class="lu-sec-subtitle" data-te="నమాజ్ చెల్లాలంటే ముందుగా వుదూ (పరిశుద్ధత) అవసరం. ఈ దశలను క్రమంగా అనుసరించండి." data-en="A valid prayer begins with wudu — the washing that purifies us for worship. Follow these steps in order.">A valid prayer begins with wudu — the washing that purifies us for worship. Follow these steps in order.</p>
+    </div>
+    <div class="step-grid" id="wudu-grid"><!-- rendered by JS --></div>
+  </div>
+</section>
+
+<section class="sim-sec" id="simulator">
+  <div class="sim-inner">
+    <div class="rm-label reveal" data-te="ఆచరణాత్మక అభ్యాసం" data-en="Hands-on Practice">Hands-on Practice</div>
+    <h2 class="rm-title reveal" data-te="నమాజ్ <span>సిమ్యులేటర్</span>" data-en="Salah <span>Simulator</span>">Salah <span>Simulator</span></h2>
+    <p class="rm-subtitle reveal" data-te="తక్బీర్ నుండి సలామ్ వరకు ప్రతి దశను అడుగడుగునా అనుసరించండి — ఏం చేయాలి, ఏం చెప్పాలి, దాని అర్థం మరియు సాధారణ తప్పులతో సహా." data-en="Walk through every step from Takbir to Salam — what to do, what to say, its meaning, and the common mistake to avoid at each step.">Walk through every step from Takbir to Salam — what to do, what to say, its meaning, and the common mistake to avoid at each step.</p>
+    <div class="sim-stage reveal" id="sim-stage"><!-- rendered by JS --></div>
+  </div>
+</section>
+
+<!-- INTERACTIVE SALAH GUIDE -->
+<section class="lu-sec surah-sec" id="guide">
+  <div class="lu-sec-inner">
+    <div class="lu-sec-hdr reveal">
+      <div class="lu-sec-label" data-te="రకాతులు · సమయం · విధానం" data-en="Rakats · Timing · Method">Rakats · Timing · Method</div>
+      <h2 class="lu-sec-title" data-te="ఇంటరాక్టివ్ <span>నమాజ్ గైడ్</span>" data-en="Interactive <span>Salah Guide</span>">Interactive <span>Salah Guide</span></h2>
+      <p class="lu-sec-subtitle" data-te="ప్రతి నమాజ్‌కు రకాతులు, సమయం మరియు ప్రాముఖ్యత. ఏదైనా కార్డుపై ‘నేర్చుకోండి’ నొక్కి దశలవారీ విధానానికి వెళ్లండి." data-en="Rakats, timing, and importance for every prayer. Tap ‘Learn’ on any card to jump to the step-by-step guide.">Rakats, timing, and importance for every prayer. Tap ‘Learn’ on any card to jump to the step-by-step guide.</p>
+    </div>
+    <div class="surah-grid" id="guide-grid"><!-- rendered by JS --></div>
+  </div>
+</section>
+
+<!-- COMMON MISTAKES -->
+<section class="miss-sec" id="mistakes">
+  <div class="miss-inner">
+    <div class="lu-sec-hdr reveal">
+      <div class="lu-sec-label" data-te="తప్పును సరిదిద్దుకోండి" data-en="Correct Your Mistakes">Correct Your Mistakes</div>
+      <h2 class="lu-sec-title" data-te="సాధారణ <span>తప్పులు</span>" data-en="Common <span>Mistakes</span>">Common <span>Mistakes</span></h2>
+      <p class="lu-sec-subtitle" data-te="చాలా మంది అనుకోకుండా చేసే తప్పులు — వాటిని గుర్తించి సరైన విధానంతో సరిదిద్దుకోండి." data-en="Mistakes many people make unknowingly — recognise them and correct each one the right way.">Mistakes many people make unknowingly — recognise them and correct each one the right way.</p>
+    </div>
+    <div class="miss-grid">
+
+      <div class="miss-card reveal">
+        <div class="miss-head">
+          <div class="miss-ic">💧</div>
+          <h3 data-te="వుదూ తప్పులు" data-en="Wudu Mistakes">Wudu Mistakes</h3>
+        </div>
+        <div class="miss-rows">
+          <div class="miss-row">
+            <div class="miss-bad"><b>✗</b><span data-te="అవయవాలను తడపకుండా వదిలేయడం (పొడి మడమలు)." data-en="Leaving body parts dry (dry heels, dry elbows).">Leaving body parts dry (dry heels, dry elbows).</span></div>
+            <div class="miss-good"><b>✓</b><span data-te="ప్రతి అవయవంపై నీరు పూర్తిగా చేరేలా చూసుకోండి." data-en="Make sure water reaches every part of each limb.">Make sure water reaches every part of each limb.</span></div>
+          </div>
+          <div class="miss-row">
+            <div class="miss-bad"><b>✗</b><span data-te="నీటిని వృథా చేయడం, అతిగా వాడటం." data-en="Wasting water and being excessive.">Wasting water and being excessive.</span></div>
+            <div class="miss-good"><b>✓</b><span data-te="మూడుసార్లకు మించకుండా, మితంగా వాడండి." data-en="Use moderately — no more than three washes.">Use moderately — no more than three washes.</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="miss-card reveal">
+        <div class="miss-head">
+          <div class="miss-ic">🕌</div>
+          <h3 data-te="నమాజ్ తప్పులు" data-en="Salah Mistakes">Salah Mistakes</h3>
+        </div>
+        <div class="miss-rows">
+          <div class="miss-row">
+            <div class="miss-bad"><b>✗</b><span data-te="రకాతుల మధ్య తొందరపడటం, స్థిరత్వం లేకపోవడం." data-en="Rushing between positions without stillness.">Rushing between positions without stillness.</span></div>
+            <div class="miss-good"><b>✓</b><span data-te="ప్రతి దశలో శరీరం స్థిరపడేంత వరకు ఆగండి (తుమానీనా)." data-en="Pause in each position until the body settles (tuma'ninah).">Pause in each position until the body settles (tuma'ninah).</span></div>
+          </div>
+          <div class="miss-row">
+            <div class="miss-bad"><b>✗</b><span data-te="ఇమామ్‌కు ముందుగా కదలడం." data-en="Moving ahead of the imam.">Moving ahead of the imam.</span></div>
+            <div class="miss-good"><b>✓</b><span data-te="ఇమామ్ తర్వాతే ప్రతి కదలికను అనుసరించండి." data-en="Follow the imam — move only after he does.">Follow the imam — move only after he does.</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="miss-card reveal">
+        <div class="miss-head">
+          <div class="miss-ic">🧍</div>
+          <h3 data-te="భంగిమ తప్పులు" data-en="Posture Mistakes">Posture Mistakes</h3>
+        </div>
+        <div class="miss-rows">
+          <div class="miss-row">
+            <div class="miss-bad"><b>✗</b><span data-te="రుకూలో వీపును పూర్తిగా వంచకపోవడం." data-en="Not straightening the back fully in ruku.">Not straightening the back fully in ruku.</span></div>
+            <div class="miss-good"><b>✓</b><span data-te="రుకూలో వీపు, తల ఒకే స్థాయిలో సమంగా ఉంచండి." data-en="Keep the back and head level in ruku.">Keep the back and head level in ruku.</span></div>
+          </div>
+          <div class="miss-row">
+            <div class="miss-bad"><b>✗</b><span data-te="సజ్దాలో ఏడు అవయవాలు నేలను తాకకపోవడం." data-en="The seven limbs not touching the ground in sujood.">The seven limbs not touching the ground in sujood.</span></div>
+            <div class="miss-good"><b>✓</b><span data-te="నుదురు, ముక్కు, రెండు చేతులు, మోకాళ్లు, కాలి వేళ్లు నేలపై ఉంచండి." data-en="Place forehead, nose, both hands, knees and toes on the ground.">Place forehead, nose, both hands, knees and toes on the ground.</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="miss-card reveal">
+        <div class="miss-head">
+          <div class="miss-ic">📿</div>
+          <h3 data-te="పఠన తప్పులు" data-en="Recitation Mistakes">Recitation Mistakes</h3>
+        </div>
+        <div class="miss-rows">
+          <div class="miss-row">
+            <div class="miss-bad"><b>✗</b><span data-te="అర్థం మారిపోయేంత తప్పుగా ఉచ్చరించడం." data-en="Mispronouncing words so the meaning changes.">Mispronouncing words so the meaning changes.</span></div>
+            <div class="miss-good"><b>✓</b><span data-te="అక్షరాలను నెమ్మదిగా, స్పష్టంగా, సరైన మఖ్‌రజ్‌తో పలకండి." data-en="Recite slowly and clearly with the correct letter sounds.">Recite slowly and clearly with the correct letter sounds.</span></div>
+          </div>
+          <div class="miss-row">
+            <div class="miss-bad"><b>✗</b><span data-te="ఫాతిహాను వదిలేయడం లేదా చాలా వేగంగా చదవడం." data-en="Skipping Al-Fatihah or reciting it too fast.">Skipping Al-Fatihah or reciting it too fast.</span></div>
+            <div class="miss-good"><b>✓</b><span data-te="ప్రతి రకాత్‌లో ఫాతిహాను స్పష్టంగా పూర్తిగా చదవండి." data-en="Recite Al-Fatihah fully and clearly in every unit.">Recite Al-Fatihah fully and clearly in every unit.</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="miss-card reveal">
+        <div class="miss-head">
+          <div class="miss-ic">💭</div>
+          <h3 data-te="ఏకాగ్రత తప్పులు" data-en="Concentration Mistakes">Concentration Mistakes</h3>
+        </div>
+        <div class="miss-rows">
+          <div class="miss-row">
+            <div class="miss-bad"><b>✗</b><span data-te="నమాజ్‌లో ఆలోచనలు ఎటో తిరగడం, యాంత్రికంగా చేయడం." data-en="Letting the mind wander; praying mechanically.">Letting the mind wander; praying mechanically.</span></div>
+            <div class="miss-good"><b>✓</b><span data-te="మీరు పలికే మాటల అర్థాన్ని గుర్తుచేసుకుంటూ ఖుషూతో నిలబడండి." data-en="Stand with khushu, reflecting on the meaning of what you say.">Stand with khushu, reflecting on the meaning of what you say.</span></div>
+          </div>
+          <div class="miss-row">
+            <div class="miss-bad"><b>✗</b><span data-te="చుట్టూ చూడటం, దుస్తులు లేదా ఫోన్‌తో ఆడుకోవడం." data-en="Looking around or fidgeting with clothes or phone.">Looking around or fidgeting with clothes or phone.</span></div>
+            <div class="miss-good"><b>✓</b><span data-te="చూపును సజ్దా స్థానంపై ఉంచి, ప్రశాంతంగా నిలబడండి." data-en="Keep the gaze at the place of prostration and stay calm.">Keep the gaze at the place of prostration and stay calm.</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PRAYER PROGRESS DASHBOARD -->
+<section class="dash-sec" id="progress">
+  <div class="dash-inner">
+    <div class="lu-sec-hdr reveal">
+      <div class="lu-sec-label" data-te="మీ పురోగతి" data-en="Your Progress">Your Progress</div>
+      <h2 class="lu-sec-title" data-te="మీ <span>నమాజ్ పురోగతి</span>" data-en="Your <span>Salah Progress</span>">Your <span>Salah Progress</span></h2>
+      <p class="lu-sec-subtitle" data-te="మీ పూర్తి చేసిన పాఠాలు, నమాజ్ వరుస మరియు ప్రావీణ్య స్థాయిని ట్రాక్ చేయండి. ప్రతి స్థాయిని ‘పూర్తి’గా గుర్తించి ముందుకు సాగండి." data-en="Track your completed lessons, Salah streak, and mastery level. Mark each level complete to advance your journey.">Track your completed lessons, Salah streak, and mastery level. Mark each level complete to advance your journey.</p>
+    </div>
+    <div id="dash-body" class="reveal"><!-- rendered by JS --></div>
+  </div>
+</section>
+
+<!-- DAILY SALAH CHALLENGE -->
+<section class="ch-sec" id="challenge">
+  <div class="ch-inner">
+    <div class="ch-hdr reveal">
+      <div class="rm-label" data-te="రోజువారీ అలవాటు" data-en="Daily Habit">Daily Habit</div>
+      <h2 class="rm-title" data-te="నేటి <span>నమాజ్ సవాల్</span>" data-en="Today's <span>Salah Challenge</span>">Today's <span>Salah Challenge</span></h2>
+      <p class="rm-subtitle" data-te="చిన్న రోజువారీ లక్ష్యాలు. మీ వరుసను (స్ట్రీక్) నిర్మించండి, బ్యాడ్జ్‌లను సంపాదించండి మరియు మీ నమాజ్‌ను స్థిరం చేసుకోండి." data-en="Small daily goals. Build your streak, earn badges, and make your Salah consistent.">Small daily goals. Build your streak, earn badges, and make your Salah consistent.</p>
+    </div>
+    <div class="ch-grid reveal">
+      <!-- Checklist panel -->
+      <div class="ch-panel">
+        <div class="ch-panel-title">🗓️ <span data-te="నేటి లక్ష్యాలు" data-en="Today's Goals">Today's Goals</span></div>
+        <div class="ch-date" id="ch-date"></div>
+        <div class="ch-list" id="ch-list"><!-- rendered by JS --></div>
+        <div class="ch-progress-label">
+          <span data-te="పురోగతి" data-en="Progress">Progress</span>
+          <span><b id="ch-count">0</b> / 4</span>
+        </div>
+        <div class="ch-bar"><div class="ch-bar-fill" id="ch-bar-fill"></div></div>
+        <div class="ch-done-msg" id="ch-done-msg" data-te="✦ మాషా అల్లాహ్! నేటి సవాల్ పూర్తయింది — రేపు మళ్ళీ కలుద్దాం." data-en="✦ Masha'Allah! Today's challenge complete — see you tomorrow.">✦ Masha'Allah! Today's challenge complete — see you tomorrow.</div>
+      </div>
+      <!-- Streak + badges -->
+      <div class="ch-side">
+        <div class="ch-streak">
+          <div class="ch-streak-flame">🔥</div>
+          <div class="ch-streak-num" id="ch-streak-num">0</div>
+          <div class="ch-streak-label" data-te="రోజుల వరుస" data-en="Day Streak">Day Streak</div>
+          <div class="ch-streak-sub"><span data-te="మొత్తం పూర్తయిన రోజులు:" data-en="Total days completed:">Total days completed:</span> <b id="ch-total">0</b></div>
+        </div>
+        <div class="ch-badges">
+          <div class="ch-badges-title" data-te="విజయ బ్యాడ్జ్‌లు" data-en="Achievement Badges">Achievement Badges</div>
+          <div class="ch-badge-row" id="ch-badge-row"><!-- rendered by JS --></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dua of the day (Reflect) -->
+    <div class="ch-ayah reveal">
+      <div class="ch-ayah-label" data-te="నేటి దువా — ఆలోచించండి" data-en="Dua of the Day — Reflect">Dua of the Day — Reflect</div>
+      <span id="ch-ayah-ar" lang="ar" dir="rtl"></span>
+      <div id="ch-ayah-tr"></div>
+      <div id="ch-ayah-ref"></div>
+    </div>
+
+    <!-- Motivation -->
+    <div class="mot-card reveal">
+      <span class="mot-ic">💎</span>
+      <p class="mot-txt" id="mot-txt"></p>
+    </div>
+  </div>
+</section>
+
+<!-- SALAH KNOWLEDGE CENTER -->
+<section class="lu-sec why-sec" id="knowledge">
+  <div class="lu-sec-inner">
+    <div class="lu-sec-hdr reveal">
+      <div class="lu-sec-label" data-te="లోతుగా అన్వేషించండి" data-en="Explore Deeper">Explore Deeper</div>
+      <h2 class="lu-sec-title" data-te="నమాజ్ <span>జ్ఞాన కేంద్రం</span>" data-en="Salah <span>Knowledge Center</span>">Salah <span>Knowledge Center</span></h2>
+      <p class="lu-sec-subtitle" data-te="నమాజ్ ప్రాముఖ్యత, దాని ప్రయోజనాలు మరియు అది జీవితాన్ని ఎలా మారుస్తుందో అర్థం చేసుకోండి." data-en="Understand the importance of Salah, its benefits, and how it transforms life.">Understand the importance of Salah, its benefits, and how it transforms life.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <div class="why-icon">📜</div>
+        <h3 data-te="నమాజ్ ప్రాముఖ్యత" data-en="Importance of Salah">Importance of Salah</h3>
+        <p data-te="నమాజ్ ఇస్లాం స్తంభాలలో రెండవది మరియు ఈమాన్‌కు బాహ్య చిహ్నం — విశ్వాసం మరియు అవిశ్వాసం మధ్య సరిహద్దు." data-en="Salah is the second pillar of Islam and the outward sign of faith — the line between belief and disbelief.">Salah is the second pillar of Islam and the outward sign of faith — the line between belief and disbelief.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon">🌅</div>
+        <h3 data-te="రోజువారీ నమాజ్ ప్రయోజనాలు" data-en="Benefits of Daily Prayer">Benefits of Daily Prayer</h3>
+        <p data-te="ఐదు పూటల నమాజ్ పాపాలను కడిగేస్తుంది, రోజును క్రమబద్ధం చేస్తుంది మరియు ఈమాన్‌ను తాజాగా ఉంచుతుంది." data-en="The five daily prayers wash away sins, structure the day, and keep iman fresh and alive.">The five daily prayers wash away sins, structure the day, and keep iman fresh and alive.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon">🧘</div>
+        <h3 data-te="నమాజ్‌లో ఖుషూ" data-en="Khushu in Prayer">Khushu in Prayer</h3>
+        <p data-te="ఖుషూ అంటే హృదయపూర్వక ఏకాగ్రత మరియు వినయం. ఇది నమాజ్‌ను యాంత్రిక అలవాటు నుండి సజీవ సంభాషణగా మారుస్తుంది." data-en="Khushu is heartfelt focus and humility. It turns prayer from a mechanical habit into a living conversation.">Khushu is heartfelt focus and humility. It turns prayer from a mechanical habit into a living conversation.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon">🤝</div>
+        <h3 data-te="నమాజ్ & నైతికత" data-en="Salah and Character">Salah and Character</h3>
+        <p data-te="నిజమైన నమాజ్ చెడు, అశ్లీలత నుండి దూరం చేస్తుంది మరియు నిజాయితీ, దయ, వినయాన్ని పెంపొందిస్తుంది." data-en="True Salah restrains from evil and indecency, and nurtures honesty, kindness, and humility.">True Salah restrains from evil and indecency, and nurtures honesty, kindness, and humility.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon">🧠</div>
+        <h3 data-te="నమాజ్ & మానసిక శాంతి" data-en="Salah and Mental Peace">Salah and Mental Peace</h3>
+        <p data-te="రోజువారీ నమాజ్ ఆందోళనను తగ్గించి, హృదయానికి విశ్రాంతిని, మనసుకు స్థిరత్వాన్ని తెస్తుంది." data-en="Daily prayer eases anxiety and brings rest to the heart and steadiness to the mind.">Daily prayer eases anxiety and brings rest to the heart and steadiness to the mind.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon">⏰</div>
+        <h3 data-te="నమాజ్ & క్రమశిక్షణ" data-en="Salah and Discipline">Salah and Discipline</h3>
+        <p data-te="నిర్దిష్ట సమయాల్లో ఐదుసార్లు నిలబడటం జీవితంలో సమయపాలన మరియు ఆత్మనియంత్రణను నేర్పుతుంది." data-en="Standing five times at fixed hours trains time-keeping and self-control across all of life.">Standing five times at fixed hours trains time-keeping and self-control across all of life.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon">🌙</div>
+        <h3 data-te="రోజువారీ జీవితంలో నమాజ్" data-en="Prayer in Daily Life">Prayer in Daily Life</h3>
+        <p data-te="నమాజ్ రోజును ఐదు విరామాలుగా విభజిస్తుంది — ప్రతిసారి అల్లాహ్ వైపు తిరిగి, తాజా శక్తి, స్పష్టతతో ముందుకు సాగుతాం." data-en="Salah breaks the day into five pauses — each a return to Allah that brings renewed energy and clarity.">Salah breaks the day into five pauses — each a return to Allah that brings renewed energy and clarity.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon">🪜</div>
+        <h3 data-te="నమాజ్‌లో స్థిరత్వం పెంపొందించడం" data-en="Building Consistency in Salah">Building Consistency in Salah</h3>
+        <p data-te="చిన్న, స్థిరమైన అడుగులతో అలవాటు పెంచుకోండి — ఒక్క నమాజ్‌ను కూడా వదలకుండా, వరుసను నిర్మించుకోండి." data-en="Build the habit with small, steady steps — never miss a prayer and build your streak day by day.">Build the habit with small, steady steps — never miss a prayer and build your streak day by day.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ALL ISLAMIC LEARNING MODULES -->
+<section class="coming-sec" id="coming">
+  <div class="coming-inner">
+    <div class="lu-sec-hdr reveal">
+      <div class="lu-sec-label" data-te="జ్ఞాన కేంద్రం" data-en="Knowledge Center">Knowledge Center</div>
+      <h2 class="lu-sec-title" data-te="మొత్తం <span>ఇస్లామిక్ నేర్చుకునే విభాగాలు</span>" data-en="All <span>Islamic Learning Modules</span>">All <span>Islamic Learning Modules</span></h2>
+      <p class="lu-sec-subtitle" data-te="ఇస్లామిక్ ఫ్రంట్ జ్ఞాన కేంద్రంలో అందుబాటులో ఉన్న మరియు త్వరలో వచ్చే అన్ని విభాగాలు." data-en="All modules available and coming soon in the Islamic Front Knowledge Center.">All modules available and coming soon in the Islamic Front Knowledge Center.</p>
+    </div>
+    <div class="coming-grid">
+      <div class="cm-card live reveal">
+        <div class="cm-icon">🌙</div>
+        <div class="cm-body">
+          <h4 data-te="నమాజ్ నేర్చుకోండి" data-en="Learn Salah">Learn Salah</h4>
+          <p data-te="నమాజ్ దశలు, దువాలు మరియు షరతులు" data-en="Prayer steps, duas, and conditions">Prayer steps, duas, and conditions</p>
+          <span class="cm-badge avail" data-te="మీరు ఇక్కడ ఉన్నారు ✦" data-en="You Are Here ✦">You Are Here ✦</span>
+        </div>
+      </div>
+      <a class="cm-card live reveal" href="../learn-quran/index.html">
+        <div class="cm-icon ar" lang="ar" dir="rtl" style="font-size:1.1rem">قرآن</div>
+        <div class="cm-body">
+          <h4 data-te="ఖురాన్ నేర్చుకోండి" data-en="Learn Quran">Learn Quran</h4>
+          <p data-te="పఠనం, తజ్వీద్, హిఫ్జ్ మరియు తఫ్సీర్" data-en="Reading, Tajweed, Hifz, and Tafseer">Reading, Tajweed, Hifz, and Tafseer</p>
+          <span class="cm-badge avail" data-te="అందుబాటు" data-en="Available Now">Available Now</span>
+        </div>
+      </a>
+      <a class="cm-card live reveal" href="../learn-arabic/index.html">
+        <div class="cm-icon ar" lang="ar" dir="rtl">ع</div>
+        <div class="cm-body">
+          <h4 data-te="అరబిక్ నేర్చుకోండి" data-en="Learn Arabic">Learn Arabic</h4>
+          <p data-te="అక్షరమాల నుండి ఖురానీ అరబిక్ వరకు" data-en="From alphabet to Quranic Arabic">From alphabet to Quranic Arabic</p>
+          <span class="cm-badge avail" data-te="అందుబాటు" data-en="Available Now">Available Now</span>
+        </div>
+      </a>
+      <a class="cm-card live reveal" href="../learn-urdu/index.html">
+        <div class="cm-icon ar" lang="ur" dir="rtl" style="font-family:'Noto Nastaliq Urdu','Amiri',serif;font-size:1.1rem">اردو</div>
+        <div class="cm-body">
+          <h4 data-te="ఉర్దూ నేర్చుకోండి" data-en="Learn Urdu">Learn Urdu</h4>
+          <p data-te="నస్తాలీఖ్ లిపి నుండి ఇస్లామిక్ ఉర్దూ సాహిత్యం వరకు" data-en="Nastaliq script to Islamic Urdu literature">Nastaliq script to Islamic Urdu literature</p>
+          <span class="cm-badge avail" data-te="అందుబాటు" data-en="Available Now">Available Now</span>
+        </div>
+      </a>
+      <a class="cm-card live reveal" href="../seerah/index.html">
+        <div class="cm-icon">📖</div>
+        <div class="cm-body">
+          <h4 data-te="సీరా" data-en="Seerah">Seerah</h4>
+          <p data-te="ప్రవక్త జీవితం ﷺ" data-en="Life of the Prophet ﷺ">Life of the Prophet ﷺ</p>
+          <span class="cm-badge avail" data-te="అందుబాటు" data-en="Available Now">Available Now</span>
+        </div>
+      </a>
+      <a class="cm-card live reveal" href="../islamic-history/index.html">
+        <div class="cm-icon">🏛️</div>
+        <div class="cm-body">
+          <h4 data-te="ఇస్లామిక్ చరిత్ర" data-en="Islamic History">Islamic History</h4>
+          <p data-te="ఖిలాఫత్ నుండి ఆధునిక కాలం వరకు" data-en="From Caliphate to modern era">From Caliphate to modern era</p>
+          <span class="cm-badge avail" data-te="అందుబాటు" data-en="Available Now">Available Now</span>
+        </div>
+      </a>
+      <a class="cm-card live reveal" href="../kids-islam/index.html">
+        <div class="cm-icon">🌟</div>
+        <div class="cm-body">
+          <h4 data-te="పిల్లల ఇస్లాం" data-en="Kids' Islam">Kids' Islam</h4>
+          <p data-te="పిల్లలకు ఇస్లామిక్ విద్య" data-en="Islamic education for children">Islamic education for children</p>
+          <span class="cm-badge avail" data-te="అందుబాటు" data-en="Available Now">Available Now</span>
+        </div>
+      </a>
+      <div class="cm-card dim reveal">
+        <div class="cm-icon">🤲</div>
+        <div class="cm-body">
+          <h4 data-te="దువాలు & అజ్కార్" data-en="Duas &amp; Adhkar">Duas &amp; Adhkar</h4>
+          <p data-te="రోజువారీ దువాలు మరియు స్మరణలు" data-en="Daily supplications and remembrance">Daily supplications and remembrance</p>
+          <span class="cm-badge soon" data-te="త్వరలో" data-en="Coming Soon">Coming Soon</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="lu-footer">
+  <span class="lu-footer-brand" lang="ar" dir="rtl">الصَّلَاة</span>
+  <p class="lu-footer-tag" data-te="ఇస్లామిక్ ఫ్రంట్ జ్ఞాన కేంద్రం" data-en="Islamic Front Knowledge Center">Islamic Front Knowledge Center</p>
+  <div class="lu-footer-links">
+    <a href="../../index.html" data-te="← హోమ్" data-en="← Home">← Home</a>
+    <a href="../../islamic-knowledge.html" data-te="జ్ఞాన కేంద్రం" data-en="Knowledge Center">Knowledge Center</a>
+    <a href="../learn-quran/index.html" data-te="ఖురాన్ నేర్చుకోండి" data-en="Learn Quran">Learn Quran</a>
+    <a href="../learn-arabic/index.html" data-te="అరబిక్ నేర్చుకోండి" data-en="Learn Arabic">Learn Arabic</a>
+    <a href="../learn-urdu/index.html" data-te="ఉర్దూ నేర్చుకోండి" data-en="Learn Urdu">Learn Urdu</a>
+  </div>
+  <p class="lu-footer-copy" data-te="© 2025 ఇస్లామిక్ ఫ్రంట్, మంగళగిరి. సర్వహక్కులు సురక్షితం." data-en="© 2025 Islamic Front, Mangalagiri. All rights reserved.">© 2025 Islamic Front, Mangalagiri. All rights reserved.</p>
+</footer>
+
+<button id="btt" onclick="scrollTo({top:0,behavior:'smooth'})" title="Back to top" aria-label="Back to top">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+
+<script>
+(function(){
+'use strict';
+
+/* ── INTERACTIVE SALAH GUIDE ── */
+var PRAYERS=[
+  {ar:'الفجر',en:'Fajr',en_m:'Dawn Prayer',te_m:'ప్రాతఃకాల నమాజ్',
+   rk_en:'2 Sunnah + 2 Fard',rk_te:'2 సున్నత్ + 2 ఫర్జ్',
+   tm_en:'Dawn → sunrise',tm_te:'తెల్లవారుజాము → సూర్యోదయం',
+   en_v:'The first prayer of the day; witnessed by the angels and a light for the believer.',te_v:'రోజులో మొదటి నమాజ్; దైవదూతలు దీనికి సాక్షులు, విశ్వాసికి వెలుగు.'},
+  {ar:'الظهر',en:'Dhuhr',en_m:'Midday Prayer',te_m:'మధ్యాహ్న నమాజ్',
+   rk_en:'4 Sunnah + 4 Fard + 2 Sunnah',rk_te:'4 సున్నత్ + 4 ఫర్జ్ + 2 సున్నత్',
+   tm_en:'After midday',tm_te:'మధ్యాహ్నం తర్వాత',
+   en_v:'Prayed when the sun passes its zenith; a pause of remembrance in a busy day.',te_v:'సూర్యుడు నడినెత్తి దాటాక చేసే నమాజ్; బిజీ రోజులో అల్లాహ్ స్మరణ విరామం.'},
+  {ar:'العصر',en:'Asr',en_m:'Afternoon Prayer',te_m:'సాయంకాల నమాజ్',
+   rk_en:'4 Sunnah + 4 Fard',rk_te:'4 సున్నత్ + 4 ఫర్జ్',
+   tm_en:'Late afternoon',tm_te:'మధ్యాహ్నం వేళ',
+   en_v:'The “middle prayer” specially emphasised; guard it carefully before sunset.',te_v:'ప్రత్యేకంగా నొక్కిచెప్పబడిన “మధ్య నమాజ్”; సూర్యాస్తమయానికి ముందు దీన్ని కాపాడండి.'},
+  {ar:'المغرب',en:'Maghrib',en_m:'Sunset Prayer',te_m:'సూర్యాస్తమయ నమాజ్',
+   rk_en:'3 Fard + 2 Sunnah',rk_te:'3 ఫర్జ్ + 2 సున్నత్',
+   tm_en:'Just after sunset',tm_te:'సూర్యాస్తమయం తర్వాత',
+   en_v:'Prayed soon after sunset; its time is short, so hasten to it.',te_v:'సూర్యాస్తమయం వెంటనే చేసే నమాజ్; దీని సమయం తక్కువ, కాబట్టి త్వరపడండి.'},
+  {ar:'العشاء',en:'Isha',en_m:'Night Prayer',te_m:'రాత్రి నమాజ్',
+   rk_en:'4 Sunnah + 4 Fard + 2 Sunnah + Witr',rk_te:'4 సున్నత్ + 4 ఫర్జ్ + 2 సున్నత్ + విత్ర్',
+   tm_en:'Night until before Fajr',tm_te:'రాత్రి నుండి ఫజ్ర్‌కు ముందు వరకు',
+   en_v:'The last obligatory prayer; praying it in congregation is like praying half the night.',te_v:'చివరి ఫర్జ్ నమాజ్; దీన్ని జమాఅత్‌లో చేయడం అర్ధరాత్రి నమాజ్‌తో సమానం.'},
+  {ar:'الوتر',en:'Witr',en_m:'Odd Prayer',te_m:'బేసి నమాజ్',
+   rk_en:'1 / 3 Rakats',rk_te:'1 / 3 రకాతులు',
+   tm_en:'After Isha → before Fajr',tm_te:'ఇషా తర్వాత → ఫజ్ర్‌కు ముందు',
+   en_v:'A strongly emphasised sunnah that seals the night with an odd number of units.',te_v:'రాత్రిని బేసి సంఖ్య రకాతులతో ముగించే అత్యంత ప్రాముఖ్యత గల సున్నత్.'},
+  {ar:'الجمعة',en:"Jumu'ah",en_m:'Friday Prayer',te_m:'శుక్రవార నమాజ్',
+   rk_en:'Khutbah + 2 Fard',rk_te:'ఖుత్బా + 2 ఫర్జ్',
+   tm_en:'Friday, replaces Dhuhr',tm_te:'శుక్రవారం, జుహ్ర్ స్థానంలో',
+   en_v:'The weekly congregation with a sermon (khutbah); obligatory on men in jama‘ah.',te_v:'ప్రసంగం (ఖుత్బా)తో కూడిన వారపు సామూహిక నమాజ్; పురుషులపై జమాఅత్‌లో విధి.'},
+  {ar:'العيد',en:'Eid Salah',en_m:'Festival Prayer',te_m:'పండుగ నమాజ్',
+   rk_en:'2 Rakats + extra Takbirs',rk_te:'2 రకాతులు + అదనపు తక్బీర్లు',
+   tm_en:'Eid mornings',tm_te:'ఈద్ ఉదయాలు',
+   en_v:'Prayed on the two Eids with extra takbirs and a sermon; a gathering of joy and gratitude.',te_v:'రెండు ఈద్‌లలో అదనపు తక్బీర్లు, ప్రసంగంతో చేసే నమాజ్; ఆనందం, కృతజ్ఞత కలయిక.'}
+];
+
+/* ── DUA OF THE DAY ── */
+var DUAS=[
+  {ar:'رَبِّ اجْعَلْنِي مُقِيمَ الصَّلَاةِ',ref:'Ibrahim 14:40',en:'My Lord, make me an establisher of prayer.',te:'నా ప్రభూ, నన్ను నమాజ్‌ను స్థాపించేవానిగా చేయి.'},
+  {ar:'إِنَّ الصَّلَاةَ تَنْهَىٰ عَنِ الْفَحْشَاءِ وَالْمُنكَرِ',ref:'Al-Ankabut 29:45',en:'Indeed, prayer restrains from immorality and wrongdoing.',te:'నిశ్చయంగా, నమాజ్ అశ్లీలత మరియు చెడు నుండి ఆపుతుంది.'},
+  {ar:'اللَّهُمَّ أَعِنِّي عَلَىٰ ذِكْرِكَ وَشُكْرِكَ وَحُسْنِ عِبَادَتِكَ',ref:'Abu Dawud',en:'O Allah, help me to remember You, thank You, and worship You well.',te:'ఓ అల్లాహ్, నిన్ను స్మరించడంలో, కృతజ్ఞత చూపడంలో, చక్కగా ఆరాధించడంలో నాకు సహాయం చేయి.'},
+  {ar:'رَبِّ اشْرَحْ لِي صَدْرِي وَيَسِّرْ لِي أَمْرِي',ref:'Ta-Ha 20:25-26',en:'My Lord, expand my chest for me and ease my task.',te:'నా ప్రభూ, నా హృదయాన్ని విశాలం చేయి, నా పనిని సులభం చేయి.'},
+  {ar:'رَبَّنَا تَقَبَّلْ مِنَّا إِنَّكَ أَنتَ السَّمِيعُ الْعَلِيمُ',ref:'Al-Baqarah 2:127',en:'Our Lord, accept from us; indeed You are the Hearing, the Knowing.',te:'మా ప్రభూ, మా నుండి స్వీకరించు; నిశ్చయంగా నీవే వినేవాడవు, తెలిసేవాడవు.'},
+  {ar:'حَيَّ عَلَى الصَّلَاةِ حَيَّ عَلَى الْفَلَاحِ',ref:'Adhan',en:'Come to prayer; come to success.',te:'నమాజ్ వైపు రండి; సాఫల్యం వైపు రండి.'},
+  {ar:'سُبْحَانَ اللَّهِ وَبِحَمْدِهِ سُبْحَانَ اللَّهِ الْعَظِيمِ',ref:'Hadith (Bukhari)',en:'Glory and praise to Allah; glory to Allah the Most Great.',te:'అల్లాహ్ పరిశుద్ధుడు, ఆయన స్తోత్రంతో; మహోన్నతుడైన అల్లాహ్ పరిశుద్ధుడు.'}
+];
+
+/* ── MOTIVATION ── */
+var MOTS=[
+  {en:'"The first thing the servant will be called to account for on the Day of Judgement is the prayer." — Prophet Muhammad ﷺ (Tirmidhi)',te:'"ప్రళయదినాన బానిస నుండి మొదట లెక్క అడిగేది నమాజ్ గురించే." — ప్రవక్త ముహమ్మద్ ﷺ (తిర్మిజీ)'},
+  {en:'"The coolness of my eyes has been placed in prayer." — Prophet Muhammad ﷺ (Nasa\'i)',te:'"నా కంటి చల్లదనం నమాజ్‌లో ఉంచబడింది." — ప్రవక్త ముహమ్మద్ ﷺ (నసాయీ)'},
+  {en:'"Prayer is the pillar of the religion: whoever establishes it has upheld the religion." — Islamic teaching',te:'"నమాజ్ ధర్మానికి స్తంభం: దానిని స్థాపించినవాడు ధర్మాన్ని నిలబెట్టాడు." — ఇస్లామిక్ బోధన'},
+  {en:'"A little that is consistent is better than a lot that is interrupted." — Islamic wisdom on daily habits.',te:'"నిరంతరం కొంచెం చేయడం, అడపాదడపా ఎక్కువ చేయడం కంటే మేలు." — రోజువారీ అలవాట్లపై ఇస్లామిక్ వివేకం.'}
+];
+
+/* ── DAILY CHALLENGE ── */
+var CH_KEY='if-salah-challenge';
+var CH_ITEMS=[
+  {ic:'🕌',en:'Pray all 5 prayers',te:'ఐదు నమాజులు చేయండి'},
+  {ic:'🤲',en:'Learn 1 Dua',te:'1 దువా నేర్చుకోండి'},
+  {ic:'📿',en:'Revise 1 Salah step',te:'1 నమాజ్ దశను మననం చేయండి'},
+  {ic:'💚',en:'Improve Khushu (focus)',te:'ఖుషూ (ఏకాగ్రత) మెరుగుపరచుకోండి'}
+];
+var BADGES=[
+  {type:'streak',n:1,ic:'🌱',en:'First Step',te:'మొదటి అడుగు'},
+  {type:'streak',n:3,ic:'🔥',en:'3-Day Streak',te:'3-రోజుల వరుస'},
+  {type:'streak',n:7,ic:'⭐',en:'7-Day Streak',te:'7-రోజుల వరుస'},
+  {type:'lessons',n:3,ic:'🎓',en:'Salah Student',te:'నమాజ్ విద్యార్థి'},
+  {type:'lessons',n:6,ic:'🕌',en:'Salah Devotee',te:'నమాజ్ నిష్ఠాపరుడు'},
+  {type:'streak',n:30,ic:'🏆',en:'Salah Master',te:'నమాజ్ మాస్టర్'}
+];
+
+/* ── SALAH SIMULATOR DATA ── */
+var POSTURES={
+  standing:'<svg viewBox="0 0 100 150" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="50" cy="18" r="11"/><path d="M50 29 V96"/><path d="M50 46 C40 54 38 70 47 76 M50 46 C60 54 62 70 53 76"/><path d="M50 96 L41 138 M50 96 L59 138"/><line x1="22" y1="140" x2="78" y2="140" stroke-width="2.2" opacity=".6"/></svg>',
+  bowing:'<svg viewBox="0 0 130 130" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="98" cy="40" r="10"/><path d="M90 46 L34 58"/><path d="M34 58 L31 112 M40 57 L48 112"/><path d="M64 53 L70 88"/><line x1="16" y1="116" x2="116" y2="116" stroke-width="2.2" opacity=".6"/></svg>',
+  prostration:'<svg viewBox="0 0 150 100" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="30" cy="62" r="9"/><path d="M39 60 L96 40"/><path d="M96 40 L100 80 M104 42 L112 80"/><path d="M44 62 L74 80"/><line x1="14" y1="84" x2="134" y2="84" stroke-width="2.2" opacity=".6"/></svg>',
+  sitting:'<svg viewBox="0 0 120 130" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="58" cy="22" r="10"/><path d="M58 32 V74"/><path d="M58 74 L30 92 L74 92"/><path d="M58 48 L80 72"/><line x1="20" y1="96" x2="100" y2="96" stroke-width="2.2" opacity=".6"/></svg>'
+};
+var SIM_STEPS=[
+  {posture:'standing',ar_name:'التكبير',name_en:'Takbiratul-Ihram',name_te:'తక్బీరతుల్-ఇహ్రామ్',
+   pos_en:'Standing · raise hands to the ears',pos_te:'నిలబడి · చేతులు చెవుల వరకు ఎత్తి',
+   do_en:'Make the intention (niyyah) in your heart, raise both hands to your ears, then fold the right hand over the left.',do_te:'మనసులో సంకల్పం (నియ్యత్) చేసి, రెండు చేతులను చెవుల వరకు ఎత్తి, కుడిచేతిని ఎడమచేతిపై ఉంచండి.',
+   say_ar:'اللَّهُ أَكْبَر',say_tr:'Allāhu Akbar',
+   mean_en:'“Allah is the Greatest” — the prayer begins with this Takbir.',mean_te:'“అల్లాహ్ అందరికంటే గొప్పవాడు” — ఈ తక్బీర్‌తో నమాజ్ ప్రారంభమవుతుంది.',
+   mis_en:'Forgetting the niyyah, or starting to recite before saying the Takbir.',mis_te:'నియ్యత్ మరచిపోవడం, లేదా తక్బీర్ చెప్పకముందే పఠించడం ప్రారంభించడం.'},
+  {posture:'standing',ar_name:'القيام',name_en:'Qiyam (Standing)',name_te:'ఖియామ్ (నిలబడటం)',
+   pos_en:'Standing · recite Thana then Al-Fatihah',pos_te:'నిలబడి · సనా తర్వాత ఫాతిహా పఠించండి',
+   do_en:'Stand with the right hand over the left, gaze at the place of prostration, recite the opening dua (Thana) then Surah Al-Fatihah.',do_te:'కుడిచేతిని ఎడమచేతిపై ఉంచి, చూపును సజ్దా స్థానంపై ఉంచి, తెరిచే దువా (సనా) తర్వాత సూరా ఫాతిహా పఠించండి.',
+   say_ar:'سُبْحَانَكَ اللَّهُمَّ وَبِحَمْدِكَ … الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ',say_tr:'Subḥānaka Allāhumma … Al-ḥamdu lillāhi rabbil-ʿālamīn',
+   mean_en:'“Glory be to You, O Allah …” then “All praise is for Allah, Lord of all worlds.” Al-Fatihah is recited in every unit.',mean_te:'“ఓ అల్లాహ్, నీవు పరిశుద్ధుడవు …” తర్వాత “సర్వలోక ప్రభువైన అల్లాహ్‌కే సర్వస్తోత్రాలు.” ప్రతి రకాత్‌లో ఫాతిహా చదవాలి.',
+   mis_en:'Skipping Al-Fatihah, or reciting it so fast the words run together.',mis_te:'ఫాతిహాను వదిలేయడం, లేదా పదాలు కలిసిపోయేంత వేగంగా చదవడం.'},
+  {posture:'bowing',ar_name:'الركوع',name_en:'Ruku (Bowing)',name_te:'రుకూ (వంగడం)',
+   pos_en:'Bowing · back level, hands on the knees',pos_te:'వంగి · వీపు సమంగా, చేతులు మోకాళ్లపై',
+   do_en:'Bow with a straight, level back, grasp the knees with the fingers spread, and stay still while reciting three times.',do_te:'వీపును సమంగా చేసి వంగి, వేళ్లు విప్పి మోకాళ్లను పట్టుకుని, మూడుసార్లు పఠిస్తూ స్థిరంగా ఉండండి.',
+   say_ar:'سُبْحَانَ رَبِّيَ الْعَظِيم',say_tr:'Subḥāna Rabbiyal-ʿAẓīm',
+   mean_en:'“Glory to my Lord, the Most Great” — said three times.',mean_te:'“నా ప్రభువు మహోన్నతుడు, ఆయన పరిశుద్ధుడు” — మూడుసార్లు చెప్పాలి.',
+   mis_en:'Not keeping the back level, or rising before the body settles (no stillness).',mis_te:'వీపును సమంగా ఉంచకపోవడం, లేదా శరీరం స్థిరపడకముందే లేవడం (తుమానీనా లేకపోవడం).'},
+  {posture:'standing',ar_name:'القومة',name_en:'Qawmah (Rising)',name_te:'ఖౌమా (లేవడం)',
+   pos_en:'Standing upright after the bow',pos_te:'రుకూ తర్వాత నిటారుగా నిలబడి',
+   do_en:'Rise from ruku and stand completely upright and still, letting every limb settle before going into prostration.',do_te:'రుకూ నుండి లేచి పూర్తిగా నిటారుగా, స్థిరంగా నిలబడి, సజ్దాకు వెళ్లకముందు ప్రతి అవయవం స్థిరపడనివ్వండి.',
+   say_ar:'سَمِعَ اللَّهُ لِمَنْ حَمِدَهُ · رَبَّنَا لَكَ الْحَمْد',say_tr:'Samiʿa-llāhu liman ḥamidah · Rabbanā laka-l-ḥamd',
+   mean_en:'“Allah hears the one who praises Him · Our Lord, to You is all praise.”',mean_te:'“తనను స్తుతించినవాని మాట అల్లాహ్ వింటాడు · మా ప్రభూ, నీకే సర్వస్తోత్రాలు.”',
+   mis_en:'Going straight into sujood without standing fully upright first.',mis_te:'పూర్తిగా నిటారుగా నిలబడకుండా నేరుగా సజ్దాలోకి వెళ్లడం.'},
+  {posture:'prostration',ar_name:'السجود',name_en:'Sujood (Prostration)',name_te:'సజ్దా (సాష్టాంగం)',
+   pos_en:'Prostrating · seven limbs on the ground',pos_te:'సాష్టాంగం · ఏడు అవయవాలు నేలపై',
+   do_en:'Place forehead, nose, both palms, both knees, and the toes of both feet on the ground; keep the elbows raised off the floor.',do_te:'నుదురు, ముక్కు, రెండు అరచేతులు, రెండు మోకాళ్లు, రెండు కాళ్ల వేళ్లను నేలపై ఉంచండి; మోచేతులను నేలపై ఆనించవద్దు.',
+   say_ar:'سُبْحَانَ رَبِّيَ الْأَعْلَى',say_tr:'Subḥāna Rabbiyal-Aʿlā',
+   mean_en:'“Glory to my Lord, the Most High” — three times; the closest a servant is to Allah.',mean_te:'“నా ప్రభువు అత్యున్నతుడు, ఆయన పరిశుద్ధుడు” — మూడుసార్లు; బానిస అల్లాహ్‌కు అత్యంత దగ్గరగా ఉండే స్థానం.',
+   mis_en:'Resting the elbows on the floor, or not letting all seven limbs touch the ground.',mis_te:'మోచేతులను నేలపై ఆనించడం, లేదా ఏడు అవయవాలు నేలను తాకకపోవడం.'},
+  {posture:'sitting',ar_name:'الجلسة',name_en:'Jalsa (Sitting)',name_te:'జల్సా (కూర్చోవడం)',
+   pos_en:'Sitting calmly between the two prostrations',pos_te:'రెండు సజ్దాల మధ్య ప్రశాంతంగా కూర్చొని',
+   do_en:'Sit upright on the left foot with the right foot upright, hands on the thighs, and pause calmly before the second prostration.',do_te:'ఎడమ పాదంపై నిటారుగా కూర్చొని, కుడి పాదాన్ని నిలబెట్టి, చేతులు తొడలపై ఉంచి, రెండవ సజ్దాకు ముందు ప్రశాంతంగా ఆగండి.',
+   say_ar:'رَبِّ اغْفِرْ لِي',say_tr:'Rabbighfir lī',
+   mean_en:'“My Lord, forgive me” — then make the second prostration.',mean_te:'“నా ప్రభూ, నన్ను క్షమించు” — తర్వాత రెండవ సజ్దా చేయండి.',
+   mis_en:'Rushing the sitting without settling, or rising before saying the dua.',mis_te:'స్థిరపడకుండా తొందరగా కూర్చోవడం, లేదా దువా చెప్పకముందే లేవడం.'},
+  {posture:'prostration',ar_name:'السجدة الثانية',name_en:'Second Sujood',name_te:'రెండవ సజ్దా',
+   pos_en:'Prostrating again · seven limbs on the ground',pos_te:'మళ్ళీ సాష్టాంగం · ఏడు అవయవాలు నేలపై',
+   do_en:'Make the second prostration exactly like the first, with stillness, completing one full rakat.',do_te:'మొదటి సజ్దాలాగే రెండవ సజ్దాను స్థిరత్వంతో చేసి, ఒక పూర్తి రకాత్‌ను ముగించండి.',
+   say_ar:'سُبْحَانَ رَبِّيَ الْأَعْلَى',say_tr:'Subḥāna Rabbiyal-Aʿlā',
+   mean_en:'“Glory to my Lord, the Most High” — three times; this completes one full unit (rakat).',mean_te:'“నా ప్రభువు అత్యున్నతుడు, ఆయన పరిశుద్ధుడు” — మూడుసార్లు; దీనితో ఒక పూర్తి రకాత్ ముగుస్తుంది.',
+   mis_en:'Skipping the stillness, treating the second sujood as less important than the first.',mis_te:'స్థిరత్వాన్ని వదిలేయడం, రెండవ సజ్దాను మొదటిదాని కంటే తక్కువగా భావించడం.'},
+  {posture:'sitting',ar_name:'التشهد',name_en:'Tashahhud',name_te:'తషహ్హుద్',
+   pos_en:'Sitting · raise the index finger at the Shahadah',pos_te:'కూర్చొని · షహాదత్ వద్ద చూపుడు వేలును ఎత్తి',
+   do_en:'Sit as in Jalsa and recite the Tashahhud; raise the right index finger when bearing witness, then send salutations on the Prophet ﷺ.',do_te:'జల్సాలోలా కూర్చొని తషహ్హుద్ పఠించండి; సాక్ష్యం చెప్పేటప్పుడు కుడి చూపుడు వేలును ఎత్తి, తర్వాత ప్రవక్త ﷺ పై దురూద్ పంపండి.',
+   say_ar:'التَّحِيَّاتُ لِلَّهِ وَالصَّلَوَاتُ وَالطَّيِّبَاتُ',say_tr:'At-taḥiyyātu lillāhi waṣ-ṣalawātu waṭ-ṭayyibāt',
+   mean_en:'“All greetings, prayers and good things are for Allah” — followed by salutations on the Prophet ﷺ.',mean_te:'“అన్ని వందనాలు, నమాజులు మరియు మంచి విషయాలు అల్లాహ్‌కే” — తర్వాత ప్రవక్త ﷺ పై దురూద్.',
+   mis_en:'Moving the finger constantly, or reciting the Tashahhud out loud when it should be quiet.',mis_te:'వేలును నిరంతరం కదిలించడం, లేదా నెమ్మదిగా చదవాల్సిన తషహ్హుద్‌ను బిగ్గరగా చదవడం.'},
+  {posture:'sitting',ar_name:'السلام',name_en:'Salam (Closing)',name_te:'సలామ్ (ముగింపు)',
+   pos_en:'Sitting · turn the head right, then left',pos_te:'కూర్చొని · తలను కుడివైపు, తర్వాత ఎడమవైపు తిప్పి',
+   do_en:'Turn the head to the right saying the Salam, then to the left repeating it — this ends the prayer.',do_te:'తలను కుడివైపుకు తిప్పి సలామ్ చెప్పి, తర్వాత ఎడమవైపుకు తిప్పి మళ్ళీ చెప్పండి — దీనితో నమాజ్ ముగుస్తుంది.',
+   say_ar:'السَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللَّه',say_tr:'As-salāmu ʿalaykum wa raḥmatullāh',
+   mean_en:'“Peace and mercy of Allah be upon you” — said to both sides to complete the prayer.',mean_te:'“మీపై శాంతి మరియు అల్లాహ్ కరుణ కురియుగాక” — నమాజ్ ముగించడానికి రెండు వైపులా చెప్పాలి.',
+   mis_en:'Rushing the Salam or turning the head only once instead of to both sides.',mis_te:'సలామ్‌ను తొందరగా చెప్పడం, లేదా రెండు వైపుల బదులు ఒకసారే తల తిప్పడం.'}
+];
+var SIM_I=0;
+
+/* ── PROGRESS STORAGE ── */
+var PROG_KEY='if-salah-progress';
+function loadProg(){ try{ var p=JSON.parse(localStorage.getItem(PROG_KEY))||{}; if(!Array.isArray(p.levels))p.levels=[]; if(typeof p.sim!=='boolean')p.sim=false; return p; }catch(e){ return {levels:[],sim:false}; } }
+function saveProg(p){ try{ localStorage.setItem(PROG_KEY,JSON.stringify(p)); }catch(e){} }
+
+/* ── TOAST ── */
+var TOAST_T;
+function showToast(msg){
+  var t=document.getElementById('sim-toast');
+  if(!t){ t=document.createElement('div'); t.id='sim-toast'; t.className='sim-toast'; t.setAttribute('role','status'); document.body.appendChild(t); }
+  t.textContent=msg; t.classList.add('show');
+  clearTimeout(TOAST_T); TOAST_T=setTimeout(function(){ t.classList.remove('show'); },2600);
+}
+function simToast(kind){
+  var msg=(LANG==='te')
+    ?(kind==='audio'?'🔊 ఆడియో పఠనం త్వరలో వస్తుంది':'🎬 వీడియో మార్గదర్శిని త్వరలో వస్తుంది')
+    :(kind==='audio'?'🔊 Audio recitation coming soon':'🎬 Video guide coming soon');
+  showToast(msg);
+}
+
+/* ── RENDER SIMULATOR ── */
+var WUDUSTEPS=[
+  {ic:'💭',c:'#1a5c30',t_en:'Intention & Bismillah',t_te:'సంకల్పం & బిస్మిల్లాహ్',d_en:'Form the intention in your heart to purify yourself for worship, then say Bismillah.',d_te:'ఆరాధన కోసం పరిశుద్ధులు కావాలని హృదయంలో సంకల్పించి, బిస్మిల్లాహ్ అనండి.'},
+  {ic:'🤲',c:'#2e8b57',t_en:'Wash the Hands',t_te:'చేతులు కడగడం',d_en:'Wash both hands up to the wrists three times, passing water between the fingers.',d_te:'రెండు చేతులను మణికట్ల వరకు, వేళ్ల మధ్యకు నీరు చేరేలా మూడుసార్లు కడగండి.'},
+  {ic:'💧',c:'#c8922a',t_en:'Rinse the Mouth',t_te:'నోరు పుక్కిలించడం',d_en:'Rinse the mouth thoroughly three times.',d_te:'నోటిని మూడుసార్లు బాగా పుక్కిలించండి.'},
+  {ic:'👃',c:'#0d3b1e',t_en:'Clean the Nose',t_te:'ముక్కు శుభ్రం చేయడం',d_en:'Sniff water into the nose and blow it out, three times.',d_te:'ముక్కులోకి నీటిని పీల్చి బయటకు వదలండి — మూడుసార్లు.'},
+  {ic:'😊',c:'#1a5c30',t_en:'Wash the Face',t_te:'ముఖం కడగడం',d_en:'Wash the whole face three times, from hairline to chin and ear to ear.',d_te:'జుట్టు అంచు నుండి గడ్డం వరకు, చెవి నుండి చెవి వరకు మొత్తం ముఖాన్ని మూడుసార్లు కడగండి.'},
+  {ic:'💪',c:'#2e8b57',t_en:'Wash the Arms',t_te:'చేతులు (మోచేతుల వరకు)',d_en:'Wash each arm up to and including the elbow three times, right then left.',d_te:'ప్రతి చేతిని మోచేయితో సహా మూడుసార్లు — కుడి, తర్వాత ఎడమ — కడగండి.'},
+  {ic:'👂',c:'#c8922a',t_en:'Wipe Head & Ears',t_te:'తల & చెవులు తుడవడం',d_en:'Wipe over the head once with wet hands, then wipe inside and outside of the ears.',d_te:'తడి చేతులతో తలను ఒకసారి తుడిచి, తర్వాత చెవుల లోపలి, వెలుపలి భాగాలను తుడవండి.'},
+  {ic:'🦶',c:'#0d3b1e',t_en:'Wash the Feet',t_te:'పాదాలు కడగడం',d_en:'Wash each foot up to and including the ankles three times, right then left. You are now ready to pray.',d_te:'ప్రతి పాదాన్ని చీలమండలతో సహా మూడుసార్లు — కుడి, తర్వాత ఎడమ — కడగండి. ఇప్పుడు మీరు నమాజ్‌కు సిద్ధం.'}
+];
+function renderWudu(){
+  var grid=document.getElementById('wudu-grid'); if(!grid) return;
+  grid.innerHTML=WUDUSTEPS.map(function(s,i){
+    var t=LANG==='te'?s.t_te:s.t_en;
+    var d=LANG==='te'?s.d_te:s.d_en;
+    return '<div class="step-card reveal reveal-in" style="--dc:'+s.c+'">'
+      +'<span class="step-num">'+(i+1)+'</span>'
+      +'<span class="step-ic">'+s.ic+'</span>'
+      +'<div class="step-t">'+t+'</div>'
+      +'<div class="step-d">'+d+'</div>'
+    +'</div>';
+  }).join('');
+}
+function renderSimulator(){
+  var stage=document.getElementById('sim-stage'); if(!stage) return;
+  if(SIM_I<0)SIM_I=0; if(SIM_I>SIM_STEPS.length-1)SIM_I=SIM_STEPS.length-1;
+  var st=SIM_STEPS[SIM_I];
+  var last=SIM_I===SIM_STEPS.length-1;
+  var L=(LANG==='te')
+    ?{step:'దశ',of:'/',do:'ఏం చేయాలి',say:'ఏం చెప్పాలి',mistake:'సాధారణ తప్పు',audio:'ఆడియో',video:'వీడియో',illus:'భంగిమ దృష్టాంతం త్వరలో',prev:'వెనుకకు',next:'తదుపరి',finish:'పూర్తి చేయండి'}
+    :{step:'Step',of:'of',do:'What to do',say:'What to say',mistake:'Common mistake',audio:'Audio',video:'Video',illus:'Posture illustration coming soon',prev:'Back',next:'Next',finish:'Finish'};
+  var name=LANG==='te'?st.name_te:st.name_en;
+  var pos=LANG==='te'?st.pos_te:st.pos_en;
+  var doTxt=LANG==='te'?st.do_te:st.do_en;
+  var mean=LANG==='te'?st.mean_te:st.mean_en;
+  var mis=LANG==='te'?st.mis_te:st.mis_en;
+  var dots=SIM_STEPS.map(function(_,i){
+    var c=i===SIM_I?'active':(i<SIM_I?'seen':'');
+    return '<button type="button" class="sim-dot '+c+'" data-i="'+i+'" aria-label="'+L.step+' '+(i+1)+'"></button>';
+  }).join('');
+  stage.innerHTML=
+    '<div class="sim-dots">'+dots+'</div>'
+    +'<div class="sim-counter">'+L.step+' <b>'+(SIM_I+1)+'</b> '+L.of+' '+SIM_STEPS.length+'</div>'
+    +'<div class="sim-body">'
+      +'<div class="sim-figure">'+(POSTURES[st.posture]||POSTURES.standing)
+        +'<div class="sim-figure-label">'+L.illus+'</div>'
+        +'<div class="sim-media">'
+          +'<button type="button" data-media="audio">🔊 '+L.audio+'</button>'
+          +'<button type="button" data-media="video">🎬 '+L.video+'</button>'
+        +'</div>'
+      +'</div>'
+      +'<div class="sim-detail">'
+        +'<div class="sim-name">'+name+' <span lang="ar" dir="rtl" style="font-weight:400;color:var(--gold)">'+st.ar_name+'</span></div>'
+        +'<div class="sim-pos">'+pos+'</div>'
+        +'<div class="sim-do"><span class="sim-do-ic">🧭</span><div class="sim-do-txt"><strong>'+L.do+'</strong><p>'+doTxt+'</p></div></div>'
+        +'<div class="sim-say-label">'+L.say+'</div>'
+        +'<div class="sim-ar" lang="ar" dir="rtl">'+st.say_ar+'</div>'
+        +'<div class="sim-tr">'+st.say_tr+'</div>'
+        +'<div class="sim-mean">'+mean+'</div>'
+        +'<div class="sim-mistake"><span class="sim-mistake-ic">⚠️</span><p><b>'+L.mistake+': </b>'+mis+'</p></div>'
+      +'</div>'
+    +'</div>'
+    +'<div class="sim-nav">'
+      +'<button class="sim-btn" id="sim-prev"'+(SIM_I===0?' disabled':'')+'>← '+L.prev+'</button>'
+      +'<button class="sim-btn primary" id="sim-next">'+(last?'✓ '+L.finish:L.next+' →')+'</button>'
+    +'</div>';
+  stage.querySelectorAll('.sim-dot').forEach(function(d){ d.addEventListener('click',function(){ SIM_I=parseInt(d.getAttribute('data-i'),10); renderSimulator(); }); });
+  stage.querySelectorAll('[data-media]').forEach(function(b){ b.addEventListener('click',function(){ simToast(b.getAttribute('data-media')); }); });
+  var pv=document.getElementById('sim-prev'); if(pv) pv.addEventListener('click',function(){ if(SIM_I>0){ SIM_I--; renderSimulator(); } });
+  var nx=document.getElementById('sim-next'); if(nx) nx.addEventListener('click',function(){ if(last){ simFinish(); } else { SIM_I++; renderSimulator(); } });
+}
+function simFinish(){
+  var p=loadProg(); p.sim=true; if(p.levels.indexOf('lc5')<0) p.levels.push('lc5'); saveProg(p);
+  markLevelDone('lc5',true); updateCompleteButtons(); renderDashboard(); renderChallenge();
+  showToast(LANG==='te'?'✦ మాషా అల్లాహ్! మీరు నమాజ్ సిమ్యులేటర్ పూర్తి చేశారు':'✦ Masha\'Allah! You completed the Salah simulator');
+}
+
+/* ── LEVEL COMPLETION ── */
+function markLevelDone(id,done){
+  var el=document.getElementById(id); if(!el) return;
+  el.classList.toggle('done',done);
+  var btn=el.querySelector('.lc-complete'); if(btn) btn.classList.toggle('done',done);
+}
+function toggleLevel(id){
+  var p=loadProg(); var i=p.levels.indexOf(id);
+  if(i>=0) p.levels.splice(i,1); else p.levels.push(id);
+  saveProg(p);
+  markLevelDone(id,p.levels.indexOf(id)>=0);
+  updateCompleteButtons(); renderDashboard(); renderChallenge();
+}
+function updateCompleteButtons(){
+  var p=loadProg();
+  document.querySelectorAll('.lc-complete').forEach(function(btn){
+    var lc=btn.closest('.lc'); var done=!!(lc&&p.levels.indexOf(lc.id)>=0);
+    btn.classList.toggle('done',done);
+    var txt=btn.querySelector('.lc-complete-txt');
+    if(txt) txt.textContent=done?(LANG==='te'?'పూర్తయింది':'Completed'):(LANG==='te'?'పూర్తి అయినట్లు గుర్తించండి':'Mark as complete');
+  });
+}
+function initLevelsProgress(){
+  var p=loadProg();
+  document.querySelectorAll('.lc').forEach(function(lc){
+    var inner=lc.querySelector('.lc-inner'); if(!inner||inner.querySelector('.lc-complete')) return;
+    var btn=document.createElement('button');
+    btn.className='lc-complete'; btn.type='button';
+    btn.innerHTML='<span class="lc-check">✓</span><span class="lc-complete-txt"></span>';
+    btn.addEventListener('click',function(e){ e.stopPropagation(); toggleLevel(lc.id); });
+    inner.appendChild(btn);
+    if(p.levels.indexOf(lc.id)>=0) lc.classList.add('done');
+  });
+  updateCompleteButtons();
+}
+
+/* ── PROGRESS DASHBOARD ── */
+function renderDashboard(){
+  var body=document.getElementById('dash-body'); if(!body) return;
+  var p=loadProg(); var s=ensureToday(loadCh());
+  var lessons=p.levels.length; var done=lessons+(p.sim?1:0); var total=7;
+  var pct=Math.min(100,Math.round(done/total*100));
+  var lv;
+  if(done===0) lv={en:'Beginner',te:'ప్రారంభకుడు'};
+  else if(done<3) lv={en:'Learner',te:'నేర్చుకునేవారు'};
+  else if(done<5) lv={en:'Student',te:'విద్యార్థి'};
+  else if(done<total) lv={en:'Devotee',te:'నిష్ఠాపరుడు'};
+  else lv={en:'Master',te:'మాస్టర్'};
+  var lvName=LANG==='te'?lv.te:lv.en;
+  var T=(LANG==='te')
+    ?{lessons:'పాఠాలు పూర్తయ్యాయి',streak:'నమాజ్ వరుస',days:'సవాల్ రోజులు',mastery:'ప్రావీణ్యం',mtitle:'మీ ప్రావీణ్య స్థాయి',msub:done+'/'+total+' మైలురాళ్లు పూర్తయ్యాయి'}
+    :{lessons:'Lessons Done',streak:'Salah Streak',days:'Challenge Days',mastery:'Mastery',mtitle:'Your Mastery Level',msub:done+' of '+total+' milestones complete'};
+  function tile(ic,num,label,sm){ return '<div class="dash-tile"><div class="dash-tile-ic">'+ic+'</div><div class="dash-tile-num'+(sm?' sm':'')+'">'+num+'</div><div class="dash-tile-label">'+label+'</div></div>'; }
+  body.innerHTML=
+    '<div class="dash-grid">'
+      +tile('📘',lessons+'/6',T.lessons)
+      +tile('🔥',s.streak,T.streak)
+      +tile('🗓️',s.total,T.days)
+      +tile('🏅',lvName,T.mastery,true)
+    +'</div>'
+    +'<div class="dash-mastery">'
+      +'<div class="dash-mastery-top"><span class="dash-mastery-title">'+T.mtitle+'</span><span class="dash-mastery-level">'+lvName+'</span></div>'
+      +'<div class="dash-mbar"><div class="dash-mbar-fill" style="width:'+pct+'%"></div></div>'
+      +'<div class="dash-mastery-sub">'+T.msub+'</div>'
+    +'</div>';
+  var f=body.querySelector('.dash-mbar-fill');
+  if(f){ var w=f.style.width; f.style.width='0'; requestAnimationFrame(function(){ requestAnimationFrame(function(){ f.style.width=w; }); }); }
+}
+
+/* ── LANG ── */
+var LANG=localStorage.getItem('if-lang')||'te';
+function applyLang(l){
+  LANG=l; localStorage.setItem('if-lang',l);
+  document.documentElement.lang=(l==='te')?'te':'en';
+  document.querySelectorAll('[data-te]').forEach(function(el){
+    var v=el.getAttribute('data-'+l);
+    if(v!=null) el.innerHTML=v;
+  });
+  var btn=document.getElementById('lang-btn');
+  if(btn){btn.textContent=l==='te'?'English':'తెలుగు';btn.setAttribute('aria-label',l==='te'?'Switch to English':'Switch to Telugu');}
+  renderPrayers();
+  renderChallenge();
+  renderDua();
+  renderMot();
+  renderWudu();
+  renderSimulator();
+  renderDashboard();
+  updateCompleteButtons();
+}
+function toggleLang(){ applyLang(LANG==='te'?'en':'te'); }
+window.toggleLang=toggleLang;
+
+/* ── RENDER PRAYER GUIDE ── */
+function renderPrayers(){
+  var grid=document.getElementById('guide-grid');
+  if(!grid) return;
+  var L_learn=LANG==='te'?'నేర్చుకోండి':'Learn';
+  var L_steps=LANG==='te'?'దశలు':'Steps';
+  grid.innerHTML=PRAYERS.map(function(p){
+    var meaning=LANG==='te'?p.te_m:p.en_m;
+    var virtue=LANG==='te'?p.te_v:p.en_v;
+    var rk=LANG==='te'?p.rk_te:p.rk_en;
+    var tm=LANG==='te'?p.tm_te:p.tm_en;
+    return '<div class="surah-card reveal reveal-in">'
+      +'<div class="surah-top">'
+        +'<div class="surah-ar" lang="ar" dir="rtl">'+p.ar+'</div>'
+      +'</div>'
+      +'<div class="surah-en">'+p.en+'</div>'
+      +'<div class="surah-meaning">'+meaning+'</div>'
+      +'<div class="surah-meta">'
+        +'<span>🕋 '+rk+'</span>'
+        +'<span>🕐 '+tm+'</span>'
+      +'</div>'
+      +'<p class="surah-virtue">'+virtue+'</p>'
+      +'<div class="surah-btns">'
+        +'<a class="surah-btn primary" href="#lc5">'+L_learn+'</a>'
+        +'<a class="surah-btn" href="#lc5">'+L_steps+'</a>'
+      +'</div>'
+    +'</div>';
+  }).join('');
+}
+
+/* ── DAILY CHALLENGE LOGIC ── */
+function dstr(d){ return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate(); }
+function loadCh(){ try{ return JSON.parse(localStorage.getItem(CH_KEY))||{}; }catch(e){ return {}; } }
+function saveCh(s){ try{ localStorage.setItem(CH_KEY,JSON.stringify(s)); }catch(e){} }
+function ensureToday(s){
+  var t=dstr(new Date());
+  if(s.date!==t){ s.date=t; s.done=[false,false,false,false]; }
+  if(!Array.isArray(s.done)||s.done.length!==4) s.done=[false,false,false,false];
+  if(typeof s.streak!=='number') s.streak=0;
+  if(typeof s.best!=='number') s.best=0;
+  if(typeof s.total!=='number') s.total=0;
+  return s;
+}
+function renderChallenge(){
+  var list=document.getElementById('ch-list');
+  if(!list) return;
+  var s=ensureToday(loadCh());
+  list.innerHTML=CH_ITEMS.map(function(it,i){
+    var label=LANG==='te'?it.te:it.en;
+    return '<button class="ch-item'+(s.done[i]?' done':'')+'" data-i="'+i+'" type="button">'
+      +'<span class="ch-check">✓</span>'
+      +'<span class="ch-ic">'+it.ic+'</span>'
+      +'<span class="ch-item-txt">'+label+'</span>'
+    +'</button>';
+  }).join('');
+  list.querySelectorAll('.ch-item').forEach(function(btn){
+    btn.addEventListener('click',function(){ toggleCh(parseInt(btn.getAttribute('data-i'),10)); });
+  });
+  var count=s.done.filter(Boolean).length;
+  var cEl=document.getElementById('ch-count'); if(cEl) cEl.textContent=count;
+  var fill=document.getElementById('ch-bar-fill'); if(fill) fill.style.width=(count/4*100)+'%';
+  var msg=document.getElementById('ch-done-msg'); if(msg) msg.classList.toggle('show',count===4);
+  var sn=document.getElementById('ch-streak-num'); if(sn) sn.textContent=s.streak;
+  var tot=document.getElementById('ch-total'); if(tot) tot.textContent=s.total;
+  var dateEl=document.getElementById('ch-date');
+  if(dateEl){
+    var opts={weekday:'long',year:'numeric',month:'long',day:'numeric'};
+    try{ dateEl.textContent=new Date().toLocaleDateString(LANG==='te'?'te-IN':'en-US',opts); }
+    catch(e){ dateEl.textContent=new Date().toDateString(); }
+  }
+  var row=document.getElementById('ch-badge-row');
+  if(row){
+    var lessons=loadProg().levels.length;
+    row.innerHTML=BADGES.map(function(b){
+      var unlocked=(b.type==='lessons')?(lessons>=b.n):(s.best>=b.n);
+      var name=LANG==='te'?b.te:b.en;
+      return '<div class="ch-badge'+(unlocked?' unlocked':'')+'">'
+        +'<div class="ch-badge-ic">'+b.ic+'</div>'
+        +'<div class="ch-badge-name">'+name+'</div>'
+      +'</div>';
+    }).join('');
+  }
+  renderDashboard();
+}
+function toggleCh(i){
+  var s=ensureToday(loadCh());
+  s.done[i]=!s.done[i];
+  var t=dstr(new Date());
+  if(s.done.every(Boolean) && s.lastComplete!==t){
+    var y=new Date(); y.setDate(y.getDate()-1); var ys=dstr(y);
+    s.streak=(s.lastComplete===ys)?(s.streak+1):1;
+    s.best=Math.max(s.best,s.streak);
+    s.total=(s.total||0)+1;
+    s.lastComplete=t;
+  }
+  saveCh(s);
+  renderChallenge();
+}
+
+/* ── DUA OF THE DAY ── */
+function dayIndex(){ return Math.floor(Date.now()/86400000); }
+function renderDua(){
+  var a=DUAS[dayIndex()%DUAS.length];
+  var ar=document.getElementById('ch-ayah-ar');
+  var tr=document.getElementById('ch-ayah-tr');
+  var ref=document.getElementById('ch-ayah-ref');
+  if(!ar) return;
+  ar.textContent=a.ar;
+  tr.textContent='“'+(LANG==='te'?a.te:a.en)+'”';
+  ref.textContent='— '+a.ref;
+}
+function renderMot(){
+  var m=MOTS[dayIndex()%MOTS.length];
+  var el=document.getElementById('mot-txt');
+  if(el) el.textContent=LANG==='te'?m.te:m.en;
+}
+
+/* ── LEVEL CARD ACCORDION ── */
+function toggleLC(id){
+  var el=document.getElementById(id);
+  var isOpen=el.classList.contains('lc-open');
+  document.querySelectorAll('.lc').forEach(function(c){
+    c.classList.remove('lc-open');
+    var h=c.querySelector('.lc-head'); if(h) h.setAttribute('aria-expanded','false');
+  });
+  if(!isOpen){ el.classList.add('lc-open'); el.querySelector('.lc-head').setAttribute('aria-expanded','true'); }
+}
+window.toggleLC=toggleLC;
+
+/* ── ROADMAP → scroll to the level, open it ── */
+function gotoLevel(id){
+  var el=document.getElementById(id);
+  if(!el) return;
+  el.classList.add('reveal-in');
+  if(!el.classList.contains('lc-open')){
+    el.classList.add('lc-open');
+    var h=el.querySelector('.lc-head'); if(h) h.setAttribute('aria-expanded','true');
+  }
+  requestAnimationFrame(function(){
+    var y=el.getBoundingClientRect().top+window.pageYOffset-108;
+    window.scrollTo({top: y<0?0:y, behavior:'smooth'});
+  });
+}
+function initRoadmap(){
+  document.querySelectorAll('.rm-track .rm-node').forEach(function(a){
+    a.addEventListener('click',function(e){
+      var id=(a.getAttribute('href')||'').replace('#','');
+      if(id.indexOf('lc')===0){ e.preventDefault(); gotoLevel(id); }
+    });
+  });
+  document.querySelectorAll('.rm-mobile .rm-mnode').forEach(function(node,i){
+    node.style.cursor='pointer';
+    node.setAttribute('role','button');
+    node.setAttribute('tabindex','0');
+    node.addEventListener('click',function(){ gotoLevel('lc'+(i+1)); });
+    node.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); gotoLevel('lc'+(i+1)); } });
+  });
+  /* Prayer-guide buttons that target levels should also open the level */
+  document.addEventListener('click',function(e){
+    var a=e.target.closest && e.target.closest('.surah-btn');
+    if(!a) return;
+    var id=(a.getAttribute('href')||'').replace('#','');
+    if(id.indexOf('lc')===0){ e.preventDefault(); gotoLevel(id); }
+  });
+}
+
+/* ── STICKY NAV on hero exit ── */
+function initSticky(){
+  var hero=document.getElementById('home');
+  var sticky=document.getElementById('al-sticky');
+  if(!hero||!sticky) return;
+  var io=new IntersectionObserver(function(entries){
+    sticky.classList.toggle('sticky-on',!entries[0].isIntersecting);
+  },{threshold:0,rootMargin:'-68px 0px 0px 0px'});
+  io.observe(hero);
+}
+
+/* ── SPY ACTIVE ── */
+function initSpy(){
+  var links=document.querySelectorAll('.al-sticky a[data-spy]');
+  if(!links.length) return;
+  var secs=Array.from(links).map(function(a){ return document.getElementById(a.dataset.spy); }).filter(Boolean);
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        links.forEach(function(a){ a.classList.toggle('spy-active',a.dataset.spy===e.target.id); });
+      }
+    });
+  },{rootMargin:'-70px 0px -60% 0px',threshold:0});
+  secs.forEach(function(s){ io.observe(s); });
+}
+
+/* ── SCROLL REVEAL ── */
+function initReveal(){
+  if(!window.IntersectionObserver){ document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('reveal-in')}); return; }
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('reveal-in'); io.unobserve(e.target); } });
+  },{threshold:.08});
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+}
+
+/* ── BACK TO TOP ── */
+function initBTT(){
+  var btn=document.getElementById('btt');
+  if(!btn) return;
+  window.addEventListener('scroll',function(){ btn.classList.toggle('show',window.scrollY>500); },{passive:true});
+}
+
+/* ── BOOT ── */
+document.addEventListener('DOMContentLoaded',function(){
+  initLevelsProgress();
+  applyLang(LANG);
+  initSticky();
+  initSpy();
+  initReveal();
+  initBTT();
+  initRoadmap();
+});
+})();
+</script>
+</body>
+</html>

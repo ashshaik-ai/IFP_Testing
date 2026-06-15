@@ -4,7 +4,44 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0d3b1e">
+<meta name="description" content="Islamic Front, Mangalagiri — a Muslim community-welfare and political organisation. Community schemes, infrastructure, and a free multilingual Knowledge Center: Zakat tools, prayer guides, and learning portals for Arabic, Urdu, Quran, Salah, Seerah, Islamic History, and Kids. Telugu and English.">
+<meta name="keywords" content="Islamic Front, Mangalagiri, Muslim welfare, Knowledge Center, learn Arabic, learn Urdu, learn Quran, Salah, Seerah, Islamic history, Zakat calculator, Telugu Islam">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Islamic Front, Mangalagiri">
+<meta property="og:description" content="Muslim community welfare and a free multilingual Islamic Knowledge Center — Zakat tools, prayer guides, and learning portals for Arabic, Urdu, Quran, Salah, Seerah, History and Kids. Telugu & English.">
+<meta property="og:image" content="assets/logo.png">
+<meta property="og:locale" content="te_IN">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Islamic Front, Mangalagiri">
+<meta name="twitter:description" content="Muslim community welfare and a free multilingual Islamic Knowledge Center. Telugu & English.">
+<meta name="twitter:image" content="assets/logo.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "name": "Islamic Front, Mangalagiri",
+      "alternateName": "ఇస్లామిక్ ఫ్రంట్ – మంగళగిరి",
+      "description": "Muslim community-welfare and political organisation in Mangalagiri offering community schemes, infrastructure support, and a free multilingual Islamic Knowledge Center.",
+      "logo": "assets/logo.png",
+      "image": "assets/logo.png",
+      "areaServed": "Mangalagiri, Andhra Pradesh, India",
+      "knowsLanguage": ["te", "en", "ar", "ur"]
+    },
+    {
+      "@type": "WebSite",
+      "name": "Islamic Front, Mangalagiri",
+      "inLanguage": ["te", "en"],
+      "description": "Community welfare and a free multilingual Islamic Knowledge Center: Zakat tools, prayer guides, and learning portals for Arabic, Urdu, Quran, Salah, Seerah, Islamic History and Kids."
+    }
+  ]
+}
+</script>
 <title>ఇస్లామిక్ ఫ్రంట్ – మంగళగిరి</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@300;400;500&family=Noto+Sans+Telugu:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -98,6 +135,20 @@
   .nav-kc::before { content: '☪\FE0E'; font-size: 13px; }
   .nav-kc::after { content: '↗'; font-size: 12px; opacity: 0.7; }
   .nav-kc:hover { background: linear-gradient(135deg, rgba(200,146,42,0.34), rgba(200,146,42,0.18)); transform: translateY(-1px); box-shadow: 0 3px 12px rgba(200,146,42,0.18); }
+  .nav-guide { display: inline-flex; align-items: center; gap: 6px; background: linear-gradient(135deg, rgba(46,139,87,0.32), rgba(46,139,87,0.15)); border: 1.5px solid rgba(125,224,164,0.5); color: #bdeccd; text-decoration: none; padding: 7px 16px; border-radius: 100px; font-size: 12px; font-weight: 600; letter-spacing: 0.6px; white-space: nowrap; flex-shrink: 0; transition: background 0.2s, transform 0.15s, box-shadow 0.2s; }
+  .nav-guide::before { content: '🎓'; font-size: 13px; }
+  .nav-guide:hover { background: linear-gradient(135deg, rgba(46,139,87,0.46), rgba(46,139,87,0.24)); transform: translateY(-1px); box-shadow: 0 3px 12px rgba(46,139,87,0.22); }
+  @media (max-width: 760px) { .nav-guide { display: none; } }
+  /* Collapse the inline nav to the burger early enough that the 6 links + pills
+     never crowd/overlap the brand on tablet widths (769–960px). Drawer holds them. */
+  @media (max-width: 960px) {
+    .nav-links { display: none; }
+    .nav-guide { display: none; }
+    .nav-burger { display: flex; }
+    nav { gap: 12px; }
+    .nav-brand { min-width: 0; }
+    .nav-title, .nav-sub { white-space: nowrap; }
+  }
 
   /* HERO */
   .hero { min-height: 100vh; min-height: 100svh; background: linear-gradient(160deg, var(--green-deep) 0%, #0a2e17 50%, #122b0f 100%); display: flex; align-items: center; padding: 100px 5vw 80px; position: relative; overflow: hidden; }
@@ -106,8 +157,8 @@
   .hero-content { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr auto; gap: 60px; align-items: center; max-width: 1100px; width: 100%; }
   .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(200,146,42,0.12); border: 1px solid rgba(200,146,42,0.35); border-radius: 100px; padding: 6px 16px; margin-bottom: 28px; font-size: 12px; color: var(--gold-light); letter-spacing: 1.5px; text-transform: uppercase; }
   .hero-badge::before { content: '★\FE0E'; font-size: 10px; }
-  .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(48px, 7vw, 88px); font-weight: 900; color: var(--white); line-height: 1.05; margin-bottom: 8px; }
-  :lang(te) .hero-title { line-height: 1.4; }
+  .hero-title { font-family: 'Playfair Display', 'Noto Sans Telugu', serif; font-size: clamp(48px, 7vw, 88px); font-weight: 900; color: var(--white); line-height: 1.08; margin-bottom: 10px; }
+  :lang(te) .hero-title { line-height: 1.5; }
   .hero-title span { color: var(--gold-light); display: block; }
   .hero-subtitle { font-family: 'Cormorant Garamond', 'Noto Sans Telugu', serif; font-size: clamp(16px, 2vw, 22px); color: rgba(245,230,192,0.75); margin-bottom: 36px; font-weight: 400; letter-spacing: 0.3px; line-height: 1.7; }
   .hero-stats { display: flex; gap: 16px; margin-bottom: 44px; flex-wrap: wrap; }
@@ -193,7 +244,17 @@
 
   /* SCHEME */
   .scheme { background: var(--cream); }
-  .scheme .inner { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+  .scheme .inner { display: block; }
+  .scheme-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; padding-top: 36px; }
+  .scheme-bar { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 18px; background: var(--green-deep); border: 1px solid rgba(200,146,42,0.3); border-radius: 14px; padding: 22px 30px; cursor: pointer; text-align: left; font-family: inherit; transition: box-shadow .25s, border-color .25s, transform .25s; }
+  .scheme-bar:hover { border-color: rgba(200,146,42,0.55); box-shadow: 0 10px 30px rgba(13,59,30,0.14); transform: translateY(-2px); }
+  .scheme-bar-text { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+  .scheme-bar-tag { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold-light); }
+  .scheme-bar-title { font-family: 'Playfair Display', serif; font-size: clamp(18px,3vw,25px); font-weight: 700; color: var(--white); line-height: 1.3; }
+  .scheme-bar-chevron { flex-shrink: 0; color: var(--gold-light); font-size: 22px; line-height: 1; transition: transform .35s ease; }
+  .scheme-bar[aria-expanded="true"] .scheme-bar-chevron { transform: rotate(180deg); }
+  .scheme-collapse { max-height: 0; overflow: hidden; transition: max-height .55s cubic-bezier(.16,1,.3,1); }
+  .scheme-collapse.open { max-height: 3200px; }
   .scheme-card { background: var(--green-deep); border-radius: 10px; padding: 48px 44px; position: relative; overflow: hidden; }
   .scheme-card::before { content: '♦\FE0E'; position: absolute; bottom: -20px; right: 20px; font-size: 160px; color: rgba(200,146,42,0.06); line-height: 1; }
   .scheme-label { display: inline-block; background: rgba(200,146,42,0.15); border: 1px solid rgba(200,146,42,0.3); color: var(--gold-light); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; padding: 5px 14px; border-radius: 100px; margin-bottom: 24px; }
@@ -244,7 +305,7 @@
   .about { background: var(--cream); }
   .about .inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
   .founder-photo-box { width: 100%; aspect-ratio: 4/5; border-radius: 8px; overflow: hidden; background: linear-gradient(145deg, #0d3b1e, #1a5c30); display: flex; align-items: center; justify-content: center; border: 2px solid rgba(200,146,42,0.25); position: relative; }
-  .founder-photo-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .founder-photo-box img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
   .founder-photo-box .big-avatar { width: 150px; height: 150px; border-radius: 50%; background: rgba(200,146,42,0.1); border: 3px solid rgba(200,146,42,0.3); display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 60px; font-weight: 700; color: var(--gold-light); }
   .founder-ribbon { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.85), transparent); padding: 40px 28px 28px; text-align: center; }
   .founder-ribbon h3 { font-family: 'Playfair Display', serif; font-size: 24px; color: var(--white); font-weight: 700; }
@@ -450,13 +511,13 @@
     .hero-bg-emblem { left: 24%; width: min(240px, 30vw); }
   }
   @media (max-width: 768px) {
-    .hero { min-height: auto; align-items: flex-start; padding-top: max(96px, 72px + env(safe-area-inset-top, 0px)); padding-bottom: max(56px, env(safe-area-inset-bottom, 0px) + 32px); }
+    .hero { min-height: auto; align-items: flex-start; padding-top: max(76px, 56px + env(safe-area-inset-top, 0px)); padding-bottom: max(40px, env(safe-area-inset-bottom, 0px) + 24px); }
     .hero-content { grid-template-columns: 1fr; }
     .leader-card { display: none; }
-    .hero-bg-emblem { top: 50%; left: 50%; transform: translate(-50%, -50%); width: min(330px, 70vw); }
+    .hero-bg-emblem { top: 50%; left: 40%; transform: translate(-50%, -50%); width: min(300px, 65vw); }
     .hero-bg-emblem img { opacity: .06; }
     .victory .inner { grid-template-columns: 1fr; }
-    .scheme .inner { grid-template-columns: 1fr; }
+    .scheme-grid { grid-template-columns: 1fr; }
     .about .inner { grid-template-columns: 1fr; }
     .infra-grid { grid-template-columns: repeat(2, 1fr); }
     .footer-inner { grid-template-columns: 1fr; }
@@ -731,14 +792,20 @@
   @media (max-width: 768px) {
     section, .victory, .scheme, .infra, .about, .contact, .kc-promo { padding: 72px 5vw; }
 
-    /* Hero on mobile */
-    .hero-stats { flex-wrap: nowrap; gap: 10px; }
-    .hstat { flex: 1; min-width: 0; padding: 14px 14px; border-radius: 12px; }
-    .hstat-num { font-size: 28px; }
-    .hstat-label { font-size: 10px; letter-spacing: .4px; line-height: 1.4; }
-    .hero-cta { width: 100%; justify-content: center; padding: 15px; font-size: 12px; letter-spacing: 1px; }
-    .hero-mf-progress { max-width: 100%; }
-    .hmfp-bar { height: 10px; }
+    /* Hero on mobile — tighter heading so it balances the founder photo */
+    .hero-title { font-size: clamp(34px, 11vw, 46px); line-height: 1.12; margin-bottom: 8px; }
+    :lang(te) .hero-title { line-height: 1.4; }
+    .hero-subtitle { font-size: 13.5px; line-height: 1.55; margin-bottom: 18px; }
+    .hero-badge { margin-bottom: 16px; padding: 5px 13px; font-size: 11px; }
+    /* Compact stat cards: shrink to content & left-align so they don't
+       stretch full-width — keeps the founder photo as the visual highlight */
+    .hero-stats { flex-wrap: nowrap; gap: 8px; margin-bottom: 16px; justify-content: flex-start; }
+    .hstat { flex: 0 0 auto; min-width: 0; padding: 9px 14px; border-radius: 12px; text-align: left; }
+    .hstat-num { font-size: 24px; line-height: 1; }
+    .hstat-label { font-size: 9px; letter-spacing: .2px; line-height: 1.3; margin-top: 3px; white-space: nowrap; }
+    .hero-cta { width: 100%; justify-content: center; padding: 14px; font-size: 12px; letter-spacing: 1px; margin-top: 22px; }
+    .hero-mf-progress { max-width: 100%; margin-top: 14px; margin-bottom: 0; }
+    .hmfp-bar { height: 9px; }
 
     /* Victory chips on mobile */
     .mandate-stats { gap: 12px; margin-top: 28px; }
@@ -777,9 +844,9 @@
 
   @media (max-width: 420px) {
     section, .victory, .scheme, .infra, .about, .contact, .kc-promo { padding: 56px 5vw; }
-    .hstat { padding: 12px 12px; }
-    .hstat-num { font-size: 26px; }
-    .hstat-label { font-size: 9.5px; }
+    .hstat { padding: 8px 12px; }
+    .hstat-num { font-size: 21px; }
+    .hstat-label { font-size: 8.5px; }
     .ms-num { font-size: 28px; }
     /* Member photos: fit 2-col grid on tiny screens */
     .member-photo, .member-fallback { width: 100px; height: 100px; }
@@ -788,19 +855,63 @@
     .member-role { font-size: 9px; }
   }
 
-  /* Mobile founder strip — replaces the hidden leader-card on small screens */
+  /* Mobile founder photo — prominent portrait on the right of the heading text.
+     Hidden on desktop (the full .leader-card handles that). The .hero-topband
+     wrapper is a transparent passthrough on desktop. */
   .hero-founder-mobile { display: none; }
   @media (max-width: 768px) {
-    .hero-founder-mobile { display: flex; align-items: center; gap: 14px; margin-top: 24px;
-      padding: 14px 18px; background: rgba(255,255,255,0.045);
-      border: 1px solid rgba(200,146,42,0.28); border-radius: 10px; }
-    .hfm-photo { width: 50px; height: 50px; border-radius: 50%; object-fit: cover;
-      object-position: top; border: 2px solid var(--gold); flex-shrink: 0; }
-    .hfm-info { flex: 1; min-width: 0; }
-    .hfm-name { font-family: 'Playfair Display', serif; font-size: 14px; font-weight: 700;
-      color: var(--white); line-height: 1.3; }
-    .hfm-role { font-size: 10px; color: rgba(232,184,75,0.75); letter-spacing: 0.8px;
-      text-transform: uppercase; margin-top: 3px; }
+    /* Heading text + founder photo as a balanced two-zone band.
+       Photo stretches to the text height for a fitted look. */
+    .hero-topband { display: flex; align-items: stretch; gap: clamp(16px, 4vw, 38px);
+      max-width: 760px; }
+    /* Left column: badge → title → subtitle → stats → manifesto, all beside the photo */
+    .hero-headtext { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; justify-content: flex-start; }
+    .hero-headtext .hero-title { margin-bottom: 10px; }
+    .hero-headtext .hero-subtitle { margin-bottom: 0; }
+    /* Location badge: a self-sized pill that hugs its text — never stretches */
+    .hero-headtext .hero-badge { display: inline-flex; width: -moz-fit-content; width: fit-content;
+      max-width: 100%; align-self: flex-start;
+      font-size: 10px; letter-spacing: .9px; padding: 5px 13px; margin-bottom: 16px;
+      white-space: nowrap; line-height: 1.3; }
+    /* Stats + manifesto live inside the left column now — let them wrap if narrow */
+    .hero-headtext .hero-stats { flex-wrap: wrap; }
+
+    /* Founder photo — fills the full left-column height (badge → manifesto) */
+    .hero-founder-mobile { display: flex; flex: 0 0 auto;
+      width: clamp(132px, 38%, 220px); align-self: stretch; }
+    .hfm-frame { position: relative; width: 100%; height: 100%; min-height: 210px;
+      border-radius: 18px; overflow: hidden;
+      border: 1.5px solid rgba(200,146,42,0.55);
+      box-shadow: 0 22px 48px -18px rgba(0,0,0,0.7), 0 0 0 5px rgba(200,146,42,0.06), inset 0 1px 0 rgba(255,255,255,0.08);
+      background: linear-gradient(150deg, #0d3b1e, #1a5c30);
+      animation: heroCardIn 0.9s cubic-bezier(.22,.61,.36,1) 0.35s both; }
+    .hfm-photo { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
+    .hfm-info { position: absolute; left: 0; right: 0; bottom: 0;
+      padding: 36px 13px 14px; text-align: center;
+      background: linear-gradient(to top, rgba(7,33,17,0.97) 24%, rgba(7,33,17,0.8) 60%, transparent 100%); }
+    .hfm-info::before { content: ''; display: block; width: 30px; height: 2px; border-radius: 2px;
+      margin: 0 auto 9px; background: linear-gradient(90deg, var(--gold), var(--gold-light)); }
+    .hfm-name { font-family: 'Playfair Display', serif; font-size: clamp(13px, 3.4vw, 18px); font-weight: 700;
+      color: var(--white); line-height: 1.22; }
+    .hfm-role { font-size: clamp(8px, 2.2vw, 10px); color: rgba(232,184,75,0.92); letter-spacing: 0.8px;
+      text-transform: uppercase; margin-top: 4px; line-height: 1.4; }
+
+    /* Pull the stats up so they sit closer to the subtitle's end */
+    .hero-stats { margin-top: 10px; }
+
+    /* Faint emblem watermark — a touch smaller so it doesn't dominate, centered in
+       the gap between text and photo and vertically aligned to the photo's middle.
+       It may dip into the left content, but its right edge stays clear of the photo. */
+    .hero-bg-emblem { left: 36%; top: 42%; transform: translate(-50%, -50%);
+      width: min(270px, 42vw); }
+    .hero-bg-emblem img { opacity: .06; }
+  }
+  @media (max-width: 420px) {
+    .hero-topband { gap: 12px; }
+    .hero-founder-mobile { width: clamp(120px, 36%, 156px); }
+    .hfm-frame { min-height: 178px; }
+    .hero-headtext .hero-badge { font-size: 9px; padding: 4px 11px; letter-spacing: .6px; }
+    .hero-bg-emblem { left: 34%; top: 42%; width: min(220px, 44vw); }
   }
 
   /* ── SVG status badges — replaces text emoji with clean inline icons ── */
@@ -869,10 +980,447 @@
     .nav-kc:active { transform: scale(0.95) !important; transition: transform .1s; }
   }
 
+  /* ══════════════════════════════════════════════════════
+     COMMUNITY PLATFORM — NEW SECTIONS CSS
+  ══════════════════════════════════════════════════════ */
+
+  /* ── Sticky Mobile Contact Bar ── */
+  .sticky-contact-bar {
+    display: none;
+    position: fixed; bottom: 62px; left: 0; right: 0; z-index: 79;
+    background: var(--green-deep);
+    border-top: 1px solid rgba(200,146,42,0.35);
+    padding: 0; height: 48px;
+    box-shadow: 0 -2px 16px rgba(0,0,0,0.3);
+  }
+  @media (max-width: 768px) { .sticky-contact-bar { display: flex; } }
+  .scb-inner { display: flex; width: 100%; height: 100%; }
+  .scb-btn {
+    flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px;
+    text-decoration: none; font-size: 11px; font-weight: 600; letter-spacing: 0.5px;
+    color: rgba(255,255,255,0.85); border-right: 1px solid rgba(200,146,42,0.2);
+    transition: background 0.15s;
+  }
+  .scb-btn:last-child { border-right: none; }
+  .scb-btn:active { background: rgba(200,146,42,0.12); }
+  .scb-btn.scb-wa { color: #25d366; }
+  .scb-btn.scb-call { color: #60c8ff; }
+  .scb-btn.scb-mail { color: var(--gold-light); }
+  .scb-icon { font-size: 15px; line-height: 1; }
+
+  /* ── WhatsApp Floating Action Button ── */
+  .wa-fab {
+    position: fixed; bottom: 130px; right: 22px; z-index: 90;
+    width: 56px; height: 56px; border-radius: 50%;
+    background: linear-gradient(135deg, #25d366, #128c7e);
+    color: #fff; border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 8px 28px rgba(37,211,102,0.45);
+    transition: transform 0.25s cubic-bezier(.22,.61,.36,1), box-shadow 0.25s;
+    text-decoration: none; font-size: 26px; line-height: 1;
+  }
+  .wa-fab:hover { transform: translateY(-4px) scale(1.06); box-shadow: 0 14px 38px rgba(37,211,102,0.58); }
+  .wa-fab::before {
+    content: ''; position: absolute; inset: -4px; border-radius: 50%;
+    border: 2px solid rgba(37,211,102,0.3); animation: waPulse 2.5s ease infinite;
+  }
+  @keyframes waPulse { 0%,100%{transform:scale(1);opacity:0.6} 50%{transform:scale(1.22);opacity:0} }
+  @media (max-width: 768px) { .wa-fab { bottom: 120px; right: 16px; width: 50px; height: 50px; font-size: 23px; } }
+
+  /* ── Contact & Community Action Center ── */
+  .community-contact { background: linear-gradient(160deg, #0a2e17 0%, #0d3b1e 100%); }
+  .community-contact .section-tag { color: var(--gold-light); }
+  .community-contact .section-tag::before { background: var(--gold-light); }
+  .community-contact .section-title { color: var(--white); }
+  .community-contact .section-title::after { background: linear-gradient(90deg, var(--gold-light), transparent); }
+  .community-contact .section-lead { color: rgba(245,230,192,0.65); }
+
+  .contact-action-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 48px 0 0;
+  }
+  .ca-card {
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(200,146,42,0.22);
+    border-radius: 16px; padding: 28px 24px; text-decoration: none; color: inherit;
+    display: flex; flex-direction: column; gap: 12px;
+    transition: all 0.3s cubic-bezier(.22,.61,.36,1);
+    position: relative; overflow: hidden;
+  }
+  .ca-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: var(--ca-accent, var(--gold)); transform: scaleX(0); transform-origin: left;
+    transition: transform 0.3s; }
+  .ca-card:hover { background: rgba(255,255,255,0.09); border-color: rgba(200,146,42,0.5);
+    transform: translateY(-4px); box-shadow: 0 16px 44px rgba(0,0,0,0.3); }
+  .ca-card:hover::before { transform: scaleX(1); }
+  .ca-card.ca-wa { --ca-accent: #25d366; }
+  .ca-card.ca-call { --ca-accent: #60c8ff; }
+  .ca-card.ca-mail { --ca-accent: var(--gold); }
+  .ca-card.ca-emergency { --ca-accent: #f87171; }
+  .ca-card.ca-scheme { --ca-accent: #a78bfa; }
+  .ca-card.ca-hours { --ca-accent: var(--gold-light); }
+  .ca-icon { font-size: 32px; line-height: 1; }
+  .ca-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+    color: rgba(245,230,192,0.45); font-weight: 500; }
+  .ca-title { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700;
+    color: var(--white); line-height: 1.3; }
+  .ca-desc { font-size: 13px; color: rgba(245,230,192,0.55); line-height: 1.65; flex: 1; }
+  .ca-action { display: inline-flex; align-items: center; gap: 6px; margin-top: 4px;
+    font-size: 12px; font-weight: 600; color: var(--gold-light); letter-spacing: 0.5px;
+    text-transform: uppercase; }
+  .ca-action::after { content: '→'; transition: transform 0.2s; }
+  .ca-card:hover .ca-action::after { transform: translateX(4px); }
+
+  .contact-info-strip {
+    margin-top: 40px; background: rgba(255,255,255,0.04); border: 1px solid rgba(200,146,42,0.18);
+    border-radius: 14px; padding: 28px 32px;
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+  }
+  .ci-item { display: flex; flex-direction: column; gap: 6px; }
+  .ci-label { font-size: 9px; letter-spacing: 2px; text-transform: uppercase;
+    color: rgba(200,146,42,0.55); font-weight: 600; }
+  .ci-value { font-size: 14px; color: rgba(245,230,192,0.88); font-weight: 500; line-height: 1.5; }
+  .ci-value a { color: var(--gold-light); text-decoration: none; }
+  .ci-value a:hover { text-decoration: underline; }
+
+  @media (max-width: 900px) { .contact-action-grid { grid-template-columns: repeat(2, 1fr); } .contact-info-strip { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 600px) { .contact-action-grid { grid-template-columns: 1fr; gap: 12px; } .contact-info-strip { grid-template-columns: 1fr 1fr; gap: 16px; padding: 20px; } }
+
+  /* ── Success Stories ── */
+  .success-stories { background: var(--white); }
+  .stories-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin: 28px 0 36px; }
+  .story-tab {
+    padding: 8px 20px; border-radius: 100px; font-size: 12px; font-weight: 600;
+    letter-spacing: 0.5px; cursor: pointer; border: 1.5px solid var(--border);
+    background: transparent; color: var(--text-muted); font-family: inherit;
+    transition: all 0.2s; text-transform: uppercase;
+  }
+  .story-tab:hover { border-color: var(--gold); color: var(--green-deep); }
+  .story-tab.active { background: var(--green-deep); color: var(--gold-light); border-color: var(--green-deep); }
+  .stories-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+  .story-card {
+    background: var(--cream); border: 1px solid var(--border); border-radius: 16px;
+    overflow: hidden; transition: all 0.3s cubic-bezier(.22,.61,.36,1);
+    display: none;
+  }
+  .story-card.story-visible { display: block; }
+  .story-card:hover { transform: translateY(-4px); box-shadow: 0 14px 40px rgba(13,59,30,0.1); border-color: rgba(200,146,42,0.35); }
+  .story-photo {
+    height: 180px; background: linear-gradient(135deg, var(--green-deep), var(--green-mid));
+    display: flex; align-items: center; justify-content: center; position: relative;
+    overflow: hidden;
+  }
+  .story-photo img { width: 100%; height: 100%; object-fit: cover; }
+  .story-photo-placeholder { text-align: center; }
+  .story-avatar { width: 72px; height: 72px; border-radius: 50%; background: rgba(200,146,42,0.18);
+    border: 2px solid rgba(200,146,42,0.4); display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700;
+    color: var(--gold-light); margin: 0 auto 8px; }
+  .story-scheme-tag {
+    position: absolute; top: 12px; right: 12px;
+    background: rgba(13,59,30,0.85); color: var(--gold-light);
+    font-size: 10px; letter-spacing: 1px; text-transform: uppercase;
+    padding: 4px 10px; border-radius: 100px; border: 1px solid rgba(200,146,42,0.3);
+  }
+  .story-body { padding: 24px; }
+  .story-quote-icon { font-size: 32px; color: rgba(200,146,42,0.25); line-height: 0.8; margin-bottom: 10px; }
+  .story-quote { font-size: 14px; color: var(--text-mid); line-height: 1.8; font-style: italic; margin-bottom: 16px; }
+  .story-name { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; color: var(--green-deep); }
+  .story-meta { font-size: 12px; color: var(--text-muted); margin-top: 3px; }
+  .story-impact { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
+  .story-chip {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.3px;
+    background: rgba(46,139,87,0.08); color: var(--green-mid);
+    border: 1px solid rgba(46,139,87,0.18); padding: 4px 10px; border-radius: 100px;
+  }
+
+  .stories-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 48px;
+    background: var(--green-deep); border-radius: 16px; padding: 32px; }
+  .ss-stat { text-align: center; }
+  .ss-num { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 700;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; }
+  .ss-label { font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: rgba(245,230,192,0.55); margin-top: 6px; }
+  @media (max-width: 600px) { .stories-stats { grid-template-columns: repeat(2, 1fr); gap: 12px; padding: 24px; } .ss-num { font-size: 28px; } }
+
+  /* ── Our Work Gallery ── */
+  .our-work { background: var(--cream); }
+  .gallery-cats { display: flex; gap: 8px; flex-wrap: wrap; margin: 28px 0 32px; }
+  .gcat-btn {
+    padding: 8px 18px; border-radius: 100px; font-size: 12px; font-weight: 600;
+    letter-spacing: 0.5px; cursor: pointer; border: 1.5px solid var(--border);
+    background: var(--white); color: var(--text-muted); font-family: inherit;
+    transition: all 0.2s; text-transform: uppercase;
+  }
+  .gcat-btn:hover { border-color: var(--gold); color: var(--green-deep); }
+  .gcat-btn.active { background: var(--green-deep); color: var(--gold-light); border-color: var(--green-deep); }
+  .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .gal-item {
+    border-radius: 12px; overflow: hidden; cursor: pointer;
+    background: linear-gradient(135deg, var(--green-deep), var(--green-mid));
+    aspect-ratio: 4/3; position: relative;
+    transition: transform 0.3s cubic-bezier(.22,.61,.36,1), box-shadow 0.3s;
+    display: none;
+  }
+  .gal-item.gal-visible { display: block; }
+  .gal-item:hover { transform: scale(1.03); box-shadow: 0 12px 36px rgba(13,59,30,0.2); }
+  .gal-item-inner {
+    width: 100%; height: 100%; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 10px; padding: 16px;
+  }
+  .gal-item-inner img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
+  .gal-placeholder-icon { font-size: 36px; opacity: 0.6; }
+  .gal-placeholder-text { font-size: 12px; color: rgba(200,146,42,0.7); text-align: center; letter-spacing: 0.5px; }
+  .gal-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(7,23,12,0.92) 0%, rgba(7,23,12,0.3) 50%, transparent 100%);
+    opacity: 0; transition: opacity 0.3s; display: flex; align-items: flex-end; padding: 16px;
+  }
+  .gal-item:hover .gal-overlay { opacity: 1; }
+  .gal-caption { font-size: 13px; font-weight: 600; color: var(--white); }
+  .gal-tag { font-size: 10px; color: var(--gold-light); letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
+
+  /* Lightbox */
+  .lightbox {
+    display: none; position: fixed; inset: 0; z-index: 500;
+    background: rgba(0,0,0,0.92); align-items: center; justify-content: center;
+    backdrop-filter: blur(8px);
+  }
+  .lightbox.lb-open { display: flex; }
+  .lb-content { position: relative; max-width: min(90vw, 720px); text-align: center; }
+  .lb-close {
+    position: absolute; top: -44px; right: 0; background: transparent; border: none;
+    color: rgba(255,255,255,0.7); font-size: 28px; cursor: pointer; padding: 4px 8px;
+    border-radius: 6px; transition: color 0.2s; line-height: 1;
+  }
+  .lb-close:hover { color: var(--gold-light); }
+  .lb-img-box {
+    width: 100%; aspect-ratio: 4/3;
+    background: linear-gradient(135deg, #0d3b1e, #1a5c30);
+    border-radius: 12px; overflow: hidden; border: 1px solid rgba(200,146,42,0.25);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .lb-img-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .lb-placeholder { text-align: center; padding: 40px; }
+  .lb-placeholder-icon { font-size: 56px; display: block; opacity: 0.5; margin-bottom: 12px; }
+  .lb-caption { margin-top: 16px; font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: var(--white); }
+  .lb-sub { font-size: 13px; color: rgba(245,230,192,0.5); margin-top: 4px; }
+
+  @media (max-width: 768px) {
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  }
+  @media (max-width: 420px) {
+    .gallery-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ── Events & Announcements ── */
+  .events-section { background: var(--white); }
+  .events-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 48px; margin-top: 48px; align-items: start; }
+  .events-tabs { display: flex; gap: 0; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 24px; }
+  .ev-tab {
+    flex: 1; padding: 11px 16px; border: none; background: transparent; cursor: pointer;
+    font-size: 12px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase;
+    color: var(--text-muted); font-family: inherit; transition: all 0.2s; text-align: center;
+    border-right: 1px solid var(--border);
+  }
+  .ev-tab:last-child { border-right: none; }
+  .ev-tab:hover { background: var(--cream); color: var(--green-mid); }
+  .ev-tab.active { background: var(--green-deep); color: var(--gold-light); }
+
+  .events-list { display: flex; flex-direction: column; gap: 12px; }
+  .event-item {
+    display: flex; gap: 16px; padding: 16px 18px; background: var(--cream);
+    border: 1px solid var(--border); border-radius: 12px;
+    transition: all 0.25s; cursor: pointer;
+  }
+  .event-item:hover { border-color: rgba(200,146,42,0.4); box-shadow: 0 4px 14px rgba(13,59,30,0.07); transform: translateX(2px); }
+  .event-date-box {
+    flex-shrink: 0; width: 50px; height: 54px; border-radius: 10px;
+    background: var(--green-deep); border: 1px solid rgba(200,146,42,0.25);
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
+  }
+  .ed-day { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--gold-light); line-height: 1; }
+  .ed-mon { font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(200,146,42,0.65); }
+  .event-info { flex: 1; min-width: 0; }
+  .ev-type { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 3px; }
+  .ev-title { font-size: 14px; font-weight: 600; color: var(--green-deep); line-height: 1.4; margin-bottom: 3px; }
+  .ev-meta { font-size: 12px; color: var(--text-muted); }
+
+  .announcements-panel { display: flex; flex-direction: column; gap: 0; }
+  .announcement-item {
+    display: flex; gap: 14px; padding: 18px 0; border-bottom: 1px solid var(--border);
+    transition: background 0.2s;
+  }
+  .announcement-item:first-child { padding-top: 0; }
+  .ann-dot {
+    flex-shrink: 0; width: 10px; height: 10px; border-radius: 50%; margin-top: 5px;
+    background: var(--gold);
+  }
+  .ann-dot.ann-urgent { background: #f87171; }
+  .ann-dot.ann-info { background: #60c8ff; }
+  .ann-body { flex: 1; }
+  .ann-category { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--text-muted); font-weight: 600; margin-bottom: 3px; }
+  .ann-text { font-size: 13.5px; color: var(--text-mid); line-height: 1.6; margin-bottom: 4px; }
+  .ann-date { font-size: 11px; color: var(--text-muted); }
+
+  @media (max-width: 768px) {
+    .events-grid { grid-template-columns: 1fr; gap: 32px; }
+  }
+
+  /* ── Volunteer & Community Participation ── */
+  .volunteer-section { background: linear-gradient(160deg, #f0f7f3, var(--cream)); }
+  .vol-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 64px; margin-top: 48px; align-items: start; }
+  .vol-programs { display: flex; flex-direction: column; gap: 16px; }
+  .vol-card {
+    background: var(--white); border: 1px solid var(--border); border-radius: 14px;
+    padding: 22px 24px; display: flex; gap: 18px; align-items: flex-start;
+    transition: all 0.3s cubic-bezier(.22,.61,.36,1); cursor: pointer;
+  }
+  .vol-card:hover { border-color: rgba(46,139,87,0.45); box-shadow: 0 8px 28px rgba(13,59,30,0.1); transform: translateX(3px); }
+  .vol-icon { width: 48px; height: 48px; border-radius: 10px; flex-shrink: 0;
+    background: rgba(46,139,87,0.08); border: 1px solid rgba(46,139,87,0.15);
+    display: flex; align-items: center; justify-content: center; font-size: 22px; }
+  .vol-title { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; color: var(--green-deep); margin-bottom: 5px; }
+  .vol-desc { font-size: 13px; color: var(--text-muted); line-height: 1.65; }
+  .vol-spots { font-size: 11px; font-weight: 600; color: var(--green-mid); margin-top: 8px;
+    display: inline-flex; align-items: center; gap: 5px; }
+  .vol-spots::before { content: '●'; font-size: 8px; color: #22c55e; }
+
+  .vol-form-panel { background: var(--green-deep); border-radius: 18px; padding: 36px 32px; }
+  .vol-form-title { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: var(--white); margin-bottom: 6px; }
+  .vol-form-sub { font-size: 14px; color: rgba(245,230,192,0.6); margin-bottom: 28px; line-height: 1.6; }
+  .vf-group { margin-bottom: 18px; }
+  .vf-label { font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: rgba(200,146,42,0.7); display: block; margin-bottom: 6px; font-weight: 600; }
+  .vf-input, .vf-select, .vf-textarea {
+    width: 100%; padding: 11px 14px; border-radius: 8px;
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(200,146,42,0.25);
+    color: rgba(255,255,255,0.88); font-size: 14px; font-family: inherit;
+    outline: none; transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .vf-input:focus, .vf-select:focus, .vf-textarea:focus {
+    border-color: rgba(200,146,42,0.6); box-shadow: 0 0 0 3px rgba(200,146,42,0.12);
+  }
+  .vf-select option { background: #0d3b1e; color: #fff; }
+  .vf-textarea { resize: vertical; min-height: 80px; }
+  .vf-submit {
+    width: 100%; padding: 13px; background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    color: var(--green-deep); border: none; border-radius: 8px; font-size: 13px; font-weight: 700;
+    letter-spacing: 1px; text-transform: uppercase; cursor: pointer; font-family: inherit;
+    transition: opacity 0.2s, transform 0.2s; margin-top: 6px;
+  }
+  .vf-submit:hover { opacity: 0.9; transform: translateY(-1px); }
+  .vf-note { font-size: 12px; color: rgba(245,230,192,0.4); text-align: center; margin-top: 12px; }
+
+  @media (max-width: 768px) { .vol-grid { grid-template-columns: 1fr; gap: 32px; } }
+
+  /* ── Achievement Evidence Cards (inline proof) ── */
+  .ach-evidence {
+    margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border);
+    display: none; flex-direction: column; gap: 8px;
+  }
+  .ach-card.expanded .ach-evidence { display: flex; }
+  .ach-evidence-row { display: flex; gap: 8px; flex-wrap: wrap; }
+  .ev-tag {
+    display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 600;
+    padding: 4px 10px; border-radius: 100px;
+  }
+  .ev-tag.ev-done { background: rgba(22,163,74,0.1); color: #16a34a; border: 1px solid rgba(22,163,74,0.2); }
+  .ev-tag.ev-date { background: rgba(200,146,42,0.08); color: var(--gold); border: 1px solid rgba(200,146,42,0.2); }
+  .ev-tag.ev-impact { background: rgba(46,139,87,0.08); color: var(--green-mid); border: 1px solid rgba(46,139,87,0.15); }
+  .ach-expand-btn {
+    margin-top: 12px; background: transparent; border: 1px solid var(--border);
+    color: var(--text-muted); border-radius: 6px; padding: 6px 14px; font-size: 12px;
+    font-family: inherit; cursor: pointer; transition: all 0.2s; width: 100%;
+  }
+  .ach-expand-btn:hover { border-color: var(--gold); color: var(--green-deep); }
+  .ach-card.expanded .ach-expand-btn { color: var(--green-mid); border-color: rgba(46,139,87,0.3); }
+
+  /* ── Learning Progress Dashboard (KC portal) ── */
+  .learning-dashboard { background: var(--cream); }
+  .ld-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 48px; margin-top: 48px; align-items: start; }
+  .ld-portal-list { display: flex; flex-direction: column; gap: 12px; }
+  .ld-portal {
+    background: var(--white); border: 1px solid var(--border); border-radius: 12px;
+    padding: 16px 18px; display: flex; align-items: center; gap: 14px;
+    transition: all 0.25s; text-decoration: none; color: inherit;
+  }
+  .ld-portal:hover { border-color: rgba(200,146,42,0.4); box-shadow: 0 4px 16px rgba(13,59,30,0.08); transform: translateX(2px); }
+  .ld-portal-icon { font-size: 24px; width: 44px; height: 44px; border-radius: 10px;
+    background: rgba(46,139,87,0.08); border: 1px solid rgba(46,139,87,0.15);
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .ld-portal-info { flex: 1; min-width: 0; }
+  .ld-portal-name { font-size: 14px; font-weight: 600; color: var(--green-deep); margin-bottom: 4px; }
+  .ld-bar-wrap { height: 5px; background: rgba(200,146,42,0.1); border-radius: 100px; overflow: hidden; }
+  .ld-bar { height: 100%; background: linear-gradient(90deg, var(--green-mid), var(--gold)); border-radius: 100px; transition: width 1.2s cubic-bezier(.4,0,.2,1) 0.3s; width: 0; }
+  .ld-pct { font-size: 11px; font-weight: 700; color: var(--gold); min-width: 32px; text-align: right; flex-shrink: 0; }
+
+  .ld-achievements { background: var(--white); border: 1px solid var(--border); border-radius: 16px; padding: 28px; }
+  .ld-ach-title { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--green-deep); margin-bottom: 6px; }
+  .ld-ach-sub { font-size: 13px; color: var(--text-muted); margin-bottom: 24px; }
+  .badge-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .badge-item {
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    padding: 16px 8px; border-radius: 12px; border: 1px solid var(--border);
+    transition: all 0.2s; text-align: center;
+    background: linear-gradient(145deg, var(--white), var(--cream));
+  }
+  .badge-item.badge-earned { border-color: rgba(200,146,42,0.35); background: linear-gradient(145deg, #fffef8, #fef9e7); }
+  .badge-item.badge-locked { opacity: 0.42; filter: grayscale(0.6); }
+  .badge-icon { font-size: 28px; line-height: 1; }
+  .badge-name { font-size: 11px; font-weight: 600; color: var(--green-deep); line-height: 1.3; }
+  .badge-status { font-size: 10px; color: var(--text-muted); }
+  .badge-earned .badge-status { color: var(--gold); font-weight: 600; }
+
+  .cert-strip {
+    margin-top: 24px; background: linear-gradient(135deg, var(--green-deep), #0a2e17);
+    border-radius: 12px; padding: 20px 24px; display: flex; align-items: center; gap: 18px;
+    border: 1px solid rgba(200,146,42,0.25);
+  }
+  .cert-icon { font-size: 36px; flex-shrink: 0; }
+  .cert-info { flex: 1; }
+  .cert-title { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; color: var(--white); margin-bottom: 3px; }
+  .cert-sub { font-size: 12px; color: rgba(245,230,192,0.55); }
+  .cert-btn {
+    padding: 9px 18px; background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    color: var(--green-deep); border: none; border-radius: 6px; font-size: 12px;
+    font-weight: 700; letter-spacing: 0.5px; cursor: pointer; font-family: inherit;
+    white-space: nowrap; transition: opacity 0.2s;
+  }
+  .cert-btn:hover { opacity: 0.85; }
+
+  @media (max-width: 768px) {
+    .ld-grid { grid-template-columns: 1fr; gap: 24px; }
+    .badge-grid { grid-template-columns: repeat(4, 1fr); }
+  }
+  @media (max-width: 420px) {
+    .badge-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  /* ── Hero secondary CTA ── */
+  .hero-cta-group { display: flex; gap: 12px; flex-wrap: wrap; }
+  .hero-cta-secondary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,0.07); border: 1.5px solid rgba(200,146,42,0.45);
+    color: var(--gold-light); padding: 14px 26px; border-radius: 6px;
+    font-weight: 500; font-size: 12px; letter-spacing: 1.5px; text-decoration: none;
+    text-transform: uppercase; transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
+  }
+  .hero-cta-secondary:hover {
+    background: rgba(200,146,42,0.14); transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(200,146,42,0.22);
+  }
+
+  /* ── Mobile bottom nav + sticky bar spacing fix ── */
+  @media (max-width: 768px) {
+    body { padding-bottom: calc(62px + 48px + env(safe-area-inset-bottom, 0px)); }
+    .back-to-top { bottom: calc(76px + 48px + env(safe-area-inset-bottom, 0px)); }
+    .wa-fab { bottom: calc(62px + 48px + 16px + env(safe-area-inset-bottom, 0px)); }
+  }
+
   /* ── Print styles ── */
   @media print {
     nav, .nav-drawer, .nav-overlay, .back-to-top, .bottom-nav,
-    .hero-cta, .kc-promo { display: none !important; }
+    .hero-cta, .kc-promo, .wa-fab, .sticky-contact-bar,
+    .vf-submit, .cert-btn, .ach-expand-btn, .lightbox { display: none !important; }
     body { background: white !important; color: black !important; font-size: 11pt; }
     section, .victory, .scheme, .infra, .about, .contact { padding: 18pt 5vw !important; }
     .hero { padding: 18pt 5vw 14pt !important; min-height: auto !important; }
@@ -903,16 +1451,19 @@
   }
 
 </style>
+<link rel="stylesheet" href="assets/css/if-standard.css">
+<script defer src="assets/js/if-search.js"></script>
+<script defer src="assets/js/if-order.js"></script>
+<script defer src="assets/js/if-jsonld.js"></script>
 </head>
 <body>
 <a href="#home" class="skip-link" data-key="skip_link">ప్రధాన విషయానికి వెళ్ళండి</a>
 <!-- NAV -->
 <nav>
   <a href="#" class="nav-brand">
-    <!-- LOGO: place your logo at assets/logo.png -->
-    <img src="assets/logo.png" class="nav-logo" alt="Islamic Front Logo"
+    <img src="assets/logo-emblem.png" class="nav-logo" alt="Islamic Front Logo"
          onerror="this.style.display='none';document.getElementById('nav-svg').style.display='block'">
-    <svg id="nav-svg" style="display:none;width:42px;height:42px;" viewBox="0 0 42 42" xmlns="http://www.w3.org/2000/svg">
+    <svg id="nav-svg" style="display:none;width:42px;height:42px;" viewBox="0 0 42 42" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <circle cx="21" cy="21" r="20" fill="none" stroke="#c8922a" stroke-width="1.5"/>
       <text x="21" y="17" text-anchor="middle" font-family="serif" font-size="13" fill="#e8b84b" font-weight="700">إسلامی</text>
       <text x="21" y="30" text-anchor="middle" font-family="sans-serif" font-size="7" fill="#c8922a" letter-spacing="1">FRONT</text>
@@ -925,13 +1476,14 @@
   </a>
   <div class="nav-right">
     <ul class="nav-links">
-      <li><a href="#victory"      data-key="nav_victory">మా విజయం</a></li>
-      <li><a href="#achievements" data-key="nav_achievements">సాధనలు</a></li>
-      <li><a href="#manifesto"    data-key="nav_manifesto">మేనిఫెస్టో</a></li>
-      <li><a href="#scheme"       data-key="nav_scheme">సహాయ పథకం</a></li>
-      <li><a href="#about"        data-key="nav_about">మా గురించి</a></li>
-      <li><a href="#contact"      data-key="nav_contact">సంప్రదించండి</a></li>
+      <li><a href="#victory"           data-key="nav_victory">మా విజయం</a></li>
+      <li><a href="#achievements"      data-key="nav_achievements">సాధనలు</a></li>
+      <li><a href="#manifesto"         data-key="nav_manifesto">మేనిఫెస్టో</a></li>
+      <li><a href="#stories"           data-key="nav_stories">కథలు</a></li>
+      <li><a href="#events"            data-key="nav_events">కార్యక్రమాలు</a></li>
+      <li><a href="#community-contact" data-key="nav_contact">సంప్రదించండి</a></li>
     </ul>
+    <a href="student-guidance.html" class="nav-guide" data-key="nav_guidance">విద్యార్థి మార్గదర్శనం</a>
     <a href="islamic-knowledge.html" class="nav-kc" data-key="nav_knowledge">నాలెడ్జ్ సెంటర్</a>
     <button class="lang-btn" id="lang-btn" onclick="toggleLang()"
             title="ప్రస్తుతం: తెలుగు — ఆంగ్లంలోకి మారడానికి నొక్కండి"
@@ -951,13 +1503,18 @@
     <button class="nav-drawer-close" id="nav-drawer-close" aria-label="Close menu">&#x2715;</button>
   </div>
   <ul class="nav-drawer-links">
-    <li><a href="#home"         data-key="nav_home">హోమ్</a></li>
-    <li><a href="#victory"      data-key="nav_victory">మా విజయం</a></li>
-    <li><a href="#achievements" data-key="nav_achievements">సాధనలు</a></li>
-    <li><a href="#manifesto"    data-key="nav_manifesto">మేనిఫెస్టో</a></li>
-    <li><a href="#scheme"       data-key="nav_scheme">సహాయ పథకం</a></li>
-    <li><a href="#about"        data-key="nav_about">మా గురించి</a></li>
-    <li><a href="#contact"      data-key="nav_contact">సంప్రదించండి</a></li>
+    <li><a href="student-guidance.html" data-key="nav_guidance">విద్యార్థి మార్గదర్శనం</a></li>
+    <li><a href="islamic-knowledge.html" data-key="nav_knowledge">నాలెడ్జ్ సెంటర్</a></li>
+    <li><a href="#home"              data-key="nav_home">హోమ్</a></li>
+    <li><a href="#victory"           data-key="nav_victory">మా విజయం</a></li>
+    <li><a href="#achievements"      data-key="nav_achievements">సాధనలు</a></li>
+    <li><a href="#manifesto"         data-key="nav_manifesto">మేనిఫెస్టో</a></li>
+    <li><a href="#stories"           data-key="nav_stories">సఫలత కథలు</a></li>
+    <li><a href="#gallery"           data-key="nav_gallery">మా కార్యక్రమాలు</a></li>
+    <li><a href="#events"            data-key="nav_events">కార్యక్రమాలు</a></li>
+    <li><a href="#volunteer"         data-key="nav_volunteer">స్వచ్ఛంద సేవ</a></li>
+    <li><a href="#about"             data-key="nav_about">మా గురించి</a></li>
+    <li><a href="#community-contact" data-key="nav_contact">సంప్రదించండి</a></li>
   </ul>
 </div>
 
@@ -968,44 +1525,54 @@
   </div>
   <div class="hero-content">
     <div class="hero-left">
-      <div class="hero-badge" data-key="hero_badge">మంగళగిరి, ఆంధ్రప్రదేశ్</div>
-      <h1 class="hero-title" data-key="hero_title" data-html="true">ఇస్లామిక్<br><span>ఫ్రంట్</span></h1>
-      <p class="hero-subtitle" data-key="hero_subtitle" data-html="true">2011 నుండి మంగళగిరి ముస్లిం సమాజానికి<br>నిజాయితీగా, అభివృద్ధితో, కరుణతో సేవ చేస్తున్నాము.</p>
-      <div class="hero-stats">
-        <div class="hstat">
-          <div class="hstat-num" data-key="stat1_num">7/9</div>
-          <div class="hstat-label" data-key="stat1_label">2023లో గెలిచిన సీట్లు</div>
+      <!-- Top band: heading text + emblem separator + prominent founder photo on mobile -->
+      <div class="hero-topband">
+        <div class="hero-headtext">
+          <div class="hero-badge" data-key="hero_badge">మంగళగిరి, ఆంధ్రప్రదేశ్</div>
+          <h1 class="hero-title" data-key="hero_title" data-html="true">ఇస్లామిక్<br><span>ఫ్రంట్</span></h1>
+          <p class="hero-subtitle" data-key="hero_subtitle" data-html="true">2011 నుండి మంగళగిరి ముస్లిం సమాజానికి<br>నిజాయితీగా, అభివృద్ధితో, కరుణతో సేవ చేస్తున్నాము.</p>
+          <div class="hero-stats">
+            <div class="hstat">
+              <div class="hstat-num" data-key="stat1_num">7/9</div>
+              <div class="hstat-label" data-key="stat1_label">2023లో గెలిచిన సీట్లు</div>
+            </div>
+            <div class="hero-divider"></div>
+            <div class="hstat">
+              <div class="hstat-num" data-key="stat3_num">15+</div>
+              <div class="hstat-label" data-key="stat3_label">సంవత్సరాల సేవ</div>
+            </div>
+          </div>
+          <div class="hero-mf-progress">
+            <div class="hmfp-top">
+              <span class="hmfp-label" data-key="hmfp_label">మేనిఫెస్టో పురోగతి</span>
+            </div>
+            <div class="hmfp-bar">
+              <div class="hmfp-seg s-done" data-w="40%"></div>
+              <div class="hmfp-seg s-progress" data-w="40%"></div>
+              <div class="hmfp-seg s-pending" data-w="20%"></div>
+            </div>
+            <div class="hmfp-legend">
+              <div class="hmfp-li"><div class="hmfp-dot" style="background:#22c55e;"></div><span data-key="hmfp_done">4 పూర్తయింది</span></div>
+              <div class="hmfp-li"><div class="hmfp-dot" style="background:#f59e0b;"></div><span data-key="hmfp_prog">4 పురోగతిలో</span></div>
+              <div class="hmfp-li"><div class="hmfp-dot" style="background:rgba(255,255,255,0.25);"></div><span data-key="hmfp_pend">2 రాబోతున్నవి</span></div>
+            </div>
+          </div>
         </div>
-        <div class="hero-divider"></div>
-        <div class="hstat">
-          <div class="hstat-num" data-key="stat3_num">15+</div>
-          <div class="hstat-label" data-key="stat3_label">సంవత్సరాల సేవ</div>
+        <!-- Mobile-only prominent founder photo (desktop shows the full leader-card at right) -->
+        <div class="hero-founder-mobile">
+          <div class="hfm-frame">
+            <img src="assets/founder/shaik-akram-2.jpg" class="hfm-photo" alt="జనాబ్ షేక్ అక్రమ్"
+                 onerror="this.closest('.hero-founder-mobile').style.display='none'">
+            <div class="hfm-info">
+              <div class="hfm-name" data-key="leader_name">జనాబ్ షేక్ అక్రమ్</div>
+              <div class="hfm-role" data-key="leader_title_short">సంస్థాపకుడు, ఇస్లామిక్ ఫ్రంట్</div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="hero-mf-progress">
-        <div class="hmfp-top">
-          <span class="hmfp-label" data-key="hmfp_label">మేనిఫెస్టో పురోగతి</span>
-        </div>
-        <div class="hmfp-bar">
-          <div class="hmfp-seg s-done" data-w="40%"></div>
-          <div class="hmfp-seg s-progress" data-w="40%"></div>
-          <div class="hmfp-seg s-pending" data-w="20%"></div>
-        </div>
-        <div class="hmfp-legend">
-          <div class="hmfp-li"><div class="hmfp-dot" style="background:#22c55e;"></div><span data-key="hmfp_done">4 పూర్తయింది</span></div>
-          <div class="hmfp-li"><div class="hmfp-dot" style="background:#f59e0b;"></div><span data-key="hmfp_prog">4 పురోగతిలో</span></div>
-          <div class="hmfp-li"><div class="hmfp-dot" style="background:rgba(255,255,255,0.25);"></div><span data-key="hmfp_pend">2 రాబోతున్నవి</span></div>
-        </div>
-      </div>
-      <a href="#achievements" class="hero-cta" data-key="hero_cta">మా సాధనలు →</a>
-      <!-- Mobile-only founder strip (desktop shows the full leader-card at right) -->
-      <div class="hero-founder-mobile">
-        <img src="assets/founder/shaik-akram-2.jpg" class="hfm-photo" alt=""
-             onerror="this.style.display='none'">
-        <div class="hfm-info">
-          <div class="hfm-name" data-key="leader_name">జనాబ్ షేక్ అక్రమ్</div>
-          <div class="hfm-role" data-key="leader_title_short">సంస్థాపకుడు, ఇస్లామిక్ ఫ్రంట్</div>
-        </div>
+      <div class="hero-cta-group">
+        <a href="#achievements" class="hero-cta" data-key="hero_cta">మా సాధనలు →</a>
+        <a href="#community-contact" class="hero-cta-secondary" data-key="hero_cta_contact">సంప్రదించండి</a>
       </div>
     </div>
     <div class="leader-card">
@@ -1131,36 +1698,103 @@
         <h3 class="ach-title" data-key="ach1_title">కన్వెన్షన్ హాల్ పరివర్తన</h3>
         <p class="ach-desc" data-key="ach1_desc">అంజుమన్ షాదీ మహల్ మరియు ఈద్గా కమ్యూనిటీ హాల్ — రెండు హాళ్ళు AC లేని స్థితి నుండి పూర్తి ఎయిర్ కండిషన్డ్ సౌకర్యాలకు అప్‌గ్రేడ్ చేయబడ్డాయి. పూర్తి రీమోడలింగ్, సీలింగ్ పునరుద్ధరణ మరియు అంతర్గత మెరుగుదల పనులు చేపట్టబడ్డాయి.</p>
         <span class="ach-tag" data-key="ach1_tag">మౌలిక సదుపాయాలు</span>
+        <button class="ach-expand-btn" onclick="toggleAchEvidence(this)" data-key="ach_view_evidence">సాక్ష్యాలు చూడండి ▾</button>
+        <div class="ach-evidence">
+          <div class="ach-evidence-row">
+            <span class="ev-tag ev-done">✓ పూర్తి AC వ్యవస్థాపన</span>
+            <span class="ev-tag ev-done">✓ పూర్తి రీమోడలింగ్</span>
+            <span class="ev-tag ev-date">2023–2024</span>
+          </div>
+          <div class="ach-evidence-row">
+            <span class="ev-tag ev-impact">📍 2 హాళ్ళు అప్‌గ్రేడ్</span>
+            <span class="ev-tag ev-impact">1,000+ కుటుంబాలు లాభపడ్డాయి</span>
+          </div>
+        </div>
       </div>
       <div class="ach-card">
         <div class="ach-icon">💰</div>
         <h3 class="ach-title" data-key="ach2_title">అంజుమన్ ఆదాయంలో మెరుగుదల</h3>
         <p class="ach-desc" data-key="ach2_desc">గత నాయకత్వం అద్దెదారులు అద్దె చెల్లించకుండా వదిలేసేది. ఇస్లామిక్ ఫ్రంట్ ఆధ్వర్యంలో క్రమశిక్షణతో కూడిన అద్దె వసూలు వ్యవస్థ అమలు చేయబడింది — అంజుమన్ ఆర్థిక వనరులు గణనీయంగా మెరుగుపడ్డాయి.</p>
         <span class="ach-tag" data-key="ach2_tag">ఆర్థిక సంస్కరణ</span>
+        <button class="ach-expand-btn" onclick="toggleAchEvidence(this)" data-key="ach_view_evidence">సాక్ష్యాలు చూడండి ▾</button>
+        <div class="ach-evidence">
+          <div class="ach-evidence-row">
+            <span class="ev-tag ev-done">✓ క్రమబద్ధ వసూలు వ్యవస్థ</span>
+            <span class="ev-tag ev-date">2023 నుండి</span>
+          </div>
+          <div class="ach-evidence-row">
+            <span class="ev-tag ev-impact">120+ దుకాణాల నుండి ఆదాయం</span>
+            <span class="ev-tag ev-impact">గణనీయ మెరుగుదల</span>
+          </div>
+        </div>
       </div>
       <div class="ach-card">
         <div class="ach-icon">🔒</div>
         <h3 class="ach-title" data-key="ach3_title">షాప్ ఆడిట్ & సబ్‌లీజ్ పరిష్కారం</h3>
         <p class="ach-desc" data-key="ach3_desc">అద్దెదారులు అంజుమన్ ఆస్తులను మూడవ పక్షాలకు తిరిగి లీజుకు ఇచ్చే దోపిడీ సబ్‌లీజ్ పద్ధతి మా పాలనలో పూర్తిగా రద్దు చేయబడింది — సమాజ ఆస్తులు దీర్ఘకాలానికి రక్షించబడ్డాయి.</p>
         <span class="ach-tag" data-key="ach3_tag">విధాన సంస్కరణ</span>
+        <button class="ach-expand-btn" onclick="toggleAchEvidence(this)" data-key="ach_view_evidence">సాక్ష్యాలు చూడండి ▾</button>
+        <div class="ach-evidence">
+          <div class="ach-evidence-row">
+            <span class="ev-tag ev-done">✓ 120+ దుకాణాల తనిఖీ</span>
+            <span class="ev-tag ev-done">✓ సబ్‌లీజ్ పూర్తిగా రద్దు</span>
+          </div>
+          <div class="ach-evidence-row">
+            <span class="ev-tag ev-impact">₹27 లక్షలు అదనపు లాభం</span>
+            <span class="ev-tag ev-date">2023–2024</span>
+          </div>
+        </div>
       </div>
       <div class="ach-card">
         <div class="ach-icon">🤝</div>
         <h3 class="ach-title" data-key="ach4_title">అంత్యక్రియల ఆర్థిక సహాయ పథకం</h3>
         <p class="ach-desc" data-key="ach4_desc">మంగళగిరిలో అంత్యక్రియల ఖర్చులు భరించలేని ముస్లిం కుటుంబాలకు ₹10,000 ఆర్థిక సహాయం అందించే కరుణాపూర్వక పథకం ప్రారంభించబడింది. ఏ కుటుంబమూ ఆ భారాన్ని ఒంటరిగా మోయకూడదు.</p>
         <span class="ach-tag" data-key="ach4_tag">సామాజిక సంక్షేమం</span>
+        <button class="ach-expand-btn" onclick="toggleAchEvidence(this)" data-key="ach_view_evidence">సాక్ష్యాలు చూడండి ▾</button>
+        <div class="ach-evidence">
+          <div class="ach-evidence-row">
+            <span class="ev-tag ev-done">✓ క్రియాశీల పథకం</span>
+            <span class="ev-tag ev-impact">250+ కుటుంబాలు సేవ పొందాయి</span>
+          </div>
+          <div class="ach-evidence-row">
+            <span class="ev-tag ev-impact">₹10,000 ప్రతి కుటుంబానికి</span>
+            <span class="ev-tag ev-date">2023 నుండి</span>
+          </div>
+        </div>
       </div>
       <div class="ach-card">
         <div class="ach-icon">🕌</div>
         <h3 class="ach-title" data-key="ach5_title">18 మసీదుల నిర్వహణ</h3>
         <p class="ach-desc" data-key="ach5_desc">మంగళగిరిలో 18 మసీదుల కార్యకలాపాలు మరియు నిర్వహణను ఇస్లామిక్ ఫ్రంట్ పర్యవేక్షిస్తుంది — సమాజ ఆధ్యాత్మిక అవసరాలకు అత్యున్నత ప్రమాణాలతో.</p>
         <span class="ach-tag" data-key="ach5_tag">సమాజ ఆస్తులు</span>
+        <button class="ach-expand-btn" onclick="toggleAchEvidence(this)" data-key="ach_view_evidence">సాక్ష్యాలు చూడండి ▾</button>
+        <div class="ach-evidence">
+          <div class="ach-evidence-row">
+            <span class="ev-tag ev-done">✓ 18 మసీదులు క్రియాశీలంగా</span>
+            <span class="ev-tag ev-done">✓ 5 మదర్సాలు</span>
+          </div>
+          <div class="ach-evidence-row">
+            <span class="ev-tag ev-impact">3,000+ ఓటర్ల విశ్వాసం</span>
+            <span class="ev-tag ev-date">కొనసాగుతున్నది</span>
+          </div>
+        </div>
       </div>
       <div class="ach-card">
         <div class="ach-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 24" width="26" height="22" fill="none" stroke="#c8922a" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="19.5" width="26" height="4" rx="1.5" fill="rgba(200,146,42,0.15)"/><rect x="3" y="7.5" width="22" height="12" rx="2" fill="rgba(200,146,42,0.08)"/><path d="M3 7.5 Q3 3 8 3 L20 3 Q26 3 25 7.5"/><ellipse cx="14" cy="3" rx="3.5" ry="1.8" fill="rgba(200,146,42,0.2)"/><circle cx="7" cy="13.5" r="4.5" fill="rgba(200,146,42,0.06)"/><circle cx="7" cy="13.5" r="1.8" fill="rgba(200,146,42,0.4)"/><line x1="7" y1="9" x2="7" y2="18"/><line x1="2.5" y1="13.5" x2="11.5" y2="13.5"/><line x1="22" y1="11" x2="22" y2="23.5" stroke-width="2"/><line x1="19.5" y1="19.5" x2="24.5" y2="19.5" stroke-width="1.8"/><path d="M14 3 Q17 7 21 11" stroke-dasharray="2 1.5"/></svg></div>
         <h3 class="ach-title" data-key="ach6_title">మహిళా కుట్టు శిక్షణా కేంద్రం</h3>
         <p class="ach-desc" data-key="ach6_desc">ముస్లిం మహిళలకు ఆధునిక వసతులతో కుట్టు మిషన్ శిక్షణా కేంద్రం స్థాపించబడింది — ఉపాధి కల్పించడం మరియు ఆర్థిక స్వాతంత్ర్యం సాధించడం లక్ష్యం.</p>
         <span class="ach-tag" data-key="ach6_tag">మహిళా సాధికారత</span>
+        <button class="ach-expand-btn" onclick="toggleAchEvidence(this)" data-key="ach_view_evidence">సాక్ష్యాలు చూడండి ▾</button>
+        <div class="ach-evidence">
+          <div class="ach-evidence-row">
+            <span class="ev-tag ev-done">✓ కేంద్రం నెలకొల్పబడింది</span>
+            <span class="ev-tag ev-done">✓ శిక్షణ కొనసాగుతున్నది</span>
+          </div>
+          <div class="ach-evidence-row">
+            <span class="ev-tag ev-impact">మహిళా ఆర్థిక స్వాతంత్ర్యం</span>
+            <span class="ev-tag ev-date">2023 నుండి</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -1282,6 +1916,15 @@
 <!-- SCHEME -->
 <section class="scheme" id="scheme">
   <div class="inner">
+    <button class="scheme-bar" type="button" aria-expanded="false" aria-controls="scheme-body" onclick="toggleScheme(this)">
+      <span class="scheme-bar-text">
+        <span class="scheme-bar-tag" data-key="scheme_label">సామాజిక సంక్షేమ పథకం</span>
+        <span class="scheme-bar-title" data-key="scheme_bar_title">అంజుమన్ అంత్యక్రియల సహాయ కార్యక్రమం</span>
+      </span>
+      <span class="scheme-bar-chevron" aria-hidden="true">▾</span>
+    </button>
+    <div class="scheme-collapse" id="scheme-body">
+    <div class="scheme-grid">
     <div class="scheme-card">
       <div class="scheme-label" data-key="scheme_label">సామాజిక సంక్షేమ పథకం</div>
       <div class="scheme-amount">₹10,000</div>
@@ -1315,6 +1958,8 @@
           </div>
         </div>
       </div>
+    </div>
+    </div>
     </div>
   </div>
 </section>
@@ -1387,7 +2032,6 @@
   <div class="inner">
     <div class="founder-frame">
       <div class="founder-photo-box">
-        <!-- FOUNDER PHOTO: place image at founder/shaik-akram.jpg -->
         <img src="assets/founder/shaik-akram.jpg" alt="జనాబ్ షేక్ అక్రమ్" loading="lazy"
              onerror="this.style.display='none';document.getElementById('about-ph').style.display='flex'">
         <div id="about-ph" class="big-avatar" style="display:none">SA</div>
@@ -1475,6 +2119,705 @@
 </section>
 
 
+<!-- ═══════════════════════════════════════════════════════
+     SUCCESS STORIES
+═══════════════════════════════════════════════════════ -->
+<section class="success-stories" id="stories">
+  <div class="inner">
+    <div class="section-tag" data-key="stories_tag">సమాజ ప్రభావం</div>
+    <h2 class="section-title" data-key="stories_title">సఫలత కథలు</h2>
+    <p class="section-lead" data-key="stories_lead">మా పని వెనక మానవ ముఖాలు — ఇస్లామిక్ ఫ్రంట్ పథకాలు మరియు కార్యక్రమాల ద్వారా జీవితాలు ఎలా మారాయో.</p>
+
+    <div class="stories-tabs">
+      <button class="story-tab active" onclick="filterStories('all', this)" data-key="stories_all">అన్నీ</button>
+      <button class="story-tab" onclick="filterStories('welfare', this)" data-key="stories_welfare">సంక్షేమం</button>
+      <button class="story-tab" onclick="filterStories('women', this)" data-key="stories_women">మహిళా సాధికారత</button>
+      <button class="story-tab" onclick="filterStories('education', this)" data-key="stories_education">విద్య</button>
+      <button class="story-tab" onclick="filterStories('student', this)" data-key="stories_student">విద్యార్థులు</button>
+    </div>
+
+    <div class="stories-grid">
+
+      <!-- Story 1: Welfare -->
+      <div class="story-card story-visible" data-category="welfare">
+        <div class="story-photo">
+          <div class="story-photo-placeholder">
+            <div class="story-avatar">ఫ</div>
+            <div style="font-size:11px;color:rgba(200,146,42,0.6);letter-spacing:0.5px;">ఫోటో త్వరలో</div>
+          </div>
+          <div class="story-scheme-tag" data-key="scheme_welfare">అంత్యక్రియల సహాయం</div>
+        </div>
+        <div class="story-body">
+          <div class="story-quote-icon">"</div>
+          <p class="story-quote" data-key="story1_quote">"మా కుటుంబం అత్యంత కష్ట సమయంలో ఇస్లామిక్ ఫ్రంట్ మాకు అండగా నిలిచింది. వారి ₹10,000 సహాయం మాకు గౌరవప్రదమైన అంత్యక్రియలు నిర్వహించడంలో సాయపడింది."</p>
+          <div class="story-name" data-key="story1_name">ఫాతిమా బేగం</div>
+          <div class="story-meta" data-key="story1_meta">మంగళగిరి · 2024</div>
+          <div class="story-impact">
+            <span class="story-chip" data-key="story1_chip1">₹10,000 సహాయం</span>
+            <span class="story-chip" data-key="story1_chip2">అంత్యక్రియల పథకం</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Story 2: Women Empowerment -->
+      <div class="story-card story-visible" data-category="women">
+        <div class="story-photo">
+          <div class="story-photo-placeholder">
+            <div class="story-avatar">స</div>
+            <div style="font-size:11px;color:rgba(200,146,42,0.6);letter-spacing:0.5px;">ఫోటో త్వరలో</div>
+          </div>
+          <div class="story-scheme-tag" data-key="scheme_women">మహిళా శిక్షణ</div>
+        </div>
+        <div class="story-body">
+          <div class="story-quote-icon">"</div>
+          <p class="story-quote" data-key="story2_quote">"కుట్టు శిక్షణా కేంద్రంలో చేరిన తర్వాత, నేను ఇప్పుడు నా స్వంత వ్యాపారం నడుపుతున్నాను. మా పిల్లల చదువుకు నేనే ఖర్చు పెట్టగలుగుతున్నాను."</p>
+          <div class="story-name" data-key="story2_name">సాయిదా ఖాతున్</div>
+          <div class="story-meta" data-key="story2_meta">మంగళగిరి · 2024</div>
+          <div class="story-impact">
+            <span class="story-chip" data-key="story2_chip1">కుట్టు శిక్షణ</span>
+            <span class="story-chip" data-key="story2_chip2">స్వంత వ్యాపారం</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Story 3: Education -->
+      <div class="story-card story-visible" data-category="education">
+        <div class="story-photo">
+          <div class="story-photo-placeholder">
+            <div class="story-avatar">మ</div>
+            <div style="font-size:11px;color:rgba(200,146,42,0.6);letter-spacing:0.5px;">ఫోటో త్వరలో</div>
+          </div>
+          <div class="story-scheme-tag" data-key="scheme_education">మదర్సా విద్య</div>
+        </div>
+        <div class="story-body">
+          <div class="story-quote-icon">"</div>
+          <p class="story-quote" data-key="story3_quote">"ఇస్లామిక్ ఫ్రంట్ మదర్సాలో నా పిల్లలు ఖురాన్ నేర్చుకుంటున్నారు. ఈ అవకాశం మా సమాజంలో ఉందని చాలా సంతోషంగా ఉంది."</p>
+          <div class="story-name" data-key="story3_name">మహమ్మద్ యూసుఫ్</div>
+          <div class="story-meta" data-key="story3_meta">మంగళగిరి · 2024</div>
+          <div class="story-impact">
+            <span class="story-chip" data-key="story3_chip1">ఖురాన్ విద్య</span>
+            <span class="story-chip" data-key="story3_chip2">మదర్సా</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Story 4: Student -->
+      <div class="story-card story-visible" data-category="student">
+        <div class="story-photo">
+          <div class="story-photo-placeholder">
+            <div class="story-avatar">ఆ</div>
+            <div style="font-size:11px;color:rgba(200,146,42,0.6);letter-spacing:0.5px;">ఫోటో త్వరలో</div>
+          </div>
+          <div class="story-scheme-tag" data-key="scheme_student">స్కాలర్‌షిప్</div>
+        </div>
+        <div class="story-body">
+          <div class="story-quote-icon">"</div>
+          <p class="story-quote" data-key="story4_quote">"ఇస్లామిక్ ఫ్రంట్ స్కాలర్‌షిప్ సహాయంతో నేను ఇంజినీరింగ్ చదివాను. ఇప్పుడు మంచి ఉద్యోగంలో ఉన్నాను మరియు మా కుటుంబానికి మద్దతు ఇస్తున్నాను."</p>
+          <div class="story-name" data-key="story4_name">ఆరిఫ్ హుస్సేన్</div>
+          <div class="story-meta" data-key="story4_meta">మంగళగిరి · 2023</div>
+          <div class="story-impact">
+            <span class="story-chip" data-key="story4_chip1">స్కాలర్‌షిప్</span>
+            <span class="story-chip" data-key="story4_chip2">ఇంజినీరింగ్ గ్రాడ్యుయేట్</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="stories-stats reveal">
+      <div class="ss-stat">
+        <div class="ss-num">250+</div>
+        <div class="ss-label" data-key="ss1_label">కుటుంబాలకు సహాయం</div>
+      </div>
+      <div class="ss-stat">
+        <div class="ss-num">50+</div>
+        <div class="ss-label" data-key="ss2_label">శిక్షణ పొందిన మహిళలు</div>
+      </div>
+      <div class="ss-stat">
+        <div class="ss-num">10+</div>
+        <div class="ss-label" data-key="ss3_label">స్కాలర్‌షిప్ విద్యార్థులు</div>
+      </div>
+      <div class="ss-stat">
+        <div class="ss-num">18</div>
+        <div class="ss-label" data-key="ss4_label">మసీదులు నిర్వహిత</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     OUR WORK GALLERY
+═══════════════════════════════════════════════════════ -->
+<section class="our-work" id="gallery">
+  <div class="inner">
+    <div class="section-tag" data-key="gallery_tag">మా పని</div>
+    <h2 class="section-title" data-key="gallery_title">మా కార్యక్రమాలు</h2>
+    <p class="section-lead" data-key="gallery_lead">ఇస్లామిక్ ఫ్రంట్ కార్యకలాపాలు — సంక్షేమ కార్యక్రమాలు, సమాజ ఉత్సవాలు, మసీదు నిర్వహణ మరియు మహిళా సాధికారత.</p>
+
+    <div class="gallery-cats">
+      <button class="gcat-btn active" onclick="filterGallery('all', this)" data-key="gcat_all">అన్నీ</button>
+      <button class="gcat-btn" onclick="filterGallery('welfare', this)" data-key="gcat_welfare">సంక్షేమ కార్యక్రమాలు</button>
+      <button class="gcat-btn" onclick="filterGallery('events', this)" data-key="gcat_events">సమాజ ఉత్సవాలు</button>
+      <button class="gcat-btn" onclick="filterGallery('mosque', this)" data-key="gcat_mosque">మసీదు కార్యకలాపాలు</button>
+      <button class="gcat-btn" onclick="filterGallery('education', this)" data-key="gcat_education">విద్యా కార్యక్రమాలు</button>
+      <button class="gcat-btn" onclick="filterGallery('women', this)" data-key="gcat_women">మహిళా కార్యక్రమాలు</button>
+    </div>
+
+    <div class="gallery-grid">
+
+      <div class="gal-item gal-visible" data-category="events" onclick="openLightbox('🏛️', 'ఈద్ ఉత్సవం 2024', 'సమాజ ఉత్సవాలు')">
+        <div class="gal-item-inner">
+          <div class="gal-placeholder-icon">🏛️</div>
+          <div class="gal-placeholder-text" data-key="gal1_text">ఈద్ ఉత్సవం<br>ఫోటో త్వరలో</div>
+        </div>
+        <div class="gal-overlay">
+          <div><div class="gal-caption" data-key="gal1_cap">ఈద్ ఉత్సవం 2024</div><div class="gal-tag" data-key="gcat_events">సమాజ ఉత్సవాలు</div></div>
+        </div>
+      </div>
+
+      <div class="gal-item gal-visible" data-category="welfare" onclick="openLightbox('🤝', 'అంత్యక్రియల సహాయ పంపిణీ', 'సంక్షేమ కార్యక్రమాలు')">
+        <div class="gal-item-inner">
+          <div class="gal-placeholder-icon">🤝</div>
+          <div class="gal-placeholder-text" data-key="gal2_text">సహాయ పంపిణీ<br>ఫోటో త్వరలో</div>
+        </div>
+        <div class="gal-overlay">
+          <div><div class="gal-caption" data-key="gal2_cap">అంత్యక్రియల సహాయ పంపిణీ</div><div class="gal-tag" data-key="gcat_welfare">సంక్షేమ కార్యక్రమాలు</div></div>
+        </div>
+      </div>
+
+      <div class="gal-item gal-visible" data-category="mosque" onclick="openLightbox('🕌', 'అంజుమన్ మసీదు – పునర్నిర్మాణం', 'మసీదు కార్యకలాపాలు')">
+        <div class="gal-item-inner">
+          <div class="gal-placeholder-icon">🕌</div>
+          <div class="gal-placeholder-text" data-key="gal3_text">మసీదు<br>ఫోటో త్వరలో</div>
+        </div>
+        <div class="gal-overlay">
+          <div><div class="gal-caption" data-key="gal3_cap">మసీదు పునర్నిర్మాణం</div><div class="gal-tag" data-key="gcat_mosque">మసీదు కార్యకలాపాలు</div></div>
+        </div>
+      </div>
+
+      <div class="gal-item gal-visible" data-category="women" onclick="openLightbox('🧵', 'కుట్టు శిక్షణా కేంద్రం', 'మహిళా కార్యక్రమాలు')">
+        <div class="gal-item-inner">
+          <div class="gal-placeholder-icon">🧵</div>
+          <div class="gal-placeholder-text" data-key="gal4_text">కుట్టు శిక్షణ<br>ఫోటో త్వరలో</div>
+        </div>
+        <div class="gal-overlay">
+          <div><div class="gal-caption" data-key="gal4_cap">కుట్టు శిక్షణా కేంద్రం</div><div class="gal-tag" data-key="gcat_women">మహిళా కార్యక్రమాలు</div></div>
+        </div>
+      </div>
+
+      <div class="gal-item gal-visible" data-category="education" onclick="openLightbox('📖', 'మదర్సా తరగతులు', 'విద్యా కార్యక్రమాలు')">
+        <div class="gal-item-inner">
+          <div class="gal-placeholder-icon">📖</div>
+          <div class="gal-placeholder-text" data-key="gal5_text">మదర్సా<br>ఫోటో త్వరలో</div>
+        </div>
+        <div class="gal-overlay">
+          <div><div class="gal-caption" data-key="gal5_cap">మదర్సా తరగతులు</div><div class="gal-tag" data-key="gcat_education">విద్యా కార్యక్రమాలు</div></div>
+        </div>
+      </div>
+
+      <div class="gal-item gal-visible" data-category="welfare" onclick="openLightbox('🏥', 'మెడికల్ క్యాంప్', 'సంక్షేమ కార్యక్రమాలు')">
+        <div class="gal-item-inner">
+          <div class="gal-placeholder-icon">🏥</div>
+          <div class="gal-placeholder-text" data-key="gal6_text">మెడికల్ క్యాంప్<br>ఫోటో త్వరలో</div>
+        </div>
+        <div class="gal-overlay">
+          <div><div class="gal-caption" data-key="gal6_cap">మెడికల్ క్యాంప్ 2024</div><div class="gal-tag" data-key="gcat_welfare">సంక్షేమ కార్యక్రమాలు</div></div>
+        </div>
+      </div>
+
+      <div class="gal-item gal-visible" data-category="events" onclick="openLightbox('🌙', 'రమజాన్ ఇఫ్తార్', 'సమాజ ఉత్సవాలు')">
+        <div class="gal-item-inner">
+          <div class="gal-placeholder-icon">🌙</div>
+          <div class="gal-placeholder-text" data-key="gal7_text">ఇఫ్తార్ కార్యక్రమం<br>ఫోటో త్వరలో</div>
+        </div>
+        <div class="gal-overlay">
+          <div><div class="gal-caption" data-key="gal7_cap">రమజాన్ ఇఫ్తార్ 2024</div><div class="gal-tag" data-key="gcat_events">సమాజ ఉత్సవాలు</div></div>
+        </div>
+      </div>
+
+      <div class="gal-item gal-visible" data-category="education" onclick="openLightbox('🎓', 'స్కాలర్‌షిప్ పంపిణీ', 'విద్యా కార్యక్రమాలు')">
+        <div class="gal-item-inner">
+          <div class="gal-placeholder-icon">🎓</div>
+          <div class="gal-placeholder-text" data-key="gal8_text">స్కాలర్‌షిప్<br>ఫోటో త్వరలో</div>
+        </div>
+        <div class="gal-overlay">
+          <div><div class="gal-caption" data-key="gal8_cap">స్కాలర్‌షిప్ పంపిణీ 2023</div><div class="gal-tag" data-key="gcat_education">విద్యా కార్యక్రమాలు</div></div>
+        </div>
+      </div>
+
+      <div class="gal-item gal-visible" data-category="mosque" onclick="openLightbox('🏗️', 'కన్వెన్షన్ హాల్ పునర్నిర్మాణం', 'మసీదు కార్యకలాపాలు')">
+        <div class="gal-item-inner">
+          <div class="gal-placeholder-icon">🏗️</div>
+          <div class="gal-placeholder-text" data-key="gal9_text">హాల్ నిర్మాణం<br>ఫోటో త్వరలో</div>
+        </div>
+        <div class="gal-overlay">
+          <div><div class="gal-caption" data-key="gal9_cap">కన్వెన్షన్ హాల్ అప్‌గ్రేడ్</div><div class="gal-tag" data-key="gcat_mosque">మసీదు కార్యకలాపాలు</div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Gallery photo">
+  <div class="lb-content">
+    <button class="lb-close" onclick="closeLightbox()" aria-label="Close">&#x2715;</button>
+    <div class="lb-img-box">
+      <div class="lb-placeholder" id="lb-placeholder">
+        <span class="lb-placeholder-icon" id="lb-icon">🏛️</span>
+      </div>
+    </div>
+    <div class="lb-caption" id="lb-caption"></div>
+    <div class="lb-sub" id="lb-sub"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     EVENTS & ANNOUNCEMENTS
+═══════════════════════════════════════════════════════ -->
+<section class="events-section" id="events">
+  <div class="inner">
+    <div class="section-tag" data-key="events_tag">కార్యక్రమాలు & ప్రకటనలు</div>
+    <h2 class="section-title" data-key="events_title">రాబోయే కార్యక్రమాలు</h2>
+    <p class="section-lead" data-key="events_lead">ఇస్లామిక్ ఫ్రంట్ మరియు అంజుమన్ ఆర్గనైజ్ చేసే కార్యక్రమాలు, ప్రత్యేక కార్యక్రమాలు మరియు ముఖ్యమైన ప్రకటనలు.</p>
+
+    <div class="events-grid">
+      <!-- Events column -->
+      <div>
+        <div class="events-tabs">
+          <button class="ev-tab active" onclick="switchEventTab('upcoming', this)" data-key="ev_upcoming">రాబోయేవి</button>
+          <button class="ev-tab" onclick="switchEventTab('recent', this)" data-key="ev_recent">ఇటీవలి</button>
+          <button class="ev-tab" onclick="switchEventTab('friday', this)" data-key="ev_friday">శుక్రవారం</button>
+        </div>
+
+        <div class="events-list" id="ev-upcoming">
+          <div class="event-item">
+            <div class="event-date-box"><div class="ed-day">20</div><div class="ed-mon">JUN</div></div>
+            <div class="event-info">
+              <div class="ev-type" data-key="ev_type_welfare">సంక్షేమ కార్యక్రమం</div>
+              <div class="ev-title" data-key="ev1_title">మెడికల్ క్యాంప్ — ఉచిత ఆరోగ్య తనిఖీ</div>
+              <div class="ev-meta" data-key="ev1_meta">ఉ. 9:00 – మ. 1:00 · అంజుమన్ హాల్, మంగళగిరి</div>
+            </div>
+          </div>
+          <div class="event-item">
+            <div class="event-date-box"><div class="ed-day">28</div><div class="ed-mon">JUN</div></div>
+            <div class="event-info">
+              <div class="ev-type" data-key="ev_type_education">విద్యా కార్యక్రమం</div>
+              <div class="ev-title" data-key="ev2_title">మదర్సా చేరికలు 2024–25 — ప్రవేశ ప్రక్రియ</div>
+              <div class="ev-meta" data-key="ev2_meta">జులై 1 వరకు దరఖాస్తు · 5 మదర్సాలు</div>
+            </div>
+          </div>
+          <div class="event-item">
+            <div class="event-date-box"><div class="ed-day">05</div><div class="ed-mon">JUL</div></div>
+            <div class="event-info">
+              <div class="ev-type" data-key="ev_type_women">మహిళా కార్యక్రమం</div>
+              <div class="ev-title" data-key="ev3_title">కుట్టు శిక్షణా కేంద్రం — కొత్త బ్యాచ్ చేరికలు</div>
+              <div class="ev-meta" data-key="ev3_meta">18+ మహిళలకు · ఉచిత శిక్షణ</div>
+            </div>
+          </div>
+          <div class="event-item">
+            <div class="event-date-box"><div class="ed-day">15</div><div class="ed-mon">JUL</div></div>
+            <div class="event-info">
+              <div class="ev-type" data-key="ev_type_scholarship">స్కాలర్‌షిప్</div>
+              <div class="ev-title" data-key="ev4_title">2024–25 స్కాలర్‌షిప్ దరఖాస్తులు ప్రారంభం</div>
+              <div class="ev-meta" data-key="ev4_meta">10వ తరగతి నుండి డిగ్రీ వరకు · 10 సీట్లు</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="events-list" id="ev-recent" style="display:none">
+          <div class="event-item">
+            <div class="event-date-box"><div class="ed-day">10</div><div class="ed-mon">JUN</div></div>
+            <div class="event-info">
+              <div class="ev-type" data-key="ev_type_welfare">సంక్షేమ కార్యక్రమం</div>
+              <div class="ev-title" data-key="evr1_title">అంత్యక్రియల సహాయ పంపిణీ — 3 కుటుంబాలు</div>
+              <div class="ev-meta" data-key="evr1_meta">జూన్ 2024 · ₹30,000 పంపిణీ</div>
+            </div>
+          </div>
+          <div class="event-item">
+            <div class="event-date-box"><div class="ed-day">02</div><div class="ed-mon">JUN</div></div>
+            <div class="event-info">
+              <div class="ev-type" data-key="ev_type_education">విద్యా కార్యక్రమం</div>
+              <div class="ev-title" data-key="evr2_title">అంజుమన్ వార్షిక సభ 2024</div>
+              <div class="ev-meta" data-key="evr2_meta">జూన్ 2, 2024 · 500+ హాజరు</div>
+            </div>
+          </div>
+          <div class="event-item">
+            <div class="event-date-box"><div class="ed-day">14</div><div class="ed-mon">MAY</div></div>
+            <div class="event-info">
+              <div class="ev-type" data-key="ev_type_women">మహిళా కార్యక్రమం</div>
+              <div class="ev-title" data-key="evr3_title">కుట్టు శిక్షణ — 20 మహిళలు గ్రాడ్యుయేటయ్యారు</div>
+              <div class="ev-meta" data-key="evr3_meta">మే 2024 · యంత్రాల పంపిణీ</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="events-list" id="ev-friday" style="display:none">
+          <div class="event-item">
+            <div class="event-date-box"><div class="ed-day">జు</div><div class="ed-mon">ముమ్</div></div>
+            <div class="event-info">
+              <div class="ev-type" data-key="ev_type_friday">జుమ్ముమ్ నమాజ్</div>
+              <div class="ev-title" data-key="evf1_title">శుక్రవారం ప్రత్యేక ఖుత్బా — ఐక్యత మరియు సేవ</div>
+              <div class="ev-meta" data-key="evf1_meta">ప్రతి శుక్రవారం · అన్ని 18 మసీదులు · మ. 1:00</div>
+            </div>
+          </div>
+          <div class="event-item">
+            <div class="event-date-box"><div class="ed-day">జు</div><div class="ed-mon">ముమ్</div></div>
+            <div class="event-info">
+              <div class="ev-type" data-key="ev_type_welfare">సంక్షేమ ప్రకటన</div>
+              <div class="ev-title" data-key="evf2_title">అంజుమన్ పథకాల గురించి ప్రకటనలు</div>
+              <div class="ev-meta" data-key="evf2_meta">నమాజ్ తర్వాత · అన్ని మసీదులు</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Announcements column -->
+      <div>
+        <h3 style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--green-deep);margin-bottom:6px;" data-key="ann_title">ముఖ్యమైన ప్రకటనలు</h3>
+        <p style="font-size:13px;color:var(--text-muted);margin-bottom:20px;" data-key="ann_sub">సమాజ సభ్యులకు తాజా అప్‌డేట్‌లు.</p>
+        <div class="announcements-panel">
+          <div class="announcement-item">
+            <div class="ann-dot ann-urgent"></div>
+            <div class="ann-body">
+              <div class="ann-category" data-key="ann_urgent">అత్యవసర నోటీసు</div>
+              <div class="ann-text" data-key="ann1_text">అంత్యక్రియల సహాయ పథకం దరఖాస్తు ప్రక్రియ — అర్హుడైన కుటుంబాలు అంజుమన్ కార్యాలయానికి నేరుగా సంప్రదించవచ్చు.</div>
+              <div class="ann-date" data-key="ann1_date">జూన్ 2024</div>
+            </div>
+          </div>
+          <div class="announcement-item">
+            <div class="ann-dot"></div>
+            <div class="ann-body">
+              <div class="ann-category" data-key="ann_general">సాధారణ ప్రకటన</div>
+              <div class="ann-text" data-key="ann2_text">2024–25 మదర్సా చేరికలు ప్రారంభమయ్యాయి. 5 నుండి 15 సంవత్సరాల పిల్లలు అర్హులు. ఉచిత నమోదు.</div>
+              <div class="ann-date" data-key="ann2_date">జూన్ 2024</div>
+            </div>
+          </div>
+          <div class="announcement-item">
+            <div class="ann-dot ann-info"></div>
+            <div class="ann-body">
+              <div class="ann-category" data-key="ann_info">సమాచారం</div>
+              <div class="ann-text" data-key="ann3_text">కన్వెన్షన్ హాల్ అప్‌గ్రేడ్ పూర్తయింది. శుభకార్యాలకు బుకింగ్ ప్రారంభమైంది. ఈతీమ్ పిల్లల వివాహాలకు ఉచితంగా లభ్యమవుతుంది.</div>
+              <div class="ann-date" data-key="ann3_date">మే 2024</div>
+            </div>
+          </div>
+          <div class="announcement-item">
+            <div class="ann-dot"></div>
+            <div class="ann-body">
+              <div class="ann-category" data-key="ann_welfare">సంక్షేమ ప్రకటన</div>
+              <div class="ann-text" data-key="ann4_text">మెడికల్ క్యాంప్ జూన్ 20న. ఉచిత రక్తం తనిఖీ, BP తనిఖీ మరియు మందుల పంపిణీ. అందరూ స్వాగతం.</div>
+              <div class="ann-date" data-key="ann4_date">జూన్ 20, 2024</div>
+            </div>
+          </div>
+          <div class="announcement-item">
+            <div class="ann-dot ann-info"></div>
+            <div class="ann-body">
+              <div class="ann-category" data-key="ann_youth">యువత</div>
+              <div class="ann-text" data-key="ann5_text">ఇస్లామిక్ ఫ్రంట్ యూత్ వింగ్ ఏర్పాటు చేయబడుతున్నది. 18–35 సంవత్సరాల యువతీయువకులు చేరవచ్చు.</div>
+              <div class="ann-date" data-key="ann5_date">జూన్ 2024</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     VOLUNTEER & COMMUNITY PARTICIPATION
+═══════════════════════════════════════════════════════ -->
+<section class="volunteer-section" id="volunteer">
+  <div class="inner">
+    <div class="section-tag" data-key="vol_tag">సమాజ భాగస్వామ్యం</div>
+    <h2 class="section-title" data-key="vol_title">స్వచ్ఛంద సేవకులుగా చేరండి</h2>
+    <p class="section-lead" data-key="vol_lead">ఇస్లామిక్ ఫ్రంట్ తో చేరి మంగళగిరి ముస్లిం సమాజానికి సేవ చేయండి. మీ నైపుణ్యాలు మరియు సమయాన్ని అర్పించండి.</p>
+
+    <div class="vol-grid">
+      <div class="vol-programs">
+        <div class="vol-card reveal">
+          <div class="vol-icon">👥</div>
+          <div>
+            <div class="vol-title" data-key="vol1_title">యూత్ వింగ్</div>
+            <div class="vol-desc" data-key="vol1_desc">18–35 సంవత్సరాల యువతీయువకులకు నాయకత్వ శిక్షణ, సమాజ సేవా కార్యక్రమాలు మరియు ఇస్లామిక్ విద్యా అవకాశాలు.</div>
+            <div class="vol-spots" data-key="vol1_spots">సీట్లు అందుబాటులో ఉన్నాయి</div>
+          </div>
+        </div>
+        <div class="vol-card reveal">
+          <div class="vol-icon">👩</div>
+          <div>
+            <div class="vol-title" data-key="vol2_title">మహిళా వింగ్</div>
+            <div class="vol-desc" data-key="vol2_desc">మహిళా సాధికారత, శిక్షణ కార్యక్రమాలు, సమాజ ఆరోగ్య కార్యక్రమాలు మరియు మహిళా నాయకత్వ అభివృద్ధి.</div>
+            <div class="vol-spots" data-key="vol2_spots">20 సీట్లు అందుబాటులో</div>
+          </div>
+        </div>
+        <div class="vol-card reveal">
+          <div class="vol-icon">🏥</div>
+          <div>
+            <div class="vol-title" data-key="vol3_title">ఆరోగ్య సేవ</div>
+            <div class="vol-desc" data-key="vol3_desc">మెడికల్ క్యాంప్‌లు, ఉచిత ఆరోగ్య తనిఖీలు, బ్లడ్ డొనేషన్ నెట్‌వర్క్ మరియు అత్యవసర ఆరోగ్య సహాయ కార్యక్రమాలు.</div>
+            <div class="vol-spots" data-key="vol3_spots">వైద్య నిపుణులు అవసరం</div>
+          </div>
+        </div>
+        <div class="vol-card reveal">
+          <div class="vol-icon">📚</div>
+          <div>
+            <div class="vol-title" data-key="vol4_title">విద్యా స్వచ్ఛంద సేవ</div>
+            <div class="vol-desc" data-key="vol4_desc">మదర్సా విద్యార్థులకు ట్యూటరింగ్, ఇంగ్లిష్ & కంప్యూటర్ శిక్షణ మరియు కెరీర్ మార్గదర్శకత్వ కార్యక్రమాలు.</div>
+            <div class="vol-spots" data-key="vol4_spots">ఉపాధ్యాయులు, నిపుణులు స్వాగతం</div>
+          </div>
+        </div>
+        <div class="vol-card reveal">
+          <div class="vol-icon">🩸</div>
+          <div>
+            <div class="vol-title" data-key="vol5_title">రక్తదాన నెట్‌వర్క్</div>
+            <div class="vol-desc" data-key="vol5_desc">అత్యవసర రక్తదాన అవసరాలకు వేగంగా స్పందించే స్వచ్ఛంద దాతల నెట్‌వర్క్‌లో చేరండి.</div>
+            <div class="vol-spots" data-key="vol5_spots">అన్ని రక్తపు గ్రూపులు</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="vol-form-panel reveal">
+        <div class="vol-form-title" data-key="vf_title">ఇప్పుడే చేరండి</div>
+        <div class="vol-form-sub" data-key="vf_sub">మీ సమాచారం నమోదు చేయండి, మేము మీకు సత్వరం సంప్రదిస్తాము.</div>
+        <form onsubmit="submitVolunteerForm(event)">
+          <div class="vf-group">
+            <label class="vf-label" data-key="vf_name_label">పూర్తి పేరు</label>
+            <input class="vf-input" type="text" placeholder="మీ పేరు" required data-key-placeholder="vf_name_ph">
+          </div>
+          <div class="vf-group">
+            <label class="vf-label" data-key="vf_phone_label">ఫోన్ నంబర్</label>
+            <input class="vf-input" type="tel" placeholder="మీ ఫోన్ నంబర్" required data-key-placeholder="vf_phone_ph">
+          </div>
+          <div class="vf-group">
+            <label class="vf-label" data-key="vf_area_label">స్వచ్ఛంద సేవ విభాగం</label>
+            <select class="vf-select" required>
+              <option value="" data-key="vf_select_default">విభాగం ఎంచుకోండి</option>
+              <option value="youth" data-key="vol1_title">యూత్ వింగ్</option>
+              <option value="women" data-key="vol2_title">మహిళా వింగ్</option>
+              <option value="health" data-key="vol3_title">ఆరోగ్య సేవ</option>
+              <option value="education" data-key="vol4_title">విద్యా స్వచ్ఛంద సేవ</option>
+              <option value="blood" data-key="vol5_title">రక్తదాన నెట్‌వర్క్</option>
+            </select>
+          </div>
+          <div class="vf-group">
+            <label class="vf-label" data-key="vf_msg_label">సందేశం (ఐచ్ఛికం)</label>
+            <textarea class="vf-textarea" placeholder="మీ నైపుణ్యాలు లేదా ఆసక్తి గురించి చెప్పండి..." data-key-placeholder="vf_msg_ph"></textarea>
+          </div>
+          <button type="submit" class="vf-submit" data-key="vf_submit">సేవకుడిగా నమోదు చేయండి</button>
+          <div class="vf-note" data-key="vf_note">మీ వివరాలు గోప్యంగా ఉంచబడతాయి · 24 గంటల్లో సంప్రదిస్తాము</div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     COMMUNITY CONTACT & ACTION CENTER
+═══════════════════════════════════════════════════════ -->
+<section class="community-contact" id="community-contact">
+  <div class="inner">
+    <div class="section-tag" data-key="cc_tag">24/7 అందుబాటు</div>
+    <h2 class="section-title" data-key="cc_title">సంప్రదింపు కేంద్రం</h2>
+    <p class="section-lead" data-key="cc_lead">సహాయం అవసరమా? ఇస్లామిక్ ఫ్రంట్ ఎల్లప్పుడూ మీకు అందుబాటులో ఉంటుంది. WhatsApp, ఫోన్ లేదా కార్యాలయాన్ని నేరుగా సంప్రదించవచ్చు.</p>
+
+    <div class="contact-action-grid">
+      <a href="https://wa.me/919000000000?text=నమస్కారం%2C%20ఇస్లామిక్%20ఫ్రంట్%20సహాయం%20అవసరం" target="_blank" rel="noopener" class="ca-card ca-wa">
+        <div class="ca-icon">💬</div>
+        <div class="ca-label" data-key="ca_wa_label">WhatsApp</div>
+        <div class="ca-title" data-key="ca_wa_title">WhatsApp లో సంప్రదించండి</div>
+        <div class="ca-desc" data-key="ca_wa_desc">తక్షణ సహాయం కోసం WhatsApp లో మాకు మెసేజ్ పంపండి. పథకాలు, ఈవెంట్‌లు లేదా సమాజ విషయాల గురించి.</div>
+        <div class="ca-action" data-key="ca_wa_action">WhatsApp తెరవండి</div>
+      </a>
+
+      <a href="tel:+919000000000" class="ca-card ca-call">
+        <div class="ca-icon">📞</div>
+        <div class="ca-label" data-key="ca_call_label">ఫోన్</div>
+        <div class="ca-title" data-key="ca_call_title">నేరుగా కాల్ చేయండి</div>
+        <div class="ca-desc" data-key="ca_call_desc">కార్యాలయ వేళల్లో ఫోన్ చేయండి. అత్యవసర అంత్యక్రియల సహాయం కోసం అన్ని వేళలా అందుబాటు.</div>
+        <div class="ca-action" data-key="ca_call_action">ఇప్పుడు కాల్ చేయండి</div>
+      </a>
+
+      <a href="mailto:islamicfront.mangalagiri@gmail.com" class="ca-card ca-mail">
+        <div class="ca-icon">✉️</div>
+        <div class="ca-label" data-key="ca_mail_label">ఇమెయిల్</div>
+        <div class="ca-title" data-key="ca_mail_title">ఇమెయిల్ పంపండి</div>
+        <div class="ca-desc" data-key="ca_mail_desc">అధికారిక విషయాలు, పత్రాలు లేదా వివరణాత్మక అభ్యర్థనల కోసం ఇమెయిల్ పంపండి.</div>
+        <div class="ca-action" data-key="ca_mail_action">ఇమెయిల్ రాయండి</div>
+      </a>
+
+      <a href="tel:+919000000000" class="ca-card ca-emergency">
+        <div class="ca-icon">🚨</div>
+        <div class="ca-label" data-key="ca_emg_label">అత్యవసరం</div>
+        <div class="ca-title" data-key="ca_emg_title">అత్యవసర సహాయం</div>
+        <div class="ca-desc" data-key="ca_emg_desc">అంత్యక్రియల సహాయం, తక్షణ ఆర్థిక సహాయం అవసరమైతే 24/7 మాకు సంప్రదించండి.</div>
+        <div class="ca-action" data-key="ca_emg_action">అత్యవసర కాల్</div>
+      </a>
+
+      <a href="#scheme" class="ca-card ca-scheme">
+        <div class="ca-icon">🤝</div>
+        <div class="ca-label" data-key="ca_scheme_label">పథకాలు</div>
+        <div class="ca-title" data-key="ca_scheme_title">సంక్షేమ పథకాలకు దరఖాస్తు</div>
+        <div class="ca-desc" data-key="ca_scheme_desc">అంత్యక్రియల సహాయం, మహిళా శిక్షణ, స్కాలర్‌షిప్‌లు — ఏ పథకానికైనా అర్హత తెలుసుకోండి.</div>
+        <div class="ca-action" data-key="ca_scheme_action">పథకాలు చూడండి</div>
+      </a>
+
+      <div class="ca-card ca-hours">
+        <div class="ca-icon">🕐</div>
+        <div class="ca-label" data-key="ca_hours_label">కార్యాలయ వేళలు</div>
+        <div class="ca-title" data-key="ca_hours_title">మేము ఎప్పుడు అందుబాటులో ఉంటాం</div>
+        <div class="ca-desc" data-key="ca_hours_desc">సోమ–శని: ఉ. 9:00 – సా. 6:00<br>ఆదివారం: ఉ. 10:00 – మ. 2:00<br>అత్యవసర అంత్యక్రియల సహాయం: 24/7</div>
+      </div>
+    </div>
+
+    <div class="contact-info-strip reveal">
+      <div class="ci-item">
+        <div class="ci-label" data-key="ci_phone">ఫోన్</div>
+        <div class="ci-value"><a href="tel:+919000000000">+91 90000 00000</a><br><span style="font-size:12px;color:rgba(245,230,192,0.45);">త్వరలో అప్‌డేట్ చేయబడుతుంది</span></div>
+      </div>
+      <div class="ci-item">
+        <div class="ci-label" data-key="ci_whatsapp">WhatsApp</div>
+        <div class="ci-value"><a href="https://wa.me/919000000000" target="_blank" rel="noopener">+91 90000 00000</a><br><span style="font-size:12px;color:rgba(245,230,192,0.45);">త్వరలో అప్‌డేట్</span></div>
+      </div>
+      <div class="ci-item">
+        <div class="ci-label" data-key="ci_address">చిరునామా</div>
+        <div class="ci-value" data-key="ci_addr_val">మంగళగిరి, గుంటూరు జిల్లా<br>ఆంధ్రప్రదేశ్ – 522503</div>
+      </div>
+      <div class="ci-item">
+        <div class="ci-label" data-key="ci_hours_short">వేళలు</div>
+        <div class="ci-value" data-key="ci_hours_val">సో–శ: 9AM–6PM<br>అత్యవసరం: 24/7</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     LEARNING ECOSYSTEM DASHBOARD
+═══════════════════════════════════════════════════════ -->
+<section class="learning-dashboard" id="learning">
+  <div class="inner">
+    <div class="section-tag" data-key="ld_tag">నాలెడ్జ్ సెంటర్</div>
+    <h2 class="section-title" data-key="ld_title">నాలెడ్జ్ సెంటర్‌ను అన్వేషించండి</h2>
+    <p class="section-lead" data-key="ld_lead">ఖురాన్, నమాజ్, సీరహ్, చరిత్ర, భాషలు మరియు మరిన్ని — ఉచిత, నిర్మాణాత్మక అభ్యాస పోర్టల్‌లు. ప్రారంభించడానికి ఏదైనా పోర్టల్ తెరవండి.</p>
+
+    <div class="ld-grid">
+      <div>
+        <h3 style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--green-deep);margin-bottom:18px;" data-key="ld_portals_title">నేర్చుకుంటున్న పోర్టల్స్</h3>
+        <div class="ld-portal-list">
+          <a href="knowledge-center/learn-arabic/index.html" class="ld-portal reveal">
+            <div class="ld-portal-icon" style="font-family:serif;font-size:20px">ع</div>
+            <div class="ld-portal-info">
+              <div class="ld-portal-name" data-key="ld_arabic">అరబిక్ నేర్చుకోండి</div>
+              <div class="ld-bar-wrap"><div class="ld-bar" data-w="0%"></div></div>
+            </div>
+            <div class="ld-pct">0%</div>
+          </a>
+          <a href="knowledge-center/learn-urdu/index.html" class="ld-portal reveal">
+            <div class="ld-portal-icon" style="font-family:'Noto Nastaliq Urdu',serif;font-size:18px;line-height:1.6">و</div>
+            <div class="ld-portal-info">
+              <div class="ld-portal-name" data-key="ld_urdu">ఉర్దూ నేర్చుకోండి</div>
+              <div class="ld-bar-wrap"><div class="ld-bar" data-w="0%"></div></div>
+            </div>
+            <div class="ld-pct">0%</div>
+          </a>
+          <a href="knowledge-center/learn-quran/index.html" class="ld-portal reveal">
+            <div class="ld-portal-icon">📖</div>
+            <div class="ld-portal-info">
+              <div class="ld-portal-name" data-key="ld_quran">ఖురాన్ నేర్చుకోండి</div>
+              <div class="ld-bar-wrap"><div class="ld-bar" data-w="0%"></div></div>
+            </div>
+            <div class="ld-pct">0%</div>
+          </a>
+          <a href="knowledge-center/learn-salah/index.html" class="ld-portal reveal">
+            <div class="ld-portal-icon">🕌</div>
+            <div class="ld-portal-info">
+              <div class="ld-portal-name" data-key="ld_salah">నమాజ్ నేర్చుకోండి</div>
+              <div class="ld-bar-wrap"><div class="ld-bar" data-w="0%"></div></div>
+            </div>
+            <div class="ld-pct">0%</div>
+          </a>
+          <a href="knowledge-center/seerah/index.html" class="ld-portal reveal">
+            <div class="ld-portal-icon">⭐</div>
+            <div class="ld-portal-info">
+              <div class="ld-portal-name" data-key="ld_seerah">సీరహ్</div>
+              <div class="ld-bar-wrap"><div class="ld-bar" data-w="0%"></div></div>
+            </div>
+            <div class="ld-pct">0%</div>
+          </a>
+          <a href="knowledge-center/kids-islam/index.html" class="ld-portal reveal">
+            <div class="ld-portal-icon">⭐</div>
+            <div class="ld-portal-info">
+              <div class="ld-portal-name" data-key="ld_kids">పిల్లల ఇస్లాం</div>
+              <div class="ld-bar-wrap"><div class="ld-bar" data-w="0%"></div></div>
+            </div>
+            <div class="ld-pct">0%</div>
+          </a>
+        </div>
+        <div style="margin-top:20px;padding:16px;background:var(--white);border:1px solid var(--border);border-radius:12px;font-size:13px;color:var(--text-muted);line-height:1.7;" data-key="ld_note">
+          💡 పురోగతి మీ పరికరంలో నిల్వ ఉంటుంది. ప్రతి పోర్టల్‌లోని పాఠాలు పూర్తి చేయడంతో బ్యాడ్జ్‌లు సేకరించవచ్చు.
+        </div>
+      </div>
+
+      <div>
+        <div class="ld-achievements reveal">
+          <div class="ld-ach-title" data-key="ld_badges_title">బ్యాడ్జ్‌లు & సాధనలు</div>
+          <div class="ld-ach-sub" data-key="ld_badges_sub">పోర్టల్స్ పూర్తి చేసి బ్యాడ్జ్‌లు సేకరించండి</div>
+          <div class="badge-grid">
+            <div class="badge-item badge-locked">
+              <div class="badge-icon">🌙</div>
+              <div class="badge-name" data-key="badge1_name">ఆరంభకుడు</div>
+              <div class="badge-status" data-key="badge_locked">లాక్ చేయబడింది</div>
+            </div>
+            <div class="badge-item badge-locked">
+              <div class="badge-icon">📖</div>
+              <div class="badge-name" data-key="badge2_name">ఖురాన్ పఠన</div>
+              <div class="badge-status" data-key="badge_locked">లాక్ చేయబడింది</div>
+            </div>
+            <div class="badge-item badge-locked">
+              <div class="badge-icon">🕌</div>
+              <div class="badge-name" data-key="badge3_name">సలాహ్ నిపుణుడు</div>
+              <div class="badge-status" data-key="badge_locked">లాక్ చేయబడింది</div>
+            </div>
+            <div class="badge-item badge-locked">
+              <div class="badge-icon">ع</div>
+              <div class="badge-name" data-key="badge4_name">అరబిక్ రీడర్</div>
+              <div class="badge-status" data-key="badge_locked">లాక్ చేయబడింది</div>
+            </div>
+            <div class="badge-item badge-locked">
+              <div class="badge-icon">و</div>
+              <div class="badge-name" data-key="badge5_name">ఉర్దూ రీడర్</div>
+              <div class="badge-status" data-key="badge_locked">లాక్ చేయబడింది</div>
+            </div>
+            <div class="badge-item badge-locked">
+              <div class="badge-icon">⭐</div>
+              <div class="badge-name" data-key="badge6_name">సీరహ్ స్కాలర్</div>
+              <div class="badge-status" data-key="badge_locked">లాక్ చేయబడింది</div>
+            </div>
+            <div class="badge-item badge-locked">
+              <div class="badge-icon">🏆</div>
+              <div class="badge-name" data-key="badge7_name">పూర్తి చేసినవాడు</div>
+              <div class="badge-status" data-key="badge_locked">లాక్ చేయబడింది</div>
+            </div>
+            <div class="badge-item badge-locked">
+              <div class="badge-icon">🌟</div>
+              <div class="badge-name" data-key="badge8_name">చాంపియన్</div>
+              <div class="badge-status" data-key="badge_locked">లాక్ చేయబడింది</div>
+            </div>
+          </div>
+          <div class="cert-strip">
+            <div class="cert-icon">🎓</div>
+            <div class="cert-info">
+              <div class="cert-title" data-key="cert_title">పూర్తి స్థాయి సర్టిఫికెట్</div>
+              <div class="cert-sub" data-key="cert_sub">అన్ని పోర్టల్‌లు పూర్తి చేస్తే ఇస్లామిక్ ఫ్రంట్ సర్టిఫికెట్ పొందండి</div>
+            </div>
+            <button class="cert-btn" onclick="alert('పోర్టల్‌లు పూర్తి చేసిన తర్వాత ఇక్కడ డౌన్‌లోడ్ చేయవచ్చు')" data-key="cert_btn">చూడండి</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- KNOWLEDGE CENTER PROMO (secondary initiative) -->
 <section class="kc-promo" id="knowledge">
   <div class="inner">
@@ -1520,13 +2863,16 @@
     <div class="footer-col">
       <h4 data-key="footer_links_h">త్వరిత లింకులు</h4>
       <ul>
-        <li><a href="#victory"      data-key="footer_l1">మా విజయం 2023</a></li>
-        <li><a href="#achievements" data-key="footer_l2">సాధనలు</a></li>
-        <li><a href="#manifesto"    data-key="footer_l3">మేనిఫెస్టో</a></li>
-        <li><a href="#scheme"       data-key="footer_l4">అంత్యక్రియల సహాయ పథకం</a></li>
-        <li><a href="#about"        data-key="footer_l5">స్థాపకుని గురించి</a></li>
+        <li><a href="#victory"           data-key="footer_l1">మా విజయం 2023</a></li>
+        <li><a href="#achievements"      data-key="footer_l2">సాధనలు</a></li>
+        <li><a href="#manifesto"         data-key="footer_l3">మేనిఫెస్టో</a></li>
+        <li><a href="#stories"           data-key="footer_l_stories">సఫలత కథలు</a></li>
+        <li><a href="#events"            data-key="footer_l_events">కార్యక్రమాలు</a></li>
+        <li><a href="#volunteer"         data-key="footer_l_volunteer">స్వచ్ఛంద సేవ</a></li>
+        <li><a href="#scheme"            data-key="footer_l4">అంత్యక్రియల సహాయ పథకం</a></li>
+        <li><a href="#about"             data-key="footer_l5">స్థాపకుని గురించి</a></li>
         <li><a href="knowledge-center/learn-arabic/index.html" data-key="footer_l6">అరబిక్ నేర్చుకోండి</a></li>
-        <li><a href="knowledge-center/learn-urdu/index.html" data-key="footer_l7">ఉర్దూ నేర్చుకోండి</a></li>
+        <li><a href="knowledge-center/learn-urdu/index.html"   data-key="footer_l7">ఉర్దూ నేర్చుకోండి</a></li>
       </ul>
     </div>
     <div class="footer-col">
@@ -1546,6 +2892,36 @@
 </footer>
 <!-- BACK TO TOP -->
 <button class="back-to-top" id="back-to-top" aria-label="Back to top" title="Back to top">↑</button>
+
+<!-- WhatsApp FAB -->
+<a href="https://wa.me/919000000000?text=నమస్కారం%2C%20ఇస్లామిక్%20ఫ్రంట్%20సహాయం%20అవసరం"
+   target="_blank" rel="noopener" class="wa-fab" aria-label="WhatsApp us" title="WhatsApp us">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+
+<!-- Sticky Mobile Contact Bar -->
+<div class="sticky-contact-bar">
+  <div class="scb-inner">
+    <a href="tel:+919000000000" class="scb-btn scb-call">
+      <span class="scb-icon">📞</span>
+      <span data-key="scb_call">కాల్</span>
+    </a>
+    <a href="https://wa.me/919000000000" target="_blank" rel="noopener" class="scb-btn scb-wa">
+      <span class="scb-icon">💬</span>
+      <span data-key="scb_wa">WhatsApp</span>
+    </a>
+    <a href="mailto:islamicfront.mangalagiri@gmail.com" class="scb-btn scb-mail">
+      <span class="scb-icon">✉️</span>
+      <span data-key="scb_mail">ఇమెయిల్</span>
+    </a>
+    <a href="#community-contact" class="scb-btn">
+      <span class="scb-icon">🤝</span>
+      <span data-key="scb_help">సహాయం</span>
+    </a>
+  </div>
+</div>
 <script>
 const T = {
   te: {
@@ -1561,6 +2937,8 @@ const T = {
     nav_about: "మా గురించి",
     nav_contact: "సంప్రదించండి",
     nav_knowledge: "నాలెడ్జ్ సెంటర్",
+    nav_guidance: "విద్యార్థి మార్గదర్శనం",
+    nav_guidance_short: "మార్గదర్శనం",
     hero_badge: "మంగళగిరి, ఆంధ్రప్రదేశ్",
     hero_title: "ఇస్లామిక్<br><span>ఫ్రంట్</span>",
     hero_subtitle: "2011 నుండి మంగళగిరి ముస్లిం సమాజానికి<br>నిజాయితీగా, అభివృద్ధితో, కరుణతో సేవ చేస్తున్నాము.",
@@ -1616,6 +2994,7 @@ const T = {
     scheme_label: "సామాజిక సంక్షేమ పథకం",
     scheme_amount_sub: "కుటుంబానికి ఆర్థిక సహాయం",
     scheme_title: "అంజుమన్ అంత్యక్రియల<br>సహాయ కార్యక్రమం",
+    scheme_bar_title: "అంజుమన్ అంత్యక్రియల సహాయ కార్యక్రమం",
     scheme_desc: "మంగళగిరిలో ఏ ముస్లిం కుటుంబమూ ఆర్థిక కష్టాల కారణంగా గౌరవప్రదమైన అంత్యక్రియలు నిర్వహించలేకపోవు అని నిర్ధారించడానికి ఇస్లామిక్ ఫ్రంట్ తీసుకున్న కరుణాపూర్వక చొరవ.",
     scheme_cond1: "దరఖాస్తుదారు మంగళగిరి నియోజకవర్గంలో నివసించే ముస్లిం అయి ఉండాలి",
     scheme_cond2: "కుటుంబం స్వతంత్రంగా అంత్యక్రియల ఏర్పాట్లకు నిధులు సమకూర్చుకోలేకపోవాలి",
@@ -1697,6 +3076,7 @@ const T = {
     footer_desc: "2011 నుండి మంగళగిరి, ఆంధ్రప్రదేశ్ ముస్లిం సమాజానికి సేవ చేస్తున్నాము.<br>జనాబ్ షేక్ అక్రమ్ నాయకత్వంలో, అంజుమన్‌- యి- హిమాయతుల్‌ ఇస్లాం ద్వారా<br>పారదర్శక, అభివృద్ధి-కేంద్రిత పాలనకు కట్టుబడి ఉన్నాము.",
     footer_links_h: "త్వరిత లింకులు",
     footer_l1: "మా విజయం 2023", footer_l2: "సాధనలు", footer_l3: "మేనిఫెస్టో",
+    footer_l_stories: "సఫలత కథలు", footer_l_events: "కార్యక్రమాలు", footer_l_volunteer: "స్వచ్ఛంద సేవ",
     footer_l4: "అంత్యక్రియల సహాయ పథకం", footer_l5: "స్థాపకుని గురించి", footer_l6: "అరబిక్ నేర్చుకోండి", footer_l7: "ఉర్దూ నేర్చుకోండి",
     footer_contact_h: "సంప్రదించండి",
     footer_addr1: "మంగళగిరి, గుంటూరు జిల్లా",
@@ -1704,7 +3084,106 @@ const T = {
     footer_addr3: "అంజుమన్‌- యి- హిమాయతుల్‌ ఇస్లాం",
     footer_founded_li: "స్థాపించబడింది: 2011",
     footer_copy: "© 2026 ఇస్లామిక్ ఫ్రంట్, మంగళగిరి. అన్ని హక్కులు పరిరక్షించబడ్డాయి.",
-    footer_founded: "జనాబ్ షేక్ అక్రమ్ స్థాపించారు · స్థా. 2011"
+    footer_founded: "జనాబ్ షేక్ అక్రమ్ స్థాపించారు · స్థా. 2011",
+
+    /* Hero secondary CTA */
+    hero_cta_contact: "సంప్రదించండి",
+
+    /* Nav new */
+    nav_stories: "సఫలత కథలు", nav_gallery: "మా కార్యక్రమాలు", nav_events: "కార్యక్రమాలు", nav_volunteer: "స్వచ్ఛంద సేవ",
+
+    /* Achievement evidence */
+    ach_view_evidence: "సాక్ష్యాలు చూడండి ▾",
+
+    /* Stories */
+    stories_tag: "సమాజ ప్రభావం", stories_title: "సఫలత కథలు",
+    stories_lead: "మా పని వెనక మానవ ముఖాలు — ఇస్లామిక్ ఫ్రంట్ పథకాలు మరియు కార్యక్రమాల ద్వారా జీవితాలు ఎలా మారాయో.",
+    stories_all: "అన్నీ", stories_welfare: "సంక్షేమం", stories_women: "మహిళా సాధికారత", stories_education: "విద్య", stories_student: "విద్యార్థులు",
+    scheme_welfare: "అంత్యక్రియల సహాయం", scheme_women: "మహిళా శిక్షణ", scheme_education: "మదర్సా విద్య", scheme_student: "స్కాలర్‌షిప్",
+    story1_quote: '"మా కుటుంబం అత్యంత కష్ట సమయంలో ఇస్లామిక్ ఫ్రంట్ మాకు అండగా నిలిచింది. వారి ₹10,000 సహాయం మాకు గౌరవప్రదమైన అంత్యక్రియలు నిర్వహించడంలో సాయపడింది."',
+    story1_name: "ఫాతిమా బేగం", story1_meta: "మంగళగిరి · 2024", story1_chip1: "₹10,000 సహాయం", story1_chip2: "అంత్యక్రియల పథకం",
+    story2_quote: '"కుట్టు శిక్షణా కేంద్రంలో చేరిన తర్వాత, నేను ఇప్పుడు నా స్వంత వ్యాపారం నడుపుతున్నాను."',
+    story2_name: "సాయిదా ఖాతున్", story2_meta: "మంగళగిరి · 2024", story2_chip1: "కుట్టు శిక్షణ", story2_chip2: "స్వంత వ్యాపారం",
+    story3_quote: '"ఇస్లామిక్ ఫ్రంట్ మదర్సాలో నా పిల్లలు ఖురాన్ నేర్చుకుంటున్నారు. ఈ అవకాశం మా సమాజంలో ఉందని చాలా సంతోషంగా ఉంది."',
+    story3_name: "మహమ్మద్ యూసుఫ్", story3_meta: "మంగళగిరి · 2024", story3_chip1: "ఖురాన్ విద్య", story3_chip2: "మదర్సా",
+    story4_quote: '"ఇస్లామిక్ ఫ్రంట్ స్కాలర్‌షిప్ సహాయంతో నేను ఇంజినీరింగ్ చదివాను. ఇప్పుడు మంచి ఉద్యోగంలో ఉన్నాను."',
+    story4_name: "ఆరిఫ్ హుస్సేన్", story4_meta: "మంగళగిరి · 2023", story4_chip1: "స్కాలర్‌షిప్", story4_chip2: "ఇంజినీరింగ్ గ్రాడ్యుయేట్",
+    ss1_label: "కుటుంబాలకు సహాయం", ss2_label: "శిక్షణ పొందిన మహిళలు", ss3_label: "స్కాలర్‌షిప్ విద్యార్థులు", ss4_label: "మసీదులు నిర్వహిత",
+
+    /* Gallery */
+    gallery_tag: "మా పని", gallery_title: "మా కార్యక్రమాలు",
+    gallery_lead: "ఇస్లామిక్ ఫ్రంట్ కార్యకలాపాలు — సంక్షేమ కార్యక్రమాలు, సమాజ ఉత్సవాలు, మసీదు నిర్వహణ మరియు మహిళా సాధికారత.",
+    gcat_all: "అన్నీ", gcat_welfare: "సంక్షేమ కార్యక్రమాలు", gcat_events: "సమాజ ఉత్సవాలు", gcat_mosque: "మసీదు కార్యకలాపాలు", gcat_education: "విద్యా కార్యక్రమాలు", gcat_women: "మహిళా కార్యక్రమాలు",
+    gal1_text: "ఈద్ ఉత్సవం\nఫోటో త్వరలో", gal1_cap: "ఈద్ ఉత్సవం 2024",
+    gal2_text: "సహాయ పంపిణీ\nఫోటో త్వరలో", gal2_cap: "అంత్యక్రియల సహాయ పంపిణీ",
+    gal3_text: "మసీదు\nఫోటో త్వరలో", gal3_cap: "మసీదు పునర్నిర్మాణం",
+    gal4_text: "కుట్టు శిక్షణ\nఫోటో త్వరలో", gal4_cap: "కుట్టు శిక్షణా కేంద్రం",
+    gal5_text: "మదర్సా\nఫోటో త్వరలో", gal5_cap: "మదర్సా తరగతులు",
+    gal6_text: "మెడికల్ క్యాంప్\nఫోటో త్వరలో", gal6_cap: "మెడికల్ క్యాంప్ 2024",
+    gal7_text: "ఇఫ్తార్ కార్యక్రమం\nఫోటో త్వరలో", gal7_cap: "రమజాన్ ఇఫ్తార్ 2024",
+    gal8_text: "స్కాలర్‌షిప్\nఫోటో త్వరలో", gal8_cap: "స్కాలర్‌షిప్ పంపిణీ 2023",
+    gal9_text: "హాల్ నిర్మాణం\nఫోటో త్వరలో", gal9_cap: "కన్వెన్షన్ హాల్ అప్‌గ్రేడ్",
+
+    /* Events */
+    events_tag: "కార్యక్రమాలు & ప్రకటనలు", events_title: "రాబోయే కార్యక్రమాలు",
+    events_lead: "ఇస్లామిక్ ఫ్రంట్ మరియు అంజుమన్ ఆర్గనైజ్ చేసే కార్యక్రమాలు, ప్రత్యేక కార్యక్రమాలు మరియు ముఖ్యమైన ప్రకటనలు.",
+    ev_upcoming: "రాబోయేవి", ev_recent: "ఇటీవలి", ev_friday: "శుక్రవారం",
+    ev_type_welfare: "సంక్షేమ కార్యక్రమం", ev_type_education: "విద్యా కార్యక్రమం", ev_type_women: "మహిళా కార్యక్రమం", ev_type_scholarship: "స్కాలర్‌షిప్", ev_type_friday: "జుమ్ముమ్ నమాజ్",
+    ev1_title: "మెడికల్ క్యాంప్ — ఉచిత ఆరోగ్య తనిఖీ", ev1_meta: "ఉ. 9:00 – మ. 1:00 · అంజుమన్ హాల్, మంగళగిరి",
+    ev2_title: "మదర్సా చేరికలు 2024–25 — ప్రవేశ ప్రక్రియ", ev2_meta: "జులై 1 వరకు దరఖాస్తు · 5 మదర్సాలు",
+    ev3_title: "కుట్టు శిక్షణా కేంద్రం — కొత్త బ్యాచ్ చేరికలు", ev3_meta: "18+ మహిళలకు · ఉచిత శిక్షణ",
+    ev4_title: "2024–25 స్కాలర్‌షిప్ దరఖాస్తులు ప్రారంభం", ev4_meta: "10వ తరగతి నుండి డిగ్రీ వరకు · 10 సీట్లు",
+    evr1_title: "అంత్యక్రియల సహాయ పంపిణీ — 3 కుటుంబాలు", evr1_meta: "జూన్ 2024 · ₹30,000 పంపిణీ",
+    evr2_title: "అంజుమన్ వార్షిక సభ 2024", evr2_meta: "జూన్ 2, 2024 · 500+ హాజరు",
+    evr3_title: "కుట్టు శిక్షణ — 20 మహిళలు గ్రాడ్యుయేటయ్యారు", evr3_meta: "మే 2024 · యంత్రాల పంపిణీ",
+    evf1_title: "శుక్రవారం ప్రత్యేక ఖుత్బా — ఐక్యత మరియు సేవ", evf1_meta: "ప్రతి శుక్రవారం · అన్ని 18 మసీదులు · మ. 1:00",
+    evf2_title: "అంజుమన్ పథకాల గురించి ప్రకటనలు", evf2_meta: "నమాజ్ తర్వాత · అన్ని మసీదులు",
+    ann_title: "ముఖ్యమైన ప్రకటనలు", ann_sub: "సమాజ సభ్యులకు తాజా అప్‌డేట్‌లు.",
+    ann_urgent: "అత్యవసర నోటీసు", ann_general: "సాధారణ ప్రకటన", ann_info: "సమాచారం", ann_welfare: "సంక్షేమ ప్రకటన", ann_youth: "యువత",
+    ann1_text: "అంత్యక్రియల సహాయ పథకం దరఖాస్తు ప్రక్రియ — అర్హుడైన కుటుంబాలు అంజుమన్ కార్యాలయానికి నేరుగా సంప్రదించవచ్చు.", ann1_date: "జూన్ 2024",
+    ann2_text: "2024–25 మదర్సా చేరికలు ప్రారంభమయ్యాయి. 5 నుండి 15 సంవత్సరాల పిల్లలు అర్హులు. ఉచిత నమోదు.", ann2_date: "జూన్ 2024",
+    ann3_text: "కన్వెన్షన్ హాల్ అప్‌గ్రేడ్ పూర్తయింది. శుభకార్యాలకు బుకింగ్ ప్రారంభమైంది.", ann3_date: "మే 2024",
+    ann4_text: "మెడికల్ క్యాంప్ జూన్ 20న. ఉచిత రక్తం తనిఖీ, BP తనిఖీ మరియు మందుల పంపిణీ.", ann4_date: "జూన్ 20, 2024",
+    ann5_text: "ఇస్లామిక్ ఫ్రంట్ యూత్ వింగ్ ఏర్పాటు చేయబడుతున్నది. 18–35 సంవత్సరాల యువతీయువకులు చేరవచ్చు.", ann5_date: "జూన్ 2024",
+
+    /* Volunteer */
+    vol_tag: "సమాజ భాగస్వామ్యం", vol_title: "స్వచ్ఛంద సేవకులుగా చేరండి",
+    vol_lead: "ఇస్లామిక్ ఫ్రంట్ తో చేరి మంగళగిరి ముస్లిం సమాజానికి సేవ చేయండి.",
+    vol1_title: "యూత్ వింగ్", vol1_desc: "18–35 సంవత్సరాల యువతీయువకులకు నాయకత్వ శిక్షణ మరియు సేవా కార్యక్రమాలు.", vol1_spots: "సీట్లు అందుబాటులో ఉన్నాయి",
+    vol2_title: "మహిళా వింగ్", vol2_desc: "మహిళా సాధికారత, శిక్షణ కార్యక్రమాలు మరియు నాయకత్వ అభివృద్ధి.", vol2_spots: "20 సీట్లు అందుబాటులో",
+    vol3_title: "ఆరోగ్య సేవ", vol3_desc: "మెడికల్ క్యాంప్‌లు, ఉచిత ఆరోగ్య తనిఖీలు మరియు రక్తదాన నెట్‌వర్క్.", vol3_spots: "వైద్య నిపుణులు అవసరం",
+    vol4_title: "విద్యా స్వచ్ఛంద సేవ", vol4_desc: "మదర్సా విద్యార్థులకు ట్యూటరింగ్ మరియు కెరీర్ మార్గదర్శకత్వ కార్యక్రమాలు.", vol4_spots: "ఉపాధ్యాయులు స్వాగతం",
+    vol5_title: "రక్తదాన నెట్‌వర్క్", vol5_desc: "అత్యవసర రక్తదాన అవసరాలకు స్వచ్ఛంద దాతల నెట్‌వర్క్‌లో చేరండి.", vol5_spots: "అన్ని రక్తపు గ్రూపులు",
+    vf_title: "ఇప్పుడే చేరండి", vf_sub: "మీ సమాచారం నమోదు చేయండి, మేము మీకు సత్వరం సంప్రదిస్తాము.",
+    vf_name_label: "పూర్తి పేరు", vf_phone_label: "ఫోన్ నంబర్", vf_area_label: "స్వచ్ఛంద సేవ విభాగం",
+    vf_msg_label: "సందేశం (ఐచ్ఛికం)", vf_submit: "సేవకుడిగా నమోదు చేయండి", vf_note: "మీ వివరాలు గోప్యంగా ఉంచబడతాయి · 24 గంటల్లో సంప్రదిస్తాము",
+    vf_select_default: "విభాగం ఎంచుకోండి",
+
+    /* Community Contact */
+    cc_tag: "24/7 అందుబాటు", cc_title: "సంప్రదింపు కేంద్రం",
+    cc_lead: "సహాయం అవసరమా? ఇస్లామిక్ ఫ్రంట్ ఎల్లప్పుడూ మీకు అందుబాటులో ఉంటుంది.",
+    ca_wa_label: "WhatsApp", ca_wa_title: "WhatsApp లో సంప్రదించండి", ca_wa_desc: "తక్షణ సహాయం కోసం WhatsApp లో మాకు మెసేజ్ పంపండి.", ca_wa_action: "WhatsApp తెరవండి",
+    ca_call_label: "ఫోన్", ca_call_title: "నేరుగా కాల్ చేయండి", ca_call_desc: "కార్యాలయ వేళల్లో ఫోన్ చేయండి. అత్యవసర సహాయం అన్ని వేళలా.", ca_call_action: "ఇప్పుడు కాల్ చేయండి",
+    ca_mail_label: "ఇమెయిల్", ca_mail_title: "ఇమెయిల్ పంపండి", ca_mail_desc: "అధికారిక విషయాలు మరియు వివరణాత్మక అభ్యర్థనల కోసం.", ca_mail_action: "ఇమెయిల్ రాయండి",
+    ca_emg_label: "అత్యవసరం", ca_emg_title: "అత్యవసర సహాయం", ca_emg_desc: "అంత్యక్రియల సహాయం, తక్షణ ఆర్థిక సహాయం అవసరమైతే 24/7 సంప్రదించండి.", ca_emg_action: "అత్యవసర కాల్",
+    ca_scheme_label: "పథకాలు", ca_scheme_title: "సంక్షేమ పథకాలకు దరఖాస్తు", ca_scheme_desc: "అంత్యక్రియల సహాయం, మహిళా శిక్షణ, స్కాలర్‌షిప్‌లు — అర్హత తెలుసుకోండి.", ca_scheme_action: "పథకాలు చూడండి",
+    ca_hours_label: "కార్యాలయ వేళలు", ca_hours_title: "మేము ఎప్పుడు అందుబాటులో ఉంటాం", ca_hours_desc: "సోమ–శని: ఉ. 9:00 – సా. 6:00<br>ఆదివారం: ఉ. 10:00 – మ. 2:00<br>అత్యవసరం: 24/7",
+    ci_phone: "ఫోన్", ci_whatsapp: "WhatsApp", ci_address: "చిరునామా", ci_hours_short: "వేళలు",
+    ci_addr_val: "మంగళగిరి, గుంటూరు జిల్లా<br>ఆంధ్రప్రదేశ్ – 522503", ci_hours_val: "సో–శ: 9AM–6PM<br>అత్యవసరం: 24/7",
+
+    /* Learning Dashboard */
+    ld_tag: "నాలెడ్జ్ సెంటర్", ld_title: "నాలెడ్జ్ సెంటర్‌ను అన్వేషించండి",
+    ld_lead: "ఖురాన్, నమాజ్, సీరహ్, చరిత్ర, భాషలు మరియు మరిన్ని — ఉచిత, నిర్మాణాత్మక అభ్యాస పోర్టల్‌లు. ప్రారంభించడానికి ఏదైనా పోర్టల్ తెరవండి.",
+    ld_portals_title: "నేర్చుకుంటున్న పోర్టల్స్",
+    ld_arabic: "అరబిక్ నేర్చుకోండి", ld_urdu: "ఉర్దూ నేర్చుకోండి", ld_quran: "ఖురాన్ నేర్చుకోండి", ld_salah: "నమాజ్ నేర్చుకోండి", ld_seerah: "సీరహ్", ld_kids: "పిల్లల ఇస్లాం",
+    ld_note: "💡 పురోగతి మీ పరికరంలో నిల్వ ఉంటుంది. పోర్టల్‌లోని పాఠాలు పూర్తి చేయడంతో బ్యాడ్జ్‌లు సేకరించవచ్చు.",
+    ld_badges_title: "బ్యాడ్జ్‌లు & సాధనలు", ld_badges_sub: "పోర్టల్స్ పూర్తి చేసి బ్యాడ్జ్‌లు సేకరించండి",
+    badge1_name: "ఆరంభకుడు", badge2_name: "ఖురాన్ పఠన", badge3_name: "సలాహ్ నిపుణుడు", badge4_name: "అరబిక్ రీడర్", badge5_name: "ఉర్దూ రీడర్", badge6_name: "సీరహ్ స్కాలర్", badge7_name: "పూర్తి చేసినవాడు", badge8_name: "చాంపియన్",
+    badge_locked: "లాక్ చేయబడింది", badge_earned: "సేకరించబడింది",
+    cert_title: "పూర్తి స్థాయి సర్టిఫికెట్", cert_sub: "అన్ని పోర్టల్‌లు పూర్తి చేస్తే ఇస్లామిక్ ఫ్రంట్ సర్టిఫికెట్ పొందండి", cert_btn: "చూడండి",
+
+    /* Sticky contact bar */
+    scb_call: "కాల్", scb_wa: "WhatsApp", scb_mail: "ఇమెయిల్", scb_help: "సహాయం"
   },
   en: {
     skip_link: "Skip to main content",
@@ -1719,6 +3198,8 @@ const T = {
     nav_about: "About",
     nav_contact: "Contact",
     nav_knowledge: "Knowledge Center",
+    nav_guidance: "Student Guidance",
+    nav_guidance_short: "Guidance",
     hero_badge: "Mangalagiri, Andhra Pradesh",
     hero_title: "Islamic<br><span>Front</span>",
     hero_subtitle: "Serving the Muslim community of Mangalagiri<br>with integrity, development, and compassion since 2011.",
@@ -1774,6 +3255,7 @@ const T = {
     scheme_label: "Community Welfare Scheme",
     scheme_amount_sub: "Financial Aid per Family",
     scheme_title: "Anjuman Funeral<br>Aid Programme",
+    scheme_bar_title: "Anjuman Funeral Aid Programme",
     scheme_desc: "A compassionate initiative by Islamic Front to ensure no Muslim family in Mangalagiri faces the burden of being unable to perform a dignified farewell due to financial hardship.",
     scheme_cond1: "Applicant must be a Muslim resident of Mangalagiri constituency",
     scheme_cond2: "Family must be unable to fund funeral arrangements independently",
@@ -1855,6 +3337,7 @@ const T = {
     footer_desc: "Serving the Muslim community of Mangalagiri, Andhra Pradesh since 2011.<br>Under the leadership of Janab Shaik Akram, committed to transparent,<br>development-focused governance through Anjuman-e-Himayatul Islam.",
     footer_links_h: "Quick Links",
     footer_l1: "Our Victory 2023", footer_l2: "Achievements", footer_l3: "Manifesto",
+    footer_l_stories: "Success Stories", footer_l_events: "Events", footer_l_volunteer: "Volunteer",
     footer_l4: "Funeral Aid Scheme", footer_l5: "About the Founder", footer_l6: "Learn Arabic", footer_l7: "Learn Urdu",
     footer_contact_h: "Contact",
     footer_addr1: "Mangalagiri, Guntur District",
@@ -1862,7 +3345,106 @@ const T = {
     footer_addr3: "Anjuman-e-Himayatul Islam",
     footer_founded_li: "Founded: 2011",
     footer_copy: "© 2026 Islamic Front, Mangalagiri. All rights reserved.",
-    footer_founded: "Founded by Janab Shaik Akram · Est. 2011"
+    footer_founded: "Founded by Janab Shaik Akram · Est. 2011",
+
+    /* Hero secondary CTA */
+    hero_cta_contact: "Contact Us",
+
+    /* Nav new */
+    nav_stories: "Success Stories", nav_gallery: "Our Work", nav_events: "Events", nav_volunteer: "Volunteer",
+
+    /* Achievement evidence */
+    ach_view_evidence: "View Evidence ▾",
+
+    /* Stories */
+    stories_tag: "Community Impact", stories_title: "Success Stories",
+    stories_lead: "The human faces behind our work — how lives have changed through Islamic Front schemes and programmes.",
+    stories_all: "All", stories_welfare: "Welfare", stories_women: "Women's Empowerment", stories_education: "Education", stories_student: "Students",
+    scheme_welfare: "Funeral Aid", scheme_women: "Women's Training", scheme_education: "Madrasa Education", scheme_student: "Scholarship",
+    story1_quote: '"When our family was going through the most difficult time, Islamic Front stood by us. Their ₹10,000 assistance helped us conduct a dignified farewell."',
+    story1_name: "Fatima Begum", story1_meta: "Mangalagiri · 2024", story1_chip1: "₹10,000 Aid", story1_chip2: "Funeral Scheme",
+    story2_quote: '"After joining the stitching training centre, I now run my own business. I can fund my children\'s education myself."',
+    story2_name: "Sayeeda Khatoon", story2_meta: "Mangalagiri · 2024", story2_chip1: "Stitching Training", story2_chip2: "Own Business",
+    story3_quote: '"My children are learning the Quran at Islamic Front\'s madrasa. I am very grateful that this opportunity exists in our community."',
+    story3_name: "Mohammad Yusuf", story3_meta: "Mangalagiri · 2024", story3_chip1: "Quran Education", story3_chip2: "Madrasa",
+    story4_quote: '"With Islamic Front\'s scholarship support I studied engineering. I now have a good job and support our family."',
+    story4_name: "Arif Hussain", story4_meta: "Mangalagiri · 2023", story4_chip1: "Scholarship", story4_chip2: "Engineering Graduate",
+    ss1_label: "Families Assisted", ss2_label: "Women Trained", ss3_label: "Scholarship Students", ss4_label: "Mosques Managed",
+
+    /* Gallery */
+    gallery_tag: "Our Work", gallery_title: "Community Activities",
+    gallery_lead: "Islamic Front activities — welfare programmes, community events, mosque maintenance, and women's empowerment.",
+    gcat_all: "All", gcat_welfare: "Welfare Activities", gcat_events: "Community Events", gcat_mosque: "Mosque Activities", gcat_education: "Educational Programmes", gcat_women: "Women's Initiatives",
+    gal1_text: "Eid Celebration\nPhoto coming soon", gal1_cap: "Eid Celebration 2024",
+    gal2_text: "Aid Distribution\nPhoto coming soon", gal2_cap: "Funeral Aid Distribution",
+    gal3_text: "Mosque\nPhoto coming soon", gal3_cap: "Mosque Renovation",
+    gal4_text: "Stitching Training\nPhoto coming soon", gal4_cap: "Stitching Training Centre",
+    gal5_text: "Madrasa\nPhoto coming soon", gal5_cap: "Madrasa Classes",
+    gal6_text: "Medical Camp\nPhoto coming soon", gal6_cap: "Medical Camp 2024",
+    gal7_text: "Iftar Programme\nPhoto coming soon", gal7_cap: "Ramadan Iftar 2024",
+    gal8_text: "Scholarship\nPhoto coming soon", gal8_cap: "Scholarship Distribution 2023",
+    gal9_text: "Hall Construction\nPhoto coming soon", gal9_cap: "Convention Hall Upgrade",
+
+    /* Events */
+    events_tag: "Events & Announcements", events_title: "Upcoming Events",
+    events_lead: "Events, special programmes, and important announcements by Islamic Front and Anjuman.",
+    ev_upcoming: "Upcoming", ev_recent: "Recent", ev_friday: "Friday",
+    ev_type_welfare: "Welfare Event", ev_type_education: "Education Event", ev_type_women: "Women's Event", ev_type_scholarship: "Scholarship", ev_type_friday: "Jumu'ah Prayer",
+    ev1_title: "Medical Camp — Free Health Check-up", ev1_meta: "9:00 AM – 1:00 PM · Anjuman Hall, Mangalagiri",
+    ev2_title: "Madrasa Admissions 2024–25 — Enrolment Process", ev2_meta: "Apply by July 1 · 5 Madrasas",
+    ev3_title: "Stitching Training Centre — New Batch Enrolment", ev3_meta: "For women 18+ · Free training",
+    ev4_title: "2024–25 Scholarship Applications Open", ev4_meta: "10th grade to Degree · 10 seats",
+    evr1_title: "Funeral Aid Distribution — 3 Families", evr1_meta: "June 2024 · ₹30,000 distributed",
+    evr2_title: "Anjuman Annual Meeting 2024", evr2_meta: "June 2, 2024 · 500+ attended",
+    evr3_title: "Stitching Training — 20 Women Graduated", evr3_meta: "May 2024 · Machine distribution",
+    evf1_title: "Friday Special Khutbah — Unity & Service", evf1_meta: "Every Friday · All 18 mosques · 1:00 PM",
+    evf2_title: "Anjuman Scheme Announcements", evf2_meta: "After prayers · All mosques",
+    ann_title: "Important Announcements", ann_sub: "Latest updates for community members.",
+    ann_urgent: "Urgent Notice", ann_general: "General Announcement", ann_info: "Information", ann_welfare: "Welfare Notice", ann_youth: "Youth",
+    ann1_text: "Funeral Aid Scheme application process — eligible families can directly contact the Anjuman office.", ann1_date: "June 2024",
+    ann2_text: "2024–25 Madrasa admissions are open. Children aged 5–15 are eligible. Free registration.", ann2_date: "June 2024",
+    ann3_text: "Convention Hall upgrade is complete. Bookings for weddings and events are now open. Free for orphan weddings.", ann3_date: "May 2024",
+    ann4_text: "Medical Camp on June 20. Free blood test, BP check, and medicine distribution. Everyone welcome.", ann4_date: "June 20, 2024",
+    ann5_text: "Islamic Front Youth Wing is being established. Youth aged 18–35 can join.", ann5_date: "June 2024",
+
+    /* Volunteer */
+    vol_tag: "Community Participation", vol_title: "Become a Volunteer",
+    vol_lead: "Join Islamic Front and serve the Muslim community of Mangalagiri. Contribute your skills and time.",
+    vol1_title: "Youth Wing", vol1_desc: "Leadership training, community service programmes and Islamic education opportunities for youth aged 18–35.", vol1_spots: "Seats available",
+    vol2_title: "Women's Wing", vol2_desc: "Women's empowerment, training programmes, community health initiatives and women's leadership development.", vol2_spots: "20 seats available",
+    vol3_title: "Health Service", vol3_desc: "Medical camps, free health check-ups, blood donation network and emergency health assistance.", vol3_spots: "Medical professionals needed",
+    vol4_title: "Educational Volunteer", vol4_desc: "Tutoring for madrasa students, English & computer training and career guidance programmes.", vol4_spots: "Teachers & professionals welcome",
+    vol5_title: "Blood Donation Network", vol5_desc: "Join a volunteer network of blood donors to respond quickly to emergency needs.", vol5_spots: "All blood groups",
+    vf_title: "Join Now", vf_sub: "Enter your details and we will contact you promptly.",
+    vf_name_label: "Full Name", vf_phone_label: "Phone Number", vf_area_label: "Volunteer Area",
+    vf_msg_label: "Message (Optional)", vf_submit: "Register as Volunteer", vf_note: "Your details are kept confidential · We will contact you within 24 hours",
+    vf_select_default: "Select an area",
+
+    /* Community Contact */
+    cc_tag: "Available 24/7", cc_title: "Community Contact Centre",
+    cc_lead: "Need help? Islamic Front is always available for you. Contact us via WhatsApp, phone, or visit our office directly.",
+    ca_wa_label: "WhatsApp", ca_wa_title: "Chat on WhatsApp", ca_wa_desc: "Message us on WhatsApp for immediate assistance. Schemes, events, or community matters.", ca_wa_action: "Open WhatsApp",
+    ca_call_label: "Phone", ca_call_title: "Call Us Directly", ca_call_desc: "Call during office hours. Available 24/7 for emergency funeral assistance.", ca_call_action: "Call Now",
+    ca_mail_label: "Email", ca_mail_title: "Send an Email", ca_mail_desc: "For official matters, documents, or detailed requests, send us an email.", ca_mail_action: "Write Email",
+    ca_emg_label: "Emergency", ca_emg_title: "Emergency Assistance", ca_emg_desc: "For funeral aid or immediate financial assistance, contact us 24/7.", ca_emg_action: "Emergency Call",
+    ca_scheme_label: "Schemes", ca_scheme_title: "Apply for Welfare Schemes", ca_scheme_desc: "Funeral aid, women's training, scholarships — learn about eligibility for any scheme.", ca_scheme_action: "View Schemes",
+    ca_hours_label: "Office Hours", ca_hours_title: "When We Are Available", ca_hours_desc: "Mon–Sat: 9:00 AM – 6:00 PM<br>Sunday: 10:00 AM – 2:00 PM<br>Emergency funeral aid: 24/7",
+    ci_phone: "Phone", ci_whatsapp: "WhatsApp", ci_address: "Address", ci_hours_short: "Hours",
+    ci_addr_val: "Mangalagiri, Guntur District<br>Andhra Pradesh – 522503", ci_hours_val: "Mon–Sat: 9AM–6PM<br>Emergency: 24/7",
+
+    /* Learning Dashboard */
+    ld_tag: "Knowledge Center", ld_title: "Explore the Knowledge Center",
+    ld_lead: "Free, structured learning portals — Quran, Salah, Seerah, history, languages and more. Open any portal to begin.",
+    ld_portals_title: "Learning Portals",
+    ld_arabic: "Learn Arabic", ld_urdu: "Learn Urdu", ld_quran: "Learn Quran", ld_salah: "Learn Salah", ld_seerah: "Seerah", ld_kids: "Kids Islam",
+    ld_note: "💡 Progress is saved on your device. Complete lessons in each portal to earn badges.",
+    ld_badges_title: "Badges & Achievements", ld_badges_sub: "Complete portals to earn badges",
+    badge1_name: "Beginner", badge2_name: "Quran Reader", badge3_name: "Salah Expert", badge4_name: "Arabic Reader", badge5_name: "Urdu Reader", badge6_name: "Seerah Scholar", badge7_name: "Completionist", badge8_name: "Champion",
+    badge_locked: "Locked", badge_earned: "Earned",
+    cert_title: "Full Completion Certificate", cert_sub: "Complete all portals to receive an Islamic Front certificate", cert_btn: "View",
+
+    /* Sticky contact bar */
+    scb_call: "Call", scb_wa: "WhatsApp", scb_mail: "Email", scb_help: "Help"
   }
 };
 
@@ -1885,6 +3467,14 @@ function applyLang(l) {
   langBtn.title = l === 'te' ? 'Currently: Telugu — Click for English' : 'Currently: English — Click for Telugu';
   langBtn.setAttribute('aria-label', l === 'te' ? 'Switch to English (currently Telugu)' : 'Switch to Telugu (currently English)');
 }
+
+function toggleScheme(btn) {
+  var body = document.getElementById('scheme-body');
+  if (!body) return;
+  var open = body.classList.toggle('open');
+  btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+}
+window.toggleScheme = toggleScheme;
 
 function toggleLang() {
   lang = lang === 'te' ? 'en' : 'te';
@@ -1952,7 +3542,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
   /* Active section tracking */
-  var TRACKED_IDS=['home','victory','achievements','manifesto','scheme','about','contact'];
+  var TRACKED_IDS=['home','victory','achievements','manifesto','scheme','stories','gallery','events','volunteer','community-contact','about','contact','learning'];
   var secVis={};
   TRACKED_IDS.forEach(function(id){secVis[id]=false;});
   function setNavActive(activeId){
@@ -2064,6 +3654,130 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 document.addEventListener('DOMContentLoaded', () => applyLang(lang));
+
+/* ═══════════════════════════════════════
+   NEW SECTIONS — INTERACTIVE JS
+═══════════════════════════════════════ */
+
+/* Achievement evidence toggle */
+function toggleAchEvidence(btn) {
+  var card = btn.closest('.ach-card');
+  var isExpanded = card.classList.toggle('expanded');
+  var l = lang;
+  var te = 'సాక్ష్యాలు దాచండి ▴';
+  var en = 'Hide Evidence ▴';
+  var te2 = 'సాక్ష్యాలు చూడండి ▾';
+  var en2 = 'View Evidence ▾';
+  btn.textContent = isExpanded ? (l==='te'?te:en) : (l==='te'?te2:en2);
+}
+window.toggleAchEvidence = toggleAchEvidence;
+
+/* Stories filter */
+function filterStories(cat, btn) {
+  document.querySelectorAll('.story-tab').forEach(function(t){ t.classList.remove('active'); });
+  btn.classList.add('active');
+  document.querySelectorAll('.story-card').forEach(function(c){
+    if (cat === 'all' || c.dataset.category === cat) {
+      c.classList.add('story-visible');
+    } else {
+      c.classList.remove('story-visible');
+    }
+  });
+}
+window.filterStories = filterStories;
+
+/* Gallery filter */
+function filterGallery(cat, btn) {
+  document.querySelectorAll('.gcat-btn').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  document.querySelectorAll('.gal-item').forEach(function(i){
+    if (cat === 'all' || i.dataset.category === cat) {
+      i.classList.add('gal-visible');
+    } else {
+      i.classList.remove('gal-visible');
+    }
+  });
+}
+window.filterGallery = filterGallery;
+
+/* Lightbox */
+function openLightbox(icon, caption, sub) {
+  var lb = document.getElementById('lightbox');
+  if (!lb) return;
+  document.getElementById('lb-icon').textContent = icon;
+  document.getElementById('lb-caption').textContent = caption;
+  document.getElementById('lb-sub').textContent = sub;
+  lb.classList.add('lb-open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  var lb = document.getElementById('lightbox');
+  if (lb) { lb.classList.remove('lb-open'); document.body.style.overflow = ''; }
+}
+window.openLightbox = openLightbox;
+window.closeLightbox = closeLightbox;
+document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeLightbox(); });
+document.getElementById('lightbox') && document.getElementById('lightbox').addEventListener('click', function(e){
+  if (e.target === this) closeLightbox();
+});
+
+/* Events tab switch */
+function switchEventTab(id, btn) {
+  document.querySelectorAll('.ev-tab').forEach(function(t){ t.classList.remove('active'); });
+  btn.classList.add('active');
+  ['upcoming','recent','friday'].forEach(function(tab){
+    var el = document.getElementById('ev-'+tab);
+    if (el) el.style.display = (tab === id) ? 'flex' : 'none';
+  });
+}
+window.switchEventTab = switchEventTab;
+
+/* Volunteer form */
+function submitVolunteerForm(e) {
+  e.preventDefault();
+  var btn = e.target.querySelector('.vf-submit');
+  var origText = btn.textContent;
+  btn.textContent = lang === 'te' ? '✓ నమోదు అయింది! త్వరలో సంప్రదిస్తాము.' : '✓ Registered! We will contact you soon.';
+  btn.style.background = 'linear-gradient(135deg, #16a34a, #22c55e)';
+  btn.disabled = true;
+  setTimeout(function(){
+    btn.textContent = origText;
+    btn.style.background = '';
+    btn.disabled = false;
+    e.target.reset();
+  }, 4000);
+}
+window.submitVolunteerForm = submitVolunteerForm;
+
+/* Learning dashboard — animate progress bars on scroll */
+document.addEventListener('DOMContentLoaded', function(){
+  var ldSection = document.getElementById('learning');
+  if (ldSection) {
+    var ldIO = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting) {
+          e.target.querySelectorAll('.ld-bar').forEach(function(bar){
+            var w = bar.dataset.w || '0%';
+            bar.style.width = w;
+          });
+          ldIO.unobserve(e.target);
+        }
+      });
+    }, {threshold: 0.1});
+    ldIO.observe(ldSection);
+  }
+
+  /* Learning progress is shown only inside the Knowledge Center, never on the
+     community homepage. This section is a Knowledge Center discovery list. */
+});
+
+/* Footer nav update — add new sections */
+(function(){
+  var footerCol = document.querySelector('.footer-col ul');
+  if (footerCol) {
+    /* New footer links are added via static HTML below */
+  }
+})();
 </script>
 
 <!-- BOTTOM NAVIGATION (mobile only) -->
@@ -2071,6 +3785,10 @@ document.addEventListener('DOMContentLoaded', () => applyLang(lang));
   <a href="#home" class="bn-item bn-active" data-section="home">
     <svg class="bn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
     <span class="bn-label" data-key="nav_home">హోమ్</span>
+  </a>
+  <a href="student-guidance.html" class="bn-item" aria-label="Student Guidance Center">
+    <svg class="bn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1 2.5 2.5 6 2.5s6-1.5 6-2.5v-5"/></svg>
+    <span class="bn-label" data-key="nav_guidance_short">మార్గదర్శనం</span>
   </a>
   <a href="#achievements" class="bn-item" data-section="achievements">
     <svg class="bn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -2080,12 +3798,8 @@ document.addEventListener('DOMContentLoaded', () => applyLang(lang));
     <svg class="bn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
     <span class="bn-label" data-key="nav_manifesto">మేనిఫెస్టో</span>
   </a>
-  <a href="#scheme" class="bn-item" data-section="scheme">
-    <svg class="bn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-    <span class="bn-label" data-key="nav_scheme">సహాయ పథకం</span>
-  </a>
-  <a href="#contact" class="bn-item" data-section="contact">
-    <svg class="bn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+  <a href="#community-contact" class="bn-item" data-section="community-contact">
+    <svg class="bn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
     <span class="bn-label" data-key="nav_contact">సంప్రదించండి</span>
   </a>
 </nav>

@@ -1,0 +1,16 @@
+{
+  "name": "Islamic Front — Knowledge Center",
+  "short_name": "IF Knowledge",
+  "description": "Free bilingual Islamic learning portals — Quran, Salah, Seerah, History, Arabic, Urdu, and Kids.",
+  "scope": "../",
+  "start_url": "../index.html",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#faf6ee",
+  "theme_color": "#0d3b1e",
+  "lang": "te",
+  "icons": [
+    { "src": "logo-emblem.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "logo-emblem.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

@@ -1,0 +1,1737 @@
+<!DOCTYPE html>
+<html lang="te" id="html-root">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Learn Quran — Islamic Front Knowledge Center</title>
+<meta name="description" content="A structured Quran learning journey — Reading, Tajweed, Hifz and Tafseer. Free, beginner-friendly lessons by Islamic Front, Mangalagiri.">
+<meta name="keywords" content="learn Quran, Quran reading, Tajweed, Hifz, Quran memorization, Tafseer, Quran for beginners, Islamic learning">
+<meta name="robots" content="index,follow">
+<meta property="og:title" content="Learn Quran | Islamic Front Knowledge Center">
+<meta property="og:description" content="Read, understand, recite, and memorize the Quran through a structured learning journey — free for all.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="te_IN">
+<meta property="og:locale:alternate" content="en_US">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:wght@300;400;500&family=Noto+Sans+Telugu:wght@300;400;500;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --green-deep:#0d3b1e;--green-mid:#1a5c30;--green-light:#2e8b57;
+  --gold:#c8922a;--gold-light:#e8b84b;--gold-pale:#f5e6c0;
+  --cream:#faf6ee;--white:#ffffff;
+  --text-dark:#1a1208;--text-mid:#3d3018;--text-muted:#7a6840;
+  --border:rgba(200,146,42,0.25);
+  --radius:14px;--shadow:0 4px 24px rgba(0,0,0,0.10);
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text-dark);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+[id]{scroll-margin-top:130px}
+a{color:inherit;text-decoration:none}
+::selection{background:rgba(200,146,42,0.28);color:var(--text-dark)}
+::-webkit-scrollbar{width:10px}
+::-webkit-scrollbar-track{background:var(--cream)}
+::-webkit-scrollbar-thumb{background:linear-gradient(var(--gold),var(--gold-light));border-radius:100px;border:3px solid var(--cream)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--gold-light);outline-offset:3px;border-radius:3px}
+
+/* NAV */
+body>nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(13,59,30,0.96);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid rgba(200,146,42,0.3);padding:0 5vw;display:flex;align-items:center;justify-content:space-between;height:68px}
+.nav-brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.nav-logo{width:42px;height:42px;border-radius:50%;object-fit:cover}
+.nav-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--gold-light);letter-spacing:0.5px;line-height:1.2}
+.nav-sub{font-size:10px;color:rgba(232,184,75,0.7);letter-spacing:1.5px;text-transform:uppercase}
+.nav-right{display:flex;align-items:center;gap:14px}
+.nav-back{display:inline-flex;align-items:center;gap:6px;color:rgba(255,255,255,0.8);text-decoration:none;font-size:13px;letter-spacing:0.3px;transition:color .2s;white-space:nowrap}
+.nav-back::before{content:'\2190';font-size:15px}
+.nav-back:hover{color:var(--gold-light)}
+.lang-btn{background:rgba(200,146,42,0.12);border:1px solid rgba(200,146,42,0.4);color:var(--gold-light);font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;letter-spacing:0.5px;padding:6px 14px;border-radius:100px;cursor:pointer;transition:background .2s}
+.lang-btn:hover{background:rgba(200,146,42,0.22)}
+
+/* HERO — PREMIUM (reference design, shared with Arabic & Urdu portals) */
+.al-hero{padding:130px 5vw 80px;background:linear-gradient(155deg,var(--green-deep) 0%,#0a2a14 55%,#122b10 100%);position:relative;overflow:hidden;isolation:isolate}
+.al-hero::before{content:'';position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse 70% 60% at 82% 38%,rgba(200,146,42,0.13) 0%,transparent 65%),radial-gradient(ellipse 45% 50% at 8% 88%,rgba(46,139,87,0.14) 0%,transparent 55%)}
+.al-hero-inner{max-width:1140px;margin:0 auto;position:relative;z-index:1;display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:48px}
+.al-hero-content{min-width:0}
+.al-hero-display{position:relative;display:flex;align-items:center;justify-content:center;min-width:0}
+.al-hero-display::before{content:'';position:absolute;width:min(440px,92%);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(200,146,42,0.18),transparent 68%);z-index:-1;pointer-events:none}
+.al-hero-calligraphy{font-family:'Amiri',serif;direction:rtl;text-align:center;font-size:clamp(50px,7.5vw,108px);line-height:1.45;color:var(--gold-light);background:linear-gradient(135deg,#fff3cf 0%,var(--gold-light) 42%,var(--gold) 78%,#a9741c 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 10px 30px rgba(200,146,42,0.28));animation:alCalliIn 1s cubic-bezier(.16,1,.3,1) .25s both}
+@keyframes alCalliIn{from{opacity:0;transform:translateY(18px) scale(.96)}to{opacity:1;transform:none}}
+.al-breadcrumb{display:flex;align-items:center;gap:7px;font-size:12px;color:rgba(245,230,192,0.5);margin-bottom:20px;flex-wrap:wrap}
+.al-breadcrumb a{color:rgba(245,230,192,0.5);text-decoration:none;transition:color .2s}
+.al-breadcrumb a:hover{color:var(--gold-light)}
+.al-breadcrumb span{color:rgba(245,230,192,0.28)}
+.al-phase{display:inline-flex;align-items:center;gap:8px;background:rgba(200,146,42,0.1);border:1px solid rgba(200,146,42,0.32);border-radius:100px;padding:6px 16px;margin-bottom:22px;font-size:11px;color:var(--gold-light);letter-spacing:1.5px;text-transform:uppercase;animation:slideUp .7s cubic-bezier(.16,1,.3,1) .05s both}
+.al-phase::before{content:'★\FE0E';font-size:9px}
+.al-hero h1{font-family:'Playfair Display','Noto Sans Telugu',serif;font-size:clamp(32px,5vw,58px);font-weight:900;color:var(--white);line-height:1.1;margin-bottom:18px;animation:slideUp .8s cubic-bezier(.16,1,.3,1) .2s both}
+.al-hero h1 span{background:linear-gradient(135deg,var(--gold-light),#fff8cc);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.al-hero-lead{font-family:'Cormorant Garamond','Noto Sans Telugu',serif;font-size:clamp(15px,1.9vw,20px);color:rgba(245,230,192,0.78);max-width:580px;line-height:1.75;margin-bottom:34px;animation:slideUp .8s cubic-bezier(.16,1,.3,1) .3s both}
+@keyframes slideUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes slideUpSm{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.al-cta-row{display:flex;align-items:center;gap:16px;flex-wrap:wrap;animation:slideUp .8s cubic-bezier(.16,1,.3,1) .4s both}
+.al-cta{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--green-deep);font-weight:700;font-size:12px;letter-spacing:1.2px;text-transform:uppercase;padding:15px 34px;border-radius:6px;text-decoration:none;transition:transform .2s,box-shadow .2s;box-shadow:0 10px 32px -10px rgba(200,146,42,0.55),inset 0 1px 0 rgba(255,255,255,0.2)}
+.al-cta:hover{transform:translateY(-2px);box-shadow:0 16px 42px -10px rgba(200,146,42,0.65)}
+.al-cta svg{width:16px;height:16px}
+.al-cta.ghost{background:transparent;color:var(--gold-light);border:1px solid rgba(200,146,42,0.45);box-shadow:none}
+.al-cta.ghost:hover{background:rgba(200,146,42,0.12);box-shadow:none}
+.al-hero-stats{display:flex;gap:30px;margin-top:42px;flex-wrap:wrap;animation:slideUp .8s cubic-bezier(.16,1,.3,1) .5s both}
+.al-stat{display:flex;flex-direction:column;gap:2px}
+.al-stat-num{font-family:'Playfair Display','Noto Sans Telugu',serif;font-size:28px;font-weight:700;background:linear-gradient(135deg,var(--gold-light),#fffbe0);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
+.al-stat-label{font-size:10.5px;color:rgba(245,230,192,0.5);letter-spacing:0.8px;text-transform:uppercase}
+@media(prefers-reduced-motion:reduce){.al-phase,.al-hero-calligraphy,.al-hero h1,.al-hero-lead,.al-cta-row,.al-hero-stats{animation:none!important}}
+
+/* STICKY NAV */
+.al-sticky{position:fixed;top:68px;left:0;right:0;z-index:90;background:rgba(13,59,30,0.97);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid rgba(200,146,42,0.28);box-shadow:0 4px 18px rgba(0,0,0,0.16);transform:translateY(-130%);transition:transform .32s cubic-bezier(.16,1,.3,1)}
+.al-sticky.sticky-on{transform:translateY(0)}
+.al-sticky-inner{max-width:1200px;margin:0 auto;display:flex;gap:6px;overflow-x:auto;padding:9px 5vw;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.al-sticky-inner::-webkit-scrollbar{display:none}
+.al-sticky a{white-space:nowrap;flex-shrink:0;font-size:12px;color:rgba(245,230,192,0.78);text-decoration:none;border:1px solid rgba(200,146,42,0.22);background:rgba(200,146,42,0.05);padding:6px 13px;border-radius:100px;transition:background .18s,color .18s,border-color .18s}
+.al-sticky a:hover,.al-sticky a.spy-active{background:var(--gold);color:var(--green-deep);border-color:var(--gold);font-weight:600}
+.al-sticky-home{border-right:1px solid rgba(200,146,42,0.28) !important;padding-right:16px !important;margin-right:4px !important}
+
+/* SECTIONS (shared portal design system) */
+.lu-sec{padding:80px 5vw}
+.lu-sec-inner{max-width:1100px;margin:0 auto}
+.lu-sec-label{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.lu-sec-title{font-family:'Playfair Display','Noto Sans Telugu',serif;font-size:clamp(1.7rem,4vw,2.4rem);font-weight:700;color:var(--text-dark);margin-bottom:10px;line-height:1.25}
+.lu-sec-title span{color:var(--green-light)}
+.lu-sec-subtitle{font-size:1rem;color:var(--text-muted);max-width:560px;line-height:1.75}
+.lu-sec-hdr{margin-bottom:50px}
+
+/* WHY CARDS */
+.why-sec{background:var(--white)}
+.why-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:22px}
+.why-card{background:var(--cream);border:1px solid var(--border);border-radius:var(--radius);padding:28px 24px;transition:all .3s cubic-bezier(.16,1,.3,1);position:relative;overflow:hidden}
+.why-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold-light));transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.why-card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.why-card:hover::before{transform:scaleX(1)}
+.why-icon{width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,rgba(200,146,42,0.12),rgba(200,146,42,0.06));display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-size:1.5rem}
+.why-card h3{font-family:'Playfair Display','Noto Sans Telugu',serif;font-size:1.05rem;font-weight:700;color:var(--text-dark);margin-bottom:8px}
+.why-card p{font-size:.87rem;color:var(--text-muted);line-height:1.7}
+.why-card-ar{font-family:'Amiri',serif;font-size:1.15rem;color:var(--gold);direction:rtl;margin-top:14px;line-height:1.6;border-top:1px solid var(--border);padding-top:12px}
+
+/* ROADMAP */
+.rm-sec{background:var(--green-deep);padding:80px 5vw}
+.rm-sec-inner{max-width:1100px;margin:0 auto}
+.rm-label{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.rm-title{font-family:'Playfair Display','Noto Sans Telugu',serif;font-size:clamp(1.7rem,4vw,2.4rem);font-weight:700;color:var(--white);margin-bottom:10px}
+.rm-title span{color:var(--gold-light)}
+.rm-subtitle{font-size:.95rem;color:rgba(245,230,192,.65);max-width:520px;line-height:1.7;margin-bottom:52px}
+.rm-track{display:flex;align-items:flex-start;gap:0;position:relative;padding-bottom:12px}
+.rm-track::before{content:'';position:absolute;top:28px;left:28px;right:28px;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold-light) 50%,rgba(200,146,42,0.18) 100%);border-radius:3px;z-index:0}
+.rm-node{display:flex;flex-direction:column;align-items:center;flex:1;position:relative;z-index:1;text-decoration:none}
+.rm-dot{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Amiri',serif;font-weight:700;font-size:1.35rem;margin-bottom:14px;transition:transform .3s;flex-shrink:0}
+.rm-dot.done{background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--green-deep);box-shadow:0 4px 16px rgba(200,146,42,0.40)}
+.rm-dot.soon{background:rgba(255,255,255,0.08);border:2px solid rgba(200,146,42,0.30);color:rgba(245,230,192,0.50)}
+.rm-node:hover .rm-dot{transform:translateY(-4px) scale(1.08);box-shadow:0 8px 22px rgba(200,146,42,0.50)}
+.rm-node-title{font-family:'Playfair Display','Noto Sans Telugu',serif;font-size:.82rem;font-weight:600;color:var(--white);text-align:center;margin-bottom:4px}
+.rm-node-ar{font-family:'Amiri',serif;font-size:1rem;color:var(--gold-light);direction:rtl;line-height:1.6;text-align:center}
+.rm-node-tag{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:3px 9px;border-radius:12px;margin-top:6px}
+.rm-node-tag.avail{background:rgba(46,139,87,0.25);color:#7de0a4}
+.rm-node-tag.soon{background:rgba(255,255,255,0.08);color:rgba(245,230,192,0.45)}
+/* Mobile roadmap */
+.rm-mobile{display:none;flex-direction:column;gap:0}
+.rm-mnode{display:flex;align-items:flex-start;gap:16px;padding:16px 0;position:relative}
+.rm-mnode::after{content:'';position:absolute;left:27px;top:62px;bottom:-16px;width:2px;background:rgba(200,146,42,0.25)}
+.rm-mnode:last-child::after{display:none}
+.rm-mdot{width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Amiri',serif;font-weight:700;font-size:1.3rem;flex-shrink:0}
+.rm-mdot.done{background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--green-deep);box-shadow:0 4px 14px rgba(200,146,42,0.35)}
+.rm-mdot.soon{background:rgba(255,255,255,0.08);border:2px solid rgba(200,146,42,0.25);color:rgba(245,230,192,0.45)}
+.rm-minfo{padding-top:6px}
+.rm-minfo strong{display:block;font-family:'Playfair Display','Noto Sans Telugu',serif;font-size:.92rem;color:var(--white);margin-bottom:3px}
+.rm-minfo .ar{font-family:'Amiri',serif;font-size:1rem;color:var(--gold-light);direction:rtl;display:block;line-height:1.6}
+@media(max-width:700px){.rm-track{display:none}.rm-mobile{display:flex}}
+
+/* LEVEL CARDS */
+.lvl-sec{background:var(--cream);padding:80px 5vw}
+.lc{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:14px;overflow:hidden;transition:box-shadow .3s}
+.lc.lc-open{box-shadow:0 8px 32px rgba(0,0,0,0.10)}
+.lc-head{display:flex;align-items:center;gap:16px;padding:20px 24px;cursor:pointer;user-select:none;transition:background .2s}
+.lc-head:hover{background:rgba(200,146,42,0.04)}
+.lc-num{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,var(--green-deep),var(--green-mid));color:var(--gold-light);font-family:'Amiri',serif;font-weight:700;font-size:1.3rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.lc-info{flex:1;min-width:0}
+.lc-info h3{font-family:'Playfair Display','Noto Sans Telugu',serif;font-size:1.1rem;font-weight:700;color:var(--text-dark);margin-bottom:3px;overflow-wrap:break-word;word-break:break-word}
+.lc-ar{font-family:'Amiri',serif;font-size:1.05rem;color:var(--text-muted);direction:rtl;line-height:1.5;display:block}
+.lc-tag{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:3px 10px;border-radius:12px}
+.lc-tag.avail{background:rgba(46,139,87,0.12);color:var(--green-light);border:1px solid rgba(46,139,87,0.25)}
+.lc-tag.soon{background:rgba(200,146,42,0.08);color:var(--gold);border:1px solid rgba(200,146,42,0.20)}
+.lc-chevron{color:var(--text-muted);transition:transform .3s;flex-shrink:0}
+.lc.lc-open .lc-chevron{transform:rotate(180deg)}
+.lc-body{max-height:0;overflow:hidden;transition:max-height .5s ease}
+.lc.lc-open .lc-body{max-height:2200px}
+.lc-inner{padding:0 24px 24px 24px;border-top:1px solid var(--border)}
+.lc-desc{font-size:.88rem;color:var(--text-muted);line-height:1.75;margin:18px 0 0}
+/* syllabus topic chips */
+.lc-sub{font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin:20px 0 12px}
+.lc-topics{display:flex;flex-wrap:wrap;gap:8px}
+.lc-topic{display:inline-flex;align-items:center;gap:7px;font-size:.82rem;color:var(--text-mid);background:rgba(200,146,42,0.05);border:1px solid rgba(200,146,42,0.18);border-radius:100px;padding:7px 14px;transition:background .18s,border-color .18s}
+.lc-topic::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0}
+.lc-topic:hover{background:rgba(200,146,42,0.1);border-color:rgba(200,146,42,0.38)}
+.lc-goal{display:flex;align-items:flex-start;gap:12px;margin-top:22px;padding:14px 18px;background:linear-gradient(135deg,rgba(46,139,87,0.08),rgba(46,139,87,0.03));border:1px solid rgba(46,139,87,0.2);border-radius:12px}
+.lc-goal-ic{font-size:1.2rem;flex-shrink:0;line-height:1.4}
+.lc-goal-txt strong{display:block;font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--green-light);margin-bottom:3px}
+.lc-goal-txt p{font-size:.9rem;color:var(--text-dark);line-height:1.6}
+
+/* FEATURED SURAHS */
+.surah-sec{background:var(--white)}
+.surah-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(265px,1fr));gap:20px}
+.surah-card{background:var(--cream);border:1px solid var(--border);border-radius:var(--radius);padding:24px 22px;transition:all .3s cubic-bezier(.16,1,.3,1);position:relative;overflow:hidden;display:flex;flex-direction:column}
+.surah-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold-light));transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.surah-card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.surah-card:hover::before{transform:scaleX(1)}
+.surah-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:12px}
+.surah-ar{font-family:'Amiri',serif;font-size:2.1rem;color:var(--gold);direction:rtl;line-height:1.5}
+.surah-no{font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--gold);background:rgba(200,146,42,0.1);border:1px solid var(--border);border-radius:100px;padding:4px 10px;white-space:nowrap;height:fit-content}
+.surah-en{font-family:'Playfair Display','Noto Sans Telugu',serif;font-size:1.12rem;font-weight:700;color:var(--text-dark);margin-bottom:2px}
+.surah-meaning{font-size:.8rem;color:var(--green-light);font-weight:600;margin-bottom:10px}
+.surah-virtue{font-size:.83rem;color:var(--text-muted);line-height:1.65;margin-bottom:16px;flex:1}
+.surah-btns{display:flex;gap:8px}
+.surah-btn{flex:1;min-width:0;display:inline-flex;align-items:center;justify-content:center;gap:5px;font-size:.7rem;font-weight:600;padding:9px 6px;border-radius:8px;border:1px solid var(--border);background:var(--white);color:var(--text-mid);text-decoration:none;transition:all .18s;white-space:nowrap;cursor:pointer;font-family:inherit}
+.surah-btn:hover{background:var(--gold);color:var(--green-deep);border-color:var(--gold)}
+.surah-btn.primary{background:linear-gradient(135deg,var(--green-deep),var(--green-mid));color:var(--gold-light);border-color:transparent}
+.surah-btn.primary:hover{background:linear-gradient(135deg,var(--green-mid),var(--green-light));color:#fff}
+/* DUAS FROM THE QURAN */
+.qd-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px}
+.qd-card{background:var(--cream);border:1px solid var(--border);border-radius:var(--radius);padding:24px 22px;position:relative;overflow:hidden;transition:all .3s cubic-bezier(.16,1,.3,1);display:flex;flex-direction:column}
+.qd-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--gold)}
+.qd-card:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
+.qd-ref{align-self:flex-start;font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--gold);background:rgba(200,146,42,0.1);border:1px solid var(--border);border-radius:100px;padding:4px 11px;margin-bottom:14px}
+.qd-ar{font-family:'Amiri',serif;font-size:1.7rem;color:var(--green-deep);direction:rtl;text-align:right;line-height:2;margin-bottom:12px}
+.qd-tr{font-style:italic;font-size:.9rem;color:var(--green-light);font-weight:600;margin-bottom:8px;line-height:1.5}
+.qd-m{font-size:.9rem;color:var(--text-mid);line-height:1.6;flex:1}
+
+/* DAILY CHALLENGE */
+.ch-sec{background:var(--green-deep);padding:80px 5vw}
+.ch-inner{max-width:1080px;margin:0 auto}
+.ch-hdr{margin-bottom:44px}
+.ch-hdr .rm-title{margin-bottom:10px}
+.ch-grid{display:grid;grid-template-columns:1.25fr .85fr;gap:22px;align-items:start}
+@media(max-width:820px){.ch-grid{grid-template-columns:1fr}}
+.ch-panel{background:rgba(255,255,255,0.05);border:1px solid rgba(200,146,42,0.25);border-radius:18px;padding:28px;position:relative;overflow:hidden}
+.ch-panel::before{content:'';position:absolute;top:-50px;right:-50px;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle,rgba(200,146,42,0.08),transparent 70%);pointer-events:none}
+.ch-panel-title{font-family:'Playfair Display','Noto Sans Telugu',serif;font-size:1.15rem;font-weight:700;color:var(--white);margin-bottom:3px;display:flex;align-items:center;gap:10px}
+.ch-date{font-size:.78rem;color:rgba(245,230,192,.5);margin-bottom:22px}
+.ch-list{display:flex;flex-direction:column;gap:10px;margin-bottom:24px}
+.ch-item{display:flex;align-items:center;gap:14px;padding:14px 16px;border:1px solid rgba(200,146,42,0.2);border-radius:12px;background:rgba(200,146,42,0.04);cursor:pointer;transition:all .2s;text-align:left;width:100%;font-family:inherit}
+.ch-item:hover{background:rgba(200,146,42,0.1);border-color:rgba(200,146,42,0.4)}
+.ch-check{width:26px;height:26px;border-radius:8px;border:2px solid rgba(200,146,42,0.45);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .25s;color:transparent;font-size:14px;font-weight:700}
+.ch-item.done .ch-check{background:linear-gradient(135deg,var(--gold),var(--gold-light));border-color:var(--gold);color:var(--green-deep);transform:scale(1.05)}
+.ch-ic{font-size:1.25rem;line-height:1}
+.ch-item-txt{flex:1;font-size:.92rem;color:rgba(245,230,192,.9);font-weight:500;transition:all .2s}
+.ch-item.done .ch-item-txt{color:rgba(245,230,192,.45);text-decoration:line-through}
+.ch-progress-label{display:flex;justify-content:space-between;align-items:baseline;font-size:.8rem;color:rgba(245,230,192,.65);margin-bottom:9px}
+.ch-progress-label b{color:var(--gold-light);font-size:1rem;font-family:'Playfair Display',serif}
+.ch-bar{height:11px;border-radius:100px;background:rgba(255,255,255,0.08);overflow:hidden}
+.ch-bar-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-light));border-radius:100px;transition:width .55s cubic-bezier(.16,1,.3,1);width:0}
+.ch-done-msg{margin-top:16px;font-size:.85rem;color:#7de0a4;font-weight:600;text-align:center;opacity:0;max-height:0;overflow:hidden;transition:opacity .3s,max-height .3s}
+.ch-done-msg.show{opacity:1;max-height:40px}
+/* side column */
+.ch-side{display:flex;flex-direction:column;gap:22px}
+.ch-streak{background:rgba(255,255,255,0.05);border:1px solid rgba(200,146,42,0.25);border-radius:18px;padding:24px;text-align:center}
+.ch-streak-flame{font-size:2.4rem;line-height:1;margin-bottom:6px}
+.ch-streak-num{font-family:'Playfair Display',serif;font-size:2.6rem;font-weight:700;background:linear-gradient(135deg,var(--gold-light),#fffbe0);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
+.ch-streak-label{font-size:.74rem;color:rgba(245,230,192,.55);letter-spacing:.06em;text-transform:uppercase;margin-top:4px}
+.ch-streak-sub{font-size:.78rem;color:rgba(245,230,192,.5);margin-top:10px;border-top:1px solid rgba(200,146,42,0.18);padding-top:10px}
+.ch-streak-sub b{color:var(--gold-light)}
+.ch-badges{background:rgba(255,255,255,0.05);border:1px solid rgba(200,146,42,0.25);border-radius:18px;padding:22px 24px}
+.ch-badges-title{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+.ch-badge-row{display:flex;gap:12px;justify-content:space-between}
+.ch-badge{display:flex;flex-direction:column;align-items:center;gap:6px;flex:1;text-align:center}
+.ch-badge-ic{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.4rem;background:rgba(255,255,255,0.05);border:1px solid rgba(200,146,42,0.2);filter:grayscale(1);opacity:.4;transition:all .3s}
+.ch-badge.unlocked .ch-badge-ic{filter:none;opacity:1;background:linear-gradient(135deg,rgba(200,146,42,0.2),rgba(200,146,42,0.08));border-color:var(--gold);box-shadow:0 4px 14px rgba(200,146,42,0.3)}
+.ch-badge-name{font-size:.62rem;color:rgba(245,230,192,.5);line-height:1.3}
+.ch-badge.unlocked .ch-badge-name{color:rgba(245,230,192,.85)}
+/* ayah reflection */
+.ch-ayah{background:linear-gradient(135deg,rgba(200,146,42,0.1),rgba(200,146,42,0.03));border:1px solid rgba(200,146,42,0.25);border-radius:18px;padding:26px;margin-top:22px;text-align:center;position:relative;overflow:hidden}
+.ch-ayah-label{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+#ch-ayah-ar{font-family:'Amiri',serif;font-size:clamp(1.6rem,5vw,2.3rem);color:var(--gold-light);direction:rtl;line-height:1.9;margin-bottom:14px;display:block}
+#ch-ayah-tr{font-size:.95rem;color:rgba(245,230,192,.85);line-height:1.7;max-width:640px;margin:0 auto 8px;font-style:italic}
+#ch-ayah-ref{font-size:.8rem;color:var(--gold);font-weight:600}
+
+/* MOTIVATION STRIP */
+.mot-card{display:flex;align-items:center;gap:18px;background:rgba(255,255,255,0.05);border:1px solid rgba(200,146,42,0.25);border-radius:16px;padding:20px 24px;margin-top:22px}
+.mot-ic{font-size:1.8rem;flex-shrink:0}
+.mot-txt{font-size:.9rem;color:rgba(245,230,192,.85);line-height:1.7;font-style:italic}
+
+/* COMING SOON */
+.coming-sec{background:var(--cream);padding:80px 5vw}
+.coming-inner{max-width:1100px;margin:0 auto}
+.coming-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px}
+.cm-card{border:1px solid var(--border);border-radius:var(--radius);padding:22px 20px;background:var(--white);display:flex;align-items:flex-start;gap:14px;transition:all .28s;position:relative}
+.cm-card.live{cursor:pointer}
+.cm-card.live:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:rgba(200,146,42,0.40)}
+.cm-card.dim{opacity:.62}
+.cm-icon{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0}
+.cm-card.live .cm-icon{background:linear-gradient(135deg,rgba(46,139,87,0.12),rgba(46,139,87,0.06))}
+.cm-card.dim .cm-icon{background:rgba(0,0,0,0.04)}
+.cm-icon.ar{font-family:'Amiri',serif;direction:rtl}
+.cm-body h4{font-family:'Playfair Display','Noto Sans Telugu',serif;font-size:.97rem;font-weight:700;color:var(--text-dark);margin-bottom:4px}
+.cm-body p{font-size:.80rem;color:var(--text-muted);line-height:1.6;margin-bottom:8px}
+.cm-badge{font-size:.60rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;padding:3px 9px;border-radius:10px;display:inline-block}
+.cm-badge.avail{background:rgba(46,139,87,0.12);color:var(--green-light)}
+.cm-badge.soon{background:rgba(200,146,42,0.10);color:var(--gold)}
+
+/* ═══ PROGRESS DASHBOARD (new) ═══ */
+.dash-sec{background:var(--cream);padding:80px 5vw}
+.dash-inner{max-width:1100px;margin:0 auto}
+.dash-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:18px}
+.dash-tile{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:24px 18px;text-align:center;position:relative;overflow:hidden;transition:transform .3s,box-shadow .3s}
+.dash-tile::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold-light));transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.dash-tile:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.dash-tile:hover::before{transform:scaleX(1)}
+.dash-tile-ic{font-size:1.55rem;margin-bottom:8px;line-height:1}
+.dash-tile-num{font-family:'Playfair Display','Noto Sans Telugu',serif;font-size:2rem;font-weight:700;color:var(--green-deep);line-height:1.05;word-break:break-word}
+.dash-tile-num.sm{font-size:1.15rem;padding-top:6px}
+.dash-tile-label{font-size:.7rem;color:var(--text-muted);letter-spacing:.04em;text-transform:uppercase;margin-top:8px;line-height:1.3}
+.dash-mastery{background:linear-gradient(135deg,var(--green-deep),var(--green-mid));border-radius:18px;padding:26px 28px;color:#fff;position:relative;overflow:hidden}
+.dash-mastery::after{content:'';position:absolute;top:-40px;right:-40px;width:150px;height:150px;border-radius:50%;background:radial-gradient(circle,rgba(200,146,42,0.12),transparent 70%);pointer-events:none}
+.dash-mastery-top{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.dash-mastery-title{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-light)}
+.dash-mastery-level{font-family:'Playfair Display','Noto Sans Telugu',serif;font-size:1.4rem;font-weight:700;color:#fff}
+.dash-mbar{height:12px;border-radius:100px;background:rgba(255,255,255,0.12);overflow:hidden}
+.dash-mbar-fill{height:100%;border-radius:100px;background:linear-gradient(90deg,var(--gold),var(--gold-light));transition:width .85s cubic-bezier(.16,1,.3,1);width:0}
+.dash-mastery-sub{font-size:.8rem;color:rgba(245,230,192,.72);margin-top:11px}
+@media(max-width:700px){.dash-grid{grid-template-columns:repeat(2,1fr)}.dash-tile-num{font-size:1.7rem}}
+
+/* ═══ LEVEL MARK-COMPLETE (new) ═══ */
+.lc.done .lc-num{background:linear-gradient(135deg,var(--green-mid),var(--green-light));color:#fff}
+.lc-complete{display:inline-flex;align-items:center;gap:9px;margin-top:18px;font-family:inherit;font-size:.8rem;font-weight:600;color:var(--green-light);background:rgba(46,139,87,0.08);border:1px solid rgba(46,139,87,0.28);border-radius:100px;padding:9px 18px;cursor:pointer;transition:all .2s}
+.lc-complete:hover{background:rgba(46,139,87,0.16)}
+.lc-complete.done{background:linear-gradient(135deg,var(--green-mid),var(--green-light));color:#fff;border-color:transparent}
+.lc-complete .lc-check{width:18px;height:18px;border-radius:50%;border:2px solid currentColor;display:flex;align-items:center;justify-content:center;font-size:11px;line-height:1;flex-shrink:0}
+.lc-complete.done .lc-check{background:#fff;color:var(--green-mid);border-color:#fff}
+
+/* ═══ QURAN JOURNEY TIMELINE (new visual) ═══ */
+.qt-sec{background:var(--white);padding:80px 5vw}
+.qt-inner{max-width:1100px;margin:0 auto}
+.qt-track{display:flex;gap:0;position:relative;margin-top:46px}
+.qt-track::before{content:'';position:absolute;top:30px;left:34px;right:34px;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold-light) 55%,rgba(200,146,42,0.2));border-radius:3px;z-index:0}
+.qt-node{flex:1;display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;z-index:1;padding:0 5px}
+.qt-dot{width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,var(--green-deep),var(--green-mid));color:var(--gold-light);display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:14px;border:3px solid var(--white);box-shadow:0 4px 14px rgba(0,0,0,0.12);transition:transform .3s}
+.qt-node:hover .qt-dot{transform:translateY(-4px) scale(1.07);box-shadow:0 8px 22px rgba(200,146,42,0.35)}
+.qt-name{font-family:'Playfair Display','Noto Sans Telugu',serif;font-size:.8rem;font-weight:700;color:var(--text-dark);margin-bottom:3px;line-height:1.25}
+.qt-sub{font-size:.68rem;color:var(--text-muted);line-height:1.4}
+.qt-mobile{display:none}
+.qt-mnode{display:flex;gap:16px;align-items:flex-start;padding:14px 0;position:relative}
+.qt-mnode::after{content:'';position:absolute;left:29px;top:64px;bottom:-14px;width:2px;background:rgba(200,146,42,0.3)}
+.qt-mnode:last-child::after{display:none}
+.qt-mdot{width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,var(--green-deep),var(--green-mid));color:var(--gold-light);display:flex;align-items:center;justify-content:center;font-size:1.45rem;flex-shrink:0;box-shadow:0 4px 14px rgba(0,0,0,0.12)}
+.qt-minfo{padding-top:8px}
+.qt-minfo strong{display:block;font-family:'Playfair Display','Noto Sans Telugu',serif;font-size:.95rem;color:var(--text-dark);margin-bottom:2px}
+.qt-minfo span{font-size:.8rem;color:var(--text-muted);line-height:1.5}
+@media(max-width:760px){.qt-track{display:none}.qt-mobile{display:flex;flex-direction:column;margin-top:30px}}
+
+/* ═══ TAJWEED ACADEMY WIZARD (new flagship) ═══ */
+.tj-sec{background:var(--green-deep);padding:80px 5vw}
+.tj-inner{max-width:1080px;margin:0 auto}
+.tj-stage{background:rgba(255,255,255,0.04);border:1px solid rgba(200,146,42,0.25);border-radius:22px;padding:30px;margin-top:34px;position:relative;overflow:hidden}
+.tj-stage::before{content:'';position:absolute;top:-60px;right:-60px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(200,146,42,0.08),transparent 70%);pointer-events:none}
+.tj-dots{display:flex;gap:5px;margin-bottom:10px;flex-wrap:wrap}
+.tj-dot{flex:1;min-width:14px;height:6px;border-radius:100px;background:rgba(255,255,255,0.1);cursor:pointer;border:none;padding:0;transition:background .3s}
+.tj-dot.seen{background:rgba(200,146,42,0.45)}
+.tj-dot.active{background:linear-gradient(90deg,var(--gold),var(--gold-light))}
+.tj-counter{font-size:.78rem;color:rgba(245,230,192,.6);margin-bottom:22px;letter-spacing:.03em}
+.tj-counter b{color:var(--gold-light);font-family:'Playfair Display',serif;font-size:.95rem}
+.tj-body{display:grid;grid-template-columns:.82fr 1.18fr;gap:30px;align-items:start}
+.tj-figure{background:linear-gradient(160deg,rgba(200,146,42,0.08),rgba(46,139,87,0.06));border:1px solid rgba(200,146,42,0.22);border-radius:18px;padding:24px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:260px}
+.tj-glyph{font-family:'Amiri',serif;direction:rtl;font-size:clamp(2.4rem,7vw,3.6rem);background:linear-gradient(135deg,#fff3cf,var(--gold-light) 45%,var(--gold) 80%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1.6;text-align:center}
+.tj-figure-label{margin-top:16px;font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(245,230,192,.45);text-align:center}
+.tj-media{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap;justify-content:center}
+.tj-media button{display:inline-flex;align-items:center;gap:6px;font-family:inherit;font-size:.72rem;font-weight:600;color:var(--gold-light);background:rgba(200,146,42,0.1);border:1px solid rgba(200,146,42,0.3);border-radius:100px;padding:7px 14px;cursor:pointer;transition:background .2s}
+.tj-media button:hover{background:rgba(200,146,42,0.2)}
+.tj-name{font-family:'Playfair Display','Noto Sans Telugu',serif;font-size:1.5rem;font-weight:700;color:#fff;margin-bottom:14px;line-height:1.2}
+.tj-name .ar{font-family:'Amiri',serif;font-weight:400;color:var(--gold);font-size:1.25rem;margin-left:8px}
+.tj-block{margin-bottom:14px}
+.tj-block-label{font-size:.64rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-bottom:5px}
+.tj-block p{font-size:.89rem;color:rgba(245,230,192,.88);line-height:1.6}
+.tj-example{font-family:'Amiri',serif;direction:rtl;font-size:1.7rem;color:var(--gold-light);background:rgba(200,146,42,0.08);border:1px solid rgba(200,146,42,0.2);border-radius:12px;padding:13px 18px;text-align:center;margin-bottom:6px;line-height:1.9}
+.tj-example-note{font-size:.83rem;color:rgba(245,230,192,.7);font-style:italic;margin-bottom:16px}
+.tj-mistake{display:flex;gap:11px;align-items:flex-start;background:rgba(192,57,43,0.1);border:1px solid rgba(192,57,43,0.3);border-radius:12px;padding:13px 16px}
+.tj-mistake-ic{font-size:1rem;line-height:1.3}
+.tj-mistake p{font-size:.84rem;color:rgba(245,230,192,.85);line-height:1.55}
+.tj-mistake b{color:#ef9a9a}
+.tj-nav{display:flex;justify-content:space-between;align-items:center;margin-top:26px;gap:12px}
+.tj-btn{display:inline-flex;align-items:center;gap:8px;font-family:inherit;font-size:.8rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:13px 26px;border-radius:8px;cursor:pointer;transition:all .2s;border:1px solid rgba(200,146,42,0.4);background:transparent;color:var(--gold-light)}
+.tj-btn:hover:not(:disabled){background:rgba(200,146,42,0.12)}
+.tj-btn:disabled{opacity:.3;cursor:not-allowed}
+.tj-btn.primary{background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--green-deep);border-color:transparent}
+.tj-btn.primary:hover{box-shadow:0 8px 24px -6px rgba(200,146,42,0.6)}
+@media(max-width:760px){.tj-body{grid-template-columns:1fr;gap:20px}.tj-figure{min-height:170px}.tj-stage{padding:22px 18px}.tj-btn{padding:12px 18px;font-size:.74rem}}
+
+/* ═══ SURAH EXPLORER — key lesson + audio chip (new) ═══ */
+.surah-kl{display:flex;gap:8px;align-items:flex-start;font-size:.8rem;color:var(--text-mid);background:rgba(46,139,87,0.07);border:1px solid rgba(46,139,87,0.18);border-radius:10px;padding:9px 12px;margin-bottom:12px;line-height:1.55}
+.surah-kl b{color:var(--green-light);flex-shrink:0;font-weight:700}
+.surah-audio{display:inline-flex;align-items:center;justify-content:center;gap:6px;width:100%;font-family:inherit;font-size:.72rem;font-weight:600;color:var(--gold);background:rgba(200,146,42,0.08);border:1px dashed rgba(200,146,42,0.4);border-radius:8px;padding:8px;margin-bottom:10px;cursor:pointer;transition:background .2s}
+.surah-audio:hover{background:rgba(200,146,42,0.16)}
+
+/* ═══ REFLECTION CENTER — prompt + action (new) ═══ */
+.ch-reflect{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px;text-align:left}
+.ch-reflect-item{background:rgba(255,255,255,0.04);border:1px solid rgba(200,146,42,0.22);border-radius:12px;padding:14px 16px}
+.ch-reflect-item strong{display:block;font-size:.64rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-bottom:5px}
+.ch-reflect-item p{font-size:.86rem;color:rgba(245,230,192,.85);line-height:1.55}
+@media(max-width:600px){.ch-reflect{grid-template-columns:1fr}}
+
+/* ═══ TOAST (new) ═══ */
+.tj-toast{position:fixed;left:50%;bottom:84px;transform:translateX(-50%) translateY(20px);background:rgba(13,59,30,0.97);color:var(--gold-light);border:1px solid rgba(200,146,42,0.4);padding:12px 22px;border-radius:100px;font-size:.85rem;font-weight:500;z-index:800;opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;box-shadow:0 8px 30px rgba(0,0,0,0.35);max-width:90vw;text-align:center}
+.tj-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* ═══ BADGE GRID (expanded to 6) ═══ */
+.ch-badge-row{flex-wrap:wrap;gap:12px 10px}
+.ch-badge{flex:0 0 calc(33.333% - 7px)}
+@media(prefers-reduced-motion:reduce){.dash-mbar-fill{transition:none}}
+
+/* FOOTER */
+.lu-footer{background:var(--green-deep);border-top:1px solid rgba(200,146,42,0.18);padding:48px 5vw 36px;text-align:center}
+.lu-footer-brand{font-family:'Amiri',serif;font-size:2.4rem;color:var(--gold-light);direction:rtl;display:block;margin-bottom:6px;line-height:1.5}
+.lu-footer-tag{font-size:.85rem;color:rgba(245,230,192,.55);margin-bottom:28px}
+.lu-footer-links{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:28px}
+.lu-footer-links a{color:rgba(245,230,192,.60);font-size:.82rem;padding:7px 16px;border:1px solid rgba(200,146,42,0.20);border-radius:20px;transition:all .2s}
+.lu-footer-links a:hover{color:var(--gold-light);border-color:rgba(200,146,42,0.50)}
+.lu-footer-copy{font-size:.75rem;color:rgba(245,230,192,.30)}
+
+/* BACK TO TOP */
+#btt{position:fixed;bottom:28px;right:22px;width:46px;height:46px;border-radius:50%;background:var(--gold);color:var(--green-deep);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(200,146,42,0.45);cursor:pointer;border:none;opacity:0;transform:translateY(16px);transition:all .3s;z-index:700}
+#btt.show{opacity:1;transform:translateY(0)}
+#btt:hover{background:var(--gold-light);transform:translateY(-3px)}
+
+/* SCROLL REVEAL */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .6s ease}
+.reveal-in{opacity:1;transform:translateY(0)}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1 !important;transform:none !important;transition:none !important}}
+
+/* RESPONSIVE — TABLET */
+@media(max-width:900px){
+  .rm-node-title{font-size:.75rem}
+}
+/* RESPONSIVE — MOBILE */
+@media(max-width:768px){
+  .al-hero{padding:108px 5vw 58px}
+  .al-hero-inner{grid-template-columns:1fr;gap:30px}
+  .al-hero-calligraphy{font-size:clamp(48px,15vw,86px)}
+  body>nav .nav-title{font-size:15px}
+  body>nav .nav-sub{display:none}
+  .al-phase,.al-hero h1,.al-hero-lead,.al-cta-row,.al-hero-stats{animation-name:slideUpSm;animation-duration:.5s;animation-delay:.05s}
+  .al-hero-calligraphy{animation-duration:.6s;animation-delay:.08s}
+}
+@media(max-width:600px){
+  .al-cta{width:100%;justify-content:center}
+  .al-hero-stats{gap:22px}
+  .al-stat-num{font-size:24px}
+  .lu-sec,.rm-sec,.lvl-sec,.ch-sec,.coming-sec{padding:60px 16px}
+  .lc-head{padding:16px;gap:10px}
+  .lc-num{width:38px;height:38px;font-size:1.05rem;border-radius:10px}
+  .lc-info h3{font-size:.98rem}
+  .lc-inner{padding:0 14px 18px}
+  .why-grid,.coming-grid,.surah-grid{grid-template-columns:1fr}
+  .ch-panel{padding:22px 18px}
+  .ch-badge-ic{width:42px;height:42px;font-size:1.2rem}
+  body>nav .nav-back span{display:none}
+}
+
+/* PRINT */
+@media print{
+  body>nav,.al-sticky,#btt,.lang-btn,.ch-side,.surah-btns{display:none !important}
+  .al-hero{padding:14pt 5vw !important;background:white !important}
+  .al-hero h1,.al-hero-calligraphy{color:black !important;-webkit-text-fill-color:black !important}
+  .rm-sec,.ch-sec,.lu-footer{background:white !important}
+  body{background:white;color:black}
+}
+</style>
+<link rel="stylesheet" href="../../assets/css/if-shared.css">
+<script defer src="../../assets/js/if-core.js"></script>
+<script>window.IF_FLASHCARDS={deck:'quran-surahs',title_en:'Surah Flashcards',title_te:'సూరా ఫ్లాష్ కార్డులు',sub_en:'Tap a card to reveal, rate yourself, and let spaced repetition schedule your review.',sub_te:'కార్డును తిప్పి, మిమ్మల్ని రేట్ చేసుకోండి — స్పేస్డ్ రిపిటీషన్ మీ పునరావృతిని షెడ్యూల్ చేస్తుంది.',cards:[
+{id:'fatiha',ar:'الفاتحة',audio:'https://everyayah.com/data/Alafasy_128kbps/001001.mp3',back_en:'Al-Fatihah — The Opening (recited in every rakah)',back_te:'అల్-ఫాతిహా — ఆరంభం (ప్రతి రకాత్‌లో పఠిస్తారు)'},
+{id:'ikhlas',ar:'الإخلاص',audio:'https://everyayah.com/data/Alafasy_128kbps/112001.mp3',back_en:'Al-Ikhlas — Sincerity (equals one-third of the Quran)',back_te:'అల్-ఇఖ్లాస్ — నిష్కాపట్యం (ఖురాన్‌లో మూడింట ఒక వంతు)'},
+{id:'falaq',ar:'الفلق',audio:'https://everyayah.com/data/Alafasy_128kbps/113001.mp3',back_en:'Al-Falaq — The Daybreak (a surah of protection)',back_te:'అల్-ఫలఖ్ — ఉదయం (రక్షణ సూరా)'},
+{id:'nas',ar:'الناس',audio:'https://everyayah.com/data/Alafasy_128kbps/114001.mp3',back_en:'An-Nas — Mankind (a surah of protection)',back_te:'అన్-నాస్ — మానవజాతి (రక్షణ సూరా)'},
+{id:'kawthar',ar:'الكوثر',audio:'https://everyayah.com/data/Alafasy_128kbps/108001.mp3',back_en:'Al-Kawthar — Abundance (the shortest surah)',back_te:'అల్-కౌసర్ — సమృద్ధి (అతి చిన్న సూరా)'},
+{id:'asr',ar:'العصر',audio:'https://everyayah.com/data/Alafasy_128kbps/103001.mp3',back_en:'Al-Asr — Time (faith, good deeds, truth, patience)',back_te:'అల్-అస్ర్ — కాలం (విశ్వాసం, సత్కర్మ, సత్యం, ఓర్పు)'},
+{id:'yasin',ar:'يس',audio:'https://everyayah.com/data/Alafasy_128kbps/036001.mp3',back_en:'Ya-Sin — known as the heart of the Quran',back_te:'యా-సీన్ — ఖురాన్ హృదయంగా పేరొందింది'},
+{id:'mulk',ar:'الملك',audio:'https://everyayah.com/data/Alafasy_128kbps/067001.mp3',back_en:'Al-Mulk — Sovereignty (guards from the grave)',back_te:'అల్-ముల్క్ — సార్వభౌమత్వం (సమాధి శిక్ష నుండి కాపాడుతుంది)'}
+]};</script>
+<script defer src="../../assets/js/if-flashcards.js"></script>
+<script>window.IF_QUIZ={deck:'quran',title_en:'Quran Quiz',title_te:'ఖురాన్ క్విజ్',sub_en:'Test your Quran and Tajweed basics.',sub_te:'మీ ఖురాన్, తజ్వీద్ ప్రాథమికాలను పరీక్షించుకోండి.',questions:[
+{q_en:'How many letters are in the Arabic alphabet?',q_te:'అరబిక్ అక్షరమాలలో ఎన్ని అక్షరాలు ఉన్నాయి?',opts:[{en:'26',te:'26'},{en:'28',te:'28'},{en:'30',te:'30'}],ans:1},
+{q_en:'Which is the first Surah of the Quran?',q_te:'ఖురాన్ మొదటి సూరా ఏది?',opts:[{en:'Al-Baqarah',te:'అల్-బఖరా'},{en:'Al-Fatihah',te:'అల్-ఫాతిహా'},{en:'An-Nas',te:'అన్-నాస్'}],ans:1,citeUrl:'https://quran.com/1',citeLabel:'Quran, Surah 1'},
+{q_en:'Reciting Al-Ikhlas equals how much of the Quran in reward?',q_te:'అల్-ఇఖ్లాస్ పఠించడం ప్రతిఫలంలో ఖురాన్‌లో ఎంత?',opts:[{en:'One half',te:'సగం'},{en:'One third',te:'మూడింట ఒకటి'},{en:'One quarter',te:'నాలుగింట ఒకటి'}],ans:1,citeUrl:'https://quran.com/112',citeLabel:'Surah Al-Ikhlas'},
+{q_en:'Tajweed is the science of...',q_te:'తజ్వీద్ దేని శాస్త్రం?',opts:[{en:'Writing Arabic',te:'అరబిక్ రాయడం'},{en:'Reciting the Quran correctly',te:'ఖురాన్‌ను సరిగ్గా పఠించడం'},{en:'Translating the Quran',te:'ఖురాన్ అనువదించడం'}],ans:1},
+{q_en:'Qalqalah (a bouncing echo) applies to how many letters?',q_te:'ఖల్‌ఖలా (ప్రతిధ్వని) ఎన్ని అక్షరాలకు వర్తిస్తుంది?',opts:[{en:'Three',te:'మూడు'},{en:'Five',te:'ఐదు'},{en:'Seven',te:'ఏడు'}],ans:1},
+{q_en:'Which surah is popularly known as the heart of the Quran?',q_te:'ఏ సూరా ఖురాన్ హృదయంగా ప్రసిద్ధి చెందింది?',opts:[{en:'Al-Mulk',te:'అల్-ముల్క్'},{en:'Ya-Sin',te:'యా-సీన్'},{en:'Al-Kahf',te:'అల్-కహ్ఫ్'}],ans:1,citeUrl:'https://quran.com/36',citeLabel:'Surah Ya-Sin'}
+]};</script>
+<script defer src="../../assets/js/if-quiz.js"></script>
+<script>/* superseded by assets/data/quran-lessons.js */window.__OLD_QURAN={title_en:'Quran Reading Lessons',title_te:'ఖురాన్ పఠన పాఠాలు',lessons:[
+{id:'begin',title_en:'How to Begin Reading the Quran',title_te:'ఖురాన్ చదవడం ఎలా ప్రారంభించాలి',cite:{url:'https://quran.com',label:'Quran.com'},sections:[
+{h_en:'Learn the letters first',h_te:'ముందుగా అక్షరాలు నేర్చుకోండి',b_en:'Begin by learning the Arabic letters and their correct sounds, then the short vowel marks (harakat). This is the foundation of reading.',b_te:'ముందుగా అరబిక్ అక్షరాలను, వాటి సరైన శబ్దాలను నేర్చుకోండి, తర్వాత స్వర చిహ్నాలను (హరకాత్). ఇదే పఠనానికి పునాది.'},
+{h_en:'Start small (Juz Amma)',h_te:'చిన్నవాటితో మొదలుపెట్టండి (జుజ్ అమ్మ)',b_en:'Begin with the short surahs at the end of the Quran. They are easier to read and memorise and are used often in prayer.',b_te:'ఖురాన్ చివరిలోని చిన్న సూరాలతో మొదలుపెట్టండి. అవి చదవడానికి, కంఠస్థం చేయడానికి సులభం, నమాజ్‌లో తరచుగా వాడతారు.'},
+{h_en:'Find a teacher and listen',h_te:'గురువును కనుగొని వినండి',b_en:'Listening to a qualified reciter and being corrected by a teacher is the surest way to read accurately. Reading aloud daily, even a little, builds fluency.',b_te:'అర్హుడైన ఖారీని వినడం, గురువు ద్వారా సరిదిద్దబడటం ఖచ్చితంగా చదవడానికి అత్యుత్తమ మార్గం. ప్రతిరోజూ కొద్దిగానైనా బిగ్గరగా చదవడం ప్రవాహాన్ని పెంచుతుంది.'}
+],takeaways:[{en:'Reading begins with the letters and steady daily practice.',te:'పఠనం అక్షరాలతో, స్థిరమైన రోజువారీ అభ్యాసంతో మొదలవుతుంది.'},{en:'A teacher and careful listening protect you from mistakes.',te:'గురువు, శ్రద్ధగా వినడం తప్పుల నుండి మిమ్మల్ని కాపాడతాయి.'}],reflect:[{en:'What small daily reading goal can I keep?',te:'నేను నిలబెట్టుకోగల చిన్న రోజువారీ పఠన లక్ష్యం ఏది?'}],quiz:[{q_en:'Where is it best to begin reading?',q_te:'చదవడం ఎక్కడ మొదలుపెట్టడం మేలు?',opts:[{en:'The longest surahs',te:'పొడవైన సూరాలు'},{en:'The short surahs (Juz Amma)',te:'చిన్న సూరాలు (జుజ్ అమ్మ)'},{en:'The middle of the Quran',te:'ఖురాన్ మధ్యలో'}],ans:1},{q_en:'What is the foundation of reading?',q_te:'పఠనానికి పునాది ఏది?',opts:[{en:'Memorising tafseer',te:'తఫ్సీర్ కంఠస్థం'},{en:'Learning the letters and harakat',te:'అక్షరాలు, హరకాత్ నేర్చుకోవడం'},{en:'Reading fast',te:'వేగంగా చదవడం'}],ans:1}],reading:[{label:'Quranic Arabic Corpus',url:'https://corpus.quran.com'}]},
+{id:'adab',title_en:'Etiquette (Adab) with the Quran',title_te:'ఖురాన్ పట్ల మర్యాద (అదబ్)',cite:{url:'https://quran.com',label:'Quran.com'},sections:[
+{h_en:'Begin with refuge and Bismillah',h_te:'శరణు, బిస్మిల్లాహ్‌తో ప్రారంభించండి',ar:'أَعُوذُ بِاللَّهِ مِنَ الشَّيْطَانِ الرَّجِيمِ',b_en:'Before reciting, seek refuge in Allah (Taawwudh), then say Bismillah. This prepares the heart for the words of Allah.',b_te:'పఠించే ముందు అల్లాహ్ శరణు కోరండి (తఅవ్వుజ్), తర్వాత బిస్మిల్లాహ్ అనండి. ఇది అల్లాహ్ వాక్కు కోసం హృదయాన్ని సిద్ధం చేస్తుంది.'},
+{h_en:'Recite slowly and reflect (Tartil)',h_te:'నెమ్మదిగా పఠించి ఆలోచించండి (తర్తీల్)',b_en:'The goal is understanding, not speed. Recite calmly and reflect on the meaning of what you read.',b_te:'లక్ష్యం అర్థం చేసుకోవడం, వేగం కాదు. ప్రశాంతంగా పఠించి, మీరు చదివే దాని అర్థంపై ఆలోచించండి.'},
+{h_en:'Handle the Mushaf with respect',h_te:'మస్‌హఫ్‌ను గౌరవంగా చూసుకోండి',b_en:'Keep the mushaf clean, hold it in a state of purity (wudu), and place it in a respectful, elevated spot.',b_te:'మస్‌హఫ్‌ను శుభ్రంగా ఉంచండి, పరిశుద్ధ స్థితిలో (వుదూ) పట్టుకోండి, గౌరవప్రదమైన ఎత్తైన స్థానంలో ఉంచండి.'}
+],takeaways:[{en:'Reciting with refuge, Bismillah, and calm honours the words of Allah.',te:'శరణు, బిస్మిల్లాహ్, ప్రశాంతతతో పఠించడం అల్లాహ్ వాక్కును గౌరవించడం.'},{en:'Respect for the Mushaf reflects respect for the message.',te:'మస్‌హఫ్ పట్ల గౌరవం సందేశం పట్ల గౌరవాన్ని ప్రతిబింబిస్తుంది.'}],reflect:[{en:'How can I make my recitation more focused and respectful?',te:'నా పఠనాన్ని మరింత ఏకాగ్రతతో, గౌరవంగా ఎలా చేయగలను?'}],quiz:[{q_en:'What do we say before reciting?',q_te:'పఠించే ముందు మనం ఏమంటాం?',opts:[{en:'Only Bismillah',te:'బిస్మిల్లాహ్ మాత్రమే'},{en:'Taawwudh then Bismillah',te:'తఅవ్వుజ్ తర్వాత బిస్మిల్లాహ్'},{en:'Nothing',te:'ఏమీ కాదు'}],ans:1},{q_en:'Tartil means reciting...?',q_te:'తర్తీల్ అంటే ఎలా పఠించడం?',opts:[{en:'as fast as possible',te:'వీలైనంత వేగంగా'},{en:'slowly with reflection',te:'నెమ్మదిగా, ఆలోచనతో'},{en:'silently only',te:'మౌనంగా మాత్రమే'}],ans:1}],reading:[{label:'Bayyinah',url:'https://bayyinah.com'}]}
+]};</script>
+<script defer src="../../assets/data/quran-lessons.js"></script>
+<script defer src="../../assets/js/if-lesson.js"></script>
+<script>window.IF_DIAGRAMS={title_en:'Makharij — Where Letters Are Made',title_te:'మఖారిజ్ — అక్షరాలు ఎక్కడ పుడతాయి',sub_en:'Arabic letters are articulated from the throat, the tongue, or the lips (schematic).',sub_te:'అరబిక్ అక్షరాలు గొంతు, నాలుక లేదా పెదవుల నుండి పలుకుతాయి (సూచనాత్మకం).',items:[
+{cap_en:'Throat letters: ء ه ع ح غ خ',cap_te:'గొంతు అక్షరాలు: ء ه ع ح غ خ',svg:'<svg viewBox="0 0 160 90" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 45 C12 22 40 16 80 16 C120 16 148 22 148 45 C148 68 120 74 80 74 C40 74 12 68 12 45 Z"/><circle cx="30" cy="45" r="11" fill="#c8922a" stroke="none"/></svg>'},
+{cap_en:'Tongue letters: most letters (e.g. ت ط ل ن ر)',cap_te:'నాలుక అక్షరాలు: చాలావరకు (ఉదా. ت ط ل ن ر)',svg:'<svg viewBox="0 0 160 90" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 45 C12 22 40 16 80 16 C120 16 148 22 148 45 C148 68 120 74 80 74 C40 74 12 68 12 45 Z"/><circle cx="80" cy="45" r="11" fill="#c8922a" stroke="none"/></svg>'},
+{cap_en:'Lip letters: ب م و ف',cap_te:'పెదవి అక్షరాలు: ب م و ف',svg:'<svg viewBox="0 0 160 90" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 45 C12 22 40 16 80 16 C120 16 148 22 148 45 C148 68 120 74 80 74 C40 74 12 68 12 45 Z"/><circle cx="132" cy="45" r="11" fill="#c8922a" stroke="none"/></svg>'}
+]};</script>
+<script defer src="../../assets/js/if-diagrams.js"></script>
+<link rel="stylesheet" href="../../assets/css/if-standard.css">
+<script defer src="../../assets/js/if-engage.js"></script>
+<script defer src="../../assets/js/if-search.js"></script>
+<script defer src="../../assets/js/if-media.js"></script>
+<script defer src="../../assets/data/visuals-data.js"></script>
+<script defer src="../../assets/js/if-visuals.js"></script>
+<script defer src="../../assets/js/if-recent.js"></script>
+<script defer src="../../assets/js/if-xp.js"></script>
+<script defer src="../../assets/js/if-profile.js"></script>
+<script defer src="../../assets/js/if-order.js"></script>
+<script defer src="../../assets/js/if-quran-visuals.js"></script>
+<script defer src="../../assets/js/if-jsonld.js"></script>
+</head>
+<body>
+
+<!-- TOP NAV -->
+<nav>
+  <a href="../../index.html" class="nav-brand">
+    <img src="../../assets/logo-emblem.png" class="nav-logo" alt="Islamic Front Logo"
+         onerror="this.style.display='none';document.getElementById('nav-svg-qr').style.display='block'">
+    <svg id="nav-svg-qr" style="display:none;width:42px;height:42px" viewBox="0 0 42 42" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <circle cx="21" cy="21" r="20" fill="none" stroke="#c8922a" stroke-width="1.5"/>
+      <text x="21" y="17" text-anchor="middle" font-family="serif" font-size="13" fill="#e8b84b" font-weight="700">إسلامی</text>
+      <text x="21" y="30" text-anchor="middle" font-family="sans-serif" font-size="7" fill="#c8922a" letter-spacing="1">FRONT</text>
+    </svg>
+    <div>
+      <div class="nav-title" data-te="ఇస్లామిక్ ఫ్రంట్" data-en="Islamic Front">Islamic Front</div>
+      <div class="nav-sub" data-te="మంగళగిరి · స్థా. 2011" data-en="Mangalagiri · Est. 2011">Mangalagiri · Est. 2011</div>
+    </div>
+  </a>
+  <div class="nav-right">
+    <a href="../../islamic-knowledge.html" class="nav-back">
+      <span data-te="విజ్ఞాన వనరు" data-en="Knowledge Center">Knowledge Center</span>
+    </a>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">తెలుగు</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="al-hero" id="home">
+  <div class="al-hero-inner">
+    <div class="al-hero-content">
+      <nav class="al-breadcrumb" aria-label="Breadcrumb">
+        <a href="../../index.html" data-te="హోమ్" data-en="Home">Home</a>
+        <span>›</span>
+        <a href="../../islamic-knowledge.html" data-te="విజ్ఞాన వనరు" data-en="Knowledge Center">Knowledge Center</a>
+        <span>›</span>
+        <span data-te="ఖురాన్ నేర్చుకోండి" data-en="Learn Quran">Learn Quran</span>
+      </nav>
+      <div class="al-phase" data-te="ఇస్లామిక్ జ్ఞాన కేంద్రం" data-en="Islamic Knowledge Center">Islamic Knowledge Center</div>
+      <h1 data-te="ఖురాన్ <span>నేర్చుకోండి</span>" data-en="Learn <span>Quran</span>">Learn <span>Quran</span></h1>
+      <p class="al-hero-lead" data-te="ఒక నిర్మాణబద్ధమైన అభ్యాస ప్రయాణం ద్వారా ఖురాన్‌ను చదవండి, అర్థం చేసుకోండి, పఠించండి మరియు కంఠస్థం చేయండి." data-en="Read, understand, recite, and memorize the Quran through a structured learning journey.">Read, understand, recite, and memorize the Quran through a structured learning journey.</p>
+      <div class="al-cta-row">
+        <a href="#journey" class="al-cta">
+          <span data-te="ప్రయాణం ప్రారంభించండి" data-en="Start the Journey">Start the Journey</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#challenge" class="al-cta ghost">
+          <span data-te="నేటి సవాల్" data-en="Today's Challenge">Today's Challenge</span>
+        </a>
+      </div>
+      <div class="al-hero-stats">
+        <div class="al-stat">
+          <span class="al-stat-num">6</span>
+          <span class="al-stat-label" data-te="స్థాయిలు" data-en="Levels">Levels</span>
+        </div>
+        <div class="al-stat">
+          <span class="al-stat-num">40+</span>
+          <span class="al-stat-label" data-te="అంశాలు" data-en="Topics">Topics</span>
+        </div>
+        <div class="al-stat">
+          <span class="al-stat-num">8</span>
+          <span class="al-stat-label" data-te="సూరాలు" data-en="Surahs">Surahs</span>
+        </div>
+        <div class="al-stat">
+          <span class="al-stat-num" data-te="ఉచితం" data-en="Free">Free</span>
+          <span class="al-stat-label" data-te="ఎల్లప్పుడూ" data-en="Always">Always</span>
+        </div>
+      </div>
+    </div>
+    <div class="al-hero-display">
+      <div class="al-hero-calligraphy" lang="ar" dir="rtl">القرآن الكريم</div>
+    </div>
+  </div>
+</header>
+
+<!-- STICKY NAV -->
+<nav class="al-sticky" id="al-sticky" aria-label="Section navigation">
+  <div class="al-sticky-inner">
+    <a href="../../islamic-knowledge.html" class="al-sticky-home" data-te="← విజ్ఞాన వనరు" data-en="← KC">← KC</a>
+    <a href="#why" data-spy="why" data-te="ఎందుకు ఖురాన్?" data-en="Why Quran?">Why Quran?</a>
+    <a href="#journey" data-spy="journey" data-te="ప్రయాణం" data-en="Journey">Journey</a>
+    <a href="#levels" data-spy="levels" data-te="స్థాయిలు" data-en="Levels">Levels</a>
+    <a href="#qtimeline" data-spy="qtimeline" data-te="కాలక్రమం" data-en="Timeline">Timeline</a>
+    <a href="#tajweed" data-spy="tajweed" data-te="తజ్వీద్" data-en="Tajweed">Tajweed</a>
+    <a href="#surahs" data-spy="surahs" data-te="సూరాలు" data-en="Surahs">Surahs</a>
+    <a href="#qduas" data-spy="qduas" data-te="ఖురాన్ దువాలు" data-en="Quran Duas">Quran Duas</a>
+    <a href="#progress" data-spy="progress" data-te="పురోగతి" data-en="Progress">Progress</a>
+    <a href="#challenge" data-spy="challenge" data-te="నేటి సవాల్" data-en="Challenge">Challenge</a>
+    <a href="#knowledge" data-spy="knowledge" data-te="జ్ఞానం" data-en="Knowledge">Knowledge</a>
+  </div>
+</nav>
+
+<!-- WHY LEARN QURAN -->
+<section class="lu-sec why-sec" id="why">
+  <div class="lu-sec-inner">
+    <div class="lu-sec-hdr reveal">
+      <div class="lu-sec-label" data-te="ప్రేరణ" data-en="Motivation">Motivation</div>
+      <h2 class="lu-sec-title" data-te="ఖురాన్ నేర్చుకోవడం <span>ఎందుకు ముఖ్యం</span>?" data-en="Why Learn the <span>Quran</span>?">Why Learn the <span>Quran</span>?</h2>
+      <p class="lu-sec-subtitle" data-te="ఖురాన్ అల్లాహ్ వాక్కు. దానిని చదవడం, అర్థం చేసుకోవడం మరియు జీవించడం ప్రతి ముస్లిం జీవితంలో అత్యున్నత లక్ష్యం." data-en="The Quran is the word of Allah. Reading it, understanding it, and living by it is the highest pursuit in a Muslim's life.">The Quran is the word of Allah. Reading it, understanding it, and living by it is the highest pursuit in a Muslim's life.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <div class="why-icon">📖</div>
+        <h3 data-te="అల్లాహ్‌తో నేరుగా మాట్లాడండి" data-en="Connect Directly with Allah">Connect Directly with Allah</h3>
+        <p data-te="ఖురాన్ చదవడం అంటే అల్లాహ్ మాటలను నేరుగా వినడం. ప్రతి అక్షరానికి పది మంచి పనుల ప్రతిఫలం లభిస్తుంది." data-en="Reading the Quran is hearing Allah's words directly. Every single letter earns the reward of ten good deeds.">Reading the Quran is hearing Allah's words directly. Every single letter earns the reward of ten good deeds.</p>
+        <div class="why-card-ar" dir="rtl" lang="ar">إِنَّا نَحْنُ نَزَّلْنَا الذِّكْرَ</div>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon">🌿</div>
+        <h3 data-te="హృదయానికి శాంతి" data-en="Peace for the Heart">Peace for the Heart</h3>
+        <p data-te="ఖురాన్ పఠనంలో హృదయాలు ప్రశాంతత పొందుతాయి. ఇది ఆందోళనకు మందు మరియు ఆత్మకు వెలుగు." data-en="Hearts find tranquility in the remembrance of the Quran. It is a cure for anxiety and a light for the soul.">Hearts find tranquility in the remembrance of the Quran. It is a cure for anxiety and a light for the soul.</p>
+        <div class="why-card-ar" dir="rtl" lang="ar">أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ</div>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon">🌟</div>
+        <h3 data-te="ఇహలోక, పరలోక మార్గదర్శనం" data-en="Guidance for Both Worlds">Guidance for Both Worlds</h3>
+        <p data-te="ఖురాన్ మానవాళికి మార్గదర్శనం. ఇది నైతికత, కుటుంబం, న్యాయం మరియు జీవితంలోని ప్రతి అంశానికి దిశానిర్దేశం ఇస్తుంది." data-en="The Quran is guidance for all humanity — direction for character, family, justice, and every aspect of life.">The Quran is guidance for all humanity — direction for character, family, justice, and every aspect of life.</p>
+        <div class="why-card-ar" dir="rtl" lang="ar">هُدًى لِّلْمُتَّقِينَ</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QURAN LEARNING JOURNEY (ROADMAP) -->
+<section class="rm-sec" id="journey">
+  <div class="rm-sec-inner">
+    <div class="rm-label" data-te="మీ ప్రయాణం" data-en="Your Journey">Your Journey</div>
+    <h2 class="rm-title reveal" data-te="ఖురాన్ <span>నేర్చుకునే ప్రయాణం</span>" data-en="Quran <span>Learning Journey</span>">Quran <span>Learning Journey</span></h2>
+    <p class="rm-subtitle reveal" data-te="పఠన పునాదుల నుండి తఫ్సీర్ వరకు — దశలవారీగా ఖురాన్‌ను చదవడం, పఠించడం, కంఠస్థం చేయడం మరియు అర్థం చేసుకోవడం నేర్చుకోండి." data-en="From reading foundations to Tafseer — learn to read, recite, memorize, and understand the Quran step by step.">From reading foundations to Tafseer — learn to read, recite, memorize, and understand the Quran step by step.</p>
+
+    <!-- Desktop roadmap -->
+    <div class="rm-track" role="list">
+      <a href="#lc1" class="rm-node" role="listitem">
+        <div class="rm-dot done">١</div>
+        <div class="rm-node-title" data-te="పఠన పునాదులు" data-en="Reading">Reading</div>
+        <div class="rm-node-ar" lang="ar" dir="rtl">أساسيات القراءة</div>      </a>
+      <a href="#lc2" class="rm-node" role="listitem">
+        <div class="rm-dot done">٢</div>
+        <div class="rm-node-title" data-te="హరకాత్" data-en="Harakat">Harakat</div>
+        <div class="rm-node-ar" lang="ar" dir="rtl">الحركات والنطق</div>      </a>
+      <a href="#lc3" class="rm-node" role="listitem">
+        <div class="rm-dot done">٣</div>
+        <div class="rm-node-title" data-te="తజ్వీద్" data-en="Tajweed">Tajweed</div>
+        <div class="rm-node-ar" lang="ar" dir="rtl">أساسيات التجويد</div>      </a>
+      <a href="#lc4" class="rm-node" role="listitem">
+        <div class="rm-dot done">٤</div>
+        <div class="rm-node-title" data-te="పఠన ప్రావీణ్యం" data-en="Mastery">Mastery</div>
+        <div class="rm-node-ar" lang="ar" dir="rtl">إتقان القراءة</div>      </a>
+      <a href="#lc5" class="rm-node" role="listitem">
+        <div class="rm-dot done">٥</div>
+        <div class="rm-node-title" data-te="హిఫ్జ్" data-en="Hifz">Hifz</div>
+        <div class="rm-node-ar" lang="ar" dir="rtl">برنامج الحفظ</div>      </a>
+      <a href="#lc6" class="rm-node" role="listitem">
+        <div class="rm-dot done">٦</div>
+        <div class="rm-node-title" data-te="తఫ్సీర్" data-en="Tafseer">Tafseer</div>
+        <div class="rm-node-ar" lang="ar" dir="rtl">التفسير والفهم</div>      </a>
+    </div>
+
+    <!-- Mobile roadmap -->
+    <div class="rm-mobile" role="list">
+      <div class="rm-mnode" role="listitem">
+        <div class="rm-mdot done">١</div>
+        <div class="rm-minfo">
+          <strong data-te="స్థాయి 1 · ఖురాన్ పఠన పునాదులు" data-en="Level 1 · Reading Foundations">Level 1 · Reading Foundations</strong>
+          <span class="ar" lang="ar" dir="rtl">أساسيات القراءة</span>        </div>
+      </div>
+      <div class="rm-mnode" role="listitem">
+        <div class="rm-mdot done">٢</div>
+        <div class="rm-minfo">
+          <strong data-te="స్థాయి 2 · హరకాత్ & ఉచ్చారణ" data-en="Level 2 · Harakat & Pronunciation">Level 2 · Harakat & Pronunciation</strong>
+          <span class="ar" lang="ar" dir="rtl">الحركات والنطق</span>        </div>
+      </div>
+      <div class="rm-mnode" role="listitem">
+        <div class="rm-mdot done">٣</div>
+        <div class="rm-minfo">
+          <strong data-te="స్థాయి 3 · తజ్వీద్ మూలాలు" data-en="Level 3 · Tajweed Essentials">Level 3 · Tajweed Essentials</strong>
+          <span class="ar" lang="ar" dir="rtl">أساسيات التجويد</span>        </div>
+      </div>
+      <div class="rm-mnode" role="listitem">
+        <div class="rm-mdot done">٤</div>
+        <div class="rm-minfo">
+          <strong data-te="స్థాయి 4 · ఖురాన్ పఠన ప్రావీణ్యం" data-en="Level 4 · Reading Mastery">Level 4 · Reading Mastery</strong>
+          <span class="ar" lang="ar" dir="rtl">إتقان القراءة</span>        </div>
+      </div>
+      <div class="rm-mnode" role="listitem">
+        <div class="rm-mdot done">٥</div>
+        <div class="rm-minfo">
+          <strong data-te="స్థాయి 5 · హిఫ్జ్ కార్యక్రమం" data-en="Level 5 · Hifz Program">Level 5 · Hifz Program</strong>
+          <span class="ar" lang="ar" dir="rtl">برنامج الحفظ</span>        </div>
+      </div>
+      <div class="rm-mnode" role="listitem">
+        <div class="rm-mdot done">٦</div>
+        <div class="rm-minfo">
+          <strong data-te="స్థాయి 6 · తఫ్సీర్ & అవగాహన" data-en="Level 6 · Tafseer & Understanding">Level 6 · Tafseer & Understanding</strong>
+          <span class="ar" lang="ar" dir="rtl">التفسير والفهم</span>        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEVEL CARDS -->
+<section class="lvl-sec" id="levels">
+  <div class="lu-sec-inner">
+    <div class="lu-sec-hdr reveal">
+      <div class="lu-sec-label" data-te="పాఠ్య ప్రణాళిక" data-en="Curriculum">Curriculum</div>
+      <h2 class="lu-sec-title" data-te="స్థాయి-వారీ <span>పాఠ్య ప్రణాళిక</span>" data-en="Level-by-Level <span>Curriculum</span>">Level-by-Level <span>Curriculum</span></h2>
+      <p class="lu-sec-subtitle" data-te="ప్రతి స్థాయిని విస్తరించి మీరు నేర్చుకునే అంశాలను మరియు లక్ష్యాన్ని చూడండి." data-en="Expand each level to see what you'll learn and the goal you'll achieve.">Expand each level to see what you'll learn and the goal you'll achieve.</p>
+    </div>
+
+    <!-- Level 1 -->
+    <div class="lc reveal" id="lc1">
+      <div class="lc-head" onclick="toggleLC('lc1')" role="button" aria-expanded="false">
+        <div class="lc-num">١</div>
+        <div class="lc-info">
+          <h3 data-te="ఖురాన్ పఠన పునాదులు" data-en="Quran Reading Foundations">Quran Reading Foundations</h3>
+          <span class="lc-ar" lang="ar" dir="rtl">أساسيات القراءة</span>
+        </div>
+        <span class="lc-tag avail" data-te="ప్రారంభం" data-en="Beginner">Beginner</span>
+        <svg class="lc-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="lc-body">
+        <div class="lc-inner">
+          <p class="lc-desc" data-te="అరబిక్ అక్షరాలను గుర్తించడం, వాటి రూపాలను తెలుసుకోవడం మరియు అక్షరాలను కలిపి సాధారణ పదాలను చదవడం నేర్చుకోండి. ఇది మీ ఖురాన్ పఠన ప్రయాణానికి పునాది." data-en="Learn to recognise the Arabic letters, know their forms, and join them to read simple words. This is the foundation of your Quran reading journey.">Learn to recognise the Arabic letters, know their forms, and join them to read simple words. This is the foundation of your Quran reading journey.</p>
+          <div class="lc-sub" data-te="మీరు నేర్చుకునేది" data-en="What you'll learn">What you'll learn</div>
+          <div class="lc-topics">
+            <span class="lc-topic" data-te="అరబిక్ అక్షరాల సమీక్ష" data-en="Arabic letters review">Arabic letters review</span>
+            <span class="lc-topic" data-te="అక్షర గుర్తింపు" data-en="Letter recognition">Letter recognition</span>
+            <span class="lc-topic" data-te="అక్షర రూపాలు" data-en="Letter forms">Letter forms</span>
+            <span class="lc-topic" data-te="అక్షరాలను కలపడం" data-en="Joining letters">Joining letters</span>
+            <span class="lc-topic" data-te="సాధారణ పదాలు చదవడం" data-en="Reading simple words">Reading simple words</span>
+            <span class="lc-topic" data-te="సాధారణ ఖురాన్ వచనం చదవడం" data-en="Reading simple Quranic text">Reading simple Quranic text</span>
+          </div>
+          <div class="lc-goal">
+            <span class="lc-goal-ic">🎯</span>
+            <div class="lc-goal-txt">
+              <strong data-te="లక్ష్యం" data-en="Goal">Goal</strong>
+              <p data-te="ప్రాథమిక ఖురాన్ పదాలను నమ్మకంగా చదవండి." data-en="Read basic Quran words confidently.">Read basic Quran words confidently.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Level 2 -->
+    <div class="lc reveal" id="lc2">
+      <div class="lc-head" onclick="toggleLC('lc2')" role="button" aria-expanded="false">
+        <div class="lc-num">٢</div>
+        <div class="lc-info">
+          <h3 data-te="హరకాత్ & ఉచ్చారణ" data-en="Harakat &amp; Pronunciation">Harakat &amp; Pronunciation</h3>
+          <span class="lc-ar" lang="ar" dir="rtl">الحركات والنطق</span>
+        </div>
+        <span class="lc-tag avail" data-te="ప్రారంభం" data-en="Beginner">Beginner</span>
+        <svg class="lc-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="lc-body">
+        <div class="lc-inner">
+          <p class="lc-desc" data-te="అక్షరాలకు జీవం పోసే స్వర చిహ్నాలను (హరకాత్) నేర్చుకోండి. ఫత్హా, కస్రా, దమ్మా, తన్వీన్, సుకూన్, షద్దా మరియు మద్ద్‌లతో ఖురాన్‌ను సరైన ఉచ్చారణతో చదవగలరు." data-en="Learn the vowel marks (harakat) that bring letters to life. With fatha, kasra, damma, tanween, sukoon, shaddah and madd you can read the Quran with correct pronunciation.">Learn the vowel marks (harakat) that bring letters to life. With fatha, kasra, damma, tanween, sukoon, shaddah and madd you can read the Quran with correct pronunciation.</p>
+          <div class="lc-sub" data-te="మీరు నేర్చుకునేది" data-en="What you'll learn">What you'll learn</div>
+          <div class="lc-topics">
+            <span class="lc-topic" data-te="ఫత్హా" data-en="Fatha">Fatha</span>
+            <span class="lc-topic" data-te="కస్రా" data-en="Kasra">Kasra</span>
+            <span class="lc-topic" data-te="దమ్మా" data-en="Damma">Damma</span>
+            <span class="lc-topic" data-te="తన్వీన్" data-en="Tanween">Tanween</span>
+            <span class="lc-topic" data-te="సుకూన్" data-en="Sukoon">Sukoon</span>
+            <span class="lc-topic" data-te="షద్దా" data-en="Shaddah">Shaddah</span>
+            <span class="lc-topic" data-te="మద్ద్" data-en="Madd">Madd</span>
+          </div>
+          <div class="lc-goal">
+            <span class="lc-goal-ic">🎯</span>
+            <div class="lc-goal-txt">
+              <strong data-te="లక్ష్యం" data-en="Goal">Goal</strong>
+              <p data-te="సరైన ఉచ్చారణతో ఖురాన్‌ను సరిగ్గా చదవండి." data-en="Read the Quran correctly with proper pronunciation.">Read the Quran correctly with proper pronunciation.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Level 3 -->
+    <div class="lc reveal" id="lc3">
+      <div class="lc-head" onclick="toggleLC('lc3')" role="button" aria-expanded="false">
+        <div class="lc-num">٣</div>
+        <div class="lc-info">
+          <h3 data-te="తజ్వీద్ మూలాలు" data-en="Tajweed Essentials">Tajweed Essentials</h3>
+          <span class="lc-ar" lang="ar" dir="rtl">أساسيات التجويد</span>
+        </div>
+        <span class="lc-tag avail" data-te="మధ్యస్థం" data-en="Intermediate">Intermediate</span>
+        <svg class="lc-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="lc-body">
+        <div class="lc-inner">
+          <p class="lc-desc" data-te="తజ్వీద్ నియమాలతో ఖురాన్‌ను అందంగా, ఖచ్చితంగా పఠించడం నేర్చుకోండి. మఖారిజ్, నూన్ సాకినా, మీమ్ సాకినా నియమాలు, ఖల్‌ఖలా, గున్నా, మద్ద్ మరియు వఖఫ్ నియమాలను అభ్యసించండి." data-en="Learn to recite the Quran beautifully and accurately with the rules of Tajweed — makharij, the rules of noon and meem sakinah, qalqalah, ghunnah, madd, and waqf.">Learn to recite the Quran beautifully and accurately with the rules of Tajweed — makharij, the rules of noon and meem sakinah, qalqalah, ghunnah, madd, and waqf.</p>
+          <div class="lc-sub" data-te="మీరు నేర్చుకునేది" data-en="What you'll learn">What you'll learn</div>
+          <div class="lc-topics">
+            <span class="lc-topic" data-te="తజ్వీద్ పరిచయం" data-en="Introduction to Tajweed">Introduction to Tajweed</span>
+            <span class="lc-topic" data-te="మఖారిజ్ (ఉచ్చారణ స్థానాలు)" data-en="Makharij">Makharij</span>
+            <span class="lc-topic" data-te="నూన్ సాకినా నియమాలు" data-en="Noon Sakinah Rules">Noon Sakinah Rules</span>
+            <span class="lc-topic" data-te="మీమ్ సాకినా నియమాలు" data-en="Meem Sakinah Rules">Meem Sakinah Rules</span>
+            <span class="lc-topic" data-te="ఖల్‌ఖలా" data-en="Qalqalah">Qalqalah</span>
+            <span class="lc-topic" data-te="గున్నా" data-en="Ghunnah">Ghunnah</span>
+            <span class="lc-topic" data-te="మద్ద్ నియమాలు" data-en="Madd Rules">Madd Rules</span>
+            <span class="lc-topic" data-te="వఖఫ్ నియమాలు" data-en="Waqf Rules">Waqf Rules</span>
+          </div>
+          <div class="lc-goal">
+            <span class="lc-goal-ic">🎯</span>
+            <div class="lc-goal-txt">
+              <strong data-te="లక్ష్యం" data-en="Goal">Goal</strong>
+              <p data-te="ఖురాన్‌ను అందంగా మరియు ఖచ్చితంగా పఠించండి." data-en="Recite the Quran beautifully and accurately.">Recite the Quran beautifully and accurately.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Level 4 -->
+    <div class="lc reveal" id="lc4">
+      <div class="lc-head" onclick="toggleLC('lc4')" role="button" aria-expanded="false">
+        <div class="lc-num">٤</div>
+        <div class="lc-info">
+          <h3 data-te="ఖురాన్ పఠన ప్రావీణ్యం" data-en="Quran Reading Mastery">Quran Reading Mastery</h3>
+          <span class="lc-ar" lang="ar" dir="rtl">إتقان القراءة</span>
+        </div>
+        <span class="lc-tag avail" data-te="మధ్యస్థం" data-en="Intermediate">Intermediate</span>
+        <svg class="lc-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="lc-body">
+        <div class="lc-inner">
+          <p class="lc-desc" data-te="పూర్తి ఆయతులు మరియు సూరాలను చదవడం ద్వారా పఠన ప్రవాహాన్ని (ఫ్లూయెన్సీ) పెంపొందించుకోండి. సాధారణ తప్పులను గుర్తించి, నిరంతర అభ్యాసంతో ఖురాన్‌ను స్వతంత్రంగా చదవగలరు." data-en="Build fluency by reading complete verses and Surahs. Identify common mistakes and, through consistent practice, read the Quran independently.">Build fluency by reading complete verses and Surahs. Identify common mistakes and, through consistent practice, read the Quran independently.</p>
+          <div class="lc-sub" data-te="మీరు నేర్చుకునేది" data-en="What you'll learn">What you'll learn</div>
+          <div class="lc-topics">
+            <span class="lc-topic" data-te="పూర్తి ఆయతులు చదవడం" data-en="Reading complete verses">Reading complete verses</span>
+            <span class="lc-topic" data-te="సూరాలు చదవడం" data-en="Reading Surahs">Reading Surahs</span>
+            <span class="lc-topic" data-te="ప్రవాహం పెంపొందించడం" data-en="Fluency building">Fluency building</span>
+            <span class="lc-topic" data-te="సాధారణ తప్పులు" data-en="Common mistakes">Common mistakes</span>
+            <span class="lc-topic" data-te="పఠన అభ్యాసం" data-en="Recitation practice">Recitation practice</span>
+          </div>
+          <div class="lc-goal">
+            <span class="lc-goal-ic">🎯</span>
+            <div class="lc-goal-txt">
+              <strong data-te="లక్ష్యం" data-en="Goal">Goal</strong>
+              <p data-te="ఖురాన్‌ను స్వతంత్రంగా చదవండి." data-en="Read the Quran independently.">Read the Quran independently.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Level 5 -->
+    <div class="lc reveal" id="lc5">
+      <div class="lc-head" onclick="toggleLC('lc5')" role="button" aria-expanded="false">
+        <div class="lc-num">٥</div>
+        <div class="lc-info">
+          <h3 data-te="హిఫ్జ్ కార్యక్రమం" data-en="Hifz Program">Hifz Program</h3>
+          <span class="lc-ar" lang="ar" dir="rtl">برنامج الحفظ</span>
+        </div>
+        <span class="lc-tag soon" data-te="అధునాతనం" data-en="Advanced">Advanced</span>
+        <svg class="lc-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="lc-body">
+        <div class="lc-inner">
+          <p class="lc-desc" data-te="ఖురాన్‌ను కంఠస్థం చేయడానికి నిరూపితమైన పద్ధతులను నేర్చుకోండి. రోజువారీ హిఫ్జ్ ప్రణాళిక, పునరావృత్తి వ్యవస్థ మరియు నిలుపుదల పద్ధతులతో స్థిరమైన కంఠస్థ అలవాటును పెంపొందించుకోండి." data-en="Learn proven techniques to memorize the Quran. Build a sustainable memorization habit with daily Hifz planning, a revision system, and retention methods.">Learn proven techniques to memorize the Quran. Build a sustainable memorization habit with daily Hifz planning, a revision system, and retention methods.</p>
+          <div class="lc-sub" data-te="మీరు నేర్చుకునేది" data-en="What you'll learn">What you'll learn</div>
+          <div class="lc-topics">
+            <span class="lc-topic" data-te="కంఠస్థ పద్ధతులు" data-en="Memorization techniques">Memorization techniques</span>
+            <span class="lc-topic" data-te="రోజువారీ హిఫ్జ్ ప్రణాళిక" data-en="Daily Hifz planning">Daily Hifz planning</span>
+            <span class="lc-topic" data-te="పునరావృత్తి వ్యవస్థ" data-en="Revision system">Revision system</span>
+            <span class="lc-topic" data-te="నిలుపుదల పద్ధతులు" data-en="Retention methods">Retention methods</span>
+            <span class="lc-topic" data-te="ప్రేరణ పద్ధతులు" data-en="Motivation techniques">Motivation techniques</span>
+          </div>
+          <div class="lc-sub" data-te="ట్రాక్‌లు" data-en="Tracks">Tracks</div>
+          <div class="lc-topics">
+            <span class="lc-topic" data-te="ప్రారంభ హిఫ్జ్" data-en="Beginner Hifz">Beginner Hifz</span>
+            <span class="lc-topic" data-te="విద్యార్థి హిఫ్జ్" data-en="Student Hifz">Student Hifz</span>
+            <span class="lc-topic" data-te="పెద్దల హిఫ్జ్" data-en="Adult Hifz">Adult Hifz</span>
+            <span class="lc-topic" data-te="పూర్తి ఖురాన్ హిఫ్జ్ ప్రయాణం" data-en="Full Quran Hifz Journey">Full Quran Hifz Journey</span>
+          </div>
+          <div class="lc-goal">
+            <span class="lc-goal-ic">🎯</span>
+            <div class="lc-goal-txt">
+              <strong data-te="లక్ష్యం" data-en="Goal">Goal</strong>
+              <p data-te="స్థిరమైన కంఠస్థ అలవాటును పెంపొందించుకోండి." data-en="Build a sustainable memorization habit.">Build a sustainable memorization habit.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Level 6 -->
+    <div class="lc reveal" id="lc6">
+      <div class="lc-head" onclick="toggleLC('lc6')" role="button" aria-expanded="false">
+        <div class="lc-num">٦</div>
+        <div class="lc-info">
+          <h3 data-te="తఫ్సీర్ & అవగాహన" data-en="Tafseer &amp; Understanding">Tafseer &amp; Understanding</h3>
+          <span class="lc-ar" lang="ar" dir="rtl">التفسير والفهم</span>
+        </div>
+        <span class="lc-tag soon" data-te="అధునాతనం" data-en="Advanced">Advanced</span>
+        <svg class="lc-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="lc-body">
+        <div class="lc-inner">
+          <p class="lc-desc" data-te="ఖురాన్ అర్థాన్ని, దాని ముఖ్య విషయాలను మరియు ప్రవక్తల కథలను అర్థం చేసుకోండి. నైతికత, కుటుంబ జీవితం, రోజువారీ మార్గదర్శనం మరియు ఆధునిక జీవితంలో ఖురాన్ పాత్రను అన్వేషించండి." data-en="Understand the meaning of the Quran, its themes, and the stories of the Prophets. Explore character building, family life, daily guidance, and the Quran in modern life.">Understand the meaning of the Quran, its themes, and the stories of the Prophets. Explore character building, family life, daily guidance, and the Quran in modern life.</p>
+          <div class="lc-sub" data-te="మీరు నేర్చుకునేది" data-en="What you'll learn">What you'll learn</div>
+          <div class="lc-topics">
+            <span class="lc-topic" data-te="ఖురాన్ అర్థం" data-en="Meaning of the Quran">Meaning of the Quran</span>
+            <span class="lc-topic" data-te="ఖురాన్ ముఖ్య విషయాలు" data-en="Themes of the Quran">Themes of the Quran</span>
+            <span class="lc-topic" data-te="ప్రవక్తల కథలు" data-en="Stories of Prophets">Stories of Prophets</span>
+            <span class="lc-topic" data-te="నైతిక నిర్మాణం" data-en="Character Building">Character Building</span>
+            <span class="lc-topic" data-te="కుటుంబ జీవితం" data-en="Family Life">Family Life</span>
+            <span class="lc-topic" data-te="రోజువారీ మార్గదర్శనం" data-en="Daily Guidance">Daily Guidance</span>
+            <span class="lc-topic" data-te="ఖురాన్ & ఆధునిక జీవితం" data-en="Quran & Modern Life">Quran & Modern Life</span>
+          </div>
+          <div class="lc-goal">
+            <span class="lc-goal-ic">🎯</span>
+            <div class="lc-goal-txt">
+              <strong data-te="లక్ష్యం" data-en="Goal">Goal</strong>
+              <p data-te="ఖురాన్‌తో అవగాహన మరియు అనుబంధాన్ని పెంపొందించుకోండి." data-en="Develop understanding and connection with the Quran.">Develop understanding and connection with the Quran.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QURAN JOURNEY TIMELINE (visual skill roadmap) -->
+<section class="qt-sec" id="qtimeline">
+  <div class="qt-inner">
+    <div class="lu-sec-hdr reveal">
+      <div class="lu-sec-label" data-te="నైపుణ్య మార్గం" data-en="Skill Path">Skill Path</div>
+      <h2 class="lu-sec-title" data-te="ఖురాన్ <span>ప్రయాణ కాలక్రమం</span>" data-en="Quran <span>Journey Timeline</span>">Quran <span>Journey Timeline</span></h2>
+      <p class="lu-sec-subtitle" data-te="అక్షరాల నుండి ఖురాన్‌తో జీవించడం వరకు — మీరు ఎదిగే ఏడు నైపుణ్య దశలు. ఒక్కో అడుగు తదుపరిదానికి పునాది." data-en="From letters to living by the Quran — the seven skill stages you grow through. Each step builds the next.">From letters to living by the Quran — the seven skill stages you grow through. Each step builds the next.</p>
+    </div>
+    <!-- Desktop -->
+    <div class="qt-track" role="list">
+      <a href="#lc1" class="qt-node" role="listitem"><div class="qt-dot">🔤</div><div class="qt-name" data-te="అక్షరాలు నేర్చుకోండి" data-en="Learn Letters">Learn Letters</div><div class="qt-sub" data-te="స్థాయి 1" data-en="Level 1">Level 1</div></a>
+      <a href="#lc2" class="qt-node" role="listitem"><div class="qt-dot">📝</div><div class="qt-name" data-te="పదాలు చదవండి" data-en="Read Words">Read Words</div><div class="qt-sub" data-te="స్థాయి 2" data-en="Level 2">Level 2</div></a>
+      <a href="#lc4" class="qt-node" role="listitem"><div class="qt-dot">📖</div><div class="qt-name" data-te="ఖురాన్ చదవండి" data-en="Read Quran">Read Quran</div><div class="qt-sub" data-te="స్థాయి 4" data-en="Level 4">Level 4</div></a>
+      <a href="#tajweed" class="qt-node" role="listitem"><div class="qt-dot">🎵</div><div class="qt-name" data-te="తజ్వీద్ నేర్చుకోండి" data-en="Learn Tajweed">Learn Tajweed</div><div class="qt-sub" data-te="స్థాయి 3" data-en="Level 3">Level 3</div></a>
+      <a href="#lc6" class="qt-node" role="listitem"><div class="qt-dot">💡</div><div class="qt-name" data-te="ఖురాన్ అర్థం చేసుకోండి" data-en="Understand Quran">Understand Quran</div><div class="qt-sub" data-te="స్థాయి 6" data-en="Level 6">Level 6</div></a>
+      <a href="#lc5" class="qt-node" role="listitem"><div class="qt-dot">🧠</div><div class="qt-name" data-te="ఖురాన్ కంఠస్థం చేయండి" data-en="Memorize Quran">Memorize Quran</div><div class="qt-sub" data-te="స్థాయి 5" data-en="Level 5">Level 5</div></a>
+      <a href="#knowledge" class="qt-node" role="listitem"><div class="qt-dot">🌿</div><div class="qt-name" data-te="ఖురాన్‌తో జీవించండి" data-en="Live by Quran">Live by Quran</div><div class="qt-sub" data-te="జీవితాంతం" data-en="Lifelong">Lifelong</div></a>
+    </div>
+    <!-- Mobile -->
+    <div class="qt-mobile" role="list">
+      <a href="#lc1" class="qt-mnode" role="listitem"><div class="qt-mdot">🔤</div><div class="qt-minfo"><strong data-te="అక్షరాలు నేర్చుకోండి" data-en="Learn Letters">Learn Letters</strong><span data-te="అరబిక్ అక్షరాలను గుర్తించండి · స్థాయి 1" data-en="Recognise the Arabic letters · Level 1">Recognise the Arabic letters · Level 1</span></div></a>
+      <a href="#lc2" class="qt-mnode" role="listitem"><div class="qt-mdot">📝</div><div class="qt-minfo"><strong data-te="పదాలు చదవండి" data-en="Read Words">Read Words</strong><span data-te="హరకాత్‌తో పదాలను కలిపి చదవండి · స్థాయి 2" data-en="Join harakat to read words · Level 2">Join harakat to read words · Level 2</span></div></a>
+      <a href="#lc4" class="qt-mnode" role="listitem"><div class="qt-mdot">📖</div><div class="qt-minfo"><strong data-te="ఖురాన్ చదవండి" data-en="Read Quran">Read Quran</strong><span data-te="పూర్తి ఆయతులు, సూరాలు చదవండి · స్థాయి 4" data-en="Read full verses and Surahs · Level 4">Read full verses and Surahs · Level 4</span></div></a>
+      <a href="#tajweed" class="qt-mnode" role="listitem"><div class="qt-mdot">🎵</div><div class="qt-minfo"><strong data-te="తజ్వీద్ నేర్చుకోండి" data-en="Learn Tajweed">Learn Tajweed</strong><span data-te="అందమైన, ఖచ్చితమైన పఠనం · స్థాయి 3" data-en="Beautiful, accurate recitation · Level 3">Beautiful, accurate recitation · Level 3</span></div></a>
+      <a href="#lc6" class="qt-mnode" role="listitem"><div class="qt-mdot">💡</div><div class="qt-minfo"><strong data-te="ఖురాన్ అర్థం చేసుకోండి" data-en="Understand Quran">Understand Quran</strong><span data-te="అర్థం, తఫ్సీర్, పాఠాలు · స్థాయి 6" data-en="Meaning, tafseer, lessons · Level 6">Meaning, tafseer, lessons · Level 6</span></div></a>
+      <a href="#lc5" class="qt-mnode" role="listitem"><div class="qt-mdot">🧠</div><div class="qt-minfo"><strong data-te="ఖురాన్ కంఠస్థం చేయండి" data-en="Memorize Quran">Memorize Quran</strong><span data-te="హిఫ్జ్ ప్రణాళిక, పునరావృత్తి · స్థాయి 5" data-en="Hifz plan and revision · Level 5">Hifz plan and revision · Level 5</span></div></a>
+      <a href="#knowledge" class="qt-mnode" role="listitem"><div class="qt-mdot">🌿</div><div class="qt-minfo"><strong data-te="ఖురాన్‌తో జీవించండి" data-en="Live by Quran">Live by Quran</strong><span data-te="రోజువారీ అలవాట్లు, నైతికత · జీవితాంతం" data-en="Daily habits and character · Lifelong">Daily habits and character · Lifelong</span></div></a>
+    </div>
+  </div>
+</section>
+
+<!-- TAJWEED ACADEMY (interactive step wizard) -->
+<section class="tj-sec" id="tajweed">
+  <div class="tj-inner">
+    <div class="rm-label reveal" data-te="ఇంటరాక్టివ్ అకాడమీ" data-en="Interactive Academy">Interactive Academy</div>
+    <h2 class="rm-title reveal" data-te="తజ్వీద్ <span>అకాడమీ</span>" data-en="Tajweed <span>Academy</span>">Tajweed <span>Academy</span></h2>
+    <p class="rm-subtitle reveal" data-te="ఎనిమిది ముఖ్య తజ్వీద్ నియమాల గుండా అడుగడుగునా నడవండి — వివరణ, ఉదాహరణ, సాధారణ తప్పు మరియు ఆడియో, అభ్యాస ప్లేస్‌హోల్డర్‌లతో." data-en="Walk step by step through eight core Tajweed rules — with an explanation, an example, the common mistake, and audio + practice placeholders.">Walk step by step through eight core Tajweed rules — with an explanation, an example, the common mistake, and audio + practice placeholders.</p>
+    <div class="tj-stage reveal" id="tj-stage"><!-- rendered by JS --></div>
+  </div>
+</section>
+
+<!-- FEATURED SURAHS -->
+<section class="lu-sec surah-sec" id="surahs">
+  <div class="lu-sec-inner">
+    <div class="lu-sec-hdr reveal">
+      <div class="lu-sec-label" data-te="పఠించండి · అర్థం చేసుకోండి · కంఠస్థం చేయండి" data-en="Recite · Understand · Memorize">Recite · Understand · Memorize</div>
+      <h2 class="lu-sec-title" data-te="ముఖ్య <span>సూరాలు</span>" data-en="Featured <span>Surahs</span>">Featured <span>Surahs</span></h2>
+      <p class="lu-sec-subtitle" data-te="ప్రతి ముస్లిం తెలుసుకోవలసిన ప్రియమైన సూరాలతో ప్రారంభించండి — వాటి అర్థాలు, ఘనతలు మరియు నేర్చుకునే మార్గాలతో." data-en="Begin with the beloved Surahs every Muslim should know — with their meanings, virtues, and ways to learn each one.">Begin with the beloved Surahs every Muslim should know — with their meanings, virtues, and ways to learn each one.</p>
+    </div>
+    <div class="surah-grid" id="surah-grid"><!-- rendered by JS --></div>
+  </div>
+</section>
+
+<!-- DUAS FROM THE QURAN -->
+<section class="lu-sec" id="qduas">
+  <div class="lu-sec-inner">
+    <div class="lu-sec-hdr reveal">
+      <div class="lu-sec-label" data-te="ఖురాన్ నుండి దువాలు" data-en="Duas from the Quran">Duas from the Quran</div>
+      <h2 class="lu-sec-title" data-te="‘రబ్బనా’ <span>దువాలు</span>" data-en="The <span>Rabbana Duas</span>">The <span>Rabbana Duas</span></h2>
+      <p class="lu-sec-subtitle" data-te="ఖురాన్‌లోని అత్యంత ప్రియమైన దువాలు — అల్లాహ్ స్వయంగా మనకు నేర్పిన ప్రార్థనలు. ప్రతి దానికి అరబిక్, ఉచ్చారణ, అర్థం మరియు సూచనతో." data-en="The most beloved supplications in the Quran — prayers Allah Himself taught us. Each with the Arabic, transliteration, meaning, and reference.">The most beloved supplications in the Quran — prayers Allah Himself taught us. Each with the Arabic, transliteration, meaning, and reference.</p>
+    </div>
+    <div class="qd-grid" id="qduas-grid"><!-- rendered by JS --></div>
+  </div>
+</section>
+
+<!-- QURAN PROGRESS DASHBOARD -->
+<section class="dash-sec" id="progress">
+  <div class="dash-inner">
+    <div class="lu-sec-hdr reveal">
+      <div class="lu-sec-label" data-te="మీ పురోగతి" data-en="Your Progress">Your Progress</div>
+      <h2 class="lu-sec-title" data-te="మీ <span>ఖురాన్ పురోగతి</span>" data-en="Your <span>Quran Progress</span>">Your <span>Quran Progress</span></h2>
+      <p class="lu-sec-subtitle" data-te="మీ పూర్తి చేసిన పాఠాలు, తజ్వీద్ పురోగతి, సవాల్ రోజులు మరియు ప్రావీణ్య స్థాయిని ట్రాక్ చేయండి. ప్రతి స్థాయిని ‘పూర్తి’గా గుర్తించండి." data-en="Track your completed lessons, Tajweed progress, challenge days, and mastery level. Mark each level complete as you advance.">Track your completed lessons, Tajweed progress, challenge days, and mastery level. Mark each level complete as you advance.</p>
+    </div>
+    <div id="dash-body" class="reveal"><!-- rendered by JS --></div>
+  </div>
+</section>
+
+<!-- DAILY QURAN CHALLENGE -->
+<section class="ch-sec" id="challenge">
+  <div class="ch-inner">
+    <div class="ch-hdr reveal">
+      <div class="rm-label" data-te="రోజువారీ అలవాటు" data-en="Daily Habit">Daily Habit</div>
+      <h2 class="rm-title" data-te="నేటి <span>ఖురాన్ సవాల్</span>" data-en="Today's <span>Quran Challenge</span>">Today's <span>Quran Challenge</span></h2>
+      <p class="rm-subtitle" data-te="చిన్న రోజువారీ లక్ష్యాలు. మీ వరుసను (స్ట్రీక్) నిర్మించండి, బ్యాడ్జ్‌లను సంపాదించండి మరియు ఖురాన్‌తో మీ అనుబంధాన్ని పెంచుకోండి." data-en="Small daily goals. Build your streak, earn badges, and grow your connection with the Quran.">Small daily goals. Build your streak, earn badges, and grow your connection with the Quran.</p>
+    </div>
+    <div class="ch-grid reveal">
+      <!-- Checklist panel -->
+      <div class="ch-panel">
+        <div class="ch-panel-title">🗓️ <span data-te="నేటి లక్ష్యాలు" data-en="Today's Goals">Today's Goals</span></div>
+        <div class="ch-date" id="ch-date"></div>
+        <div class="ch-list" id="ch-list"><!-- rendered by JS --></div>
+        <div class="ch-progress-label">
+          <span data-te="పురోగతి" data-en="Progress">Progress</span>
+          <span><b id="ch-count">0</b> / 4</span>
+        </div>
+        <div class="ch-bar"><div class="ch-bar-fill" id="ch-bar-fill"></div></div>
+        <div class="ch-done-msg" id="ch-done-msg" data-te="✦ మాషా అల్లాహ్! నేటి సవాల్ పూర్తయింది — రేపు మళ్ళీ కలుద్దాం." data-en="✦ Masha'Allah! Today's challenge complete — see you tomorrow.">✦ Masha'Allah! Today's challenge complete — see you tomorrow.</div>
+      </div>
+      <!-- Streak + badges -->
+      <div class="ch-side">
+        <div class="ch-streak">
+          <div class="ch-streak-flame">🔥</div>
+          <div class="ch-streak-num" id="ch-streak-num">0</div>
+          <div class="ch-streak-label" data-te="రోజుల వరుస" data-en="Day Streak">Day Streak</div>
+          <div class="ch-streak-sub"><span data-te="మొత్తం పూర్తయిన రోజులు:" data-en="Total days completed:">Total days completed:</span> <b id="ch-total">0</b></div>
+        </div>
+        <div class="ch-badges">
+          <div class="ch-badges-title" data-te="విజయ బ్యాడ్జ్‌లు" data-en="Achievement Badges">Achievement Badges</div>
+          <div class="ch-badge-row" id="ch-badge-row"><!-- rendered by JS --></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ayah of the day (Reflect) -->
+    <div class="ch-ayah reveal">
+      <div class="ch-ayah-label" data-te="నేటి ఆయత్ — ఆలోచించండి" data-en="Ayah of the Day — Reflect">Ayah of the Day — Reflect</div>
+      <span id="ch-ayah-ar" lang="ar" dir="rtl"></span>
+      <div id="ch-ayah-tr"></div>
+      <div id="ch-ayah-ref"></div>
+      <div class="ch-reflect">
+        <div class="ch-reflect-item">
+          <strong data-te="ఆలోచనా ప్రశ్న" data-en="Reflection Prompt">Reflection Prompt</strong>
+          <p id="ch-reflect-prompt"></p>
+        </div>
+        <div class="ch-reflect-item">
+          <strong data-te="నేటి ఆచరణ" data-en="Action Item">Action Item</strong>
+          <p id="ch-reflect-action"></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Motivation -->
+    <div class="mot-card reveal">
+      <span class="mot-ic">💎</span>
+      <p class="mot-txt" id="mot-txt"></p>
+    </div>
+  </div>
+</section>
+
+<!-- QURAN KNOWLEDGE CENTER -->
+<section class="lu-sec why-sec" id="knowledge">
+  <div class="lu-sec-inner">
+    <div class="lu-sec-hdr reveal">
+      <div class="lu-sec-label" data-te="లోతుగా అన్వేషించండి" data-en="Explore Deeper">Explore Deeper</div>
+      <h2 class="lu-sec-title" data-te="ఖురాన్ <span>జ్ఞాన కేంద్రం</span>" data-en="Quran <span>Knowledge Center</span>">Quran <span>Knowledge Center</span></h2>
+      <p class="lu-sec-subtitle" data-te="ఖురాన్ ప్రాముఖ్యత, దాని ప్రయోజనాలు మరియు అది జీవితాన్ని ఎలా మారుస్తుందో అర్థం చేసుకోండి." data-en="Understand the importance of the Quran, its benefits, and how it transforms lives.">Understand the importance of the Quran, its benefits, and how it transforms lives.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <div class="why-icon">📜</div>
+        <h3 data-te="ఖురాన్ ప్రాముఖ్యత" data-en="Importance of the Quran">Importance of the Quran</h3>
+        <p data-te="ఖురాన్ అల్లాహ్ చివరి, మార్పులేని సందేశం — మానవాళికి శాశ్వత మార్గదర్శనం మరియు అతిపెద్ద అద్భుతం." data-en="The Quran is Allah's final, unchanged message — eternal guidance for humanity and the greatest miracle.">The Quran is Allah's final, unchanged message — eternal guidance for humanity and the greatest miracle.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon">🌅</div>
+        <h3 data-te="రోజువారీ పఠన ప్రయోజనాలు" data-en="Benefits of Daily Recitation">Benefits of Daily Recitation</h3>
+        <p data-te="ప్రతి రోజు ఖురాన్ చదవడం హృదయాన్ని శుద్ధి చేస్తుంది, ఈమాన్‌ను బలపరుస్తుంది మరియు ప్రతి అక్షరానికి ప్రతిఫలం తెస్తుంది." data-en="Daily recitation purifies the heart, strengthens iman, and brings reward for every letter read.">Daily recitation purifies the heart, strengthens iman, and brings reward for every letter read.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon">✨</div>
+        <h3 data-te="ఖురాన్ జీవితాలను ఎలా మారుస్తుంది" data-en="How the Quran Changes Lives">How the Quran Changes Lives</h3>
+        <p data-te="లెక్కలేనన్ని జీవితాలు ఖురాన్ ద్వారా మార్గం, ప్రయోజనం మరియు శాంతిని పొందాయి. ఇది హృదయాలను మెత్తబరచి దిశను ఇస్తుంది." data-en="Countless lives have found direction, purpose, and peace through the Quran. It softens hearts and gives clarity.">Countless lives have found direction, purpose, and peace through the Quran. It softens hearts and gives clarity.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon">🤲</div>
+        <h3 data-te="ఖురాన్ మరియు నైతికత" data-en="Quran and Character">Quran and Character</h3>
+        <p data-te="ప్రవక్త ﷺ నైతికత నడిచే ఖురాన్‌గా ఉండేది. దానిని జీవించడం నిజాయితీ, దయ మరియు వినమ్రతను పెంపొందిస్తుంది." data-en="The Prophet ﷺ was a living Quran in character. Living by it nurtures honesty, kindness, and humility.">The Prophet ﷺ was a living Quran in character. Living by it nurtures honesty, kindness, and humility.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon">👨‍👩‍👧‍👦</div>
+        <h3 data-te="ఖురాన్ మరియు కుటుంబ విలువలు" data-en="Quran and Family Values">Quran and Family Values</h3>
+        <p data-te="ఖురాన్ తల్లిదండ్రులు, పిల్లలు మరియు జీవిత భాగస్వాముల పట్ల దయ, న్యాయం మరియు హక్కులను బోధిస్తుంది — బలమైన కుటుంబాలకు పునాది." data-en="The Quran teaches mercy, justice, and rights toward parents, children, and spouses — the foundation of strong families.">The Quran teaches mercy, justice, and rights toward parents, children, and spouses — the foundation of strong families.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon">🧠</div>
+        <h3 data-te="ఖురాన్ మరియు మానసిక ఆరోగ్యం" data-en="Quran and Mental Wellness">Quran and Mental Wellness</h3>
+        <p data-te="ఖురాన్ పఠనం మరియు దాని స్మరణ ఆందోళనను తగ్గించి, హృదయానికి ప్రశాంతత మరియు ఆశను తెస్తుంది." data-en="Reciting the Quran and remembering its message eases anxiety and brings calm and hope to the heart.">Reciting the Quran and remembering its message eases anxiety and brings calm and hope to the heart.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon">🔬</div>
+        <h3 data-te="విజ్ఞానం మరియు ఖురాన్" data-en="Science and the Quran">Science and the Quran</h3>
+        <p data-te="ఖురాన్ సృష్టి, విశ్వం మరియు మానవ వికాసం గురించిన సంకేతాలను కలిగి ఉంది — ఆలోచన మరియు అన్వేషణకు ఆహ్వానం." data-en="The Quran contains signs about creation, the cosmos, and human development — an invitation to reflect and explore.">The Quran contains signs about creation, the cosmos, and human development — an invitation to reflect and explore.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon">🧭</div>
+        <h3 data-te="ఆచరణాత్మక ఖురాన్ మార్గదర్శనం" data-en="Practical Quranic Guidance">Practical Quranic Guidance</h3>
+        <p data-te="ఖురాన్ వ్యాపారం, న్యాయం, ఓర్పు మరియు రోజువారీ నిర్ణయాలకు కాలాతీత మార్గదర్శనం ఇస్తుంది." data-en="The Quran offers timeless guidance for business, justice, patience, and everyday decisions.">The Quran offers timeless guidance for business, justice, patience, and everyday decisions.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ALL ISLAMIC LEARNING MODULES -->
+<section class="coming-sec" id="coming">
+  <div class="coming-inner">
+    <div class="lu-sec-hdr reveal">
+      <div class="lu-sec-label" data-te="జ్ఞాన కేంద్రం" data-en="Knowledge Center">Knowledge Center</div>
+      <h2 class="lu-sec-title" data-te="మొత్తం <span>ఇస్లామిక్ నేర్చుకునే విభాగాలు</span>" data-en="All <span>Islamic Learning Modules</span>">All <span>Islamic Learning Modules</span></h2>
+      <p class="lu-sec-subtitle" data-te="ఇస్లామిక్ ఫ్రంట్ జ్ఞాన కేంద్రంలో అందుబాటులో ఉన్న మరియు త్వరలో వచ్చే అన్ని విభాగాలు." data-en="All modules available and coming soon in the Islamic Front Knowledge Center.">All modules available and coming soon in the Islamic Front Knowledge Center.</p>
+    </div>
+    <div class="coming-grid">
+      <div class="cm-card live reveal">
+        <div class="cm-icon ar" lang="ar" dir="rtl" style="font-size:1.1rem">قرآن</div>
+        <div class="cm-body">
+          <h4 data-te="ఖురాన్ నేర్చుకోండి" data-en="Learn Quran">Learn Quran</h4>
+          <p data-te="పఠనం, తజ్వీద్, హిఫ్జ్ మరియు తఫ్సీర్" data-en="Reading, Tajweed, Hifz, and Tafseer">Reading, Tajweed, Hifz, and Tafseer</p>
+          <span class="cm-badge avail" data-te="మీరు ఇక్కడ ఉన్నారు ✦" data-en="You Are Here ✦">You Are Here ✦</span>
+        </div>
+      </div>
+      <a class="cm-card live reveal" href="../learn-arabic/index.html">
+        <div class="cm-icon ar" lang="ar" dir="rtl">ع</div>
+        <div class="cm-body">
+          <h4 data-te="అరబిక్ నేర్చుకోండి" data-en="Learn Arabic">Learn Arabic</h4>
+          <p data-te="అక్షరమాల నుండి ఖురానీ అరబిక్ వరకు" data-en="From alphabet to Quranic Arabic">From alphabet to Quranic Arabic</p>
+          <span class="cm-badge avail" data-te="అందుబాటు" data-en="Available Now">Available Now</span>
+        </div>
+      </a>
+      <a class="cm-card live reveal" href="../learn-urdu/index.html">
+        <div class="cm-icon ar" lang="ur" dir="rtl" style="font-family:'Noto Nastaliq Urdu','Amiri',serif;font-size:1.1rem">اردو</div>
+        <div class="cm-body">
+          <h4 data-te="ఉర్దూ నేర్చుకోండి" data-en="Learn Urdu">Learn Urdu</h4>
+          <p data-te="నస్తాలీఖ్ లిపి నుండి ఇస్లామిక్ ఉర్దూ సాహిత్యం వరకు" data-en="Nastaliq script to Islamic Urdu literature">Nastaliq script to Islamic Urdu literature</p>
+          <span class="cm-badge avail" data-te="అందుబాటు" data-en="Available Now">Available Now</span>
+        </div>
+      </a>
+      <a class="cm-card live reveal" href="../learn-salah/index.html">
+        <div class="cm-icon">🌙</div>
+        <div class="cm-body">
+          <h4 data-te="నమాజ్ నేర్చుకోండి" data-en="Learn Salah">Learn Salah</h4>
+          <p data-te="నమాజ్ దశలు, దువాలు మరియు షరతులు" data-en="Prayer steps, duas, and conditions">Prayer steps, duas, and conditions</p>
+          <span class="cm-badge avail" data-te="అందుబాటు" data-en="Available Now">Available Now</span>
+        </div>
+      </a>
+      <div class="cm-card dim reveal">
+        <div class="cm-icon">💧</div>
+        <div class="cm-body">
+          <h4 data-te="వుదూ నేర్చుకోండి" data-en="Learn Wudu">Learn Wudu</h4>
+          <p data-te="పరిశుద్ధత, వుదూ మరియు గుస్ల్" data-en="Purification, wudu and ghusl">Purification, wudu and ghusl</p>
+          <span class="cm-badge soon" data-te="త్వరలో" data-en="Coming Soon">Coming Soon</span>
+        </div>
+      </div>
+      <a class="cm-card live reveal" href="../seerah/index.html">
+        <div class="cm-icon">📖</div>
+        <div class="cm-body">
+          <h4 data-te="సీరా" data-en="Seerah">Seerah</h4>
+          <p data-te="ప్రవక్త జీవితం ﷺ" data-en="Life of the Prophet ﷺ">Life of the Prophet ﷺ</p>
+          <span class="cm-badge avail" data-te="అందుబాటు" data-en="Available Now">Available Now</span>
+        </div>
+      </a>
+      <a class="cm-card live reveal" href="../islamic-history/index.html">
+        <div class="cm-icon">🏛️</div>
+        <div class="cm-body">
+          <h4 data-te="ఇస్లామిక్ చరిత్ర" data-en="Islamic History">Islamic History</h4>
+          <p data-te="ఖిలాఫత్ నుండి ఆధునిక కాలం వరకు" data-en="From Caliphate to modern era">From Caliphate to modern era</p>
+          <span class="cm-badge avail" data-te="అందుబాటు" data-en="Available Now">Available Now</span>
+        </div>
+      </a>
+      <a class="cm-card live reveal" href="../kids-islam/index.html">
+        <div class="cm-icon">🌟</div>
+        <div class="cm-body">
+          <h4 data-te="పిల్లల ఇస్లాం" data-en="Kids' Islam">Kids' Islam</h4>
+          <p data-te="పిల్లలకు ఇస్లామిక్ విద్య" data-en="Islamic education for children">Islamic education for children</p>
+          <span class="cm-badge avail" data-te="అందుబాటు" data-en="Available Now">Available Now</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="lu-footer">
+  <span class="lu-footer-brand" lang="ar" dir="rtl">القرآن الكريم</span>
+  <p class="lu-footer-tag" data-te="ఇస్లామిక్ ఫ్రంట్ జ్ఞాన కేంద్రం" data-en="Islamic Front Knowledge Center">Islamic Front Knowledge Center</p>
+  <div class="lu-footer-links">
+    <a href="../../index.html" data-te="← హోమ్" data-en="← Home">← Home</a>
+    <a href="../../islamic-knowledge.html" data-te="జ్ఞాన కేంద్రం" data-en="Knowledge Center">Knowledge Center</a>
+    <a href="../learn-arabic/index.html" data-te="అరబిక్ నేర్చుకోండి" data-en="Learn Arabic">Learn Arabic</a>
+    <a href="../learn-urdu/index.html" data-te="ఉర్దూ నేర్చుకోండి" data-en="Learn Urdu">Learn Urdu</a>
+  </div>
+  <p class="lu-footer-copy" data-te="© 2025 ఇస్లామిక్ ఫ్రంట్, మంగళగిరి. సర్వహక్కులు సురక్షితం." data-en="© 2025 Islamic Front, Mangalagiri. All rights reserved.">© 2025 Islamic Front, Mangalagiri. All rights reserved.</p>
+</footer>
+
+<button id="btt" onclick="scrollTo({top:0,behavior:'smooth'})" title="Back to top" aria-label="Back to top">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+
+<script>
+(function(){
+'use strict';
+
+/* ── FEATURED SURAHS ── */
+var SURAHS=[
+  {no:1,ar:'الفاتحة',en:'Al-Fatihah',en_m:'The Opening',te_m:'ఆరంభం',
+   en_v:'The greatest Surah — recited in every unit of every prayer.',te_v:'అత్యంత గొప్ప సూరా — ప్రతి నమాజ్ రకాత్‌లో పఠించబడుతుంది.',
+   kl_en:'A complete daily prayer: praise, devotion, and asking for guidance.',kl_te:'ఒక పూర్తి రోజువారీ ప్రార్థన: స్తుతి, భక్తి, మార్గదర్శనం కోరడం.'},
+  {no:112,ar:'الإخلاص',en:'Al-Ikhlas',en_m:'Sincerity',te_m:'నిష్కాపట్యం',
+   en_v:'Equals one-third of the Quran in reward; the essence of Tawheed.',te_v:'ప్రతిఫలంలో ఖురాన్‌లో మూడింట ఒక వంతు; తౌహీద్ సారాంశం.',
+   kl_en:'Allah is One, with no partner — the heart of pure faith.',kl_te:'అల్లాహ్ ఏకైకుడు, భాగస్వామి లేడు — స్వచ్ఛ విశ్వాసం హృదయం.'},
+  {no:113,ar:'الفلق',en:'Al-Falaq',en_m:'The Daybreak',te_m:'ఉదయం',
+   en_v:'A protection (muʿawwidhat) recited for refuge from all harm.',te_v:'అన్ని హానుల నుండి శరణు కోసం పఠించే రక్షణ సూరా (ముఅవ్విదాత్).',
+   kl_en:'Seek Allah’s protection from every outward harm.',kl_te:'ప్రతి బాహ్య హాని నుండి అల్లాహ్ రక్షణను కోరండి.'},
+  {no:114,ar:'الناس',en:'An-Nas',en_m:'Mankind',te_m:'మానవజాతి',
+   en_v:'Seeks refuge in Allah from the whisperer of evil.',te_v:'చెడు గుసగుసలాడేవాడి నుండి అల్లాహ్ శరణు కోరుతుంది.',
+   kl_en:'Seek Allah’s protection from inner whispers and doubt.',kl_te:'లోపలి గుసగుసలు, సందేహాల నుండి అల్లాహ్ రక్షణను కోరండి.'},
+  {no:108,ar:'الكوثر',en:'Al-Kawthar',en_m:'Abundance',te_m:'సమృద్ధి',
+   en_v:'The shortest Surah — the gift of the river Al-Kawthar.',te_v:'అతి చిన్న సూరా — కౌసర్ నది బహుమతి.',
+   kl_en:'Be grateful and pray — Allah’s gifts are abundant.',kl_te:'కృతజ్ఞతతో ఉండండి, నమాజ్ చేయండి — అల్లాహ్ బహుమతులు సమృద్ధం.'},
+  {no:103,ar:'العصر',en:'Al-Asr',en_m:'Time',te_m:'కాలం',
+   en_v:'Imam Shafiʿi: had only this been revealed, it would suffice.',te_v:'ఇమామ్ షాఫయీ: ఇది ఒక్కటే అవతరించినా ప్రజలకు సరిపోయేది.',
+   kl_en:'Faith, good deeds, truth, and patience save us from loss.',kl_te:'విశ్వాసం, సత్కర్మలు, సత్యం, ఓర్పు నష్టం నుండి కాపాడతాయి.'},
+  {no:36,ar:'يس',en:'Ya-Sin',en_m:'Ya Sin',te_m:'యా-సీన్',
+   en_v:'Known as the heart of the Quran; read for ease and mercy.',te_v:'ఖురాన్ హృదయంగా పేరొందింది; సౌలభ్యం, కరుణ కోసం పఠిస్తారు.',
+   kl_en:'Resurrection is real — live with the next life in mind.',kl_te:'పునరుత్థానం సత్యం — పరలోకాన్ని దృష్టిలో ఉంచుకుని జీవించండి.'},
+  {no:67,ar:'الملك',en:'Al-Mulk',en_m:'The Sovereignty',te_m:'సార్వభౌమత్వం',
+   en_v:'Intercedes for its reciter and guards from the punishment of the grave.',te_v:'పఠించేవారికి సిఫారసు చేస్తుంది, సమాధి శిక్ష నుండి కాపాడుతుంది.',
+   kl_en:'All power belongs to Allah, who sees and tests everything.',kl_te:'సర్వాధికారం అల్లాహ్‌దే, ఆయన ప్రతిదీ చూస్తాడు, పరీక్షిస్తాడు.'}
+];
+
+/* ── AYAH OF THE DAY ── */
+var AYAT=[
+  {ar:'إِنَّ مَعَ الْعُسْرِ يُسْرًا',ref:'Ash-Sharh 94:6',en:'Indeed, with hardship comes ease.',te:'నిశ్చయంగా, కష్టంతో పాటు సౌలభ్యం ఉంది.',
+   p_en:'Which hardship are you facing where you can trust that ease is near?',p_te:'ఏ కష్టంలో సౌలభ్యం దగ్గరలో ఉందని మీరు నమ్మగలరు?',
+   a_en:'Face one difficult task today with patience and hope.',a_te:'నేడు ఒక కష్టమైన పనిని ఓర్పుతో, ఆశతో ఎదుర్కోండి.'},
+  {ar:'وَاذْكُرُوا اللَّهَ كَثِيرًا',ref:'Al-Anfal 8:45',en:'And remember Allah often.',te:'మరియు అల్లాహ్‌ను అధికంగా స్మరించండి.',
+   p_en:'How often does Allah cross your mind during a busy day?',p_te:'బిజీ రోజులో అల్లాహ్ ఎన్నిసార్లు మీ మనసులో మెదులుతాడు?',
+   a_en:'Say “SubhanAllah” ten times after each prayer today.',a_te:'నేడు ప్రతి నమాజ్ తర్వాత “సుబ్‌హానల్లాహ్” పదిసార్లు చెప్పండి.'},
+  {ar:'فَاذْكُرُونِي أَذْكُرْكُمْ',ref:'Al-Baqarah 2:152',en:'So remember Me; I will remember you.',te:'కావున నన్ను స్మరించండి; నేను మిమ్మల్ని స్మరిస్తాను.',
+   p_en:'What would change if you knew Allah remembers you when you remember Him?',p_te:'మీరు స్మరిస్తే అల్లాహ్ మిమ్మల్ని స్మరిస్తాడని తెలిస్తే ఏం మారుతుంది?',
+   a_en:'Begin and end your day with the remembrance of Allah.',a_te:'మీ రోజును అల్లాహ్ స్మరణతో ప్రారంభించి, ముగించండి.'},
+  {ar:'وَقُل رَّبِّ زِدْنِي عِلْمًا',ref:'Ta-Ha 20:114',en:'And say: My Lord, increase me in knowledge.',te:'మరియు ఇలా అను: నా ప్రభూ, నా జ్ఞానాన్ని పెంచు.',
+   p_en:'What is one thing about the Quran you want to understand better?',p_te:'ఖురాన్ గురించి మీరు మరింత బాగా అర్థం చేసుకోవాలనుకునే ఒక విషయం ఏది?',
+   a_en:'Learn the meaning of one new ayah or word today.',a_te:'నేడు ఒక కొత్త ఆయత్ లేదా పదం అర్థాన్ని నేర్చుకోండి.'},
+  {ar:'إِنَّ اللَّهَ مَعَ الصَّابِرِينَ',ref:'Al-Baqarah 2:153',en:'Indeed, Allah is with the patient.',te:'నిశ్చయంగా అల్లాహ్ సహనం గలవారితో ఉంటాడు.',
+   p_en:'Where in your life is patience being tested right now?',p_te:'మీ జీవితంలో ప్రస్తుతం ఓర్పు ఎక్కడ పరీక్షించబడుతోంది?',
+   a_en:'Respond to one frustration today with calm instead of anger.',a_te:'నేడు ఒక చిరాకును కోపం బదులు ప్రశాంతతతో ఎదుర్కోండి.'},
+  {ar:'وَتَوَكَّلْ عَلَى اللَّهِ',ref:'Al-Ahzab 33:3',en:'And put your trust in Allah.',te:'మరియు అల్లాహ్‌పై నమ్మకం ఉంచు.',
+   p_en:'What worry are you carrying that you could hand over to Allah?',p_te:'మీరు అల్లాహ్‌కు అప్పగించగల ఏ చింతను మీరు మోస్తున్నారు?',
+   a_en:'Do your best on one task, then leave the result to Allah.',a_te:'ఒక పనిలో మీ శాయశక్తులా చేసి, ఫలితాన్ని అల్లాహ్‌కు వదలండి.'},
+  {ar:'رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً',ref:'Al-Baqarah 2:201',en:'Our Lord, give us good in this world.',te:'మా ప్రభూ, ఇహలోకంలో మాకు మేలును ప్రసాదించు.',
+   p_en:'What “good” are you seeking — and is it good for your next life too?',p_te:'మీరు కోరే “మేలు” ఏది — అది మీ పరలోకానికీ మేలు కలిగిస్తుందా?',
+   a_en:'Make this dua sincerely after your next prayer.',a_te:'మీ తదుపరి నమాజ్ తర్వాత ఈ దువాను హృదయపూర్వకంగా చేయండి.'}
+];
+
+/* ── MOTIVATION ── */
+var MOTS=[
+  {en:'"The best among you are those who learn the Quran and teach it." — Prophet Muhammad ﷺ',te:'"మీలో ఉత్తములు ఖురాన్ నేర్చుకుని ఇతరులకు నేర్పేవారు." — ప్రవక్త ముహమ్మద్ ﷺ'},
+  {en:'"Read the Quran, for it will come as an intercessor for its companions on the Day of Judgement." — Hadith (Muslim)',te:'"ఖురాన్ చదవండి, ఎందుకంటే ప్రళయదినాన అది తన సహచరులకు సిఫారసుదారుగా వస్తుంది." — హదీస్ (ముస్లిం)'},
+  {en:'"Whoever recites a letter from the Book of Allah earns a good deed, multiplied by ten." — Hadith (Tirmidhi)',te:'"అల్లాహ్ గ్రంథం నుండి ఒక అక్షరం చదివేవారికి ఒక మంచి పని లభిస్తుంది, అది పదింతలు అవుతుంది." — హదీస్ (తిర్మిజీ)'},
+  {en:'"A little that is consistent is better than a lot that is interrupted." — Islamic wisdom on daily habits.',te:'"నిరంతరం కొంచెం చేయడం, అడపాదడపా ఎక్కువ చేయడం కంటే మేలు." — రోజువారీ అలవాట్లపై ఇస్లామిక్ వివేకం.'}
+];
+
+/* ── DAILY CHALLENGE ── */
+var CH_KEY='if-quran-challenge';
+var CH_ITEMS=[
+  {ic:'📖',en:'Read 1 Page',te:'1 పేజీ చదవండి'},
+  {ic:'🧠',en:'Memorize 1 Ayah',te:'1 ఆయత్ కంఠస్థం చేయండి'},
+  {ic:'📐',en:'Learn 1 Tajweed Rule',te:'1 తజ్వీద్ నియమం నేర్చుకోండి'},
+  {ic:'💭',en:'Reflect on 1 Ayah',te:'1 ఆయత్‌పై ఆలోచించండి'}
+];
+var BADGES=[
+  {type:'streak',n:1,ic:'🌱',en:'First Ayah',te:'మొదటి ఆయత్'},
+  {type:'streak',n:3,ic:'📖',en:'Quran Reader',te:'ఖురాన్ పాఠకుడు'},
+  {type:'lessons',n:3,ic:'🎵',en:'Tajweed Student',te:'తజ్వీద్ విద్యార్థి'},
+  {type:'lessons',n:5,ic:'🧠',en:'Hifz Beginner',te:'హిఫ్జ్ ప్రారంభకుడు'},
+  {type:'streak',n:7,ic:'⭐',en:'Quran Companion',te:'ఖురాన్ సహచరుడు'},
+  {type:'streak',n:30,ic:'🏆',en:'Quran Mentor',te:'ఖురాన్ మార్గదర్శి'}
+];
+
+/* ── TAJWEED ACADEMY DATA ── */
+var TJ_STEPS=[
+  {glyph:'تَجْوِيد',ar:'التجويد',name_en:'What is Tajweed?',name_te:'తజ్వీద్ అంటే ఏమిటి?',
+   ex_en:'Tajweed means giving every letter its right — pronouncing it from its correct point with its proper qualities, as the Quran was revealed.',ex_te:'తజ్వీద్ అంటే ప్రతి అక్షరానికి దాని హక్కును ఇవ్వడం — సరైన స్థానం నుండి, సరైన లక్షణాలతో, ఖురాన్ అవతరించిన విధంగా పలకడం.',
+   example_ar:'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ',ex_note_en:'Recited slowly and correctly with the rules of Tajweed.',ex_note_te:'తజ్వీద్ నియమాలతో నెమ్మదిగా, సరిగ్గా పఠించబడింది.',
+   mis_en:'Reciting fast and ignoring the rules, which can change letters and meanings.',mis_te:'వేగంగా పఠించి నియమాలను విస్మరించడం, ఇది అక్షరాలను, అర్థాలను మార్చవచ్చు.'},
+  {glyph:'ع ح خ',ar:'المخارج',name_en:'Makharij (Articulation Points)',name_te:'మఖారిజ్ (ఉచ్చారణ స్థానాలు)',
+   ex_en:'Every letter has a precise exit point — the throat, the tongue, the lips. Knowing them keeps each letter distinct.',ex_te:'ప్రతి అక్షరానికి ఖచ్చితమైన నిష్క్రమణ స్థానం ఉంది — గొంతు, నాలుక, పెదవులు. వాటిని తెలుసుకోవడం ప్రతి అక్షరాన్ని వేరుగా ఉంచుతుంది.',
+   example_ar:'ع · ح · خ',ex_note_en:'These are throat letters, each from a different part of the throat.',ex_note_te:'ఇవి గొంతు అక్షరాలు, ఒక్కొక్కటీ గొంతులోని వేర్వేరు భాగం నుండి.',
+   mis_en:'Pronouncing ‘ain (ع) like a hamza, or ḥa (ح) like the English h.',mis_te:'‘ఐన్ (ع)ను హంజాలా, లేదా హా (ح)ను ఆంగ్ల h లా పలకడం.'},
+  {glyph:'نْ ـًـٍـٌ',ar:'النون الساكنة',name_en:'Noon Sakinah & Tanween',name_te:'నూన్ సాకినా & తన్వీన్',
+   ex_en:'A silent noon or tanween follows four rules: Izhar (clear), Idgham (merge), Iqlab (convert), and Ikhfa (hide).',ex_te:'నిశ్శబ్ద నూన్ లేదా తన్వీన్ నాలుగు నియమాలను అనుసరిస్తుంది: ఇజ్‌హార్ (స్పష్టం), ఇద్‌గామ్ (కలయిక), ఇఖ్‌లాబ్ (మార్పు), ఇఖ్‌ఫా (దాపు).',
+   example_ar:'مِنْ بَعْدِ',ex_note_en:'Iqlab: the noon turns into a meem sound before the letter ba (ب).',ex_note_te:'ఇఖ్‌లాబ్: బా (ب) అక్షరం ముందు నూన్ మీమ్ ధ్వనిగా మారుతుంది.',
+   mis_en:'Applying ikhfa (hiding) where the rule actually requires izhar (clear).',mis_te:'ఇజ్‌హార్ (స్పష్టం) అవసరమైన చోట ఇఖ్‌ఫా (దాపు) వర్తింపజేయడం.'},
+  {glyph:'مْ',ar:'الميم الساكنة',name_en:'Meem Sakinah',name_te:'మీమ్ సాకినా',
+   ex_en:'A silent meem follows three rules: Ikhfa Shafawi, Idgham Shafawi, and Izhar Shafawi.',ex_te:'నిశ్శబ్ద మీమ్ మూడు నియమాలను అనుసరిస్తుంది: ఇఖ్‌ఫా షఫవీ, ఇద్‌గామ్ షఫవీ, ఇజ్‌హార్ షఫవీ.',
+   example_ar:'لَهُم مَّا',ex_note_en:'Idgham Shafawi: meem merges into meem with a ghunnah (nasal sound).',ex_note_te:'ఇద్‌గామ్ షఫవీ: మీమ్ గున్నా (నాసిక ధ్వని)తో మీమ్‌లో కలుస్తుంది.',
+   mis_en:'Dropping the ghunnah, or hiding the meem before letters other than ba and meem.',mis_te:'గున్నాను వదిలేయడం, లేదా బా, మీమ్ తప్ప ఇతర అక్షరాల ముందు మీమ్‌ను దాచడం.'},
+  {glyph:'نّ مّ',ar:'الغُنّة',name_en:'Ghunnah (Nasalization)',name_te:'గున్నా (నాసిక ధ్వని)',
+   ex_en:'Ghunnah is a nasal sound held for about two counts, strongest on a noon or meem carrying a shaddah.',ex_te:'గున్నా అనేది సుమారు రెండు మాత్రల పాటు పట్టి ఉంచే నాసిక ధ్వని, షద్దా గల నూన్ లేదా మీమ్‌పై బలంగా ఉంటుంది.',
+   example_ar:'إِنَّ · ثُمَّ',ex_note_en:'Hold the nasal sound clearly on the doubled letter.',ex_note_te:'ద్విత్వ అక్షరంపై నాసిక ధ్వనిని స్పష్టంగా పట్టి ఉంచండి.',
+   mis_en:'Not holding the ghunnah long enough, or skipping it altogether.',mis_te:'గున్నాను తగినంత సేపు పట్టుకోకపోవడం, లేదా పూర్తిగా వదిలేయడం.'},
+  {glyph:'ق ط ب ج د',ar:'القلقلة',name_en:'Qalqalah (Echoing)',name_te:'ఖల్‌ఖలా (ప్రతిధ్వని)',
+   ex_en:'Qalqalah is a bouncing echo on five letters (ق ط ب ج د) when they carry a sukoon.',ex_te:'ఖల్‌ఖలా అనేది ఐదు అక్షరాలు (ق ط ب ج د) సుకూన్‌తో ఉన్నప్పుడు వాటిపై వచ్చే ప్రతిధ్వని.',
+   example_ar:'قُلْ · أَحَدْ',ex_note_en:'A light bounce on the daal (د) at the end without adding a vowel.',ex_note_te:'చివర దాల్ (د)పై స్వరం చేర్చకుండా తేలికైన ప్రతిధ్వని.',
+   mis_en:'Giving no echo at all, or adding a full vowel sound to the letter.',mis_te:'ఏ ప్రతిధ్వనీ ఇవ్వకపోవడం, లేదా అక్షరానికి పూర్తి స్వరం చేర్చడం.'},
+  {glyph:'ا و ي',ar:'المُدود',name_en:'Madd (Elongation)',name_te:'మద్ద్ (దీర్ఘీకరణ)',
+   ex_en:'Madd is the elongation of a vowel. Natural madd is two counts; other types are held longer by rule.',ex_te:'మద్ద్ అంటే స్వరాన్ని దీర్ఘం చేయడం. సహజ మద్ద్ రెండు మాత్రలు; ఇతర రకాలు నియమం ప్రకారం ఎక్కువ సేపు ఉంచబడతాయి.',
+   example_ar:'قَالَ · الضَّالِّينَ',ex_note_en:'Required madd here is held for about six counts.',ex_note_te:'ఇక్కడ అవసరమైన మద్ద్ సుమారు ఆరు మాత్రల పాటు ఉంచబడుతుంది.',
+   mis_en:'Shortening a required madd, or over-stretching a natural two-count madd.',mis_te:'అవసరమైన మద్ద్‌ను కుదించడం, లేదా సహజ రెండు-మాత్రల మద్ద్‌ను అతిగా సాగదీయడం.'},
+  {glyph:'ۚ ۖ ۗ',ar:'الوقف',name_en:'Waqf (Stopping Rules)',name_te:'వఖఫ్ (ఆపే నియమాలు)',
+   ex_en:'Waqf is knowing where to stop and where to continue. Small signs above the text guide you.',ex_te:'వఖఫ్ అంటే ఎక్కడ ఆపాలి, ఎక్కడ కొనసాగాలి అని తెలుసుకోవడం. వచనం పైన ఉన్న చిన్న గుర్తులు మీకు దారి చూపుతాయి.',
+   example_ar:'ۗ ۚ ۖ',ex_note_en:'These signs mark a recommended stop, a permissible stop, and where it is better to continue.',ex_note_te:'ఈ గుర్తులు సిఫారసు చేసిన ఆపు, అనుమతించిన ఆపు, కొనసాగడం మేలైన చోటును సూచిస్తాయి.',
+   mis_en:'Stopping in the middle of a word, or stopping where the meaning breaks.',mis_te:'పదం మధ్యలో ఆపడం, లేదా అర్థం చెడిపోయే చోట ఆపడం.'}
+];
+var TJ_I=0;
+
+/* ── PROGRESS STORAGE ── */
+var PROG_KEY='if-quran-progress';
+function loadProg(){ try{ var p=JSON.parse(localStorage.getItem(PROG_KEY))||{}; if(!Array.isArray(p.levels))p.levels=[]; if(typeof p.tj!=='number')p.tj=0; return p; }catch(e){ return {levels:[],tj:0}; } }
+function saveProg(p){ try{ localStorage.setItem(PROG_KEY,JSON.stringify(p)); }catch(e){} }
+
+/* ── TOAST ── */
+var TOAST_T;
+function showToast(msg){
+  var t=document.getElementById('tj-toast');
+  if(!t){ t=document.createElement('div'); t.id='tj-toast'; t.className='tj-toast'; t.setAttribute('role','status'); document.body.appendChild(t); }
+  t.textContent=msg; t.classList.add('show');
+  clearTimeout(TOAST_T); TOAST_T=setTimeout(function(){ t.classList.remove('show'); },2600);
+}
+function tjToast(kind){
+  var msg=(LANG==='te')
+    ?(kind==='audio'?'🔊 ఆడియో పఠనం త్వరలో వస్తుంది':'📝 అభ్యాస విభాగం త్వరలో వస్తుంది')
+    :(kind==='audio'?'🔊 Audio recitation coming soon':'📝 Practice exercise coming soon');
+  showToast(msg);
+}
+
+/* ── RENDER TAJWEED ACADEMY ── */
+function renderTajweed(){
+  var stage=document.getElementById('tj-stage'); if(!stage) return;
+  if(TJ_I<0)TJ_I=0; if(TJ_I>TJ_STEPS.length-1)TJ_I=TJ_STEPS.length-1;
+  var st=TJ_STEPS[TJ_I];
+  var last=TJ_I===TJ_STEPS.length-1;
+  var L=(LANG==='te')
+    ?{step:'నియమం',of:'/',explain:'వివరణ',example:'ఉదాహరణ',mistake:'సాధారణ తప్పు',audio:'ఆడియో',practice:'అభ్యాసం',illus:'తజ్వీద్ నియమం',prev:'వెనుకకు',next:'తదుపరి',finish:'పూర్తి చేయండి'}
+    :{step:'Rule',of:'of',explain:'Explanation',example:'Example',mistake:'Common mistake',audio:'Audio',practice:'Practice',illus:'Tajweed rule',prev:'Back',next:'Next',finish:'Finish'};
+  var name=LANG==='te'?st.name_te:st.name_en;
+  var ex=LANG==='te'?st.ex_te:st.ex_en;
+  var note=LANG==='te'?st.ex_note_te:st.ex_note_en;
+  var mis=LANG==='te'?st.mis_te:st.mis_en;
+  var dots=TJ_STEPS.map(function(_,i){
+    var c=i===TJ_I?'active':(i<TJ_I?'seen':'');
+    return '<button type="button" class="tj-dot '+c+'" data-i="'+i+'" aria-label="'+L.step+' '+(i+1)+'"></button>';
+  }).join('');
+  stage.innerHTML=
+    '<div class="tj-dots">'+dots+'</div>'
+    +'<div class="tj-counter">'+L.step+' <b>'+(TJ_I+1)+'</b> '+L.of+' '+TJ_STEPS.length+'</div>'
+    +'<div class="tj-body">'
+      +'<div class="tj-figure"><div class="tj-glyph" lang="ar" dir="rtl">'+st.glyph+'</div>'
+        +'<div class="tj-figure-label">'+L.illus+'</div>'
+        +'<div class="tj-media">'
+          +'<button type="button" data-media="audio">🔊 '+L.audio+'</button>'
+          +'<button type="button" data-media="practice">📝 '+L.practice+'</button>'
+        +'</div>'
+      +'</div>'
+      +'<div class="tj-detail">'
+        +'<div class="tj-name">'+name+' <span class="ar" lang="ar" dir="rtl">'+st.ar+'</span></div>'
+        +'<div class="tj-block"><div class="tj-block-label">📘 '+L.explain+'</div><p>'+ex+'</p></div>'
+        +'<div class="tj-block"><div class="tj-block-label">✦ '+L.example+'</div>'
+          +'<div class="tj-example" lang="ar" dir="rtl">'+st.example_ar+'</div>'
+          +'<div class="tj-example-note">'+note+'</div></div>'
+        +'<div class="tj-mistake"><span class="tj-mistake-ic">⚠️</span><p><b>'+L.mistake+': </b>'+mis+'</p></div>'
+      +'</div>'
+    +'</div>'
+    +'<div class="tj-nav">'
+      +'<button class="tj-btn" id="tj-prev"'+(TJ_I===0?' disabled':'')+'>← '+L.prev+'</button>'
+      +'<button class="tj-btn primary" id="tj-next">'+(last?'✓ '+L.finish:L.next+' →')+'</button>'
+    +'</div>';
+  var p=loadProg(); var reached=Math.max(p.tj||0,TJ_I+1);
+  if(reached!==p.tj){ p.tj=reached; saveProg(p); renderDashboard(); }
+  stage.querySelectorAll('.tj-dot').forEach(function(d){ d.addEventListener('click',function(){ TJ_I=parseInt(d.getAttribute('data-i'),10); renderTajweed(); }); });
+  stage.querySelectorAll('[data-media]').forEach(function(b){ b.addEventListener('click',function(){ tjToast(b.getAttribute('data-media')); }); });
+  var pv=document.getElementById('tj-prev'); if(pv) pv.addEventListener('click',function(){ if(TJ_I>0){ TJ_I--; renderTajweed(); } });
+  var nx=document.getElementById('tj-next'); if(nx) nx.addEventListener('click',function(){ if(last){ tjFinish(); } else { TJ_I++; renderTajweed(); } });
+}
+function tjFinish(){
+  var p=loadProg(); p.tj=TJ_STEPS.length; if(p.levels.indexOf('lc3')<0)p.levels.push('lc3'); saveProg(p);
+  markLevelDone('lc3',true); updateCompleteButtons(); renderDashboard(); renderChallenge();
+  showToast(LANG==='te'?'✦ మాషా అల్లాహ్! మీరు తజ్వీద్ అకాడమీ పూర్తి చేశారు':'✦ Masha\'Allah! You completed the Tajweed Academy');
+}
+
+/* ── LEVEL COMPLETION ── */
+function markLevelDone(id,done){
+  var el=document.getElementById(id); if(!el) return;
+  el.classList.toggle('done',done);
+  var btn=el.querySelector('.lc-complete'); if(btn) btn.classList.toggle('done',done);
+}
+function toggleLevel(id){
+  var p=loadProg(); var i=p.levels.indexOf(id);
+  if(i>=0) p.levels.splice(i,1); else p.levels.push(id);
+  saveProg(p);
+  markLevelDone(id,p.levels.indexOf(id)>=0);
+  updateCompleteButtons(); renderDashboard(); renderChallenge();
+}
+function updateCompleteButtons(){
+  var p=loadProg();
+  document.querySelectorAll('.lc-complete').forEach(function(btn){
+    var lc=btn.closest('.lc'); var done=!!(lc&&p.levels.indexOf(lc.id)>=0);
+    btn.classList.toggle('done',done);
+    var txt=btn.querySelector('.lc-complete-txt');
+    if(txt) txt.textContent=done?(LANG==='te'?'పూర్తయింది':'Completed'):(LANG==='te'?'పూర్తి అయినట్లు గుర్తించండి':'Mark as complete');
+  });
+}
+function initLevelsProgress(){
+  var p=loadProg();
+  document.querySelectorAll('.lc').forEach(function(lc){
+    var inner=lc.querySelector('.lc-inner'); if(!inner||inner.querySelector('.lc-complete')) return;
+    var btn=document.createElement('button');
+    btn.className='lc-complete'; btn.type='button';
+    btn.innerHTML='<span class="lc-check">✓</span><span class="lc-complete-txt"></span>';
+    btn.addEventListener('click',function(e){ e.stopPropagation(); toggleLevel(lc.id); });
+    inner.appendChild(btn);
+    if(p.levels.indexOf(lc.id)>=0) lc.classList.add('done');
+  });
+  updateCompleteButtons();
+}
+
+/* ── PROGRESS DASHBOARD ── */
+function renderDashboard(){
+  var body=document.getElementById('dash-body'); if(!body) return;
+  var p=loadProg(); var s=ensureToday(loadCh());
+  var lessons=p.levels.length; var tj=p.tj||0; var tjTotal=TJ_STEPS.length;
+  var done=lessons+(tj>=tjTotal?1:0); var mtotal=7;
+  var pct=Math.min(100,Math.round(done/mtotal*100));
+  var lv;
+  if(done===0) lv={en:'Beginner',te:'ప్రారంభకుడు'};
+  else if(done<3) lv={en:'Reader',te:'పాఠకుడు'};
+  else if(done<5) lv={en:'Student',te:'విద్యార్థి'};
+  else if(done<mtotal) lv={en:'Devotee',te:'నిష్ఠాపరుడు'};
+  else lv={en:'Companion',te:'సహచరుడు'};
+  var lvName=LANG==='te'?lv.te:lv.en;
+  var T=(LANG==='te')
+    ?{lessons:'పాఠాలు పూర్తయ్యాయి',tajweed:'తజ్వీద్ నియమాలు',days:'సవాల్ రోజులు',mastery:'ప్రావీణ్యం',mtitle:'మీ ప్రావీణ్య స్థాయి',msub:done+'/'+mtotal+' మైలురాళ్లు పూర్తయ్యాయి'}
+    :{lessons:'Lessons Done',tajweed:'Tajweed Rules',days:'Challenge Days',mastery:'Mastery',mtitle:'Your Mastery Level',msub:done+' of '+mtotal+' milestones complete'};
+  function tile(ic,num,label,sm){ return '<div class="dash-tile"><div class="dash-tile-ic">'+ic+'</div><div class="dash-tile-num'+(sm?' sm':'')+'">'+num+'</div><div class="dash-tile-label">'+label+'</div></div>'; }
+  body.innerHTML=
+    '<div class="dash-grid">'
+      +tile('📘',lessons+'/6',T.lessons)
+      +tile('🎵',tj+'/'+tjTotal,T.tajweed)
+      +tile('🗓️',s.total,T.days)
+      +tile('🏅',lvName,T.mastery,true)
+    +'</div>'
+    +'<div class="dash-mastery">'
+      +'<div class="dash-mastery-top"><span class="dash-mastery-title">'+T.mtitle+'</span><span class="dash-mastery-level">'+lvName+'</span></div>'
+      +'<div class="dash-mbar"><div class="dash-mbar-fill" style="width:'+pct+'%"></div></div>'
+      +'<div class="dash-mastery-sub">'+T.msub+'</div>'
+    +'</div>';
+  var f=body.querySelector('.dash-mbar-fill');
+  if(f){ var w=f.style.width; f.style.width='0'; requestAnimationFrame(function(){ requestAnimationFrame(function(){ f.style.width=w; }); }); }
+}
+
+/* ── LANG ── */
+var LANG=localStorage.getItem('if-lang')||'te';
+function applyLang(l){
+  LANG=l; localStorage.setItem('if-lang',l);
+  document.documentElement.lang=(l==='te')?'te':'en';
+  document.querySelectorAll('[data-te]').forEach(function(el){
+    var v=el.getAttribute('data-'+l);
+    if(v!=null) el.innerHTML=v;
+  });
+  var btn=document.getElementById('lang-btn');
+  if(btn){btn.textContent=l==='te'?'English':'తెలుగు';btn.setAttribute('aria-label',l==='te'?'Switch to English':'Switch to Telugu');}
+  renderSurahs();
+  renderQDuas();
+  renderChallenge();
+  renderAyah();
+  renderMot();
+  renderTajweed();
+  renderDashboard();
+  updateCompleteButtons();
+}
+function toggleLang(){ applyLang(LANG==='te'?'en':'te'); }
+window.toggleLang=toggleLang;
+
+/* ── RENDER SURAHS ── */
+var QDUAS=[
+  {ref_en:'Quran 2:201',ref_te:'ఖురాన్ 2:201',ar:'رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ',tr_en:'Rabbana atina fid-dunya hasanatan wa fil-akhirati hasanatan wa qina adhaban-nar',tr_te:'రబ్బనా ఆతినా ఫిద్-దున్యా హసనతన్ వ ఫిల్-ఆఖిరతి హసనతన్ వ ఖినా అజాబన్-నార్',m_en:'Our Lord, give us good in this world and good in the Hereafter, and save us from the punishment of the Fire.',m_te:'ఓ మా ప్రభూ, మాకు ఇహలోకంలో మేలు, పరలోకంలో మేలు ప్రసాదించు, నరకాగ్ని శిక్ష నుండి మమ్మల్ని కాపాడు.'},
+  {ref_en:'Quran 20:114',ref_te:'ఖురాన్ 20:114',ar:'رَبِّ زِدْنِي عِلْمًا',tr_en:'Rabbi zidni ilma',tr_te:'రబ్బి జిద్నీ ఇల్మా',m_en:'My Lord, increase me in knowledge.',m_te:'ఓ నా ప్రభూ, నా జ్ఞానాన్ని పెంచు.'},
+  {ref_en:'Quran 20:25-26',ref_te:'ఖురాన్ 20:25-26',ar:'رَبِّ اشْرَحْ لِي صَدْرِي وَيَسِّرْ لِي أَمْرِي',tr_en:'Rabbi-shrah li sadri wa yassir li amri',tr_te:'రబ్బి ష్రహ్ లీ సద్రీ వ యస్సిర్ లీ అమ్రీ',m_en:'My Lord, open up my heart for me and make my task easy for me.',m_te:'ఓ నా ప్రభూ, నా హృదయాన్ని విశాలం చేయి, నా పనిని సులభం చేయి.'},
+  {ref_en:'Quran 25:74',ref_te:'ఖురాన్ 25:74',ar:'رَبَّنَا هَبْ لَنَا مِنْ أَزْوَاجِنَا وَذُرِّيَّاتِنَا قُرَّةَ أَعْيُنٍ',tr_en:'Rabbana hab lana min azwajina wa dhurriyyatina qurrata ayun',tr_te:'రబ్బనా హబ్ లనా మిన్ అజ్వాజినా వ జుర్రియ్యాతినా ఖుర్రత అఅయున్',m_en:'Our Lord, grant us joy in our spouses and children.',m_te:'ఓ మా ప్రభూ, మా జీవిత భాగస్వాములు, సంతానంలో మాకు కంటి చలువను ప్రసాదించు.'},
+  {ref_en:'Quran 2:286',ref_te:'ఖురాన్ 2:286',ar:'رَبَّنَا لَا تُؤَاخِذْنَا إِن نَّسِينَا أَوْ أَخْطَأْنَا',tr_en:'Rabbana la tu-akhidhna in nasina aw akhtana',tr_te:'రబ్బనా లా తుఆఖిజ్నా ఇన్ నసీనా అవ్ అఖ్తానా',m_en:'Our Lord, do not hold us to account if we forget or make a mistake.',m_te:'ఓ మా ప్రభూ, మేము మరచిపోయినా, తప్పు చేసినా మమ్మల్ని నిందించకు.'},
+  {ref_en:'Quran 3:8',ref_te:'ఖురాన్ 3:8',ar:'رَبَّنَا لَا تُزِغْ قُلُوبَنَا بَعْدَ إِذْ هَدَيْتَنَا',tr_en:'Rabbana la tuzigh qulubana bada idh hadaytana',tr_te:'రబ్బనా లా తుజిగ్ ఖులూబనా బఅద ఇజ్ హదైతనా',m_en:'Our Lord, do not let our hearts turn away after You have guided us.',m_te:'ఓ మా ప్రభూ, నీవు మాకు సన్మార్గం చూపిన తర్వాత మా హృదయాలను తప్పుదోవ పట్టించకు.'}
+];
+function renderQDuas(){
+  var grid=document.getElementById('qduas-grid'); if(!grid) return;
+  grid.innerHTML=QDUAS.map(function(d){
+    var ref=LANG==='te'?d.ref_te:d.ref_en;
+    var tr=LANG==='te'?d.tr_te:d.tr_en;
+    var m=LANG==='te'?d.m_te:d.m_en;
+    return '<div class="qd-card reveal reveal-in">'
+      +'<span class="qd-ref">'+ref+'</span>'
+      +'<div class="qd-ar" lang="ar" dir="rtl">'+d.ar+'</div>'
+      +'<div class="qd-tr">'+tr+'</div>'
+      +'<div class="qd-m">'+m+'</div>'
+    +'</div>';
+  }).join('');
+}
+function renderSurahs(){
+  var grid=document.getElementById('surah-grid');
+  if(!grid) return;
+  var L_learn=LANG==='te'?'నేర్చుకోండి':'Learn';
+  var L_taf=LANG==='te'?'తఫ్సీర్':'Tafseer';
+  var L_mem=LANG==='te'?'కంఠస్థం':'Memorize';
+  var L_kl=LANG==='te'?'పాఠం:':'Lesson:';
+  var L_play=LANG==='te'?'పఠనం వినండి':'Listen to recitation';
+  grid.innerHTML=SURAHS.map(function(s){
+    var meaning=LANG==='te'?s.te_m:s.en_m;
+    var virtue=LANG==='te'?s.te_v:s.en_v;
+    var kl=LANG==='te'?s.kl_te:s.kl_en;
+    return '<div class="surah-card reveal reveal-in">'
+      +'<div class="surah-top">'
+        +'<div class="surah-ar" lang="ar" dir="rtl">'+s.ar+'</div>'
+        +'<div class="surah-no">#'+s.no+'</div>'
+      +'</div>'
+      +'<div class="surah-en">'+s.en+'</div>'
+      +'<div class="surah-meaning">'+meaning+'</div>'
+      +'<p class="surah-virtue">'+virtue+'</p>'
+      +'<div class="surah-kl"><b>'+L_kl+'</b><span>'+kl+'</span></div>'
+      +'<button type="button" class="surah-audio" data-if-audio="https://everyayah.com/data/Alafasy_128kbps/'+('00'+s.no).slice(-3)+'001.mp3" aria-label="'+L_play+'">🔊 '+L_play+'</button>'
+      +'<div class="surah-btns">'
+        +'<a class="surah-btn primary" href="#lc4">'+L_learn+'</a>'
+        +'<a class="surah-btn" href="#lc6">'+L_taf+'</a>'
+        +'<a class="surah-btn" href="#lc5">'+L_mem+'</a>'
+      +'</div>'
+    +'</div>';
+  }).join('');
+  grid.querySelectorAll('[data-media]').forEach(function(b){ b.addEventListener('click',function(){ tjToast(b.getAttribute('data-media')); }); });
+}
+
+/* ── DAILY CHALLENGE LOGIC ── */
+function dstr(d){ return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate(); }
+function loadCh(){ try{ return JSON.parse(localStorage.getItem(CH_KEY))||{}; }catch(e){ return {}; } }
+function saveCh(s){ try{ localStorage.setItem(CH_KEY,JSON.stringify(s)); }catch(e){} }
+function ensureToday(s){
+  var t=dstr(new Date());
+  if(s.date!==t){ s.date=t; s.done=[false,false,false,false]; }
+  if(!Array.isArray(s.done)||s.done.length!==4) s.done=[false,false,false,false];
+  if(typeof s.streak!=='number') s.streak=0;
+  if(typeof s.best!=='number') s.best=0;
+  if(typeof s.total!=='number') s.total=0;
+  return s;
+}
+function renderChallenge(){
+  var list=document.getElementById('ch-list');
+  if(!list) return;
+  var s=ensureToday(loadCh());
+  list.innerHTML=CH_ITEMS.map(function(it,i){
+    var label=LANG==='te'?it.te:it.en;
+    return '<button class="ch-item'+(s.done[i]?' done':'')+'" data-i="'+i+'" type="button">'
+      +'<span class="ch-check">✓</span>'
+      +'<span class="ch-ic">'+it.ic+'</span>'
+      +'<span class="ch-item-txt">'+label+'</span>'
+    +'</button>';
+  }).join('');
+  list.querySelectorAll('.ch-item').forEach(function(btn){
+    btn.addEventListener('click',function(){ toggleCh(parseInt(btn.getAttribute('data-i'),10)); });
+  });
+  var count=s.done.filter(Boolean).length;
+  var cEl=document.getElementById('ch-count'); if(cEl) cEl.textContent=count;
+  var fill=document.getElementById('ch-bar-fill'); if(fill) fill.style.width=(count/4*100)+'%';
+  var msg=document.getElementById('ch-done-msg'); if(msg) msg.classList.toggle('show',count===4);
+  var sn=document.getElementById('ch-streak-num'); if(sn) sn.textContent=s.streak;
+  var tot=document.getElementById('ch-total'); if(tot) tot.textContent=s.total;
+  var dateEl=document.getElementById('ch-date');
+  if(dateEl){
+    var opts={weekday:'long',year:'numeric',month:'long',day:'numeric'};
+    try{ dateEl.textContent=new Date().toLocaleDateString(LANG==='te'?'te-IN':'en-US',opts); }
+    catch(e){ dateEl.textContent=new Date().toDateString(); }
+  }
+  var row=document.getElementById('ch-badge-row');
+  if(row){
+    var lessons=loadProg().levels.length;
+    row.innerHTML=BADGES.map(function(b){
+      var unlocked=(b.type==='lessons')?(lessons>=b.n):(s.best>=b.n);
+      var name=LANG==='te'?b.te:b.en;
+      return '<div class="ch-badge'+(unlocked?' unlocked':'')+'">'
+        +'<div class="ch-badge-ic">'+b.ic+'</div>'
+        +'<div class="ch-badge-name">'+name+'</div>'
+      +'</div>';
+    }).join('');
+  }
+  renderDashboard();
+}
+function toggleCh(i){
+  var s=ensureToday(loadCh());
+  s.done[i]=!s.done[i];
+  var t=dstr(new Date());
+  if(s.done.every(Boolean) && s.lastComplete!==t){
+    var y=new Date(); y.setDate(y.getDate()-1); var ys=dstr(y);
+    s.streak=(s.lastComplete===ys)?(s.streak+1):1;
+    s.best=Math.max(s.best,s.streak);
+    s.total=(s.total||0)+1;
+    s.lastComplete=t;
+  }
+  saveCh(s);
+  renderChallenge();
+}
+
+/* ── AYAH OF THE DAY ── */
+function dayIndex(){ return Math.floor(Date.now()/86400000); }
+function renderAyah(){
+  var a=AYAT[dayIndex()%AYAT.length];
+  var ar=document.getElementById('ch-ayah-ar');
+  var tr=document.getElementById('ch-ayah-tr');
+  var ref=document.getElementById('ch-ayah-ref');
+  if(!ar) return;
+  ar.textContent=a.ar;
+  tr.textContent='“'+(LANG==='te'?a.te:a.en)+'”';
+  ref.textContent='— '+a.ref;
+  var pr=document.getElementById('ch-reflect-prompt'); if(pr) pr.textContent=LANG==='te'?a.p_te:a.p_en;
+  var ac=document.getElementById('ch-reflect-action'); if(ac) ac.textContent=LANG==='te'?a.a_te:a.a_en;
+}
+function renderMot(){
+  var m=MOTS[dayIndex()%MOTS.length];
+  var el=document.getElementById('mot-txt');
+  if(el) el.textContent=LANG==='te'?m.te:m.en;
+}
+
+/* ── LEVEL CARD ACCORDION ── */
+function toggleLC(id){
+  var el=document.getElementById(id);
+  var isOpen=el.classList.contains('lc-open');
+  document.querySelectorAll('.lc').forEach(function(c){
+    c.classList.remove('lc-open');
+    var h=c.querySelector('.lc-head'); if(h) h.setAttribute('aria-expanded','false');
+  });
+  if(!isOpen){ el.classList.add('lc-open'); el.querySelector('.lc-head').setAttribute('aria-expanded','true'); }
+}
+window.toggleLC=toggleLC;
+
+/* ── ROADMAP → scroll to the level, open it ── */
+function gotoLevel(id){
+  var el=document.getElementById(id);
+  if(!el) return;
+  el.classList.add('reveal-in');
+  if(!el.classList.contains('lc-open')){
+    el.classList.add('lc-open');
+    var h=el.querySelector('.lc-head'); if(h) h.setAttribute('aria-expanded','true');
+  }
+  requestAnimationFrame(function(){
+    var y=el.getBoundingClientRect().top+window.pageYOffset-108;
+    window.scrollTo({top: y<0?0:y, behavior:'smooth'});
+  });
+}
+function initRoadmap(){
+  document.querySelectorAll('.rm-track .rm-node').forEach(function(a){
+    a.addEventListener('click',function(e){
+      var id=(a.getAttribute('href')||'').replace('#','');
+      if(id.indexOf('lc')===0){ e.preventDefault(); gotoLevel(id); }
+    });
+  });
+  document.querySelectorAll('.rm-mobile .rm-mnode').forEach(function(node,i){
+    node.style.cursor='pointer';
+    node.setAttribute('role','button');
+    node.setAttribute('tabindex','0');
+    node.addEventListener('click',function(){ gotoLevel('lc'+(i+1)); });
+    node.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); gotoLevel('lc'+(i+1)); } });
+  });
+  /* Surah buttons that target levels should also open the level */
+  document.addEventListener('click',function(e){
+    var a=e.target.closest && e.target.closest('.surah-btn');
+    if(!a) return;
+    var id=(a.getAttribute('href')||'').replace('#','');
+    if(id.indexOf('lc')===0){ e.preventDefault(); gotoLevel(id); }
+  });
+}
+
+/* ── STICKY NAV on hero exit ── */
+function initSticky(){
+  var hero=document.getElementById('home');
+  var sticky=document.getElementById('al-sticky');
+  if(!hero||!sticky) return;
+  var io=new IntersectionObserver(function(entries){
+    sticky.classList.toggle('sticky-on',!entries[0].isIntersecting);
+  },{threshold:0,rootMargin:'-68px 0px 0px 0px'});
+  io.observe(hero);
+}
+
+/* ── SPY ACTIVE ── */
+function initSpy(){
+  var links=document.querySelectorAll('.al-sticky a[data-spy]');
+  if(!links.length) return;
+  var secs=Array.from(links).map(function(a){ return document.getElementById(a.dataset.spy); }).filter(Boolean);
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        links.forEach(function(a){ a.classList.toggle('spy-active',a.dataset.spy===e.target.id); });
+      }
+    });
+  },{rootMargin:'-70px 0px -60% 0px',threshold:0});
+  secs.forEach(function(s){ io.observe(s); });
+}
+
+/* ── SCROLL REVEAL ── */
+function initReveal(){
+  if(!window.IntersectionObserver){ document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('reveal-in')}); return; }
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('reveal-in'); io.unobserve(e.target); } });
+  },{threshold:.08});
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+}
+
+/* ── BACK TO TOP ── */
+function initBTT(){
+  var btn=document.getElementById('btt');
+  if(!btn) return;
+  window.addEventListener('scroll',function(){ btn.classList.toggle('show',window.scrollY>500); },{passive:true});
+}
+
+/* ── BOOT ── */
+document.addEventListener('DOMContentLoaded',function(){
+  initLevelsProgress();
+  applyLang(LANG);
+  initSticky();
+  initSpy();
+  initReveal();
+  initBTT();
+  initRoadmap();
+});
+})();
+</script>
+</body>
+</html>

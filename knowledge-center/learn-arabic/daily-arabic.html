@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="te" dir="ltr">
+<html lang="te" id="html-root">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -20,11 +20,14 @@
 html{scroll-behavior:smooth}
 body{font-family:'DM Sans',sans-serif;color:var(--text-dark);background:var(--cream);overflow-x:hidden}
 a{color:inherit;text-decoration:none}
+[id]{scroll-margin-top:114px}
+::selection{background:rgba(200,146,42,0.28)}
 
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(13,59,30,0.92);backdrop-filter:blur(12px);padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:56px;border-bottom:1px solid rgba(200,146,42,0.18)}
+nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(13,59,30,0.92);backdrop-filter:blur(12px);padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:68px;border-bottom:1px solid rgba(200,146,42,0.18)}
 .nav-brand{display:flex;align-items:center;gap:10px;color:var(--gold-light);font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700}
-.nav-brand span{font-size:1.4rem}
+.nav-logo{width:38px;height:38px;border-radius:50%;object-fit:cover;flex-shrink:0}
+.nav-logo-svg{display:none;width:38px;height:38px;flex-shrink:0}
 .nav-links{display:flex;align-items:center;gap:16px}
 .nav-links a{color:rgba(245,230,192,0.75);font-size:.82rem;font-weight:500;transition:color .2s}
 .nav-links a:hover{color:var(--gold-light)}
@@ -32,7 +35,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(13,59,30,0.9
 .lang-btn:hover{background:var(--gold);color:var(--green-deep)}
 
 /* HERO */
-.lesson-hero{background:linear-gradient(145deg,#071e0e,var(--green-deep));padding:96px 20px 56px;text-align:center}
+.lesson-hero{background:linear-gradient(145deg,#071e0e,var(--green-deep));padding:108px 20px 56px;text-align:center}
 .breadcrumb{display:flex;align-items:center;justify-content:center;gap:8px;font-size:.76rem;color:rgba(245,230,192,.50);margin-bottom:20px;flex-wrap:wrap}
 .breadcrumb a{color:rgba(245,230,192,.50);transition:color .2s}
 .breadcrumb a:hover{color:var(--gold-light)}
@@ -43,7 +46,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(13,59,30,0.9
 .lesson-sub{font-size:.95rem;color:rgba(245,230,192,.65);max-width:520px;margin:0 auto;line-height:1.75}
 
 /* TAB NAV */
-.tab-nav{background:var(--green-mid);padding:0 20px;display:flex;align-items:center;overflow-x:auto;scrollbar-width:none;border-bottom:1px solid rgba(200,146,42,0.20);position:sticky;top:56px;z-index:800}
+.tab-nav{background:var(--green-mid);padding:0 20px;display:flex;align-items:center;overflow-x:auto;scrollbar-width:none;border-bottom:1px solid rgba(200,146,42,0.20);position:sticky;top:68px;z-index:800}
 .tab-nav::-webkit-scrollbar{display:none}
 .tab-nav a{white-space:nowrap;font-size:.80rem;font-weight:500;color:rgba(245,230,192,.60);padding:0 18px;height:46px;display:inline-flex;align-items:center;border-bottom:2px solid transparent;transition:all .2s;flex-shrink:0}
 .tab-nav a:hover,.tab-nav a.active{color:var(--gold-light);border-bottom-color:var(--gold)}
@@ -114,21 +117,38 @@ nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(13,59,30,0.9
 
 @media print{nav,.tab-nav,#btt,.lang-btn{display:none!important}}
 @media(max-width:600px){
-  nav{height:auto;min-height:56px;padding:8px 16px;flex-wrap:wrap}
+  nav{height:auto;min-height:68px;padding:8px 16px;flex-wrap:wrap}
   .nav-links a{display:none}
   .nav-links{gap:8px}
   .lesson-hero,.sec,.dark-sec,.next-sec{padding-left:16px;padding-right:16px}
-  .lesson-hero{padding-top:80px;padding-bottom:44px}
+  .lesson-hero{padding-top:92px;padding-bottom:44px}
   .sec,.dark-sec{padding-top:56px;padding-bottom:56px}
   .expr-grid{grid-template-columns:1fr}
   .phrase-card,.conv-card{padding:18px 16px}
 }
 </style>
+<link rel="stylesheet" href="../../assets/css/if-standard.css">
+<script defer src="../../assets/js/if-engage.js"></script>
+<script defer src="../../assets/js/if-search.js"></script>
+<script defer src="../../assets/js/if-media.js"></script>
+<script defer src="../../assets/js/if-xp.js"></script>
+<script defer src="../../assets/js/if-profile.js"></script>
+<script defer src="../../assets/js/if-order.js"></script>
+<script defer src="../../assets/js/if-jsonld.js"></script>
 </head>
 <body>
 
 <nav>
-  <a class="nav-brand" href="../../index.html"><span>☪</span><span data-te="ఇస్లామిక్ ఫ్రంట్" data-en="Islamic Front">ఇస్లామిక్ ఫ్రంట్</span></a>
+  <a class="nav-brand" href="../../index.html">
+    <img src="../../assets/logo-emblem.png" class="nav-logo" alt="Islamic Front Logo"
+         onerror="this.style.display='none';document.getElementById('nav-svg-ar-da').style.display='block'">
+    <svg id="nav-svg-ar-da" class="nav-logo-svg" viewBox="0 0 42 42" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <circle cx="21" cy="21" r="20" fill="none" stroke="#c8922a" stroke-width="1.5"/>
+      <text x="21" y="17" text-anchor="middle" font-family="serif" font-size="13" fill="#e8b84b" font-weight="700">إسلامی</text>
+      <text x="21" y="30" text-anchor="middle" font-family="sans-serif" font-size="7" fill="#c8922a" letter-spacing="1">FRONT</text>
+    </svg>
+    <span data-te="ఇస్లామిక్ ఫ్రంట్" data-en="Islamic Front">ఇస్లామిక్ ఫ్రంట్</span>
+  </a>
   <div class="nav-links">
     <a href="./index.html" data-te="అరబిక్ పోర్టల్" data-en="Arabic Portal">Arabic Portal</a>
     <a href="../../islamic-knowledge.html" data-te="జ్ఞాన కేంద్రం" data-en="KC">KC</a>
@@ -382,6 +402,26 @@ nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(13,59,30,0.9
   </div>
 </section>
 
+<style>
+.lnav{max-width:780px;margin:48px auto 8px;padding:0 16px;display:flex;align-items:stretch;gap:14px}
+.lnav a{flex:1 1 0;display:flex;flex-direction:column;justify-content:center;gap:4px;min-height:62px;padding:14px 20px;border-radius:var(--radius,16px);border:1px solid var(--border);background:var(--white);text-decoration:none;transition:transform .2s,box-shadow .2s,border-color .2s;min-width:0}
+.lnav a:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(13,59,30,0.10);border-color:rgba(200,146,42,0.45)}
+.lnav-prev{align-items:flex-start;text-align:left}
+.lnav-next{align-items:flex-end;text-align:right}
+.lnav-dir{font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
+.lnav-title{font-size:.95rem;font-weight:700;line-height:1.2;color:var(--text-dark);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+@media(max-width:520px){.lnav{gap:10px;margin:36px auto 8px}.lnav a{padding:12px 14px;min-height:56px}.lnav-title{font-size:.84rem}}
+</style>
+<nav class="lnav" aria-label="Lesson navigation">
+  <a class="lnav-prev" href="vocabulary.html">
+    <span class="lnav-dir">← <span data-te="మునుపటి" data-en="Previous">Previous</span></span>
+    <span class="lnav-title" data-te="పదజాలం" data-en="Vocabulary">Vocabulary</span>
+  </a>
+  <a class="lnav-next" href="quranic-arabic.html">
+    <span class="lnav-dir"><span data-te="తదుపరి" data-en="Next">Next</span> →</span>
+    <span class="lnav-title" data-te="ఖురానీ అరబిక్" data-en="Quranic Arabic">Quranic Arabic</span>
+  </a>
+</nav>
 <footer class="site-footer">
   <div class="site-footer-links">
     <a href="../../index.html" data-te="హోమ్" data-en="Home">Home</a>
@@ -408,7 +448,7 @@ function applyLang(l) {
     if (val) el.innerHTML = val;
   });
   var btn = document.getElementById('lang-btn');
-  if (btn) btn.textContent = l === 'te' ? 'English' : 'తెలుగు';
+  if(btn){btn.textContent=l==='te'?'English':'తెలుగు';btn.setAttribute('aria-label',l==='te'?'Switch to English':'Switch to Telugu');}
 }
 
 function toggleLang() { applyLang(lang === 'te' ? 'en' : 'te'); }
@@ -431,5 +471,7 @@ window.addEventListener('scroll', function() {
   if (btt) btt.classList.toggle('show', window.scrollY > 300);
 });
 </script>
+<script defer src="../../assets/data/sublesson-data.js"></script>
+<script defer src="../../assets/js/if-sublesson.js"></script>
 </body>
 </html>

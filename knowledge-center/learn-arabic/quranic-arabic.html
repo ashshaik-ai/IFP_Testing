@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="te" dir="ltr">
+<html lang="te" id="html-root">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -20,11 +20,14 @@
 html{scroll-behavior:smooth}
 body{font-family:'DM Sans',sans-serif;color:var(--text-dark);background:var(--cream);overflow-x:hidden}
 a{color:inherit;text-decoration:none}
+[id]{scroll-margin-top:114px}
+::selection{background:rgba(200,146,42,0.28)}
 
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(13,59,30,0.92);backdrop-filter:blur(12px);padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:56px;border-bottom:1px solid rgba(200,146,42,0.18)}
+nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(13,59,30,0.92);backdrop-filter:blur(12px);padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:68px;border-bottom:1px solid rgba(200,146,42,0.18)}
 .nav-brand{display:flex;align-items:center;gap:10px;color:var(--gold-light);font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700}
-.nav-brand span{font-size:1.4rem}
+.nav-logo{width:38px;height:38px;border-radius:50%;object-fit:cover;flex-shrink:0}
+.nav-logo-svg{display:none;width:38px;height:38px;flex-shrink:0}
 .nav-links{display:flex;align-items:center;gap:16px}
 .nav-links a{color:rgba(245,230,192,0.75);font-size:.82rem;font-weight:500;transition:color .2s}
 .nav-links a:hover{color:var(--gold-light)}
@@ -32,7 +35,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(13,59,30,0.9
 .lang-btn:hover{background:var(--gold);color:var(--green-deep)}
 
 /* HERO */
-.lesson-hero{background:linear-gradient(145deg,#071e0e,var(--green-deep));padding:96px 20px 56px;text-align:center}
+.lesson-hero{background:linear-gradient(145deg,#071e0e,var(--green-deep));padding:108px 20px 56px;text-align:center}
 .breadcrumb{display:flex;align-items:center;justify-content:center;gap:8px;font-size:.76rem;color:rgba(245,230,192,.50);margin-bottom:20px;flex-wrap:wrap}
 .breadcrumb a{color:rgba(245,230,192,.50);transition:color .2s}
 .breadcrumb a:hover{color:var(--gold-light)}
@@ -43,7 +46,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(13,59,30,0.9
 .lesson-sub{font-size:.95rem;color:rgba(245,230,192,.65);max-width:520px;margin:0 auto;line-height:1.75}
 
 /* TAB NAV */
-.tab-nav{background:var(--green-mid);padding:0 20px;display:flex;align-items:center;overflow-x:auto;scrollbar-width:none;border-bottom:1px solid rgba(200,146,42,0.20);position:sticky;top:56px;z-index:800}
+.tab-nav{background:var(--green-mid);padding:0 20px;display:flex;align-items:center;overflow-x:auto;scrollbar-width:none;border-bottom:1px solid rgba(200,146,42,0.20);position:sticky;top:68px;z-index:800}
 .tab-nav::-webkit-scrollbar{display:none}
 .tab-nav a{white-space:nowrap;font-size:.80rem;font-weight:500;color:rgba(245,230,192,.60);padding:0 18px;height:46px;display:inline-flex;align-items:center;border-bottom:2px solid transparent;transition:all .2s;flex-shrink:0}
 .tab-nav a:hover,.tab-nav a.active{color:var(--gold-light);border-bottom-color:var(--gold)}
@@ -119,22 +122,39 @@ nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(13,59,30,0.9
 
 @media print{nav,.tab-nav,#btt,.lang-btn{display:none!important}}
 @media(max-width:600px){
-  nav{height:auto;min-height:56px;padding:8px 16px;flex-wrap:wrap}
+  nav{height:auto;min-height:68px;padding:8px 16px;flex-wrap:wrap}
   .nav-links a{display:none}
   .nav-links{gap:8px}
   .lesson-hero,.sec,.dark-sec,.next-sec{padding-left:16px;padding-right:16px}
-  .lesson-hero{padding-top:80px;padding-bottom:44px}
+  .lesson-hero{padding-top:92px;padding-bottom:44px}
   .sec,.dark-sec{padding-top:56px;padding-bottom:56px}
   .word-grid{grid-template-columns:repeat(2,1fr)}
   .root-grid{grid-template-columns:1fr}
   .verse-card{padding:20px 16px 20px 20px}
 }
 </style>
+<link rel="stylesheet" href="../../assets/css/if-standard.css">
+<script defer src="../../assets/js/if-engage.js"></script>
+<script defer src="../../assets/js/if-search.js"></script>
+<script defer src="../../assets/js/if-media.js"></script>
+<script defer src="../../assets/js/if-xp.js"></script>
+<script defer src="../../assets/js/if-profile.js"></script>
+<script defer src="../../assets/js/if-order.js"></script>
+<script defer src="../../assets/js/if-jsonld.js"></script>
 </head>
 <body>
 
 <nav>
-  <a class="nav-brand" href="../../index.html"><span>☪</span><span data-te="ఇస్లామిక్ ఫ్రంట్" data-en="Islamic Front">ఇస్లామిక్ ఫ్రంట్</span></a>
+  <a class="nav-brand" href="../../index.html">
+    <img src="../../assets/logo-emblem.png" class="nav-logo" alt="Islamic Front Logo"
+         onerror="this.style.display='none';document.getElementById('nav-svg-ar-qa').style.display='block'">
+    <svg id="nav-svg-ar-qa" class="nav-logo-svg" viewBox="0 0 42 42" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <circle cx="21" cy="21" r="20" fill="none" stroke="#c8922a" stroke-width="1.5"/>
+      <text x="21" y="17" text-anchor="middle" font-family="serif" font-size="13" fill="#e8b84b" font-weight="700">إسلامی</text>
+      <text x="21" y="30" text-anchor="middle" font-family="sans-serif" font-size="7" fill="#c8922a" letter-spacing="1">FRONT</text>
+    </svg>
+    <span data-te="ఇస్లామిక్ ఫ్రంట్" data-en="Islamic Front">ఇస్లామిక్ ఫ్రంట్</span>
+  </a>
   <div class="nav-links">
     <a href="./index.html" data-te="అరబిక్ పోర్టల్" data-en="Arabic Portal">Arabic Portal</a>
     <a href="../../islamic-knowledge.html" data-te="జ్ఞాన కేంద్రం" data-en="KC">KC</a>
@@ -171,151 +191,151 @@ nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(13,59,30,0.9
         <span class="word-ar" lang="ar" dir="rtl">اللَّه</span>
         <div class="word-tr">Allāh</div>
         <div class="word-en" data-te="అల్లాహ్ (దేవుడు)" data-en="Allah (God)">Allah (God)</div>
-        <span class="word-ref">2699× in Quran</span>
+        <span class="word-ref" data-te="ఖురాన్‌లో 2699 సార్లు" data-en="2699× in Quran">2699× in Quran</span>
       </div>
       <div class="word-card">
         <span class="word-ar" lang="ar" dir="rtl">رَبّ</span>
         <div class="word-tr">Rabb</div>
         <div class="word-en" data-te="ప్రభువు, పోషకుడు" data-en="Lord, Sustainer">Lord, Sustainer</div>
-        <span class="word-ref">975× in Quran</span>
+        <span class="word-ref" data-te="ఖురాన్‌లో 975 సార్లు" data-en="975× in Quran">975× in Quran</span>
       </div>
       <div class="word-card">
         <span class="word-ar" lang="ar" dir="rtl">قَالَ</span>
         <div class="word-tr">Qāla</div>
         <div class="word-en" data-te="అతను చెప్పాడు" data-en="He said">He said</div>
-        <span class="word-ref">1722× in Quran</span>
+        <span class="word-ref" data-te="ఖురాన్‌లో 1722 సార్లు" data-en="1722× in Quran">1722× in Quran</span>
       </div>
       <div class="word-card">
         <span class="word-ar" lang="ar" dir="rtl">مِن</span>
         <div class="word-tr">Min</div>
         <div class="word-en" data-te="నుండి, లో నుండి" data-en="From, of, among">From, of, among</div>
-        <span class="word-ref">3226× in Quran</span>
+        <span class="word-ref" data-te="ఖురాన్‌లో 3226 సార్లు" data-en="3226× in Quran">3226× in Quran</span>
       </div>
       <div class="word-card">
         <span class="word-ar" lang="ar" dir="rtl">فِي</span>
         <div class="word-tr">Fī</div>
         <div class="word-en" data-te="లో, మధ్య" data-en="In, within, among">In, within, among</div>
-        <span class="word-ref">1713× in Quran</span>
+        <span class="word-ref" data-te="ఖురాన్‌లో 1713 సార్లు" data-en="1713× in Quran">1713× in Quran</span>
       </div>
       <div class="word-card">
         <span class="word-ar" lang="ar" dir="rtl">عَلَى</span>
         <div class="word-tr">'Alā</div>
         <div class="word-en" data-te="మీద, పై" data-en="On, upon, over">On, upon, over</div>
-        <span class="word-ref">1387× in Quran</span>
+        <span class="word-ref" data-te="ఖురాన్‌లో 1387 సార్లు" data-en="1387× in Quran">1387× in Quran</span>
       </div>
       <div class="word-card">
         <span class="word-ar" lang="ar" dir="rtl">هُوَ</span>
         <div class="word-tr">Huwa</div>
         <div class="word-en" data-te="అతను, ఆయన" data-en="He, Him (also Allah)">He, Him (also Allah)</div>
-        <span class="word-ref">700+ in Quran</span>
+        <span class="word-ref" data-te="ఖురాన్‌లో 700+ సార్లు" data-en="700+ in Quran">700+ in Quran</span>
       </div>
       <div class="word-card">
         <span class="word-ar" lang="ar" dir="rtl">مَا</span>
         <div class="word-tr">Mā</div>
         <div class="word-en" data-te="ఏమి, ఏది, లేదు" data-en="What, that which, not">What, that which, not</div>
-        <span class="word-ref">1150+ in Quran</span>
+        <span class="word-ref" data-te="ఖురాన్‌లో 1150+ సార్లు" data-en="1150+ in Quran">1150+ in Quran</span>
       </div>
       <div class="word-card">
         <span class="word-ar" lang="ar" dir="rtl">لَا</span>
         <div class="word-tr">Lā</div>
         <div class="word-en" data-te="లేదు, కాదు" data-en="No, not, do not">No, not, do not</div>
-        <span class="word-ref">5252× in Quran</span>
+        <span class="word-ref" data-te="ఖురాన్‌లో 5252 సార్లు" data-en="5252× in Quran">5252× in Quran</span>
       </div>
       <div class="word-card">
         <span class="word-ar" lang="ar" dir="rtl">إِنَّ</span>
         <div class="word-tr">Inna</div>
         <div class="word-en" data-te="నిశ్చయంగా, వాస్తవంగా" data-en="Indeed, verily, certainly">Indeed, verily, certainly</div>
-        <span class="word-ref">1635× in Quran</span>
+        <span class="word-ref" data-te="ఖురాన్‌లో 1635 సార్లు" data-en="1635× in Quran">1635× in Quran</span>
       </div>
       <div class="word-card">
         <span class="word-ar" lang="ar" dir="rtl">وَ</span>
         <div class="word-tr">Wa</div>
         <div class="word-en" data-te="మరియు, కూడా" data-en="And, also, while">And, also, while</div>
-        <span class="word-ref">Most common word</span>
+        <span class="word-ref" data-te="అత్యధికంగా వాడే పదం" data-en="Most common word">Most common word</span>
       </div>
       <div class="word-card">
         <span class="word-ar" lang="ar" dir="rtl">كَانَ</span>
         <div class="word-tr">Kāna</div>
         <div class="word-en" data-te="ఉండేది, అయి ఉంది" data-en="Was, is (stative), used to be">Was, used to be</div>
-        <span class="word-ref">1359× in Quran</span>
+        <span class="word-ref" data-te="ఖురాన్‌లో 1359 సార్లు" data-en="1359× in Quran">1359× in Quran</span>
       </div>
       <div class="word-card">
         <span class="word-ar" lang="ar" dir="rtl">الَّذِي</span>
         <div class="word-tr">Alladhī</div>
         <div class="word-en" data-te="ఎవరు, ఏది (సంబంధవాచి)" data-en="Who, which, that (relative)">Who, which, that</div>
-        <span class="word-ref">1465× in Quran</span>
+        <span class="word-ref" data-te="ఖురాన్‌లో 1465 సార్లు" data-en="1465× in Quran">1465× in Quran</span>
       </div>
       <div class="word-card">
         <span class="word-ar" lang="ar" dir="rtl">نَفْس</span>
         <div class="word-tr">Nafs</div>
         <div class="word-en" data-te="ఆత్మ, జీవి, స్వయంగా" data-en="Soul, self, person">Soul, self, person</div>
-        <span class="word-ref">295× in Quran</span>
+        <span class="word-ref" data-te="ఖురాన్‌లో 295 సార్లు" data-en="295× in Quran">295× in Quran</span>
       </div>
       <div class="word-card">
         <span class="word-ar" lang="ar" dir="rtl">يَوْم</span>
         <div class="word-tr">Yawm</div>
         <div class="word-en" data-te="రోజు, కాలం" data-en="Day, time, period">Day, time, period</div>
-        <span class="word-ref">475× in Quran</span>
+        <span class="word-ref" data-te="ఖురాన్‌లో 475 సార్లు" data-en="475× in Quran">475× in Quran</span>
       </div>
       <div class="word-card">
         <span class="word-ar" lang="ar" dir="rtl">قُل</span>
         <div class="word-tr">Qul</div>
         <div class="word-en" data-te="చెప్పు (ఆదేశం)" data-en="Say! (divine command)">Say! (divine command)</div>
-        <span class="word-ref">332× in Quran</span>
+        <span class="word-ref" data-te="ఖురాన్‌లో 332 సార్లు" data-en="332× in Quran">332× in Quran</span>
       </div>
       <div class="word-card">
         <span class="word-ar" lang="ar" dir="rtl">آمَنُوا</span>
         <div class="word-tr">Āmanū</div>
         <div class="word-en" data-te="విశ్వసించారు (వారు)" data-en="They believed">They believed</div>
-        <span class="word-ref">240+ in Quran</span>
+        <span class="word-ref" data-te="ఖురాన్‌లో 240+ సార్లు" data-en="240+ in Quran">240+ in Quran</span>
       </div>
       <div class="word-card">
         <span class="word-ar" lang="ar" dir="rtl">أَرْض</span>
         <div class="word-tr">Ard</div>
         <div class="word-en" data-te="భూమి, నేల" data-en="Earth, land, ground">Earth, land, ground</div>
-        <span class="word-ref">461× in Quran</span>
+        <span class="word-ref" data-te="ఖురాన్‌లో 461 సార్లు" data-en="461× in Quran">461× in Quran</span>
       </div>
       <div class="word-card">
         <span class="word-ar" lang="ar" dir="rtl">سَمَاء</span>
         <div class="word-tr">Samā'</div>
         <div class="word-en" data-te="ఆకాశం, స్వర్గం" data-en="Sky, heaven">Sky, heaven</div>
-        <span class="word-ref">310× in Quran</span>
+        <span class="word-ref" data-te="ఖురాన్‌లో 310 సార్లు" data-en="310× in Quran">310× in Quran</span>
       </div>
       <div class="word-card">
         <span class="word-ar" lang="ar" dir="rtl">حَقّ</span>
         <div class="word-tr">Haqq</div>
         <div class="word-en" data-te="సత్యం, హక్కు" data-en="Truth, right, due">Truth, right, due</div>
-        <span class="word-ref">287× in Quran</span>
+        <span class="word-ref" data-te="ఖురాన్‌లో 287 సార్లు" data-en="287× in Quran">287× in Quran</span>
       </div>
       <div class="word-card">
         <span class="word-ar" lang="ar" dir="rtl">عِلْم</span>
         <div class="word-tr">'Ilm</div>
         <div class="word-en" data-te="జ్ఞానం, విజ్ఞానం" data-en="Knowledge, science">Knowledge, science</div>
-        <span class="word-ref">854× in Quran</span>
+        <span class="word-ref" data-te="ఖురాన్‌లో 854 సార్లు" data-en="854× in Quran">854× in Quran</span>
       </div>
       <div class="word-card">
         <span class="word-ar" lang="ar" dir="rtl">كِتَاب</span>
         <div class="word-tr">Kitāb</div>
         <div class="word-en" data-te="పుస్తకం, గ్రంథం" data-en="Book, scripture, record">Book, scripture</div>
-        <span class="word-ref">261× in Quran</span>
+        <span class="word-ref" data-te="ఖురాన్‌లో 261 సార్లు" data-en="261× in Quran">261× in Quran</span>
       </div>
       <div class="word-card">
         <span class="word-ar" lang="ar" dir="rtl">قَوْم</span>
         <div class="word-tr">Qawm</div>
         <div class="word-en" data-te="ప్రజలు, సమాజం" data-en="People, nation, folk">People, nation</div>
-        <span class="word-ref">383× in Quran</span>
+        <span class="word-ref" data-te="ఖురాన్‌లో 383 సార్లు" data-en="383× in Quran">383× in Quran</span>
       </div>
       <div class="word-card">
         <span class="word-ar" lang="ar" dir="rtl">آيَة</span>
         <div class="word-tr">Āyah</div>
         <div class="word-en" data-te="ఆయత్, సంజ్ఞ" data-en="Verse, sign, miracle">Verse, sign, miracle</div>
-        <span class="word-ref">382× in Quran</span>
+        <span class="word-ref" data-te="ఖురాన్‌లో 382 సార్లు" data-en="382× in Quran">382× in Quran</span>
       </div>
       <div class="word-card">
         <span class="word-ar" lang="ar" dir="rtl">نَاس</span>
         <div class="word-tr">Nās</div>
         <div class="word-en" data-te="మానవులు, ప్రజలు" data-en="Mankind, people, humanity">Mankind, people</div>
-        <span class="word-ref">241× in Quran</span>
+        <span class="word-ref" data-te="ఖురాన్‌లో 241 సార్లు" data-en="241× in Quran">241× in Quran</span>
       </div>
     </div>
 
@@ -337,66 +357,66 @@ nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(13,59,30,0.9
         <span class="root-letters" lang="ar" dir="rtl">ك – ت – ب</span>
         <div class="root-meaning" data-te="మూల అర్థం: రాయడం" data-en="Root meaning: Writing">Root meaning: Writing</div>
         <div class="root-words">
-          <div class="root-word"><span class="root-word-ar" lang="ar" dir="rtl">كَتَبَ</span><span class="root-word-en">kataba · he wrote</span></div>
-          <div class="root-word"><span class="root-word-ar" lang="ar" dir="rtl">كِتَاب</span><span class="root-word-en">kitāb · book</span></div>
-          <div class="root-word"><span class="root-word-ar" lang="ar" dir="rtl">كَاتِب</span><span class="root-word-en">kātib · writer</span></div>
-          <div class="root-word"><span class="root-word-ar" lang="ar" dir="rtl">مَكْتُوب</span><span class="root-word-en">maktūb · written</span></div>
-          <div class="root-word"><span class="root-word-ar" lang="ar" dir="rtl">مَكْتَب</span><span class="root-word-en">maktab · office/desk</span></div>
+          <div class="root-word"><span class="root-word-ar" lang="ar" dir="rtl">كَتَبَ</span><span class="root-word-en" data-te="kataba · అతను రాశాడు" data-en="kataba · he wrote">kataba · he wrote</span></div>
+          <div class="root-word"><span class="root-word-ar" lang="ar" dir="rtl">كِتَاب</span><span class="root-word-en" data-te="kitāb · పుస్తకం" data-en="kitāb · book">kitāb · book</span></div>
+          <div class="root-word"><span class="root-word-ar" lang="ar" dir="rtl">كَاتِب</span><span class="root-word-en" data-te="kātib · రచయిత" data-en="kātib · writer">kātib · writer</span></div>
+          <div class="root-word"><span class="root-word-ar" lang="ar" dir="rtl">مَكْتُوب</span><span class="root-word-en" data-te="maktūb · రాయబడినది" data-en="maktūb · written">maktūb · written</span></div>
+          <div class="root-word"><span class="root-word-ar" lang="ar" dir="rtl">مَكْتَب</span><span class="root-word-en" data-te="maktab · కార్యాలయం" data-en="maktab · office/desk">maktab · office/desk</span></div>
         </div>
       </div>
       <div class="root-card">
         <span class="root-letters" lang="ar" dir="rtl">ع – ل – م</span>
         <div class="root-meaning" data-te="మూల అర్థం: తెలుసు, జ్ఞానం" data-en="Root meaning: Knowing, knowledge">Root meaning: Knowing, knowledge</div>
         <div class="root-words">
-          <div class="root-word"><span class="root-word-ar" lang="ar" dir="rtl">عَلِمَ</span><span class="root-word-en">alima · he knew</span></div>
-          <div class="root-word"><span class="root-word-ar" lang="ar" dir="rtl">عِلْم</span><span class="root-word-en">'ilm · knowledge</span></div>
-          <div class="root-word"><span class="root-word-ar" lang="ar" dir="rtl">عَالِم</span><span class="root-word-en">'ālim · scholar</span></div>
-          <div class="root-word"><span class="root-word-ar" lang="ar" dir="rtl">مَعْلُوم</span><span class="root-word-en">ma'lūm · known</span></div>
-          <div class="root-word"><span class="root-word-ar" lang="ar" dir="rtl">تَعْلِيم</span><span class="root-word-en">ta'līm · education</span></div>
+          <div class="root-word"><span class="root-word-ar" lang="ar" dir="rtl">عَلِمَ</span><span class="root-word-en" data-te="alima · అతనికి తెలుసు" data-en="alima · he knew">alima · he knew</span></div>
+          <div class="root-word"><span class="root-word-ar" lang="ar" dir="rtl">عِلْم</span><span class="root-word-en" data-te="'ilm · జ్ఞానం" data-en="'ilm · knowledge">'ilm · knowledge</span></div>
+          <div class="root-word"><span class="root-word-ar" lang="ar" dir="rtl">عَالِم</span><span class="root-word-en" data-te="'ālim · పండితుడు" data-en="'ālim · scholar">'ālim · scholar</span></div>
+          <div class="root-word"><span class="root-word-ar" lang="ar" dir="rtl">مَعْلُوم</span><span class="root-word-en" data-te="ma'lūm · తెలిసినది" data-en="ma'lūm · known">ma'lūm · known</span></div>
+          <div class="root-word"><span class="root-word-ar" lang="ar" dir="rtl">تَعْلِيم</span><span class="root-word-en" data-te="ta'līm · విద్య" data-en="ta'līm · education">ta'līm · education</span></div>
         </div>
       </div>
       <div class="root-card">
         <span class="root-letters" lang="ar" dir="rtl">ر – ح – م</span>
         <div class="root-meaning" data-te="మూల అర్థం: కరుణ, దయ" data-en="Root meaning: Mercy, compassion">Root meaning: Mercy, compassion</div>
         <div class="root-words">
-          <div class="root-word"><span class="root-word-ar" lang="ar" dir="rtl">رَحِمَ</span><span class="root-word-en">rahima · he showed mercy</span></div>
-          <div class="root-word"><span class="root-word-ar" lang="ar" dir="rtl">رَحْمَة</span><span class="root-word-en">rahma · mercy</span></div>
-          <div class="root-word"><span class="root-word-ar" lang="ar" dir="rtl">رَحِيم</span><span class="root-word-en">rahīm · merciful</span></div>
-          <div class="root-word"><span class="root-word-ar" lang="ar" dir="rtl">رَحْمٰن</span><span class="root-word-en">rahmān · most merciful</span></div>
-          <div class="root-word"><span class="root-word-ar" lang="ar" dir="rtl">رَحِم</span><span class="root-word-en">rahim · womb</span></div>
+          <div class="root-word"><span class="root-word-ar" lang="ar" dir="rtl">رَحِمَ</span><span class="root-word-en" data-te="rahima · అతను కరుణ చూపాడు" data-en="rahima · he showed mercy">rahima · he showed mercy</span></div>
+          <div class="root-word"><span class="root-word-ar" lang="ar" dir="rtl">رَحْمَة</span><span class="root-word-en" data-te="rahma · కరుణ" data-en="rahma · mercy">rahma · mercy</span></div>
+          <div class="root-word"><span class="root-word-ar" lang="ar" dir="rtl">رَحِيم</span><span class="root-word-en" data-te="rahīm · కరుణామయుడు" data-en="rahīm · merciful">rahīm · merciful</span></div>
+          <div class="root-word"><span class="root-word-ar" lang="ar" dir="rtl">رَحْمٰن</span><span class="root-word-en" data-te="rahmān · అత్యంత కరుణామయుడు" data-en="rahmān · most merciful">rahmān · most merciful</span></div>
+          <div class="root-word"><span class="root-word-ar" lang="ar" dir="rtl">رَحِم</span><span class="root-word-en" data-te="rahim · గర్భం" data-en="rahim · womb">rahim · womb</span></div>
         </div>
       </div>
       <div class="root-card">
         <span class="root-letters" lang="ar" dir="rtl">ع – ب – د</span>
         <div class="root-meaning" data-te="మూల అర్థం: ఆరాధించడం, సేవించడం" data-en="Root meaning: To worship, serve">Root meaning: To worship, serve</div>
         <div class="root-words">
-          <div class="root-word"><span class="root-word-ar" lang="ar" dir="rtl">عَبَدَ</span><span class="root-word-en">abada · he worshipped</span></div>
-          <div class="root-word"><span class="root-word-ar" lang="ar" dir="rtl">عِبَادَة</span><span class="root-word-en">'ibāda · worship</span></div>
-          <div class="root-word"><span class="root-word-ar" lang="ar" dir="rtl">عَبْد</span><span class="root-word-en">'abd · servant</span></div>
-          <div class="root-word"><span class="root-word-ar" lang="ar" dir="rtl">مَعْبُود</span><span class="root-word-en">ma'būd · the worshipped</span></div>
-          <div class="root-word"><span class="root-word-ar" lang="ar" dir="rtl">عَابِد</span><span class="root-word-en">'ābid · worshipper</span></div>
+          <div class="root-word"><span class="root-word-ar" lang="ar" dir="rtl">عَبَدَ</span><span class="root-word-en" data-te="abada · అతను ఆరాధించాడు" data-en="abada · he worshipped">abada · he worshipped</span></div>
+          <div class="root-word"><span class="root-word-ar" lang="ar" dir="rtl">عِبَادَة</span><span class="root-word-en" data-te="'ibāda · ఆరాధన" data-en="'ibāda · worship">'ibāda · worship</span></div>
+          <div class="root-word"><span class="root-word-ar" lang="ar" dir="rtl">عَبْد</span><span class="root-word-en" data-te="'abd · దాసుడు" data-en="'abd · servant">'abd · servant</span></div>
+          <div class="root-word"><span class="root-word-ar" lang="ar" dir="rtl">مَعْبُود</span><span class="root-word-en" data-te="ma'būd · ఆరాధింపబడేవాడు" data-en="ma'būd · the worshipped">ma'būd · the worshipped</span></div>
+          <div class="root-word"><span class="root-word-ar" lang="ar" dir="rtl">عَابِد</span><span class="root-word-en" data-te="'ābid · ఆరాధకుడు" data-en="'ābid · worshipper">'ābid · worshipper</span></div>
         </div>
       </div>
       <div class="root-card">
         <span class="root-letters" lang="ar" dir="rtl">ح – م – د</span>
         <div class="root-meaning" data-te="మూల అర్థం: స్తుతించడం, ప్రశంసించడం" data-en="Root meaning: Praise, commend">Root meaning: Praise, commend</div>
         <div class="root-words">
-          <div class="root-word"><span class="root-word-ar" lang="ar" dir="rtl">حَمِدَ</span><span class="root-word-en">hamida · he praised</span></div>
-          <div class="root-word"><span class="root-word-ar" lang="ar" dir="rtl">حَمْد</span><span class="root-word-en">hamd · praise</span></div>
-          <div class="root-word"><span class="root-word-ar" lang="ar" dir="rtl">مُحَمَّد</span><span class="root-word-en">Muhammad · praiseworthy ﷺ</span></div>
-          <div class="root-word"><span class="root-word-ar" lang="ar" dir="rtl">حَامِد</span><span class="root-word-en">hāmid · one who praises</span></div>
-          <div class="root-word"><span class="root-word-ar" lang="ar" dir="rtl">أَحْمَد</span><span class="root-word-en">Ahmad · most praiseworthy ﷺ</span></div>
+          <div class="root-word"><span class="root-word-ar" lang="ar" dir="rtl">حَمِدَ</span><span class="root-word-en" data-te="hamida · అతను స్తుతించాడు" data-en="hamida · he praised">hamida · he praised</span></div>
+          <div class="root-word"><span class="root-word-ar" lang="ar" dir="rtl">حَمْد</span><span class="root-word-en" data-te="hamd · స్తుతి" data-en="hamd · praise">hamd · praise</span></div>
+          <div class="root-word"><span class="root-word-ar" lang="ar" dir="rtl">مُحَمَّد</span><span class="root-word-en" data-te="Muhammad · స్తుతింపదగినవాడు ﷺ" data-en="Muhammad · praiseworthy ﷺ">Muhammad · praiseworthy ﷺ</span></div>
+          <div class="root-word"><span class="root-word-ar" lang="ar" dir="rtl">حَامِد</span><span class="root-word-en" data-te="hāmid · స్తుతించేవాడు" data-en="hāmid · one who praises">hāmid · one who praises</span></div>
+          <div class="root-word"><span class="root-word-ar" lang="ar" dir="rtl">أَحْمَد</span><span class="root-word-en" data-te="Ahmad · అత్యంత స్తుతింపదగినవాడు ﷺ" data-en="Ahmad · most praiseworthy ﷺ">Ahmad · most praiseworthy ﷺ</span></div>
         </div>
       </div>
       <div class="root-card">
         <span class="root-letters" lang="ar" dir="rtl">إ – س – ل – م</span>
         <div class="root-meaning" data-te="మూల అర్థం: శాంతి, సమర్పించడం" data-en="Root meaning: Peace, submission">Root meaning: Peace, submission</div>
         <div class="root-words">
-          <div class="root-word"><span class="root-word-ar" lang="ar" dir="rtl">سَلِمَ</span><span class="root-word-en">salima · he was safe</span></div>
-          <div class="root-word"><span class="root-word-ar" lang="ar" dir="rtl">إِسْلَام</span><span class="root-word-en">Islām · submission</span></div>
-          <div class="root-word"><span class="root-word-ar" lang="ar" dir="rtl">مُسْلِم</span><span class="root-word-en">Muslim · one who submits</span></div>
-          <div class="root-word"><span class="root-word-ar" lang="ar" dir="rtl">سَلَام</span><span class="root-word-en">salām · peace</span></div>
-          <div class="root-word"><span class="root-word-ar" lang="ar" dir="rtl">سَلَامَة</span><span class="root-word-en">salāma · safety</span></div>
+          <div class="root-word"><span class="root-word-ar" lang="ar" dir="rtl">سَلِمَ</span><span class="root-word-en" data-te="salima · అతను సురక్షితంగా ఉన్నాడు" data-en="salima · he was safe">salima · he was safe</span></div>
+          <div class="root-word"><span class="root-word-ar" lang="ar" dir="rtl">إِسْلَام</span><span class="root-word-en" data-te="Islām · సమర్పణ" data-en="Islām · submission">Islām · submission</span></div>
+          <div class="root-word"><span class="root-word-ar" lang="ar" dir="rtl">مُسْلِم</span><span class="root-word-en" data-te="Muslim · సమర్పించేవాడు" data-en="Muslim · one who submits">Muslim · one who submits</span></div>
+          <div class="root-word"><span class="root-word-ar" lang="ar" dir="rtl">سَلَام</span><span class="root-word-en" data-te="salām · శాంతి" data-en="salām · peace">salām · peace</span></div>
+          <div class="root-word"><span class="root-word-ar" lang="ar" dir="rtl">سَلَامَة</span><span class="root-word-en" data-te="salāma · క్షేమం" data-en="salāma · safety">salāma · safety</span></div>
         </div>
       </div>
     </div>
@@ -466,6 +486,26 @@ nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(13,59,30,0.9
   </div>
 </section>
 
+<style>
+.lnav{max-width:780px;margin:48px auto 8px;padding:0 16px;display:flex;align-items:stretch;gap:14px}
+.lnav a{flex:1 1 0;display:flex;flex-direction:column;justify-content:center;gap:4px;min-height:62px;padding:14px 20px;border-radius:var(--radius,16px);border:1px solid var(--border);background:var(--white);text-decoration:none;transition:transform .2s,box-shadow .2s,border-color .2s;min-width:0}
+.lnav a:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(13,59,30,0.10);border-color:rgba(200,146,42,0.45)}
+.lnav-prev{align-items:flex-start;text-align:left}
+.lnav-next{align-items:flex-end;text-align:right}
+.lnav-dir{font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
+.lnav-title{font-size:.95rem;font-weight:700;line-height:1.2;color:var(--text-dark);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+@media(max-width:520px){.lnav{gap:10px;margin:36px auto 8px}.lnav a{padding:12px 14px;min-height:56px}.lnav-title{font-size:.84rem}}
+</style>
+<nav class="lnav" aria-label="Lesson navigation">
+  <a class="lnav-prev" href="daily-arabic.html">
+    <span class="lnav-dir">← <span data-te="మునుపటి" data-en="Previous">Previous</span></span>
+    <span class="lnav-title" data-te="రోజువారీ అరబిక్" data-en="Daily Arabic">Daily Arabic</span>
+  </a>
+  <a class="lnav-next" href="grammar.html">
+    <span class="lnav-dir"><span data-te="తదుపరి" data-en="Next">Next</span> →</span>
+    <span class="lnav-title" data-te="వ్యాకరణం" data-en="Grammar">Grammar</span>
+  </a>
+</nav>
 <footer class="site-footer">
   <div class="site-footer-links">
     <a href="../../index.html" data-te="← హోమ్" data-en="← Home">← Home</a>
@@ -488,7 +528,7 @@ function applyLang(l){
     if(val) el.innerHTML = val;
   });
   var btn = document.getElementById('lang-btn');
-  if(btn) btn.textContent = l === 'te' ? 'English' : 'తెలుగు';
+  if(btn){btn.textContent=l==='te'?'English':'తెలుగు';btn.setAttribute('aria-label',l==='te'?'Switch to English':'Switch to Telugu');}
 }
 function toggleLang(){ applyLang(lang === 'te' ? 'en' : 'te'); }
 applyLang(lang);
@@ -510,5 +550,7 @@ window.addEventListener('scroll', function(){
   document.getElementById('btt').classList.toggle('show', window.scrollY > 500);
 }, {passive:true});
 </script>
+<script defer src="../../assets/data/sublesson-data.js"></script>
+<script defer src="../../assets/js/if-sublesson.js"></script>
 </body>
 </html>
