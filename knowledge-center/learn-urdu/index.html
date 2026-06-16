@@ -180,6 +180,36 @@ a{color:inherit;text-decoration:none}
 .lc-banner span{font-size:.85rem;color:var(--text-muted)}
 .lc-banner strong{color:var(--gold)}
 
+/* PROGRESS DASHBOARD */
+.dash-sec{background:var(--cream);padding:80px 5vw}
+.dash-inner{max-width:1100px;margin:0 auto}
+.dash-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:18px}
+.dash-tile{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:24px 18px;text-align:center;position:relative;overflow:hidden;transition:transform .3s,box-shadow .3s}
+.dash-tile::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold-light));transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.dash-tile:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.dash-tile:hover::before{transform:scaleX(1)}
+.dash-tile-ic{font-size:1.55rem;margin-bottom:8px;line-height:1}
+.dash-tile-num{font-family:'Playfair Display','Noto Sans Telugu',serif;font-size:2rem;font-weight:700;color:var(--green-deep);line-height:1.05;word-break:break-word}
+.dash-tile-num.sm{font-size:1.15rem;padding-top:6px}
+.dash-tile-label{font-size:.7rem;color:var(--text-muted);letter-spacing:.04em;text-transform:uppercase;margin-top:8px;line-height:1.3}
+.dash-mastery{background:linear-gradient(135deg,var(--green-deep),var(--green-mid));border-radius:18px;padding:26px 28px;color:#fff;position:relative;overflow:hidden}
+.dash-mastery::after{content:'';position:absolute;top:-40px;right:-40px;width:150px;height:150px;border-radius:50%;background:radial-gradient(circle,rgba(200,146,42,0.12),transparent 70%);pointer-events:none}
+.dash-mastery-top{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.dash-mastery-title{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-light)}
+.dash-mastery-level{font-family:'Playfair Display','Noto Sans Telugu',serif;font-size:1.4rem;font-weight:700;color:#fff}
+.dash-mbar{height:12px;border-radius:100px;background:rgba(255,255,255,0.12);overflow:hidden}
+.dash-mbar-fill{height:100%;border-radius:100px;background:linear-gradient(90deg,var(--gold),var(--gold-light));transition:width .85s cubic-bezier(.16,1,.3,1);width:0}
+.dash-mastery-sub{font-size:.8rem;color:rgba(245,230,192,.72);margin-top:11px}
+@media(max-width:700px){.dash-grid{grid-template-columns:repeat(2,1fr)}.dash-tile-num{font-size:1.7rem}}
+
+/* LEVEL MARK-COMPLETE */
+.lc.done .lc-num{background:linear-gradient(135deg,var(--green-mid),var(--green-light));color:#fff}
+.lc-complete{display:inline-flex;align-items:center;gap:9px;margin-top:18px;font-family:inherit;font-size:.8rem;font-weight:600;color:var(--green-light);background:rgba(46,139,87,0.08);border:1px solid rgba(46,139,87,0.28);border-radius:100px;padding:9px 18px;cursor:pointer;transition:all .2s}
+.lc-complete:hover{background:rgba(46,139,87,0.16)}
+.lc-complete.done{background:linear-gradient(135deg,var(--green-mid),var(--green-light));color:#fff;border-color:transparent}
+.lc-complete .lc-check{width:18px;height:18px;border-radius:50%;border:2px solid currentColor;display:flex;align-items:center;justify-content:center;font-size:11px;line-height:1;flex-shrink:0}
+.lc-complete.done .lc-check{background:#fff;color:var(--green-mid);border-color:#fff}
+
 /* WORD OF THE DAY */
 .word-sec{background:var(--green-deep);padding:80px 5vw}
 .word-inner{max-width:900px;margin:0 auto;text-align:center}
@@ -416,6 +446,7 @@ a{color:inherit;text-decoration:none}
     <a href="#why" data-spy="why" data-te="ఎందుకు ఉర్దూ?" data-en="Why Urdu?">Why Urdu?</a>
     <a href="#roadmap" data-spy="roadmap" data-te="మార్గం" data-en="Roadmap">Roadmap</a>
     <a href="#levels" data-spy="levels" data-te="స్థాయిలు" data-en="Levels">Levels</a>
+    <a href="#progress" data-spy="progress" data-te="పురోగతి" data-en="Progress">Progress</a>
     <a href="#alphabet" data-spy="alphabet" data-te="అక్షరమాల" data-en="Alphabet">Alphabet</a>
     <a href="#word" data-spy="word" data-te="పదం" data-en="Word of Day">Word of Day</a>
     <a href="#phrases" data-spy="phrases" data-te="మాటలు" data-en="Phrases">Phrases</a>
@@ -812,6 +843,18 @@ a{color:inherit;text-decoration:none}
   </div>
 </section>
 
+<!-- PROGRESS DASHBOARD -->
+<section class="dash-sec" id="progress">
+  <div class="dash-inner">
+    <div class="lu-sec-hdr reveal">
+      <div class="lu-sec-label" data-te="మీ పురోగతి" data-en="Your Progress">Your Progress</div>
+      <h2 class="lu-sec-title" data-te="మీ <span>ఉర్దూ పురోగతి</span>" data-en="Your <span>Urdu Progress</span>">Your <span>Urdu Progress</span></h2>
+      <p class="lu-sec-subtitle" data-te="మీ పూర్తి చేసిన స్థాయిలను మరియు మీ ప్రావీణ్య స్థాయిని ట్రాక్ చేయండి. ప్రతి స్థాయిని ‘పూర్తి’గా గుర్తించండి." data-en="Track your completed levels and your mastery level. Mark each level complete as you advance.">Track your completed levels and your mastery level. Mark each level complete as you advance.</p>
+    </div>
+    <div id="dash-body" class="reveal"><!-- rendered by JS --></div>
+  </div>
+</section>
+
 <!-- THE URDU ALPHABET -->
 <section class="lu-sec" id="alphabet">
   <div class="lu-sec-inner">
@@ -965,9 +1008,10 @@ function applyLang(l){
   if(typeof WORDS !== 'undefined') renderWord();
   if(typeof ALPHABET !== 'undefined') renderAlphabet();
   if(typeof PHRASES !== 'undefined') renderPhrases();
+  if(typeof updateCompleteButtons === 'function') updateCompleteButtons();
+  if(typeof renderDashboard === 'function') renderDashboard();
 }
 function toggleLang(){ applyLang(LANG === 'te' ? 'en' : 'te'); }
-applyLang(LANG);
 
 /* LEVEL CARD ACCORDION */
 function toggleLC(id){
@@ -975,6 +1019,92 @@ function toggleLC(id){
   var isOpen = el.classList.contains('lc-open');
   document.querySelectorAll('.lc').forEach(function(c){ c.classList.remove('lc-open'); c.querySelector('.lc-head').setAttribute('aria-expanded','false'); });
   if(!isOpen){ el.classList.add('lc-open'); el.querySelector('.lc-head').setAttribute('aria-expanded','true'); }
+}
+
+/* PROGRESS STORAGE */
+var PROG_KEY = 'if-urdu-progress';
+function loadProg(){ try{ var p=JSON.parse(localStorage.getItem(PROG_KEY))||{}; if(!Array.isArray(p.levels))p.levels=[]; return p; }catch(e){ return {levels:[]}; } }
+function saveProg(p){ try{ localStorage.setItem(PROG_KEY, JSON.stringify(p)); }catch(e){} }
+
+/* LEVEL COMPLETION */
+function markLevelDone(id, done){
+  var el = document.getElementById(id); if(!el) return;
+  el.classList.toggle('done', done);
+  var btn = el.querySelector('.lc-complete'); if(btn) btn.classList.toggle('done', done);
+}
+function toggleLevel(id){
+  var p = loadProg(); var i = p.levels.indexOf(id);
+  if(i >= 0) p.levels.splice(i,1); else p.levels.push(id);
+  saveProg(p);
+  markLevelDone(id, p.levels.indexOf(id) >= 0);
+  updateCompleteButtons(); renderDashboard();
+}
+function updateCompleteButtons(){
+  var p = loadProg();
+  document.querySelectorAll('.lc-complete').forEach(function(btn){
+    var lc = btn.closest('.lc'); var done = !!(lc && p.levels.indexOf(lc.id) >= 0);
+    btn.classList.toggle('done', done);
+    var txt = btn.querySelector('.lc-complete-txt');
+    if(txt) txt.textContent = done ? (LANG === 'te' ? 'పూర్తయింది' : 'Completed') : (LANG === 'te' ? 'పూర్తి అయినట్లు గుర్తించండి' : 'Mark as complete');
+  });
+}
+function initLevelsProgress(){
+  var p = loadProg();
+  document.querySelectorAll('.lc').forEach(function(lc){
+    var inner = lc.querySelector('.lc-inner'); if(!inner || inner.querySelector('.lc-complete')) return;
+    var btn = document.createElement('button');
+    btn.className = 'lc-complete'; btn.type = 'button';
+    btn.innerHTML = '<span class="lc-check">✓</span><span class="lc-complete-txt"></span>';
+    btn.addEventListener('click', function(e){ e.stopPropagation(); toggleLevel(lc.id); });
+    inner.appendChild(btn);
+    if(p.levels.indexOf(lc.id) >= 0) lc.classList.add('done');
+  });
+  updateCompleteButtons();
+}
+
+/* PROGRESS DASHBOARD */
+function renderDashboard(){
+  var body = document.getElementById('dash-body'); if(!body) return;
+  var p = loadProg();
+  var done = p.levels.length; var total = 6; var lessonsTotal = 20;
+  var lessonsDone = Math.round(done/total*lessonsTotal);
+  var pct = Math.min(100, Math.round(done/total*100));
+  var lv;
+  if(done===0) lv={en:'Beginner',te:'ప్రారంభకుడు'};
+  else if(done<3) lv={en:'Learner',te:'అభ్యాసకుడు'};
+  else if(done<total) lv={en:'Reader',te:'పాఠకుడు'};
+  else lv={en:'Fluent',te:'నిష్ణాతుడు'};
+  var lvName = LANG === 'te' ? lv.te : lv.en;
+  var T = (LANG === 'te')
+    ? {levels:'స్థాయిలు పూర్తయ్యాయి',lessons:'పాఠాలు',mastery:'ప్రావీణ్యం',mtitle:'మీ ప్రావీణ్య స్థాయి',msub:done+'/'+total+' స్థాయిలు పూర్తయ్యాయి'}
+    : {levels:'Levels Done',lessons:'Lessons Covered',mastery:'Mastery',mtitle:'Your Mastery Level',msub:done+' of '+total+' levels complete'};
+  function tile(ic,num,label,sm){ return '<div class="dash-tile"><div class="dash-tile-ic">'+ic+'</div><div class="dash-tile-num'+(sm?' sm':'')+'">'+num+'</div><div class="dash-tile-label">'+label+'</div></div>'; }
+  body.innerHTML =
+    '<div class="dash-grid">'
+      +tile('📗', done+'/'+total, T.levels)
+      +tile('📖', lessonsDone+'/'+lessonsTotal, T.lessons)
+      +tile('🏅', lvName, T.mastery, true)
+    +'</div>'
+    +'<div class="dash-mastery">'
+      +'<div class="dash-mastery-top"><span class="dash-mastery-title">'+T.mtitle+'</span><span class="dash-mastery-level">'+lvName+'</span></div>'
+      +'<div class="dash-mbar"><div class="dash-mbar-fill" style="width:'+pct+'%"></div></div>'
+      +'<div class="dash-mastery-sub">'+T.msub+'</div>'
+    +'</div>';
+  var f = body.querySelector('.dash-mbar-fill');
+  if(f){ var w=f.style.width; f.style.width='0'; requestAnimationFrame(function(){ requestAnimationFrame(function(){ f.style.width=w; }); }); }
+}
+initLevelsProgress();
+applyLang(LANG);
+
+/* RETURNING-VISITOR DASHBOARD JUMP — if progress already exists and the visitor
+   didn't arrive via an explicit deep link (e.g. a shared #lc2 URL), land them
+   straight on the dashboard instead of the first-time "why learn Urdu" intro. */
+function jumpReturningUserToDashboard(){
+  if(window.location.hash) return;
+  var p = loadProg();
+  if(!p.levels || !p.levels.length) return;
+  var target = document.getElementById('progress');
+  if(target) target.scrollIntoView({behavior:'instant', block:'start'});
 }
 
 /* ROADMAP → scroll to the level, open it, and stop there */
@@ -1144,6 +1274,8 @@ window.addEventListener('scroll', function(){
   }, {threshold:0.1});
   document.querySelectorAll('.reveal').forEach(function(el){ obs.observe(el); });
 })();
+
+jumpReturningUserToDashboard();
 </script>
 </body>
 </html>
