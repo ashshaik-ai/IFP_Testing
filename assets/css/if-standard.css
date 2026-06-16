@@ -578,6 +578,41 @@ span.hmfp-label, .hmfp-li span{ font-size: 12px !important; }
 /* Breadcrumb text: don't go below 12px */
 .al-breadcrumb, .ifx-crumbs{ font-size: 13px !important; }
 
+/* Portal sticky-home link (← KC / ← Knowledge Center): ensure 44px tap area */
+.al-sticky-home{
+  min-height: 44px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  padding: 0 12px !important;
+}
+
+/* Portal breadcrumb anchor links: raise to 44px via padding */
+.al-breadcrumb a{
+  min-height: 44px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  padding: 0 4px !important;
+}
+
+/* nav-back: the link itself is inline-flex; ensure label text is visible and height ≥ 44px */
+.nav-back{
+  min-height: 44px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+}
+
+/* History/Islamic-history: tier label and check labels — raise to ≥11px */
+.ifl-tier, .ifl-check-lbl{ font-size: 11px !important; }
+
+/* Kids-islam: XP badge label — raise from 10px */
+.mz-xp{ font-size: 11px !important; }
+
+/* Urdu/History portal stat label spans without class (e.g. "అక్షరాలు", "స్థాయిలు") */
+.al-stat{ font-size: 12px !important; }
+
+/* Homepage: scheme-label, ca-label, ci-label — raise from 9–10px to 11px */
+.ca-label, .ci-label, .ss-label{ font-size: 11px !important; }
+
 /* Focus-visible ring: consistent gold across all interactive elements */
 a:focus-visible, button:focus-visible, [role="button"]:focus-visible,
 input:focus-visible, select:focus-visible, textarea:focus-visible,

@@ -78,7 +78,7 @@
 
     ov = document.createElement('div'); ov.id = 'ifsr-ov'; ov.setAttribute('role', 'dialog'); ov.setAttribute('aria-modal', 'true');
     ov.innerHTML = '<div class="ifsr-modal"><div class="ifsr-bar"><span class="ifsr-ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg></span>'
-      + '<input id="ifsr-in" type="search" autocomplete="off" />'
+      + '<input id="ifsr-in" type="search" autocomplete="off" aria-label="Search" placeholder="వెతకండి..." />'
       + '<button id="ifsr-x" type="button" aria-label="Close">✕</button></div>'
       + '<div class="ifsr-results" id="ifsr-res"></div>'
       + '<div class="ifsr-tip" id="ifsr-tip"></div></div>';
