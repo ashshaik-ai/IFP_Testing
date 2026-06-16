@@ -522,9 +522,18 @@
   /* Leadership section responsive */
   @media (max-width: 860px) { .members-grid { grid-template-columns: repeat(3, 1fr); } }
   @media (max-width: 600px) {
-    .members-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .members-grid { display:flex; grid-template-columns:none; overflow-x:auto; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; gap:14px; padding-bottom:4px; scrollbar-width:none; }
+    .members-grid::-webkit-scrollbar { display:none; }
+    .member-card { flex:0 0 78%; scroll-snap-align:start; }
     .mandate-stats { grid-template-columns: repeat(2, 1fr); }
     .ms-num { font-size: 34px; }
+  }
+
+  /* Manifesto grid mobile carousel */
+  @media (max-width: 600px) {
+    .manifesto-grid { display:flex; grid-template-columns:none; overflow-x:auto; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; gap:14px; padding-bottom:4px; scrollbar-width:none; }
+    .manifesto-grid::-webkit-scrollbar { display:none; }
+    .mf-card { flex:0 0 84%; scroll-snap-align:start; }
   }
 
   /* Timeline dot scale on hover */
@@ -884,7 +893,7 @@
     .hstat-num { font-size: 21px; }
     .hstat-label { font-size: 8.5px; }
     .ms-num { font-size: 28px; }
-    /* Member photos: fit 2-col grid on tiny screens */
+    /* Member photos: smaller on tiny screens */
     .member-photo, .member-fallback { width: 100px; height: 100px; }
     .member-card { padding: 18px 6px 14px; }
     .member-name { font-size: 12.5px; }
