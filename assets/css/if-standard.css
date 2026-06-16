@@ -406,8 +406,15 @@ html { scrollbar-color: rgba(13,59,30,.35) transparent; }
 /* Portal stat labels: raise from 10.5px → 12px */
 .al-stat-label{ font-size: 12px !important; letter-spacing: .05em !important; }
 
-/* Level / difficulty tags on portal cards: raise from ~10px → 11px */
-.lc-tag{ font-size: 11px !important; }
+/* Urdu portal hero stat labels */
+.lu-hero-stat span{ font-size: 12px !important; }
+
+/* Urdu portal hero eyebrow badge */
+.lu-hero-badge{ font-size: 12px !important; }
+.lu-hero-badge span{ font-size: 12px !important; }
+
+/* Level / difficulty tags on portal cards: raise from ~10px → 12px */
+.lc-tag{ font-size: 12px !important; }
 
 /* Lesson-number badges in level accordions: raise from 10.5px → 12px */
 .ll-num{ font-size: 12px !important; }
