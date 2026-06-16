@@ -1220,6 +1220,8 @@
   .lb-placeholder-icon { font-size: 56px; display: block; opacity: 0.5; margin-bottom: 12px; }
   .lb-caption { margin-top: 16px; font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: var(--white); }
   .lb-sub { font-size: 13px; color: rgba(245,230,192,0.5); margin-top: 4px; }
+  .lb-meta { font-size: 12px; color: rgba(245,230,192,0.65); margin-top: 10px; display: flex; align-items: center; justify-content: center; gap: 8px; letter-spacing: 0.2px; }
+  .lb-meta-sep { opacity: 0.4; }
 
   @media (max-width: 768px) {
     .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
@@ -2263,7 +2265,7 @@
 
     <div class="gallery-grid">
 
-      <div class="gal-item gal-visible" data-category="events" onclick="openLightbox('🏛️', 'ఈద్ ఉత్సవం 2024', 'సమాజ ఉత్సవాలు')">
+      <div class="gal-item gal-visible" data-category="events" onclick="openLightbox('🏛️', 'ఈద్ ఉత్సవం 2024', 'సమాజ ఉత్సవాలు', 'మంగళగిరి', '2024')">
         <div class="gal-item-inner">
           <div class="gal-placeholder-icon">🏛️</div>
           <div class="gal-placeholder-text" data-key="gal1_text">ఈద్ ఉత్సవం<br>ఫోటో త్వరలో</div>
@@ -2273,7 +2275,7 @@
         </div>
       </div>
 
-      <div class="gal-item gal-visible" data-category="welfare" onclick="openLightbox('🤝', 'అంత్యక్రియల సహాయ పంపిణీ', 'సంక్షేమ కార్యక్రమాలు')">
+      <div class="gal-item gal-visible" data-category="welfare" onclick="openLightbox('🤝', 'అంత్యక్రియల సహాయ పంపిణీ', 'సంక్షేమ కార్యక్రమాలు', 'మంగళగిరి', 'కొనసాగుతున్న పథకం')">
         <div class="gal-item-inner">
           <div class="gal-placeholder-icon">🤝</div>
           <div class="gal-placeholder-text" data-key="gal2_text">సహాయ పంపిణీ<br>ఫోటో త్వరలో</div>
@@ -2283,7 +2285,7 @@
         </div>
       </div>
 
-      <div class="gal-item gal-visible" data-category="mosque" onclick="openLightbox('🕌', 'అంజుమన్ మసీదు – పునర్నిర్మాణం', 'మసీదు కార్యకలాపాలు')">
+      <div class="gal-item gal-visible" data-category="mosque" onclick="openLightbox('🕌', 'అంజుమన్ మసీదు – పునర్నిర్మాణం', 'మసీదు కార్యకలాపాలు', 'మంగళగిరి', 'కొనసాగుతున్నది')">
         <div class="gal-item-inner">
           <div class="gal-placeholder-icon">🕌</div>
           <div class="gal-placeholder-text" data-key="gal3_text">మసీదు<br>ఫోటో త్వరలో</div>
@@ -2293,7 +2295,7 @@
         </div>
       </div>
 
-      <div class="gal-item gal-visible" data-category="women" onclick="openLightbox('🧵', 'కుట్టు శిక్షణా కేంద్రం', 'మహిళా కార్యక్రమాలు')">
+      <div class="gal-item gal-visible" data-category="women" onclick="openLightbox('🧵', 'కుట్టు శిక్షణా కేంద్రం', 'మహిళా కార్యక్రమాలు', 'మంగళగిరి', '2023–ప్రస్తుతం')">
         <div class="gal-item-inner">
           <div class="gal-placeholder-icon">🧵</div>
           <div class="gal-placeholder-text" data-key="gal4_text">కుట్టు శిక్షణ<br>ఫోటో త్వరలో</div>
@@ -2303,7 +2305,7 @@
         </div>
       </div>
 
-      <div class="gal-item gal-visible" data-category="education" onclick="openLightbox('📖', 'మదర్సా తరగతులు', 'విద్యా కార్యక్రమాలు')">
+      <div class="gal-item gal-visible" data-category="education" onclick="openLightbox('📖', 'మదర్సా తరగతులు', 'విద్యా కార్యక్రమాలు', 'మంగళగిరి', 'కొనసాగుతున్నది')">
         <div class="gal-item-inner">
           <div class="gal-placeholder-icon">📖</div>
           <div class="gal-placeholder-text" data-key="gal5_text">మదర్సా<br>ఫోటో త్వరలో</div>
@@ -2313,7 +2315,7 @@
         </div>
       </div>
 
-      <div class="gal-item gal-visible" data-category="welfare" onclick="openLightbox('🏥', 'మెడికల్ క్యాంప్', 'సంక్షేమ కార్యక్రమాలు')">
+      <div class="gal-item gal-visible" data-category="welfare" onclick="openLightbox('🏥', 'మెడికల్ క్యాంప్ 2024', 'సంక్షేమ కార్యక్రమాలు', 'మంగళగిరి', '2024')">
         <div class="gal-item-inner">
           <div class="gal-placeholder-icon">🏥</div>
           <div class="gal-placeholder-text" data-key="gal6_text">మెడికల్ క్యాంప్<br>ఫోటో త్వరలో</div>
@@ -2323,7 +2325,7 @@
         </div>
       </div>
 
-      <div class="gal-item gal-visible" data-category="events" onclick="openLightbox('🌙', 'రమజాన్ ఇఫ్తార్', 'సమాజ ఉత్సవాలు')">
+      <div class="gal-item gal-visible" data-category="events" onclick="openLightbox('🌙', 'రమజాన్ ఇఫ్తార్ 2024', 'సమాజ ఉత్సవాలు', 'మంగళగిరి', '2024')">
         <div class="gal-item-inner">
           <div class="gal-placeholder-icon">🌙</div>
           <div class="gal-placeholder-text" data-key="gal7_text">ఇఫ్తార్ కార్యక్రమం<br>ఫోటో త్వరలో</div>
@@ -2333,7 +2335,7 @@
         </div>
       </div>
 
-      <div class="gal-item gal-visible" data-category="education" onclick="openLightbox('🎓', 'స్కాలర్‌షిప్ పంపిణీ', 'విద్యా కార్యక్రమాలు')">
+      <div class="gal-item gal-visible" data-category="education" onclick="openLightbox('🎓', 'స్కాలర్‌షిప్ పంపిణీ 2023', 'విద్యా కార్యక్రమాలు', 'మంగళగిరి', '2023')">
         <div class="gal-item-inner">
           <div class="gal-placeholder-icon">🎓</div>
           <div class="gal-placeholder-text" data-key="gal8_text">స్కాలర్‌షిప్<br>ఫోటో త్వరలో</div>
@@ -2343,7 +2345,7 @@
         </div>
       </div>
 
-      <div class="gal-item gal-visible" data-category="mosque" onclick="openLightbox('🏗️', 'కన్వెన్షన్ హాల్ పునర్నిర్మాణం', 'మసీదు కార్యకలాపాలు')">
+      <div class="gal-item gal-visible" data-category="mosque" onclick="openLightbox('🏗️', 'కన్వెన్షన్ హాల్ అప్‌గ్రేడ్', 'మసీదు కార్యకలాపాలు', 'మంగళగిరి', '2023–ప్రస్తుతం')">
         <div class="gal-item-inner">
           <div class="gal-placeholder-icon">🏗️</div>
           <div class="gal-placeholder-text" data-key="gal9_text">హాల్ నిర్మాణం<br>ఫోటో త్వరలో</div>
@@ -2368,6 +2370,7 @@
     </div>
     <div class="lb-caption" id="lb-caption"></div>
     <div class="lb-sub" id="lb-sub"></div>
+    <div class="lb-meta" id="lb-meta"></div>
   </div>
 </div>
 
@@ -3627,12 +3630,17 @@ function filterGallery(cat, btn) {
 window.filterGallery = filterGallery;
 
 /* Lightbox */
-function openLightbox(icon, caption, sub) {
+function openLightbox(icon, caption, sub, place, when) {
   var lb = document.getElementById('lightbox');
   if (!lb) return;
   document.getElementById('lb-icon').textContent = icon;
   document.getElementById('lb-caption').textContent = caption;
   document.getElementById('lb-sub').textContent = sub;
+  var metaEl = document.getElementById('lb-meta');
+  metaEl.innerHTML = '';
+  if (place) { var p = document.createElement('span'); p.textContent = '📍 ' + place; metaEl.appendChild(p); }
+  if (place && when) { var s = document.createElement('span'); s.className = 'lb-meta-sep'; s.textContent = '·'; metaEl.appendChild(s); }
+  if (when) { var w = document.createElement('span'); w.textContent = when; metaEl.appendChild(w); }
   lb.classList.add('lb-open');
   document.body.style.overflow = 'hidden';
 }
