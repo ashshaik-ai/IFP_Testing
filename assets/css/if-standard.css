@@ -578,6 +578,9 @@ span.hmfp-label, .hmfp-li span{ font-size: 12px !important; }
 /* Breadcrumb text: don't go below 12px */
 .al-breadcrumb, .ifx-crumbs{ font-size: 13px !important; }
 
+/* Islamic Knowledge Center: portal group/category labels */
+.kcj-group{ font-size: 12px !important; }
+
 /* Portal sticky-home link (← KC / ← Knowledge Center): ensure 44px tap area */
 .al-sticky-home{
   min-height: 44px !important;
