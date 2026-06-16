@@ -177,6 +177,7 @@
 
   /* TOOLTIP */
   .tip { position: relative; display: inline-flex; align-items: center; justify-content: center; width: 15px; height: 15px; margin-left: 5px; border-radius: 50%; border: 1px solid var(--text-muted); color: var(--text-muted); font-size: 10px; font-weight: 700; cursor: help; vertical-align: middle; }
+  .tip::after { content: ''; position: absolute; inset: -15px; }
   .tip-pop { position: absolute; bottom: 145%; left: 50%; transform: translateX(-50%) translateY(4px); width: 210px; background: var(--green-deep); color: rgba(245,230,192,0.95); font-size: 11.5px; font-weight: 400; line-height: 1.55; letter-spacing: 0; text-transform: none; padding: 10px 12px; border-radius: 8px; box-shadow: 0 8px 24px rgba(0,0,0,0.22); opacity: 0; visibility: hidden; transition: opacity 0.2s, transform 0.2s; z-index: 20; pointer-events: none; text-align: left; }
   .tip-pop::after { content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); border: 6px solid transparent; border-top-color: var(--green-deep); }
   .tip:hover .tip-pop, .tip:focus .tip-pop, .tip:focus-within .tip-pop { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
