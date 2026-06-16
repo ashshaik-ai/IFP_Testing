@@ -521,7 +521,7 @@ html { scrollbar-color: rgba(13,59,30,.35) transparent; }
 .al-sticky{ border-bottom-width: 1.5px !important; }
 
 /* Student-guidance gx-card: better mobile rhythm */
-.gx-tag{ font-size: 11px !important; }
+.gx-tag{ font-size: 12px !important; }
 @media (max-width: 600px){
   .gx-card{ border-radius: 14px !important; }
   .gx-head{ padding: 16px 16px !important; min-height: 56px; display: flex; align-items: center; }
@@ -621,9 +621,9 @@ span.hmfp-label, .hmfp-li span{ font-size: 12px !important; }
   height: 36px !important;
 }
 
-/* Portal sticky nav links — comfortable tap target */
+/* Portal sticky nav links — raise to full 44px tap target */
 .al-sticky a{
-  min-height: 36px !important;
+  min-height: 44px !important;
   display: inline-flex !important;
   align-items: center !important;
 }
@@ -635,19 +635,17 @@ span.hmfp-label, .hmfp-li span{ font-size: 12px !important; }
 .ifp-badge-lbl{ font-size: 12px !important; }
 .dash-mastery-title{ font-size: 12px !important; }
 
-/* Quran portal: Dua reference labels */
-.qd-ref{ font-size: 11px !important; }
-
-/* Seerah: year label + salawat widget labels */
+/* Seerah: year label */
 .se-year{ font-size: 12px !important; }
-.sw-label{ font-size: 11px !important; }
 
 /* Portal sticky-home link (← KC / ← Knowledge Center): ensure 44px tap area */
 .al-sticky-home{
   min-height: 44px !important;
+  height: 44px !important;
   display: inline-flex !important;
   align-items: center !important;
-  padding: 0 12px !important;
+  padding: 0 16px 0 0 !important;
+  box-sizing: border-box !important;
 }
 
 /* Portal breadcrumb anchor links: raise to 44px via padding */
@@ -682,13 +680,13 @@ span.hmfp-label, .hmfp-li span{ font-size: 12px !important; }
 .ifl-check-lbl{ font-size: 12px !important; }
 
 /* Portal curriculum-map badge labels (cm-badge) */
-.cm-badge{ font-size: 11px !important; }
+.cm-badge{ font-size: 12px !important; }
 
 /* Kids-islam: arcade "coming soon" labels */
-.arc-soon{ font-size: 11px !important; }
+.arc-soon{ font-size: 12px !important; }
 
 /* Homepage: bottom nav tab labels */
-.bn-label{ font-size: 10px !important; }
+.bn-label{ font-size: 11px !important; }
 
 /* Homepage: sticky contact bar (call/WhatsApp/email labels) */
 .scb-btn{ font-size: 12px !important; }
