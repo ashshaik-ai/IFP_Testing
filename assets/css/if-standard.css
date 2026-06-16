@@ -81,7 +81,7 @@ html{ scroll-behavior: smooth; }
 /* Breadcrumb system (A3) */
 .ifx-crumbs{ max-width: var(--ifx-container); margin-inline:auto; padding: 14px var(--ifx-space-x) 0; font-size:13px; }
 .ifx-crumbs ol{ list-style:none; display:flex; flex-wrap:wrap; gap:6px; align-items:center; margin:0; padding:0; }
-.ifx-crumbs a{ color: var(--text-muted, #7a6840); text-decoration:none; }
+.ifx-crumbs a{ color: var(--text-muted, #7a6840); text-decoration:none; min-height: 44px; display: inline-flex; align-items: center; }
 .ifx-crumbs a:hover{ color: var(--ifx-gold); }
 .ifx-crumbs li+li::before{ content:"›"; margin-right:6px; color: var(--text-muted, #7a6840); opacity:.7; }
 .ifx-crumbs [aria-current="page"]{ color: var(--text-dark, #1a1208); font-weight:600; }
