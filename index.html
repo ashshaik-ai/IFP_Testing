@@ -841,7 +841,7 @@
     .footer-inner { gap: 32px; }
 
     /* Back to top: smaller, tucked into corner */
-    .back-to-top { bottom: 18px; right: 14px; width: 42px; height: 42px; font-size: 16px; }
+    .back-to-top { width: 42px; height: 42px; font-size: 16px; }
   }
 
   @media (max-width: 420px) {
@@ -1382,11 +1382,14 @@
     box-shadow: 0 8px 22px rgba(200,146,42,0.22);
   }
 
-  /* ── Mobile bottom nav + sticky bar spacing fix ── */
+  /* ── Mobile bottom nav + sticky bar spacing fix ──
+     Back-to-top and the WhatsApp FAB share the bottom-right corner; stack
+     back-to-top above the FAB (FAB bottom + its 50px height + 14px gap)
+     so they never overlap once both are visible after scrolling. */
   @media (max-width: 768px) {
     body { padding-bottom: calc(62px + 48px + env(safe-area-inset-bottom, 0px)); }
-    .back-to-top { bottom: calc(76px + 48px + env(safe-area-inset-bottom, 0px)); }
     .wa-fab { bottom: calc(62px + 48px + 16px + env(safe-area-inset-bottom, 0px)); }
+    .back-to-top { bottom: calc(62px + 48px + 16px + 50px + 14px + env(safe-area-inset-bottom, 0px)); }
   }
 
   /* ── Print styles ── */
