@@ -514,6 +514,7 @@ html { scrollbar-color: rgba(13,59,30,.35) transparent; }
 .al-sticky{ border-bottom-width: 1.5px !important; }
 
 /* Student-guidance gx-card: better mobile rhythm */
+.gx-tag{ font-size: 11px !important; }
 @media (max-width: 600px){
   .gx-card{ border-radius: 14px !important; }
   .gx-head{ padding: 16px 16px !important; min-height: 56px; display: flex; align-items: center; }
