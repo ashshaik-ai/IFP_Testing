@@ -688,6 +688,34 @@ span.hmfp-label, .hmfp-li span{ font-size: 12px !important; }
 /* Homepage: bottom nav tab labels */
 .bn-label{ font-size: 11px !important; }
 
+/* Student-guidance: brand sub-label ("Islamic Front · Mangalagiri") at 9.5px */
+.sg-brand-txt span{ font-size: 11px !important; letter-spacing: 1px !important; }
+
+/* Islamic-knowledge: Wudu step "Recite" labels — inline 10.5px */
+.ws-recite-label{ font-size: 12px !important; }
+
+/* if-lesson.js external resource links — raise from 36px to 44px */
+.ifl-links a{ min-height: 44px !important; }
+
+/* Student-guidance: chips nav links ← raise to 44px */
+.sg-chips a{ min-height: 44px !important; }
+.sg-nav-links a{ min-height: 44px !important; }
+
+/* Learn-urdu: hero breadcrumb links — add tap padding so height ≥ 36px */
+.lu-hero-breadcrumb a{
+  min-height: 36px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  padding: 4px 2px !important;
+}
+
+/* Learn-urdu: nav links (visible on desktop) — raise height */
+.lu-nav-links a{
+  min-height: 44px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+}
+
 /* Homepage: sticky contact bar (call/WhatsApp/email labels) */
 .scb-btn{ font-size: 12px !important; }
 
