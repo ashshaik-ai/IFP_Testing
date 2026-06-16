@@ -1334,13 +1334,12 @@
   .ach-expand-btn:hover { border-color: var(--gold); color: var(--green-deep); }
   .ach-card.expanded .ach-expand-btn { color: var(--green-mid); border-color: rgba(46,139,87,0.3); }
 
-  /* ── Learning Progress Dashboard (KC portal) ── */
+  /* ── Knowledge Center Portal Grid ── */
   .learning-dashboard { background: var(--cream); }
-  .ld-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 48px; margin-top: 48px; align-items: start; }
-  .ld-portal-list { display: flex; flex-direction: column; gap: 12px; }
+  .ld-portal-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px; margin-top: 40px; }
   .ld-portal {
     background: var(--white); border: 1px solid var(--border); border-radius: 12px;
-    padding: 16px 18px; display: flex; align-items: center; gap: 14px;
+    padding: 18px; display: flex; align-items: center; gap: 14px;
     transition: all 0.25s; text-decoration: none; color: inherit;
   }
   .ld-portal:hover { border-color: rgba(200,146,42,0.4); box-shadow: 0 4px 16px rgba(13,59,30,0.08); transform: translateX(2px); }
@@ -1348,52 +1347,9 @@
     background: rgba(46,139,87,0.08); border: 1px solid rgba(46,139,87,0.15);
     display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
   .ld-portal-info { flex: 1; min-width: 0; }
-  .ld-portal-name { font-size: 14px; font-weight: 600; color: var(--green-deep); margin-bottom: 4px; }
-  .ld-bar-wrap { height: 5px; background: rgba(200,146,42,0.1); border-radius: 100px; overflow: hidden; }
-  .ld-bar { height: 100%; background: linear-gradient(90deg, var(--green-mid), var(--gold)); border-radius: 100px; transition: width 1.2s cubic-bezier(.4,0,.2,1) 0.3s; width: 0; }
-  .ld-pct { font-size: 11px; font-weight: 700; color: var(--gold); min-width: 32px; text-align: right; flex-shrink: 0; }
-
-  .ld-achievements { background: var(--white); border: 1px solid var(--border); border-radius: 16px; padding: 28px; }
-  .ld-ach-title { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--green-deep); margin-bottom: 6px; }
-  .ld-ach-sub { font-size: 13px; color: var(--text-muted); margin-bottom: 24px; }
-  .badge-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
-  .badge-item {
-    display: flex; flex-direction: column; align-items: center; gap: 8px;
-    padding: 16px 8px; border-radius: 12px; border: 1px solid var(--border);
-    transition: all 0.2s; text-align: center;
-    background: linear-gradient(145deg, var(--white), var(--cream));
-  }
-  .badge-item.badge-earned { border-color: rgba(200,146,42,0.35); background: linear-gradient(145deg, #fffef8, #fef9e7); }
-  .badge-item.badge-locked { opacity: 0.42; filter: grayscale(0.6); }
-  .badge-icon { font-size: 28px; line-height: 1; }
-  .badge-name { font-size: 11px; font-weight: 600; color: var(--green-deep); line-height: 1.3; }
-  .badge-status { font-size: 10px; color: var(--text-muted); }
-  .badge-earned .badge-status { color: var(--gold); font-weight: 600; }
-
-  .cert-strip {
-    margin-top: 24px; background: linear-gradient(135deg, var(--green-deep), #0a2e17);
-    border-radius: 12px; padding: 20px 24px; display: flex; align-items: center; gap: 18px;
-    border: 1px solid rgba(200,146,42,0.25);
-  }
-  .cert-icon { font-size: 36px; flex-shrink: 0; }
-  .cert-info { flex: 1; }
-  .cert-title { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; color: var(--white); margin-bottom: 3px; }
-  .cert-sub { font-size: 12px; color: rgba(245,230,192,0.55); }
-  .cert-btn {
-    padding: 9px 18px; background: linear-gradient(135deg, var(--gold), var(--gold-light));
-    color: var(--green-deep); border: none; border-radius: 6px; font-size: 12px;
-    font-weight: 700; letter-spacing: 0.5px; cursor: pointer; font-family: inherit;
-    white-space: nowrap; transition: opacity 0.2s;
-  }
-  .cert-btn:hover { opacity: 0.85; }
-
-  @media (max-width: 768px) {
-    .ld-grid { grid-template-columns: 1fr; gap: 24px; }
-    .badge-grid { grid-template-columns: repeat(4, 1fr); }
-  }
-  @media (max-width: 420px) {
-    .badge-grid { grid-template-columns: repeat(3, 1fr); }
-  }
+  .ld-portal-name { font-size: 14px; font-weight: 600; color: var(--green-deep); }
+  .ld-portal-arrow { font-size: 16px; color: var(--gold); flex-shrink: 0; transition: transform 0.25s; }
+  .ld-portal:hover .ld-portal-arrow { transform: translateX(3px); }
 
   /* ── Hero secondary CTA ── */
   .hero-cta-group { display: flex; gap: 12px; flex-wrap: wrap; }
@@ -2692,7 +2648,7 @@
 </section>
 
 <!-- ═══════════════════════════════════════════════════════
-     LEARNING ECOSYSTEM DASHBOARD
+     KNOWLEDGE CENTER DISCOVERY
 ═══════════════════════════════════════════════════════ -->
 <section class="learning-dashboard" id="learning">
   <div class="inner">
@@ -2700,120 +2656,56 @@
     <h2 class="section-title" data-key="ld_title">నాలెడ్జ్ సెంటర్‌ను అన్వేషించండి</h2>
     <p class="section-lead" data-key="ld_lead">ఖురాన్, నమాజ్, సీరహ్, చరిత్ర, భాషలు మరియు మరిన్ని — ఉచిత, నిర్మాణాత్మక అభ్యాస పోర్టల్‌లు. ప్రారంభించడానికి ఏదైనా పోర్టల్ తెరవండి.</p>
 
-    <div class="ld-grid">
-      <div>
-        <h3 style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--green-deep);margin-bottom:18px;" data-key="ld_portals_title">నేర్చుకుంటున్న పోర్టల్స్</h3>
-        <div class="ld-portal-list">
-          <a href="knowledge-center/learn-arabic/index.html" class="ld-portal reveal">
-            <div class="ld-portal-icon" style="font-family:serif;font-size:20px">ع</div>
-            <div class="ld-portal-info">
-              <div class="ld-portal-name" data-key="ld_arabic">అరబిక్ నేర్చుకోండి</div>
-              <div class="ld-bar-wrap"><div class="ld-bar" data-w="0%"></div></div>
-            </div>
-            <div class="ld-pct">0%</div>
-          </a>
-          <a href="knowledge-center/learn-urdu/index.html" class="ld-portal reveal">
-            <div class="ld-portal-icon" style="font-family:'Noto Nastaliq Urdu',serif;font-size:18px;line-height:1.6">و</div>
-            <div class="ld-portal-info">
-              <div class="ld-portal-name" data-key="ld_urdu">ఉర్దూ నేర్చుకోండి</div>
-              <div class="ld-bar-wrap"><div class="ld-bar" data-w="0%"></div></div>
-            </div>
-            <div class="ld-pct">0%</div>
-          </a>
-          <a href="knowledge-center/learn-quran/index.html" class="ld-portal reveal">
-            <div class="ld-portal-icon">📖</div>
-            <div class="ld-portal-info">
-              <div class="ld-portal-name" data-key="ld_quran">ఖురాన్ నేర్చుకోండి</div>
-              <div class="ld-bar-wrap"><div class="ld-bar" data-w="0%"></div></div>
-            </div>
-            <div class="ld-pct">0%</div>
-          </a>
-          <a href="knowledge-center/learn-salah/index.html" class="ld-portal reveal">
-            <div class="ld-portal-icon">🕌</div>
-            <div class="ld-portal-info">
-              <div class="ld-portal-name" data-key="ld_salah">నమాజ్ నేర్చుకోండి</div>
-              <div class="ld-bar-wrap"><div class="ld-bar" data-w="0%"></div></div>
-            </div>
-            <div class="ld-pct">0%</div>
-          </a>
-          <a href="knowledge-center/seerah/index.html" class="ld-portal reveal">
-            <div class="ld-portal-icon">⭐</div>
-            <div class="ld-portal-info">
-              <div class="ld-portal-name" data-key="ld_seerah">సీరహ్</div>
-              <div class="ld-bar-wrap"><div class="ld-bar" data-w="0%"></div></div>
-            </div>
-            <div class="ld-pct">0%</div>
-          </a>
-          <a href="knowledge-center/kids-islam/index.html" class="ld-portal reveal">
-            <div class="ld-portal-icon">⭐</div>
-            <div class="ld-portal-info">
-              <div class="ld-portal-name" data-key="ld_kids">పిల్లల ఇస్లాం</div>
-              <div class="ld-bar-wrap"><div class="ld-bar" data-w="0%"></div></div>
-            </div>
-            <div class="ld-pct">0%</div>
-          </a>
+    <div class="ld-portal-list">
+      <a href="knowledge-center/learn-arabic/index.html" class="ld-portal reveal">
+        <div class="ld-portal-icon" style="font-family:serif;font-size:20px">ع</div>
+        <div class="ld-portal-info">
+          <div class="ld-portal-name" data-key="ld_arabic">అరబిక్ నేర్చుకోండి</div>
         </div>
-        <div style="margin-top:20px;padding:16px;background:var(--white);border:1px solid var(--border);border-radius:12px;font-size:13px;color:var(--text-muted);line-height:1.7;" data-key="ld_note">
-          💡 పురోగతి మీ పరికరంలో నిల్వ ఉంటుంది. ప్రతి పోర్టల్‌లోని పాఠాలు పూర్తి చేయడంతో బ్యాడ్జ్‌లు సేకరించవచ్చు.
+        <div class="ld-portal-arrow" aria-hidden="true">→</div>
+      </a>
+      <a href="knowledge-center/learn-urdu/index.html" class="ld-portal reveal">
+        <div class="ld-portal-icon" style="font-family:'Noto Nastaliq Urdu',serif;font-size:18px;line-height:1.6">و</div>
+        <div class="ld-portal-info">
+          <div class="ld-portal-name" data-key="ld_urdu">ఉర్దూ నేర్చుకోండి</div>
         </div>
-      </div>
-
-      <div>
-        <div class="ld-achievements reveal">
-          <div class="ld-ach-title" data-key="ld_badges_title">బ్యాడ్జ్‌లు & సాధనలు</div>
-          <div class="ld-ach-sub" data-key="ld_badges_sub">పోర్టల్స్ పూర్తి చేసి బ్యాడ్జ్‌లు సేకరించండి</div>
-          <div class="badge-grid">
-            <div class="badge-item badge-locked">
-              <div class="badge-icon">🌙</div>
-              <div class="badge-name" data-key="badge1_name">ఆరంభకుడు</div>
-              <div class="badge-status" data-key="badge_locked">లాక్ చేయబడింది</div>
-            </div>
-            <div class="badge-item badge-locked">
-              <div class="badge-icon">📖</div>
-              <div class="badge-name" data-key="badge2_name">ఖురాన్ పఠన</div>
-              <div class="badge-status" data-key="badge_locked">లాక్ చేయబడింది</div>
-            </div>
-            <div class="badge-item badge-locked">
-              <div class="badge-icon">🕌</div>
-              <div class="badge-name" data-key="badge3_name">సలాహ్ నిపుణుడు</div>
-              <div class="badge-status" data-key="badge_locked">లాక్ చేయబడింది</div>
-            </div>
-            <div class="badge-item badge-locked">
-              <div class="badge-icon">ع</div>
-              <div class="badge-name" data-key="badge4_name">అరబిక్ రీడర్</div>
-              <div class="badge-status" data-key="badge_locked">లాక్ చేయబడింది</div>
-            </div>
-            <div class="badge-item badge-locked">
-              <div class="badge-icon">و</div>
-              <div class="badge-name" data-key="badge5_name">ఉర్దూ రీడర్</div>
-              <div class="badge-status" data-key="badge_locked">లాక్ చేయబడింది</div>
-            </div>
-            <div class="badge-item badge-locked">
-              <div class="badge-icon">⭐</div>
-              <div class="badge-name" data-key="badge6_name">సీరహ్ స్కాలర్</div>
-              <div class="badge-status" data-key="badge_locked">లాక్ చేయబడింది</div>
-            </div>
-            <div class="badge-item badge-locked">
-              <div class="badge-icon">🏆</div>
-              <div class="badge-name" data-key="badge7_name">పూర్తి చేసినవాడు</div>
-              <div class="badge-status" data-key="badge_locked">లాక్ చేయబడింది</div>
-            </div>
-            <div class="badge-item badge-locked">
-              <div class="badge-icon">🌟</div>
-              <div class="badge-name" data-key="badge8_name">చాంపియన్</div>
-              <div class="badge-status" data-key="badge_locked">లాక్ చేయబడింది</div>
-            </div>
-          </div>
-          <div class="cert-strip">
-            <div class="cert-icon">🎓</div>
-            <div class="cert-info">
-              <div class="cert-title" data-key="cert_title">పూర్తి స్థాయి సర్టిఫికెట్</div>
-              <div class="cert-sub" data-key="cert_sub">అన్ని పోర్టల్‌లు పూర్తి చేస్తే ఇస్లామిక్ ఫ్రంట్ సర్టిఫికెట్ పొందండి</div>
-            </div>
-            <button class="cert-btn" onclick="alert('పోర్టల్‌లు పూర్తి చేసిన తర్వాత ఇక్కడ డౌన్‌లోడ్ చేయవచ్చు')" data-key="cert_btn">చూడండి</button>
-          </div>
+        <div class="ld-portal-arrow" aria-hidden="true">→</div>
+      </a>
+      <a href="knowledge-center/learn-quran/index.html" class="ld-portal reveal">
+        <div class="ld-portal-icon">📖</div>
+        <div class="ld-portal-info">
+          <div class="ld-portal-name" data-key="ld_quran">ఖురాన్ నేర్చుకోండి</div>
         </div>
-      </div>
+        <div class="ld-portal-arrow" aria-hidden="true">→</div>
+      </a>
+      <a href="knowledge-center/learn-salah/index.html" class="ld-portal reveal">
+        <div class="ld-portal-icon">🕌</div>
+        <div class="ld-portal-info">
+          <div class="ld-portal-name" data-key="ld_salah">నమాజ్ నేర్చుకోండి</div>
+        </div>
+        <div class="ld-portal-arrow" aria-hidden="true">→</div>
+      </a>
+      <a href="knowledge-center/seerah/index.html" class="ld-portal reveal">
+        <div class="ld-portal-icon">⭐</div>
+        <div class="ld-portal-info">
+          <div class="ld-portal-name" data-key="ld_seerah">సీరహ్</div>
+        </div>
+        <div class="ld-portal-arrow" aria-hidden="true">→</div>
+      </a>
+      <a href="knowledge-center/islamic-history/index.html" class="ld-portal reveal">
+        <div class="ld-portal-icon">🏛</div>
+        <div class="ld-portal-info">
+          <div class="ld-portal-name" data-key="ld_history">ఇస్లామిక్ చరిత్ర</div>
+        </div>
+        <div class="ld-portal-arrow" aria-hidden="true">→</div>
+      </a>
+      <a href="knowledge-center/kids-islam/index.html" class="ld-portal reveal">
+        <div class="ld-portal-icon">🧒</div>
+        <div class="ld-portal-info">
+          <div class="ld-portal-name" data-key="ld_kids">పిల్లల ఇస్లాం</div>
+        </div>
+        <div class="ld-portal-arrow" aria-hidden="true">→</div>
+      </a>
     </div>
   </div>
 </section>
@@ -3171,16 +3063,10 @@ const T = {
     ci_phone: "ఫోన్", ci_whatsapp: "WhatsApp", ci_address: "చిరునామా", ci_hours_short: "వేళలు",
     ci_addr_val: "మంగళగిరి, గుంటూరు జిల్లా<br>ఆంధ్రప్రదేశ్ – 522503", ci_hours_val: "సో–శ: 9AM–6PM<br>అత్యవసరం: 24/7",
 
-    /* Learning Dashboard */
+    /* Knowledge Center Portals */
     ld_tag: "నాలెడ్జ్ సెంటర్", ld_title: "నాలెడ్జ్ సెంటర్‌ను అన్వేషించండి",
     ld_lead: "ఖురాన్, నమాజ్, సీరహ్, చరిత్ర, భాషలు మరియు మరిన్ని — ఉచిత, నిర్మాణాత్మక అభ్యాస పోర్టల్‌లు. ప్రారంభించడానికి ఏదైనా పోర్టల్ తెరవండి.",
-    ld_portals_title: "నేర్చుకుంటున్న పోర్టల్స్",
-    ld_arabic: "అరబిక్ నేర్చుకోండి", ld_urdu: "ఉర్దూ నేర్చుకోండి", ld_quran: "ఖురాన్ నేర్చుకోండి", ld_salah: "నమాజ్ నేర్చుకోండి", ld_seerah: "సీరహ్", ld_kids: "పిల్లల ఇస్లాం",
-    ld_note: "💡 పురోగతి మీ పరికరంలో నిల్వ ఉంటుంది. పోర్టల్‌లోని పాఠాలు పూర్తి చేయడంతో బ్యాడ్జ్‌లు సేకరించవచ్చు.",
-    ld_badges_title: "బ్యాడ్జ్‌లు & సాధనలు", ld_badges_sub: "పోర్టల్స్ పూర్తి చేసి బ్యాడ్జ్‌లు సేకరించండి",
-    badge1_name: "ఆరంభకుడు", badge2_name: "ఖురాన్ పఠన", badge3_name: "సలాహ్ నిపుణుడు", badge4_name: "అరబిక్ రీడర్", badge5_name: "ఉర్దూ రీడర్", badge6_name: "సీరహ్ స్కాలర్", badge7_name: "పూర్తి చేసినవాడు", badge8_name: "చాంపియన్",
-    badge_locked: "లాక్ చేయబడింది", badge_earned: "సేకరించబడింది",
-    cert_title: "పూర్తి స్థాయి సర్టిఫికెట్", cert_sub: "అన్ని పోర్టల్‌లు పూర్తి చేస్తే ఇస్లామిక్ ఫ్రంట్ సర్టిఫికెట్ పొందండి", cert_btn: "చూడండి",
+    ld_arabic: "అరబిక్ నేర్చుకోండి", ld_urdu: "ఉర్దూ నేర్చుకోండి", ld_quran: "ఖురాన్ నేర్చుకోండి", ld_salah: "నమాజ్ నేర్చుకోండి", ld_seerah: "సీరహ్", ld_history: "ఇస్లామిక్ చరిత్ర", ld_kids: "పిల్లల ఇస్లాం",
 
     /* Sticky contact bar */
     scb_call: "కాల్", scb_wa: "WhatsApp", scb_mail: "ఇమెయిల్", scb_help: "సహాయం"
@@ -3432,16 +3318,10 @@ const T = {
     ci_phone: "Phone", ci_whatsapp: "WhatsApp", ci_address: "Address", ci_hours_short: "Hours",
     ci_addr_val: "Mangalagiri, Guntur District<br>Andhra Pradesh – 522503", ci_hours_val: "Mon–Sat: 9AM–6PM<br>Emergency: 24/7",
 
-    /* Learning Dashboard */
+    /* Knowledge Center Portals */
     ld_tag: "Knowledge Center", ld_title: "Explore the Knowledge Center",
     ld_lead: "Free, structured learning portals — Quran, Salah, Seerah, history, languages and more. Open any portal to begin.",
-    ld_portals_title: "Learning Portals",
-    ld_arabic: "Learn Arabic", ld_urdu: "Learn Urdu", ld_quran: "Learn Quran", ld_salah: "Learn Salah", ld_seerah: "Seerah", ld_kids: "Kids Islam",
-    ld_note: "💡 Progress is saved on your device. Complete lessons in each portal to earn badges.",
-    ld_badges_title: "Badges & Achievements", ld_badges_sub: "Complete portals to earn badges",
-    badge1_name: "Beginner", badge2_name: "Quran Reader", badge3_name: "Salah Expert", badge4_name: "Arabic Reader", badge5_name: "Urdu Reader", badge6_name: "Seerah Scholar", badge7_name: "Completionist", badge8_name: "Champion",
-    badge_locked: "Locked", badge_earned: "Earned",
-    cert_title: "Full Completion Certificate", cert_sub: "Complete all portals to receive an Islamic Front certificate", cert_btn: "View",
+    ld_arabic: "Learn Arabic", ld_urdu: "Learn Urdu", ld_quran: "Learn Quran", ld_salah: "Learn Salah", ld_seerah: "Seerah", ld_history: "Islamic History", ld_kids: "Kids Islam",
 
     /* Sticky contact bar */
     scb_call: "Call", scb_wa: "WhatsApp", scb_mail: "Email", scb_help: "Help"
@@ -3748,28 +3628,6 @@ function submitVolunteerForm(e) {
   }, 4000);
 }
 window.submitVolunteerForm = submitVolunteerForm;
-
-/* Learning dashboard — animate progress bars on scroll */
-document.addEventListener('DOMContentLoaded', function(){
-  var ldSection = document.getElementById('learning');
-  if (ldSection) {
-    var ldIO = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        if (e.isIntersecting) {
-          e.target.querySelectorAll('.ld-bar').forEach(function(bar){
-            var w = bar.dataset.w || '0%';
-            bar.style.width = w;
-          });
-          ldIO.unobserve(e.target);
-        }
-      });
-    }, {threshold: 0.1});
-    ldIO.observe(ldSection);
-  }
-
-  /* Learning progress is shown only inside the Knowledge Center, never on the
-     community homepage. This section is a Knowledge Center discovery list. */
-});
 
 /* Footer nav update — add new sections */
 (function(){

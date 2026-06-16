@@ -4,7 +4,10 @@
    the platform already tracks — XP/level, lessons completed, quizzes
    passed, streak, time estimate — plus an achievement gallery and a
    learning roadmap (per-portal completion %). No external assets.
-   Reads: if-xp, if-<portal>-progress (.done/.streak), if-quiz-* (.best).
+   Reads: if-xp, if-<portal>-progress (.done or .levels array, .streak), if-quiz-* (.best).
+   Portals wired via if-sublesson.js/if-portal.js write .done; portals with a
+   bespoke in-page dashboard (Quran/Salah/Seerah/History/Kids) write .levels —
+   doneCount() accepts either so every portal feeds this aggregator.
    =================================================================== */
 (function () {
   'use strict';
@@ -24,7 +27,7 @@
   function te() { return lang() === 'te'; }
   function lsGet(k) { try { return JSON.parse(localStorage.getItem(k)) || {}; } catch (e) { return {}; } }
 
-  function doneCount(k) { var s = lsGet('if-' + k + '-progress'); return (s.done || []).length; }
+  function doneCount(k) { var s = lsGet('if-' + k + '-progress'); return (s.done || s.levels || []).length; }
   function stats() {
     var lessons = 0, maxStreak = 0;
     PORTALS.forEach(function (p) { lessons += Math.min(doneCount(p.k), p.total); var st = lsGet('if-' + p.k + '-progress').streak || 0; if (st > maxStreak) maxStreak = st; });

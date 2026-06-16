@@ -103,7 +103,6 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
 /* CARD GRID + EXPANDABLE CARDS */
 .gx-grid{display:grid;grid-template-columns:1fr;gap:14px;margin-top:8px}
 @media(min-width:640px){.gx-grid{grid-template-columns:1fr 1fr}}
-@media(min-width:1000px){.gx-grid.three{grid-template-columns:1fr 1fr 1fr}}
 .gx-card{background:var(--white);border:1px solid var(--border);border-left:4px solid var(--track,var(--gold));border-radius:14px;overflow:hidden;transition:box-shadow .25s,transform .25s}
 .gx-card.open{box-shadow:var(--shadow)}
 .gx-head{width:100%;display:flex;align-items:flex-start;gap:13px;padding:16px 18px;cursor:pointer;background:none;border:none;text-align:left;font-family:inherit}
@@ -319,7 +318,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
   <div class="sg-search-wrap">
     <div class="sg-search" id="searchBox">
       <span class="si">🔍</span>
-      <input type="search" id="sgSearch" placeholder="Search a course, exam or career (e.g. B.Tech, NEET, CA, nursing, ITI)…" aria-label="Search courses, exams and careers">
+      <input type="search" id="sgSearch" placeholder="Search a course, exam or career…" aria-label="Search courses, exams and careers (e.g. B.Tech, NEET, CA, nursing, ITI)">
       <button class="sc" id="sgClear" aria-label="Clear search">✕</button>
     </div>
     <nav class="sg-chips" id="chipsBar" aria-label="Jump to section">

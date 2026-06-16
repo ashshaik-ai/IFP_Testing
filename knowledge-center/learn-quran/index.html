@@ -357,12 +357,15 @@ body>nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(13,59,3
 .tj-btn.primary{background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--green-deep);border-color:transparent}
 .tj-btn.primary:hover{box-shadow:0 8px 24px -6px rgba(200,146,42,0.6)}
 @media(max-width:760px){.tj-body{grid-template-columns:1fr;gap:20px}.tj-figure{min-height:170px}.tj-stage{padding:22px 18px}.tj-btn{padding:12px 18px;font-size:.74rem}}
+.tj-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
 
 /* ═══ SURAH EXPLORER — key lesson + audio chip (new) ═══ */
 .surah-kl{display:flex;gap:8px;align-items:flex-start;font-size:.8rem;color:var(--text-mid);background:rgba(46,139,87,0.07);border:1px solid rgba(46,139,87,0.18);border-radius:10px;padding:9px 12px;margin-bottom:12px;line-height:1.55}
 .surah-kl b{color:var(--green-light);flex-shrink:0;font-weight:700}
-.surah-audio{display:inline-flex;align-items:center;justify-content:center;gap:6px;width:100%;font-family:inherit;font-size:.72rem;font-weight:600;color:var(--gold);background:rgba(200,146,42,0.08);border:1px dashed rgba(200,146,42,0.4);border-radius:8px;padding:8px;margin-bottom:10px;cursor:pointer;transition:background .2s}
+.surah-audio{display:inline-flex;align-items:center;justify-content:center;gap:6px;width:100%;font-family:inherit;font-size:.72rem;font-weight:600;color:var(--gold);background:rgba(200,146,42,0.08);border:1px solid rgba(200,146,42,0.4);border-radius:8px;padding:8px;margin-bottom:10px;cursor:pointer;transition:background .2s}
 .surah-audio:hover{background:rgba(200,146,42,0.16)}
+.surah-audio.if-audio-playing{background:rgba(200,146,42,0.2);border-color:var(--gold)}
+.surah-reciter{font-size:.78rem;color:var(--text-muted);margin-top:6px}
 
 /* ═══ REFLECTION CENTER — prompt + action (new) ═══ */
 .ch-reflect{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px;text-align:left}
@@ -952,6 +955,7 @@ body>nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(13,59,3
     <h2 class="rm-title reveal" data-te="తజ్వీద్ <span>అకాడమీ</span>" data-en="Tajweed <span>Academy</span>">Tajweed <span>Academy</span></h2>
     <p class="rm-subtitle reveal" data-te="ఎనిమిది ముఖ్య తజ్వీద్ నియమాల గుండా అడుగడుగునా నడవండి — వివరణ, ఉదాహరణ, సాధారణ తప్పు మరియు ఆడియో, అభ్యాస ప్లేస్‌హోల్డర్‌లతో." data-en="Walk step by step through eight core Tajweed rules — with an explanation, an example, the common mistake, and audio + practice placeholders.">Walk step by step through eight core Tajweed rules — with an explanation, an example, the common mistake, and audio + practice placeholders.</p>
     <div class="tj-stage reveal" id="tj-stage"><!-- rendered by JS --></div>
+    <div id="tj-announce" class="tj-sr" role="status" aria-live="polite"></div>
   </div>
 </section>
 
@@ -962,6 +966,7 @@ body>nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(13,59,3
       <div class="lu-sec-label" data-te="పఠించండి · అర్థం చేసుకోండి · కంఠస్థం చేయండి" data-en="Recite · Understand · Memorize">Recite · Understand · Memorize</div>
       <h2 class="lu-sec-title" data-te="ముఖ్య <span>సూరాలు</span>" data-en="Featured <span>Surahs</span>">Featured <span>Surahs</span></h2>
       <p class="lu-sec-subtitle" data-te="ప్రతి ముస్లిం తెలుసుకోవలసిన ప్రియమైన సూరాలతో ప్రారంభించండి — వాటి అర్థాలు, ఘనతలు మరియు నేర్చుకునే మార్గాలతో." data-en="Begin with the beloved Surahs every Muslim should know — with their meanings, virtues, and ways to learn each one.">Begin with the beloved Surahs every Muslim should know — with their meanings, virtues, and ways to learn each one.</p>
+      <p class="surah-reciter" data-te="🎙 పఠనం: షేక్ మిష్రీ రాషిద్ అల్‌అఫాసీ" data-en="🎙 Recitation by Sheikh Mishary Rashid Alafasy">🎙 Recitation by Sheikh Mishary Rashid Alafasy</p>
     </div>
     <div class="surah-grid" id="surah-grid"><!-- rendered by JS --></div>
   </div>
@@ -1380,8 +1385,11 @@ function renderTajweed(){
       +'<button class="tj-btn" id="tj-prev"'+(TJ_I===0?' disabled':'')+'>← '+L.prev+'</button>'
       +'<button class="tj-btn primary" id="tj-next">'+(last?'✓ '+L.finish:L.next+' →')+'</button>'
     +'</div>';
-  var p=loadProg(); var reached=Math.max(p.tj||0,TJ_I+1);
-  if(reached!==p.tj){ p.tj=reached; saveProg(p); renderDashboard(); }
+  var p=loadProg(); var reached=Math.max(p.tj||0,TJ_I+1); var milestoneAdvanced=(reached!==p.tj);
+  p.tj=reached; p.tjIdx=TJ_I; saveProg(p);
+  if(milestoneAdvanced) renderDashboard();
+  var ann=document.getElementById('tj-announce');
+  if(ann) ann.textContent=L.step+' '+(TJ_I+1)+' '+L.of+' '+TJ_STEPS.length+' — '+name;
   stage.querySelectorAll('.tj-dot').forEach(function(d){ d.addEventListener('click',function(){ TJ_I=parseInt(d.getAttribute('data-i'),10); renderTajweed(); }); });
   stage.querySelectorAll('[data-media]').forEach(function(b){ b.addEventListener('click',function(){ tjToast(b.getAttribute('data-media')); }); });
   var pv=document.getElementById('tj-prev'); if(pv) pv.addEventListener('click',function(){ if(TJ_I>0){ TJ_I--; renderTajweed(); } });
@@ -1538,7 +1546,6 @@ function renderSurahs(){
       +'</div>'
     +'</div>';
   }).join('');
-  grid.querySelectorAll('[data-media]').forEach(function(b){ b.addEventListener('click',function(){ tjToast(b.getAttribute('data-media')); }); });
 }
 
 /* ── DAILY CHALLENGE LOGIC ── */
@@ -1724,6 +1731,7 @@ function initBTT(){
 /* ── BOOT ── */
 document.addEventListener('DOMContentLoaded',function(){
   initLevelsProgress();
+  var _p0=loadProg(); if(typeof _p0.tjIdx==='number') TJ_I=_p0.tjIdx;
   applyLang(LANG);
   initSticky();
   initSpy();
