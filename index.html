@@ -212,6 +212,31 @@
   .section-lead { font-size: 16px; color: var(--text-muted); max-width: 560px; line-height: 1.75; }
   .inner { max-width: 1100px; margin: 0 auto; }
 
+  /* HUB TABS — homepage section navigator */
+  .hub-tabs { position: sticky; top: 68px; z-index: 90; background: var(--cream); border-bottom: 1px solid var(--border); }
+  .hub-tabs-track { display: flex; gap: 8px; max-width: 1100px; margin: 0 auto; padding: 12px 5vw; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+  .hub-tabs-track::-webkit-scrollbar { display: none; }
+  .hub-tabs-track.has-overflow { -webkit-mask-image: linear-gradient(90deg, transparent 0, black 16px, black calc(100% - 28px), transparent 100%); mask-image: linear-gradient(90deg, transparent 0, black 16px, black calc(100% - 28px), transparent 100%); }
+  .hub-tab {
+    flex: 0 0 auto; font-family: inherit; font-size: 13.5px; font-weight: 600; letter-spacing: .2px;
+    color: var(--text-mid); background: var(--white); border: 1px solid var(--border);
+    border-radius: 100px; padding: 8px 18px; min-height: 44px; display: inline-flex; align-items: center;
+    cursor: pointer; white-space: nowrap; transition: background .2s, color .2s, border-color .2s;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .hub-tab:hover { border-color: var(--gold); color: var(--green-deep); }
+  .hub-tab.active { background: var(--green-deep); color: var(--gold-light); border-color: var(--green-deep); }
+  .hub-panes { background: var(--cream); }
+  .hub-pane { display: none; }
+  .hub-pane.active { display: block; }
+  @media (max-width: 768px) {
+    .hub-tabs-track { padding: 10px 5vw; gap: 6px; }
+    .hub-tab { font-size: 12.5px; padding: 7px 14px; }
+  }
+  @media (max-width: 600px) {
+    .hub-tab { font-size: 12px; padding: 7px 12px; }
+  }
+
   /* LEADERSHIP & HISTORIC MANDATE (unified) */
   .victory { background: var(--green-deep); padding: 90px 5vw; }
   .victory .inner { max-width: 1080px; }
@@ -1588,6 +1613,20 @@
   </div>
 </section>
 
+<!-- HUB TABS -->
+<nav class="hub-tabs" id="hub-tabs" aria-label="Page sections">
+  <div class="hub-tabs-track">
+    <button class="hub-tab active" data-tab="overview" onclick="switchHubTab('overview',this)" data-key="tab_overview">Overview</button>
+    <button class="hub-tab" data-tab="schemes" onclick="switchHubTab('schemes',this)" data-key="tab_schemes">Schemes &amp; Infrastructure</button>
+    <button class="hub-tab" data-tab="community" onclick="switchHubTab('community',this)" data-key="tab_community">Community</button>
+    <button class="hub-tab" data-tab="about" onclick="switchHubTab('about',this)" data-key="tab_about">About &amp; Contact</button>
+    <button class="hub-tab" data-tab="knowledge" onclick="switchHubTab('knowledge',this)" data-key="tab_knowledge">Knowledge Center</button>
+  </div>
+</nav>
+
+<div class="hub-panes">
+<div class="hub-pane active" id="pane-overview" data-pane="overview">
+
 <!-- VICTORY -->
 <section class="victory" id="victory">
   <div class="inner">
@@ -1906,6 +1945,9 @@
   </div>
 </section>
 
+</div>
+<div class="hub-pane" id="pane-schemes" data-pane="schemes">
+
 <!-- SCHEME -->
 <section class="scheme" id="scheme">
   <div class="inner">
@@ -2020,7 +2062,12 @@
       </div>
     </div>
   </div>
-</section><!-- ABOUT -->
+</section>
+
+</div>
+<div class="hub-pane" id="pane-about" data-pane="about">
+
+<!-- ABOUT -->
 <section class="about" id="about">
   <div class="inner">
     <div class="founder-frame">
@@ -2111,6 +2158,8 @@
   </div>
 </section>
 
+</div>
+<div class="hub-pane" id="pane-community" data-pane="community">
 
 <!-- ═══════════════════════════════════════════════════════
      SECTION SEAM — marks the shift from core info to community
@@ -2719,6 +2768,9 @@
   </div>
 </section>
 
+</div>
+<div class="hub-pane" id="pane-knowledge" data-pane="knowledge">
+
 <!-- ═══════════════════════════════════════════════════════
      KNOWLEDGE CENTER DISCOVERY
 ═══════════════════════════════════════════════════════ -->
@@ -2816,6 +2868,9 @@
     </div>
   </div>
 </section>
+
+</div>
+</div>
 
 <!-- FOOTER -->
 <footer>
@@ -3144,7 +3199,14 @@ const T = {
     ld_arabic: "అరబిక్ నేర్చుకోండి", ld_urdu: "ఉర్దూ నేర్చుకోండి", ld_quran: "ఖురాన్ నేర్చుకోండి", ld_salah: "నమాజ్ నేర్చుకోండి", ld_seerah: "సీరహ్", ld_history: "ఇస్లామిక్ చరిత్ర", ld_kids: "పిల్లల ఇస్లాం",
 
     /* Sticky contact bar */
-    scb_call: "కాల్", scb_wa: "WhatsApp", scb_mail: "ఇమెయిల్", scb_help: "సహాయం"
+    scb_call: "కాల్", scb_wa: "WhatsApp", scb_mail: "ఇమెయిల్", scb_help: "సహాయం",
+
+    /* Hub tabs */
+    tab_overview: "అవలోకనం",
+    tab_schemes: "పథకాలు & మౌలిక సదుపాయాలు",
+    tab_community: "సమాజం",
+    tab_about: "మా గురించి & సంప్రదింపు",
+    tab_knowledge: "నాలెడ్జ్ సెంటర్"
   },
   en: {
     skip_link: "Skip to main content",
@@ -3402,7 +3464,14 @@ const T = {
     ld_arabic: "Learn Arabic", ld_urdu: "Learn Urdu", ld_quran: "Learn Quran", ld_salah: "Learn Salah", ld_seerah: "Seerah", ld_history: "Islamic History", ld_kids: "Kids Islam",
 
     /* Sticky contact bar */
-    scb_call: "Call", scb_wa: "WhatsApp", scb_mail: "Email", scb_help: "Help"
+    scb_call: "Call", scb_wa: "WhatsApp", scb_mail: "Email", scb_help: "Help",
+
+    /* Hub tabs */
+    tab_overview: "Overview",
+    tab_schemes: "Schemes & Infrastructure",
+    tab_community: "Community",
+    tab_about: "About & Contact",
+    tab_knowledge: "Knowledge Center"
   }
 };
 
@@ -3499,8 +3568,60 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
 
+  /* ── Hub tabs: section-to-tab routing + pane switching ── */
+  var SECTION_TO_TAB={victory:'overview',achievements:'overview',manifesto:'overview',
+    scheme:'schemes',infra:'schemes',
+    about:'about',contact:'about',
+    stories:'community',gallery:'community',events:'community',volunteer:'community','community-contact':'community',
+    learning:'knowledge',knowledge:'knowledge'};
+
+  function reArmReveal(paneEl){
+    if(!paneEl)return;
+    paneEl.querySelectorAll('.reveal:not(.in-view)').forEach(function(el){
+      var r=el.getBoundingClientRect();
+      if(r.top<window.innerHeight&&r.bottom>0)el.classList.add('in-view');
+    });
+  }
+
+  var TAB_FIRST_SECTION={overview:'victory',schemes:'scheme',community:'stories',about:'about',knowledge:'learning'};
+  function firstTrackedSectionIdIn(tabId){ return TAB_FIRST_SECTION[tabId]||null; }
+
+  function switchHubTab(tabId, btn, opts){
+    document.querySelectorAll('.hub-tab').forEach(function(t){t.classList.remove('active');});
+    if(btn) btn.classList.add('active');
+    else { var b=document.querySelector('.hub-tab[data-tab="'+tabId+'"]'); if(b)b.classList.add('active'); }
+    document.querySelectorAll('.hub-pane').forEach(function(p){
+      p.classList.toggle('active', p.dataset.pane===tabId);
+    });
+    reArmReveal(document.getElementById('pane-'+tabId));
+    if(typeof setNavActive==='function') setNavActive(firstTrackedSectionIdIn(tabId));
+    if(!(opts&&opts.fromHashRoute)&&window.history&&window.history.replaceState){
+      window.history.replaceState(null,'','#tab-'+tabId);
+    }
+  }
+  window.switchHubTab = switchHubTab;
+
+  function routeHashToTab(hash, fromLoad){
+    var id=(hash||'').replace('#','');
+    if(id&&SECTION_TO_TAB[id]){
+      switchHubTab(SECTION_TO_TAB[id], null, {fromHashRoute:true});
+      return true;
+    }
+    return false;
+  }
+  routeHashToTab(window.location.hash, true);
+
+  /* Check tab strip overflow for the fade-edge affordance */
+  function checkHubTabsOverflow(){
+    var track=document.querySelector('.hub-tabs-track');
+    if(!track)return;
+    track.classList.toggle('has-overflow', track.scrollWidth>track.clientWidth+2);
+  }
+  checkHubTabsOverflow();
+  window.addEventListener('resize', checkHubTabsOverflow);
+
   /* Active section tracking */
-  var TRACKED_IDS=['home','victory','achievements','manifesto','scheme','stories','gallery','events','volunteer','community-contact','about','contact','learning'];
+  var TRACKED_IDS=['home','victory','achievements','manifesto','scheme','infra','stories','gallery','events','volunteer','community-contact','about','contact','learning','knowledge'];
   var secVis={};
   TRACKED_IDS.forEach(function(id){secVis[id]=false;});
   function setNavActive(activeId){
@@ -3528,10 +3649,14 @@ document.addEventListener('DOMContentLoaded', function () {
     setNavActive(best?best.id:null);
   },{rootMargin:'-10% 0px -70% 0px',threshold:0});
   TRACKED_IDS.forEach(function(id){var el=document.getElementById(id);if(el)sectionIO.observe(el);});
-  document.querySelectorAll('.nav-links a,.nav-drawer-links a').forEach(function(a){
+  /* Any in-page anchor link (nav-drawer, bottom-nav, section-seam, footer, CTA cards, etc.)
+     that targets a section now living inside a hub-pane must switch to that pane first,
+     otherwise the browser's native anchor-scroll lands on a display:none target. */
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
     a.addEventListener('click',function(){
       var href=this.getAttribute('href');
       var id=(href==='#home'||href==='#')?'home':href.replace('#','');
+      if(SECTION_TO_TAB[id]) switchHubTab(SECTION_TO_TAB[id], null, {fromHashRoute:true});
       setNavActive(id);
     });
   });
