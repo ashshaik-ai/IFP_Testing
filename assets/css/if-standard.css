@@ -697,7 +697,14 @@ span.hmfp-label, .hmfp-li span{ font-size: 12px !important; }
 .bn-label{ font-size: 11px !important; }
 
 /* Student-guidance: brand sub-label ("Islamic Front · Mangalagiri") at 9.5px */
-.sg-brand-txt span{ font-size: 11px !important; letter-spacing: 1px !important; }
+.sg-brand-txt span{ font-size: 12px !important; letter-spacing: 1px !important; }
+
+/* Student-guidance: demand-level badge (ఎక్కువ / మధ్యస్థం etc.) at 11px */
+.lvl{ font-size: 12px !important; }
+
+/* Islamic-knowledge: "next" pill chip at 9.5px and Zakat tooltip trigger at 10px */
+.next-pill{ font-size: 12px !important; }
+.tip{ font-size: 12px !important; }
 
 /* Islamic-knowledge: Wudu step "Recite" labels — inline 10.5px */
 .ws-recite-label{ font-size: 12px !important; }
@@ -711,6 +718,18 @@ span.hmfp-label, .hmfp-li span{ font-size: 12px !important; }
 
 /* Homepage: manifesto download button — bump to exactly 44px */
 .mf-download-btn{ min-height: 44px !important; }
+
+/* Flashcard audio button: already has ::after +3px extension; make element itself 44px */
+.iffc-audio{ width: 44px !important; height: 44px !important; }
+
+/* Portal footer nav links (← Home, Knowledge Center, etc.) — raise tap area */
+.lu-footer-links a{
+  min-height: 44px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
 
 /* Learn-urdu: hero breadcrumb links — add tap padding so height ≥ 36px */
 .lu-hero-breadcrumb a{
