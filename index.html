@@ -980,7 +980,6 @@
       text-align: center; line-height: 1.2;
       white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%;
     }
-    .back-to-top { bottom: calc(76px + env(safe-area-inset-bottom, 0px)); right: 14px; }
   }
   @media (max-width: 380px) { .bn-label { display: none; } }
 
@@ -1038,7 +1037,7 @@
     border: 2px solid rgba(37,211,102,0.3); animation: waPulse 2.5s ease infinite;
   }
   @keyframes waPulse { 0%,100%{transform:scale(1);opacity:0.6} 50%{transform:scale(1.22);opacity:0} }
-  @media (max-width: 768px) { .wa-fab { bottom: 120px; right: 16px; width: 50px; height: 50px; font-size: 23px; } }
+  @media (max-width: 768px) { .wa-fab { right: 16px; width: 50px; height: 50px; font-size: 23px; } }
 
   /* ── Contact & Community Action Center ── */
   .community-contact { background: linear-gradient(160deg, #0a2e17 0%, #0d3b1e 100%); }
@@ -1395,12 +1394,16 @@
     box-shadow: 0 8px 22px rgba(200,146,42,0.22);
   }
 
-  /* ── Mobile bottom nav + sticky bar spacing fix ──
-     Back-to-top and the WhatsApp FAB share the bottom-right corner; stack
-     back-to-top above the FAB (FAB bottom + its 50px height + 14px gap)
-     so they never overlap once both are visible after scrolling. */
+  /* ── Mobile bottom-right stack (single source of truth) ──
+     Four elements share this corner, bottom-up: bottom-nav (62px) ->
+     sticky-contact-bar (48px) -> WhatsApp FAB (56px, +16px gap) ->
+     back-to-top (46px, +14px gap). Every offset below carries the same
+     env(safe-area-inset-bottom) term so the whole stack shifts together
+     on devices with a home-indicator inset instead of only the top two
+     elements shifting and the rest colliding with them. */
   @media (max-width: 768px) {
     body { padding-bottom: calc(62px + 48px + env(safe-area-inset-bottom, 0px)); }
+    .sticky-contact-bar { bottom: calc(62px + env(safe-area-inset-bottom, 0px)); }
     .wa-fab { bottom: calc(62px + 48px + 16px + env(safe-area-inset-bottom, 0px)); }
     .back-to-top { bottom: calc(62px + 48px + 16px + 50px + 14px + env(safe-area-inset-bottom, 0px)); }
   }
