@@ -87,6 +87,9 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
 .sg-chips a:hover{background:var(--green-deep);color:var(--gold-light);border-color:var(--green-deep)}
 .sg-chips a.active{background:var(--green-deep);color:var(--gold-light);border-color:var(--green-deep)}
 .sg-noresults{display:none;max-width:1100px;margin:24px auto;text-align:center;color:var(--text-muted);font-size:15px;padding:0 5vw}
+/* Mobile stream prompt — hidden on desktop, hidden once a stream is selected */
+.sg-stream-prompt{display:none;padding:8px 5vw 4px;font-size:13px;color:var(--gold);text-align:center;font-weight:600}
+@media(max-width:768px){.sg-stream-prompt{display:block}}
 
 /* SECTIONS */
 .sg-sec{padding:54px 5vw}
@@ -336,6 +339,10 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       <button class="sg-stream-pill" data-stream-id="commerce" aria-pressed="false" data-te="కామర్స్" data-en="Commerce">Commerce</button>
       <button class="sg-stream-pill" data-stream-id="arts" aria-pressed="false" data-te="ఆర్ట్స్" data-en="Arts">Arts</button>
     </div>
+    <!-- Mobile stream prompt — visible only when no stream is selected on small screens -->
+    <p class="sg-stream-prompt" id="sgStreamPrompt" aria-live="polite">
+      <span data-te="👆 మీ స్ట్రీమ్ ఎంచుకోండి — MPC, BiPC, కామర్స్ లేదా ఆర్ట్స్" data-en="👆 Pick your stream above — MPC, BiPC, Commerce or Arts">👆 Pick your stream above — MPC, BiPC, Commerce or Arts</span>
+    </p>
     <div class="sg-chips-wrap">
       <nav class="sg-chips" id="chipsBar" aria-label="Jump to section">
         <a href="#career" data-te="🎯 కెరీర్ గోల్" data-en="🎯 Career Goal">🎯 Career Goal</a>
@@ -1598,11 +1605,17 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
   function norm(s){ return (s||'').toLowerCase(); }
 
   /* STREAM FILTER */
-  var activeStream = 'all';
+  /* On mobile (≤768px) the 4 stream-specific sections (mpc/bipc/commerce/arts)
+     are collapsed by default — user picks their stream first, then the relevant
+     section expands. On desktop, "All" remains the default (no collapse). */
+  var STREAM_SECTION_IDS = ['mpc','bipc','commerce','arts'];
+  var isMobileStream = window.matchMedia('(max-width:768px)').matches;
+  var activeStream = isMobileStream ? 'none' : 'all';
   var streamPills = Array.prototype.slice.call(document.querySelectorAll('.sg-stream-pill'));
 
   function cardMatchesStream(c){
     if(activeStream === 'all') return true;
+    if(activeStream === 'none') return false;
     var tokens = norm(c.getAttribute('data-stream')).split(/\s+/);
     return tokens.indexOf(activeStream) !== -1;
   }
@@ -1619,8 +1632,11 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
     var q = norm(input.value).trim();
     box.classList.toggle('has-val', q.length>0);
     var anyVisible = false;
+    /* If search is active, ignore stream filter and show all matches */
+    var effectiveStream = q ? 'all' : activeStream;
     cards.forEach(function(c){
-      var streamMatch = cardMatchesStream(c);
+      var tokens = (c.getAttribute('data-stream')||'').toLowerCase().split(/\s+/);
+      var streamMatch = effectiveStream === 'all' || tokens.indexOf(effectiveStream) !== -1;
       var searchMatch = true;
       if(q){
         var hay = norm(c.getAttribute('data-search')) + ' ' + norm(c.textContent);
@@ -1631,8 +1647,18 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       if(q) c.classList.toggle('open', match);
       if(match) anyVisible = true;
     });
-    syncSectionVisibility(q.length > 0 || activeStream !== 'all');
-    noRes.style.display = anyVisible ? 'none' : 'block';
+    syncSectionVisibility(q.length > 0 || (activeStream !== 'all' && activeStream !== 'none'));
+    /* When 'none' (mobile default), hide stream sections; show non-stream content */
+    if(!q && activeStream === 'none'){
+      sections.forEach(function(s){
+        var isStreamSec = STREAM_SECTION_IDS.indexOf(s.id) !== -1;
+        s.classList.toggle('sg-hide', isStreamSec);
+      });
+      anyVisible = true;
+    }
+    noRes.style.display = (anyVisible || activeStream === 'none') ? 'none' : 'block';
+    var prompt = document.getElementById('sgStreamPrompt');
+    if(prompt) prompt.style.display = (!q && activeStream === 'none') ? 'block' : 'none';
   }
 
   var t;
@@ -1642,14 +1668,53 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
 
   streamPills.forEach(function(p){
     p.addEventListener('click', function(){
-      activeStream = p.getAttribute('data-stream-id');
-      streamPills.forEach(function(pp){
-        pp.classList.toggle('active', pp===p);
-        pp.setAttribute('aria-pressed', pp===p ? 'true' : 'false');
-      });
+      var clicked = p.getAttribute('data-stream-id');
+      /* On mobile: tapping the already-active stream pill resets to "none" (all collapsed) */
+      if(isMobileStream && clicked !== 'all' && clicked === activeStream){
+        activeStream = 'none';
+        streamPills.forEach(function(pp){
+          pp.classList.remove('active');
+          pp.setAttribute('aria-pressed','false');
+        });
+      } else {
+        activeStream = clicked;
+        streamPills.forEach(function(pp){
+          pp.classList.toggle('active', pp===p);
+          pp.setAttribute('aria-pressed', pp===p ? 'true' : 'false');
+        });
+      }
       applyFilters();
+      /* Smooth-scroll into the stream section on mobile when one is selected */
+      if(isMobileStream && activeStream !== 'all' && activeStream !== 'none'){
+        var target = document.getElementById(activeStream);
+        if(target){
+          var tools = document.querySelector('.sg-tools');
+          var offset = tools ? tools.getBoundingClientRect().bottom + window.scrollY : 140;
+          setTimeout(function(){
+            window.scrollTo({top: target.getBoundingClientRect().top + window.scrollY - offset - 12, behavior:'smooth'});
+          }, 50);
+        }
+      }
     });
   });
+
+  /* Apply initial mobile stream state — collapse stream sections, deactivate pills.
+     If the URL hash names a stream section, auto-select it (handles deep-links). */
+  (function initStreamState(){
+    var hash = window.location.hash.replace('#','');
+    if(STREAM_SECTION_IDS.indexOf(hash) !== -1){
+      /* Deep-link to a specific stream — activate that pill on all screen sizes */
+      activeStream = hash;
+      streamPills.forEach(function(pp){
+        var match = pp.getAttribute('data-stream-id') === hash;
+        pp.classList.toggle('active', match);
+        pp.setAttribute('aria-pressed', match ? 'true' : 'false');
+      });
+    } else if(isMobileStream){
+      streamPills.forEach(function(pp){ pp.classList.remove('active'); pp.setAttribute('aria-pressed','false'); });
+    }
+    applyFilters();
+  }());
 
   /* Chip nav */
   var chipLinks = document.querySelectorAll('.sg-chips a');

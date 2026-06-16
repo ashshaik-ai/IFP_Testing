@@ -536,6 +536,7 @@
     .mf-card { flex:0 0 84%; scroll-snap-align:start; }
   }
 
+
   /* Timeline dot scale on hover */
   .tl-dot { transition:transform .2s ease; }
   .tl-item:hover .tl-dot { transform:scale(1.15); }
@@ -1442,6 +1443,51 @@
     .back-to-top { bottom: calc(62px + 48px + 16px + 50px + 14px + env(safe-area-inset-bottom, 0px)); }
   }
 
+  /* ── Mobile swipe carousels: Achievements, Stories, Gallery ──
+     Browsable grids become horizontal swipe on mobile. Scroll-fade
+     edge affordance via .carousel-wrap (same pattern as portals). */
+  .carousel-wrap { position:relative; }
+  .carousel-wrap::after {
+    content:''; position:absolute; top:0; right:0; bottom:0; width:32px;
+    pointer-events:none; z-index:1;
+    background:linear-gradient(to right,rgba(250,246,238,0),rgba(250,246,238,0.96));
+  }
+  .achievements .carousel-wrap::after,
+  .success-stories .carousel-wrap::after {
+    background:linear-gradient(to right,rgba(255,255,255,0),rgba(255,255,255,0.96));
+  }
+
+  @media (max-width: 600px) {
+    /* Achievements */
+    .achievements-grid {
+      display:flex; grid-template-columns:none;
+      overflow-x:auto; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch;
+      gap:12px; padding-bottom:6px; scrollbar-width:none;
+    }
+    .achievements-grid::-webkit-scrollbar { display:none; }
+    .ach-card { flex:0 0 82%; scroll-snap-align:start; }
+
+    /* Stories */
+    .stories-grid {
+      display:flex; grid-template-columns:none;
+      overflow-x:auto; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch;
+      gap:14px; padding-bottom:6px; scrollbar-width:none;
+    }
+    .stories-grid::-webkit-scrollbar { display:none; }
+    /* story-card has display:none base + .story-visible block; keep flex for visible ones */
+    .story-card.story-visible { display:flex; flex-direction:column; flex:0 0 82%; scroll-snap-align:start; }
+
+    /* Gallery — must come after the base .gal-item.gal-visible{display:block} rule */
+    .gallery-grid {
+      display:flex; grid-template-columns:none;
+      overflow-x:auto; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch;
+      gap:12px; padding-bottom:6px; scrollbar-width:none;
+    }
+    .gallery-grid::-webkit-scrollbar { display:none; }
+    .gal-item { flex:0 0 72%; scroll-snap-align:start; }
+    .gal-item.gal-visible { display:flex; }
+  }
+
   /* ── Print styles ── */
   @media print {
     nav, .nav-drawer, .nav-overlay, .back-to-top, .bottom-nav,
@@ -1733,6 +1779,7 @@
     <div class="section-tag" data-key="ach_tag">మేము చేసినవి</div>
     <h2 class="section-title" data-key="ach_title" data-html="true">ఈ పదవీకాలంలో<br>మా సాధనలు</h2>
     <p class="section-lead" data-key="ach_lead">మౌలిక సదుపాయాల మార్పు నుండి ఆర్థిక వ్యవస్థ సంస్కరణ వరకు — ఇస్లామిక్ ఫ్రంట్ మంగళగిరి సమాజానికి అందించినవి ఇవే.</p>
+    <div class="carousel-wrap">
     <div class="achievements-grid">
       <div class="ach-card">
         <div class="ach-icon">🏛️</div>
@@ -1838,6 +1885,7 @@
         </div>
       </div>
     </div>
+    </div><!-- /.carousel-wrap -->
   </div>
 </section>
 
@@ -2209,6 +2257,7 @@
       <button class="story-tab" onclick="filterStories('student', this)" data-key="stories_student">విద్యార్థులు</button>
     </div>
 
+    <div class="carousel-wrap">
     <div class="stories-grid">
 
       <!-- Story 1: Welfare -->
@@ -2308,6 +2357,7 @@
       </div>
 
     </div>
+    </div><!-- /.carousel-wrap -->
 
     <div class="stories-stats reveal">
       <div class="ss-stat">
@@ -2348,6 +2398,7 @@
       <button class="gcat-btn" onclick="filterGallery('women', this)" data-key="gcat_women">మహిళా కార్యక్రమాలు</button>
     </div>
 
+    <div class="carousel-wrap">
     <div class="gallery-grid">
 
       <div class="gal-item gal-visible" data-category="events" onclick="openLightbox('🏛️', 'ఈద్ ఉత్సవం 2024', 'సమాజ ఉత్సవాలు', 'మంగళగిరి', '2024')">
@@ -2441,6 +2492,7 @@
       </div>
 
     </div>
+    </div><!-- /.carousel-wrap -->
   </div>
 </section>
 
