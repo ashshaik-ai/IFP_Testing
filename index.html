@@ -80,6 +80,9 @@
   .nav-links { display: flex; gap: 24px; list-style: none; }
   .nav-links a { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 13px; letter-spacing: 0.5px; font-weight: 400; transition: color 0.2s; }
   .nav-links a:hover { color: var(--gold-light); }
+  /* Separates the nav links (page sections) from the two CTA pills, so the
+     pills read as actions rather than more nav items at the same weight. */
+  .nav-sep { width: 1px; height: 22px; background: rgba(255,255,255,0.18); flex-shrink: 0; }
   /* Active section highlight */
   .nav-links a { position: relative; }
   .nav-links a.nav-active { color: var(--gold-light) !important; }
@@ -146,6 +149,7 @@
      already holds every one of these links, so it's safe to fold them away early. */
   @media (max-width: 1500px) {
     .nav-links { display: none; }
+    .nav-sep { display: none; }
     .nav-guide { display: none; }
     .nav-burger { display: flex; }
     nav { gap: 12px; }
@@ -1461,6 +1465,7 @@
       <li><a href="#events"            data-key="nav_events">కార్యక్రమాలు</a></li>
       <li><a href="#community-contact" data-key="nav_contact">సంప్రదించండి</a></li>
     </ul>
+    <span class="nav-sep" aria-hidden="true"></span>
     <a href="student-guidance.html" class="nav-guide" data-key="nav_guidance">విద్యార్థి మార్గదర్శనం</a>
     <a href="islamic-knowledge.html" class="nav-kc" data-key="nav_knowledge">నాలెడ్జ్ సెంటర్</a>
     <button class="lang-btn" id="lang-btn" onclick="toggleLang()"
