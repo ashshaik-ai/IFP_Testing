@@ -594,6 +594,12 @@ span.hmfp-label, .hmfp-li span{ font-size: 12px !important; }
 /* Breadcrumb text: don't go below 12px */
 .al-breadcrumb, .ifx-crumbs{ font-size: 13px !important; }
 
+/* Homepage nav: Knowledge Center icon link — ensure 44px tap area */
+.nav-kc{ min-height: 44px !important; display: inline-flex !important; align-items: center !important; }
+
+/* if-lesson.js reading/reference links: ensure adequate tap height */
+.ifl-links a{ min-height: 36px !important; display: inline-flex !important; align-items: center !important; padding: 4px 12px !important; }
+
 /* Islamic Knowledge Center: portal group/category labels */
 .kcj-group{ font-size: 12px !important; }
 
