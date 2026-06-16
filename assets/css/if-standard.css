@@ -660,6 +660,26 @@ span.hmfp-label, .hmfp-li span{ font-size: 12px !important; }
 /* Homepage: scheme-label, ca-label, ci-label — raise from 9–10px to 11px */
 .ca-label, .ci-label, .ss-label{ font-size: 11px !important; }
 
+/* if-lesson.js rendered tier + quick-check labels */
+.ifl-tier{ font-size: 12px !important; }
+.ifl-check-lbl{ font-size: 12px !important; }
+
+/* Homepage: scheme section tag and story benefit chips */
+.scheme-bar-tag{ font-size: 12px !important; }
+.story-chip{ font-size: 12px !important; }
+
+/* Homepage: volunteer form labels */
+.vf-label{ font-size: 12px !important; }
+
+/* Islamic Knowledge Center: topic-card category labels */
+.tcard-label{ font-size: 12px !important; }
+
+/* Quran portal: Dua source reference labels */
+.qd-ref{ font-size: 12px !important; }
+
+/* Learn-salah: prayer schedule card rakaat/time info spans */
+.surah-meta span{ font-size: 12px !important; }
+
 /* Focus-visible ring: consistent gold across all interactive elements */
 a:focus-visible, button:focus-visible, [role="button"]:focus-visible,
 input:focus-visible, select:focus-visible, textarea:focus-visible,
