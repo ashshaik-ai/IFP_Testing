@@ -630,7 +630,8 @@ span.hmfp-label, .hmfp-li span{ font-size: 12px !important; }
 }
 
 /* Portal sticky nav links — raise to full 44px tap target */
-.al-sticky a{
+.al-sticky a,
+.lu-sticky a{
   min-height: 44px !important;
   display: inline-flex !important;
   align-items: center !important;
@@ -789,6 +790,15 @@ span.hmfp-label, .hmfp-li span{ font-size: 12px !important; }
 
 /* Homepage: footer column quick-links — raise line-height tap area to 44px */
 .footer-col ul li a{ min-height: 44px !important; display: inline-flex !important; align-items: center !important; }
+
+/* Student-guidance: comparison table headers at 11px */
+.sg-table thead th{ font-size: 12px !important; }
+
+/* Student-guidance: "Coming Soon" badge at 10px */
+.sg-story .soon{ font-size: 12px !important; }
+
+/* Islamic-knowledge: Zakat calculator number inputs (borderline 43px) */
+.zf-input input{ min-height: 44px !important; }
 
 /* Focus-visible ring: consistent gold across all interactive elements */
 a:focus-visible, button:focus-visible, [role="button"]:focus-visible,
