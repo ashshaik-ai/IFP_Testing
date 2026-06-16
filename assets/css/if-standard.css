@@ -615,10 +615,18 @@ span.hmfp-label, .hmfp-li span{ font-size: 12px !important; }
   padding: 0 12px !important;
 }
 
-/* Islamic Knowledge Center: word/step dots — expand tap area visually while keeping layout */
+/* Islamic Knowledge Center: word/step dots — min 44px tap area both dimensions */
 .ws-dot{
-  width: 36px !important;
-  height: 36px !important;
+  min-width: 44px !important;
+  min-height: 44px !important;
+  width: 44px !important;
+  height: 44px !important;
+}
+
+/* Learn-quran, learn-salah, seerah: step-picker dots — 44px tap area */
+.tj-dot, .sim-dot, .se-dot{
+  min-width: 44px !important;
+  min-height: 44px !important;
 }
 
 /* Portal sticky nav links — raise to full 44px tap target */
@@ -700,6 +708,9 @@ span.hmfp-label, .hmfp-li span{ font-size: 12px !important; }
 /* Student-guidance: chips nav links ← raise to 44px */
 .sg-chips a{ min-height: 44px !important; }
 .sg-nav-links a{ min-height: 44px !important; }
+
+/* Homepage: manifesto download button — bump to exactly 44px */
+.mf-download-btn{ min-height: 44px !important; }
 
 /* Learn-urdu: hero breadcrumb links — add tap padding so height ≥ 36px */
 .lu-hero-breadcrumb a{
