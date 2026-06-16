@@ -2130,6 +2130,18 @@ function initBTT(){
   window.addEventListener('scroll',function(){ btn.classList.toggle('show',window.scrollY>500); },{passive:true});
 }
 
+/* ── RETURNING-VISITOR DASHBOARD JUMP ──
+   If progress already exists and the visitor didn't arrive via an explicit
+   deep link (e.g. a shared #lc2 URL), land them straight on the dashboard
+   instead of the first-time intro. */
+function jumpReturningUserToDashboard(){
+  if(window.location.hash) return;
+  var p=loadProg();
+  if(!p.levels || !p.levels.length) return;
+  var target=document.getElementById('progress');
+  if(target) target.scrollIntoView({behavior:'instant',block:'start'});
+}
+
 /* ── BOOT ── */
 document.addEventListener('DOMContentLoaded',function(){
   buildPool();
@@ -2141,6 +2153,7 @@ document.addEventListener('DOMContentLoaded',function(){
   initBTT();
   initRoadmap();
   initArcade();
+  jumpReturningUserToDashboard();
 });
 })();
 </script>
