@@ -1883,14 +1883,16 @@ function initRoadmap(){
   });
 }
 
-/* ── STICKY NAV on hero exit ── */
+/* ── STICKY NAV — appears once half the hero has scrolled past, instead of
+   waiting for the whole (tall) hero to fully clear the viewport, so
+   first-time visitors reach the jump nav sooner. ── */
 function initSticky(){
   var hero=document.getElementById('home');
   var sticky=document.getElementById('al-sticky');
   if(!hero||!sticky) return;
   var io=new IntersectionObserver(function(entries){
-    sticky.classList.toggle('sticky-on',!entries[0].isIntersecting);
-  },{threshold:0,rootMargin:'-68px 0px 0px 0px'});
+    sticky.classList.toggle('sticky-on',entries[0].intersectionRatio<=0.5);
+  },{threshold:0.5,rootMargin:'-68px 0px 0px 0px'});
   io.observe(hero);
 }
 

@@ -1104,14 +1104,16 @@ renderWord();
 renderAlphabet();
 renderPhrases();
 
-/* STICKY NAV on hero exit */
+/* STICKY NAV — appears once half the hero has scrolled past, instead of
+   waiting for the whole (tall) hero to fully clear the viewport, so
+   first-time visitors reach the jump nav sooner. */
 (function(){
   var hero = document.getElementById('top');
   var sticky = document.getElementById('lu-sticky');
   if(!hero || !sticky) return;
   var obs = new IntersectionObserver(function(entries){
-    sticky.classList.toggle('sticky-on', !entries[0].isIntersecting);
-  }, {threshold: 0, rootMargin: '-68px 0px 0px 0px'});
+    sticky.classList.toggle('sticky-on', entries[0].intersectionRatio<=0.5);
+  }, {threshold: 0.5, rootMargin: '-68px 0px 0px 0px'});
   obs.observe(hero);
 })();
 
