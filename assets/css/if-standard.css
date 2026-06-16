@@ -354,17 +354,6 @@ html { scrollbar-color: rgba(13,59,30,.35) transparent; }
 .ifl-done-btn:hover{ background:var(--ifx-gold); }
 .ifl-done-btn.done{ background:#2e8b57; border-color:#2e8b57; color:#fff; }
 
-/* XP / Levels HUD (if-xp.js) */
-#ifxp{ position:fixed; left:50%; transform:translateX(-50%); bottom:16px; z-index:115; display:flex; align-items:center; gap:9px; padding:7px 15px; border-radius:100px; background:rgba(13,59,30,.92); color:#fff; box-shadow:var(--ifx-shadow-lg); font-size:12px; font-weight:600; -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px); max-width:92vw; }
-.ifxp-spark{ color:var(--ifx-gold-light); }
-.ifxp-lvl{ color:var(--ifx-gold-light); white-space:nowrap; }
-.ifxp-bar{ width:80px; height:7px; border-radius:100px; background:rgba(255,255,255,.18); overflow:hidden; }
-.ifxp-bar > i{ display:block; height:100%; width:0; background:linear-gradient(90deg,var(--ifx-gold),var(--ifx-gold-light)); border-radius:100px; transition:width .6s ease; }
-.ifxp-xp{ opacity:.85; white-space:nowrap; }
-.ifxp-toast{ position:fixed; left:50%; transform:translateX(-50%) translateY(10px); bottom:62px; z-index:1001; background:var(--ifx-gold); color:var(--ifx-green-deep); padding:10px 18px; border-radius:100px; font-weight:700; box-shadow:var(--ifx-shadow-lg); opacity:0; transition:opacity .25s, transform .25s; }
-.ifxp-toast.on{ opacity:1; transform:translateX(-50%) translateY(0); }
-@media(max-width:380px){ #ifxp{ bottom:12px; padding:6px 11px; font-size:11px; gap:7px; } .ifxp-bar{ width:52px; } }
-#ifxp{ cursor:pointer; }
 
 /* Learner Profile / Achievements / Roadmap modal (if-profile.js) */
 #ifpr-ov{ position:fixed; inset:0; z-index:1002; background:rgba(13,30,18,.6); -webkit-backdrop-filter:blur(5px); backdrop-filter:blur(5px); display:none; align-items:flex-start; justify-content:center; padding:6vh 16px; overflow:auto; }
