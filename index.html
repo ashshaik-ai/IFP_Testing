@@ -2263,12 +2263,8 @@
       <!-- Story 1: Welfare -->
       <div class="story-card story-visible" data-category="welfare">
         <div class="story-photo">
-          <!-- STORY PHOTO: place image at assets/stories/story1.jpg -->
-          <img src="assets/stories/story1.jpg" alt="ఫాతిమా బేగం"
-               onerror="this.style.display='none';document.getElementById('story-ph-1').style.display='block'">
-          <div class="story-photo-placeholder" id="story-ph-1" style="display:none">
+          <div class="story-photo-placeholder">
             <div class="story-avatar">ఫ</div>
-            <div style="font-size:11px;color:rgba(200,146,42,0.6);letter-spacing:0.5px;">ఫోటో త్వరలో</div>
           </div>
           <div class="story-scheme-tag" data-key="scheme_welfare">అంత్యక్రియల సహాయం</div>
         </div>
@@ -2287,12 +2283,8 @@
       <!-- Story 2: Women Empowerment -->
       <div class="story-card story-visible" data-category="women">
         <div class="story-photo">
-          <!-- STORY PHOTO: place image at assets/stories/story2.jpg -->
-          <img src="assets/stories/story2.jpg" alt="సాయిదా ఖాతున్"
-               onerror="this.style.display='none';document.getElementById('story-ph-2').style.display='block'">
-          <div class="story-photo-placeholder" id="story-ph-2" style="display:none">
+          <div class="story-photo-placeholder">
             <div class="story-avatar">స</div>
-            <div style="font-size:11px;color:rgba(200,146,42,0.6);letter-spacing:0.5px;">ఫోటో త్వరలో</div>
           </div>
           <div class="story-scheme-tag" data-key="scheme_women">మహిళా శిక్షణ</div>
         </div>
@@ -2311,12 +2303,8 @@
       <!-- Story 3: Education -->
       <div class="story-card story-visible" data-category="education">
         <div class="story-photo">
-          <!-- STORY PHOTO: place image at assets/stories/story3.jpg -->
-          <img src="assets/stories/story3.jpg" alt="మహమ్మద్ యూసుఫ్"
-               onerror="this.style.display='none';document.getElementById('story-ph-3').style.display='block'">
-          <div class="story-photo-placeholder" id="story-ph-3" style="display:none">
+          <div class="story-photo-placeholder">
             <div class="story-avatar">మ</div>
-            <div style="font-size:11px;color:rgba(200,146,42,0.6);letter-spacing:0.5px;">ఫోటో త్వరలో</div>
           </div>
           <div class="story-scheme-tag" data-key="scheme_education">మదర్సా విద్య</div>
         </div>
@@ -2335,12 +2323,8 @@
       <!-- Story 4: Student -->
       <div class="story-card story-visible" data-category="student">
         <div class="story-photo">
-          <!-- STORY PHOTO: place image at assets/stories/story4.jpg -->
-          <img src="assets/stories/story4.jpg" alt="ఆరిఫ్ హుస్సేన్"
-               onerror="this.style.display='none';document.getElementById('story-ph-4').style.display='block'">
-          <div class="story-photo-placeholder" id="story-ph-4" style="display:none">
+          <div class="story-photo-placeholder">
             <div class="story-avatar">ఆ</div>
-            <div style="font-size:11px;color:rgba(200,146,42,0.6);letter-spacing:0.5px;">ఫోటో త్వరలో</div>
           </div>
           <div class="story-scheme-tag" data-key="scheme_student">స్కాలర్‌షిప్</div>
         </div>
@@ -2720,16 +2704,16 @@
         <div class="vol-form-sub" data-key="vf_sub">మీ సమాచారం నమోదు చేయండి, మేము మీకు సత్వరం సంప్రదిస్తాము.</div>
         <form onsubmit="submitVolunteerForm(event)">
           <div class="vf-group">
-            <label class="vf-label" data-key="vf_name_label">పూర్తి పేరు</label>
-            <input class="vf-input" type="text" placeholder="మీ పేరు" required data-key-placeholder="vf_name_ph">
+            <label class="vf-label" for="vf-name" data-key="vf_name_label">పూర్తి పేరు</label>
+            <input id="vf-name" class="vf-input" type="text" placeholder="మీ పేరు" required data-key-placeholder="vf_name_ph" autocomplete="name">
           </div>
           <div class="vf-group">
-            <label class="vf-label" data-key="vf_phone_label">ఫోన్ నంబర్</label>
-            <input class="vf-input" type="tel" placeholder="మీ ఫోన్ నంబర్" required data-key-placeholder="vf_phone_ph">
+            <label class="vf-label" for="vf-phone" data-key="vf_phone_label">ఫోన్ నంబర్</label>
+            <input id="vf-phone" class="vf-input" type="tel" placeholder="మీ ఫోన్ నంబర్" required data-key-placeholder="vf_phone_ph" autocomplete="tel">
           </div>
           <div class="vf-group">
-            <label class="vf-label" data-key="vf_area_label">స్వచ్ఛంద సేవ విభాగం</label>
-            <select class="vf-select" required>
+            <label class="vf-label" for="vf-area" data-key="vf_area_label">స్వచ్ఛంద సేవ విభాగం</label>
+            <select id="vf-area" class="vf-select" required>
               <option value="" data-key="vf_select_default">విభాగం ఎంచుకోండి</option>
               <option value="youth" data-key="vol1_title">యూత్ వింగ్</option>
               <option value="women" data-key="vol2_title">మహిళా వింగ్</option>
@@ -2739,8 +2723,8 @@
             </select>
           </div>
           <div class="vf-group">
-            <label class="vf-label" data-key="vf_msg_label">సందేశం (ఐచ్ఛికం)</label>
-            <textarea class="vf-textarea" placeholder="మీ నైపుణ్యాలు లేదా ఆసక్తి గురించి చెప్పండి..." data-key-placeholder="vf_msg_ph"></textarea>
+            <label class="vf-label" for="vf-msg" data-key="vf_msg_label">సందేశం (ఐచ్ఛికం)</label>
+            <textarea id="vf-msg" class="vf-textarea" placeholder="మీ నైపుణ్యాలు లేదా ఆసక్తి గురించి చెప్పండి..." data-key-placeholder="vf_msg_ph"></textarea>
           </div>
           <button type="submit" class="vf-submit" data-key="vf_submit">సేవకుడిగా నమోదు చేయండి</button>
           <div class="vf-note" data-key="vf_note">మీ వివరాలు గోప్యంగా ఉంచబడతాయి · 24 గంటల్లో సంప్రదిస్తాము</div>

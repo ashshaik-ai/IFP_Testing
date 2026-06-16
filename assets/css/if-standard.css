@@ -386,3 +386,201 @@ html { scrollbar-color: rgba(13,59,30,.35) transparent; }
 .ifpr-road-bar > i{ display:block; height:100%; background:linear-gradient(90deg,#1a5c30,#2e8b57); border-radius:100px; }
 .ifpr-road-sub{ font-size:11px; color:var(--text-muted,#7a6840); }
 @media(max-width:480px){ .ifpr-modal{ padding:16px; } }
+
+/* ==========================================================================
+   UX Remediation — touch targets, readability, accessibility
+   ========================================================================== */
+
+/* Nav-back / sticky-home: increase tap area to 44px without changing visual */
+.nav-back, .lu-sticky-home{
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 12px;
+}
+/* On very small screens show the label text even if the page hides it */
+@media (max-width: 600px){
+  .nav-back span, .lu-sticky-home span{ display: inline !important; }
+}
+
+/* Portal stat labels: raise from 10.5px → 12px */
+.al-stat-label{ font-size: 12px !important; letter-spacing: .05em !important; }
+
+/* Level / difficulty tags on portal cards: raise from ~10px → 11px */
+.lc-tag{ font-size: 11px !important; }
+
+/* Lesson-number badges in level accordions: raise from 10.5px → 12px */
+.ll-num{ font-size: 12px !important; }
+
+/* Stream pills on student-guidance: raise from 32px → 44px tap target */
+.sg-stream-pill{ min-height: 44px !important; padding: 10px 18px !important; }
+
+/* Knowledge-center nav-home links: make tap area 44px */
+.nav-home{
+  min-height: 44px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  padding: 0 10px !important;
+}
+.nav-home span{ display: inline !important; }
+
+/* Homepage: manifesto progress labels — raise from 10px → 12px */
+.hmfp-label{ font-size: 12px !important; }
+.hmfp-legend .hmfp-li{ font-size: 12px !important; }
+
+/* Achievement + event tags: raise from 11px → 12px */
+.ach-tag{ font-size: 12px !important; }
+.ev-tag{ font-size: 12px !important; }
+
+/* Volunteer form inputs: ensure 44px height and visible focus */
+.volunteer-form input,
+.volunteer-form select,
+.volunteer-form textarea,
+[class*="contact"] input,
+[class*="contact"] select,
+[class*="contact"] textarea{
+  min-height: 44px;
+}
+.volunteer-form input:focus-visible,
+.volunteer-form select:focus-visible,
+.volunteer-form textarea:focus-visible,
+[class*="contact"] input:focus-visible,
+[class*="contact"] select:focus-visible,
+[class*="contact"] textarea:focus-visible{
+  outline: 2px solid var(--ifx-gold, #c8922a);
+  outline-offset: 1px;
+}
+
+/* Skip link: ensure it's large enough when focused */
+.skip-link:focus{ min-height: 44px; display: inline-flex; align-items: center; }
+
+/* ==========================================================================
+   Premium Visual Polish — portal & sitewide upgrades
+   ========================================================================== */
+
+/* Level card lesson links: comfortable tap target, richer hover */
+.ll{
+  min-height: 52px !important;
+  padding: 14px 18px !important;
+  border-radius: 12px !important;
+  border-color: rgba(200,146,42,0.18) !important;
+}
+@media (max-width: 600px){
+  .ll{ padding: 14px 14px !important; }
+}
+
+/* Level card header: taller tap target on mobile */
+@media (max-width: 600px){
+  .lc-head{ padding: 18px 16px !important; min-height: 64px; }
+  .lc-inner{ padding: 0 16px 20px !important; }
+  .ll-name{ font-size: 14px !important; }
+  .ll-go{ font-size: 13px !important; }
+}
+
+/* Lesson number pill: slightly larger and bolder */
+.ll-num{
+  font-size: 12px !important;
+  padding: 3px 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: .02em !important;
+}
+
+/* Portal CTA primary button: more generous padding on mobile */
+@media (max-width: 600px){
+  .al-cta{ padding: 15px 28px !important; font-size: 13px !important; }
+}
+
+/* Portal hero stats: bigger gap, labels more readable */
+@media (max-width: 600px){
+  .al-hero-stats{ gap: 22px !important; margin-top: 32px !important; }
+  .al-stat-num{ font-size: 24px !important; }
+  .al-stat-label{ font-size: 12px !important; opacity: .75 !important; }
+}
+
+/* Roadmap mobile nodes: tighter, more premium */
+@media (max-width: 700px){
+  .rm-mnode{ padding: 14px 0 !important; }
+  .rm-mdot{ width: 48px !important; height: 48px !important; }
+  .rm-minfo strong{ font-size: .95rem !important; }
+}
+
+/* Why-cards on mobile: full bleed, less padding waste */
+@media (max-width: 600px){
+  .why-grid{ grid-template-columns: 1fr !important; gap: 12px !important; }
+  .why-card{ padding: 22px 18px !important; }
+}
+
+/* Sticky portal nav: slightly thicker border for better depth */
+.al-sticky{ border-bottom-width: 1.5px !important; }
+
+/* Student-guidance gx-card: better mobile rhythm */
+@media (max-width: 600px){
+  .gx-card{ border-radius: 14px !important; }
+  .gx-head{ padding: 16px 16px !important; min-height: 56px; display: flex; align-items: center; }
+  .gx-body-in{ padding: 14px 16px 16px !important; }
+  .gx-field-k{ font-size: 12px !important; }
+  .gx-field-v{ font-size: 14px !important; }
+}
+
+/* Islamic Knowledge Center: portal jump nav items */
+.kc-jump a{
+  min-height: 44px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  padding: 8px 16px !important;
+}
+
+/* Homepage volunteer form: better input sizing */
+.vf-input, .vf-select, .vf-textarea{
+  min-height: 48px !important;
+}
+@media (max-width: 600px){
+  .vf-input, .vf-select{ height: 48px; }
+}
+
+/* Homepage volunteer submit button: ensure 44px */
+.vf-submit{ min-height: 48px !important; }
+
+/* Story avatar in placeholder: larger, more premium on mobile */
+@media (max-width: 600px){
+  .story-avatar{ width: 64px !important; height: 64px !important; font-size: 24px !important; }
+}
+
+/* Homepage scheme/infra section tag labels: ensure readable size */
+.scheme-tag, .infra-tag{ font-size: 12px !important; }
+
+/* Progress segment labels below manifesto bar */
+span.hmfp-label, .hmfp-li span{ font-size: 12px !important; }
+
+/* Event cards: tags and dates easier to read */
+.ev-date, .ev-impact{ font-size: 12px !important; }
+.ev-tag{ padding: 4px 10px !important; }
+
+/* Hub-tabs scrollable track: add momentum scroll */
+.hub-tabs-track{ -webkit-overflow-scrolling: touch; scroll-behavior: smooth; }
+
+/* Hub-tab buttons: min-height for fat-finger */
+.hub-tab{ min-height: 44px !important; }
+
+/* Gallery items: min-height on mobile for visual impact */
+@media (max-width: 600px){
+  .gal-item{ border-radius: 12px !important; overflow: hidden; }
+  .gal-icon{ font-size: 2rem !important; }
+}
+
+/* Smooth entrance for stream sections on student-guidance */
+.sg-sec:not(.sg-hide){ animation: ifx-rise .3s ease both; }
+
+/* Search box: ensure comfortable height */
+.sg-search, #sgSearch{ min-height: 48px !important; font-size: 15px !important; }
+
+/* Breadcrumb text: don't go below 12px */
+.al-breadcrumb, .ifx-crumbs{ font-size: 13px !important; }
+
+/* Focus-visible ring: consistent gold across all interactive elements */
+a:focus-visible, button:focus-visible, [role="button"]:focus-visible,
+input:focus-visible, select:focus-visible, textarea:focus-visible,
+summary:focus-visible{
+  outline: 2.5px solid var(--ifx-gold, #c8922a) !important;
+  outline-offset: 2px !important;
+}
