@@ -774,6 +774,19 @@ span.hmfp-label, .hmfp-li span{ font-size: 12px !important; }
 /* Learn-salah: prayer schedule card rakaat/time info spans */
 .surah-meta span{ font-size: 12px !important; }
 
+/* Skip-to-content link: raise from 39px to full 44px */
+.if-skip{ min-height: 44px !important; display: inline-flex !important; align-items: center !important; }
+.skip-link{ min-height: 44px !important; display: inline-flex !important; align-items: center !important; }
+
+/* Learn-arabic: word navigator prev/next buttons — 42px → 44px */
+.word-btn{ width: 44px !important; height: 44px !important; }
+
+/* Islamic-knowledge: guide/reference links (Quran, IslamQA, etc.) */
+.guide-links a{ min-height: 44px !important; display: inline-flex !important; align-items: center !important; padding-top: 0 !important; padding-bottom: 0 !important; }
+
+/* Student-guidance: footer nav links (← Home, Knowledge Center, Back to top) */
+.sg-foot-links a{ min-height: 44px !important; display: inline-flex !important; align-items: center !important; padding-top: 0 !important; padding-bottom: 0 !important; }
+
 /* Focus-visible ring: consistent gold across all interactive elements */
 a:focus-visible, button:focus-visible, [role="button"]:focus-visible,
 input:focus-visible, select:focus-visible, textarea:focus-visible,
