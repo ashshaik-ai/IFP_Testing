@@ -800,6 +800,12 @@ span.hmfp-label, .hmfp-li span{ font-size: 12px !important; }
 /* Islamic-knowledge: Zakat calculator number inputs (borderline 43px) */
 .zf-input input{ min-height: 44px !important; }
 
+/* Islamic-knowledge: knowledge-center footer back/portal links */
+.kcf-back{ min-height: 44px !important; display: inline-flex !important; align-items: center !important; padding-top: 0 !important; padding-bottom: 0 !important; }
+
+/* Homepage + Islamic-knowledge: back-to-top button at mobile (42px × 0.88 scale = ~37px) */
+.back-to-top{ min-width: 44px !important; min-height: 44px !important; }
+
 /* Focus-visible ring: consistent gold across all interactive elements */
 a:focus-visible, button:focus-visible, [role="button"]:focus-visible,
 input:focus-visible, select:focus-visible, textarea:focus-visible,
