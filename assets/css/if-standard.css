@@ -681,6 +681,27 @@ span.hmfp-label, .hmfp-li span{ font-size: 12px !important; }
 .ifl-tier{ font-size: 12px !important; }
 .ifl-check-lbl{ font-size: 12px !important; }
 
+/* Portal curriculum-map badge labels (cm-badge) */
+.cm-badge{ font-size: 11px !important; }
+
+/* Kids-islam: arcade "coming soon" labels */
+.arc-soon{ font-size: 11px !important; }
+
+/* Homepage: bottom nav tab labels */
+.bn-label{ font-size: 10px !important; }
+
+/* Homepage: sticky contact bar (call/WhatsApp/email labels) */
+.scb-btn{ font-size: 12px !important; }
+
+/* Seerah: salawat widget labels */
+.sw-label{ font-size: 12px !important; }
+
+/* Islamic knowledge: prayer card references */
+.pc-ref{ font-size: 12px !important; }
+
+/* Kids-islam: mission XP badge */
+.mz-xp{ font-size: 12px !important; }
+
 /* Homepage: scheme section tag and story benefit chips */
 .scheme-bar-tag{ font-size: 12px !important; }
 .story-chip{ font-size: 12px !important; }
