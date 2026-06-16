@@ -69,11 +69,13 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
 .sg-tools{position:sticky;top:68px;z-index:150;background:rgba(250,246,238,0.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);padding:12px 5vw 0}
 .sg-search-wrap{max-width:1100px;margin:0 auto}
 .sg-search{position:relative;max-width:560px;margin:0 auto}
-.sg-search input{width:100%;padding:12px 42px 12px 42px;border:1.5px solid var(--border);border-radius:100px;font-size:14.5px;font-family:inherit;background:var(--white);color:var(--text-dark);transition:border-color .2s,box-shadow .2s}
+.sg-search input{width:100%;padding:12px 42px 12px 42px;border:1.5px solid var(--border);border-radius:100px;font-size:16px;font-family:inherit;background:var(--white);color:var(--text-dark);transition:border-color .2s,box-shadow .2s}
 .sg-search input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(200,146,42,0.14)}
 .sg-search .si{position:absolute;left:15px;top:50%;transform:translateY(-50%);font-size:15px;opacity:.6}
 .sg-search .sc{position:absolute;right:10px;top:50%;transform:translateY(-50%);border:none;background:none;font-size:18px;color:var(--text-muted);cursor:pointer;line-height:1;padding:4px;display:none}
 .sg-search.has-val .sc{display:block}
+.sg-chips-wrap{position:relative}
+.sg-chips-wrap::after{content:'';position:absolute;top:0;right:0;bottom:0;width:28px;background:linear-gradient(to right,rgba(250,246,238,0),rgba(250,246,238,0.96));pointer-events:none}
 .sg-chips{display:flex;gap:8px;overflow-x:auto;padding:12px 0;scrollbar-width:none;-webkit-overflow-scrolling:touch}
 .sg-chips::-webkit-scrollbar{display:none}
 .sg-chips a{flex-shrink:0;font-size:12px;font-weight:600;color:var(--text-mid);background:var(--white);border:1px solid var(--border);padding:7px 14px;border-radius:100px;white-space:nowrap;transition:all .18s}
@@ -321,22 +323,24 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       <input type="search" id="sgSearch" placeholder="Search a course, exam or career…" aria-label="Search courses, exams and careers (e.g. B.Tech, NEET, CA, nursing, ITI)">
       <button class="sc" id="sgClear" aria-label="Clear search">✕</button>
     </div>
-    <nav class="sg-chips" id="chipsBar" aria-label="Jump to section">
-      <a href="#career" data-te="🎯 కెరీర్ గోల్" data-en="🎯 Career Goal">🎯 Career Goal</a>
-      <a href="#before" data-te="ఎంచుకోవడానికి ముందు" data-en="Before You Choose">Before You Choose</a>
-      <a href="#after10" data-te="10వ తరగతి తర్వాత" data-en="After 10th">After 10th</a>
-      <a href="#mpc" data-te="MPC తర్వాత" data-en="After MPC">After MPC</a>
-      <a href="#bipc" data-te="BiPC తర్వాత" data-en="After BiPC">After BiPC</a>
-      <a href="#commerce" data-te="వాణిజ్యం" data-en="Commerce">Commerce</a>
-      <a href="#arts" data-te="ఆర్ట్స్" data-en="Arts">Arts</a>
-      <a href="#exams" data-te="ప్రవేశ పరీక్షలు" data-en="Entrance Exams">Entrance Exams</a>
-      <a href="#govt" data-te="ప్రభుత్వ ఉద్యోగాలు" data-en="Govt Jobs">Govt Jobs</a>
-      <a href="#reality" data-te="వాస్తవ తనిఖీ" data-en="Reality Check">Reality Check</a>
-      <a href="#passion" data-te="అభిరుచి vs కెరీర్" data-en="Passion vs Career">Passion vs Career</a>
-      <a href="#scholarships" data-te="స్కాలర్‌షిప్‌లు" data-en="Scholarships">Scholarships</a>
-      <a href="#islamic" data-te="ఇస్లామిక్ దృక్కోణం" data-en="Islamic View">Islamic View</a>
-      <a href="#stories" data-te="విజయ గాథలు" data-en="Success Stories">Success Stories</a>
-    </nav>
+    <div class="sg-chips-wrap">
+      <nav class="sg-chips" id="chipsBar" aria-label="Jump to section">
+        <a href="#career" data-te="🎯 కెరీర్ గోల్" data-en="🎯 Career Goal">🎯 Career Goal</a>
+        <a href="#before" data-te="ఎంచుకోవడానికి ముందు" data-en="Before You Choose">Before You Choose</a>
+        <a href="#after10" data-te="10వ తరగతి తర్వాత" data-en="After 10th">After 10th</a>
+        <a href="#mpc" data-te="MPC తర్వాత" data-en="After MPC">After MPC</a>
+        <a href="#bipc" data-te="BiPC తర్వాత" data-en="After BiPC">After BiPC</a>
+        <a href="#commerce" data-te="వాణిజ్యం" data-en="Commerce">Commerce</a>
+        <a href="#arts" data-te="ఆర్ట్స్" data-en="Arts">Arts</a>
+        <a href="#exams" data-te="ప్రవేశ పరీక్షలు" data-en="Entrance Exams">Entrance Exams</a>
+        <a href="#govt" data-te="ప్రభుత్వ ఉద్యోగాలు" data-en="Govt Jobs">Govt Jobs</a>
+        <a href="#reality" data-te="వాస్తవ తనిఖీ" data-en="Reality Check">Reality Check</a>
+        <a href="#passion" data-te="అభిరుచి vs కెరీర్" data-en="Passion vs Career">Passion vs Career</a>
+        <a href="#scholarships" data-te="స్కాలర్‌షిప్‌లు" data-en="Scholarships">Scholarships</a>
+        <a href="#islamic" data-te="ఇస్లామిక్ దృక్కోణం" data-en="Islamic View">Islamic View</a>
+        <a href="#stories" data-te="విజయ గాథలు" data-en="Success Stories">Success Stories</a>
+      </nav>
+    </div>
   </div>
 </div>
 <p class="sg-noresults" id="sgNoResults"><span data-te="కోర్సు లేదా కెరీర్ కనుగొనబడలేదు. సరళమైన పదం ప్రయత్నించండి, లేదా " data-en="No matching course or career found. Try a simpler word, or ">No matching course or career found. Try a simpler word, or </span><button id="sgReset" data-te="శోధన తొలగించు" data-en="clear the search" style="border:none;background:none;color:var(--green-mid);font-weight:700;border-bottom:1px solid var(--gold);cursor:pointer;font-size:15px;font-family:inherit">clear the search</button>.</p>
