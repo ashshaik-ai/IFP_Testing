@@ -731,12 +731,12 @@ span.hmfp-label, .hmfp-li span{ font-size: 12px !important; }
   padding-bottom: 0 !important;
 }
 
-/* Learn-urdu: hero breadcrumb links — add tap padding so height ≥ 36px */
+/* Learn-urdu: hero breadcrumb links — expand to 44px tap area */
 .lu-hero-breadcrumb a{
-  min-height: 36px !important;
+  min-height: 44px !important;
   display: inline-flex !important;
   align-items: center !important;
-  padding: 4px 2px !important;
+  padding: 0 2px !important;
 }
 
 /* Learn-urdu: nav links (visible on desktop) — raise height */
@@ -786,6 +786,9 @@ span.hmfp-label, .hmfp-li span{ font-size: 12px !important; }
 
 /* Student-guidance: footer nav links (← Home, Knowledge Center, Back to top) */
 .sg-foot-links a{ min-height: 44px !important; display: inline-flex !important; align-items: center !important; padding-top: 0 !important; padding-bottom: 0 !important; }
+
+/* Homepage: footer column quick-links — raise line-height tap area to 44px */
+.footer-col ul li a{ min-height: 44px !important; display: inline-flex !important; align-items: center !important; }
 
 /* Focus-visible ring: consistent gold across all interactive elements */
 a:focus-visible, button:focus-visible, [role="button"]:focus-visible,
