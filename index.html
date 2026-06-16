@@ -156,6 +156,11 @@
     .nav-brand { min-width: 0; }
     .nav-title, .nav-sub { white-space: nowrap; }
   }
+  /* Below 768px the bottom tab bar's "More" item opens the same drawer,
+     so the header no longer needs its own trigger — one opener, not two. */
+  @media (max-width: 768px) {
+    .nav-burger { display: none; }
+  }
 
   /* HERO */
   .hero { min-height: 100vh; min-height: 100svh; background: linear-gradient(160deg, var(--green-deep) 0%, #0a2e17 50%, #122b0f 100%); display: flex; align-items: center; padding: 100px 5vw 80px; position: relative; overflow: hidden; }
@@ -957,6 +962,8 @@
       color: rgba(255,255,255,0.38);
       transition: color .18s, background .18s;
       gap: 3px; position: relative; min-width: 0;
+      /* Neutralize default <button> chrome so #bn-more matches its <a> siblings exactly */
+      background: none; border: none; font: inherit; cursor: pointer; -webkit-tap-highlight-color: transparent;
     }
     .bn-item.bn-active { color: var(--gold-light); }
     .bn-item.bn-active::before {
@@ -2893,6 +2900,7 @@ const T = {
     nav_knowledge: "నాలెడ్జ్ సెంటర్",
     nav_guidance: "విద్యార్థి మార్గదర్శనం",
     nav_guidance_short: "మార్గదర్శనం",
+    nav_more: "మరిన్ని",
     hero_badge: "మంగళగిరి, ఆంధ్రప్రదేశ్",
     hero_title: "ఇస్లామిక్<br><span>ఫ్రంట్</span>",
     hero_subtitle: "2011 నుండి మంగళగిరి ముస్లిం సమాజానికి<br>నిజాయితీగా, అభివృద్ధితో, కరుణతో సేవ చేస్తున్నాము.",
@@ -3150,6 +3158,7 @@ const T = {
     nav_knowledge: "Knowledge Center",
     nav_guidance: "Student Guidance",
     nav_guidance_short: "Guidance",
+    nav_more: "More",
     hero_badge: "Mangalagiri, Andhra Pradesh",
     hero_title: "Islamic<br><span>Front</span>",
     hero_subtitle: "Serving the Muslim community of Mangalagiri<br>with integrity, development, and compassion since 2011.",
@@ -3528,12 +3537,14 @@ document.addEventListener('DOMContentLoaded', function () {
   var navDrawer=document.getElementById('nav-drawer');
   var navOverlay=document.getElementById('nav-overlay');
   var navDrClose=document.getElementById('nav-drawer-close');
+  var bnMore=document.getElementById('bn-more');
   function openDrawer(){
     navDrawer.classList.add('open');
     navDrawer.setAttribute('aria-hidden','false');
     navOverlay.classList.add('open');
     navBurger.classList.add('open');
     navBurger.setAttribute('aria-expanded','true');
+    if(bnMore)bnMore.setAttribute('aria-expanded','true');
     document.body.style.overflow='hidden';
     /* Move focus into the first drawer link after the slide-in animation completes */
     var firstLink = navDrawer.querySelector('a');
@@ -3545,14 +3556,18 @@ document.addEventListener('DOMContentLoaded', function () {
     navOverlay.classList.remove('open');
     navBurger.classList.remove('open');
     navBurger.setAttribute('aria-expanded','false');
+    if(bnMore)bnMore.setAttribute('aria-expanded','false');
     document.body.style.overflow='';
   }
   if(navBurger)navBurger.addEventListener('click',function(){navDrawer.classList.contains('open')?closeDrawer():openDrawer();});
+  if(bnMore)bnMore.addEventListener('click',function(){navDrawer.classList.contains('open')?closeDrawer():openDrawer();});
   if(navOverlay)navOverlay.addEventListener('click',closeDrawer);
   if(navDrClose)navDrClose.addEventListener('click',closeDrawer);
   if(navDrawer)navDrawer.querySelectorAll('a').forEach(function(a){a.addEventListener('click',closeDrawer);});
-  /* Bottom nav — close drawer on tap and sync active state on click */
+  /* Bottom nav links — close drawer on tap (in case it was left open) and sync active state.
+     #bn-more is excluded: it toggles the drawer itself via its own handler above. */
   document.querySelectorAll('.bn-item').forEach(function(a){
+    if(a.id==='bn-more')return;
     a.addEventListener('click', function(){ closeDrawer(); });
   });
   /* Back to top */
@@ -3727,10 +3742,10 @@ window.submitVolunteerForm = submitVolunteerForm;
     <svg class="bn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
     <span class="bn-label" data-key="nav_manifesto">మేనిఫెస్టో</span>
   </a>
-  <a href="#community-contact" class="bn-item" data-section="community-contact">
-    <svg class="bn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-    <span class="bn-label" data-key="nav_contact">సంప్రదించండి</span>
-  </a>
+  <button type="button" class="bn-item" id="bn-more" aria-haspopup="true" aria-expanded="false" aria-controls="nav-drawer">
+    <svg class="bn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
+    <span class="bn-label" data-key="nav_more">మరిన్ని</span>
+  </button>
 </nav>
 </body>
 </html>
