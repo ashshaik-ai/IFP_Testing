@@ -594,9 +594,12 @@ span.hmfp-label, .hmfp-li span{ font-size: 12px !important; }
 /* Breadcrumb text: don't go below 12px */
 .al-breadcrumb, .ifx-crumbs{ font-size: 13px !important; }
 
-/* Homepage nav: brand logo and KC link — min 44px */
+/* Homepage nav: brand logo and KC link — min 44×44px */
 .nav-brand{ min-height: 44px !important; display: inline-flex !important; align-items: center !important; }
-.nav-kc{ min-height: 44px !important; display: inline-flex !important; align-items: center !important; }
+.nav-kc{ min-height: 44px !important; min-width: 44px !important; display: inline-flex !important; align-items: center !important; justify-content: center !important; }
+
+/* Homepage: mobile nav drawer close button — ensure full 44×44px tap area */
+.nav-drawer-close{ min-width: 44px !important; min-height: 44px !important; display: inline-flex !important; align-items: center !important; justify-content: center !important; }
 
 /* Portal nav-brand links */
 .lu-nav-brand{ min-height: 44px !important; display: inline-flex !important; align-items: center !important; }
@@ -694,8 +697,8 @@ span.hmfp-label, .hmfp-li span{ font-size: 12px !important; }
 /* Kids-islam: arcade "coming soon" labels */
 .arc-soon{ font-size: 12px !important; }
 
-/* Homepage: bottom nav tab labels */
-.bn-label{ font-size: 11px !important; }
+/* Homepage: bottom nav tab labels — 9px inline raised to 12px minimum */
+.bn-label{ font-size: 12px !important; }
 
 /* Student-guidance: brand sub-label ("Islamic Front · Mangalagiri") at 9.5px */
 .sg-brand-txt span{ font-size: 12px !important; letter-spacing: 1px !important; }
