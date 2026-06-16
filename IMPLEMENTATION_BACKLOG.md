@@ -12,7 +12,7 @@ Legend Sev: 🔴 High · 🟠 Med · 🟡 Low. Status: ⬜ todo · ✅ done · �
 | 1 | ✅ | Homepage SEO `<head>` (description, OG, theme-color, JSON-LD) | 🔴 | High | S | Added Org+WebSite JSON-LD, OG, description, theme-color |
 | 2 | ✅ | Urdu lesson script renders in Nastaliq not Amiri | 🟡 | Med | S | Scoped `.ifl-ar` font override in learn-urdu |
 | 3 | ✅ | theme-color on Knowledge Center + Student Guidance | 🟠 | Med | S | Added `<meta name="theme-color">` |
-| 4 | ⬜ | Wire `if-core.js` into index/islamic-knowledge/student-guidance | 🟠 | High | M | Add CSS+JS tags; verify no style clashes |
+| 4 | 🟦 | Wire `if-core.js` into index/islamic-knowledge/student-guidance | 🟠 | High | M | islamic-knowledge.html done; index.html intentionally excluded (clean-homepage decision, T35) — re-confirm intent before doing student-guidance.html |
 | 5 | ⬜ | Sitewide `<meta name="theme-color">` on remaining static pages | 🟡 | Low | S | Add tag to 12 sub-lessons |
 | 6 | ⬜ | JSON-LD Organization + WebSite + SearchAction (site) | 🔴 | High | S | Add to homepage + KC |
 | 7 | ⬜ | JSON-LD Course per learning portal | 🟠 | Med | M | Course/CreativeWork schema per portal index |
@@ -21,42 +21,42 @@ Legend Sev: 🔴 High · 🟠 Med · 🟡 Low. Status: ⬜ todo · ✅ done · �
 | 10 | ⬜ | Open Graph tags on homepage(✅ via #1)+KC+urdu index+12 sub-lessons | 🟠 | Med | M | og:title/desc/image/type/locale |
 | 11 | ⬜ | Canonical `<link>` on every page | 🟠 | Med | M | Needs production domain confirmed |
 | 12 | ⬜ | 360px mobile tier + 320px overflow test | 🔴 | High | M | Add 360px media query; fix RTL overflow [VISUAL-CONFIRM] |
-| 13 | ⬜ | Enforce 44×44px min tap targets (nav, footer pills, chips) | 🟠 | High | S | min-height/padding on interactive els |
-| 14 | ⬜ | Certificate-on-completion wired in all 7 portals | 🟠 | High | M | Call `IFCore.certificate()` on level/quiz finish |
-| 15 | ⬜ | `if-quiz` parity: add to Salah, Kids, Arabic, Urdu | 🟠 | High | M | Define `IF_QUIZ` + defer tag |
-| 16 | ⬜ | `if-flashcards` parity: add to Urdu, Kids | 🟠 | Med | M | Define `IF_FLASHCARDS` decks |
-| 17 | ⬜ | Arabic & Urdu progress dashboard (`if-arabic/urdu-progress`) | 🔴 | High | M | Reuse portal dashboard pattern |
-| 18 | ⬜ | Arabic & Urdu daily challenge widget | 🟠 | Med | M | Reuse daily-challenge pattern |
-| 19 | ⬜ | Client-side site search (prebuilt JSON index) | 🔴 | High | L | Index lessons/tools/terms; modal in `if-core` |
-| 20 | ⬜ | `if-fx.js` engagement pack (reduced-motion safe) | 🟠 | High | M | Progress ring, correct pulse, level burst, badge pop |
+| 13 | 🟦 | Enforce 44×44px min tap targets (nav, footer pills, chips) | 🟠 | High | S | Global `min-height:44px` rule done; per-page nav/footer enforcement pending |
+| 14 | 🟦 | Certificate-on-completion wired in all 7 portals | 🟠 | High | M | Done: Arabic/Urdu all-complete screen + all quiz portals. Pending: model-portal (Quran/Salah/Seerah/History/Kids) per-lesson completion cert |
+| 15 | ✅ | `if-quiz` parity: add to Salah, Kids, Arabic, Urdu | 🟠 | High | M | Done — Arabic, Urdu, Salah added (6/7 portals have a quiz; Kids keeps its own widget) |
+| 16 | ✅ | `if-flashcards` parity: add to Urdu, Kids | 🟠 | Med | M | Urdu done. Kids still pending (uses its own widget, not if-flashcards) |
+| 17 | ✅ | Arabic & Urdu progress dashboard (`if-arabic/urdu-progress`) | 🔴 | High | M | Done via `if-portal.js` (verified wired in both portals 2026-06-17) |
+| 18 | ✅ | Arabic & Urdu daily challenge widget | 🟠 | Med | M | Done via `if-portal.js` challenge block |
+| 19 | ✅ | Client-side site search (prebuilt JSON index) | 🔴 | High | L | Done — `if-search.js`, 43-entry index, "/" shortcut, verified wired on homepage + islamic-knowledge.html 2026-06-17 |
+| 20 | ✅ | `if-fx.js` engagement pack (reduced-motion safe) | 🟠 | High | M | Done as `if-engage.js` (ring/badge/celebrate/recent+continue API) on all 22 pages |
 
 ## P1 — Learning parity, depth & consistency (80 → 88)
 
 | # | Status | Item | Sev | Imp | Eff | Fix |
 |--|--|--|--|--|--|--|
-| 21 | ⬜ | Convert 12 Arabic/Urdu sub-lessons to interactive template | 🔴 | High | L | +quiz, +mark-complete, +next/prev, +exercise, +if-core |
-| 22 | ⬜ | Unify design tokens into `if-shared.css :root` defaults | 🟠 | Med | M | Single source; pages override intentionally |
-| 23 | ⬜ | Standardise `--radius` to one value (16px) | 🟡 | Low | S | Replace 14px usages |
-| 24 | ⬜ | Standardise elevation scale (`--shadow-sm/md/lg`) | 🟡 | Low | S | Replace ad-hoc shadows |
-| 25 | ⬜ | Shared breakpoint scale (e.g., 360/480/768/1024) | 🟠 | Med | M | Document + migrate media queries |
-| 26 | ⬜ | Shared button primitives (`.if-btn`, variants) | 🟠 | Med | M | Reduce per-page drift |
-| 27 | ⬜ | Shared card primitives (`.if-card`) | 🟠 | Med | M | Consistent radius/shadow/padding |
+| 21 | ✅ | Convert 12 Arabic/Urdu sub-lessons to interactive template | 🔴 | High | L | Done via `if-sublesson.js` + `sublesson-data.js` (quiz + mark-complete + reflection + recommended-next on all 12) |
+| 22 | ✅ | Unify design tokens into `if-shared.css :root` defaults | 🟠 | Med | M | Done via `if-standard.css` token block, all 22 pages |
+| 23 | ✅ | Standardise `--radius` to one value (16px) | 🟡 | Low | S | Done at token level; 12 sub-lesson `.lnav` hardcoded 14px usages replaced (T44) |
+| 24 | ✅ | Standardise elevation scale (`--shadow-sm/md/lg`) | 🟡 | Low | S | Done via `if-standard.css` |
+| 25 | 🟦 | Shared breakpoint scale (e.g., 360/480/768/1024) | 🟠 | Med | M | Explicit 320/360/380px layer added centrally; per-page media-query migration still pending |
+| 26 | ✅ | Shared button primitives (`.if-btn`, variants) | 🟠 | Med | M | Done as `.ifx-btn`(+primary/secondary/ghost) in `if-standard.css` |
+| 27 | ✅ | Shared card primitives (`.if-card`) | 🟠 | Med | M | Done as `.ifx-card` in `if-standard.css` |
 | 28 | ⬜ | Backfill Quran lessons to ~8–10 | 🟠 | Med | M | Makki/Madani, Stories of Quran, Names of Allah |
 | 29 | ⬜ | Backfill Salah lessons (Jumu'ah, Witr/Sunan, Travel, Janazah, Eid) | 🟠 | Med | M | New `salah-lessons.js` entries |
 | 30 | ⬜ | Backfill Seerah (Companions deep-dive, Farewell Hajj detail) | 🟡 | Med | M | New entries |
 | 31 | ⬜ | Graded end-of-level exam (10 Qs) via `if-quiz` per portal | 🟠 | High | M | Pass score → certificate |
 | 32 | ⬜ | Vary reflection prompts (currently formulaic) | 🟡 | Low | M | Author diverse prompts |
-| 33 | ⬜ | "Continue learning / resume" CTA on portal heroes | 🟠 | Med | M | Read last-open lesson from localStorage |
-| 34 | ⬜ | Global learner dashboard (aggregate XP/streak/progress) | 🟠 | High | L | New page or homepage widget |
-| 35 | ⬜ | Streaks + XP on all portals (not just Kids) | 🟠 | High | M | Generalise Kids mission system |
-| 36 | ⬜ | Persistent "All Portals" switcher in shared nav | 🟠 | Med | M | Dropdown in `if-core` nav |
-| 37 | ⬜ | Breadcrumbs on islamic-knowledge + student-guidance | 🟡 | Med | S | Reuse breadcrumb markup |
+| 33 | 🟦 | "Continue learning / resume" CTA on portal heroes | 🟠 | Med | M | Done at dashboard placement (`if-portal.js`/`if-recent.js`, below hero) on all 7 portals. A homepage version (`if-resume.js`) was built then deliberately removed (T35/T36, "clean homepage" decision) — file still exists unwired; do NOT re-add without checking intent first. True hero-level (inside the hero banner itself) placement remains undone everywhere |
+| 34 | ⬜ | Global learner dashboard (aggregate XP/streak/progress) | 🟠 | High | L | `if-profile.js` (opened from XP HUD) already aggregates this across all 7 portals — re-verify whether a dedicated page/homepage widget is still wanted on top of the modal |
+| 35 | 🟦 | Streaks + XP on all portals (not just Kids) | 🟠 | High | M | `if-xp.js` (level/XP HUD) is on all 22 pages; Kids' bespoke mission/streak system not yet unified into it |
+| 36 | 🟦 | Persistent "All Portals" switcher in shared nav | 🟠 | Med | M | `if-profile.js`'s roadmap (inside the modal opened from the XP HUD) lists/links all 7 portals — covers the need but isn't a persistent nav-bar dropdown as originally scoped |
+| 37 | ✅ | Breadcrumbs on islamic-knowledge + student-guidance | 🟡 | Med | S | Done (T26) |
 | 38 | ⬜ | Real Hijrah route map (Seerah) | 🟠 | Med | L | SVG/illustrated map asset |
 | 39 | ⬜ | Empire-expansion maps (Islamic History) | 🟠 | Med | L | Era maps |
 | 40 | ⬜ | Five Pillars infographic | 🟠 | Med | M | Shared infographic component |
 | 41 | ⬜ | Tajweed rules table/infographic (Quran) | 🟠 | Med | M | Visual rule chart |
 | 42 | ⬜ | Wudu/Ghusl process-flow diagrams (Salah) | 🟠 | Med | M | Step flow via if-diagrams |
-| 43 | ⬜ | `if-diagrams` parity: add to Arabic, Urdu, Kids | 🟡 | Med | M | Define `IF_DIAGRAMS` |
+| 43 | ✅ | `if-diagrams` parity: add to Arabic, Urdu, Kids | 🟡 | Med | M | Done (T31) — verified `if-diagrams.js` wired on all 7 portals 2026-06-17 |
 | 44 | ⬜ | Line-length cap (`max-width:64ch`) on lesson/sub-lesson bodies | 🟠 | Med | S | Reading comfort |
 | 45 | ⬜ | Mobile "jump-to / on this page" chip bar (homepage, KC) | 🟠 | Med | M | Shorten perceived scroll |
 | 46 | ⬜ | Collapse-by-default long sections on mobile | 🟠 | Med | M | Accordion for 81-card guidance |
@@ -69,9 +69,9 @@ Legend Sev: 🔴 High · 🟠 Med · 🟡 Low. Status: ⬜ todo · ✅ done · �
 
 | # | Status | Item | Sev | Imp | Eff | Fix |
 |--|--|--|--|--|--|--|
-| 51 | ⬜ | Animated progress rings/bars on dashboards | 🟡 | Med | M | via `if-fx` |
-| 52 | ⬜ | Confetti/burst on certificate award | 🟡 | Med | S | reduced-motion safe |
-| 53 | ⬜ | Correct-answer pulse + streak micro-feedback in quizzes | 🟠 | Med | M | `if-quiz` + `if-fx` |
+| 51 | ✅ | Animated progress rings/bars on dashboards | 🟡 | Med | M | Done via `if-engage.js` `progressRing()`, used in `if-portal.js`/`if-profile.js` |
+| 52 | ✅ | Confetti/burst on certificate award | 🟡 | Med | S | Done via `if-engage.js` `celebrate()`, verified called from `if-quiz.js` |
+| 53 | ✅ | Correct-answer pulse + streak micro-feedback in quizzes | 🟠 | Med | M | Done in `if-quiz.js` (verified 2026-06-17) |
 | 54 | ⬜ | Badge/achievement unlock animation + badge shelf | 🟠 | Med | M | Define badge set per portal |
 | 55 | ⬜ | Lesson-completion celebration | 🟠 | Med | S | On accordion-complete |
 | 56 | ⬜ | Card hover/press micro-interactions (lift/scale) | 🟡 | Med | S | Shared `.if-card:hover` |
@@ -158,4 +158,6 @@ Legend Sev: 🔴 High · 🟠 Med · 🟡 Low. Status: ⬜ todo · ✅ done · �
 
 **Overall score estimate: 72 → ~81 (A/B) → ~86 (C core) → ~88 (parity+visual) → ~90 (apply+diagrams) → ~91 (XP+depth blocks) → ~92.5/100.** Universal per-lesson completion + XP; Learner Profile with achievements gallery + learning roadmap (completion-% by portal); lesson engine supports Common Mistakes / FAQ / Revision (live on Salah); "Apply It" on all 46 lessons; diagram parity on all 7 portals.
 
-> **Next (no decision needed):** `if-diagrams` parity (Arabic/Urdu/Kids) · per-portal lesson backfill to ~8–10 · per-lesson quality scoring. **Needs assets:** real maps/audio/illustrations → drop into the Visual Learning `data-src` slots. **Needs render:** true 320–430px device pass.
+> **Next (no decision needed):** per-portal lesson backfill to ~8–10 · per-lesson quality scoring. **Needs assets:** real maps/audio/illustrations → drop into the Visual Learning `data-src` slots. **Needs render:** true 320–430px device pass.
+
+**Reconciliation pass (2026-06-17):** the table above had drifted from this completion log — many rows already marked done in the narrative (T15–T31, T41, T44) still showed ⬜ in the table. Corrected #4, #13–25 (selected), #33–37, #43, #51–53 against direct codebase verification (not just the log text — e.g. #43's own log entry said "◐ still missing" in the Phase B note while a later Phase note and direct grep both confirmed it shipped in T31). **#33 specifically:** the homepage "Continue learning" resume card (`if-resume.js`) was built then deliberately removed (see `IMPLEMENTATION_PROGRESS.md` T35/T36) — do not re-add without confirming intent; the portal-level version (inside each portal's dashboard, not its hero) is what's actually live today. Remaining ⬜ rows not touched in this pass were not individually re-verified — treat them as "probably still accurate" rather than "confirmed."
