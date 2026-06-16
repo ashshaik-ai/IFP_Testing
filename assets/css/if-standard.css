@@ -569,6 +569,15 @@ span.hmfp-label, .hmfp-li span{ font-size: 12px !important; }
   .gal-icon{ font-size: 2rem !important; }
 }
 
+/* Student-guidance: brand/logo link tap area */
+.sg-brand{ min-height: 44px !important; display: inline-flex !important; align-items: center !important; }
+
+/* Student-guidance: chips nav links (career goal, etc.) */
+.sg-chips a{ min-height: 36px !important; }
+
+/* Student-guidance: nav home link */
+.sg-nav-links a{ min-height: 36px !important; display: inline-flex !important; align-items: center !important; }
+
 /* Smooth entrance for stream sections on student-guidance */
 .sg-sec:not(.sg-hide){ animation: ifx-rise .3s ease both; }
 
@@ -580,6 +589,28 @@ span.hmfp-label, .hmfp-li span{ font-size: 12px !important; }
 
 /* Islamic Knowledge Center: portal group/category labels */
 .kcj-group{ font-size: 12px !important; }
+
+/* Islamic Knowledge Center: sticky home link tap area */
+.kc-sticky-home{
+  min-height: 44px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  padding: 0 12px !important;
+}
+
+/* Homepage: manifesto badge labels */
+.mf-badge{ font-size: 12px !important; }
+
+/* Progress dashboard badge labels (learn-arabic, learn-urdu, etc.) */
+.ifp-badge-lbl{ font-size: 12px !important; }
+.dash-mastery-title{ font-size: 12px !important; }
+
+/* Quran portal: Dua reference labels */
+.qd-ref{ font-size: 11px !important; }
+
+/* Seerah: year label + salawat widget labels */
+.se-year{ font-size: 12px !important; }
+.sw-label{ font-size: 11px !important; }
 
 /* Portal sticky-home link (← KC / ← Knowledge Center): ensure 44px tap area */
 .al-sticky-home{

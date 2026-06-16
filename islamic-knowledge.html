@@ -1174,26 +1174,26 @@
     <div class="zakat-wrap">
       <div class="zakat-form">
         <div class="zf-group">
-          <label data-te="నగదు &amp; బ్యాంకు పొదుపు" data-en="Cash &amp; bank savings">నగదు &amp; బ్యాంకు పొదుపు</label>
+          <label for="z-cash" data-te="నగదు &amp; బ్యాంకు పొదుపు" data-en="Cash &amp; bank savings">నగదు &amp; బ్యాంకు పొదుపు</label>
           <div class="zf-input"><span class="zf-cur">₹</span><input type="number" id="z-cash" min="0" placeholder="0" inputmode="decimal" oninput="calcZakat()"></div>
         </div>
         <div class="zf-group">
-          <label><span data-te="మీ వద్ద ఉన్న బంగారం" data-en="Gold you own">మీ వద్ద ఉన్న బంగారం</span><span class="tip" tabindex="0">i<span class="tip-pop" data-te="ఆభరణాలతో సహా మీ వద్ద ఉన్న మొత్తం బంగారం (గ్రాములలో). నేటి ధర ప్రకారం విలువ లెక్కించబడుతుంది." data-en="All the gold you own including jewellery (in grams). Valued at today's live price.">All the gold you own including jewellery (in grams). Valued at today's live price.</span></span></label>
+          <label for="z-goldg"><span data-te="మీ వద్ద ఉన్న బంగారం" data-en="Gold you own">మీ వద్ద ఉన్న బంగారం</span><span class="tip" tabindex="0">i<span class="tip-pop" data-te="ఆభరణాలతో సహా మీ వద్ద ఉన్న మొత్తం బంగారం (గ్రాములలో). నేటి ధర ప్రకారం విలువ లెక్కించబడుతుంది." data-en="All the gold you own including jewellery (in grams). Valued at today's live price.">All the gold you own including jewellery (in grams). Valued at today's live price.</span></span></label>
           <div class="zf-input"><input type="number" id="z-goldg" min="0" placeholder="0" inputmode="decimal" oninput="calcZakat()"><span class="zf-cur" style="border-right:none;border-left:1px solid var(--border);">g</span></div>
           <div class="zf-hint" id="z-goldval"></div>
         </div>
         <div class="zf-group">
-          <label><span data-te="మీ వద్ద ఉన్న వెండి" data-en="Silver you own">మీ వద్ద ఉన్న వెండి</span><span class="tip" tabindex="0">i<span class="tip-pop" data-te="ఆభరణాలు, పాత్రలతో సహా మీ వద్ద ఉన్న మొత్తం వెండి (గ్రాములలో)." data-en="All the silver you own including jewellery and utensils (in grams).">All the silver you own including jewellery and utensils (in grams).</span></span></label>
+          <label for="z-silverg"><span data-te="మీ వద్ద ఉన్న వెండి" data-en="Silver you own">మీ వద్ద ఉన్న వెండి</span><span class="tip" tabindex="0">i<span class="tip-pop" data-te="ఆభరణాలు, పాత్రలతో సహా మీ వద్ద ఉన్న మొత్తం వెండి (గ్రాములలో)." data-en="All the silver you own including jewellery and utensils (in grams).">All the silver you own including jewellery and utensils (in grams).</span></span></label>
           <div class="zf-input"><input type="number" id="z-silverg" min="0" placeholder="0" inputmode="decimal" oninput="calcZakat()"><span class="zf-cur" style="border-right:none;border-left:1px solid var(--border);">g</span></div>
           <div class="zf-hint" id="z-silverval"></div>
         </div>
         <div class="zf-group">
-          <label><span data-te="ఇతర జకాత్ ఆస్తులు" data-en="Other zakatable assets">ఇతర జకాత్ ఆస్తులు</span><span class="tip" tabindex="0">i<span class="tip-pop" data-te="వ్యాపార సరుకు, పెట్టుబడులు, మరియు ఇతరులు మీకు తిరిగి చెల్లించాల్సిన సొమ్ము." data-en="Business stock, investments, and money others owe you that you expect back.">Business stock, investments, and money others owe you that you expect back.</span></span></label>
+          <label for="z-other"><span data-te="ఇతర జకాత్ ఆస్తులు" data-en="Other zakatable assets">ఇతర జకాత్ ఆస్తులు</span><span class="tip" tabindex="0">i<span class="tip-pop" data-te="వ్యాపార సరుకు, పెట్టుబడులు, మరియు ఇతరులు మీకు తిరిగి చెల్లించాల్సిన సొమ్ము." data-en="Business stock, investments, and money others owe you that you expect back.">Business stock, investments, and money others owe you that you expect back.</span></span></label>
           <div class="zf-input"><span class="zf-cur">₹</span><input type="number" id="z-other" min="0" placeholder="0" inputmode="decimal" oninput="calcZakat()"></div>
         </div>
         <div class="zf-divider"></div>
         <div class="zf-group">
-          <label><span data-te="తీసివేయాల్సిన అప్పులు" data-en="Debts to subtract">తీసివేయాల్సిన అప్పులు</span><span class="tip" tabindex="0">i<span class="tip-pop" data-te="మీరు చెల్లించాల్సిన స్వల్పకాలిక అప్పులు &amp; బకాయిలు. ఇవి మొత్తం ఆస్తుల నుండి తీసివేయబడతాయి." data-en="Short-term debts and dues you must pay. These are subtracted from your total assets.">Short-term debts and dues you must pay. These are subtracted from your total assets.</span></span></label>
+          <label for="z-liab"><span data-te="తీసివేయాల్సిన అప్పులు" data-en="Debts to subtract">తీసివేయాల్సిన అప్పులు</span><span class="tip" tabindex="0">i<span class="tip-pop" data-te="మీరు చెల్లించాల్సిన స్వల్పకాలిక అప్పులు &amp; బకాయిలు. ఇవి మొత్తం ఆస్తుల నుండి తీసివేయబడతాయి." data-en="Short-term debts and dues you must pay. These are subtracted from your total assets.">Short-term debts and dues you must pay. These are subtracted from your total assets.</span></span></label>
           <div class="zf-input"><span class="zf-cur">₹</span><input type="number" id="z-liab" min="0" placeholder="0" inputmode="decimal" oninput="calcZakat()"></div>
         </div>
       </div>
