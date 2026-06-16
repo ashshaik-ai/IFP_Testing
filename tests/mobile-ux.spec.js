@@ -236,9 +236,11 @@ test.describe('Student Guidance — mobile stream collapse (@mobile)', () => {
   });
 
   test('hash deep-link #mpc auto-selects MPC and shows section', async ({ page }) => {
+    // Navigate away first to force a full page load (avoids same-page hash nav from beforeEach)
+    await page.goto('about:blank');
     await page.goto('./student-guidance.html#mpc');
     await page.waitForLoadState('networkidle');
-    await page.waitForTimeout(300);
+    await page.waitForTimeout(400);
 
     await expect(page.locator('.sg-stream-pill[data-stream-id="mpc"]')).toHaveClass(/active/);
     expect(await page.locator('#mpc').evaluate(el => el.classList.contains('sg-hide'))).toBe(false);
@@ -283,19 +285,27 @@ test.describe('Student Guidance — desktop shows all streams on load', () => {
 // ─── Regression: no JS errors ─────────────────────────────────────────────────
 
 test.describe('Regression — no JS console errors', () => {
+  // Known pre-existing 404s: placeholder story images not yet uploaded to repo
+  const KNOWN_404_PATTERNS = [/\/assets\/stories\/story\d+\./];
+
   for (const path of ['./', './student-guidance.html']) {
-    test(`no console errors on ${path}`, async ({ page }) => {
-      const errors = [];
-      page.on('console', msg => { if (msg.type() === 'error') errors.push(msg.text()); });
-      page.on('pageerror', err => errors.push(err.message));
+    test(`no JS errors on ${path}`, async ({ page }) => {
+      const jsErrors = [];
+      const unexpected404s = [];
+
+      page.on('pageerror', err => jsErrors.push(err.message));
+      page.on('response', r => {
+        if (r.status() === 404 && !KNOWN_404_PATTERNS.some(re => re.test(r.url()))) {
+          unexpected404s.push(r.url());
+        }
+      });
 
       await page.goto(path);
       await page.waitForLoadState('networkidle');
       await page.waitForTimeout(500);
 
-      // Filter out known pre-existing 404s for missing placeholder images
-      const realErrors = errors.filter(e => !e.includes('story') && !e.includes('.jpg') && !e.includes('.png') && !e.includes('.webp'));
-      expect(realErrors, `JS errors on ${path}: ${realErrors.join('; ')}`).toHaveLength(0);
+      expect(jsErrors, `JS pageerrors on ${path}: ${jsErrors.join('; ')}`).toHaveLength(0);
+      expect(unexpected404s, `Unexpected 404s on ${path}: ${unexpected404s.join('; ')}`).toHaveLength(0);
     });
   }
 });

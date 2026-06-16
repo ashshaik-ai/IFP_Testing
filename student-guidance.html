@@ -1699,8 +1699,9 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
   });
 
   /* Apply initial mobile stream state — collapse stream sections, deactivate pills.
-     If the URL hash names a stream section, auto-select it (handles deep-links). */
-  (function initStreamState(){
+     If the URL hash names a stream section, auto-select it (handles deep-links).
+     Also wired to hashchange so back/forward and in-page hash links work. */
+  function initStreamState(){
     var hash = window.location.hash.replace('#','');
     if(STREAM_SECTION_IDS.indexOf(hash) !== -1){
       /* Deep-link to a specific stream — activate that pill on all screen sizes */
@@ -1711,10 +1712,13 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
         pp.setAttribute('aria-pressed', match ? 'true' : 'false');
       });
     } else if(isMobileStream){
+      activeStream = 'none';
       streamPills.forEach(function(pp){ pp.classList.remove('active'); pp.setAttribute('aria-pressed','false'); });
     }
     applyFilters();
-  }());
+  }
+  initStreamState();
+  window.addEventListener('hashchange', initStreamState);
 
   /* Chip nav */
   var chipLinks = document.querySelectorAll('.sg-chips a');
