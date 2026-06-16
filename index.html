@@ -946,7 +946,6 @@
   /* ── Bottom navigation (mobile only) ── */
   .bottom-nav { display: none; }
   @media (max-width: 768px) {
-    body { padding-bottom: calc(62px + env(safe-area-inset-bottom, 0px)); }
     .bottom-nav {
       display: flex; position: fixed; bottom: 0; left: 0; right: 0; z-index: 80;
       background: rgba(7,23,12,0.97);
@@ -1215,7 +1214,8 @@
   .lb-content { position: relative; max-width: min(90vw, 720px); text-align: center; }
   .lb-close {
     position: absolute; top: -44px; right: 0; background: transparent; border: none;
-    color: rgba(255,255,255,0.7); font-size: 28px; cursor: pointer; padding: 4px 8px;
+    color: rgba(255,255,255,0.7); font-size: 28px; cursor: pointer;
+    width: 44px; height: 44px; display: flex; align-items: center; justify-content: center;
     border-radius: 6px; transition: color 0.2s; line-height: 1;
   }
   .lb-close:hover { color: var(--gold-light); }
@@ -3580,11 +3580,13 @@ document.addEventListener('DOMContentLoaded', function () {
     bttBtn.addEventListener('click', function(){ window.scrollTo({ top: 0, behavior: 'smooth' }); });
   }
 
-  /* Escape key closes the drawer and returns focus to the hamburger button */
+  /* Escape key closes the drawer and returns focus to whichever button opened it
+     (.nav-burger on desktop, #bn-more on mobile — only one is visible at a time) */
   document.addEventListener('keydown',function(e){
     if(e.key==='Escape' && navDrawer && navDrawer.classList.contains('open')){
       closeDrawer();
-      if(navBurger) navBurger.focus();
+      var opener = (navBurger && navBurger.offsetParent !== null) ? navBurger : bnMore;
+      if(opener) opener.focus();
     }
   });
 
