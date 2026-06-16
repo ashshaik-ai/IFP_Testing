@@ -50,6 +50,8 @@ a{color:inherit;text-decoration:none}
 .l-hero-ur{font-family:'Noto Nastaliq Urdu',serif;font-size:clamp(1.6rem,4.5vw,2.6rem);color:var(--gold-light);direction:rtl;line-height:2.2;display:block;margin-bottom:12px}
 .l-hero-sub{font-size:.95rem;color:rgba(245,230,192,.65);max-width:520px;margin:0 auto;line-height:1.75}
 
+.tab-nav-wrap{position:relative}
+.tab-nav-wrap::after{content:'';position:absolute;top:0;right:0;bottom:0;width:28px;background:linear-gradient(to right,rgba(26,92,48,0),var(--green-mid));pointer-events:none;z-index:801}
 .tab-nav{background:var(--green-mid);padding:0 20px;display:flex;align-items:center;gap:0;overflow-x:auto;scrollbar-width:none;border-bottom:1px solid rgba(200,146,42,0.20);position:sticky;top:114px;z-index:800}
 .tab-nav::-webkit-scrollbar{display:none}
 .tab-nav a{white-space:nowrap;font-size:.80rem;font-weight:500;color:rgba(245,230,192,.60);padding:0 18px;height:46px;display:inline-flex;align-items:center;border-bottom:2px solid transparent;transition:all .2s;flex-shrink:0}
@@ -188,11 +190,13 @@ a{color:inherit;text-decoration:none}
   <p class="l-hero-sub" data-te="నిజమైన ఉర్దూ వచనాలు చదవండి — ఇస్లామిక్ కథలు, వ్యాసాలు మరియు ఉపన్యాసాల అంశాలు. ఈ స్థాయిలో మీరు స్వతంత్రంగా ఉర్దూ చదవగలుగుతారు." data-en="Read authentic Urdu texts — Islamic stories, articles, and speech excerpts. At this level you will read Urdu independently.">Read authentic Urdu texts — Islamic stories, articles, and speech excerpts.</p>
 </div>
 
+<div class="tab-nav-wrap">
 <nav class="tab-nav">
   <a href="#stories" class="active" data-te="కథలు" data-en="Stories">Stories</a>
   <a href="#articles" data-te="వ్యాసాలు" data-en="Articles">Articles</a>
   <a href="#speeches" data-te="ఉపన్యాసాలు" data-en="Speeches">Speeches</a>
 </nav>
+</div>
 
 <!-- STORIES -->
 <section class="al-sec" id="stories">

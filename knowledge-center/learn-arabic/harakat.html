@@ -27,7 +27,7 @@ body>nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,59,3
 .nav-right{display:flex;align-items:center;gap:14px}
 .nav-back{display:inline-flex;align-items:center;gap:6px;color:rgba(255,255,255,0.8);text-decoration:none;font-size:13px;transition:color .2s;white-space:nowrap}
 .nav-back:hover{color:var(--gold-light)}
-.lang-btn{background:rgba(200,146,42,0.12);border:1px solid rgba(200,146,42,0.4);color:var(--gold-light);font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;padding:6px 14px;border-radius:100px;cursor:pointer;transition:background .2s}
+.lang-btn{background:rgba(200,146,42,0.12);border:1px solid rgba(200,146,42,0.4);color:var(--gold-light);font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;padding:6px 14px;min-height:44px;display:inline-flex;align-items:center;border-radius:100px;cursor:pointer;transition:background .2s}
 .lang-btn:hover{background:rgba(200,146,42,0.22)}
 
 /* HERO */
@@ -45,6 +45,8 @@ body>nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,59,3
 .lesson-hero p{font-family:'Cormorant Garamond',serif;font-size:clamp(15px,1.8vw,19px);color:rgba(245,230,192,0.72);max-width:540px;line-height:1.75}
 
 /* JUMP TABS */
+.harakat-tabs-wrap{position:relative}
+.harakat-tabs-wrap::after{content:'';position:absolute;top:0;right:0;bottom:0;width:28px;background:linear-gradient(to right,rgba(13,59,30,0),var(--green-deep));pointer-events:none}
 .harakat-tabs{display:flex;gap:8px;overflow-x:auto;padding:22px 5vw 0;background:var(--green-deep);scrollbar-width:none}
 .harakat-tabs::-webkit-scrollbar{display:none}
 .ht-tab{white-space:nowrap;flex-shrink:0;font-size:12px;color:rgba(245,230,192,0.7);text-decoration:none;border:1px solid rgba(200,146,42,0.22);background:rgba(200,146,42,0.05);padding:8px 14px;border-radius:8px 8px 0 0;transition:background .18s,color .18s,border-color .18s}
@@ -148,6 +150,7 @@ body>nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,59,3
   </div>
 </header>
 
+<div class="harakat-tabs-wrap">
 <nav class="harakat-tabs" aria-label="Harakat sections">
   <a href="#fatha" class="ht-tab active"><span class="ar">&#x064E;</span> <span data-te="ఫత్హా" data-en="Fatha">Fatha</span></a>
   <a href="#kasra" class="ht-tab"><span class="ar">&#x0650;</span> <span data-te="కస్రా" data-en="Kasra">Kasra</span></a>
@@ -155,6 +158,7 @@ body>nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,59,3
   <a href="#sukoon" class="ht-tab"><span class="ar">&#x0652;</span> <span data-te="సుకూన్" data-en="Sukoon">Sukoon</span></a>
   <a href="#tanween" class="ht-tab"><span class="ar">&#x064B;</span> <span data-te="తన్వీన్" data-en="Tanween">Tanween</span></a>
 </nav>
+</div>
 
 <!-- FATHA -->
 <section class="hs" id="fatha" style="background:var(--white)">

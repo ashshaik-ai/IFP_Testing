@@ -49,6 +49,8 @@ a{color:inherit;text-decoration:none}
 .l-hero-ur{font-family:'Noto Nastaliq Urdu',serif;font-size:clamp(1.6rem,4.5vw,2.6rem);color:var(--gold-light);direction:rtl;line-height:2.2;display:block;margin-bottom:12px}
 .l-hero-sub{font-size:.95rem;color:rgba(245,230,192,.65);max-width:500px;margin:0 auto;line-height:1.75}
 
+.tab-nav-wrap{position:relative}
+.tab-nav-wrap::after{content:'';position:absolute;top:0;right:0;bottom:0;width:28px;background:linear-gradient(to right,rgba(26,92,48,0),var(--green-mid));pointer-events:none;z-index:801}
 .tab-nav{background:var(--green-mid);padding:0 20px;display:flex;align-items:center;gap:0;overflow-x:auto;scrollbar-width:none;border-bottom:1px solid rgba(200,146,42,0.20);position:sticky;top:114px;z-index:800}
 .tab-nav::-webkit-scrollbar{display:none}
 .tab-nav a{white-space:nowrap;font-size:.80rem;font-weight:500;color:rgba(245,230,192,.60);padding:0 18px;height:46px;display:inline-flex;align-items:center;border-bottom:2px solid transparent;transition:all .2s;flex-shrink:0}
@@ -155,11 +157,13 @@ a{color:inherit;text-decoration:none}
   <p class="l-hero-sub" data-te="నస్తాలీఖ్ లిపిలో అక్షరాలు, పదాలు మరియు వాక్యాలు రాయడం నేర్చుకోండి — ప్రపంచంలో అత్యంత అందమైన లిపులలో ఒకటి." data-en="Learn to write Urdu letters, words, and sentences in the elegant Nastaliq script — one of the most beautiful scripts in the world.">Learn to write Urdu letters, words, and sentences in the elegant Nastaliq script.</p>
 </div>
 
+<div class="tab-nav-wrap">
 <nav class="tab-nav">
   <a href="#letters" class="active" data-te="అక్షరాలు రాయడం" data-en="Writing Letters">Writing Letters</a>
   <a href="#words" data-te="పదాలు రాయడం" data-en="Writing Words">Writing Words</a>
   <a href="#sentences" data-te="వాక్యాలు రాయడం" data-en="Writing Sentences">Writing Sentences</a>
 </nav>
+</div>
 
 <!-- WRITING LETTERS -->
 <section class="al-sec" id="letters">

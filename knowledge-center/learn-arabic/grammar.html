@@ -31,7 +31,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(13,59,30,0.9
 .nav-links{display:flex;align-items:center;gap:16px}
 .nav-links a{color:rgba(245,230,192,0.75);font-size:.82rem;font-weight:500;transition:color .2s}
 .nav-links a:hover{color:var(--gold-light)}
-.lang-btn{background:rgba(200,146,42,0.20);border:1px solid var(--gold);color:var(--gold-light);font-size:.78rem;font-weight:600;padding:5px 13px;border-radius:20px;cursor:pointer;transition:all .2s;font-family:'DM Sans',sans-serif}
+.lang-btn{background:rgba(200,146,42,0.20);border:1px solid var(--gold);color:var(--gold-light);font-size:.78rem;font-weight:600;padding:5px 13px;min-height:44px;display:inline-flex;align-items:center;border-radius:20px;cursor:pointer;transition:all .2s;font-family:'DM Sans',sans-serif}
 .lang-btn:hover{background:var(--gold);color:var(--green-deep)}
 
 /* HERO */
@@ -46,6 +46,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(13,59,30,0.9
 .lesson-sub{font-size:.95rem;color:rgba(245,230,192,.65);max-width:520px;margin:0 auto;line-height:1.75}
 
 /* TAB NAV */
+.tab-nav-wrap{position:relative}
+.tab-nav-wrap::after{content:'';position:absolute;top:0;right:0;bottom:0;width:28px;background:linear-gradient(to right,rgba(26,92,48,0),var(--green-mid));pointer-events:none;z-index:801}
 .tab-nav{background:var(--green-mid);padding:0 20px;display:flex;align-items:center;overflow-x:auto;scrollbar-width:none;border-bottom:1px solid rgba(200,146,42,0.20);position:sticky;top:68px;z-index:800}
 .tab-nav::-webkit-scrollbar{display:none}
 .tab-nav a{white-space:nowrap;font-size:.80rem;font-weight:500;color:rgba(245,230,192,.60);padding:0 18px;height:46px;display:inline-flex;align-items:center;border-bottom:2px solid transparent;transition:all .2s;flex-shrink:0}
@@ -193,11 +195,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(13,59,30,0.9
   <p class="lesson-sub" data-te="అరబిక్ నామవాచకాలు, క్రియలు మరియు వాక్య నిర్మాణం నేర్చుకోండి. ఇవి తెలిస్తే అరబిక్ స్వతంత్రంగా చదవగలరు మరియు అర్థం చేసుకోగలరు." data-en="Master Arabic nouns, verbs, and sentence structure. These tools let you read and construct Arabic independently.">Master Arabic nouns, verbs, and sentence structure — the tools to read and construct Arabic independently.</p>
 </div>
 
+<div class="tab-nav-wrap">
 <nav class="tab-nav">
   <a href="#nouns" class="active" data-te="నామవాచకాలు (ఇస్మ్)" data-en="Nouns (Ism)">Nouns (Ism)</a>
   <a href="#verbs" data-te="క్రియలు (ఫిఇ'ల్)" data-en="Verbs (Fi'l)">Verbs (Fi'l)</a>
   <a href="#sentences" data-te="వాక్య నిర్మాణం" data-en="Sentence Structure">Sentence Structure</a>
 </nav>
+</div>
 
 <!-- NOUNS -->
 <section class="sec" id="nouns">

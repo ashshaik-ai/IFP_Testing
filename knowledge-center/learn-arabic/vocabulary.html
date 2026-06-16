@@ -27,7 +27,7 @@ body>nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,59,3
 .nav-right{display:flex;align-items:center;gap:14px}
 .nav-back{display:inline-flex;align-items:center;gap:6px;color:rgba(255,255,255,0.8);text-decoration:none;font-size:13px;transition:color .2s;white-space:nowrap}
 .nav-back:hover{color:var(--gold-light)}
-.lang-btn{background:rgba(200,146,42,0.12);border:1px solid rgba(200,146,42,0.4);color:var(--gold-light);font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;padding:6px 14px;border-radius:100px;cursor:pointer;transition:background .2s}
+.lang-btn{background:rgba(200,146,42,0.12);border:1px solid rgba(200,146,42,0.4);color:var(--gold-light);font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;padding:6px 14px;min-height:44px;display:inline-flex;align-items:center;border-radius:100px;cursor:pointer;transition:background .2s}
 .lang-btn:hover{background:rgba(200,146,42,0.22)}
 
 /* HERO */
@@ -76,7 +76,8 @@ body>nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,59,3
 .gc-note{font-size:12.5px;color:var(--text-muted);line-height:1.6}
 
 /* COMMON WORDS */
-.word-table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:32px}
+.word-table-wrap{position:relative;overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:32px}
+.word-table-wrap::after{content:'';position:absolute;top:0;right:0;bottom:0;width:28px;background:linear-gradient(to right,rgba(255,255,255,0),var(--white,#fff));pointer-events:none}
 .word-table{width:100%;border-collapse:collapse;font-size:14px;min-width:520px}
 .word-table th{background:linear-gradient(135deg,var(--green-deep),var(--green-mid));color:var(--gold-light);font-size:11px;letter-spacing:1px;text-transform:uppercase;padding:12px 18px;text-align:left;font-weight:600}
 .word-table th:nth-child(2){text-align:right}

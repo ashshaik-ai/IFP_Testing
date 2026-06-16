@@ -53,6 +53,8 @@ a{color:inherit;text-decoration:none}
 .l-hero-sub{font-size:.95rem;color:rgba(245,230,192,.65);max-width:520px;margin:0 auto;line-height:1.75}
 
 /* TAB NAV */
+.tab-nav-wrap{position:relative}
+.tab-nav-wrap::after{content:'';position:absolute;top:0;right:0;bottom:0;width:28px;background:linear-gradient(to right,rgba(26,92,48,0),var(--green-mid));pointer-events:none;z-index:801}
 .tab-nav{background:var(--green-mid);padding:0 20px;display:flex;align-items:center;gap:0;overflow-x:auto;scrollbar-width:none;border-bottom:1px solid rgba(200,146,42,0.20);position:sticky;top:114px;z-index:800}
 .tab-nav::-webkit-scrollbar{display:none}
 .tab-nav a{white-space:nowrap;font-size:.80rem;font-weight:500;color:rgba(245,230,192,.60);padding:0 18px;height:46px;display:inline-flex;align-items:center;border-bottom:2px solid transparent;transition:all .2s;flex-shrink:0}
@@ -211,12 +213,14 @@ a{color:inherit;text-decoration:none}
   <p class="l-hero-sub" data-te="రోజువారీ ఉర్దూ శుభాకాంక్షలు, సంభాషణలు, సాధారణ వ్యక్తీకరణలు మరియు సంఖ్యలు నేర్చుకోండి. ఉర్దూ మాట్లాడే వారితో ఆత్మవిశ్వాసంతో సంభాషించండి." data-en="Learn everyday Urdu greetings, conversations, common expressions, and numbers — communicate confidently with Urdu speakers.">Learn everyday Urdu greetings, conversations, common expressions, and numbers — communicate confidently with Urdu speakers.</p>
 </div>
 
+<div class="tab-nav-wrap">
 <nav class="tab-nav">
   <a href="#greetings" class="active" data-te="శుభాకాంక్షలు" data-en="Greetings">Greetings</a>
   <a href="#conversations" data-te="సంభాషణలు" data-en="Conversations">Conversations</a>
   <a href="#expressions" data-te="వ్యక్తీకరణలు" data-en="Expressions">Expressions</a>
   <a href="#numbers" data-te="సంఖ్యలు" data-en="Numbers">Numbers</a>
 </nav>
+</div>
 
 <!-- GREETINGS -->
 <section class="al-sec" id="greetings">

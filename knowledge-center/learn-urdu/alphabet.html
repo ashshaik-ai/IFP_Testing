@@ -57,6 +57,8 @@ a{color:inherit;text-decoration:none}
 .l-stat span{font-size:.72rem;color:rgba(245,230,192,.55);text-transform:uppercase;letter-spacing:.07em}
 
 /* TAB NAV */
+.tab-nav-wrap{position:relative}
+.tab-nav-wrap::after{content:'';position:absolute;top:0;right:0;bottom:0;width:28px;background:linear-gradient(to right,rgba(26,92,48,0),var(--green-mid));pointer-events:none;z-index:801}
 .tab-nav{background:var(--green-mid);padding:0 20px;display:flex;align-items:center;gap:0;overflow-x:auto;scrollbar-width:none;border-bottom:1px solid rgba(200,146,42,0.20);position:sticky;top:114px;z-index:800}
 .tab-nav::-webkit-scrollbar{display:none}
 .tab-nav a{white-space:nowrap;font-size:.80rem;font-weight:500;color:rgba(245,230,192,.60);padding:0 18px;height:46px;display:inline-flex;align-items:center;border-bottom:2px solid transparent;transition:all .2s;flex-shrink:0}
@@ -215,12 +217,14 @@ a{color:inherit;text-decoration:none}
   </div>
 </div>
 
+<div class="tab-nav-wrap">
 <nav class="tab-nav" aria-label="Lesson sections">
   <a href="#alphabet" class="active" data-te="38 అక్షరాలు" data-en="38 Letters">38 Letters</a>
   <a href="#unique" data-te="ప్రత్యేక అక్షరాలు" data-en="Unique Letters">Unique Letters</a>
   <a href="#pronunciation" data-te="ఉచ్చారణ" data-en="Pronunciation">Pronunciation</a>
   <a href="#writing" data-te="రాయడం సూచనలు" data-en="Writing Tips">Writing Tips</a>
 </nav>
+</div>
 
 <!-- ALPHABET GRID -->
 <section class="al-sec" id="alphabet">
