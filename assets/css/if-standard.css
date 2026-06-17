@@ -1729,15 +1729,18 @@ button, [role="button"], [tabindex="0"] {
 }
 
 /* Zakat calculator input focus ring */
-.zakat-input:focus, .zakat-select:focus {
+.zf-input input:focus, .zf-input select:focus, .zakat-input:focus, .zakat-select:focus {
   outline: none !important;
   border-color: var(--gold, #c8922a) !important;
   box-shadow: 0 0 0 3px rgba(200,146,42,0.14) !important;
 }
 
-/* Prayer times panel: subtle section glow */
-.prayer-section, .prayer-tool {
-  background: linear-gradient(160deg, #fff 0%, #fdfbf5 100%) !important;
+/* Prayer times row highlight */
+.salah-row:hover {
+  background: rgba(200,146,42,0.05) !important;
+}
+.salah-row.next {
+  background: linear-gradient(90deg, rgba(200,146,42,0.10) 0%, transparent 100%) !important;
 }
 
 /* ═══════════════════════════════════════════════════════
@@ -1955,4 +1958,60 @@ a {
 }
 .al-cta:active, .ifx-btn:active, .kc-cta:active, .sg-cta-btn:active {
   transform: scale(0.97) !important;
+}
+
+/* ═══════════════════════════════════════════════════════
+   HOMEPAGE — remaining section card polish
+   ═══════════════════════════════════════════════════════ */
+
+/* Manifesto cards: stronger hover */
+.mf-card {
+  transition: transform 0.28s cubic-bezier(0.22,0.61,0.36,1), box-shadow 0.28s, border-color 0.28s !important;
+}
+.mf-card:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: 0 8px 24px rgba(13,59,30,0.09) !important;
+  border-color: rgba(200,146,42,0.35) !important;
+}
+
+/* Story cards: richer hover */
+.story-card {
+  transition: transform 0.28s cubic-bezier(0.22,0.61,0.36,1), box-shadow 0.28s !important;
+}
+.story-card:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 12px 32px rgba(13,59,30,0.12) !important;
+}
+
+/* Member cards: subtle lift */
+.member-card {
+  transition: transform 0.28s cubic-bezier(0.22,0.61,0.36,1), box-shadow 0.28s !important;
+}
+.member-card:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: 0 8px 22px rgba(13,59,30,0.10) !important;
+}
+
+/* Stat / milestone chips (hero area) */
+.hstat {
+  transition: transform 0.25s cubic-bezier(0.22,0.61,0.36,1), box-shadow 0.25s, border-color 0.25s !important;
+}
+
+/* KCP (KC promo) cards in homepage */
+.kc-promo-card, .kcp-card {
+  transition: transform 0.28s cubic-bezier(0.22,0.61,0.36,1), box-shadow 0.28s !important;
+}
+.kc-promo-card:hover, .kcp-card:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 10px 28px rgba(13,59,30,0.10) !important;
+}
+
+/* Event cards */
+.ev-card {
+  transition: transform 0.28s cubic-bezier(0.22,0.61,0.36,1), box-shadow 0.28s, border-color 0.28s !important;
+}
+.ev-card:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: 0 8px 22px rgba(13,59,30,0.09) !important;
+  border-color: rgba(200,146,42,0.38) !important;
 }
