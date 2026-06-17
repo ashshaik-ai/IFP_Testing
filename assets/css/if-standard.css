@@ -1608,3 +1608,42 @@ body { animation: ifx-page-in 0.38s cubic-bezier(0.22, 0.61, 0.36, 1) both; }
 /* ── Portal alf-card (alphabet cards): scale on hover ── */
 .alf-card { transition: transform 0.25s cubic-bezier(0.22,0.61,0.36,1), box-shadow 0.25s !important; }
 .alf-card:hover { transform: translateY(-3px) scale(1.02) !important; box-shadow: 0 8px 20px rgba(13,59,30,0.10) !important; }
+
+/* ═══════════════════════════════════════════════════════
+   LESSON PAGE PREMIUM — hero entrance + section depth
+   ═══════════════════════════════════════════════════════ */
+
+/* Shared hero entrance for all lesson pages */
+@keyframes if-lesson-hero-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: none; }
+}
+.lesson-hero .breadcrumb { animation: if-lesson-hero-in 0.45s 0.05s cubic-bezier(0.22, 0.61, 0.36, 1) both; }
+.lesson-hero .lesson-badge { animation: if-lesson-hero-in 0.45s 0.15s cubic-bezier(0.22, 0.61, 0.36, 1) both; }
+.lesson-hero h1 { animation: if-lesson-hero-in 0.45s 0.25s cubic-bezier(0.22, 0.61, 0.36, 1) both; }
+.lesson-hero .lesson-ar { animation: if-lesson-hero-in 0.45s 0.34s cubic-bezier(0.22, 0.61, 0.36, 1) both; }
+.lesson-hero .lesson-sub { animation: if-lesson-hero-in 0.45s 0.42s cubic-bezier(0.22, 0.61, 0.36, 1) both; }
+@media (prefers-reduced-motion: reduce) {
+  .lesson-hero .breadcrumb,
+  .lesson-hero .lesson-badge,
+  .lesson-hero h1,
+  .lesson-hero .lesson-ar,
+  .lesson-hero .lesson-sub { animation: none !important; }
+}
+
+/* Lesson callout boxes: subtle lift on hover */
+.callout { transition: box-shadow 0.28s, transform 0.28s cubic-bezier(0.22,0.61,0.36,1) !important; }
+.callout:hover { transform: translateY(-2px) !important; box-shadow: 0 6px 18px rgba(13,59,30,0.08) !important; }
+
+/* Lesson: section background alternation depth */
+.sec:nth-child(even) { background: linear-gradient(180deg, var(--white, #fff) 0%, #fafaf8 100%); }
+.sec:nth-child(odd) { background: linear-gradient(180deg, var(--cream, #faf6ee) 0%, #f7f2e8 100%); }
+
+/* Lesson content cards: subtle depth */
+.example-card, .grammar-card, .vocab-card, .exercise-card {
+  transition: transform 0.28s cubic-bezier(0.22,0.61,0.36,1), box-shadow 0.28s !important;
+}
+.example-card:hover, .grammar-card:hover, .vocab-card:hover, .exercise-card:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 18px rgba(13,59,30,0.08) !important;
+}
