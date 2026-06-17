@@ -310,7 +310,10 @@
   var PORTAL_CARD_SELS = [
     '.alf-card', '.ph-card', '.surah-card', '.qd-card',
     '.step-card', '.miss-card', '.sw-card', '.gl-card',
-    '.dua-card', '.name-card', '.word-card', '.if-ref-card'
+    '.dua-card', '.name-card', '.word-card', '.if-ref-card',
+    '.rm-card', '.dashboard-card', '.timeline-card', '.era-card',
+    '.char-card', '.mission-card', '.story-card', '.lesson-card',
+    '.tool-card', '.feature-card', '.benefit-card', '.achievement-card'
   ];
   function attachPortalReveal() {
     PORTAL_CARD_SELS.forEach(function(sel){
