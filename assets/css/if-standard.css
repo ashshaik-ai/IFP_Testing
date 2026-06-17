@@ -2017,14 +2017,10 @@ a {
 }
 
 /* ── Portal sticky-nav link touch targets (WCAG 2.5.5 — 44px minimum) ──
-   Covers .al-sticky, .se-sticky, .ih-sticky, .kq-sticky etc.
-   The per-page selectors vary; this catches all of them via the inner wrapper. */
-.al-sticky a, .se-sticky a, .ih-sticky a, .kq-sticky a,
-.ks-sticky a, .ku-sticky a, .kc-sticky a {
+   All portal index pages share .al-sticky for their floating secondary nav.
+   The kc-sticky is on the KC page. Both need ≥36px clickable height. */
+.al-sticky a, .kc-sticky a {
   min-height: 36px !important;
   display: inline-flex !important;
   align-items: center !important;
-}
-.al-cta:not([style]) {
-  min-height: 48px !important;
 }
