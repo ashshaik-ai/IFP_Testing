@@ -1428,9 +1428,12 @@
     margin-top: 12px; background: transparent; border: 1px solid var(--border);
     color: var(--text-muted); border-radius: 6px; padding: 6px 14px; font-size: 12px;
     font-family: inherit; cursor: pointer; transition: all 0.2s; width: 100%;
+    display: inline-flex; align-items: center; justify-content: center; gap: 6px;
   }
   .ach-expand-btn:hover { border-color: var(--gold); color: var(--green-deep); }
   .ach-card.expanded .ach-expand-btn { color: var(--green-mid); border-color: rgba(46,139,87,0.3); }
+  .ach-chev { display: inline-flex; align-items: center; transition: transform 0.25s ease; }
+  .ach-card.expanded .ach-chev { transform: rotate(180deg); }
 
   /* ── Knowledge Center Portal Grid ── */
   .learning-dashboard { background: var(--cream); }
@@ -1828,7 +1831,7 @@
         <h3 class="ach-title" data-key="ach1_title">కన్వెన్షన్ హాల్ పరివర్తన</h3>
         <p class="ach-desc" data-key="ach1_desc">అంజుమన్ షాదీ మహల్ మరియు ఈద్గా కమ్యూనిటీ హాల్ — రెండు హాళ్ళు AC లేని స్థితి నుండి పూర్తి ఎయిర్ కండిషన్డ్ సౌకర్యాలకు అప్‌గ్రేడ్ చేయబడ్డాయి. పూర్తి రీమోడలింగ్, సీలింగ్ పునరుద్ధరణ మరియు అంతర్గత మెరుగుదల పనులు చేపట్టబడ్డాయి.</p>
         <span class="ach-tag" data-key="ach1_tag">మౌలిక సదుపాయాలు</span>
-        <button class="ach-expand-btn" onclick="toggleAchEvidence(this)" data-key="ach_view_evidence">సాక్ష్యాలు చూడండి ▾</button>
+        <button class="ach-expand-btn" onclick="toggleAchEvidence(this)" aria-expanded="false" type="button"><span data-key="ach_view_evidence">సాక్ష్యాలు చూడండి</span> <span class="ach-chev" aria-hidden="true"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></span></button>
         <div class="ach-evidence">
           <div class="ach-evidence-row">
             <span class="ev-tag ev-done">✓ పూర్తి AC వ్యవస్థాపన</span>
@@ -1846,7 +1849,7 @@
         <h3 class="ach-title" data-key="ach2_title">అంజుమన్ ఆదాయంలో మెరుగుదల</h3>
         <p class="ach-desc" data-key="ach2_desc">గత నాయకత్వం అద్దెదారులు అద్దె చెల్లించకుండా వదిలేసేది. ఇస్లామిక్ ఫ్రంట్ ఆధ్వర్యంలో క్రమశిక్షణతో కూడిన అద్దె వసూలు వ్యవస్థ అమలు చేయబడింది — అంజుమన్ ఆర్థిక వనరులు గణనీయంగా మెరుగుపడ్డాయి.</p>
         <span class="ach-tag" data-key="ach2_tag">ఆర్థిక సంస్కరణ</span>
-        <button class="ach-expand-btn" onclick="toggleAchEvidence(this)" data-key="ach_view_evidence">సాక్ష్యాలు చూడండి ▾</button>
+        <button class="ach-expand-btn" onclick="toggleAchEvidence(this)" aria-expanded="false" type="button"><span data-key="ach_view_evidence">సాక్ష్యాలు చూడండి</span> <span class="ach-chev" aria-hidden="true"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></span></button>
         <div class="ach-evidence">
           <div class="ach-evidence-row">
             <span class="ev-tag ev-done">✓ క్రమబద్ధ వసూలు వ్యవస్థ</span>
@@ -1863,7 +1866,7 @@
         <h3 class="ach-title" data-key="ach3_title">షాప్ ఆడిట్ & సబ్‌లీజ్ పరిష్కారం</h3>
         <p class="ach-desc" data-key="ach3_desc">అద్దెదారులు అంజుమన్ ఆస్తులను మూడవ పక్షాలకు తిరిగి లీజుకు ఇచ్చే దోపిడీ సబ్‌లీజ్ పద్ధతి మా పాలనలో పూర్తిగా రద్దు చేయబడింది — సమాజ ఆస్తులు దీర్ఘకాలానికి రక్షించబడ్డాయి.</p>
         <span class="ach-tag" data-key="ach3_tag">విధాన సంస్కరణ</span>
-        <button class="ach-expand-btn" onclick="toggleAchEvidence(this)" data-key="ach_view_evidence">సాక్ష్యాలు చూడండి ▾</button>
+        <button class="ach-expand-btn" onclick="toggleAchEvidence(this)" aria-expanded="false" type="button"><span data-key="ach_view_evidence">సాక్ష్యాలు చూడండి</span> <span class="ach-chev" aria-hidden="true"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></span></button>
         <div class="ach-evidence">
           <div class="ach-evidence-row">
             <span class="ev-tag ev-done">✓ 120+ దుకాణాల తనిఖీ</span>
@@ -1880,7 +1883,7 @@
         <h3 class="ach-title" data-key="ach4_title">అంత్యక్రియల ఆర్థిక సహాయ పథకం</h3>
         <p class="ach-desc" data-key="ach4_desc">మంగళగిరిలో అంత్యక్రియల ఖర్చులు భరించలేని ముస్లిం కుటుంబాలకు ₹10,000 ఆర్థిక సహాయం అందించే కరుణాపూర్వక పథకం ప్రారంభించబడింది. ఏ కుటుంబమూ ఆ భారాన్ని ఒంటరిగా మోయకూడదు.</p>
         <span class="ach-tag" data-key="ach4_tag">సామాజిక సంక్షేమం</span>
-        <button class="ach-expand-btn" onclick="toggleAchEvidence(this)" data-key="ach_view_evidence">సాక్ష్యాలు చూడండి ▾</button>
+        <button class="ach-expand-btn" onclick="toggleAchEvidence(this)" aria-expanded="false" type="button"><span data-key="ach_view_evidence">సాక్ష్యాలు చూడండి</span> <span class="ach-chev" aria-hidden="true"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></span></button>
         <div class="ach-evidence">
           <div class="ach-evidence-row">
             <span class="ev-tag ev-done">✓ క్రియాశీల పథకం</span>
@@ -1897,7 +1900,7 @@
         <h3 class="ach-title" data-key="ach5_title">18 మసీదుల నిర్వహణ</h3>
         <p class="ach-desc" data-key="ach5_desc">మంగళగిరిలో 18 మసీదుల కార్యకలాపాలు మరియు నిర్వహణను ఇస్లామిక్ ఫ్రంట్ పర్యవేక్షిస్తుంది — సమాజ ఆధ్యాత్మిక అవసరాలకు అత్యున్నత ప్రమాణాలతో.</p>
         <span class="ach-tag" data-key="ach5_tag">సమాజ ఆస్తులు</span>
-        <button class="ach-expand-btn" onclick="toggleAchEvidence(this)" data-key="ach_view_evidence">సాక్ష్యాలు చూడండి ▾</button>
+        <button class="ach-expand-btn" onclick="toggleAchEvidence(this)" aria-expanded="false" type="button"><span data-key="ach_view_evidence">సాక్ష్యాలు చూడండి</span> <span class="ach-chev" aria-hidden="true"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></span></button>
         <div class="ach-evidence">
           <div class="ach-evidence-row">
             <span class="ev-tag ev-done">✓ 18 మసీదులు క్రియాశీలంగా</span>
@@ -1914,7 +1917,7 @@
         <h3 class="ach-title" data-key="ach6_title">మహిళా కుట్టు శిక్షణా కేంద్రం</h3>
         <p class="ach-desc" data-key="ach6_desc">ముస్లిం మహిళలకు ఆధునిక వసతులతో కుట్టు మిషన్ శిక్షణా కేంద్రం స్థాపించబడింది — ఉపాధి కల్పించడం మరియు ఆర్థిక స్వాతంత్ర్యం సాధించడం లక్ష్యం.</p>
         <span class="ach-tag" data-key="ach6_tag">మహిళా సాధికారత</span>
-        <button class="ach-expand-btn" onclick="toggleAchEvidence(this)" data-key="ach_view_evidence">సాక్ష్యాలు చూడండి ▾</button>
+        <button class="ach-expand-btn" onclick="toggleAchEvidence(this)" aria-expanded="false" type="button"><span data-key="ach_view_evidence">సాక్ష్యాలు చూడండి</span> <span class="ach-chev" aria-hidden="true"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></span></button>
         <div class="ach-evidence">
           <div class="ach-evidence-row">
             <span class="ev-tag ev-done">✓ కేంద్రం నెలకొల్పబడింది</span>
@@ -2557,12 +2560,12 @@
       <!-- Events column -->
       <div>
         <div class="events-tabs" role="tablist" aria-label="Event categories">
-          <button class="ev-tab active" role="tab" aria-selected="true" aria-controls="ev-upcoming" onclick="switchEventTab('upcoming', this)" data-key="ev_upcoming">రాబోయేవి</button>
-          <button class="ev-tab" role="tab" aria-selected="false" aria-controls="ev-recent" onclick="switchEventTab('recent', this)" data-key="ev_recent">ఇటీవలి</button>
-          <button class="ev-tab" role="tab" aria-selected="false" aria-controls="ev-friday" onclick="switchEventTab('friday', this)" data-key="ev_friday">శుక్రవారం</button>
+          <button id="ev-tab-upcoming" class="ev-tab active" role="tab" aria-selected="true" aria-controls="ev-upcoming" onclick="switchEventTab('upcoming', this)" data-key="ev_upcoming">రాబోయేవి</button>
+          <button id="ev-tab-recent" class="ev-tab" role="tab" aria-selected="false" aria-controls="ev-recent" onclick="switchEventTab('recent', this)" data-key="ev_recent">ఇటీవలి</button>
+          <button id="ev-tab-friday" class="ev-tab" role="tab" aria-selected="false" aria-controls="ev-friday" onclick="switchEventTab('friday', this)" data-key="ev_friday">శుక్రవారం</button>
         </div>
 
-        <div class="events-list" id="ev-upcoming" role="tabpanel" aria-label="Upcoming events">
+        <div class="events-list" id="ev-upcoming" role="tabpanel" aria-labelledby="ev-tab-upcoming">
           <div class="event-item">
             <div class="event-date-box"><div class="ed-day">20</div><div class="ed-mon" data-key="mon_jun">జూన్</div></div>
             <div class="event-info">
@@ -2597,7 +2600,7 @@
           </div>
         </div>
 
-        <div class="events-list" id="ev-recent" role="tabpanel" aria-label="Recent events" style="display:none">
+        <div class="events-list" id="ev-recent" role="tabpanel" aria-labelledby="ev-tab-recent" style="display:none">
           <div class="event-item">
             <div class="event-date-box"><div class="ed-day">10</div><div class="ed-mon" data-key="mon_jun">జూన్</div></div>
             <div class="event-info">
@@ -2624,7 +2627,7 @@
           </div>
         </div>
 
-        <div class="events-list" id="ev-friday" role="tabpanel" aria-label="Friday prayers" style="display:none">
+        <div class="events-list" id="ev-friday" role="tabpanel" aria-labelledby="ev-tab-friday" style="display:none">
           <div class="event-item">
             <div class="event-date-box"><div class="ed-day" data-key="ev_fri_day">జు</div><div class="ed-mon" data-key="ev_fri_mon">ముమ్</div></div>
             <div class="event-info">
@@ -3224,7 +3227,7 @@ const T = {
     nav_stories: "సఫలత కథలు", nav_gallery: "మా కార్యక్రమాలు", nav_events: "కార్యక్రమాలు", nav_volunteer: "స్వచ్ఛంద సేవ",
 
     /* Achievement evidence */
-    ach_view_evidence: "సాక్ష్యాలు చూడండి ▾",
+    ach_view_evidence: "సాక్ష్యాలు చూడండి",
 
     /* Stories */
     stories_tag: "సమాజ ప్రభావం", stories_title: "సఫలత కథలు",
@@ -3493,7 +3496,7 @@ const T = {
     nav_stories: "Success Stories", nav_gallery: "Our Work", nav_events: "Events", nav_volunteer: "Volunteer",
 
     /* Achievement evidence */
-    ach_view_evidence: "View Evidence ▾",
+    ach_view_evidence: "View Evidence",
 
     /* Stories */
     stories_tag: "Community Impact", stories_title: "Success Stories",
@@ -3900,12 +3903,14 @@ document.addEventListener('DOMContentLoaded', () => applyLang(lang));
 function toggleAchEvidence(btn) {
   var card = btn.closest('.ach-card');
   var isExpanded = card.classList.toggle('expanded');
+  btn.setAttribute('aria-expanded', String(isExpanded));
   var l = lang;
-  var te = 'సాక్ష్యాలు దాచండి ▴';
-  var en = 'Hide Evidence ▴';
-  var te2 = 'సాక్ష్యాలు చూడండి ▾';
-  var en2 = 'View Evidence ▾';
-  btn.textContent = isExpanded ? (l==='te'?te:en) : (l==='te'?te2:en2);
+  var te = 'సాక్ష్యాలు దాచండి';
+  var en = 'Hide Evidence';
+  var te2 = 'సాక్ష్యాలు చూడండి';
+  var en2 = 'View Evidence';
+  var labelEl = btn.querySelector('[data-key]');
+  if (labelEl) labelEl.textContent = isExpanded ? (l==='te'?te:en) : (l==='te'?te2:en2);
 }
 window.toggleAchEvidence = toggleAchEvidence;
 
