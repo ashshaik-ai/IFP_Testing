@@ -1412,8 +1412,9 @@
     display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
   .ld-portal-info { flex: 1; min-width: 0; }
   .ld-portal-name { font-size: 14px; font-weight: 600; color: var(--green-deep); }
-  .ld-portal-arrow { font-size: 16px; color: var(--gold); flex-shrink: 0; transition: transform 0.25s; }
-  .ld-portal:hover .ld-portal-arrow { transform: translateX(3px); }
+  .ld-portal-desc { font-size: 12px; color: var(--text-muted); margin-top: 2px; line-height: 1.4; }
+  .ld-portal-arrow { color: var(--gold); flex-shrink: 0; transition: transform 0.25s; display: flex; align-items: center; }
+  .ld-portal:hover .ld-portal-arrow { transform: translateX(4px); }
 
   /* ── Hero secondary CTA ── */
   .hero-cta-group { display: flex; gap: 12px; flex-wrap: wrap; }
@@ -2830,50 +2831,57 @@
         <div class="ld-portal-icon" style="font-family:serif;font-size:20px">ع</div>
         <div class="ld-portal-info">
           <div class="ld-portal-name" data-key="ld_arabic">అరబిక్ నేర్చుకోండి</div>
+          <div class="ld-portal-desc" data-te="అక్షరాల నుండి ఖురాన్ వ్యాకరణం వరకు" data-en="Letters to Quranic grammar">అక్షరాల నుండి ఖురాన్ వ్యాకరణం వరకు</div>
         </div>
-        <div class="ld-portal-arrow" aria-hidden="true">→</div>
+        <div class="ld-portal-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
       </a>
       <a href="knowledge-center/learn-urdu/index.html" class="ld-portal reveal">
         <div class="ld-portal-icon" style="font-family:'Noto Nastaliq Urdu',serif;font-size:18px;line-height:1.6">و</div>
         <div class="ld-portal-info">
           <div class="ld-portal-name" data-key="ld_urdu">ఉర్దూ నేర్చుకోండి</div>
+          <div class="ld-portal-desc" data-te="లిపి, పదాలు, ఇస్లామిక్ ఉర్దూ" data-en="Script, vocabulary, Islamic Urdu">లిపి, పదాలు, ఇస్లామిక్ ఉర్దూ</div>
         </div>
-        <div class="ld-portal-arrow" aria-hidden="true">→</div>
+        <div class="ld-portal-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
       </a>
       <a href="knowledge-center/learn-quran/index.html" class="ld-portal reveal">
         <div class="ld-portal-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#2e8b57" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
         <div class="ld-portal-info">
           <div class="ld-portal-name" data-key="ld_quran">ఖురాన్ నేర్చుకోండి</div>
+          <div class="ld-portal-desc" data-te="పఠనం, తజ్వీద్, తఫ్సీర్, హిఫ్జ్" data-en="Reading, Tajweed, Tafseer, Hifz">పఠనం, తజ్వీద్, తఫ్సీర్, హిఫ్జ్</div>
         </div>
-        <div class="ld-portal-arrow" aria-hidden="true">→</div>
+        <div class="ld-portal-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
       </a>
       <a href="knowledge-center/learn-salah/index.html" class="ld-portal reveal">
         <div class="ld-portal-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#2e8b57" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20h18M5 20V10l7-7 7 7v10"/><path d="M10 20v-5h4v5"/><path d="M12 3v2M9 6l1.5 1.5M15 6l-1.5 1.5"/></svg></div>
         <div class="ld-portal-info">
           <div class="ld-portal-name" data-key="ld_salah">నమాజ్ నేర్చుకోండి</div>
+          <div class="ld-portal-desc" data-te="వుదూ, రకాత్ దశలు, దుయాలు" data-en="Wudu, Rakat steps, Duas">వుదూ, రకాత్ దశలు, దుయాలు</div>
         </div>
-        <div class="ld-portal-arrow" aria-hidden="true">→</div>
+        <div class="ld-portal-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
       </a>
       <a href="knowledge-center/seerah/index.html" class="ld-portal reveal">
         <div class="ld-portal-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#2e8b57" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 3"/><path d="M9.5 3.5a9 9 0 0 1 5 0"/></svg></div>
         <div class="ld-portal-info">
           <div class="ld-portal-name" data-key="ld_seerah">సీరహ్</div>
+          <div class="ld-portal-desc" data-te="ప్రవక్త ﷺ జీవిత చరిత్ర" data-en="Life of the Prophet ﷺ">ప్రవక్త ﷺ జీవిత చరిత్ర</div>
         </div>
-        <div class="ld-portal-arrow" aria-hidden="true">→</div>
+        <div class="ld-portal-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
       </a>
       <a href="knowledge-center/islamic-history/index.html" class="ld-portal reveal">
         <div class="ld-portal-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#2e8b57" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg></div>
         <div class="ld-portal-info">
           <div class="ld-portal-name" data-key="ld_history">ఇస్లామిక్ చరిత్ర</div>
+          <div class="ld-portal-desc" data-te="ఖులఫా రాశిదూన్ నుండి ఆధునిక యుగం వరకు" data-en="Rashidun to the modern era">ఖులఫా రాశిదూన్ నుండి ఆధునిక యుగం వరకు</div>
         </div>
-        <div class="ld-portal-arrow" aria-hidden="true">→</div>
+        <div class="ld-portal-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
       </a>
       <a href="knowledge-center/kids-islam/index.html" class="ld-portal reveal">
         <div class="ld-portal-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#2e8b57" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M8 14s-4 1-4 5h16c0-4-4-5-4-5"/><path d="M10 17l1 2 1-1 1 1 1-2"/></svg></div>
         <div class="ld-portal-info">
           <div class="ld-portal-name" data-key="ld_kids">పిల్లల ఇస్లాం</div>
+          <div class="ld-portal-desc" data-te="5–15 సంవత్సరాల వయసు పిల్లలకు" data-en="For children ages 5–15">5–15 సంవత్సరాల వయసు పిల్లలకు</div>
         </div>
-        <div class="ld-portal-arrow" aria-hidden="true">→</div>
+        <div class="ld-portal-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
       </a>
     </div>
   </div>
@@ -3530,6 +3538,10 @@ function applyLang(l) {
     if (val === undefined) return;
     if (el.dataset.html === 'true') { el.innerHTML = val; }
     else { el.textContent = val; }
+  });
+  /* System B: data-te / data-en used on portal desc elements */
+  document.querySelectorAll('[data-te][data-en]').forEach(el => {
+    el.textContent = l === 'en' ? el.dataset.en : el.dataset.te;
   });
   document.getElementById('html-root').lang = l;
   document.title = l === 'te' ? 'ఇస్లామిక్ ఫ్రంట్ – మంగళగిరి' : 'Islamic Front – Mangalagiri';
