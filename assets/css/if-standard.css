@@ -42,6 +42,13 @@
 section[id], [id].ifx-anchor{ scroll-margin-top: var(--ifx-nav-h); }
 html{ scroll-behavior: smooth; }
 
+/* ---- A3. Font rendering — crisp text on all platforms ---- */
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
 /* ---- A4. Global reading comfort — body text line-height ---- */
 /* Applies across every page. 1.7 for body prose; p, li get a bit more air.  */
 body{ line-height: 1.65; }
