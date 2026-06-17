@@ -1443,3 +1443,135 @@ img {
   background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23c8922a' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolygon points='6 3 18 3 22 9 12 22 2 9'/%3E%3Cpolyline points='2 9 12 14 22 9'/%3E%3Cline x1='12' y1='22' x2='12' y2='14'/%3E%3Cline x1='6' y1='3' x2='2' y2='9'/%3E%3Cline x1='18' y1='3' x2='22' y2='9'/%3E%3C/svg%3E") center/contain no-repeat !important;
   vertical-align: middle !important;
 }
+
+/* ═══════════════════════════════════════════════════════
+   GLOBAL PREMIUM UPGRADES — applied via cascade priority
+   ═══════════════════════════════════════════════════════ */
+
+/* ── Portal list hover: lift instead of slide ── */
+.ld-portal:hover {
+  transform: translateY(-3px) !important;
+  border-color: rgba(200,146,42,0.45) !important;
+  box-shadow: 0 8px 24px rgba(13,59,30,0.10), 0 1px 4px rgba(200,146,42,0.12) !important;
+}
+
+/* ── Global: smooth page fade-in entrance ── */
+@keyframes ifx-page-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+body { animation: ifx-page-in 0.38s cubic-bezier(0.22, 0.61, 0.36, 1) both; }
+@media (prefers-reduced-motion: reduce) { body { animation: none !important; } }
+
+/* ── Member photo hover zoom ── */
+.member-photo { transition: transform 0.4s cubic-bezier(0.22, 0.61, 0.36, 1) !important; }
+.member-card:hover .member-photo { transform: scale(1.04) !important; }
+
+/* ── KnowledgeCenter promo: richer depth ── */
+.kc-promo {
+  background: linear-gradient(160deg, #0a2b15 0%, #0d3b1e 60%, #091e0f 100%) !important;
+}
+
+/* ── Learning portal icon sizing ── */
+.ld-portal-icon svg { width: 22px !important; height: 22px !important; }
+
+/* ── Student guidance will-change for paint perf ── */
+.gx-card:not(.sg-revealed),
+.sg-section-hdr:not(.sg-revealed),
+.qa-block:not(.sg-revealed),
+.myth-card:not(.sg-revealed),
+.scheme-block:not(.sg-revealed) { will-change: opacity, transform; }
+
+/* ── Learning Dashboard: premium section depth ── */
+.learning-dashboard {
+  background: linear-gradient(170deg, #f7f3ea 0%, #faf6ee 50%, #f2ede2 100%) !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+.learning-dashboard::before {
+  content: '' !important;
+  position: absolute !important;
+  top: -80px !important;
+  right: -80px !important;
+  width: 340px !important;
+  height: 340px !important;
+  background: radial-gradient(circle, rgba(200,146,42,0.06) 0%, transparent 70%) !important;
+  pointer-events: none !important;
+}
+.learning-dashboard::after {
+  content: '' !important;
+  position: absolute !important;
+  bottom: -60px !important;
+  left: -60px !important;
+  width: 280px !important;
+  height: 280px !important;
+  background: radial-gradient(circle, rgba(13,59,30,0.05) 0%, transparent 70%) !important;
+  pointer-events: none !important;
+}
+.learning-dashboard .inner { position: relative !important; z-index: 1 !important; }
+
+/* ── Portal cards: tighter icon border on hover ── */
+.ld-portal:hover .ld-portal-icon {
+  background: rgba(13,59,30,0.10) !important;
+  border-color: rgba(200,146,42,0.35) !important;
+}
+
+/* ── Infra section: subtle warm white ── */
+.infra {
+  background: linear-gradient(180deg, #fff 0%, #fafaf8 100%) !important;
+}
+
+/* ── About section: cool mint tint to differentiate ── */
+.about {
+  background: linear-gradient(170deg, #f4faf6 0%, #faf6ee 100%) !important;
+}
+
+/* ── Contact section: rich warm tint ── */
+.contact {
+  background: linear-gradient(160deg, #edf7f1 0%, #f0f7f3 100%) !important;
+}
+
+/* ── Achievements section: pure white + gold top-accent ── */
+.achievements {
+  background: #fff !important;
+  border-top: 3px solid rgba(200,146,42,0.15) !important;
+}
+
+/* ── Section divider: top accent line for manifesto ── */
+.manifesto {
+  border-top: 1px solid rgba(200,146,42,0.12) !important;
+}
+
+/* ── KC Promo: add radial glow orbs for depth ── */
+.kc-promo::before {
+  content: '' !important;
+  position: absolute !important;
+  top: -60px !important;
+  right: 15% !important;
+  width: 320px !important;
+  height: 320px !important;
+  background: radial-gradient(circle, rgba(200,146,42,0.10) 0%, transparent 68%) !important;
+  pointer-events: none !important;
+  z-index: 0 !important;
+}
+
+/* ── Portal section: subtle card shadow depth on idle ── */
+.ld-portal {
+  box-shadow: 0 1px 4px rgba(13,59,30,0.04) !important;
+  transition: all 0.28s cubic-bezier(0.22, 0.61, 0.36, 1) !important;
+}
+
+/* ── Infra card image placeholder depth ── */
+.infra-img {
+  background: linear-gradient(135deg, #0d3b1e 0%, #1a5c35 50%, #0d3b1e 100%) !important;
+}
+
+/* ── Timeline dot: smoother entrance on hover ── */
+.tl-item:hover .tl-dot {
+  transform: scale(1.12) !important;
+}
+
+/* ── Stories section background depth ── */
+.success-stories {
+  background: linear-gradient(170deg, #fff 0%, #fafdf9 100%) !important;
+}
