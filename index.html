@@ -1133,14 +1133,16 @@
   .ca-card.ca-emergency { --ca-accent: #f87171; }
   .ca-card.ca-scheme { --ca-accent: #a78bfa; }
   .ca-card.ca-hours { --ca-accent: var(--gold-light); }
-  .ca-icon { font-size: 32px; line-height: 1; }
+  .ca-icon { font-size: 32px; line-height: 1; width: 48px; height: 48px; border-radius: 12px; background: rgba(255,255,255,0.06); display: flex; align-items: center; justify-content: center; color: var(--ca-accent, var(--gold)); transition: background 0.3s; }
+  .ca-card:hover .ca-icon { background: rgba(255,255,255,0.12); }
+  .ca-icon svg { stroke: var(--ca-accent, var(--gold)); width: 24px; height: 24px; }
   .ca-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
     color: rgba(245,230,192,0.45); font-weight: 500; }
   .ca-title { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700;
     color: var(--white); line-height: 1.3; }
   .ca-desc { font-size: 13px; color: rgba(245,230,192,0.55); line-height: 1.65; flex: 1; }
   .ca-action { display: inline-flex; align-items: center; gap: 6px; margin-top: 4px;
-    font-size: 12px; font-weight: 600; color: var(--gold-light); letter-spacing: 0.5px;
+    font-size: 12px; font-weight: 600; color: var(--ca-accent, var(--gold-light)); letter-spacing: 0.5px;
     text-transform: uppercase; }
   .ca-action::after { content: '→'; transition: transform 0.2s; }
   .ca-card:hover .ca-action::after { transform: translateX(4px); }
@@ -1390,8 +1392,9 @@
     color: rgba(255,255,255,0.88); font-size: 14px; font-family: inherit;
     outline: none; transition: border-color 0.2s, box-shadow 0.2s;
   }
-  .vf-input:focus, .vf-select:focus, .vf-textarea:focus {
+  .vf-input:focus-visible, .vf-select:focus-visible, .vf-textarea:focus-visible {
     border-color: rgba(200,146,42,0.6); box-shadow: 0 0 0 3px rgba(200,146,42,0.12);
+    outline: 2px solid rgba(200,146,42,0.6) !important; outline-offset: 2px !important;
   }
   .vf-select option { background: #0d3b1e; color: #fff; }
   .vf-textarea { resize: vertical; min-height: 80px; }
