@@ -51,7 +51,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
 @media(max-width:600px){.sg-nav-links a.kc{display:none}.sg-brand-txt span{display:none}}
 .lang-btn{display:flex;align-items:center;gap:6px;min-height:44px;background:rgba(200,146,42,0.12);border:1.5px solid rgba(200,146,42,0.4);color:var(--gold-light);font-size:12px;font-weight:500;letter-spacing:.8px;padding:7px 16px;border-radius:100px;cursor:pointer;font-family:inherit;transition:background .2s,transform .15s;white-space:nowrap;flex-shrink:0}
 .lang-btn:hover{background:rgba(200,146,42,0.22);transform:translateY(-1px)}
-.lang-btn::before{content:'🌐';font-size:13px}
+.lang-btn::before{content:'';display:inline-block;width:14px;height:14px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23e8b84b' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20'/%3E%3C/svg%3E") center/contain no-repeat;vertical-align:middle;font-size:0}
 
 /* HERO */
 .sg-hero{padding:112px 5vw 52px;background:linear-gradient(160deg,var(--green-deep) 0%,#0a2a14 60%,#102b12 100%);position:relative;overflow:hidden;isolation:isolate}
@@ -294,7 +294,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
 <!-- NAV -->
 <nav class="sg-nav">
   <a class="sg-brand" href="index.html" aria-label="Islamic Front home">
-    <span class="sg-brand-logo">🎓</span>
+    <span class="sg-brand-logo"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></span>
     <span class="sg-brand-txt"><b data-te="విద్యార్థి మార్గదర్శనం" data-en="Student Guidance">Student Guidance</b><span data-te="ఇస్లామిక్ ఫ్రంట్ · మంగళగిరి" data-en="Islamic Front · Mangalagiri">Islamic Front · Mangalagiri</span></span>
   </a>
   <div class="sg-nav-links">
@@ -311,7 +311,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
     <h1 data-te="10వ తరగతి లేదా ఇంటర్మీడియట్ తర్వాత <span>ఏమి చేయాలో తెలీడం లేదా?</span>" data-en="Confused About What To Do <span>After 10th or Intermediate?</span>">Confused About What To Do <span>After 10th or Intermediate?</span></h1>
     <p class="lead" data-te="ప్రతి సంవత్సరం వేలాది విద్యార్థులు భవిష్యత్ అవకాశాలు, పోటీ, ఖర్చులు, నష్టాలు మరియు కెరీర్ ఫలితాలు అర్థం చేసుకోకుండా కోర్సులు ఎంచుకుంటారు. ఈ మార్గదర్శన కేంద్రం మీకు వాస్తవం ఆధారంగా సమాచారంతో నిర్ణయాలు తీసుకోవడంలో సహాయపడుతుంది." data-en="Every year thousands of students choose courses without understanding the future opportunities, competition, costs, risks, and career outcomes. This guidance center helps you make informed decisions based on reality.">Every year thousands of students choose courses without understanding the future opportunities, competition, costs, risks, and career outcomes. This guidance center helps you make informed decisions based on reality.</p>
     <div class="sg-disclaimer">
-      <span class="ic">⚖️</span>
+      <span class="ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="3" x2="12" y2="21"/><path d="M3 9l9-6 9 6"/><path d="M5 13l-2 4 6 2-4-6z"/><path d="M19 13l2 4-6 2 4-6z"/></svg></span>
       <span data-te="<b>మా హామీ:</b> మేము ఏ నిర్దిష్ట కోర్సు, కళాశాల, కోచింగ్ సెంటర్ లేదా కెరీర్‌ను ప్రమోట్ చేయం. విద్యార్థులు మరియు తల్లిదండ్రులు సమాచారం ఆధారంగా నిర్ణయాలు తీసుకోవడంలో సహాయపడటమే మా లక్ష్యం." data-en="<b>Our promise:</b> We do not promote any specific course, college, coaching center, or career. Our only goal is to help students and parents make informed decisions."><b>Our promise:</b> We do not promote any specific course, college, coaching center, or career. Our only goal is to help students and parents make informed decisions.</span>
     </div>
   </div>
@@ -327,7 +327,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
 <div class="sg-tools">
   <div class="sg-search-wrap">
     <div class="sg-search" id="searchBox">
-      <span class="si">🔍</span>
+      <span class="si"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
       <input type="search" id="sgSearch" placeholder="Search a course, exam or career…" aria-label="Search courses, exams and careers (e.g. B.Tech, NEET, CA, nursing, ITI)">
       <button class="sc" id="sgClear" aria-label="Clear search">✕</button>
     </div>
@@ -341,11 +341,11 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
     </div>
     <!-- Mobile stream prompt — visible only when no stream is selected on small screens -->
     <p class="sg-stream-prompt" id="sgStreamPrompt" aria-live="polite">
-      <span data-te="👆 మీ స్ట్రీమ్ ఎంచుకోండి — MPC, BiPC, కామర్స్ లేదా ఆర్ట్స్" data-en="👆 Pick your stream above — MPC, BiPC, Commerce or Arts">👆 Pick your stream above — MPC, BiPC, Commerce or Arts</span>
+      <span data-te="మీ స్ట్రీమ్ ఎంచుకోండి — MPC, BiPC, కామర్స్ లేదా ఆర్ట్స్" data-en="Pick your stream above — MPC, BiPC, Commerce or Arts">Pick your stream above — MPC, BiPC, Commerce or Arts</span>
     </p>
     <div class="sg-chips-wrap">
       <nav class="sg-chips" id="chipsBar" aria-label="Jump to section">
-        <a href="#career" data-te="🎯 కెరీర్ గోల్" data-en="🎯 Career Goal">🎯 Career Goal</a>
+        <a href="#career" data-te="కెరీర్ గోల్" data-en="Career Goal">Career Goal</a>
         <a href="#before" data-te="ఎంచుకోవడానికి ముందు" data-en="Before You Choose">Before You Choose</a>
         <a href="#after10" data-te="10వ తరగతి తర్వాత" data-en="After 10th">After 10th</a>
         <a href="#mpc" data-te="MPC తర్వాత" data-en="After MPC">After MPC</a>
@@ -369,11 +369,11 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
 <section class="cg-sec" id="career" data-nocards>
   <div class="cg-inner">
     <div class="cg-head">
-      <h2 data-te="🎯 మీరు ఏమి అవ్వాలనుకుంటున్నారు?" data-en="🎯 What do you want to become?">🎯 What do you want to become?</h2>
+      <h2 data-te="మీరు ఏమి అవ్వాలనుకుంటున్నారు?" data-en="What do you want to become?">What do you want to become?</h2>
       <p data-te="మీ కెరీర్ లక్ష్యాన్ని టైప్ చేయండి లేదా క్రింద ఒక గోల్‌ను ఎంచుకోండి — అర్హత, కోర్సులు, పరీక్షలు మరియు మార్గాన్ని చూడండి." data-en="Type your career goal or pick one below — see the stream, courses, exams and full pathway instantly.">Type your career goal or pick one below — see the stream, courses, exams and full pathway instantly.</p>
     </div>
     <div class="cg-search-wrap">
-      <span class="si">🎯</span>
+      <span class="si"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
       <input type="search" id="cgSearch" placeholder="e.g. Doctor, Software Engineer, IAS Officer…" aria-label="Search career goal" autocomplete="off">
     </div>
     <div class="cg-goals" id="cgGoals">
@@ -404,7 +404,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       <label class="qa-item"><span class="qa-box">✓</span><span data-te="నేను నిజంగా ఎలాంటి <b>జీవనశైలి మరియు పని</b> కావాలనుకుంటున్నాను?" data-en="What kind of <b>lifestyle and work</b> do I actually want?">What kind of <b>lifestyle and work</b> do I actually want?</span></label>
     </div>
     <div class="sg-callout">
-      <span class="ic">🧭</span>
+      <span class="ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg></span>
       <div>
         <div class="sg-callout-t" data-te="అత్యంత ముఖ్యమైన ఒకే ఒక నియమం" data-en="The single most important rule">The single most important rule</div>
         <p data-te="మీ స్నేహితులు ఏమి ఎంచుకుంటున్నారో అందుకని మాత్రమే ఒక కెరీర్ ఎంచుకోకండి. మీ స్నేహితుని బలాలు, కుటుంబ బడ్జెట్ మరియు లక్ష్యాలు మీవి కాదు. వారి ఎంపికను కాపీ చేయడం మీ సంవత్సరాలను వ్యర్థపరచవచ్చు." data-en="Do not choose a career only because your friends are choosing it. Your friend's strengths, family budget, and goals are different from yours. Copying their choice can cost you years.">Do not choose a career only because your friends are choosing it. Your friend's strengths, family budget, and goals are different from yours. Copying their choice can cost you years.</p>
@@ -424,7 +424,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
     <div class="gx-grid" id="after10grid">
 
       <div class="gx-card" style="--track:var(--t-sci)" data-stream="mpc" data-search="intermediate mpc maths physics chemistry science engineering">
-        <button class="gx-head"><span class="gx-ic">🧮</span><span class="gx-htext"><span class="gx-title">Intermediate — MPC <span class="gx-tag">Science</span></span><span class="gx-best">Maths, Physics, Chemistry. For students aiming at engineering, defence, architecture, or pure sciences.</span></span><span class="gx-chev">▾</span></button>
+        <button class="gx-head"><span class="gx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="2"/><line x1="8" y1="10" x2="8" y2="10"/><line x1="12" y1="10" x2="12" y2="10"/><line x1="16" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="8" y2="14"/><line x1="12" y1="14" x2="12" y2="14"/><line x1="16" y1="14" x2="16" y2="14"/><line x1="7" y1="6" x2="17" y2="6"/></svg></span><span class="gx-htext"><span class="gx-title">Intermediate — MPC <span class="gx-tag">Science</span></span><span class="gx-best">Maths, Physics, Chemistry. For students aiming at engineering, defence, architecture, or pure sciences.</span></span><span class="gx-chev">▾</span></button>
         <div class="gx-body"><div class="gx-body-in">
           <div class="gx-field"><span class="gx-field-k">Duration</span><span class="gx-field-v">2 years</span></div>
           <div class="gx-field"><span class="gx-field-k">Leads to</span><span class="gx-field-v">B.Tech, B.Sc, BCA, Architecture, Defence (NDA), Merchant Navy, Data/AI, pure Maths & Physics.</span></div>
@@ -434,7 +434,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       </div>
 
       <div class="gx-card" style="--track:var(--t-med)" data-stream="bipc" data-search="intermediate bipc biology botany zoology medical mbbs nursing pharmacy neet">
-        <button class="gx-head"><span class="gx-ic">🧬</span><span class="gx-htext"><span class="gx-title">Intermediate — BiPC <span class="gx-tag">Science</span></span><span class="gx-best">Biology, Physics, Chemistry. For students aiming at medical, dental, pharmacy, agriculture, or life sciences.</span></span><span class="gx-chev">▾</span></button>
+        <button class="gx-head"><span class="gx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6m-5 0v7l-4.5 7.5c-.6 1 .15 2.3 1.5 2.5H17c1.35-.2 2.1-1.5 1.5-2.5L14 10V3"/></svg></span><span class="gx-htext"><span class="gx-title">Intermediate — BiPC <span class="gx-tag">Science</span></span><span class="gx-best">Biology, Physics, Chemistry. For students aiming at medical, dental, pharmacy, agriculture, or life sciences.</span></span><span class="gx-chev">▾</span></button>
         <div class="gx-body"><div class="gx-body-in">
           <div class="gx-field"><span class="gx-field-k">Duration</span><span class="gx-field-v">2 years</span></div>
           <div class="gx-field"><span class="gx-field-k">Leads to</span><span class="gx-field-v">MBBS, BDS, AYUSH, Veterinary, B.Pharmacy, Nursing, Allied Health, Biotech, Agriculture.</span></div>
@@ -444,7 +444,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       </div>
 
       <div class="gx-card" style="--track:var(--t-com)" data-stream="commerce" data-search="commerce mec cec accounts economics ca cma business b.com">
-        <button class="gx-head"><span class="gx-ic">📊</span><span class="gx-htext"><span class="gx-title">Intermediate — Commerce <span class="gx-tag">Commerce</span></span><span class="gx-best">CEC/MEC. For students interested in business, accounts, finance, CA/CMA, or banking.</span></span><span class="gx-chev">▾</span></button>
+        <button class="gx-head"><span class="gx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/></svg></span><span class="gx-htext"><span class="gx-title">Intermediate — Commerce <span class="gx-tag">Commerce</span></span><span class="gx-best">CEC/MEC. For students interested in business, accounts, finance, CA/CMA, or banking.</span></span><span class="gx-chev">▾</span></button>
         <div class="gx-body"><div class="gx-body-in">
           <div class="gx-field"><span class="gx-field-k">Duration</span><span class="gx-field-v">2 years</span></div>
           <div class="gx-field"><span class="gx-field-k">Leads to</span><span class="gx-field-v">B.Com, BBA, CA, CMA, CS, banking, finance, digital marketing, business.</span></div>
@@ -454,7 +454,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       </div>
 
       <div class="gx-card" style="--track:var(--t-arts)" data-stream="arts" data-search="arts humanities hec history civics economics upsc law journalism">
-        <button class="gx-head"><span class="gx-ic">📚</span><span class="gx-htext"><span class="gx-title">Intermediate — Arts / Humanities <span class="gx-tag">Arts</span></span><span class="gx-best">HEC etc. For students drawn to civil services, law, teaching, writing, psychology, or public life.</span></span><span class="gx-chev">▾</span></button>
+        <button class="gx-head"><span class="gx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span><span class="gx-htext"><span class="gx-title">Intermediate — Arts / Humanities <span class="gx-tag">Arts</span></span><span class="gx-best">HEC etc. For students drawn to civil services, law, teaching, writing, psychology, or public life.</span></span><span class="gx-chev">▾</span></button>
         <div class="gx-body"><div class="gx-body-in">
           <div class="gx-field"><span class="gx-field-k">Duration</span><span class="gx-field-v">2 years</span></div>
           <div class="gx-field"><span class="gx-field-k">Leads to</span><span class="gx-field-v">BA, Law (after 12th via CLAT), UPSC/Group services, journalism, psychology, teaching, design.</span></div>
@@ -464,7 +464,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       </div>
 
       <div class="gx-card" style="--track:var(--t-skill)" data-search="polytechnic diploma polycet engineering early job lateral entry">
-        <button class="gx-head"><span class="gx-ic">⚙️</span><span class="gx-htext"><span class="gx-title">Polytechnic Diploma <span class="gx-tag">Skill</span></span><span class="gx-best">Via POLYCET. For students who want engineering skills and a job sooner, at low cost.</span></span><span class="gx-chev">▾</span></button>
+        <button class="gx-head"><span class="gx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></span><span class="gx-htext"><span class="gx-title">Polytechnic Diploma <span class="gx-tag">Skill</span></span><span class="gx-best">Via POLYCET. For students who want engineering skills and a job sooner, at low cost.</span></span><span class="gx-chev">▾</span></button>
         <div class="gx-body"><div class="gx-body-in">
           <div class="gx-field"><span class="gx-field-k">Duration</span><span class="gx-field-v">3 years</span></div>
           <div class="gx-field"><span class="gx-field-k">Leads to</span><span class="gx-field-v">Junior engineer/technician jobs, or lateral entry to 2nd year B.Tech (ECET).</span></div>
@@ -474,7 +474,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       </div>
 
       <div class="gx-card" style="--track:var(--t-skill)" data-search="iti industrial training electrician fitter welder turner trade apprentice">
-        <button class="gx-head"><span class="gx-ic">🔧</span><span class="gx-htext"><span class="gx-title">ITI (Industrial Training) <span class="gx-tag">Skill</span></span><span class="gx-best">For students who want a practical trade and the fastest route to earning.</span></span><span class="gx-chev">▾</span></button>
+        <button class="gx-head"><span class="gx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span><span class="gx-htext"><span class="gx-title">ITI (Industrial Training) <span class="gx-tag">Skill</span></span><span class="gx-best">For students who want a practical trade and the fastest route to earning.</span></span><span class="gx-chev">▾</span></button>
         <div class="gx-body"><div class="gx-body-in">
           <div class="gx-field"><span class="gx-field-k">Duration</span><span class="gx-field-v">6 months – 2 years (by trade)</span></div>
           <div class="gx-field"><span class="gx-field-k">Leads to</span><span class="gx-field-v">Electrician, fitter, welder, mechanic, etc.; apprenticeships; jobs in industry, railways, PSUs, Gulf.</span></div>
@@ -484,7 +484,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       </div>
 
       <div class="gx-card" style="--track:var(--t-skill)" data-search="vocational courses mlt cs office tourism skill india">
-        <button class="gx-head"><span class="gx-ic">🛠️</span><span class="gx-htext"><span class="gx-title">Vocational Courses <span class="gx-tag">Skill</span></span><span class="gx-best">For students who want job-ready skills tied to a specific industry.</span></span><span class="gx-chev">▾</span></button>
+        <button class="gx-head"><span class="gx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span><span class="gx-htext"><span class="gx-title">Vocational Courses <span class="gx-tag">Skill</span></span><span class="gx-best">For students who want job-ready skills tied to a specific industry.</span></span><span class="gx-chev">▾</span></button>
         <div class="gx-body"><div class="gx-body-in">
           <div class="gx-field"><span class="gx-field-k">Duration</span><span class="gx-field-v">1–3 years (Intermediate Vocational / certificates)</span></div>
           <div class="gx-field"><span class="gx-field-k">Leads to</span><span class="gx-field-v">Jobs in healthcare support, IT, hospitality, retail, accounting assistance; or further study.</span></div>
@@ -494,7 +494,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       </div>
 
       <div class="gx-card" style="--track:var(--t-med)" data-search="paramedical mlt radiology lab technician operation theatre ophthalmic dialysis">
-        <button class="gx-head"><span class="gx-ic">🩺</span><span class="gx-htext"><span class="gx-title">Paramedical Courses <span class="gx-tag">Health</span></span><span class="gx-best">For students who want a healthcare career without the long MBBS route.</span></span><span class="gx-chev">▾</span></button>
+        <button class="gx-head"><span class="gx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></span><span class="gx-htext"><span class="gx-title">Paramedical Courses <span class="gx-tag">Health</span></span><span class="gx-best">For students who want a healthcare career without the long MBBS route.</span></span><span class="gx-chev">▾</span></button>
         <div class="gx-body"><div class="gx-body-in">
           <div class="gx-field"><span class="gx-field-k">Duration</span><span class="gx-field-v">1–3 years (diploma/degree)</span></div>
           <div class="gx-field"><span class="gx-field-k">Leads to</span><span class="gx-field-v">Lab technician (MLT), radiology, OT technician, dialysis, optometry, and more.</span></div>
@@ -504,7 +504,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       </div>
 
       <div class="gx-card" style="--track:var(--t-gov)" data-search="merchant navy gp rating dgs sponsorship ship marine">
-        <button class="gx-head"><span class="gx-ic">🚢</span><span class="gx-htext"><span class="gx-title">Merchant Navy <span class="gx-tag">Services</span></span><span class="gx-best">For physically fit students open to working at sea, after 10th or 12th.</span></span><span class="gx-chev">▾</span></button>
+        <button class="gx-head"><span class="gx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="5" r="3"/><line x1="12" y1="22" x2="12" y2="8"/><path d="M5 12H2a10 10 0 0 0 20 0h-3"/></svg></span><span class="gx-htext"><span class="gx-title">Merchant Navy <span class="gx-tag">Services</span></span><span class="gx-best">For physically fit students open to working at sea, after 10th or 12th.</span></span><span class="gx-chev">▾</span></button>
         <div class="gx-body"><div class="gx-body-in">
           <div class="gx-field"><span class="gx-field-k">Duration</span><span class="gx-field-v">Few months (GP Rating after 10th) to 3–4 years (degree after 12th MPC)</span></div>
           <div class="gx-field"><span class="gx-field-k">Leads to</span><span class="gx-field-v">Work on cargo ships; tax-advantaged income; international travel.</span></div>
@@ -514,7 +514,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       </div>
 
       <div class="gx-card" style="--track:var(--t-gov)" data-search="defence army navy air force nda soldier sainik agniveer">
-        <button class="gx-head"><span class="gx-ic">🛡️</span><span class="gx-htext"><span class="gx-title">Defence Entry <span class="gx-tag">Services</span></span><span class="gx-best">For disciplined, fit students who want to serve in the armed forces.</span></span><span class="gx-chev">▾</span></button>
+        <button class="gx-head"><span class="gx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span><span class="gx-htext"><span class="gx-title">Defence Entry <span class="gx-tag">Services</span></span><span class="gx-best">For disciplined, fit students who want to serve in the armed forces.</span></span><span class="gx-chev">▾</span></button>
         <div class="gx-body"><div class="gx-body-in">
           <div class="gx-field"><span class="gx-field-k">Duration</span><span class="gx-field-v">Varies — Agniveer/soldier entries after 10th/12th; officer routes (NDA) after 12th.</span></div>
           <div class="gx-field"><span class="gx-field-k">Leads to</span><span class="gx-field-v">Army/Navy/Air Force as soldier, technical, or officer (via NDA after 12th).</span></div>
@@ -524,7 +524,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       </div>
 
       <div class="gx-card" style="--track:var(--t-skill)" data-search="government skill programs apssdc pmkvy free training stipend">
-        <button class="gx-head"><span class="gx-ic">🏗️</span><span class="gx-htext"><span class="gx-title">Government Skill Programs <span class="gx-tag">Skill</span></span><span class="gx-best">For students who want free/subsidised, job-linked training.</span></span><span class="gx-chev">▾</span></button>
+        <button class="gx-head"><span class="gx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></span><span class="gx-htext"><span class="gx-title">Government Skill Programs <span class="gx-tag">Skill</span></span><span class="gx-best">For students who want free/subsidised, job-linked training.</span></span><span class="gx-chev">▾</span></button>
         <div class="gx-body"><div class="gx-body-in">
           <div class="gx-field"><span class="gx-field-k">Duration</span><span class="gx-field-v">Weeks to a year (short, skill-focused)</span></div>
           <div class="gx-field"><span class="gx-field-k">Leads to</span><span class="gx-field-v">Industry-recognised skills (IT, electrical, healthcare support, retail) with placement support; some give a stipend.</span></div>
@@ -534,7 +534,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       </div>
 
       <div class="gx-card" style="--track:var(--t-gen)" data-search="open schooling nios apossc distance flexible second chance">
-        <button class="gx-head"><span class="gx-ic">🏠</span><span class="gx-htext"><span class="gx-title">Open Schooling / NIOS <span class="gx-tag">Flexible</span></span><span class="gx-best">For students who need flexibility — work, health, family, or a second chance.</span></span><span class="gx-chev">▾</span></button>
+        <button class="gx-head"><span class="gx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span><span class="gx-htext"><span class="gx-title">Open Schooling / NIOS <span class="gx-tag">Flexible</span></span><span class="gx-best">For students who need flexibility — work, health, family, or a second chance.</span></span><span class="gx-chev">▾</span></button>
         <div class="gx-body"><div class="gx-body-in">
           <div class="gx-field"><span class="gx-field-k">Duration</span><span class="gx-field-v">Flexible; study at your own pace</span></div>
           <div class="gx-field"><span class="gx-field-k">Leads to</span><span class="gx-field-v">A recognised 10th/12th certificate that keeps college and exam doors open.</span></div>
@@ -563,7 +563,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
     <div class="gx-grid">
 
       <div class="gx-card" style="--track:var(--t-sci)" data-stream="mpc" data-search="b.tech engineering jee eapcet computer mechanical civil ece">
-        <button class="gx-head"><span class="gx-ic">💻</span><span class="gx-htext"><span class="gx-title">B.Tech / Engineering <span class="gx-tag">Science</span></span><span class="gx-best">The most chosen MPC path — outcomes depend heavily on skills, not just the degree.</span></span><span class="gx-chev">▾</span></button>
+        <button class="gx-head"><span class="gx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></span><span class="gx-htext"><span class="gx-title">B.Tech / Engineering <span class="gx-tag">Science</span></span><span class="gx-best">The most chosen MPC path — outcomes depend heavily on skills, not just the degree.</span></span><span class="gx-chev">▾</span></button>
         <div class="gx-body"><div class="gx-body-in">
           <div class="gx-field"><span class="gx-field-k">Duration</span><span class="gx-field-v">4 years</span></div>
           <div class="gx-field"><span class="gx-field-k">Entrance</span><span class="gx-field-v">JEE Main/Advanced (IITs/NITs); AP EAPCET (state colleges)</span></div>
@@ -575,7 +575,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       </div>
 
       <div class="gx-card" style="--track:var(--t-sci)" data-stream="mpc" data-search="b.sc bsc science physics chemistry maths research teaching">
-        <button class="gx-head"><span class="gx-ic">🔬</span><span class="gx-htext"><span class="gx-title">B.Sc (Pure Sciences) <span class="gx-tag">Science</span></span><span class="gx-best">For students who like science deeply and may pursue research or teaching.</span></span><span class="gx-chev">▾</span></button>
+        <button class="gx-head"><span class="gx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6m-5 0v7l-4.5 7.5c-.6 1 .15 2.3 1.5 2.5H17c1.35-.2 2.1-1.5 1.5-2.5L14 10V3"/></svg></span><span class="gx-htext"><span class="gx-title">B.Sc (Pure Sciences) <span class="gx-tag">Science</span></span><span class="gx-best">For students who like science deeply and may pursue research or teaching.</span></span><span class="gx-chev">▾</span></button>
         <div class="gx-body"><div class="gx-body-in">
           <div class="gx-field"><span class="gx-field-k">Duration</span><span class="gx-field-v">3 years (+ M.Sc / research for best roles)</span></div>
           <div class="gx-field"><span class="gx-field-k">Entrance</span><span class="gx-field-v">Mostly direct/merit; CUET for central universities</span></div>
@@ -587,7 +587,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       </div>
 
       <div class="gx-card" style="--track:var(--t-sci)" data-stream="mpc" data-search="bca computer applications software it programming">
-        <button class="gx-head"><span class="gx-ic">🖥️</span><span class="gx-htext"><span class="gx-title">BCA <span class="gx-tag">Science</span></span><span class="gx-best">A cheaper, software-focused alternative to B.Tech for IT careers.</span></span><span class="gx-chev">▾</span></button>
+        <button class="gx-head"><span class="gx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></span><span class="gx-htext"><span class="gx-title">BCA <span class="gx-tag">Science</span></span><span class="gx-best">A cheaper, software-focused alternative to B.Tech for IT careers.</span></span><span class="gx-chev">▾</span></button>
         <div class="gx-body"><div class="gx-body-in">
           <div class="gx-field"><span class="gx-field-k">Duration</span><span class="gx-field-v">3 years (often + MCA)</span></div>
           <div class="gx-field"><span class="gx-field-k">Entrance</span><span class="gx-field-v">Mostly direct/merit</span></div>
@@ -599,7 +599,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       </div>
 
       <div class="gx-card" style="--track:var(--t-sci)" data-stream="mpc" data-search="architecture nata b.arch design building">
-        <button class="gx-head"><span class="gx-ic">📐</span><span class="gx-htext"><span class="gx-title">Architecture (B.Arch) <span class="gx-tag">Science</span></span><span class="gx-best">For students with strong visual, drawing and design sense plus maths.</span></span><span class="gx-chev">▾</span></button>
+        <button class="gx-head"><span class="gx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span><span class="gx-htext"><span class="gx-title">Architecture (B.Arch) <span class="gx-tag">Science</span></span><span class="gx-best">For students with strong visual, drawing and design sense plus maths.</span></span><span class="gx-chev">▾</span></button>
         <div class="gx-body"><div class="gx-body-in">
           <div class="gx-field"><span class="gx-field-k">Duration</span><span class="gx-field-v">5 years</span></div>
           <div class="gx-field"><span class="gx-field-k">Entrance</span><span class="gx-field-v">NATA / JEE Main Paper 2</span></div>
@@ -611,7 +611,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       </div>
 
       <div class="gx-card" style="--track:var(--t-gov)" data-stream="mpc bipc" data-search="defence nda army navy air force officer">
-        <button class="gx-head"><span class="gx-ic">🛡️</span><span class="gx-htext"><span class="gx-title">Defence (NDA & more) <span class="gx-tag">Services</span></span><span class="gx-best">For fit, disciplined students wanting to become armed-forces officers.</span></span><span class="gx-chev">▾</span></button>
+        <button class="gx-head"><span class="gx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span><span class="gx-htext"><span class="gx-title">Defence (NDA & more) <span class="gx-tag">Services</span></span><span class="gx-best">For fit, disciplined students wanting to become armed-forces officers.</span></span><span class="gx-chev">▾</span></button>
         <div class="gx-body"><div class="gx-body-in">
           <div class="gx-field"><span class="gx-field-k">Duration</span><span class="gx-field-v">3 yrs academy + service</span></div>
           <div class="gx-field"><span class="gx-field-k">Entrance</span><span class="gx-field-v">NDA written + SSB interview + medical</span></div>
@@ -623,7 +623,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       </div>
 
       <div class="gx-card" style="--track:var(--t-gov)" data-stream="mpc" data-search="merchant navy marine engineering nautical science ship">
-        <button class="gx-head"><span class="gx-ic">🚢</span><span class="gx-htext"><span class="gx-title">Merchant Navy <span class="gx-tag">Services</span></span><span class="gx-best">For MPC students open to high pay and life at sea.</span></span><span class="gx-chev">▾</span></button>
+        <button class="gx-head"><span class="gx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="5" r="3"/><line x1="12" y1="22" x2="12" y2="8"/><path d="M5 12H2a10 10 0 0 0 20 0h-3"/></svg></span><span class="gx-htext"><span class="gx-title">Merchant Navy <span class="gx-tag">Services</span></span><span class="gx-best">For MPC students open to high pay and life at sea.</span></span><span class="gx-chev">▾</span></button>
         <div class="gx-body"><div class="gx-body-in">
           <div class="gx-field"><span class="gx-field-k">Duration</span><span class="gx-field-v">3–4 years (Marine Eng/Nautical Science)</span></div>
           <div class="gx-field"><span class="gx-field-k">Entrance</span><span class="gx-field-v">IMU-CET & DGS-approved academies</span></div>
@@ -635,7 +635,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       </div>
 
       <div class="gx-card" style="--track:var(--t-sci)" data-stream="mpc" data-search="integrated programs dual degree iiser nise 5 year msc">
-        <button class="gx-head"><span class="gx-ic">🎓</span><span class="gx-htext"><span class="gx-title">Integrated Programs <span class="gx-tag">Science</span></span><span class="gx-best">5-year dual degrees (e.g. integrated M.Sc/M.Tech) for research-minded students.</span></span><span class="gx-chev">▾</span></button>
+        <button class="gx-head"><span class="gx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></span><span class="gx-htext"><span class="gx-title">Integrated Programs <span class="gx-tag">Science</span></span><span class="gx-best">5-year dual degrees (e.g. integrated M.Sc/M.Tech) for research-minded students.</span></span><span class="gx-chev">▾</span></button>
         <div class="gx-body"><div class="gx-body-in">
           <div class="gx-field"><span class="gx-field-k">Duration</span><span class="gx-field-v">5 years (UG + PG combined)</span></div>
           <div class="gx-field"><span class="gx-field-k">Entrance</span><span class="gx-field-v">IAT (IISER), JEE, CUET, university tests</span></div>
@@ -647,7 +647,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       </div>
 
       <div class="gx-card" style="--track:var(--t-exam)" data-stream="mpc" data-search="data science analytics machine learning statistics">
-        <button class="gx-head"><span class="gx-ic">📈</span><span class="gx-htext"><span class="gx-title">Data Science <span class="gx-tag">Emerging</span></span><span class="gx-best">A skill more than a single degree — built on maths, stats and coding.</span></span><span class="gx-chev">▾</span></button>
+        <button class="gx-head"><span class="gx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></span><span class="gx-htext"><span class="gx-title">Data Science <span class="gx-tag">Emerging</span></span><span class="gx-best">A skill more than a single degree — built on maths, stats and coding.</span></span><span class="gx-chev">▾</span></button>
         <div class="gx-body"><div class="gx-body-in">
           <div class="gx-field"><span class="gx-field-k">Duration</span><span class="gx-field-v">3–4 yrs (degree) + continuous skilling</span></div>
           <div class="gx-field"><span class="gx-field-k">Entrance</span><span class="gx-field-v">Via B.Tech/B.Sc/BCA + courses; some dedicated degrees</span></div>
@@ -659,7 +659,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       </div>
 
       <div class="gx-card" style="--track:var(--t-exam)" data-stream="mpc" data-search="artificial intelligence ai ml deep learning">
-        <button class="gx-head"><span class="gx-ic">🤖</span><span class="gx-htext"><span class="gx-title">Artificial Intelligence <span class="gx-tag">Emerging</span></span><span class="gx-best">High-potential but genuinely hard — needs strong maths and coding.</span></span><span class="gx-chev">▾</span></button>
+        <button class="gx-head"><span class="gx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4"/><line x1="8" y1="16" x2="8" y2="16"/><line x1="16" y1="16" x2="16" y2="16"/><line x1="12" y1="16" x2="12" y2="16"/></svg></span><span class="gx-htext"><span class="gx-title">Artificial Intelligence <span class="gx-tag">Emerging</span></span><span class="gx-best">High-potential but genuinely hard — needs strong maths and coding.</span></span><span class="gx-chev">▾</span></button>
         <div class="gx-body"><div class="gx-body-in">
           <div class="gx-field"><span class="gx-field-k">Duration</span><span class="gx-field-v">4 yrs (B.Tech AI/CSE) + lifelong learning</span></div>
           <div class="gx-field"><span class="gx-field-k">Entrance</span><span class="gx-field-v">JEE / EAPCET into AI or CSE branches</span></div>
@@ -671,7 +671,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       </div>
 
       <div class="gx-card" style="--track:var(--t-exam)" data-stream="mpc" data-search="cyber security ethical hacking network security">
-        <button class="gx-head"><span class="gx-ic">🔐</span><span class="gx-htext"><span class="gx-title">Cyber Security <span class="gx-tag">Emerging</span></span><span class="gx-best">Growing demand to protect digital systems; needs deep IT fundamentals.</span></span><span class="gx-chev">▾</span></button>
+        <button class="gx-head"><span class="gx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span><span class="gx-htext"><span class="gx-title">Cyber Security <span class="gx-tag">Emerging</span></span><span class="gx-best">Growing demand to protect digital systems; needs deep IT fundamentals.</span></span><span class="gx-chev">▾</span></button>
         <div class="gx-body"><div class="gx-body-in">
           <div class="gx-field"><span class="gx-field-k">Duration</span><span class="gx-field-v">3–4 yrs + certifications</span></div>
           <div class="gx-field"><span class="gx-field-k">Entrance</span><span class="gx-field-v">CSE/IT/specialised degrees + industry certs</span></div>
@@ -683,7 +683,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       </div>
 
       <div class="gx-card" style="--track:var(--t-sci)" data-stream="mpc" data-search="statistics data analyst actuary">
-        <button class="gx-head"><span class="gx-ic">📊</span><span class="gx-htext"><span class="gx-title">Statistics <span class="gx-tag">Science</span></span><span class="gx-best">An underrated, powerful base for data, research and government roles.</span></span><span class="gx-chev">▾</span></button>
+        <button class="gx-head"><span class="gx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/></svg></span><span class="gx-htext"><span class="gx-title">Statistics <span class="gx-tag">Science</span></span><span class="gx-best">An underrated, powerful base for data, research and government roles.</span></span><span class="gx-chev">▾</span></button>
         <div class="gx-body"><div class="gx-body-in">
           <div class="gx-field"><span class="gx-field-k">Duration</span><span class="gx-field-v">3 yrs (+ PG)</span></div>
           <div class="gx-field"><span class="gx-field-k">Entrance</span><span class="gx-field-v">Merit/CUET; ISI entrance for top institutes</span></div>
@@ -695,7 +695,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       </div>
 
       <div class="gx-card" style="--track:var(--t-sci)" data-stream="mpc" data-search="mathematics maths teaching research data">
-        <button class="gx-head"><span class="gx-ic">➗</span><span class="gx-htext"><span class="gx-title">Mathematics <span class="gx-tag">Science</span></span><span class="gx-best">For students who love problem-solving — a foundation for many fields.</span></span><span class="gx-chev">▾</span></button>
+        <button class="gx-head"><span class="gx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" y1="12" x2="20" y2="12"/><circle cx="12" cy="6" r="1" fill="currentColor"/><circle cx="12" cy="18" r="1" fill="currentColor"/></svg></span><span class="gx-htext"><span class="gx-title">Mathematics <span class="gx-tag">Science</span></span><span class="gx-best">For students who love problem-solving — a foundation for many fields.</span></span><span class="gx-chev">▾</span></button>
         <div class="gx-body"><div class="gx-body-in">
           <div class="gx-field"><span class="gx-field-k">Duration</span><span class="gx-field-v">3 yrs (+ PG)</span></div>
           <div class="gx-field"><span class="gx-field-k">Entrance</span><span class="gx-field-v">Merit/CUET; ISI/CMI for top programs</span></div>
@@ -708,7 +708,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
 
     </div>
     <div class="sg-callout reality">
-      <span class="ic">⚠️</span>
+      <span class="ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span>
       <div>
         <div class="sg-callout-t" data-te="వాస్తవ తనిఖీ" data-en="Reality check">Reality check</div>
         <p data-te="B.Tech డిగ్రీ మాత్రమే ఉద్యోగం గ్యారంటీ చేయదు. నైపుణ్యాలు, ఇంటర్న్‌షిప్‌లు, నిజమైన ప్రాజెక్టులు, కమ్యూనికేషన్ మరియు నిరంతర అభ్యాసం కూడా అంతే ముఖ్యం. ఒకే కళాశాల నుండి ఇద్దరు విద్యార్థులకు చాలా భిన్నమైన ఫలితాలు రావచ్చు." data-en="A B.Tech degree alone does not guarantee a job. Skills, internships, real projects, communication, and continuous learning are equally important. Two students from the same college can have very different outcomes.">A B.Tech degree alone does not guarantee a job. Skills, internships, real projects, communication, and continuous learning are equally important. Two students from the same college can have very different outcomes.</p>
@@ -728,7 +728,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
     <div class="gx-grid">
 
       <div class="gx-card" style="--track:var(--t-med)" data-stream="bipc" data-search="mbbs doctor neet medicine">
-        <button class="gx-head"><span class="gx-ic">🩺</span><span class="gx-htext"><span class="gx-title">MBBS <span class="gx-tag">Medical</span></span><span class="gx-best">The dream of many — but extremely competitive and long.</span></span><span class="gx-chev">▾</span></button>
+        <button class="gx-head"><span class="gx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></span><span class="gx-htext"><span class="gx-title">MBBS <span class="gx-tag">Medical</span></span><span class="gx-best">The dream of many — but extremely competitive and long.</span></span><span class="gx-chev">▾</span></button>
         <div class="gx-body"><div class="gx-body-in">
           <div class="gx-field"><span class="gx-field-k">Duration</span><span class="gx-field-v">5.5 yrs (incl. internship) + PG for specialisation</span></div>
           <div class="gx-field"><span class="gx-field-k">Entrance</span><span class="gx-field-v">NEET-UG</span></div>
@@ -739,7 +739,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       </div>
 
       <div class="gx-card" style="--track:var(--t-med)" data-stream="bipc" data-search="bds dental dentist neet">
-        <button class="gx-head"><span class="gx-ic">🦷</span><span class="gx-htext"><span class="gx-title">BDS (Dental) <span class="gx-tag">Medical</span></span><span class="gx-best">Dentistry — better with PG (MDS) or your own clinic later.</span></span><span class="gx-chev">▾</span></button>
+        <button class="gx-head"><span class="gx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2C8 2 5 5 5 8c0 2 .5 4 1 6l2 8h2l1-5 1 5h2l2-8c.5-2 1-4 1-6 0-3-3-6-7-6z"/></svg></span><span class="gx-htext"><span class="gx-title">BDS (Dental) <span class="gx-tag">Medical</span></span><span class="gx-best">Dentistry — better with PG (MDS) or your own clinic later.</span></span><span class="gx-chev">▾</span></button>
         <div class="gx-body"><div class="gx-body-in">
           <div class="gx-field"><span class="gx-field-k">Duration</span><span class="gx-field-v">5 yrs (incl. internship)</span></div>
           <div class="gx-field"><span class="gx-field-k">Entrance</span><span class="gx-field-v">NEET-UG</span></div>
@@ -750,7 +750,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       </div>
 
       <div class="gx-card" style="--track:var(--t-med)" data-stream="bipc" data-search="bams ayurveda neet ayush">
-        <button class="gx-head"><span class="gx-ic">🌿</span><span class="gx-htext"><span class="gx-title">BAMS (Ayurveda) <span class="gx-tag">AYUSH</span></span><span class="gx-best">A recognised medical degree in Ayurvedic medicine.</span></span><span class="gx-chev">▾</span></button>
+        <button class="gx-head"><span class="gx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 8C8 10 5.9 16.17 3.82 22M9.5 9.5c1 2.5 3.5 3.5 6.5 3.5"/></svg></span><span class="gx-htext"><span class="gx-title">BAMS (Ayurveda) <span class="gx-tag">AYUSH</span></span><span class="gx-best">A recognised medical degree in Ayurvedic medicine.</span></span><span class="gx-chev">▾</span></button>
         <div class="gx-body"><div class="gx-body-in">
           <div class="gx-field"><span class="gx-field-k">Duration</span><span class="gx-field-v">5.5 yrs (incl. internship)</span></div>
           <div class="gx-field"><span class="gx-field-k">Entrance</span><span class="gx-field-v">NEET-UG</span></div>
@@ -761,7 +761,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       </div>
 
       <div class="gx-card" style="--track:var(--t-med)" data-stream="bipc" data-search="bhms homeopathy neet ayush">
-        <button class="gx-head"><span class="gx-ic">💊</span><span class="gx-htext"><span class="gx-title">BHMS (Homeopathy) <span class="gx-tag">AYUSH</span></span><span class="gx-best">A recognised medical degree in homeopathic medicine.</span></span><span class="gx-chev">▾</span></button>
+        <button class="gx-head"><span class="gx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.5 20.5l10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7z"/><line x1="8.5" y1="8.5" x2="15.5" y2="15.5"/></svg></span><span class="gx-htext"><span class="gx-title">BHMS (Homeopathy) <span class="gx-tag">AYUSH</span></span><span class="gx-best">A recognised medical degree in homeopathic medicine.</span></span><span class="gx-chev">▾</span></button>
         <div class="gx-body"><div class="gx-body-in">
           <div class="gx-field"><span class="gx-field-k">Duration</span><span class="gx-field-v">5.5 yrs (incl. internship)</span></div>
           <div class="gx-field"><span class="gx-field-k">Entrance</span><span class="gx-field-v">NEET-UG</span></div>
@@ -772,7 +772,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       </div>
 
       <div class="gx-card" style="--track:var(--t-med)" data-stream="bipc" data-search="veterinary bvsc animal husbandry neet">
-        <button class="gx-head"><span class="gx-ic">🐄</span><span class="gx-htext"><span class="gx-title">Veterinary (B.V.Sc) <span class="gx-tag">Medical</span></span><span class="gx-best">Doctor for animals — steady demand in farming regions like AP.</span></span><span class="gx-chev">▾</span></button>
+        <button class="gx-head"><span class="gx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></span><span class="gx-htext"><span class="gx-title">Veterinary (B.V.Sc) <span class="gx-tag">Medical</span></span><span class="gx-best">Doctor for animals — steady demand in farming regions like AP.</span></span><span class="gx-chev">▾</span></button>
         <div class="gx-body"><div class="gx-body-in">
           <div class="gx-field"><span class="gx-field-k">Duration</span><span class="gx-field-v">5.5 yrs</span></div>
           <div class="gx-field"><span class="gx-field-k">Entrance</span><span class="gx-field-v">NEET-UG (most states)</span></div>
@@ -783,7 +783,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       </div>
 
       <div class="gx-card" style="--track:var(--t-med)" data-stream="bipc" data-search="b.pharmacy pharmacist eapcet medicine">
-        <button class="gx-head"><span class="gx-ic">⚗️</span><span class="gx-htext"><span class="gx-title">B.Pharmacy <span class="gx-tag">Pharma</span></span><span class="gx-best">A practical, employable health-science degree with broad scope.</span></span><span class="gx-chev">▾</span></button>
+        <button class="gx-head"><span class="gx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6m-5 0v7l-4.5 7.5c-.6 1 .15 2.3 1.5 2.5H17c1.35-.2 2.1-1.5 1.5-2.5L14 10V3"/></svg></span><span class="gx-htext"><span class="gx-title">B.Pharmacy <span class="gx-tag">Pharma</span></span><span class="gx-best">A practical, employable health-science degree with broad scope.</span></span><span class="gx-chev">▾</span></button>
         <div class="gx-body"><div class="gx-body-in">
           <div class="gx-field"><span class="gx-field-k">Duration</span><span class="gx-field-v">4 yrs</span></div>
           <div class="gx-field"><span class="gx-field-k">Entrance</span><span class="gx-field-v">AP EAPCET (or direct)</span></div>
@@ -794,7 +794,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       </div>
 
       <div class="gx-card" style="--track:var(--t-med)" data-stream="bipc" data-search="pharm d doctor of pharmacy clinical">
-        <button class="gx-head"><span class="gx-ic">💉</span><span class="gx-htext"><span class="gx-title">Pharm.D <span class="gx-tag">Pharma</span></span><span class="gx-best">A clinical pharmacy doctorate — longer than B.Pharm.</span></span><span class="gx-chev">▾</span></button>
+        <button class="gx-head"><span class="gx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.5 20.5l10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7z"/><line x1="8.5" y1="8.5" x2="15.5" y2="15.5"/></svg></span><span class="gx-htext"><span class="gx-title">Pharm.D <span class="gx-tag">Pharma</span></span><span class="gx-best">A clinical pharmacy doctorate — longer than B.Pharm.</span></span><span class="gx-chev">▾</span></button>
         <div class="gx-body"><div class="gx-body-in">
           <div class="gx-field"><span class="gx-field-k">Duration</span><span class="gx-field-v">6 years (incl. internship)</span></div>
           <div class="gx-field"><span class="gx-field-k">Entrance</span><span class="gx-field-v">AP EAPCET / direct</span></div>
@@ -805,7 +805,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       </div>
 
       <div class="gx-card" style="--track:var(--t-med)" data-stream="bipc" data-search="nursing b.sc nursing staff nurse hospital">
-        <button class="gx-head"><span class="gx-ic">👩‍⚕️</span><span class="gx-htext"><span class="gx-title">Nursing <span class="gx-tag">Health</span></span><span class="gx-best">One of the most employable healthcare careers — in India and abroad.</span></span><span class="gx-chev">▾</span></button>
+        <button class="gx-head"><span class="gx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span><span class="gx-htext"><span class="gx-title">Nursing <span class="gx-tag">Health</span></span><span class="gx-best">One of the most employable healthcare careers — in India and abroad.</span></span><span class="gx-chev">▾</span></button>
         <div class="gx-body"><div class="gx-body-in">
           <div class="gx-field"><span class="gx-field-k">Duration</span><span class="gx-field-v">4 yrs (B.Sc) or 3 yrs (GNM diploma)</span></div>
           <div class="gx-field"><span class="gx-field-k">Entrance</span><span class="gx-field-v">State/college entrances or direct</span></div>
@@ -816,7 +816,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       </div>
 
       <div class="gx-card" style="--track:var(--t-med)" data-stream="bipc" data-search="allied health sciences mlt imaging optometry">
-        <button class="gx-head"><span class="gx-ic">🧪</span><span class="gx-htext"><span class="gx-title">Allied Health Sciences <span class="gx-tag">Health</span></span><span class="gx-best">Lab, imaging, OT, optometry and more — the backbone of every hospital.</span></span><span class="gx-chev">▾</span></button>
+        <button class="gx-head"><span class="gx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6m-5 0v7l-4.5 7.5c-.6 1 .15 2.3 1.5 2.5H17c1.35-.2 2.1-1.5 1.5-2.5L14 10V3"/></svg></span><span class="gx-htext"><span class="gx-title">Allied Health Sciences <span class="gx-tag">Health</span></span><span class="gx-best">Lab, imaging, OT, optometry and more — the backbone of every hospital.</span></span><span class="gx-chev">▾</span></button>
         <div class="gx-body"><div class="gx-body-in">
           <div class="gx-field"><span class="gx-field-k">Duration</span><span class="gx-field-v">3–4 yrs</span></div>
           <div class="gx-field"><span class="gx-field-k">Entrance</span><span class="gx-field-v">College/state entrances or direct</span></div>
@@ -827,7 +827,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       </div>
 
       <div class="gx-card" style="--track:var(--t-med)" data-stream="bipc" data-search="biotechnology biotech research lab">
-        <button class="gx-head"><span class="gx-ic">🧫</span><span class="gx-htext"><span class="gx-title">Biotechnology <span class="gx-tag">Science</span></span><span class="gx-best">Exciting field — but best outcomes need PG and research focus.</span></span><span class="gx-chev">▾</span></button>
+        <button class="gx-head"><span class="gx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="12" rx="10" ry="5"/><path d="M2 12c0 2.76 4.48 5 10 5s10-2.24 10-5"/></svg></span><span class="gx-htext"><span class="gx-title">Biotechnology <span class="gx-tag">Science</span></span><span class="gx-best">Exciting field — but best outcomes need PG and research focus.</span></span><span class="gx-chev">▾</span></button>
         <div class="gx-body"><div class="gx-body-in">
           <div class="gx-field"><span class="gx-field-k">Duration</span><span class="gx-field-v">3–4 yrs (+ PG recommended)</span></div>
           <div class="gx-field"><span class="gx-field-k">Entrance</span><span class="gx-field-v">EAPCET/CUET/merit</span></div>
@@ -838,7 +838,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       </div>
 
       <div class="gx-card" style="--track:var(--t-med)" data-stream="bipc" data-search="microbiology lab research diagnostics">
-        <button class="gx-head"><span class="gx-ic">🦠</span><span class="gx-htext"><span class="gx-title">Microbiology <span class="gx-tag">Science</span></span><span class="gx-best">Lab-focused life science with roles in health, food and pharma.</span></span><span class="gx-chev">▾</span></button>
+        <button class="gx-head"><span class="gx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg></span><span class="gx-htext"><span class="gx-title">Microbiology <span class="gx-tag">Science</span></span><span class="gx-best">Lab-focused life science with roles in health, food and pharma.</span></span><span class="gx-chev">▾</span></button>
         <div class="gx-body"><div class="gx-body-in">
           <div class="gx-field"><span class="gx-field-k">Duration</span><span class="gx-field-v">3 yrs (+ PG)</span></div>
           <div class="gx-field"><span class="gx-field-k">Entrance</span><span class="gx-field-v">Merit/CUET</span></div>
@@ -849,7 +849,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       </div>
 
       <div class="gx-card" style="--track:var(--t-med)" data-stream="bipc" data-search="nutrition dietetics food science dietician">
-        <button class="gx-head"><span class="gx-ic">🥗</span><span class="gx-htext"><span class="gx-title">Nutrition & Dietetics <span class="gx-tag">Health</span></span><span class="gx-best">Growing demand in health, hospitals, sports and wellness.</span></span><span class="gx-chev">▾</span></button>
+        <button class="gx-head"><span class="gx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 2a2 2 0 0 0-2 2v5H4a2 2 0 0 0 0 4h.5L7 22h10l2.5-9H20a2 2 0 0 0 0-4h-5V4a2 2 0 0 0-2-2h-2z"/></svg></span><span class="gx-htext"><span class="gx-title">Nutrition & Dietetics <span class="gx-tag">Health</span></span><span class="gx-best">Growing demand in health, hospitals, sports and wellness.</span></span><span class="gx-chev">▾</span></button>
         <div class="gx-body"><div class="gx-body-in">
           <div class="gx-field"><span class="gx-field-k">Duration</span><span class="gx-field-v">3–4 yrs (+ PG for clinical roles)</span></div>
           <div class="gx-field"><span class="gx-field-k">Entrance</span><span class="gx-field-v">Merit/college entrance</span></div>
@@ -860,7 +860,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       </div>
 
       <div class="gx-card" style="--track:var(--t-med)" data-stream="bipc" data-search="physiotherapy bpt rehabilitation sports">
-        <button class="gx-head"><span class="gx-ic">🦵</span><span class="gx-htext"><span class="gx-title">Physiotherapy (BPT) <span class="gx-tag">Health</span></span><span class="gx-best">Rehabilitation and movement therapy — rising demand.</span></span><span class="gx-chev">▾</span></button>
+        <button class="gx-head"><span class="gx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></span><span class="gx-htext"><span class="gx-title">Physiotherapy (BPT) <span class="gx-tag">Health</span></span><span class="gx-best">Rehabilitation and movement therapy — rising demand.</span></span><span class="gx-chev">▾</span></button>
         <div class="gx-body"><div class="gx-body-in">
           <div class="gx-field"><span class="gx-field-k">Duration</span><span class="gx-field-v">4.5 yrs (incl. internship)</span></div>
           <div class="gx-field"><span class="gx-field-k">Entrance</span><span class="gx-field-v">EAPCET/college entrance</span></div>
@@ -872,7 +872,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
 
     </div>
     <div class="sg-callout reality">
-      <span class="ic">⚠️</span>
+      <span class="ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span>
       <div>
         <div class="sg-callout-t" data-te="వాస్తవ తనిఖీ" data-en="Reality check">Reality check</div>
         <p data-te="మెడికల్ కెరీర్‌లు చాలా గౌరవప్రదంగా ఉంటాయి, కానీ అవి దీర్ఘకాలిక నిబద్ధత, నిరంతర అభ్యాసం మరియు గణనీయమైన కృషి అవసరం. NEET పని చేయకపోతే, నర్సింగ్, ఫార్మసీ మరియు అలైడ్ హెల్త్ బలమైన, గౌరవప్రదమైన కెరీర్‌లు — 'వైఫల్యాలు' కాదు." data-en="Medical careers are highly respected, but they require long-term commitment, continuous learning, and significant effort. If NEET does not work out, nursing, pharmacy and allied health are strong, dignified careers — not &quot;failures.&quot;">Medical careers are highly respected, but they require long-term commitment, continuous learning, and significant effort. If NEET does not work out, nursing, pharmacy and allied health are strong, dignified careers — not "failures."</p>
@@ -892,7 +892,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
     <div class="gx-grid">
 
       <div class="gx-card" style="--track:var(--t-com)" data-stream="commerce" data-search="ca chartered accountant icai audit tax">
-        <button class="gx-head"><span class="gx-ic">🧾</span><span class="gx-htext"><span class="gx-title">CA (Chartered Accountant) <span class="gx-tag">Commerce</span></span><span class="gx-best">One of India's most respected, well-paid professions — and one of the hardest exams.</span></span><span class="gx-chev">▾</span></button>
+        <button class="gx-head"><span class="gx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></span><span class="gx-htext"><span class="gx-title">CA (Chartered Accountant) <span class="gx-tag">Commerce</span></span><span class="gx-best">One of India's most respected, well-paid professions — and one of the hardest exams.</span></span><span class="gx-chev">▾</span></button>
         <div class="gx-body"><div class="gx-body-in">
           <div class="gx-field"><span class="gx-field-k">Work</span><span class="gx-field-v">Audit, taxation, finance, advisory for companies & individuals.</span></div>
           <div class="gx-field"><span class="gx-field-k">Difficulty</span><span class="gx-field-v"><span class="lvl lvl-vhigh">Very high</span> (low pass rates, multi-year)</span></div>
@@ -903,7 +903,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       </div>
 
       <div class="gx-card" style="--track:var(--t-com)" data-stream="commerce" data-search="cma cost management accountant icmai costing">
-        <button class="gx-head"><span class="gx-ic">📐</span><span class="gx-htext"><span class="gx-title">CMA (Cost & Management Acct.) <span class="gx-tag">Commerce</span></span><span class="gx-best">Specialises in costing, pricing and management accounting.</span></span><span class="gx-chev">▾</span></button>
+        <button class="gx-head"><span class="gx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span><span class="gx-htext"><span class="gx-title">CMA (Cost & Management Acct.) <span class="gx-tag">Commerce</span></span><span class="gx-best">Specialises in costing, pricing and management accounting.</span></span><span class="gx-chev">▾</span></button>
         <div class="gx-body"><div class="gx-body-in">
           <div class="gx-field"><span class="gx-field-k">Work</span><span class="gx-field-v">Cost control, budgeting, performance & financial management.</span></div>
           <div class="gx-field"><span class="gx-field-k">Difficulty</span><span class="gx-field-v"><span class="lvl lvl-high">High</span></span></div>
@@ -914,7 +914,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       </div>
 
       <div class="gx-card" style="--track:var(--t-com)" data-stream="commerce" data-search="cs company secretary governance legal compliance">
-        <button class="gx-head"><span class="gx-ic">⚖️</span><span class="gx-htext"><span class="gx-title">CS (Company Secretary) <span class="gx-tag">Commerce</span></span><span class="gx-best">The corporate governance & compliance expert of a company.</span></span><span class="gx-chev">▾</span></button>
+        <button class="gx-head"><span class="gx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="3" x2="12" y2="21"/><path d="M3 9l9-6 9 6"/><path d="M5 13l-2 4 6 2-4-6z"/><path d="M19 13l2 4-6 2 4-6z"/></svg></span><span class="gx-htext"><span class="gx-title">CS (Company Secretary) <span class="gx-tag">Commerce</span></span><span class="gx-best">The corporate governance & compliance expert of a company.</span></span><span class="gx-chev">▾</span></button>
         <div class="gx-body"><div class="gx-body-in">
           <div class="gx-field"><span class="gx-field-k">Work</span><span class="gx-field-v">Company law, board compliance, corporate governance.</span></div>
           <div class="gx-field"><span class="gx-field-k">Difficulty</span><span class="gx-field-v"><span class="lvl lvl-high">High</span></span></div>
@@ -925,7 +925,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       </div>
 
       <div class="gx-card" style="--track:var(--t-com)" data-stream="commerce" data-search="b.com bcom accounting general degree">
-        <button class="gx-head"><span class="gx-ic">📘</span><span class="gx-htext"><span class="gx-title">B.Com <span class="gx-tag">Commerce</span></span><span class="gx-best">A flexible base — pair it with CA/skills/PG to make it powerful.</span></span><span class="gx-chev">▾</span></button>
+        <button class="gx-head"><span class="gx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span><span class="gx-htext"><span class="gx-title">B.Com <span class="gx-tag">Commerce</span></span><span class="gx-best">A flexible base — pair it with CA/skills/PG to make it powerful.</span></span><span class="gx-chev">▾</span></button>
         <div class="gx-body"><div class="gx-body-in">
           <div class="gx-field"><span class="gx-field-k">Work</span><span class="gx-field-v">Foundation in accounting, finance, taxation, business.</span></div>
           <div class="gx-field"><span class="gx-field-k">Difficulty</span><span class="gx-field-v"><span class="lvl lvl-low">Low–Medium</span></span></div>
@@ -936,7 +936,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       </div>
 
       <div class="gx-card" style="--track:var(--t-com)" data-stream="commerce" data-search="bba management business administration mba">
-        <button class="gx-head"><span class="gx-ic">📈</span><span class="gx-htext"><span class="gx-title">BBA <span class="gx-tag">Commerce</span></span><span class="gx-best">A management-focused degree, often a step toward MBA.</span></span><span class="gx-chev">▾</span></button>
+        <button class="gx-head"><span class="gx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></span><span class="gx-htext"><span class="gx-title">BBA <span class="gx-tag">Commerce</span></span><span class="gx-best">A management-focused degree, often a step toward MBA.</span></span><span class="gx-chev">▾</span></button>
         <div class="gx-body"><div class="gx-body-in">
           <div class="gx-field"><span class="gx-field-k">Work</span><span class="gx-field-v">Business, marketing, HR, operations fundamentals.</span></div>
           <div class="gx-field"><span class="gx-field-k">Difficulty</span><span class="gx-field-v"><span class="lvl lvl-low">Low–Medium</span></span></div>
@@ -947,7 +947,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       </div>
 
       <div class="gx-card" style="--track:var(--t-com)" data-stream="commerce" data-search="banking ibps po clerk bank job">
-        <button class="gx-head"><span class="gx-ic">🏦</span><span class="gx-htext"><span class="gx-title">Banking <span class="gx-tag">Commerce</span></span><span class="gx-best">Stable, respected jobs via competitive exams — open to all graduates.</span></span><span class="gx-chev">▾</span></button>
+        <button class="gx-head"><span class="gx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="22" x2="21" y2="22"/><line x1="6" y1="18" x2="6" y2="11"/><line x1="10" y1="18" x2="10" y2="11"/><line x1="14" y1="18" x2="14" y2="11"/><line x1="18" y1="18" x2="18" y2="11"/><polygon points="12 2 20 7 4 7"/></svg></span><span class="gx-htext"><span class="gx-title">Banking <span class="gx-tag">Commerce</span></span><span class="gx-best">Stable, respected jobs via competitive exams — open to all graduates.</span></span><span class="gx-chev">▾</span></button>
         <div class="gx-body"><div class="gx-body-in">
           <div class="gx-field"><span class="gx-field-k">Work</span><span class="gx-field-v">Customer service, lending, operations, finance roles.</span></div>
           <div class="gx-field"><span class="gx-field-k">Difficulty</span><span class="gx-field-v"><span class="lvl lvl-high">High</span> (exam competition)</span></div>
@@ -958,7 +958,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       </div>
 
       <div class="gx-card" style="--track:var(--t-com)" data-stream="commerce" data-search="finance financial analyst wealth management">
-        <button class="gx-head"><span class="gx-ic">💹</span><span class="gx-htext"><span class="gx-title">Finance <span class="gx-tag">Commerce</span></span><span class="gx-best">Managing money for companies and people — high reward, high skill.</span></span><span class="gx-chev">▾</span></button>
+        <button class="gx-head"><span class="gx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></span><span class="gx-htext"><span class="gx-title">Finance <span class="gx-tag">Commerce</span></span><span class="gx-best">Managing money for companies and people — high reward, high skill.</span></span><span class="gx-chev">▾</span></button>
         <div class="gx-body"><div class="gx-body-in">
           <div class="gx-field"><span class="gx-field-k">Work</span><span class="gx-field-v">Corporate finance, planning, treasury, wealth management.</span></div>
           <div class="gx-field"><span class="gx-field-k">Difficulty</span><span class="gx-field-v"><span class="lvl lvl-high">High</span></span></div>
@@ -969,7 +969,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       </div>
 
       <div class="gx-card" style="--track:var(--t-com)" data-stream="commerce" data-search="investment analysis equity research stock market cfa">
-        <button class="gx-head"><span class="gx-ic">📊</span><span class="gx-htext"><span class="gx-title">Investment Analysis <span class="gx-tag">Commerce</span></span><span class="gx-best">Analysing companies & markets — for numerate, research-driven minds.</span></span><span class="gx-chev">▾</span></button>
+        <button class="gx-head"><span class="gx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/></svg></span><span class="gx-htext"><span class="gx-title">Investment Analysis <span class="gx-tag">Commerce</span></span><span class="gx-best">Analysing companies & markets — for numerate, research-driven minds.</span></span><span class="gx-chev">▾</span></button>
         <div class="gx-body"><div class="gx-body-in">
           <div class="gx-field"><span class="gx-field-k">Work</span><span class="gx-field-v">Equity/credit research, valuations, portfolio analysis.</span></div>
           <div class="gx-field"><span class="gx-field-k">Difficulty</span><span class="gx-field-v"><span class="lvl lvl-vhigh">Very high</span></span></div>
@@ -980,7 +980,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       </div>
 
       <div class="gx-card" style="--track:var(--t-com)" data-search="digital marketing seo social media content ads">
-        <button class="gx-head"><span class="gx-ic">📱</span><span class="gx-htext"><span class="gx-title">Digital Marketing <span class="gx-tag">Emerging</span></span><span class="gx-best">Skill-first field — you can start learning and earning early.</span></span><span class="gx-chev">▾</span></button>
+        <button class="gx-head"><span class="gx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></span><span class="gx-htext"><span class="gx-title">Digital Marketing <span class="gx-tag">Emerging</span></span><span class="gx-best">Skill-first field — you can start learning and earning early.</span></span><span class="gx-chev">▾</span></button>
         <div class="gx-body"><div class="gx-body-in">
           <div class="gx-field"><span class="gx-field-k">Work</span><span class="gx-field-v">SEO, social media, ads, content, analytics for brands.</span></div>
           <div class="gx-field"><span class="gx-field-k">Difficulty</span><span class="gx-field-v"><span class="lvl lvl-low">Low to start, Medium to master</span></span></div>
@@ -991,7 +991,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       </div>
 
       <div class="gx-card" style="--track:var(--t-com)" data-search="entrepreneurship business startup self employment">
-        <button class="gx-head"><span class="gx-ic">🚀</span><span class="gx-htext"><span class="gx-title">Entrepreneurship <span class="gx-tag">Business</span></span><span class="gx-best">Building your own business — high freedom, high risk, real learning.</span></span><span class="gx-chev">▾</span></button>
+        <button class="gx-head"><span class="gx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span><span class="gx-htext"><span class="gx-title">Entrepreneurship <span class="gx-tag">Business</span></span><span class="gx-best">Building your own business — high freedom, high risk, real learning.</span></span><span class="gx-chev">▾</span></button>
         <div class="gx-body"><div class="gx-body-in">
           <div class="gx-field"><span class="gx-field-k">Work</span><span class="gx-field-v">Creating and running a business; sales, finance, people.</span></div>
           <div class="gx-field"><span class="gx-field-k">Difficulty</span><span class="gx-field-v"><span class="lvl lvl-high">High</span> (uncertain, demanding)</span></div>
@@ -1003,7 +1003,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
 
     </div>
     <div class="sg-callout">
-      <span class="ic">💡</span>
+      <span class="ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="9" y1="18" x2="15" y2="18"/><line x1="10" y1="21" x2="14" y2="21"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg></span>
       <div>
         <div class="sg-callout-t" data-te="వాస్తవం" data-en="Reality">Reality</div>
         <p data-te="కామర్స్ ఆధునిక భారతదేశంలో అత్యంత బలమైన కెరీర్ మార్గాలలో ఒకటి మరియు తరచుగా తక్కువగా అంచనా వేయబడుతుంది. కష్టపడి పని చేయడానికి సిద్ధంగా ఉన్నవారికి CA, ఫైనాన్స్ మరియు బ్యాంకింగ్ స్థిరత్వం, గౌరవం మరియు అద్భుతమైన దీర్ఘకాలిక ఆదాయం అందిస్తాయి." data-en="Commerce is one of the strongest career pathways in modern India and is often underestimated. CA, finance and banking offer stability, respect and excellent long-term income for those willing to work hard.">Commerce is one of the strongest career pathways in modern India and is often underestimated. CA, finance and banking offer stability, respect and excellent long-term income for those willing to work hard.</p>
@@ -1023,7 +1023,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
     <div class="gx-grid">
 
       <div class="gx-card" style="--track:var(--t-arts)" data-stream="arts" data-search="law clat llb lawyer advocate judge">
-        <button class="gx-head"><span class="gx-ic">⚖️</span><span class="gx-htext"><span class="gx-title">Law <span class="gx-tag">Arts</span></span><span class="gx-best">Lawyer, advocate, corporate legal, judge — via CLAT or 5-year LLB.</span></span><span class="gx-chev">▾</span></button>
+        <button class="gx-head"><span class="gx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="3" x2="12" y2="21"/><path d="M3 9l9-6 9 6"/><path d="M5 13l-2 4 6 2-4-6z"/><path d="M19 13l2 4-6 2 4-6z"/></svg></span><span class="gx-htext"><span class="gx-title">Law <span class="gx-tag">Arts</span></span><span class="gx-best">Lawyer, advocate, corporate legal, judge — via CLAT or 5-year LLB.</span></span><span class="gx-chev">▾</span></button>
         <div class="gx-body"><div class="gx-body-in">
           <div class="gx-field"><span class="gx-field-k">Path</span><span class="gx-field-v">5-yr integrated LLB (after 12th, CLAT) or 3-yr LLB (after degree)</span></div>
           <div class="gx-field"><span class="gx-field-k">Difficulty</span><span class="gx-field-v"><span class="lvl lvl-high">High</span> for top NLUs</span></div>
@@ -1033,7 +1033,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       </div>
 
       <div class="gx-card" style="--track:var(--t-arts)" data-search="upsc civil services ias ips collector administration">
-        <button class="gx-head"><span class="gx-ic">🏛️</span><span class="gx-htext"><span class="gx-title">UPSC / Civil Services <span class="gx-tag">Arts</span></span><span class="gx-best">IAS/IPS and more — the most prestigious govt route (any graduate can try).</span></span><span class="gx-chev">▾</span></button>
+        <button class="gx-head"><span class="gx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="22" x2="21" y2="22"/><line x1="6" y1="18" x2="6" y2="11"/><line x1="10" y1="18" x2="10" y2="11"/><line x1="14" y1="18" x2="14" y2="11"/><line x1="18" y1="18" x2="18" y2="11"/><polygon points="12 2 20 7 4 7"/></svg></span><span class="gx-htext"><span class="gx-title">UPSC / Civil Services <span class="gx-tag">Arts</span></span><span class="gx-best">IAS/IPS and more — the most prestigious govt route (any graduate can try).</span></span><span class="gx-chev">▾</span></button>
         <div class="gx-body"><div class="gx-body-in">
           <div class="gx-field"><span class="gx-field-k">Path</span><span class="gx-field-v">Any degree → UPSC CSE (Prelims, Mains, Interview)</span></div>
           <div class="gx-field"><span class="gx-field-k">Difficulty</span><span class="gx-field-v"><span class="lvl lvl-vhigh">Very high</span></span></div>
@@ -1043,7 +1043,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       </div>
 
       <div class="gx-card" style="--track:var(--t-arts)" data-stream="arts" data-search="journalism media reporter news communication">
-        <button class="gx-head"><span class="gx-ic">📰</span><span class="gx-htext"><span class="gx-title">Journalism & Media <span class="gx-tag">Arts</span></span><span class="gx-best">For strong communicators who want to inform and tell stories.</span></span><span class="gx-chev">▾</span></button>
+        <button class="gx-head"><span class="gx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6z"/></svg></span><span class="gx-htext"><span class="gx-title">Journalism & Media <span class="gx-tag">Arts</span></span><span class="gx-best">For strong communicators who want to inform and tell stories.</span></span><span class="gx-chev">▾</span></button>
         <div class="gx-body"><div class="gx-body-in">
           <div class="gx-field"><span class="gx-field-k">Path</span><span class="gx-field-v">BA/BJMC + portfolio & internships</span></div>
           <div class="gx-field"><span class="gx-field-k">Difficulty</span><span class="gx-field-v"><span class="lvl lvl-med">Medium</span></span></div>
@@ -1053,7 +1053,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       </div>
 
       <div class="gx-card" style="--track:var(--t-arts)" data-stream="arts" data-search="public policy governance think tank research">
-        <button class="gx-head"><span class="gx-ic">🏤</span><span class="gx-htext"><span class="gx-title">Public Policy <span class="gx-tag">Arts</span></span><span class="gx-best">Shaping how governments and institutions solve real problems.</span></span><span class="gx-chev">▾</span></button>
+        <button class="gx-head"><span class="gx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="3" width="15" height="18" rx="1"/><path d="M16 8h4a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H16"/><line x1="5" y1="8" x2="11" y2="8"/><line x1="5" y1="12" x2="11" y2="12"/><line x1="5" y1="16" x2="11" y2="16"/></svg></span><span class="gx-htext"><span class="gx-title">Public Policy <span class="gx-tag">Arts</span></span><span class="gx-best">Shaping how governments and institutions solve real problems.</span></span><span class="gx-chev">▾</span></button>
         <div class="gx-body"><div class="gx-body-in">
           <div class="gx-field"><span class="gx-field-k">Path</span><span class="gx-field-v">BA (Eco/Pol Sci) → PG in public policy</span></div>
           <div class="gx-field"><span class="gx-field-k">Difficulty</span><span class="gx-field-v"><span class="lvl lvl-med">Medium–High</span></span></div>
@@ -1063,7 +1063,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       </div>
 
       <div class="gx-card" style="--track:var(--t-arts)" data-stream="arts" data-search="psychology counselling mental health therapist">
-        <button class="gx-head"><span class="gx-ic">🧠</span><span class="gx-htext"><span class="gx-title">Psychology <span class="gx-tag">Arts</span></span><span class="gx-best">Understanding the mind — counselling, clinical and organisational roles.</span></span><span class="gx-chev">▾</span></button>
+        <button class="gx-head"><span class="gx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.46 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 4.44-2.14Z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.46 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-4.44-2.14Z"/></svg></span><span class="gx-htext"><span class="gx-title">Psychology <span class="gx-tag">Arts</span></span><span class="gx-best">Understanding the mind — counselling, clinical and organisational roles.</span></span><span class="gx-chev">▾</span></button>
         <div class="gx-body"><div class="gx-body-in">
           <div class="gx-field"><span class="gx-field-k">Path</span><span class="gx-field-v">BA/B.Sc Psychology → PG (clinical needs further training)</span></div>
           <div class="gx-field"><span class="gx-field-k">Difficulty</span><span class="gx-field-v"><span class="lvl lvl-med">Medium</span></span></div>
@@ -1073,7 +1073,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       </div>
 
       <div class="gx-card" style="--track:var(--t-arts)" data-stream="arts" data-search="teaching teacher education b.ed professor">
-        <button class="gx-head"><span class="gx-ic">👩‍🏫</span><span class="gx-htext"><span class="gx-title">Teaching <span class="gx-tag">Arts</span></span><span class="gx-best">Shaping the next generation — stable and deeply respected.</span></span><span class="gx-chev">▾</span></button>
+        <button class="gx-head"><span class="gx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span><span class="gx-htext"><span class="gx-title">Teaching <span class="gx-tag">Arts</span></span><span class="gx-best">Shaping the next generation — stable and deeply respected.</span></span><span class="gx-chev">▾</span></button>
         <div class="gx-body"><div class="gx-body-in">
           <div class="gx-field"><span class="gx-field-k">Path</span><span class="gx-field-v">Degree + B.Ed/D.El.Ed; TET/DSC for govt; NET for college</span></div>
           <div class="gx-field"><span class="gx-field-k">Difficulty</span><span class="gx-field-v"><span class="lvl lvl-med">Medium</span> (govt exams competitive)</span></div>
@@ -1083,7 +1083,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       </div>
 
       <div class="gx-card" style="--track:var(--t-arts)" data-stream="arts" data-search="social sciences sociology economics political science research">
-        <button class="gx-head"><span class="gx-ic">🌍</span><span class="gx-htext"><span class="gx-title">Social Sciences <span class="gx-tag">Arts</span></span><span class="gx-best">Economics, sociology, political science — versatile bases for many careers.</span></span><span class="gx-chev">▾</span></button>
+        <button class="gx-head"><span class="gx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg></span><span class="gx-htext"><span class="gx-title">Social Sciences <span class="gx-tag">Arts</span></span><span class="gx-best">Economics, sociology, political science — versatile bases for many careers.</span></span><span class="gx-chev">▾</span></button>
         <div class="gx-body"><div class="gx-body-in">
           <div class="gx-field"><span class="gx-field-k">Path</span><span class="gx-field-v">BA → PG/research; pairs well with civil services & policy</span></div>
           <div class="gx-field"><span class="gx-field-k">Difficulty</span><span class="gx-field-v"><span class="lvl lvl-med">Medium</span></span></div>
@@ -1093,7 +1093,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       </div>
 
       <div class="gx-card" style="--track:var(--t-arts)" data-stream="arts" data-search="design nift nid graphic ux fashion product">
-        <button class="gx-head"><span class="gx-ic">🎨</span><span class="gx-htext"><span class="gx-title">Design <span class="gx-tag">Creative</span></span><span class="gx-best">Fashion, graphic, UX, product — for creative, visual thinkers.</span></span><span class="gx-chev">▾</span></button>
+        <button class="gx-head"><span class="gx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.62-1.89-6.23-2.56-16.1-1.19"/></svg></span><span class="gx-htext"><span class="gx-title">Design <span class="gx-tag">Creative</span></span><span class="gx-best">Fashion, graphic, UX, product — for creative, visual thinkers.</span></span><span class="gx-chev">▾</span></button>
         <div class="gx-body"><div class="gx-body-in">
           <div class="gx-field"><span class="gx-field-k">Path</span><span class="gx-field-v">NIFT/NID/UCEED or design degrees + portfolio</span></div>
           <div class="gx-field"><span class="gx-field-k">Difficulty</span><span class="gx-field-v"><span class="lvl lvl-med">Medium–High</span></span></div>
@@ -1103,7 +1103,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       </div>
 
       <div class="gx-card" style="--track:var(--t-arts)" data-stream="arts" data-search="languages translation interpreter foreign language">
-        <button class="gx-head"><span class="gx-ic">🗣️</span><span class="gx-htext"><span class="gx-title">Languages <span class="gx-tag">Arts</span></span><span class="gx-best">Fluency in languages opens translation, content and global roles.</span></span><span class="gx-chev">▾</span></button>
+        <button class="gx-head"><span class="gx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><span class="gx-htext"><span class="gx-title">Languages <span class="gx-tag">Arts</span></span><span class="gx-best">Fluency in languages opens translation, content and global roles.</span></span><span class="gx-chev">▾</span></button>
         <div class="gx-body"><div class="gx-body-in">
           <div class="gx-field"><span class="gx-field-k">Path</span><span class="gx-field-v">BA in a language + certifications (foreign languages)</span></div>
           <div class="gx-field"><span class="gx-field-k">Difficulty</span><span class="gx-field-v"><span class="lvl lvl-low">Low–Medium</span></span></div>
@@ -1113,7 +1113,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       </div>
 
       <div class="gx-card" style="--track:var(--t-arts)" data-stream="arts" data-search="international relations diplomacy foreign policy ifs">
-        <button class="gx-head"><span class="gx-ic">🌐</span><span class="gx-htext"><span class="gx-title">International Relations <span class="gx-tag">Arts</span></span><span class="gx-best">Diplomacy, global affairs and policy on the world stage.</span></span><span class="gx-chev">▾</span></button>
+        <button class="gx-head"><span class="gx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg></span><span class="gx-htext"><span class="gx-title">International Relations <span class="gx-tag">Arts</span></span><span class="gx-best">Diplomacy, global affairs and policy on the world stage.</span></span><span class="gx-chev">▾</span></button>
         <div class="gx-body"><div class="gx-body-in">
           <div class="gx-field"><span class="gx-field-k">Path</span><span class="gx-field-v">BA/PG in IR; links to UPSC (IFS), think tanks</span></div>
           <div class="gx-field"><span class="gx-field-k">Difficulty</span><span class="gx-field-v"><span class="lvl lvl-high">High</span></span></div>
@@ -1124,7 +1124,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
 
     </div>
     <div class="sg-callout">
-      <span class="ic">💡</span>
+      <span class="ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="9" y1="18" x2="15" y2="18"/><line x1="10" y1="21" x2="14" y2="21"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg></span>
       <div>
         <div class="sg-callout-t" data-te="వాస్తవం" data-en="Reality">Reality</div>
         <p data-te="ఆర్ట్స్ ప్రత్యామ్నాయ ఎంపిక కాదు. చాలా మంది సివిల్ సర్వెంట్లు, న్యాయమూర్తులు, న్యాయవాదులు, పాలసీ నిర్మాతలు, రచయితలు, ఉపాధ్యాయులు మరియు నాయకులు ఆర్ట్స్ నేపథ్యం నుండి వచ్చారు. స్పష్టమైన లక్ష్యంతో, ఇది ఒక శక్తివంతమైన మార్గం." data-en="Arts is not a fallback option. Many civil servants, judges, lawyers, policy makers, writers, teachers and leaders come from Arts backgrounds. With a clear goal, it is a powerful path.">Arts is not a fallback option. Many civil servants, judges, lawyers, policy makers, writers, teachers and leaders come from Arts backgrounds. With a clear goal, it is a powerful path.</p>
@@ -1144,7 +1144,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
     <div class="gx-grid">
 
       <div class="gx-card" style="--track:var(--t-exam)" data-stream="mpc" data-search="jee main advanced iit nit engineering">
-        <button class="gx-head"><span class="gx-ic">🧮</span><span class="gx-htext"><span class="gx-title">JEE (Main &amp; Advanced) <span class="gx-tag">Exam</span></span><span class="gx-best">For IITs, NITs, IIITs and top engineering colleges.</span></span><span class="gx-chev">▾</span></button>
+        <button class="gx-head"><span class="gx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="2"/><line x1="8" y1="10" x2="8" y2="10"/><line x1="12" y1="10" x2="12" y2="10"/><line x1="16" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="8" y2="14"/><line x1="12" y1="14" x2="12" y2="14"/><line x1="16" y1="14" x2="16" y2="14"/><line x1="7" y1="6" x2="17" y2="6"/></svg></span><span class="gx-htext"><span class="gx-title">JEE (Main &amp; Advanced) <span class="gx-tag">Exam</span></span><span class="gx-best">For IITs, NITs, IIITs and top engineering colleges.</span></span><span class="gx-chev">▾</span></button>
         <div class="gx-body"><div class="gx-body-in">
           <div class="gx-field"><span class="gx-field-k">Eligibility</span><span class="gx-field-v">12th with MPC</span></div>
           <div class="gx-field"><span class="gx-field-k">Difficulty</span><span class="gx-field-v"><span class="lvl lvl-vhigh">Very high</span></span></div>
@@ -1155,7 +1155,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       </div>
 
       <div class="gx-card" style="--track:var(--t-exam)" data-stream="bipc" data-search="neet ug medical mbbs bds">
-        <button class="gx-head"><span class="gx-ic">🩺</span><span class="gx-htext"><span class="gx-title">NEET-UG <span class="gx-tag">Exam</span></span><span class="gx-best">The single gateway to MBBS/BDS/AYUSH/Vet across India.</span></span><span class="gx-chev">▾</span></button>
+        <button class="gx-head"><span class="gx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></span><span class="gx-htext"><span class="gx-title">NEET-UG <span class="gx-tag">Exam</span></span><span class="gx-best">The single gateway to MBBS/BDS/AYUSH/Vet across India.</span></span><span class="gx-chev">▾</span></button>
         <div class="gx-body"><div class="gx-body-in">
           <div class="gx-field"><span class="gx-field-k">Eligibility</span><span class="gx-field-v">12th with BiPC</span></div>
           <div class="gx-field"><span class="gx-field-k">Difficulty</span><span class="gx-field-v"><span class="lvl lvl-vhigh">Very high</span></span></div>
@@ -1166,7 +1166,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       </div>
 
       <div class="gx-card" style="--track:var(--t-exam)" data-stream="arts" data-search="clat law nlu llb">
-        <button class="gx-head"><span class="gx-ic">⚖️</span><span class="gx-htext"><span class="gx-title">CLAT <span class="gx-tag">Exam</span></span><span class="gx-best">For National Law Universities (5-year integrated LLB).</span></span><span class="gx-chev">▾</span></button>
+        <button class="gx-head"><span class="gx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="3" x2="12" y2="21"/><path d="M3 9l9-6 9 6"/><path d="M5 13l-2 4 6 2-4-6z"/><path d="M19 13l2 4-6 2 4-6z"/></svg></span><span class="gx-htext"><span class="gx-title">CLAT <span class="gx-tag">Exam</span></span><span class="gx-best">For National Law Universities (5-year integrated LLB).</span></span><span class="gx-chev">▾</span></button>
         <div class="gx-body"><div class="gx-body-in">
           <div class="gx-field"><span class="gx-field-k">Eligibility</span><span class="gx-field-v">12th (any stream)</span></div>
           <div class="gx-field"><span class="gx-field-k">Difficulty</span><span class="gx-field-v"><span class="lvl lvl-high">High</span></span></div>
@@ -1177,7 +1177,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       </div>
 
       <div class="gx-card" style="--track:var(--t-exam)" data-stream="mpc bipc commerce arts" data-search="cuet central university degree">
-        <button class="gx-head"><span class="gx-ic">🏫</span><span class="gx-htext"><span class="gx-title">CUET-UG <span class="gx-tag">Exam</span></span><span class="gx-best">For admission to central & many other universities.</span></span><span class="gx-chev">▾</span></button>
+        <button class="gx-head"><span class="gx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span><span class="gx-htext"><span class="gx-title">CUET-UG <span class="gx-tag">Exam</span></span><span class="gx-best">For admission to central & many other universities.</span></span><span class="gx-chev">▾</span></button>
         <div class="gx-body"><div class="gx-body-in">
           <div class="gx-field"><span class="gx-field-k">Eligibility</span><span class="gx-field-v">12th (any stream)</span></div>
           <div class="gx-field"><span class="gx-field-k">Difficulty</span><span class="gx-field-v"><span class="lvl lvl-med">Medium–High</span></span></div>
@@ -1188,7 +1188,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       </div>
 
       <div class="gx-card" style="--track:var(--t-exam)" data-stream="mpc bipc" data-search="ap eapcet eamcet engineering agriculture pharmacy state">
-        <button class="gx-head"><span class="gx-ic">📋</span><span class="gx-htext"><span class="gx-title">AP EAPCET (EAMCET) <span class="gx-tag">Exam</span></span><span class="gx-best">The main state gateway for AP engineering, agriculture & pharmacy.</span></span><span class="gx-chev">▾</span></button>
+        <button class="gx-head"><span class="gx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg></span><span class="gx-htext"><span class="gx-title">AP EAPCET (EAMCET) <span class="gx-tag">Exam</span></span><span class="gx-best">The main state gateway for AP engineering, agriculture & pharmacy.</span></span><span class="gx-chev">▾</span></button>
         <div class="gx-body"><div class="gx-body-in">
           <div class="gx-field"><span class="gx-field-k">Eligibility</span><span class="gx-field-v">12th MPC (Engg) / BiPC (Agri &amp; Pharma)</span></div>
           <div class="gx-field"><span class="gx-field-k">Difficulty</span><span class="gx-field-v"><span class="lvl lvl-med">Medium</span> (easier than JEE/NEET)</span></div>
@@ -1199,7 +1199,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       </div>
 
       <div class="gx-card" style="--track:var(--t-exam)" data-search="polycet polytechnic diploma after 10th">
-        <button class="gx-head"><span class="gx-ic">⚙️</span><span class="gx-htext"><span class="gx-title">POLYCET <span class="gx-tag">Exam</span></span><span class="gx-best">Entry to polytechnic diploma courses after 10th in AP.</span></span><span class="gx-chev">▾</span></button>
+        <button class="gx-head"><span class="gx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></span><span class="gx-htext"><span class="gx-title">POLYCET <span class="gx-tag">Exam</span></span><span class="gx-best">Entry to polytechnic diploma courses after 10th in AP.</span></span><span class="gx-chev">▾</span></button>
         <div class="gx-body"><div class="gx-body-in">
           <div class="gx-field"><span class="gx-field-k">Eligibility</span><span class="gx-field-v">10th pass</span></div>
           <div class="gx-field"><span class="gx-field-k">Difficulty</span><span class="gx-field-v"><span class="lvl lvl-low">Low–Medium</span></span></div>
@@ -1210,7 +1210,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       </div>
 
       <div class="gx-card" style="--track:var(--t-exam)" data-stream="bipc" data-search="icar aieea agriculture university">
-        <button class="gx-head"><span class="gx-ic">🌾</span><span class="gx-htext"><span class="gx-title">ICAR (AIEEA) <span class="gx-tag">Exam</span></span><span class="gx-best">For agriculture & allied degrees at national agricultural universities.</span></span><span class="gx-chev">▾</span></button>
+        <button class="gx-head"><span class="gx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 8C8 10 5.9 16.17 3.82 22M9.5 9.5c1 2.5 3.5 3.5 6.5 3.5"/><path d="M22 2L12 12"/></svg></span><span class="gx-htext"><span class="gx-title">ICAR (AIEEA) <span class="gx-tag">Exam</span></span><span class="gx-best">For agriculture & allied degrees at national agricultural universities.</span></span><span class="gx-chev">▾</span></button>
         <div class="gx-body"><div class="gx-body-in">
           <div class="gx-field"><span class="gx-field-k">Eligibility</span><span class="gx-field-v">12th (PCB/PCM/Agri as required)</span></div>
           <div class="gx-field"><span class="gx-field-k">Difficulty</span><span class="gx-field-v"><span class="lvl lvl-med">Medium</span></span></div>
@@ -1221,7 +1221,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       </div>
 
       <div class="gx-card" style="--track:var(--t-exam)" data-stream="arts" data-search="nift design fashion entrance">
-        <button class="gx-head"><span class="gx-ic">🎨</span><span class="gx-htext"><span class="gx-title">NIFT <span class="gx-tag">Exam</span></span><span class="gx-best">For fashion & design programs at NIFT campuses.</span></span><span class="gx-chev">▾</span></button>
+        <button class="gx-head"><span class="gx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.62-1.89-6.23-2.56-16.1-1.19"/></svg></span><span class="gx-htext"><span class="gx-title">NIFT <span class="gx-tag">Exam</span></span><span class="gx-best">For fashion & design programs at NIFT campuses.</span></span><span class="gx-chev">▾</span></button>
         <div class="gx-body"><div class="gx-body-in">
           <div class="gx-field"><span class="gx-field-k">Eligibility</span><span class="gx-field-v">12th (any stream)</span></div>
           <div class="gx-field"><span class="gx-field-k">Difficulty</span><span class="gx-field-v"><span class="lvl lvl-high">High</span> (creative aptitude)</span></div>
@@ -1232,7 +1232,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       </div>
 
       <div class="gx-card" style="--track:var(--t-gov)" data-stream="mpc bipc" data-search="nda defence army navy air force officer">
-        <button class="gx-head"><span class="gx-ic">🛡️</span><span class="gx-htext"><span class="gx-title">NDA <span class="gx-tag">Exam</span></span><span class="gx-best">For officer entry into the armed forces after 12th.</span></span><span class="gx-chev">▾</span></button>
+        <button class="gx-head"><span class="gx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span><span class="gx-htext"><span class="gx-title">NDA <span class="gx-tag">Exam</span></span><span class="gx-best">For officer entry into the armed forces after 12th.</span></span><span class="gx-chev">▾</span></button>
         <div class="gx-body"><div class="gx-body-in">
           <div class="gx-field"><span class="gx-field-k">Eligibility</span><span class="gx-field-v">12th (MPC for Navy/Air Force; any stream for Army)</span></div>
           <div class="gx-field"><span class="gx-field-k">Difficulty</span><span class="gx-field-v"><span class="lvl lvl-vhigh">Very high</span> (written + SSB + medical)</span></div>
@@ -1244,7 +1244,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
 
     </div>
     <div class="sg-callout reality">
-      <span class="ic">⚠️</span>
+      <span class="ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span>
       <div>
         <div class="sg-callout-t" data-te="ముఖ్యమైనది" data-en="Important">Important</div>
         <p data-te="అవకాశాలు అర్థం చేసుకోకుండా మరియు ప్రత్యామ్నాయ ప్రణాళిక లేకుండా పోటీ పరీక్షకు సిద్ధం కాకండి. ఒక పరీక్షకు తీవ్రంగా సిద్ధమవుతూ సమాంతరంగా సురక్షిత ఎంపిక (డిగ్రీ, నైపుణ్యం) ఉంచుకోవడం తెలివైన పని — బలహీనత కాదు." data-en="Do not prepare for a competitive exam without understanding the odds and having a backup plan. Preparing seriously for one exam while keeping a parallel safe option (a degree, a skill) is wise — not weak.">Do not prepare for a competitive exam without understanding the odds and having a backup plan. Preparing seriously for one exam while keeping a parallel safe option (a degree, a skill) is wise — not weak.</p>
@@ -1264,7 +1264,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
     <div class="gx-grid">
 
       <div class="gx-card" style="--track:var(--t-gov)" data-search="upsc ias ips civil services">
-        <button class="gx-head"><span class="gx-ic">🏛️</span><span class="gx-htext"><span class="gx-title">UPSC Civil Services <span class="gx-tag">Govt</span></span><span class="gx-best">IAS/IPS/IFS — top administrative jobs, hardest to crack.</span></span><span class="gx-chev">▾</span></button>
+        <button class="gx-head"><span class="gx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="22" x2="21" y2="22"/><line x1="6" y1="18" x2="6" y2="11"/><line x1="10" y1="18" x2="10" y2="11"/><line x1="14" y1="18" x2="14" y2="11"/><line x1="18" y1="18" x2="18" y2="11"/><polygon points="12 2 20 7 4 7"/></svg></span><span class="gx-htext"><span class="gx-title">UPSC Civil Services <span class="gx-tag">Govt</span></span><span class="gx-best">IAS/IPS/IFS — top administrative jobs, hardest to crack.</span></span><span class="gx-chev">▾</span></button>
         <div class="gx-body"><div class="gx-body-in">
           <div class="gx-field"><span class="gx-field-k">Role</span><span class="gx-field-v">District administration, policy, police, revenue leadership.</span></div>
           <div class="gx-field"><span class="gx-field-k">Competition</span><span class="gx-field-v"><span class="lvl lvl-vhigh">Extreme</span> — ~10 lakh apply, ~1,000 selected</span></div>
@@ -1274,7 +1274,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       </div>
 
       <div class="gx-card" style="--track:var(--t-gov)" data-search="appsc group 1 2 3 4 andhra pradesh state services">
-        <button class="gx-head"><span class="gx-ic">🏤</span><span class="gx-htext"><span class="gx-title">APPSC (Group Services) <span class="gx-tag">Govt</span></span><span class="gx-best">Andhra Pradesh state administrative posts (Groups 1–4).</span></span><span class="gx-chev">▾</span></button>
+        <button class="gx-head"><span class="gx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="3" width="15" height="18" rx="1"/><path d="M16 8h4a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H16"/><line x1="5" y1="8" x2="11" y2="8"/><line x1="5" y1="12" x2="11" y2="12"/><line x1="5" y1="16" x2="11" y2="16"/></svg></span><span class="gx-htext"><span class="gx-title">APPSC (Group Services) <span class="gx-tag">Govt</span></span><span class="gx-best">Andhra Pradesh state administrative posts (Groups 1–4).</span></span><span class="gx-chev">▾</span></button>
         <div class="gx-body"><div class="gx-body-in">
           <div class="gx-field"><span class="gx-field-k">Role</span><span class="gx-field-v">State govt administrative, revenue and department posts.</span></div>
           <div class="gx-field"><span class="gx-field-k">Competition</span><span class="gx-field-v"><span class="lvl lvl-vhigh">Very high</span> — lakhs apply for limited posts</span></div>
@@ -1284,7 +1284,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       </div>
 
       <div class="gx-card" style="--track:var(--t-gov)" data-search="ssc cgl graduate level central government">
-        <button class="gx-head"><span class="gx-ic">📑</span><span class="gx-htext"><span class="gx-title">SSC CGL <span class="gx-tag">Govt</span></span><span class="gx-best">Central govt graduate-level posts (tax, audit, ministries).</span></span><span class="gx-chev">▾</span></button>
+        <button class="gx-head"><span class="gx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></span><span class="gx-htext"><span class="gx-title">SSC CGL <span class="gx-tag">Govt</span></span><span class="gx-best">Central govt graduate-level posts (tax, audit, ministries).</span></span><span class="gx-chev">▾</span></button>
         <div class="gx-body"><div class="gx-body-in">
           <div class="gx-field"><span class="gx-field-k">Role</span><span class="gx-field-v">Inspector/assistant/auditor roles in central departments.</span></div>
           <div class="gx-field"><span class="gx-field-k">Competition</span><span class="gx-field-v"><span class="lvl lvl-vhigh">Very high</span> — ~25–30 lakh apply</span></div>
@@ -1294,7 +1294,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       </div>
 
       <div class="gx-card" style="--track:var(--t-gov)" data-search="ssc chsl 12th pass clerk data entry">
-        <button class="gx-head"><span class="gx-ic">🗂️</span><span class="gx-htext"><span class="gx-title">SSC CHSL <span class="gx-tag">Govt</span></span><span class="gx-best">Central govt jobs for 12th-pass students.</span></span><span class="gx-chev">▾</span></button>
+        <button class="gx-head"><span class="gx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg></span><span class="gx-htext"><span class="gx-title">SSC CHSL <span class="gx-tag">Govt</span></span><span class="gx-best">Central govt jobs for 12th-pass students.</span></span><span class="gx-chev">▾</span></button>
         <div class="gx-body"><div class="gx-body-in">
           <div class="gx-field"><span class="gx-field-k">Role</span><span class="gx-field-v">Clerk, data entry, assistant roles in central offices.</span></div>
           <div class="gx-field"><span class="gx-field-k">Competition</span><span class="gx-field-v"><span class="lvl lvl-high">High</span></span></div>
@@ -1304,7 +1304,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       </div>
 
       <div class="gx-card" style="--track:var(--t-gov)" data-search="banking exams ibps po clerk sbi">
-        <button class="gx-head"><span class="gx-ic">🏦</span><span class="gx-htext"><span class="gx-title">Banking Exams <span class="gx-tag">Govt</span></span><span class="gx-best">IBPS/SBI PO &amp; Clerk — popular, stable graduate jobs.</span></span><span class="gx-chev">▾</span></button>
+        <button class="gx-head"><span class="gx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="22" x2="21" y2="22"/><line x1="6" y1="18" x2="6" y2="11"/><line x1="10" y1="18" x2="10" y2="11"/><line x1="14" y1="18" x2="14" y2="11"/><line x1="18" y1="18" x2="18" y2="11"/><polygon points="12 2 20 7 4 7"/></svg></span><span class="gx-htext"><span class="gx-title">Banking Exams <span class="gx-tag">Govt</span></span><span class="gx-best">IBPS/SBI PO &amp; Clerk — popular, stable graduate jobs.</span></span><span class="gx-chev">▾</span></button>
         <div class="gx-body"><div class="gx-body-in">
           <div class="gx-field"><span class="gx-field-k">Role</span><span class="gx-field-v">Probationary officer, clerk — banking operations & service.</span></div>
           <div class="gx-field"><span class="gx-field-k">Competition</span><span class="gx-field-v"><span class="lvl lvl-high">High</span> — lakhs apply</span></div>
@@ -1314,7 +1314,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       </div>
 
       <div class="gx-card" style="--track:var(--t-gov)" data-search="rbi grade b assistant central bank">
-        <button class="gx-head"><span class="gx-ic">🏛️</span><span class="gx-htext"><span class="gx-title">RBI <span class="gx-tag">Govt</span></span><span class="gx-best">India's central bank — prestigious, well-paid roles.</span></span><span class="gx-chev">▾</span></button>
+        <button class="gx-head"><span class="gx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="22" x2="21" y2="22"/><line x1="6" y1="18" x2="6" y2="11"/><line x1="10" y1="18" x2="10" y2="11"/><line x1="14" y1="18" x2="14" y2="11"/><line x1="18" y1="18" x2="18" y2="11"/><polygon points="12 2 20 7 4 7"/></svg></span><span class="gx-htext"><span class="gx-title">RBI <span class="gx-tag">Govt</span></span><span class="gx-best">India's central bank — prestigious, well-paid roles.</span></span><span class="gx-chev">▾</span></button>
         <div class="gx-body"><div class="gx-body-in">
           <div class="gx-field"><span class="gx-field-k">Role</span><span class="gx-field-v">Grade B officer / Assistant — economic & banking policy work.</span></div>
           <div class="gx-field"><span class="gx-field-k">Competition</span><span class="gx-field-v"><span class="lvl lvl-vhigh">Very high</span> — few prestigious posts</span></div>
@@ -1324,7 +1324,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       </div>
 
       <div class="gx-card" style="--track:var(--t-gov)" data-search="railways rrb ntpc group d loco pilot">
-        <button class="gx-head"><span class="gx-ic">🚆</span><span class="gx-htext"><span class="gx-title">Railways (RRB) <span class="gx-tag">Govt</span></span><span class="gx-best">One of India's largest employers — many post levels.</span></span><span class="gx-chev">▾</span></button>
+        <button class="gx-head"><span class="gx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="16" rx="2"/><path d="M4 11h16"/><path d="M12 3v8"/><circle cx="8.5" cy="17.5" r="2.5"/><circle cx="15.5" cy="17.5" r="2.5"/><path d="M5 20l2-3"/><path d="M19 20l-2-3"/></svg></span><span class="gx-htext"><span class="gx-title">Railways (RRB) <span class="gx-tag">Govt</span></span><span class="gx-best">One of India's largest employers — many post levels.</span></span><span class="gx-chev">▾</span></button>
         <div class="gx-body"><div class="gx-body-in">
           <div class="gx-field"><span class="gx-field-k">Role</span><span class="gx-field-v">Technical, clerical, station, loco pilot, group posts.</span></div>
           <div class="gx-field"><span class="gx-field-k">Competition</span><span class="gx-field-v"><span class="lvl lvl-vhigh">Very high</span> — crores apply across exams</span></div>
@@ -1334,7 +1334,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       </div>
 
       <div class="gx-card" style="--track:var(--t-gov)" data-search="defence army navy air force agniveer cds">
-        <button class="gx-head"><span class="gx-ic">🛡️</span><span class="gx-htext"><span class="gx-title">Defence <span class="gx-tag">Govt</span></span><span class="gx-best">Soldier, technical and officer entries across the forces.</span></span><span class="gx-chev">▾</span></button>
+        <button class="gx-head"><span class="gx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span><span class="gx-htext"><span class="gx-title">Defence <span class="gx-tag">Govt</span></span><span class="gx-best">Soldier, technical and officer entries across the forces.</span></span><span class="gx-chev">▾</span></button>
         <div class="gx-body"><div class="gx-body-in">
           <div class="gx-field"><span class="gx-field-k">Role</span><span class="gx-field-v">Service in Army/Navy/Air Force at various ranks.</span></div>
           <div class="gx-field"><span class="gx-field-k">Competition</span><span class="gx-field-v"><span class="lvl lvl-high">High</span> + physical fitness</span></div>
@@ -1344,7 +1344,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       </div>
 
       <div class="gx-card" style="--track:var(--t-gov)" data-search="police constable si sub inspector law enforcement">
-        <button class="gx-head"><span class="gx-ic">👮</span><span class="gx-htext"><span class="gx-title">Police <span class="gx-tag">Govt</span></span><span class="gx-best">Constable & Sub-Inspector roles — service close to home.</span></span><span class="gx-chev">▾</span></button>
+        <button class="gx-head"><span class="gx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span><span class="gx-htext"><span class="gx-title">Police <span class="gx-tag">Govt</span></span><span class="gx-best">Constable & Sub-Inspector roles — service close to home.</span></span><span class="gx-chev">▾</span></button>
         <div class="gx-body"><div class="gx-body-in">
           <div class="gx-field"><span class="gx-field-k">Role</span><span class="gx-field-v">Law enforcement, public safety, investigation.</span></div>
           <div class="gx-field"><span class="gx-field-k">Competition</span><span class="gx-field-v"><span class="lvl lvl-high">High</span> + physical tests</span></div>
@@ -1355,7 +1355,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
 
     </div>
     <div class="sg-callout reality">
-      <span class="ic">⚠️</span>
+      <span class="ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span>
       <div>
         <div class="sg-callout-t" data-te="వాస్తవ తనిఖీ" data-en="Reality check">Reality check</div>
         <p data-te="ప్రభుత్వ ఉద్యోగాలు స్థిరత్వం మరియు గౌరవం అందిస్తాయి, కానీ అవి తీవ్రమైన సిద్ధత మరియు సహనం అవసరం. వాస్తవిక సమయ పరిమితి (ఉదా. 2–3 ప్రయత్నాలు) నిర్ణయించుకుని సమాంతరంగా ఒక నైపుణ్యం లేదా డిగ్రీ నిర్మించండి." data-en="Government jobs can provide stability and respect, but they require serious preparation and patience. Set a realistic time limit (e.g. 2–3 attempts) and build a skill or degree in parallel so you are never left with nothing.">Government jobs can provide stability and respect, but they require serious preparation and patience. Set a realistic time limit (e.g. 2–3 attempts) and build a skill or degree in parallel so you are never left with nothing.</p>
@@ -1400,7 +1400,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       </table>
     </div>
     <div class="sg-callout">
-      <span class="ic">🧠</span>
+      <span class="ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.46 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 4.44-2.14Z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.46 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-4.44-2.14Z"/></svg></span>
       <div>
         <div class="sg-callout-t" data-te="ఇది ఎలా చదవాలి" data-en="How to read this">How to read this</div>
         <p data-te="తక్కువ రిస్క్ మార్గాలు (ITI, నర్సింగ్, పాలిటెక్నిక్, బ్యాంకింగ్) భద్రత మరియు తొందర ఆదాయం ఇస్తాయి. అధిక రివార్డ్ మార్గాలు (MBBS, CA, సివిల్ సర్వీసెస్) ఎక్కువ సంవత్సరాలు మరియు సహనం అవసరం. 'అత్యుత్తమ' కెరీర్ అనేది <b>మీ</b> సామర్థ్యం, బడ్జెట్ మరియు లక్ష్యాలకు సరిపడేది — అతిపెద్ద పేరు ఉన్నది కాదు." data-en="Low-risk paths (ITI, nursing, polytechnic, banking) give security and early income. High-reward paths (MBBS, CA, civil services) need more years and patience. The &quot;best&quot; career is the one that fits <b>your</b> ability, budget and goals — not the one with the biggest name.">Low-risk paths (ITI, nursing, polytechnic, banking) give security and early income. High-reward paths (MBBS, CA, civil services) need more years and patience. The "best" career is the one that fits <b>your</b> ability, budget and goals — not the one with the biggest name.</p>
@@ -1450,7 +1450,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
     <div class="gx-grid">
 
       <div class="gx-card" style="--track:var(--t-gen)" data-search="nsp national scholarship portal post matric minority muslim scholarship central government">
-        <button class="gx-head"><span class="gx-ic">🤝</span><span class="gx-htext"><span class="gx-title">NSP Post-Matric Scholarship <span class="gx-tag">Central Govt</span></span><span class="gx-best">For minority students from Class 11 to PG — tuition fees + maintenance allowance via the National Scholarship Portal.</span></span><span class="gx-chev">▾</span></button>
+        <button class="gx-head"><span class="gx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 11H3a2 2 0 0 0 0 4h14"/><path d="M10.5 8l4.5-5 4.5 5"/><path d="M7 7l-4 4 4 4"/></svg></span><span class="gx-htext"><span class="gx-title">NSP Post-Matric Scholarship <span class="gx-tag">Central Govt</span></span><span class="gx-best">For minority students from Class 11 to PG — tuition fees + maintenance allowance via the National Scholarship Portal.</span></span><span class="gx-chev">▾</span></button>
         <div class="gx-body"><div class="gx-body-in">
           <div class="gx-field"><span class="gx-field-k">Eligibility</span><span class="gx-field-v">Muslim, Christian, Sikh, Buddhist, Parsi or Jain; Class 11 onwards (UG/PG/professional); family income ≤ ₹2 lakh/year; 50%+ marks in previous class.</span></div>
           <div class="gx-field"><span class="gx-field-k">Benefit</span><span class="gx-field-v">Maintenance allowance ₹5,000–12,000/year + compulsory non-refundable fees (tuition, admission, development etc.) paid directly.</span></div>
@@ -1462,7 +1462,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       </div>
 
       <div class="gx-card" style="--track:var(--t-gen)" data-search="begum hazrat mahal minority girls scholarship class 9 10 11 12 maef central government">
-        <button class="gx-head"><span class="gx-ic">🎓</span><span class="gx-htext"><span class="gx-title">Begum Hazrat Mahal Scholarship <span class="gx-tag">Central Govt</span></span><span class="gx-best">For minority girls in Class 9–12 — ₹5,000–6,000 per year to support girls' continued education.</span></span><span class="gx-chev">▾</span></button>
+        <button class="gx-head"><span class="gx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></span><span class="gx-htext"><span class="gx-title">Begum Hazrat Mahal Scholarship <span class="gx-tag">Central Govt</span></span><span class="gx-best">For minority girls in Class 9–12 — ₹5,000–6,000 per year to support girls' continued education.</span></span><span class="gx-chev">▾</span></button>
         <div class="gx-body"><div class="gx-body-in">
           <div class="gx-field"><span class="gx-field-k">Eligibility</span><span class="gx-field-v">Girl student; Class 9–12; Muslim, Christian, Sikh, Buddhist, Parsi or Jain; family income ≤ ₹2 lakh/year; 50%+ marks in previous exam.</span></div>
           <div class="gx-field"><span class="gx-field-k">Benefit</span><span class="gx-field-v">₹5,000/year (Class 9–10) or ₹6,000/year (Class 11–12) — paid directly to the student's Aadhaar-linked bank account.</span></div>
@@ -1473,7 +1473,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       </div>
 
       <div class="gx-card" style="--track:var(--t-gen)" data-search="merit cum means scholarship minority professional mbbs engineering mba central government nsp">
-        <button class="gx-head"><span class="gx-ic">🏅</span><span class="gx-htext"><span class="gx-title">Merit-cum-Means Scholarship <span class="gx-tag">Central Govt</span></span><span class="gx-best">For minority students in professional and technical courses — among the highest scholarship amounts available to minority students.</span></span><span class="gx-chev">▾</span></button>
+        <button class="gx-head"><span class="gx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg></span><span class="gx-htext"><span class="gx-title">Merit-cum-Means Scholarship <span class="gx-tag">Central Govt</span></span><span class="gx-best">For minority students in professional and technical courses — among the highest scholarship amounts available to minority students.</span></span><span class="gx-chev">▾</span></button>
         <div class="gx-body"><div class="gx-body-in">
           <div class="gx-field"><span class="gx-field-k">Eligibility</span><span class="gx-field-v">1st year of professional/technical course (Engineering, MBBS, BDS, MBA, Law, MCA etc.); minority community; family income ≤ ₹2.5 lakh/year; 50%+ marks in qualifying exam.</span></div>
           <div class="gx-field"><span class="gx-field-k">Benefit</span><span class="gx-field-v">Hostellers: ₹30,000/year maintenance + ₹20,000/year course fees. Day scholars: ₹10,000/year maintenance + ₹20,000/year fees. Renewed annually on merit.</span></div>
@@ -1484,7 +1484,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       </div>
 
       <div class="gx-card" style="--track:var(--t-gen)" data-search="pm yasasvi scholarship obc ebc dnt class 9 11 central government nsp national">
-        <button class="gx-head"><span class="gx-ic">🇮🇳</span><span class="gx-htext"><span class="gx-title">PM YASASVI Scholarship <span class="gx-tag">Central Govt</span></span><span class="gx-best">For OBC, EBC and DNT students in Class 9 &amp; 11 — up to ₹1.25 lakh/year directly from the Central Government.</span></span><span class="gx-chev">▾</span></button>
+        <button class="gx-head"><span class="gx-ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/><line x1="2" y1="14" x2="22" y2="14"/></svg></span><span class="gx-htext"><span class="gx-title">PM YASASVI Scholarship <span class="gx-tag">Central Govt</span></span><span class="gx-best">For OBC, EBC and DNT students in Class 9 &amp; 11 — up to ₹1.25 lakh/year directly from the Central Government.</span></span><span class="gx-chev">▾</span></button>
         <div class="gx-body"><div class="gx-body-in">
           <div class="gx-field"><span class="gx-field-k">Eligibility</span><span class="gx-field-v">Class 9 (pre-matric) or Class 11 (post-matric); OBC/EBC/DNT community; family income ≤ ₹2.5 lakh/year; Indian citizen. Many AP Muslims qualify under OBC/EBC category.</span></div>
           <div class="gx-field"><span class="gx-field-k">Benefit</span><span class="gx-field-v">Pre-matric (Class 9–10): ₹75,000/year. Post-matric (Class 11–12): ₹1,25,000/year. Paid directly to student's bank account.</span></div>
@@ -1496,7 +1496,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
 
     </div>
     <div class="sg-callout">
-      <span class="ic">💰</span>
+      <span class="ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><line x1="12" y1="6" x2="12" y2="8"/><line x1="12" y1="16" x2="12" y2="18"/></svg></span>
       <div>
         <div class="sg-callout-t" data-te="ముఖ్యాంశం" data-en="The point">The point</div>
         <p data-te="స్కాలర్‌షిప్‌లు విద్యకు ఆర్థిక అడ్డంకిని నాటకీయంగా తగ్గించగలవు. సరైన మద్దతుతో తక్కువ ఆదాయ కుటుంబం నుండి ఒక విద్యార్థి బలమైన డిగ్రీ పూర్తి చేయగలడు — కాబట్టి ఒక కోర్సు 'చాలా ఖరీదైనది' అని నిర్ణయించే ముందు ప్రతి ఎంపిక అన్వేషించండి." data-en="Scholarships can dramatically reduce the financial barrier to education. A student from a low-income family can complete a strong degree with the right support — so explore every option before deciding a course is &quot;too expensive.&quot;">Scholarships can dramatically reduce the financial barrier to education. A student from a low-income family can complete a strong degree with the right support — so explore every option before deciding a course is "too expensive."</p>
@@ -1514,10 +1514,10 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       <p data-te="మార్కులు మరియు ఉద్యోగాలకు అతీతంగా, ఇస్లాం జ్ఞాన అన్వేషణకు, పని శ్రేష్ఠతతో చేయడానికి మరియు కుటుంబం మరియు సమాజానికి సేవ చేయడానికి గొప్ప విలువ ఇస్తుంది." data-en="Beyond marks and jobs, Islam places great value on seeking knowledge, doing work with excellence, and serving family and community.">Beyond marks and jobs, Islam places great value on seeking knowledge, doing work with excellence, and serving family and community.</p>
     </div>
     <div class="sg-isl-grid">
-      <div class="sg-isl-card"><span class="ic">📖</span><h4 data-te="జ్ఞానం యొక్క విలువ" data-en="The Value of Knowledge">The Value of Knowledge</h4><p data-te="మొట్టమొదట వెల్లడైన పదం 'ఇఖ్రా' — చదవు. లౌకిక మరియు మతపరమైన లాభదాయక జ్ఞానాన్ని అన్వేషించడం ప్రోత్సహించబడి పురస్కరించబడుతుంది." data-en="The very first revealed word was &quot;Iqra&quot; — Read. Seeking beneficial knowledge — worldly and religious — is encouraged and rewarded.">The very first revealed word was "Iqra" — Read. Seeking beneficial knowledge — worldly and religious — is encouraged and rewarded.</p></div>
-      <div class="sg-isl-card"><span class="ic">🏡</span><h4 data-te="కుటుంబ బాధ్యత" data-en="Responsibility to Family">Responsibility to Family</h4><p data-te="తల్లిదండ్రులు మరియు కుటుంబాన్ని పోషించడానికి హలాల్ జీవనోపాధి సంపాదించడం గొప్పైన చర్య. స్థిరమైన, నిజాయితీగా సంపాదించే ఆదాయం ఆరాధన మరియు శ్రద్ధ యొక్క రూపం." data-en="Earning a halal livelihood to support your parents and family is a noble act. A steady, honest income is a form of worship and care.">Earning a halal livelihood to support your parents and family is a noble act. A steady, honest income is a form of worship and care.</p></div>
-      <div class="sg-isl-card"><span class="ic">✨</span><h4 data-te="పనిలో శ్రేష్ఠత (ఇహ్సాన్)" data-en="Excellence (Ihsan) in Work">Excellence (Ihsan) in Work</h4><p data-te="'అల్లాహ్ ఒక పని చేసినప్పుడు శ్రేష్ఠంగా చేయడం ఇష్టపడతాడు.' మీరు ఏమి ఎంచుకున్నా — ఇంజినీర్, నర్సు, వ్యాపారి, ఉపాధ్యాయుడు — నిజాయితీగా మరియు చక్కగా చేయండి." data-en="&quot;Allah loves that when one does a job, he does it with excellence.&quot; Whatever you choose — engineer, nurse, trader, teacher — do it sincerely and well.">"Allah loves that when one does a job, he does it with excellence." Whatever you choose — engineer, nurse, trader, teacher — do it sincerely and well.</p></div>
-      <div class="sg-isl-card"><span class="ic">🔄</span><h4 data-te="జీవితకాల అభ్యాసం" data-en="Lifelong Learning">Lifelong Learning</h4><p data-te="అభ్యాసం ఒక డిగ్రీతో ఆగిపోదు. జీవితాంతం మీ నైపుణ్యాలు మరియు వ్యక్తిత్వాన్ని మెరుగుపరుచుకోండి — మీ ప్రయోజనం కోసం మరియు మీ సమాజం కోసం." data-en="Learning never stops at a degree. Keep improving your skills and character throughout life — for your benefit and your community's.">Learning never stops at a degree. Keep improving your skills and character throughout life — for your benefit and your community's.</p></div>
+      <div class="sg-isl-card"><span class="ic"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span><h4 data-te="జ్ఞానం యొక్క విలువ" data-en="The Value of Knowledge">The Value of Knowledge</h4><p data-te="మొట్టమొదట వెల్లడైన పదం 'ఇఖ్రా' — చదవు. లౌకిక మరియు మతపరమైన లాభదాయక జ్ఞానాన్ని అన్వేషించడం ప్రోత్సహించబడి పురస్కరించబడుతుంది." data-en="The very first revealed word was &quot;Iqra&quot; — Read. Seeking beneficial knowledge — worldly and religious — is encouraged and rewarded.">The very first revealed word was "Iqra" — Read. Seeking beneficial knowledge — worldly and religious — is encouraged and rewarded.</p></div>
+      <div class="sg-isl-card"><span class="ic"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span><h4 data-te="కుటుంబ బాధ్యత" data-en="Responsibility to Family">Responsibility to Family</h4><p data-te="తల్లిదండ్రులు మరియు కుటుంబాన్ని పోషించడానికి హలాల్ జీవనోపాధి సంపాదించడం గొప్పైన చర్య. స్థిరమైన, నిజాయితీగా సంపాదించే ఆదాయం ఆరాధన మరియు శ్రద్ధ యొక్క రూపం." data-en="Earning a halal livelihood to support your parents and family is a noble act. A steady, honest income is a form of worship and care.">Earning a halal livelihood to support your parents and family is a noble act. A steady, honest income is a form of worship and care.</p></div>
+      <div class="sg-isl-card"><span class="ic"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span><h4 data-te="పనిలో శ్రేష్ఠత (ఇహ్సాన్)" data-en="Excellence (Ihsan) in Work">Excellence (Ihsan) in Work</h4><p data-te="'అల్లాహ్ ఒక పని చేసినప్పుడు శ్రేష్ఠంగా చేయడం ఇష్టపడతాడు.' మీరు ఏమి ఎంచుకున్నా — ఇంజినీర్, నర్సు, వ్యాపారి, ఉపాధ్యాయుడు — నిజాయితీగా మరియు చక్కగా చేయండి." data-en="&quot;Allah loves that when one does a job, he does it with excellence.&quot; Whatever you choose — engineer, nurse, trader, teacher — do it sincerely and well.">"Allah loves that when one does a job, he does it with excellence." Whatever you choose — engineer, nurse, trader, teacher — do it sincerely and well.</p></div>
+      <div class="sg-isl-card"><span class="ic"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg></span><h4 data-te="జీవితకాల అభ్యాసం" data-en="Lifelong Learning">Lifelong Learning</h4><p data-te="అభ్యాసం ఒక డిగ్రీతో ఆగిపోదు. జీవితాంతం మీ నైపుణ్యాలు మరియు వ్యక్తిత్వాన్ని మెరుగుపరుచుకోండి — మీ ప్రయోజనం కోసం మరియు మీ సమాజం కోసం." data-en="Learning never stops at a degree. Keep improving your skills and character throughout life — for your benefit and your community's.">Learning never stops at a degree. Keep improving your skills and character throughout life — for your benefit and your community's.</p></div>
     </div>
     <p class="sg-quote" data-te="'జ్ఞానాన్ని అన్వేషించి నిజాయితీగా దానిపై పని చేయండి, శ్రేష్ఠతతో పని చేయండి, మీ కుటుంబం మరియు సమాజానికి సేవ చేయండి — మరియు కృషి ఎప్పటికీ వ్యర్థం కాదని నమ్మండి.'" data-en="&quot;Seek knowledge and act upon it with sincerity, work with excellence, and serve your family and community — and trust that effort is never wasted.&quot;">"Seek knowledge and act upon it with sincerity, work with excellence, and serve your family and community — and trust that effort is never wasted."</p>
   </div>
@@ -1532,13 +1532,13 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       <p data-te="మంగళగిరి నుండి నిజమైన రోల్ మోడళ్ళు తదుపరి తరాన్ని ప్రేరేపిస్తారు. ఈ విభాగం చాలా రంగాలలో బలమైన, నిజాయితీగా కెరీర్‌లు నిర్మించిన స్థానిక విద్యార్థులు మరియు నిపుణులను ప్రదర్శిస్తుంది." data-en="Real role models from Mangalagiri inspire the next generation. This section will showcase local students and professionals who built strong, honest careers across many fields.">Real role models from Mangalagiri inspire the next generation. This section will showcase local students and professionals who built strong, honest careers across many fields.</p>
     </div>
     <div class="sg-stories">
-      <div class="sg-story"><span class="ic">🩺</span><h4 data-te="డాక్టర్లు" data-en="Doctors">Doctors</h4><p data-te="సమాజానికి సేవ చేస్తున్న హెల్త్‌కేర్ నిపుణులు." data-en="Healthcare professionals serving the community.">Healthcare professionals serving the community.</p><span class="soon" data-te="త్వరలో" data-en="Coming Soon">Coming Soon</span></div>
-      <div class="sg-story"><span class="ic">💻</span><h4 data-te="ఇంజినీర్లు" data-en="Engineers">Engineers</h4><p data-te="సాంకేతికత మరియు మౌలిక సదుపాయాల నిర్మాతలు." data-en="Builders of technology and infrastructure.">Builders of technology and infrastructure.</p><span class="soon" data-te="త్వరలో" data-en="Coming Soon">Coming Soon</span></div>
-      <div class="sg-story"><span class="ic">👩‍🏫</span><h4 data-te="ఉపాధ్యాయులు" data-en="Teachers">Teachers</h4><p data-te="యువ మనస్సులను రూపొందించే విద్యావేత్తలు." data-en="Educators shaping young minds.">Educators shaping young minds.</p><span class="soon" data-te="త్వరలో" data-en="Coming Soon">Coming Soon</span></div>
-      <div class="sg-story"><span class="ic">🚀</span><h4 data-te="వ్యాపారవేత్తలు" data-en="Entrepreneurs">Entrepreneurs</h4><p data-te="వ్యాపార నిర్మాతలు మరియు ఉద్యోగ సృష్టికర్తలు." data-en="Business builders and job creators.">Business builders and job creators.</p><span class="soon" data-te="త్వరలో" data-en="Coming Soon">Coming Soon</span></div>
-      <div class="sg-story"><span class="ic">🏛️</span><h4 data-te="సివిల్ సర్వెంట్లు" data-en="Civil Servants">Civil Servants</h4><p data-te="ప్రభుత్వం & పరిపాలనలో సేవ చేసేవారు." data-en="Those serving in government &amp; administration.">Those serving in government & administration.</p><span class="soon" data-te="త్వరలో" data-en="Coming Soon">Coming Soon</span></div>
-      <div class="sg-story"><span class="ic">🔬</span><h4 data-te="పరిశోధకులు" data-en="Researchers">Researchers</h4><p data-te="సైన్స్ మరియు జ్ఞానాన్ని ముందుకు తీసుకెళ్ళేవారు." data-en="Advancing science and knowledge.">Advancing science and knowledge.</p><span class="soon" data-te="త్వరలో" data-en="Coming Soon">Coming Soon</span></div>
-      <div class="sg-story"><span class="ic">🔧</span><h4 data-te="నిపుణ వృత్తిపరులు" data-en="Skilled Professionals">Skilled Professionals</h4><p data-te="సాంకేతిక నిపుణులు మరియు ట్రేడ్ నిపుణులు." data-en="Technicians and trade experts.">Technicians and trade experts.</p><span class="soon" data-te="త్వరలో" data-en="Coming Soon">Coming Soon</span></div>
+      <div class="sg-story"><span class="ic"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></span><h4 data-te="డాక్టర్లు" data-en="Doctors">Doctors</h4><p data-te="సమాజానికి సేవ చేస్తున్న హెల్త్‌కేర్ నిపుణులు." data-en="Healthcare professionals serving the community.">Healthcare professionals serving the community.</p><span class="soon" data-te="త్వరలో" data-en="Coming Soon">Coming Soon</span></div>
+      <div class="sg-story"><span class="ic"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></span><h4 data-te="ఇంజినీర్లు" data-en="Engineers">Engineers</h4><p data-te="సాంకేతికత మరియు మౌలిక సదుపాయాల నిర్మాతలు." data-en="Builders of technology and infrastructure.">Builders of technology and infrastructure.</p><span class="soon" data-te="త్వరలో" data-en="Coming Soon">Coming Soon</span></div>
+      <div class="sg-story"><span class="ic"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span><h4 data-te="ఉపాధ్యాయులు" data-en="Teachers">Teachers</h4><p data-te="యువ మనస్సులను రూపొందించే విద్యావేత్తలు." data-en="Educators shaping young minds.">Educators shaping young minds.</p><span class="soon" data-te="త్వరలో" data-en="Coming Soon">Coming Soon</span></div>
+      <div class="sg-story"><span class="ic"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span><h4 data-te="వ్యాపారవేత్తలు" data-en="Entrepreneurs">Entrepreneurs</h4><p data-te="వ్యాపార నిర్మాతలు మరియు ఉద్యోగ సృష్టికర్తలు." data-en="Business builders and job creators.">Business builders and job creators.</p><span class="soon" data-te="త్వరలో" data-en="Coming Soon">Coming Soon</span></div>
+      <div class="sg-story"><span class="ic"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="22" x2="21" y2="22"/><line x1="6" y1="18" x2="6" y2="11"/><line x1="10" y1="18" x2="10" y2="11"/><line x1="14" y1="18" x2="14" y2="11"/><line x1="18" y1="18" x2="18" y2="11"/><polygon points="12 2 20 7 4 7"/></svg></span><h4 data-te="సివిల్ సర్వెంట్లు" data-en="Civil Servants">Civil Servants</h4><p data-te="ప్రభుత్వం & పరిపాలనలో సేవ చేసేవారు." data-en="Those serving in government &amp; administration.">Those serving in government & administration.</p><span class="soon" data-te="త్వరలో" data-en="Coming Soon">Coming Soon</span></div>
+      <div class="sg-story"><span class="ic"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6m-5 0v7l-4.5 7.5c-.6 1 .15 2.3 1.5 2.5H17c1.35-.2 2.1-1.5 1.5-2.5L14 10V3"/></svg></span><h4 data-te="పరిశోధకులు" data-en="Researchers">Researchers</h4><p data-te="సైన్స్ మరియు జ్ఞానాన్ని ముందుకు తీసుకెళ్ళేవారు." data-en="Advancing science and knowledge.">Advancing science and knowledge.</p><span class="soon" data-te="త్వరలో" data-en="Coming Soon">Coming Soon</span></div>
+      <div class="sg-story"><span class="ic"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span><h4 data-te="నిపుణ వృత్తిపరులు" data-en="Skilled Professionals">Skilled Professionals</h4><p data-te="సాంకేతిక నిపుణులు మరియు ట్రేడ్ నిపుణులు." data-en="Technicians and trade experts.">Technicians and trade experts.</p><span class="soon" data-te="త్వరలో" data-en="Coming Soon">Coming Soon</span></div>
     </div>
     <p class="sg-cta-note" data-te="మీరు మంగళగిరి నుండి విద్యార్థులకు మార్గదర్శనం చేయగల కథ ఉందా? <a href='index.html#contact'>ఇస్లామిక్ ఫ్రంట్‌ను సంప్రదించండి</a> ఫీచర్ కావడానికి." data-en="Are you from Mangalagiri with a story that can guide students? <a href='index.html#contact'>Reach out to Islamic Front</a> to be featured.">Are you from Mangalagiri with a story that can guide students? <a href="index.html#contact">Reach out to Islamic Front</a> to be featured.</p>
   </div>
@@ -2103,7 +2103,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
   /* ── CAREER GOAL SYSTEM ── */
   var CAREERS = [
     {
-      id:'doctor', icon:'🩺', color:'#0d9488',
+      id:'doctor', icon:'<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>', color:'#0d9488',
       e:{name:'Doctor',
          tagline:'Licensed medical professional — one of the most respected careers in India.',
          streams:['BiPC'],
@@ -2128,7 +2128,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
          note:'MPC విద్యార్థులు MBBS/BDS కి అర్హులు కారు. NEET కి BiPC తప్పనిసరి.'}
     },
     {
-      id:'engineer', icon:'💻', color:'#2563eb',
+      id:'engineer', icon:'<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8 21 12 17 16 21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>', color:'#2563eb',
       e:{name:'Software Engineer',
          tagline:'Build apps, systems and products — highest-demand career globally.',
          streams:['MPC'],
@@ -2153,7 +2153,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
          note:''}
     },
     {
-      id:'dataengineer', icon:'📈', color:'#7c3aed',
+      id:'dataengineer', icon:'<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>', color:'#7c3aed',
       e:{name:'Data Engineer / AI Engineer',
          tagline:'Build AI systems, analyse data — the decade\'s highest-paying tech career.',
          streams:['MPC'],
@@ -2178,7 +2178,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
          note:''}
     },
     {
-      id:'ias', icon:'🏛️', color:'#b45309',
+      id:'ias', icon:'<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="2" y1="20" x2="22" y2="20"/><line x1="2" y1="4" x2="22" y2="4"/><line x1="6" y1="4" x2="6" y2="20"/><line x1="10" y1="4" x2="10" y2="20"/><line x1="14" y1="4" x2="14" y2="20"/><line x1="18" y1="4" x2="18" y2="20"/></svg>', color:'#b45309',
       e:{name:'IAS Officer',
          tagline:'India\'s highest administrative service — lead districts, shape policy.',
          streams:['Any Stream'],
@@ -2203,7 +2203,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
          note:'UPSC కి స్ట్రీమ్ పరిమితి లేదు. ఆర్ట్స్ విద్యార్థులకు మెయిన్స్ ఐచ్ఛిక సబ్జెక్టులు ఎక్కువగా ఉంటాయి.'}
     },
     {
-      id:'police', icon:'👮', color:'#b91c1c',
+      id:'police', icon:'<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>', color:'#b91c1c',
       e:{name:'Police Officer',
          tagline:'Maintain law and order — respected government service with job security.',
          streams:['Any Stream'],
@@ -2228,7 +2228,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
          note:'శారీరక పరీక్షలు (ఎత్తు, ఛాతీ, పరుగు) తప్పనిసరి. ఇంటర్మీడియట్ నుండే శారీరక శిక్షణ ప్రారంభించండి.'}
     },
     {
-      id:'ca', icon:'📊', color:'#d97706',
+      id:'ca', icon:'<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>', color:'#d97706',
       e:{name:'Chartered Accountant (CA)',
          tagline:'India\'s most prestigious finance qualification — high earning, high demand.',
          streams:['Commerce (ideal)','Any Stream'],
@@ -2253,7 +2253,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
          note:'~5–8% మాత్రమే మొదటి ప్రయత్నంలో CA ఫైనల్ పాస్ అవుతారు. 12వ తరగతి తర్వాత వెంటనే CA ఫౌండేషన్ ప్రారంభించండి.'}
     },
     {
-      id:'teacher', icon:'📚', color:'#0e7490',
+      id:'teacher', icon:'<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>', color:'#0e7490',
       e:{name:'Teacher / Lecturer',
          tagline:'Shape the next generation — stable, respected, and deeply meaningful.',
          streams:['Any Stream'],
@@ -2278,7 +2278,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
          note:''}
     },
     {
-      id:'lawyer', icon:'⚖️', color:'#4f46e5',
+      id:'lawyer', icon:'<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="3" x2="12" y2="21"/><path d="M3 9l9-6 9 6"/><path d="M5 13l-2 4 6 2-4-6z"/><path d="M19 13l2 4-6 2 4-6z"/></svg>', color:'#4f46e5',
       e:{name:'Lawyer / Advocate',
          tagline:'Fight for justice, advise clients, or reach the judiciary.',
          streams:['Any Stream'],
@@ -2303,7 +2303,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
          note:''}
     },
     {
-      id:'nurse', icon:'🏥', color:'#0f766e',
+      id:'nurse', icon:'<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>', color:'#0f766e',
       e:{name:'Nurse / Nursing Officer',
          tagline:'Healthcare frontline — strong govt job demand in India and abroad.',
          streams:['BiPC'],
@@ -2328,7 +2328,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
          note:'MPC విద్యార్థులు B.Sc నర్సింగ్ లేదా GNM కి అర్హులు కారు. BiPC తప్పనిసరి.'}
     },
     {
-      id:'pharmacist', icon:'💊', color:'#15803d',
+      id:'pharmacist', icon:'<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.5 20H4a2 2 0 0 1-2-2V5c0-1.1.9-2 2-2h3.93a2 2 0 0 1 1.66.9l.82 1.2a2 2 0 0 0 1.66.9H20a2 2 0 0 1 2 2v3"/><circle cx="18" cy="18" r="3"/><path d="M20.5 15.5l-5 5"/></svg>', color:'#15803d',
       e:{name:'Pharmacist',
          tagline:'Medicine dispensing, drug safety, healthcare — stable allied health career.',
          streams:['BiPC','MPC'],
@@ -2353,7 +2353,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
          note:''}
     },
     {
-      id:'pilot', icon:'✈️', color:'#1d4ed8',
+      id:'pilot', icon:'<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17.8 19.2L16 11l3.5-3.5C21 6 21 4 19.5 2.5S18 2 16.5 3.5L13 7 4.8 5.2l-2 2L9 11l-4 4-3-1-1 1 3.5 2.5L6.5 21l1-1-1-3 4-4z"/></svg>', color:'#1d4ed8',
       e:{name:'Pilot',
          tagline:'Fly commercially or serve in the Indian Air Force.',
          streams:['MPC (Physics + Maths mandatory)'],
@@ -2378,7 +2378,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
          note:'కమర్షియల్ పైలట్ శిక్షణ ₹40–80 లక్షలు. NDA ద్వారా ఎయిర్ ఫోర్స్ పూర్తిగా ఆర్థికంగా. ఫిజిక్స్ + మేథ్స్ తో MPC తప్పనిసరి.'}
     },
     {
-      id:'govtjob', icon:'🏢', color:'#64748b',
+      id:'govtjob', icon:'<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>', color:'#64748b',
       e:{name:'Government Employee',
          tagline:'Stable job with pension, allowances and security — SSC / Bank / Railway.',
          streams:['Any Stream'],
@@ -2403,7 +2403,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
          note:''}
     },
     {
-      id:'businessman', icon:'🤝', color:'#92400e',
+      id:'businessman', icon:'<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 11H3a2 2 0 0 0 0 4h14"/><path d="M10.5 8l4.5-5 4.5 5"/><path d="M7 7l-4 4 4 4"/></svg>', color:'#92400e',
       e:{name:'Entrepreneur / Businessman',
          tagline:'Build your own business — skills and execution matter more than any degree.',
          streams:['Any Stream'],
@@ -2543,7 +2543,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
         if(filter && name.toLowerCase().indexOf(filter.toLowerCase()) === -1) return;
         var btn = document.createElement('button');
         btn.className = 'cg-goal-btn';
-        btn.textContent = c.icon + ' ' + name;
+        btn.innerHTML = c.icon + ' ' + name;
         btn.setAttribute('data-id', c.id);
         btn.addEventListener('click', function(){
           document.querySelectorAll('.cg-goal-btn').forEach(function(b){ b.classList.remove('active'); });

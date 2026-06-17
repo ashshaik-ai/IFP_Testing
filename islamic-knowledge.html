@@ -110,7 +110,7 @@
   .salah-times { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
   .salah-loc { background: linear-gradient(135deg, var(--green-deep), var(--green-mid)); color: var(--gold-light); padding: 16px 22px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 6px; }
   .salah-loc .sl-place { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; }
-  .salah-loc .sl-place::before { content: '📍 '; }
+  .salah-loc .sl-place::before { content: ''; display: inline-block; width: 14px; height: 14px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23c8922a' stroke='none'%3E%3Cpath d='M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z'/%3E%3C/svg%3E") center/contain no-repeat; vertical-align: middle; margin-right: 3px; }
   .salah-loc .sl-date { font-size: 12px; color: rgba(245,230,192,0.7); text-align: right; line-height: 1.5; }
   .salah-row { display: flex; justify-content: space-between; align-items: center; padding: 15px 22px; border-bottom: 1px solid var(--border); transition: background 0.2s; }
   .salah-row:last-child { border-bottom: none; }
@@ -127,7 +127,7 @@
 
   /* COUNTDOWN */
   .countdown-card { background: var(--green-deep); border-radius: 12px; padding: 32px 30px; position: relative; overflow: hidden; }
-  .countdown-card::before { content: '⏳'; position: absolute; right: 18px; bottom: 6px; font-size: 110px; opacity: 0.06; }
+  .countdown-card::before { content: ''; position: absolute; right: 18px; bottom: 6px; width: 110px; height: 110px; opacity: 0.06; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpolyline points='12 6 12 12 16 14'/%3E%3C/svg%3E") center/contain no-repeat; }
   .cd-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: rgba(245,230,192,0.55); margin-bottom: 10px; }
   .cd-next { font-family: 'Playfair Display', serif; font-size: 30px; font-weight: 700; color: var(--gold-light); line-height: 1; margin-bottom: 6px; }
   .cd-at { font-size: 13px; color: rgba(245,230,192,0.7); margin-bottom: 24px; }
@@ -334,7 +334,7 @@
 
   /* ISLAM & MODERN LIFE */
   .modern-life { background: var(--cream); position: relative; overflow: hidden; }
-  .modern-life::before { content: '🧠'; position: absolute; right: -2vw; top: -2vw; font-size: clamp(140px, 18vw, 240px); opacity: 0.04; line-height: 1; pointer-events: none; filter: grayscale(1); }
+  .modern-life::before { content: ''; display: block; width: 160px; height: 160px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='rgba(200%2C146%2C42%2C0.08)' stroke-width='1.5'%3E%3Cpath d='M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.46 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 4.44-2.14Z'/%3E%3Cpath d='M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.46 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-4.44-2.14Z'/%3E%3C/svg%3E") center/contain no-repeat; position: absolute; right: -2vw; top: -2vw; opacity: 1; pointer-events: none; }
   .ml-acc { margin-top: 40px; }
   .tcard-block { position: relative; border-radius: 12px; padding: 16px 18px 15px; margin-top: 14px; border: 1px solid var(--border); border-left-width: 4px; }
   .tcard-block:first-of-type { margin-top: 4px; }
@@ -517,7 +517,7 @@
     </div>
   </a>
   <div class="nav-right">
-    <a href="student-guidance.html" class="nav-home" style="border-color:rgba(125,224,164,0.5);color:#bdeccd"><span data-te="🎓 విద్యార్థి మార్గదర్శనం" data-en="🎓 Student Guidance">🎓 విద్యార్థి మార్గదర్శనం</span></a>
+    <a href="student-guidance.html" class="nav-home" style="border-color:rgba(125,224,164,0.5);color:#bdeccd"><span data-te="<svg viewBox='0 0 24 24' width='16' height='16' fill='none' stroke='currentColor' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true' style='vertical-align:middle;margin-right:4px'><path d='M22 10v6M2 10l10-5 10 5-10 5z'/><path d='M6 12v5c3 3 9 3 12 0v-5'/></svg> విద్యార్థి మార్గదర్శనం" data-en="<svg viewBox='0 0 24 24' width='16' height='16' fill='none' stroke='currentColor' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true' style='vertical-align:middle;margin-right:4px'><path d='M22 10v6M2 10l10-5 10 5-10 5z'/><path d='M6 12v5c3 3 9 3 12 0v-5'/></svg> Student Guidance"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:middle;margin-right:4px"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg> విద్యార్థి మార్గదర్శనం</span></a>
     <a href="index.html" class="nav-home"><span data-te="హోమ్‌కు తిరిగి" data-en="Back to Home">హోమ్‌కు తిరిగి</span></a>
     <button class="lang-btn" id="lang-btn" onclick="toggleLang()">English</button>
   </div>
@@ -638,7 +638,10 @@
       </a>
       <a href="knowledge-center/kids-islam/index.html" style="text-decoration:none;display:block;background:rgba(255,255,255,0.07);border:1px solid rgba(200,146,42,0.40);border-radius:14px;padding:28px 24px;transition:all .25s;position:relative;overflow:hidden" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(200,146,42,0.70)'" onmouseout="this.style.transform='';this.style.borderColor='rgba(200,146,42,0.40)'">
         <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#3b82f6,#ec4899)"></div>
-        <div style="font-size:2.4rem;line-height:1.2;margin-bottom:12px">🌟🌙</div>
+        <div style="display:flex;gap:8px;margin-bottom:12px;justify-content:flex-start">
+          <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="var(--gold-light)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="var(--gold-light)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </div>
         <h3 style="font-family:'Playfair Display',serif;font-size:1.25rem;color:var(--white);font-weight:700;margin-bottom:8px" data-te="పిల్లల ఇస్లాం" data-en="Kids' Islam">Kids' Islam</h3>
         <p style="font-size:.88rem;color:rgba(245,230,192,.65);line-height:1.75;margin-bottom:14px" data-te="పిల్లల కోసం (5–15) సరదా ఇస్లామిక్ సాహసయాత్ర — కథలు, క్విజ్‌లు & బహుమతులతో, 6 స్థాయిలు." data-en="A fun Islamic adventure for kids (5–15) — with stories, quizzes & rewards, 6 levels.">A fun Islamic adventure for kids (5–15) — with stories, quizzes &amp; rewards, 6 levels.</p>
         <span style="font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(46,139,87,0.25);color:#7de0a4;border:1px solid rgba(46,139,87,0.40);border-radius:20px;padding:4px 12px" data-te="ఇప్పుడే అందుబాటులో ఉంది" data-en="Available Now">Available Now</span>
@@ -659,7 +662,7 @@
       <!-- 1. SHAHADA -->
       <div class="guide-item">
         <button class="guide-head" type="button" aria-expanded="false">
-          <span class="guide-ic">☝️</span>
+          <span class="guide-ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg></span>
           <span class="guide-htext">
             <span class="guide-title" data-te="షహాదహ్ — విశ్వాస ప్రకటన" data-en="The Shahada — Declaration of Faith">షహాదహ్ — విశ్వాస ప్రకటన</span>
             <span class="guide-sub" data-te="ముస్లిం అవ్వడానికి మొదటి అడుగు" data-en="The first step to becoming a Muslim">ముస్లిం అవ్వడానికి మొదటి అడుగు</span>
@@ -681,7 +684,7 @@
       <!-- 2. WHO IS ALLAH -->
       <div class="guide-item">
         <button class="guide-head" type="button" aria-expanded="false">
-          <span class="guide-ic">🌟</span>
+          <span class="guide-ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span>
           <span class="guide-htext">
             <span class="guide-title" data-te="అల్లాహ్ ఎవరు? (తౌహీద్)" data-en="Who is Allah? (Tawhid)">అల్లాహ్ ఎవరు? (తౌహీద్)</span>
             <span class="guide-sub" data-te="ఏకేశ్వరోపాసన — ఇస్లాం యొక్క గుండెకాయ" data-en="The Oneness of God — the heart of Islam">ఏకేశ్వరోపాసన — ఇస్లాం యొక్క గుండెకాయ</span>
@@ -701,7 +704,7 @@
       <!-- 3. PROPHET MUHAMMAD -->
       <div class="guide-item">
         <button class="guide-head" type="button" aria-expanded="false">
-          <span class="guide-ic">🕌</span>
+          <span class="guide-ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/><path d="M12 2v3"/></svg></span>
           <span class="guide-htext">
             <span class="guide-title" data-te="ప్రవక్త ముహమ్మద్ (ﷺ)" data-en="The Prophet Muhammad ﷺ">ప్రవక్త ముహమ్మద్ (ﷺ)</span>
             <span class="guide-sub" data-te="చివరి ప్రవక్త, కారుణ్యంగా పంపబడినవారు" data-en="The final Prophet, sent as a mercy">చివరి ప్రవక్త, కారుణ్యంగా పంపబడినవారు</span>
@@ -721,7 +724,7 @@
       <!-- 4. THE QURAN -->
       <div class="guide-item">
         <button class="guide-head" type="button" aria-expanded="false">
-          <span class="guide-ic">📖</span>
+          <span class="guide-ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span>
           <span class="guide-htext">
             <span class="guide-title" data-te="పవిత్ర ఖురాన్" data-en="The Holy Quran">పవిత్ర ఖురాన్</span>
             <span class="guide-sub" data-te="అల్లాహ్ యొక్క సంరక్షించబడిన వాక్కు" data-en="The preserved word of Allah">అల్లాహ్ యొక్క సంరక్షించబడిన వాక్కు</span>
@@ -744,7 +747,7 @@
       <!-- 5. BECOMING / PRACTISING -->
       <div class="guide-item">
         <button class="guide-head" type="button" aria-expanded="false">
-          <span class="guide-ic">🌱</span>
+          <span class="guide-ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3C3 7 3 13 6 16.5s10 4.5 14 .5c-2-6-8-10-13.5-9.5"/><path d="M12 3v14"/></svg></span>
           <span class="guide-htext">
             <span class="guide-title" data-te="ఇస్లాంను ఆచరించడం ఎలా మొదలుపెట్టాలి" data-en="How to Begin Practising Islam">ఇస్లాంను ఆచరించడం ఎలా మొదలుపెట్టాలి</span>
             <span class="guide-sub" data-te="కొత్త ముస్లింలకు ఆచరణాత్మక మొదటి అడుగులు" data-en="Practical first steps for new Muslims">కొత్త ముస్లింలకు ఆచరణాత్మక మొదటి అడుగులు</span>
@@ -778,7 +781,7 @@
     <div class="pillars-grid">
       <div class="pillar-card reveal">
         <span class="pc-num">01</span>
-        <div class="pc-ic">☝️</div>
+        <div class="pc-ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg></div>
         <div class="pc-ar">الشهادة</div>
         <div class="pc-name">Shahādah</div>
         <div class="pc-sub" data-te="విశ్వాస సాక్ష్యం" data-en="Faith">విశ్వాస సాక్ష్యం</div>
@@ -787,7 +790,7 @@
       </div>
       <div class="pillar-card reveal">
         <span class="pc-num">02</span>
-        <div class="pc-ic">🕌</div>
+        <div class="pc-ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/><path d="M12 2v3"/></svg></div>
         <div class="pc-ar">الصلاة</div>
         <div class="pc-name">Salāh</div>
         <div class="pc-sub" data-te="నమాజ్" data-en="Prayer">నమాజ్</div>
@@ -796,7 +799,7 @@
       </div>
       <div class="pillar-card reveal">
         <span class="pc-num">03</span>
-        <div class="pc-ic">🤲</div>
+        <div class="pc-ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8.5a2.5 2.5 0 0 0-5 0v5"/><path d="M18 8.5V12M6 8.5a2.5 2.5 0 0 1 5 0v3.5"/><path d="M6 8.5V12M3 12h18v5a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5v-5z"/></svg></div>
         <div class="pc-ar">الزكاة</div>
         <div class="pc-name">Zakāh</div>
         <div class="pc-sub" data-te="దానం" data-en="Charity">దానం</div>
@@ -805,7 +808,7 @@
       </div>
       <div class="pillar-card reveal">
         <span class="pc-num">04</span>
-        <div class="pc-ic">🌙</div>
+        <div class="pc-ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></div>
         <div class="pc-ar">الصوم</div>
         <div class="pc-name">Sawm</div>
         <div class="pc-sub" data-te="ఉపవాసం" data-en="Fasting">ఉపవాసం</div>
@@ -814,7 +817,7 @@
       </div>
       <div class="pillar-card reveal">
         <span class="pc-num">05</span>
-        <div class="pc-ic">🕋</div>
+        <div class="pc-ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="6" width="16" height="15" rx="1"/><path d="M4 6l4-4h8l4 4"/><line x1="10" y1="12" x2="14" y2="12"/></svg></div>
         <div class="pc-ar">الحج</div>
         <div class="pc-name">Hajj</div>
         <div class="pc-sub" data-te="యాత్ర" data-en="Pilgrimage">యాత్ర</div>
@@ -845,48 +848,48 @@
       <!-- steps -->
       <div class="ws-stage">
         <div class="ws-step is-active" data-step="0">
-          <div class="ws-ic">🤲</div>
+          <div class="ws-ic"><svg viewBox="0 0 24 24" width="46" height="46" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8.5a2.5 2.5 0 0 0-5 0v5"/><path d="M18 8.5V12M6 8.5a2.5 2.5 0 0 1 5 0v3.5"/><path d="M6 8.5V12M3 12h18v5a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5v-5z"/></svg></div>
           <h3 class="ws-title" data-te="సంకల్పం (నియ్యత్) &amp; బిస్మిల్లాహ్" data-en="Intention (Niyyah) &amp; Bismillah">సంకల్పం (నియ్యత్) &amp; బిస్మిల్లాహ్</h3>
           <p class="ws-desc" data-te="మనసులో వుజూ సంకల్పం (నియ్యత్) చేసుకోండి — దాన్ని పైకి పలకాల్సిన అవసరం లేదు — &quot;బిస్మిల్లాహ్&quot; అని పలికి ప్రారంభించండి." data-en="Make the intention (niyyah) for wudu in your heart — there is no need to say it aloud — and begin by saying “Bismillah”.">మనసులో వుజూ సంకల్పం (నియ్యత్) చేసుకోండి — దాన్ని పైకి పలకాల్సిన అవసరం లేదు — &quot;బిస్మిల్లాహ్&quot; అని పలికి ప్రారంభించండి.</p>
         </div>
         <div class="ws-step" data-step="1">
-          <div class="ws-ic">🖐️</div>
+          <div class="ws-ic"><svg viewBox="0 0 24 24" width="46" height="46" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 11V6a2 2 0 0 0-4 0v5"/><path d="M14 10V4a2 2 0 0 0-4 0v6"/><path d="M10 10.5V6a2 2 0 0 0-4 0v8"/><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34L3 14"/></svg></div>
           <h3 class="ws-title" data-te="చేతులను మణికట్టు వరకు కడగడం" data-en="Wash the Hands to the Wrists">చేతులను మణికట్టు వరకు కడగడం</h3>
           <p class="ws-desc" data-te="రెండు చేతులను మణికట్టు వరకు కడగండి — ముందు కుడి చేయి, తర్వాత ఎడమ చేయి — వేళ్ళ మధ్య కూడా శుభ్రం చేయండి." data-en="Wash both hands up to the wrists — the right hand first, then the left — making sure water reaches between the fingers.">రెండు చేతులను మణికట్టు వరకు కడగండి — ముందు కుడి చేయి, తర్వాత ఎడమ చేయి — వేళ్ళ మధ్య కూడా శుభ్రం చేయండి.</p>
           <span class="ws-times" data-te="3 సార్లు" data-en="3 times">3 సార్లు</span>
         </div>
         <div class="ws-step" data-step="2">
-          <div class="ws-ic">👄</div>
+          <div class="ws-ic"><svg viewBox="0 0 24 24" width="46" height="46" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2a5 5 0 0 1 5 5v3H7V7a5 5 0 0 1 5-5z"/><path d="M7 10c0 4 2 7 5 8s5-4 5-8"/><line x1="9" y1="14" x2="15" y2="14"/></svg></div>
           <h3 class="ws-title" data-te="నోటిని పుక్కిలించడం" data-en="Rinse the Mouth">నోటిని పుక్కిలించడం</h3>
           <p class="ws-desc" data-te="కుడి చేతితో నీరు తీసుకొని నోటిని బాగా పుక్కిలించండి." data-en="Take water into the right hand and rinse the mouth thoroughly.">కుడి చేతితో నీరు తీసుకొని నోటిని బాగా పుక్కిలించండి.</p>
           <span class="ws-times" data-te="3 సార్లు" data-en="3 times">3 సార్లు</span>
         </div>
         <div class="ws-step" data-step="3">
-          <div class="ws-ic">👃</div>
+          <div class="ws-ic"><svg viewBox="0 0 24 24" width="46" height="46" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2c-3 0-5 2-5 5v8c0 2 1 3 2 4l1 2h4l1-2c1-1 2-2 2-4V7c0-3-2-5-5-5z"/><line x1="9" y1="12" x2="9" y2="12.5"/><line x1="15" y1="12" x2="15" y2="12.5"/></svg></div>
           <h3 class="ws-title" data-te="ముక్కును శుభ్రం చేయడం" data-en="Cleanse the Nose">ముక్కును శుభ్రం చేయడం</h3>
           <p class="ws-desc" data-te="ముక్కులోకి నీరు పీల్చి, ఎడమ చేతితో దానిని బయటకు ఊదండి." data-en="Sniff water into the nose, then blow it out using the left hand.">ముక్కులోకి నీరు పీల్చి, ఎడమ చేతితో దానిని బయటకు ఊదండి.</p>
           <span class="ws-times" data-te="3 సార్లు" data-en="3 times">3 సార్లు</span>
         </div>
         <div class="ws-step" data-step="4">
-          <div class="ws-ic">💦</div>
+          <div class="ws-ic"><svg viewBox="0 0 24 24" width="46" height="46" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/></svg></div>
           <h3 class="ws-title" data-te="ముఖాన్ని కడగడం" data-en="Wash the Face">ముఖాన్ని కడగడం</h3>
           <p class="ws-desc" data-te="ముఖమంతటినీ కడగండి — నుదుటి వెంట్రుకల మొదలు నుండి గడ్డం కింది వరకు, ఒక చెవి నుండి మరో చెవి వరకు." data-en="Wash the entire face — from the hairline to below the chin, and from one ear to the other.">ముఖమంతటినీ కడగండి — నుదుటి వెంట్రుకల మొదలు నుండి గడ్డం కింది వరకు, ఒక చెవి నుండి మరో చెవి వరకు.</p>
           <span class="ws-times" data-te="3 సార్లు" data-en="3 times">3 సార్లు</span>
         </div>
         <div class="ws-step" data-step="5">
-          <div class="ws-ic">💪</div>
+          <div class="ws-ic"><svg viewBox="0 0 24 24" width="46" height="46" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2a3 3 0 0 1 3 3v7a3 3 0 0 1-3 3 3 3 0 0 1-3-3V5a3 3 0 0 1 3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg></div>
           <h3 class="ws-title" data-te="చేతులను మోచేతుల వరకు కడగడం" data-en="Wash the Arms to the Elbows">చేతులను మోచేతుల వరకు కడగడం</h3>
           <p class="ws-desc" data-te="చేతులను మోచేతులతో సహా కడగండి — ముందు కుడి చేయి, తర్వాత ఎడమ చేయి." data-en="Wash the arms up to and including the elbows — the right arm first, then the left.">చేతులను మోచేతులతో సహా కడగండి — ముందు కుడి చేయి, తర్వాత ఎడమ చేయి.</p>
           <span class="ws-times" data-te="3 సార్లు" data-en="3 times">3 సార్లు</span>
         </div>
         <div class="ws-step" data-step="6">
-          <div class="ws-ic">💆</div>
+          <div class="ws-ic"><svg viewBox="0 0 24 24" width="46" height="46" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20v-1a8 8 0 0 1 16 0v1"/><path d="M3 12c1-1 2-1 3 0"/><path d="M21 12c-1-1-2-1-3 0"/></svg></div>
           <h3 class="ws-title" data-te="తలను &amp; చెవులను తుడవడం (మసహ్)" data-en="Wipe the Head &amp; Ears (Masah)">తలను &amp; చెవులను తుడవడం (మసహ్)</h3>
           <p class="ws-desc" data-te="తడి చేతులతో తలను ముందు నుండి వెనుకకు, మళ్ళీ వెనుక నుండి ముందుకు తుడవండి; తర్వాత చూపుడు వేళ్ళతో చెవుల లోపలి భాగాన్ని, బొటనవేళ్ళతో వెలుపలి భాగాన్ని తుడవండి." data-en="With wet hands, wipe over the head from front to back and back to front; then wipe the inside of the ears with the index fingers and the outside with the thumbs.">తడి చేతులతో తలను ముందు నుండి వెనుకకు, మళ్ళీ వెనుక నుండి ముందుకు తుడవండి; తర్వాత చూపుడు వేళ్ళతో చెవుల లోపలి భాగాన్ని, బొటనవేళ్ళతో వెలుపలి భాగాన్ని తుడవండి.</p>
           <span class="ws-times" data-te="1 సారి" data-en="once">1 సారి</span>
         </div>
         <div class="ws-step" data-step="7">
-          <div class="ws-ic">🦶</div>
+          <div class="ws-ic"><svg viewBox="0 0 24 24" width="46" height="46" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 16v-1a6 6 0 0 1 12 0v1a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4z"/><path d="M8 20h8"/><path d="M16 15v5"/></svg></div>
           <h3 class="ws-title" data-te="కాళ్ళను మడమల వరకు కడగడం" data-en="Wash the Feet to the Ankles">కాళ్ళను మడమల వరకు కడగడం</h3>
           <p class="ws-desc" data-te="కాళ్ళను మడమలతో సహా కడగండి — ముందు కుడి కాలు, తర్వాత ఎడమ కాలు — కాలి వేళ్ళ మధ్య కూడా శుభ్రం చేయండి. ఇప్పుడు మీ వుజూ పూర్తయింది." data-en="Wash the feet up to and including the ankles — the right foot first, then the left — cleaning between the toes. Your wudu is now complete.">కాళ్ళను మడమలతో సహా కడగండి — ముందు కుడి కాలు, తర్వాత ఎడమ కాలు — కాలి వేళ్ళ మధ్య కూడా శుభ్రం చేయండి. ఇప్పుడు మీ వుజూ పూర్తయింది.</p>
           <span class="ws-times" data-te="3 సార్లు" data-en="3 times">3 సార్లు</span>
@@ -935,7 +938,7 @@
       <div class="ws-stage">
         <!-- 1 -->
         <div class="ws-step is-active" data-step="0">
-          <div class="ws-ic">🙌</div>
+          <div class="ws-ic"><svg viewBox="0 0 24 24" width="46" height="46" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8.5a2.5 2.5 0 0 0-5 0v5"/><path d="M18 8.5V12M6 8.5a2.5 2.5 0 0 1 5 0v3.5"/><path d="M6 8.5V12M3 12h18v5a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5v-5z"/></svg></div>
           <h3 class="ws-title" data-te="తక్బీరె తహ్రీమా — ప్రారంభం" data-en="Takbiratul-Ihram — The Opening">తక్బీరె తహ్రీమా — ప్రారంభం</h3>
           <p class="ws-desc" data-te="ఖిబ్లా (కాబా) వైపు ముఖం చేసి, మనసులో సంకల్పం (నియ్యత్) చేసుకోండి. చేతులను చెవుల లేదా భుజాల వరకు ఎత్తి &quot;అల్లాహు అక్బర్&quot; అని పలకండి." data-en="Face the Qibla (the Ka'bah) and make the intention (niyyah) in your heart. Raise both hands to the ears or shoulders and say “Allahu Akbar”.">ఖిబ్లా (కాబా) వైపు ముఖం చేసి, మనసులో సంకల్పం (నియ్యత్) చేసుకోండి. చేతులను చెవుల లేదా భుజాల వరకు ఎత్తి &quot;అల్లాహు అక్బర్&quot; అని పలకండి.</p>
           <div class="ws-recite">
@@ -947,13 +950,13 @@
         </div>
         <!-- 2 -->
         <div class="ws-step" data-step="1">
-          <div class="ws-ic">🧍</div>
+          <div class="ws-ic"><svg viewBox="0 0 24 24" width="46" height="46" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="5" r="2"/><line x1="12" y1="7" x2="12" y2="14"/><polyline points="9 10 12 7 15 10"/><line x1="12" y1="14" x2="9" y2="19"/><line x1="12" y1="14" x2="15" y2="19"/></svg></div>
           <h3 class="ws-title" data-te="ఖియామ్ — నిలబడటం" data-en="Qiyam — Standing">ఖియామ్ — నిలబడటం</h3>
           <p class="ws-desc" data-te="కుడి చేతిని ఎడమ చేతిపై ఛాతీపై ఉంచి నిలబడండి. మొదట సూరహ్ అల్-ఫాతిహా, తర్వాత మరో చిన్న సూరహ్ (ఉదాహరణకు సూరహ్ అల్-ఇఖ్లాస్) పఠించండి." data-en="Stand with the right hand placed over the left on the chest. Recite Surah Al-Fatihah, followed by another short surah (for example, Surah Al-Ikhlas).">కుడి చేతిని ఎడమ చేతిపై ఛాతీపై ఉంచి నిలబడండి. మొదట సూరహ్ అల్-ఫాతిహా, తర్వాత మరో చిన్న సూరహ్ (ఉదాహరణకు సూరహ్ అల్-ఇఖ్లాస్) పఠించండి.</p>
         </div>
         <!-- 3 -->
         <div class="ws-step" data-step="2">
-          <div class="ws-ic">🙇</div>
+          <div class="ws-ic"><svg viewBox="0 0 24 24" width="46" height="46" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="5" r="2"/><path d="M5 10h14"/><path d="M5 10l1 8H18l1-8"/><line x1="12" y1="7" x2="12" y2="10"/></svg></div>
           <h3 class="ws-title" data-te="రుకూ — వంగడం" data-en="Ruku — Bowing">రుకూ — వంగడం</h3>
           <p class="ws-desc" data-te="&quot;అల్లాహు అక్బర్&quot; అని పలికి, వీపు నిటారుగా ఉండేలా వంగి, రెండు చేతులను మోకాళ్ళపై ఉంచండి." data-en="Saying “Allahu Akbar”, bow with the back kept straight and place both hands on the knees.">&quot;అల్లాహు అక్బర్&quot; అని పలికి, వీపు నిటారుగా ఉండేలా వంగి, రెండు చేతులను మోకాళ్ళపై ఉంచండి.</p>
           <div class="ws-recite">
@@ -965,7 +968,7 @@
         </div>
         <!-- 4 -->
         <div class="ws-step" data-step="3">
-          <div class="ws-ic">⬆️</div>
+          <div class="ws-ic"><svg viewBox="0 0 24 24" width="46" height="46" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg></div>
           <h3 class="ws-title" data-te="ఇతిదాల్ — తిరిగి నిలబడటం" data-en="I'tidal — Rising from Bowing">ఇతిదాల్ — తిరిగి నిలబడటం</h3>
           <p class="ws-desc" data-te="&quot;సమిఅల్లాహు లిమన్ హమిదహ్&quot; అని పలుకుతూ నిటారుగా లేచి నిలబడండి; తర్వాత &quot;రబ్బనా వలకల్ హమ్ద్&quot; అనండి." data-en="Rise to stand upright while saying “Sami'a Allahu liman hamidah”, then say “Rabbana wa laka l-hamd”.">&quot;సమిఅల్లాహు లిమన్ హమిదహ్&quot; అని పలుకుతూ నిటారుగా లేచి నిలబడండి; తర్వాత &quot;రబ్బనా వలకల్ హమ్ద్&quot; అనండి.</p>
           <div class="ws-recite">
@@ -977,7 +980,7 @@
         </div>
         <!-- 5 -->
         <div class="ws-step" data-step="4">
-          <div class="ws-ic">🛐</div>
+          <div class="ws-ic"><svg viewBox="0 0 24 24" width="46" height="46" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="4" r="2"/><path d="M4 20h16"/><path d="M6 20v-6l6-5 6 5v6"/></svg></div>
           <h3 class="ws-title" data-te="సజ్దా — సాష్టాంగ నమస్కారం" data-en="Sujud — Prostration">సజ్దా — సాష్టాంగ నమస్కారం</h3>
           <p class="ws-desc" data-te="&quot;అల్లాహు అక్బర్&quot; అని పలికి సాష్టాంగపడండి — నుదురు, ముక్కు, రెండు అరచేతులు, రెండు మోకాళ్ళు, రెండు కాళ్ళ వేళ్ళు నేలను తాకాలి." data-en="Saying “Allahu Akbar”, prostrate so that seven parts touch the ground: the forehead, nose, both palms, both knees and the toes of both feet.">&quot;అల్లాహు అక్బర్&quot; అని పలికి సాష్టాంగపడండి — నుదురు, ముక్కు, రెండు అరచేతులు, రెండు మోకాళ్ళు, రెండు కాళ్ళ వేళ్ళు నేలను తాకాలి.</p>
           <div class="ws-recite">
@@ -989,7 +992,7 @@
         </div>
         <!-- 6 -->
         <div class="ws-step" data-step="5">
-          <div class="ws-ic">🧎</div>
+          <div class="ws-ic"><svg viewBox="0 0 24 24" width="46" height="46" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="4" r="2"/><path d="M12 6v6l-4 4"/><path d="M12 12l4 4"/><line x1="8" y1="21" x2="16" y2="21"/></svg></div>
           <h3 class="ws-title" data-te="జల్సా — రెండు సజ్దాల మధ్య కూర్చోవడం" data-en="Jalsah — Sitting Between the Prostrations">జల్సా — రెండు సజ్దాల మధ్య కూర్చోవడం</h3>
           <p class="ws-desc" data-te="&quot;అల్లాహు అక్బర్&quot; అని పలికి కొద్దిసేపు ప్రశాంతంగా కూర్చుని క్షమాపణ వేడుకోండి." data-en="Saying “Allahu Akbar”, sit calmly for a moment and ask Allah for forgiveness.">&quot;అల్లాహు అక్బర్&quot; అని పలికి కొద్దిసేపు ప్రశాంతంగా కూర్చుని క్షమాపణ వేడుకోండి.</p>
           <div class="ws-recite">
@@ -1001,7 +1004,7 @@
         </div>
         <!-- 7 -->
         <div class="ws-step" data-step="6">
-          <div class="ws-ic">🛐</div>
+          <div class="ws-ic"><svg viewBox="0 0 24 24" width="46" height="46" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="4" r="2"/><path d="M4 20h16"/><path d="M6 20v-6l6-5 6 5v6"/></svg></div>
           <h3 class="ws-title" data-te="రెండవ సజ్దా" data-en="The Second Prostration">రెండవ సజ్దా</h3>
           <p class="ws-desc" data-te="&quot;అల్లాహు అక్బర్&quot; అని పలికి మళ్ళీ సాష్టాంగపడి, మునుపటిలా తస్బీహ్ పఠించండి. దీంతో మొదటి రకాతు పూర్తవుతుంది." data-en="Saying “Allahu Akbar”, prostrate a second time and repeat the same tasbih as before. This completes the first rak'ah.">&quot;అల్లాహు అక్బర్&quot; అని పలికి మళ్ళీ సాష్టాంగపడి, మునుపటిలా తస్బీహ్ పఠించండి. దీంతో మొదటి రకాతు పూర్తవుతుంది.</p>
           <div class="ws-recite">
@@ -1013,13 +1016,13 @@
         </div>
         <!-- 8 -->
         <div class="ws-step" data-step="7">
-          <div class="ws-ic">🔁</div>
+          <div class="ws-ic"><svg viewBox="0 0 24 24" width="46" height="46" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></div>
           <h3 class="ws-title" data-te="రెండవ రకాతు" data-en="The Second Rak'ah">రెండవ రకాతు</h3>
           <p class="ws-desc" data-te="&quot;అల్లాహు అక్బర్&quot; అని పలికి లేచి నిలబడి, 2 నుండి 7 వరకు దశలను రెండవ రకాతు కోసం అదే విధంగా పునరావృతం చేయండి." data-en="Saying “Allahu Akbar”, stand up and repeat steps 2 to 7 in the same way for the second rak'ah.">&quot;అల్లాహు అక్బర్&quot; అని పలికి లేచి నిలబడి, 2 నుండి 7 వరకు దశలను రెండవ రకాతు కోసం అదే విధంగా పునరావృతం చేయండి.</p>
         </div>
         <!-- 9 -->
         <div class="ws-step" data-step="8">
-          <div class="ws-ic">☝️</div>
+          <div class="ws-ic"><svg viewBox="0 0 24 24" width="46" height="46" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg></div>
           <h3 class="ws-title" data-te="తషహ్హుద్ — సాక్ష్య వచనం" data-en="Tashahhud — The Testimony">తషహ్హుద్ — సాక్ష్య వచనం</h3>
           <p class="ws-desc" data-te="చివరి రకాతు రెండవ సజ్దా తర్వాత కూర్చుని, కుడి చూపుడు వేలును ఎత్తి తషహ్హుద్ పఠించండి." data-en="After the second prostration of the final rak'ah, sit and recite the Tashahhud, raising the right index finger.">చివరి రకాతు రెండవ సజ్దా తర్వాత కూర్చుని, కుడి చూపుడు వేలును ఎత్తి తషహ్హుద్ పఠించండి.</p>
           <div class="ws-recite">
@@ -1031,7 +1034,7 @@
         </div>
         <!-- 10 -->
         <div class="ws-step" data-step="9">
-          <div class="ws-ic">🤲</div>
+          <div class="ws-ic"><svg viewBox="0 0 24 24" width="46" height="46" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8.5a2.5 2.5 0 0 0-5 0v5"/><path d="M18 8.5V12M6 8.5a2.5 2.5 0 0 1 5 0v3.5"/><path d="M6 8.5V12M3 12h18v5a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5v-5z"/></svg></div>
           <h3 class="ws-title" data-te="దురూద్ — ప్రవక్తపై దీవెన" data-en="Salah upon the Prophet (Durood)">దురూద్ — ప్రవక్తపై దీవెన</h3>
           <p class="ws-desc" data-te="తషహ్హుద్ తర్వాత ప్రవక్త ముహమ్మద్ (స.అ.)పై దీవెన పంపండి." data-en="After the Tashahhud, send blessings upon the Prophet Muhammad (ﷺ).">తషహ్హుద్ తర్వాత ప్రవక్త ముహమ్మద్ (స.అ.)పై దీవెన పంపండి.</p>
           <div class="ws-recite">
@@ -1043,7 +1046,7 @@
         </div>
         <!-- 11 -->
         <div class="ws-step" data-step="10">
-          <div class="ws-ic">👋</div>
+          <div class="ws-ic"><svg viewBox="0 0 24 24" width="46" height="46" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></div>
           <h3 class="ws-title" data-te="తస్లీమ్ — ముగింపు" data-en="Tasleem — Concluding the Prayer">తస్లీమ్ — ముగింపు</h3>
           <p class="ws-desc" data-te="ముఖాన్ని ముందుగా కుడి వైపుకు, తర్వాత ఎడమ వైపుకు తిప్పుతూ ప్రతిసారీ సలాం పలకండి. దీంతో మీ నమాజ్ పూర్తవుతుంది." data-en="Turn the face to the right, then to the left, giving the salam each time. Your prayer is now complete.">ముఖాన్ని ముందుగా కుడి వైపుకు, తర్వాత ఎడమ వైపుకు తిప్పుతూ ప్రతిసారీ సలాం పలకండి. దీంతో మీ నమాజ్ పూర్తవుతుంది.</p>
           <div class="ws-recite">
@@ -1101,23 +1104,23 @@
             <div class="sl-date" id="salah-date">—</div>
           </div>
           <div class="salah-row" data-prayer="fajr">
-            <div class="sr-name"><span class="sr-ic">🌌</span><span data-te="ఫజ్ర్" data-en="Fajr">ఫజ్ర్</span></div>
+            <div class="sr-name"><span class="sr-ic"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></span><span data-te="ఫజ్ర్" data-en="Fajr">ఫజ్ర్</span></div>
             <div class="sr-time" id="t-fajr">—</div>
           </div>
           <div class="salah-row" data-prayer="dhuhr">
-            <div class="sr-name"><span class="sr-ic">☀️</span><span data-te="జుహ్ర్" data-en="Dhuhr">జుహ్ర్</span></div>
+            <div class="sr-name"><span class="sr-ic"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"/><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"/><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"/></svg></span><span data-te="జుహ్ర్" data-en="Dhuhr">జుహ్ర్</span></div>
             <div class="sr-time" id="t-dhuhr">—</div>
           </div>
           <div class="salah-row" data-prayer="asr">
-            <div class="sr-name"><span class="sr-ic">🌤️</span><span data-te="అస్ర్" data-en="Asr">అస్ర్</span></div>
+            <div class="sr-name"><span class="sr-ic"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="6"/><line x1="18" y1="12" x2="22" y2="12"/><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"/><path d="M3 18h4a5 5 0 0 1 10 0h4"/></svg></span><span data-te="అస్ర్" data-en="Asr">అస్ర్</span></div>
             <div class="sr-time" id="t-asr">—</div>
           </div>
           <div class="salah-row" data-prayer="maghrib">
-            <div class="sr-name"><span class="sr-ic">🌇</span><span data-te="మగ్రిబ్" data-en="Maghrib">మగ్రిబ్</span></div>
+            <div class="sr-name"><span class="sr-ic"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 18a5 5 0 0 0-10 0"/><line x1="12" y1="2" x2="12" y2="9"/><line x1="4.22" y1="10.22" x2="5.64" y2="11.64"/><line x1="1" y1="18" x2="3" y2="18"/><line x1="21" y1="18" x2="23" y2="18"/><line x1="18.36" y1="11.64" x2="19.78" y2="10.22"/><line x1="23" y1="22" x2="1" y2="22"/><polyline points="8 6 12 2 16 6"/></svg></span><span data-te="మగ్రిబ్" data-en="Maghrib">మగ్రిబ్</span></div>
             <div class="sr-time" id="t-maghrib">—</div>
           </div>
           <div class="salah-row" data-prayer="isha">
-            <div class="sr-name"><span class="sr-ic">🌃</span><span data-te="ఇషా" data-en="Isha">ఇషా</span></div>
+            <div class="sr-name"><span class="sr-ic"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/><line x1="17" y1="8" x2="17.01" y2="8"/><line x1="20" y1="11" x2="20.01" y2="11"/><line x1="19" y1="5" x2="19.01" y2="5"/></svg></span><span data-te="ఇషా" data-en="Isha">ఇషా</span></div>
             <div class="sr-time" id="t-isha">—</div>
           </div>
         </div>
@@ -1154,17 +1157,17 @@
     <!-- live metal prices -->
     <div class="live-prices">
       <div class="lp-card">
-        <div class="lp-top"><span class="lp-ic">🥇</span><span data-te="బంగారం (24K)" data-en="Gold (24K)">బంగారం (24K)</span></div>
+        <div class="lp-top"><span class="lp-ic"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="6"/><path d="M9 8h6"/><path d="M9 11h6"/><line x1="12" y1="14" x2="12" y2="22"/><line x1="8" y1="22" x2="16" y2="22"/></svg></span><span data-te="బంగారం (24K)" data-en="Gold (24K)">బంగారం (24K)</span></div>
         <div class="lp-val" id="lp-gold">—</div>
         <div class="lp-unit" data-te="గ్రాముకు (భారత ధర)" data-en="per gram (India)">గ్రాముకు (భారత ధర)</div>
       </div>
       <div class="lp-card">
-        <div class="lp-top"><span class="lp-ic">🥈</span><span data-te="వెండి" data-en="Silver">వెండి</span></div>
+        <div class="lp-top"><span class="lp-ic"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="6"/><path d="M9 8h6"/><path d="M9 11h6"/><line x1="12" y1="14" x2="12" y2="22"/><line x1="8" y1="22" x2="16" y2="22"/></svg></span><span data-te="వెండి" data-en="Silver">వెండి</span></div>
         <div class="lp-val" id="lp-silver">—</div>
         <div class="lp-unit" data-te="గ్రాముకు (భారత ధర)" data-en="per gram (India)">గ్రాముకు (భారత ధర)</div>
       </div>
       <div class="lp-card lp-nisab">
-        <div class="lp-top"><span class="lp-ic">⚖️</span><span data-te="నిసాబ్ పరిమితి" data-en="Nisab threshold">నిసాబ్ పరిమితి</span></div>
+        <div class="lp-top"><span class="lp-ic"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="3" x2="12" y2="21"/><path d="M5 6l7-3 7 3M5 10l7 3 7-3M5 14l7 3 7-3"/></svg></span><span data-te="నిసాబ్ పరిమితి" data-en="Nisab threshold">నిసాబ్ పరిమితి</span></div>
         <div class="lp-val" id="lp-nisab-val">—</div>
         <div class="lp-unit" data-te="612.36 గ్రా. వెండి విలువ" data-en="value of 612.36g silver">612.36 గ్రా. వెండి విలువ</div>
       </div>
@@ -1221,25 +1224,25 @@
     <p class="sec-lead" data-te="ఖురాన్‌ను చదవడానికి, వినడానికి మరియు అర్థం చేసుకోవడానికి విశ్వసనీయ వనరులు." data-en="Trusted resources to read, listen to, and understand the Holy Quran.">ఖురాన్‌ను చదవడానికి, వినడానికి మరియు అర్థం చేసుకోవడానికి విశ్వసనీయ వనరులు.</p>
     <div class="res-grid">
       <a class="res-card" href="https://quran.com/" target="_blank" rel="noopener">
-        <div class="res-ic">📖</div>
+        <div class="res-ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
         <h3 data-te="ఖురాన్ చదవండి" data-en="Read the Quran">ఖురాన్ చదవండి</h3>
         <p data-te="అరబిక్ మూలంతో పాటు అనువాదం మరియు పదాల వారీగా అర్థం — Quran.com." data-en="Full Arabic text with translation and word-by-word meaning — Quran.com.">అరబిక్ మూలంతో పాటు అనువాదం మరియు పదాల వారీగా అర్థం — Quran.com.</p>
         <div class="res-go" data-te="quran.com తెరవండి" data-en="Open quran.com">quran.com తెరవండి</div>
       </a>
       <a class="res-card" href="https://quran.com/?audio=7" target="_blank" rel="noopener">
-        <div class="res-ic">🎧</div>
+        <div class="res-ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg></div>
         <h3 data-te="తిలావత్ వినండి" data-en="Listen to Recitation">తిలావత్ వినండి</h3>
         <p data-te="ప్రఖ్యాత ఖారీల తిలావత్ ఆడియో — ఆయత్ వారీగా అనుసరించవచ్చు." data-en="Audio recitation by renowned reciters — follow along ayah by ayah.">ప్రఖ్యాత ఖారీల తిలావత్ ఆడియో — ఆయత్ వారీగా అనుసరించవచ్చు.</p>
         <div class="res-go" data-te="తిలావత్ వినండి" data-en="Listen now">తిలావత్ వినండి</div>
       </a>
       <a class="res-card" href="https://quran.com/en/1?translations=234" target="_blank" rel="noopener">
-        <div class="res-ic">🌐</div>
+        <div class="res-ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg></div>
         <h3 data-te="అనువాదం &amp; తఫ్సీర్" data-en="Translation &amp; Tafsir">అనువాదం &amp; తఫ్సీర్</h3>
         <p data-te="బహుళ భాషల్లో అనువాదాలు మరియు ప్రామాణిక తఫ్సీర్ వివరణలు." data-en="Translations in multiple languages with authentic tafsir explanations.">బహుళ భాషల్లో అనువాదాలు మరియు ప్రామాణిక తఫ్సీర్ వివరణలు.</p>
         <div class="res-go" data-te="చదవండి" data-en="Explore">చదవండి</div>
       </a>
       <a class="res-card" href="https://tanzil.net/" target="_blank" rel="noopener">
-        <div class="res-ic">🔖</div>
+        <div class="res-ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg></div>
         <h3 data-te="తన్జీల్ ఖురాన్" data-en="Tanzil Quran">తన్జీల్ ఖురాన్</h3>
         <p data-te="ధృవీకరించబడిన ఖురాన్ మూల పాఠం మరియు బహుళ అనువాదాలు — Tanzil.net." data-en="Verified Quran text with multiple translations — Tanzil.net.">ధృవీకరించబడిన ఖురాన్ మూల పాఠం మరియు బహుళ అనువాదాలు — Tanzil.net.</p>
         <div class="res-go" data-te="తెరవండి" data-en="Open">తెరవండి</div>
@@ -1256,37 +1259,37 @@
     <p class="sec-lead" data-te="ప్రామాణిక హదీస్ సంకలనాలు — Sunnah.com ద్వారా, మూల అరబిక్ మరియు ఆంగ్ల అనువాదంతో." data-en="Authentic hadith collections via Sunnah.com, with original Arabic and English translation.">ప్రామాణిక హదీస్ సంకలనాలు — Sunnah.com ద్వారా, మూల అరబిక్ మరియు ఆంగ్ల అనువాదంతో.</p>
     <div class="res-grid">
       <a class="res-card" href="https://sunnah.com/bukhari" target="_blank" rel="noopener">
-        <div class="res-ic">📜</div>
+        <div class="res-ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
         <h3 data-te="సహీహ్ అల్-బుఖారీ" data-en="Sahih al-Bukhari">సహీహ్ అల్-బుఖారీ</h3>
         <p data-te="అత్యంత ప్రామాణికమైన హదీస్ సంకలనంగా పరిగణించబడుతుంది." data-en="Regarded as the most authentic collection of hadith.">అత్యంత ప్రామాణికమైన హదీస్ సంకలనంగా పరిగణించబడుతుంది.</p>
         <div class="res-go" data-te="చదవండి" data-en="Read">చదవండి</div>
       </a>
       <a class="res-card" href="https://sunnah.com/muslim" target="_blank" rel="noopener">
-        <div class="res-ic">📜</div>
+        <div class="res-ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
         <h3 data-te="సహీహ్ ముస్లిం" data-en="Sahih Muslim">సహీహ్ ముస్లిం</h3>
         <p data-te="ప్రామాణికత్వంలో రెండవ స్థానంలో ఉన్న ప్రఖ్యాత హదీస్ సంకలనం." data-en="The second most authentic and widely referenced hadith collection.">ప్రామాణికత్వంలో రెండవ స్థానంలో ఉన్న ప్రఖ్యాత హదీస్ సంకలనం.</p>
         <div class="res-go" data-te="చదవండి" data-en="Read">చదవండి</div>
       </a>
       <a class="res-card" href="https://sunnah.com/abudawud" target="_blank" rel="noopener">
-        <div class="res-ic">📜</div>
+        <div class="res-ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
         <h3 data-te="సునన్ అబీ దావూద్" data-en="Sunan Abi Dawud">సునన్ అబీ దావూద్</h3>
         <p data-te="ఆచరణకు సంబంధించిన (ఫిఖ్) హదీసులపై ప్రత్యేక దృష్టి." data-en="Focuses on hadith relating to practice and jurisprudence (fiqh).">ఆచరణకు సంబంధించిన (ఫిఖ్) హదీసులపై ప్రత్యేక దృష్టి.</p>
         <div class="res-go" data-te="చదవండి" data-en="Read">చదవండి</div>
       </a>
       <a class="res-card" href="https://sunnah.com/tirmidhi" target="_blank" rel="noopener">
-        <div class="res-ic">📜</div>
+        <div class="res-ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
         <h3 data-te="జామి అత్-తిర్మిజీ" data-en="Jami at-Tirmidhi">జామి అత్-తిర్మిజీ</h3>
         <p data-te="ప్రతి హదీస్ స్థాయిని (గ్రేడింగ్) వివరించే సంకలనం." data-en="A collection noting the grading and reliability of each hadith.">ప్రతి హదీస్ స్థాయిని (గ్రేడింగ్) వివరించే సంకలనం.</p>
         <div class="res-go" data-te="చదవండి" data-en="Read">చదవండి</div>
       </a>
       <a class="res-card" href="https://sunnah.com/nasai" target="_blank" rel="noopener">
-        <div class="res-ic">📜</div>
+        <div class="res-ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
         <h3 data-te="సునన్ అన్-నసాయీ" data-en="Sunan an-Nasa'i">సునన్ అన్-నసాయీ</h3>
         <p data-te="ఆరు ప్రామాణిక సంకలనాలలో ఒకటి (కుతుబ్ అస్-సిత్తా)." data-en="One of the six canonical collections (Kutub as-Sittah).">ఆరు ప్రామాణిక సంకలనాలలో ఒకటి (కుతుబ్ అస్-సిత్తా).</p>
         <div class="res-go" data-te="చదవండి" data-en="Read">చదవండి</div>
       </a>
       <a class="res-card" href="https://sunnah.com/riyadussalihin" target="_blank" rel="noopener">
-        <div class="res-ic">🌿</div>
+        <div class="res-ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3C3 7 3 13 6 16.5s10 4.5 14 .5c-2-6-8-10-13.5-9.5"/><path d="M12 3v14"/></svg></div>
         <h3 data-te="రియాద్ అస్-సాలిహీన్" data-en="Riyad as-Salihin">రియాద్ అస్-సాలిహీన్</h3>
         <p data-te="ఇమామ్ నవవీ సంకలనం చేసిన నైతికత మరియు ఆరాధనపై హదీసులు." data-en="Hadith on character and worship, compiled by Imam an-Nawawi.">ఇమామ్ నవవీ సంకలనం చేసిన నైతికత మరియు ఆరాధనపై హదీసులు.</p>
         <div class="res-go" data-te="చదవండి" data-en="Read">చదవండి</div>
@@ -1307,7 +1310,7 @@
       <!-- ZAKAT -->
       <div class="guide-item">
         <button class="guide-head" type="button" aria-expanded="false">
-          <span class="guide-ic">💰</span>
+          <span class="guide-ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg></span>
           <span class="guide-htext">
             <span class="guide-title" data-te="జకాత్ ఎలా లెక్కించాలి &amp; ఇవ్వాలి" data-en="How to Calculate &amp; Give Zakat">జకాత్ ఎలా లెక్కించాలి &amp; ఇవ్వాలి</span>
             <span class="guide-sub" data-te="నిసాబ్, 2.5%, మరియు 8 అర్హత వర్గాలు" data-en="Nisab, 2.5%, and the 8 eligible categories">నిసాబ్, 2.5%, మరియు 8 అర్హత వర్గాలు</span>
@@ -1335,7 +1338,7 @@
       <!-- QURAN LEARNING ROADMAP -->
       <div class="guide-item">
         <button class="guide-head" type="button" aria-expanded="false">
-          <span class="guide-ic">📖</span>
+          <span class="guide-ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span>
           <span class="guide-htext">
             <span class="guide-title" data-te="ఖురాన్ నేర్చుకునే మార్గం" data-en="Quran Learning Roadmap">ఖురాన్ నేర్చుకునే మార్గం</span>
             <span class="guide-sub" data-te="అక్షరమాల నుండి అర్థం వరకు — 5 దశలు" data-en="From the alphabet to understanding — 5 stages">అక్షరమాల నుండి అర్థం వరకు — 5 దశలు</span>
@@ -1362,7 +1365,7 @@
       <!-- PROPHET TIMELINE -->
       <div class="guide-item">
         <button class="guide-head" type="button" aria-expanded="false">
-          <span class="guide-ic">🕋</span>
+          <span class="guide-ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="6" width="16" height="15" rx="1"/><path d="M4 6l4-4h8l4 4"/><line x1="10" y1="12" x2="14" y2="12"/></svg></span>
           <span class="guide-htext">
             <span class="guide-title" data-te="ప్రవక్త ముహమ్మద్ (ﷺ) జీవిత ఘట్టాలు" data-en="Life of Prophet Muhammad ﷺ — Key Milestones">ప్రవక్త ముహమ్మద్ (ﷺ) జీవిత ఘట్టాలు</span>
             <span class="guide-sub" data-te="పుట్టుక నుండి వీడ్కోలు హజ్ వరకు" data-en="From his birth to the Farewell Pilgrimage">పుట్టుక నుండి వీడ్కోలు హజ్ వరకు</span>
@@ -1393,7 +1396,7 @@
       <!-- ISLAMIC SCIENCE -->
       <div class="guide-item">
         <button class="guide-head" type="button" aria-expanded="false">
-          <span class="guide-ic">🔬</span>
+          <span class="guide-ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v11m0 0H5a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2h-4m-6 0h6"/></svg></span>
           <span class="guide-htext">
             <span class="guide-title" data-te="ఇస్లామిక్ స్వర్ణయుగం — విజ్ఞానం" data-en="Islam's Golden Age of Science">ఇస్లామిక్ స్వర్ణయుగం — విజ్ఞానం</span>
             <span class="guide-sub" data-te="ముస్లిం పండితుల కృషి & విజ్ఞాన ప్రోత్సాహం" data-en="Muslim scholars and the encouragement of knowledge">ముస్లిం పండితుల కృషి &amp; విజ్ఞాన ప్రోత్సాహం</span>
@@ -1433,7 +1436,7 @@
       <!-- 1. TRUTHFULNESS -->
       <div class="guide-item">
         <button class="guide-head" type="button" aria-expanded="false">
-          <span class="guide-ic">🤝</span>
+          <span class="guide-ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
           <span class="guide-htext">
             <span class="guide-title" data-te="నిజాయితీ & సత్యవాక్కు" data-en="Honesty & Truthfulness">నిజాయితీ & సత్యవాక్కు</span>
             <span class="guide-sub" data-te="సత్యం మంచితనం వైపు నడిపిస్తుంది" data-en="Truthfulness leads to righteousness">సత్యం మంచితనం వైపు నడిపిస్తుంది</span>
@@ -1452,7 +1455,7 @@
       <!-- 2. PARENTS -->
       <div class="guide-item">
         <button class="guide-head" type="button" aria-expanded="false">
-          <span class="guide-ic">👪</span>
+          <span class="guide-ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
           <span class="guide-htext">
             <span class="guide-title" data-te="తల్లిదండ్రుల పట్ల మంచితనం" data-en="Kindness to Parents">తల్లిదండ్రుల పట్ల మంచితనం</span>
             <span class="guide-sub" data-te="అల్లాహ్ ఆరాధన తర్వాత అతి పెద్ద హక్కు" data-en="A right second only to worshipping Allah">అల్లాహ్ ఆరాధన తర్వాత అతి పెద్ద హక్కు</span>
@@ -1471,7 +1474,7 @@
       <!-- 3. NEIGHBOURS -->
       <div class="guide-item">
         <button class="guide-head" type="button" aria-expanded="false">
-          <span class="guide-ic">🏘️</span>
+          <span class="guide-ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/><rect x="12" y="2" width="0" height="0"/></svg></span>
           <span class="guide-htext">
             <span class="guide-title" data-te="పొరుగువారి హక్కులు" data-en="The Rights of Neighbours">పొరుగువారి హక్కులు</span>
             <span class="guide-sub" data-te="నీ పొరుగువాడు ఆకలితో ఉండకూడదు" data-en="Your neighbour should not go hungry">నీ పొరుగువాడు ఆకలితో ఉండకూడదు</span>
@@ -1490,7 +1493,7 @@
       <!-- 4. ANGER -->
       <div class="guide-item">
         <button class="guide-head" type="button" aria-expanded="false">
-          <span class="guide-ic">😤</span>
+          <span class="guide-ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 15h8M9 9h.01M15 9h.01"/></svg></span>
           <span class="guide-htext">
             <span class="guide-title" data-te="కోపాన్ని నియంత్రించడం" data-en="Controlling Anger">కోపాన్ని నియంత్రించడం</span>
             <span class="guide-sub" data-te="బలవంతుడు కోపంలో తనను అదుపు చేసుకునేవాడు" data-en="The strong one controls himself in anger">బలవంతుడు కోపంలో తనను అదుపు చేసుకునేవాడు</span>
@@ -1509,7 +1512,7 @@
       <!-- 5. GOOD SPEECH -->
       <div class="guide-item">
         <button class="guide-head" type="button" aria-expanded="false">
-          <span class="guide-ic">🗣️</span>
+          <span class="guide-ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
           <span class="guide-htext">
             <span class="guide-title" data-te="మంచి మాట & నాలుకను కాపాడుకోవడం" data-en="Good Speech & Guarding the Tongue">మంచి మాట & నాలుకను కాపాడుకోవడం</span>
             <span class="guide-sub" data-te="మంచి మాట్లాడు లేదా మౌనంగా ఉండు" data-en="Speak good or remain silent">మంచి మాట్లాడు లేదా మౌనంగా ఉండు</span>
@@ -1528,7 +1531,7 @@
       <!-- 6. HUMILITY / BEST CHARACTER -->
       <div class="guide-item">
         <button class="guide-head" type="button" aria-expanded="false">
-          <span class="guide-ic">🌸</span>
+          <span class="guide-ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2a10 10 0 0 1 0 20A10 10 0 0 1 12 2z"/><path d="M12 2v3m0 14v3M2 12h3m14 0h3"/></svg></span>
           <span class="guide-htext">
             <span class="guide-title" data-te="వినయం & ఉత్తమ స్వభావం" data-en="Humility & the Best Character">వినయం & ఉత్తమ స్వభావం</span>
             <span class="guide-sub" data-te="విశ్వాసంలో ఉత్తములు మంచి స్వభావం కలవారు" data-en="The best in faith are the best in character">విశ్వాసంలో ఉత్తములు మంచి స్వభావం కలవారు</span>
@@ -1560,7 +1563,7 @@
       <!-- 1. MENTAL HEALTH -->
       <div class="guide-item">
         <button class="guide-head" type="button" aria-expanded="false">
-          <span class="guide-ic">🧘</span>
+          <span class="guide-ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="5" r="2"/><path d="M12 9v5M9 12H5M19 12h-4"/><path d="M5 19l2.5-3.5M19 19l-2.5-3.5M12 14v4"/></svg></span>
           <span class="guide-htext">
             <span class="guide-title" data-te="మానసిక ఆరోగ్యం & భావోద్వేగ సంక్షేమం" data-en="Mental Health & Emotional Well-Being">మానసిక ఆరోగ్యం & భావోద్వేగ సంక్షేమం</span>
             <span class="guide-sub" data-te="ఆందోళన, దుఃఖం మరియు మనశ్శాంతి" data-en="Anxiety, grief and inner peace">ఆందోళన, దుఃఖం మరియు మనశ్శాంతి</span>
@@ -1593,7 +1596,7 @@
       <!-- 2. ADDICTION -->
       <div class="guide-item">
         <button class="guide-head" type="button" aria-expanded="false">
-          <span class="guide-ic">⛓️</span>
+          <span class="guide-ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></span>
           <span class="guide-htext">
             <span class="guide-title" data-te="వ్యసనాన్ని అర్థం చేసుకోవడం" data-en="Understanding Addiction">వ్యసనాన్ని అర్థం చేసుకోవడం</span>
             <span class="guide-sub" data-te="మద్యం, మాదకద్రవ్యాలు, జూదం మరియు తెర-వ్యసనం" data-en="Alcohol, drugs, gambling and screen addiction">మద్యం, మాదకద్రవ్యాలు, జూదం మరియు తెర-వ్యసనం</span>
@@ -1626,7 +1629,7 @@
       <!-- 3. RECOVERY -->
       <div class="guide-item">
         <button class="guide-head" type="button" aria-expanded="false">
-          <span class="guide-ic">🌱</span>
+          <span class="guide-ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3C3 7 3 13 6 16.5s10 4.5 14 .5c-2-6-8-10-13.5-9.5"/><path d="M12 3v14"/></svg></span>
           <span class="guide-htext">
             <span class="guide-title" data-te="పునరావాసం & కోలుకోవడం" data-en="Rehabilitation & Recovery">పునరావాసం & కోలుకోవడం</span>
             <span class="guide-sub" data-te="పశ్చాత్తాపం, ఆశ మరియు కొత్త ప్రారంభం" data-en="Repentance, hope and starting again">పశ్చాత్తాపం, ఆశ మరియు కొత్త ప్రారంభం</span>
@@ -1659,7 +1662,7 @@
       <!-- 4. LIFESTYLE & HEALTH -->
       <div class="guide-item">
         <button class="guide-head" type="button" aria-expanded="false">
-          <span class="guide-ic">🍎</span>
+          <span class="guide-ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20.94c1.5 0 4.89-3.35 6-8.45C15.79 10 13.44 9 12 9s-3.79 1-6 3.49C7.11 17.59 10.5 20.94 12 20.94z"/><path d="M12 9V5"/><path d="M10 7h4"/></svg></span>
           <span class="guide-htext">
             <span class="guide-title" data-te="జీవనశైలి & ఆరోగ్యం" data-en="Lifestyle & Health">జీవనశైలి & ఆరోగ్యం</span>
             <span class="guide-sub" data-te="ఆహారం, శరీరం మరియు పరిశుభ్రత" data-en="Diet, the body and cleanliness">ఆహారం, శరీరం మరియు పరిశుభ్రత</span>
@@ -1692,7 +1695,7 @@
       <!-- 5. BRAIN & BEHAVIOUR -->
       <div class="guide-item">
         <button class="guide-head" type="button" aria-expanded="false">
-          <span class="guide-ic">🧠</span>
+          <span class="guide-ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.46 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 4.44-2.14Z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.46 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-4.44-2.14Z"/></svg></span>
           <span class="guide-htext">
             <span class="guide-title" data-te="మెదడు & మానవ ప్రవర్తన" data-en="Brain & Human Behaviour">మెదడు & మానవ ప్రవర్తన</span>
             <span class="guide-sub" data-te="అలవాట్లు, స్వీయ-సంస్కరణ మరియు శీలం" data-en="Habits, self-reform and character">అలవాట్లు, స్వీయ-సంస్కరణ మరియు శీలం</span>
@@ -1725,7 +1728,7 @@
       <!-- 6. MODERN CHALLENGES -->
       <div class="guide-item">
         <button class="guide-head" type="button" aria-expanded="false">
-          <span class="guide-ic">📱</span>
+          <span class="guide-ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></span>
           <span class="guide-htext">
             <span class="guide-title" data-te="ఇస్లాం & ఆధునిక సవాళ్లు" data-en="Islam & Modern Challenges">ఇస్లాం & ఆధునిక సవాళ్లు</span>
             <span class="guide-sub" data-te="సోషల్ మీడియా, సమయం మరియు సమాచార యుగం" data-en="Social media, time and the information age">సోషల్ మీడియా, సమయం మరియు సమాచార యుగం</span>
@@ -1773,7 +1776,7 @@
       <!-- 1. EXPANDING UNIVERSE -->
       <div class="guide-item">
         <button class="guide-head" type="button" aria-expanded="false">
-          <span class="guide-ic">🌌</span>
+          <span class="guide-ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="2"/><path d="M12 2a10 10 0 0 1 0 20M12 2a10 10 0 0 0 0 20M2 12h20"/><path d="M12 2c-2.7 3-4 6.5-4 10s1.3 7 4 10M12 2c2.7 3 4 6.5 4 10s-1.3 7-4 10"/></svg></span>
           <span class="guide-htext">
             <span class="guide-title" data-te="విస్తరిస్తున్న విశ్వం" data-en="The Expanding Universe">విస్తరిస్తున్న విశ్వం</span>
             <span class="guide-sub" data-te="ఆకాశాన్ని మేము విస్తరిస్తూ ఉన్నాము" data-en="“We are expanding the heaven”">ఆకాశాన్ని మేము విస్తరిస్తూ ఉన్నాము</span>
@@ -1796,7 +1799,7 @@
       <!-- 2. EMBRYOLOGY -->
       <div class="guide-item">
         <button class="guide-head" type="button" aria-expanded="false">
-          <span class="guide-ic">🤰</span>
+          <span class="guide-ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="6" r="3"/><path d="M12 9v5M9 11c0 2 1 4 3 5s3 3 3 5"/><path d="M15 11c0 2-1 4-3 5"/></svg></span>
           <span class="guide-htext">
             <span class="guide-title" data-te="మానవ పిండం దశలవారీ ఎదుగుదల" data-en="Stages of Human Embryonic Development">మానవ పిండం దశలవారీ ఎదుగుదల</span>
             <span class="guide-sub" data-te="ఒక చుక్క నుండి ఎముకలు & మాంసం వరకు" data-en="From a drop to bones clothed in flesh">ఒక చుక్క నుండి ఎముకలు & మాంసం వరకు</span>
@@ -1819,7 +1822,7 @@
       <!-- 3. LIFE FROM WATER -->
       <div class="guide-item">
         <button class="guide-head" type="button" aria-expanded="false">
-          <span class="guide-ic">💧</span>
+          <span class="guide-ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg></span>
           <span class="guide-htext">
             <span class="guide-title" data-te="ప్రతి జీవి నీటి నుండి" data-en="Every Living Thing from Water">ప్రతి జీవి నీటి నుండి</span>
             <span class="guide-sub" data-te="జీవానికి నీరు ఆధారం" data-en="Water as the basis of life">జీవానికి నీరు ఆధారం</span>
@@ -1842,7 +1845,7 @@
       <!-- 4. MOUNTAINS -->
       <div class="guide-item">
         <button class="guide-head" type="button" aria-expanded="false">
-          <span class="guide-ic">⛰️</span>
+          <span class="guide-ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20l5-8 4 5 3-4 6 7H3z"/></svg></span>
           <span class="guide-htext">
             <span class="guide-title" data-te="పర్వతాలు — భూమికి మేకులు" data-en="Mountains as Stabilising Pegs">పర్వతాలు — భూమికి మేకులు</span>
             <span class="guide-sub" data-te="భూమి కదలకుండా స్థిరపరిచేవి" data-en="Stabilising the earth">భూమి కదలకుండా స్థిరపరిచేవి</span>
@@ -1865,7 +1868,7 @@
       <!-- 5. TWO SEAS -->
       <div class="guide-item">
         <button class="guide-head" type="button" aria-expanded="false">
-          <span class="guide-ic">🌊</span>
+          <span class="guide-ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12c1.5-2 3-2 4.5 0s3 2 4.5 0 3-2 4.5 0 3 2 4.5 0M2 17c1.5-2 3-2 4.5 0s3 2 4.5 0 3-2 4.5 0 3 2 4.5 0M2 7c1.5-2 3-2 4.5 0s3 2 4.5 0 3-2 4.5 0 3 2 4.5 0"/></svg></span>
           <span class="guide-htext">
             <span class="guide-title" data-te="రెండు సముద్రాల మధ్య అడ్డుతెర" data-en="A Barrier Between Two Seas">రెండు సముద్రాల మధ్య అడ్డుతెర</span>
             <span class="guide-sub" data-te="కలిసే నీళ్ళు కలవకుండా" data-en="Meeting waters that do not mix">కలిసే నీళ్ళు కలవకుండా</span>
@@ -1888,9 +1891,9 @@
       <!-- 6. IRON -->
       <div class="guide-item">
         <button class="guide-head" type="button" aria-expanded="false">
-          <span class="guide-ic">🪨</span>
-          <span class="guide-htext">
-            <span class="guide-title" data-te="ఇనుము — 'క్రిందికి పంపబడింది'" data-en="Iron — “Sent Down”">ఇనుము — 'క్రిందికి పంపబడింది'</span>
+          <span class=”guide-ic”><svg viewBox=”0 0 24 24” width=”22” height=”22” fill=”none” stroke=”currentColor” stroke-width=”1.8” stroke-linecap=”round” stroke-linejoin=”round” aria-hidden=”true”><polygon points=”12 2 2 19 22 19”/><line x1=”12” y1=”8” x2=”12” y2=”14”/><line x1=”12” y1=”17” x2=”12.01” y2=”17”/></svg></span>
+          <span class=”guide-htext”>
+            <span class=”guide-title” data-te=”ఇనుము — 'క్రిందికి పంపబడింది'” data-en=”Iron — “Sent Down””>ఇనుము — 'క్రిందికి పంపబడింది'</span>
             <span class="guide-sub" data-te="బలమైన లోహం, అంతరిక్షం నుండి" data-en="A metal of great strength, from the cosmos">బలమైన లోహం, అంతరిక్షం నుండి</span>
           </span>
           <span class="guide-chev">▾</span>
