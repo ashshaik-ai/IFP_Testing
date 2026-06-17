@@ -78,7 +78,7 @@
   .nav-sub { font-size: 10px; color: rgba(232,184,75,0.7); letter-spacing: 1.5px; text-transform: uppercase; }
   .nav-right { display: flex; align-items: center; gap: 28px; }
   .nav-links { display: flex; gap: 24px; list-style: none; }
-  .nav-links a { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 13px; letter-spacing: 0.5px; font-weight: 400; transition: color 0.2s; }
+  .nav-links a { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 13px; letter-spacing: 0.5px; font-weight: 400; transition: color 0.2s; display: inline-flex; align-items: center; min-height: 44px; padding: 0 2px; }
   .nav-links a:hover { color: var(--gold-light); }
   /* Separates the nav links (page sections) from the two CTA pills, so the
      pills read as actions rather than more nav items at the same weight. */
@@ -332,6 +332,12 @@
   .mf-badge.b-done { background: rgba(22,163,74,0.1); color: #16a34a; border: 1px solid rgba(22,163,74,0.25); }
   .mf-badge.b-progress { background: rgba(234,179,8,0.1); color: #a16207; border: 1px solid rgba(234,179,8,0.3); }
   .mf-badge.b-pending { background: rgba(200,146,42,0.07); color: var(--text-muted); border: 1px solid var(--border); }
+
+  /* MANIFESTO FILTER */
+  .mf-filter-bar { display: flex; gap: 8px; flex-wrap: wrap; margin: 20px 0 22px; }
+  .mf-filter-btn { padding: 8px 18px; border-radius: 100px; border: 1.5px solid var(--border); background: var(--white); color: var(--text-mid); font-size: 12px; font-weight: 600; letter-spacing: 0.5px; cursor: pointer; transition: background 0.18s, color 0.18s, border-color 0.18s, transform 0.15s; min-height: 36px; }
+  .mf-filter-btn:hover { border-color: var(--gold); color: var(--green-deep); transform: translateY(-1px); }
+  .mf-filter-btn.active { background: var(--green-deep); color: var(--gold-light); border-color: var(--green-deep); }
 
   /* MANIFESTO DOWNLOAD */
   .mf-download-btn { display: inline-flex; align-items: center; gap: 9px; margin-top: 14px; margin-bottom: 4px; background: var(--green-deep); color: var(--gold-light); border: 1.5px solid rgba(200,146,42,0.4); padding: 11px 22px; border-radius: 6px; font-size: 13px; font-weight: 500; letter-spacing: 0.4px; text-decoration: none; transition: background 0.2s, transform 0.15s, box-shadow 0.2s; }
@@ -1152,7 +1158,7 @@
     padding: 8px 20px; border-radius: 100px; font-size: 12px; font-weight: 600;
     letter-spacing: 0.5px; cursor: pointer; border: 1.5px solid var(--border);
     background: transparent; color: var(--text-muted); font-family: inherit;
-    transition: all 0.2s; text-transform: uppercase;
+    transition: all 0.2s; text-transform: uppercase; min-height: 44px;
   }
   .story-tab:hover { border-color: var(--gold); color: var(--green-deep); }
   .story-tab.active { background: var(--green-deep); color: var(--gold-light); border-color: var(--green-deep); }
@@ -1209,7 +1215,7 @@
     padding: 8px 18px; border-radius: 100px; font-size: 12px; font-weight: 600;
     letter-spacing: 0.5px; cursor: pointer; border: 1.5px solid var(--border);
     background: var(--white); color: var(--text-muted); font-family: inherit;
-    transition: all 0.2s; text-transform: uppercase;
+    transition: all 0.2s; text-transform: uppercase; min-height: 44px;
   }
   .gcat-btn:hover { border-color: var(--gold); color: var(--green-deep); }
   .gcat-btn.active { background: var(--green-deep); color: var(--gold-light); border-color: var(--green-deep); }
@@ -1283,7 +1289,7 @@
     flex: 1; padding: 11px 16px; border: none; background: transparent; cursor: pointer;
     font-size: 12px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase;
     color: var(--text-muted); font-family: inherit; transition: all 0.2s; text-align: center;
-    border-right: 1px solid var(--border);
+    border-right: 1px solid var(--border); min-height: 44px;
   }
   .ev-tab:last-child { border-right: none; }
   .ev-tab:hover { background: var(--cream); color: var(--green-mid); }
@@ -1366,10 +1372,10 @@
   .vf-select option { background: #0d3b1e; color: #fff; }
   .vf-textarea { resize: vertical; min-height: 80px; }
   .vf-submit {
-    width: 100%; padding: 13px; background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    width: 100%; padding: 14px; background: linear-gradient(135deg, var(--gold), var(--gold-light));
     color: var(--green-deep); border: none; border-radius: 8px; font-size: 13px; font-weight: 700;
     letter-spacing: 1px; text-transform: uppercase; cursor: pointer; font-family: inherit;
-    transition: opacity 0.2s, transform 0.2s; margin-top: 6px;
+    transition: opacity 0.2s, transform 0.2s; margin-top: 6px; min-height: 48px;
   }
   .vf-submit:hover { opacity: 0.9; transform: translateY(-1px); }
   .vf-note { font-size: 12px; color: rgba(245,230,192,0.4); text-align: center; margin-top: 12px; }
@@ -1654,6 +1660,7 @@
         <!-- FOUNDER PHOTO: place image at founder/shaik-akram.jpg -->
         <img src="assets/founder/shaik-akram-2.jpg" alt="జనాబ్ షేక్ అక్రమ్"
 		     style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;"
+             fetchpriority="high"
 			 onerror="this.style.display='none';document.getElementById('hero-ph').style.display='flex'">
         <div id="hero-ph" class="leader-photo-placeholder" style="display:none">
           <div class="avatar-circle">SA</div>
@@ -1672,11 +1679,11 @@
 <!-- HUB TABS -->
 <nav class="hub-tabs" id="hub-tabs" aria-label="Page sections">
   <div class="hub-tabs-track">
-    <button class="hub-tab active" data-tab="overview" onclick="switchHubTab('overview',this)" data-key="tab_overview">Overview</button>
-    <button class="hub-tab" data-tab="schemes" onclick="switchHubTab('schemes',this)" data-key="tab_schemes">Schemes &amp; Infrastructure</button>
-    <button class="hub-tab" data-tab="community" onclick="switchHubTab('community',this)" data-key="tab_community">Community</button>
-    <button class="hub-tab" data-tab="about" onclick="switchHubTab('about',this)" data-key="tab_about">About &amp; Contact</button>
-    <button class="hub-tab" data-tab="knowledge" onclick="switchHubTab('knowledge',this)" data-key="tab_knowledge">Knowledge Center</button>
+    <button class="hub-tab active" data-tab="overview" onclick="switchHubTab('overview',this)" data-key="tab_overview">అవలోకనం</button>
+    <button class="hub-tab" data-tab="schemes" onclick="switchHubTab('schemes',this)" data-key="tab_schemes">పథకాలు &amp; మౌలిక సదుపాయాలు</button>
+    <button class="hub-tab" data-tab="community" onclick="switchHubTab('community',this)" data-key="tab_community">సమాజం</button>
+    <button class="hub-tab" data-tab="about" onclick="switchHubTab('about',this)" data-key="tab_about">గురించి &amp; సంప్రదించండి</button>
+    <button class="hub-tab" data-tab="knowledge" onclick="switchHubTab('knowledge',this)" data-key="tab_knowledge">విజ్ఞాన కేంద్రం</button>
   </div>
 </nav>
 
@@ -1937,7 +1944,13 @@
         </div>
       </div>
     </div>
-    <div class="manifesto-grid">
+    <div class="mf-filter-bar" id="mf-filter-bar" role="group" aria-label="Filter promises by status">
+      <button class="mf-filter-btn active" data-filter="all" onclick="filterManifesto('all',this)" data-key="mf_f_all">అన్నీ</button>
+      <button class="mf-filter-btn" data-filter="mf-done" onclick="filterManifesto('mf-done',this)" data-key="mf_f_done">పూర్తయింది</button>
+      <button class="mf-filter-btn" data-filter="mf-progress" onclick="filterManifesto('mf-progress',this)" data-key="mf_f_prog">పురోగతిలో</button>
+      <button class="mf-filter-btn" data-filter="mf-pending" onclick="filterManifesto('mf-pending',this)" data-key="mf_f_pend">రాబోతున్నది</button>
+    </div>
+    <div class="manifesto-grid" id="manifesto-grid">
 
       <div class="mf-card mf-done">
         <div class="mf-num" data-key="mf_p1">వాగ్దానం 1</div>
@@ -2022,7 +2035,7 @@
       <div class="scheme-label" data-key="scheme_label">సామాజిక సంక్షేమ పథకం</div>
       <div class="scheme-amount">₹10,000</div>
       <div class="scheme-amount-sub" data-key="scheme_amount_sub">కుటుంబానికి ఆర్థిక సహాయం</div>
-      <h3 class="scheme-title-big" data-key="scheme_title" data-html="true">అంజుమన్ అంత్యక్రియల<br>సహాయ కార్యక్రమం</h3>
+      <h2 class="scheme-title-big" data-key="scheme_title" data-html="true">అంజుమన్ అంత్యక్రియల<br>సహాయ కార్యక్రమం</h2>
       <p class="scheme-desc" data-key="scheme_desc">మంగళగిరిలో ఏ ముస్లిం కుటుంబమూ ఆర్థిక కష్టాల కారణంగా గౌరవప్రదమైన అంత్యక్రియలు నిర్వహించలేకపోవు అని నిర్ధారించడానికి ఇస్లామిక్ ఫ్రంట్ తీసుకున్న కరుణాపూర్వక చొరవ.</p>
       <div class="scheme-conditions">
         <div class="scheme-cond" data-key="scheme_cond1">దరఖాస్తుదారు మంగళగిరి నియోజకవర్గంలో నివసించే ముస్లిం అయి ఉండాలి</div>
@@ -2033,7 +2046,7 @@
     </div>
     <div class="scheme-right">
       <div class="section-tag" data-key="scheme_right_tag">ఇది ఎందుకు ముఖ్యమైనది</div>
-      <h2 class="section-title" data-key="scheme_right_title" data-html="true">అత్యంత అవసరమైన<br>వారికి సేవ</h2>
+      <h3 class="section-title" data-key="scheme_right_title" data-html="true">అత్యంత అవసరమైన<br>వారికి సేవ</h3>
       <p class="section-lead" data-key="scheme_right_lead">మన సమాజంలో, గౌరవప్రదమైన వీడ్కోలు ఒక పవిత్ర బాధ్యత. కుటుంబం దుఃఖంలో ఉన్నప్పుడు, ఆర్థిక చింత అదనపు భారం కాకూడదు. మంగళగిరిలో ప్రతి ముస్లిం గౌరవాన్ని సమర్థించడానికి ఇస్లామిక్ ఫ్రంట్ ఈ పథకాన్ని స్థాపించింది.</p>
       <div style="margin-top:36px; display:flex; flex-direction:column; gap:20px;">
         <div style="display:flex; gap:20px; align-items:flex-start; padding:20px; background:var(--white); border:1px solid var(--border); border-radius:8px;">
@@ -2516,7 +2529,7 @@
 
         <div class="events-list" id="ev-upcoming">
           <div class="event-item">
-            <div class="event-date-box"><div class="ed-day">20</div><div class="ed-mon">JUN</div></div>
+            <div class="event-date-box"><div class="ed-day">20</div><div class="ed-mon" data-key="mon_jun">జూన్</div></div>
             <div class="event-info">
               <div class="ev-type" data-key="ev_type_welfare">సంక్షేమ కార్యక్రమం</div>
               <div class="ev-title" data-key="ev1_title">మెడికల్ క్యాంప్ — ఉచిత ఆరోగ్య తనిఖీ</div>
@@ -2524,7 +2537,7 @@
             </div>
           </div>
           <div class="event-item">
-            <div class="event-date-box"><div class="ed-day">28</div><div class="ed-mon">JUN</div></div>
+            <div class="event-date-box"><div class="ed-day">28</div><div class="ed-mon" data-key="mon_jun">జూన్</div></div>
             <div class="event-info">
               <div class="ev-type" data-key="ev_type_education">విద్యా కార్యక్రమం</div>
               <div class="ev-title" data-key="ev2_title">మదర్సా చేరికలు 2024–25 — ప్రవేశ ప్రక్రియ</div>
@@ -2532,7 +2545,7 @@
             </div>
           </div>
           <div class="event-item">
-            <div class="event-date-box"><div class="ed-day">05</div><div class="ed-mon">JUL</div></div>
+            <div class="event-date-box"><div class="ed-day">05</div><div class="ed-mon" data-key="mon_jul">జులై</div></div>
             <div class="event-info">
               <div class="ev-type" data-key="ev_type_women">మహిళా కార్యక్రమం</div>
               <div class="ev-title" data-key="ev3_title">కుట్టు శిక్షణా కేంద్రం — కొత్త బ్యాచ్ చేరికలు</div>
@@ -2540,7 +2553,7 @@
             </div>
           </div>
           <div class="event-item">
-            <div class="event-date-box"><div class="ed-day">15</div><div class="ed-mon">JUL</div></div>
+            <div class="event-date-box"><div class="ed-day">15</div><div class="ed-mon" data-key="mon_jul">జులై</div></div>
             <div class="event-info">
               <div class="ev-type" data-key="ev_type_scholarship">స్కాలర్‌షిప్</div>
               <div class="ev-title" data-key="ev4_title">2024–25 స్కాలర్‌షిప్ దరఖాస్తులు ప్రారంభం</div>
@@ -2551,7 +2564,7 @@
 
         <div class="events-list" id="ev-recent" style="display:none">
           <div class="event-item">
-            <div class="event-date-box"><div class="ed-day">10</div><div class="ed-mon">JUN</div></div>
+            <div class="event-date-box"><div class="ed-day">10</div><div class="ed-mon" data-key="mon_jun">జూన్</div></div>
             <div class="event-info">
               <div class="ev-type" data-key="ev_type_welfare">సంక్షేమ కార్యక్రమం</div>
               <div class="ev-title" data-key="evr1_title">అంత్యక్రియల సహాయ పంపిణీ — 3 కుటుంబాలు</div>
@@ -2559,7 +2572,7 @@
             </div>
           </div>
           <div class="event-item">
-            <div class="event-date-box"><div class="ed-day">02</div><div class="ed-mon">JUN</div></div>
+            <div class="event-date-box"><div class="ed-day">02</div><div class="ed-mon" data-key="mon_jun">జూన్</div></div>
             <div class="event-info">
               <div class="ev-type" data-key="ev_type_education">విద్యా కార్యక్రమం</div>
               <div class="ev-title" data-key="evr2_title">అంజుమన్ వార్షిక సభ 2024</div>
@@ -2567,7 +2580,7 @@
             </div>
           </div>
           <div class="event-item">
-            <div class="event-date-box"><div class="ed-day">14</div><div class="ed-mon">MAY</div></div>
+            <div class="event-date-box"><div class="ed-day">14</div><div class="ed-mon" data-key="mon_may">మే</div></div>
             <div class="event-info">
               <div class="ev-type" data-key="ev_type_women">మహిళా కార్యక్రమం</div>
               <div class="ev-title" data-key="evr3_title">కుట్టు శిక్షణ — 20 మహిళలు గ్రాడ్యుయేటయ్యారు</div>
@@ -2578,7 +2591,7 @@
 
         <div class="events-list" id="ev-friday" style="display:none">
           <div class="event-item">
-            <div class="event-date-box"><div class="ed-day">జు</div><div class="ed-mon">ముమ్</div></div>
+            <div class="event-date-box"><div class="ed-day" data-key="ev_fri_day">జు</div><div class="ed-mon" data-key="ev_fri_mon">ముమ్</div></div>
             <div class="event-info">
               <div class="ev-type" data-key="ev_type_friday">జుమ్ముమ్ నమాజ్</div>
               <div class="ev-title" data-key="evf1_title">శుక్రవారం ప్రత్యేక ఖుత్బా — ఐక్యత మరియు సేవ</div>
@@ -2586,7 +2599,7 @@
             </div>
           </div>
           <div class="event-item">
-            <div class="event-date-box"><div class="ed-day">జు</div><div class="ed-mon">ముమ్</div></div>
+            <div class="event-date-box"><div class="ed-day" data-key="ev_fri_day">జు</div><div class="ed-mon" data-key="ev_fri_mon">ముమ్</div></div>
             <div class="event-info">
               <div class="ev-type" data-key="ev_type_welfare">సంక్షేమ ప్రకటన</div>
               <div class="ev-title" data-key="evf2_title">అంజుమన్ పథకాల గురించి ప్రకటనలు</div>
@@ -3095,6 +3108,7 @@ const T = {
     mf_title: "ఇస్లామిక్ ఫ్రంట్<br>మేనిఫెస్టో",
     mf_lead: "మేము ఏమి వాగ్దానం చేశాము మరియు ప్రగతి ఏమిటి — పారదర్శకంగా మీ ముందు ఉంచుతున్నాము.",
     mf_download: "మేనిఫెస్టో డౌన్‌లోడ్ చేయండి (PDF)",
+    mf_f_all: "అన్నీ", mf_f_done: "పూర్తయింది", mf_f_prog: "పురోగతిలో", mf_f_pend: "రాబోతున్నది",
     mf_legend_done: "✓ పూర్తయింది",
     mf_legend_progress: "⏳ పురోగతిలో ఉంది",
     mf_legend_pending: "○ రాబోతున్నది",
@@ -3213,6 +3227,9 @@ const T = {
     evr3_title: "కుట్టు శిక్షణ — 20 మహిళలు గ్రాడ్యుయేటయ్యారు", evr3_meta: "మే 2024 · యంత్రాల పంపిణీ",
     evf1_title: "శుక్రవారం ప్రత్యేక ఖుత్బా — ఐక్యత మరియు సేవ", evf1_meta: "ప్రతి శుక్రవారం · అన్ని 18 మసీదులు · మ. 1:00",
     evf2_title: "అంజుమన్ పథకాల గురించి ప్రకటనలు", evf2_meta: "నమాజ్ తర్వాత · అన్ని మసీదులు",
+    mon_jan:"జన", mon_feb:"ఫిబ్ర", mon_mar:"మార్చి", mon_apr:"ఏప్రిల్", mon_may:"మే", mon_jun:"జూన్",
+    mon_jul:"జులై", mon_aug:"ఆగస్టు", mon_sep:"సెప్ట", mon_oct:"అక్టో", mon_nov:"నవం", mon_dec:"డిసెం",
+    ev_fri_day:"జు", ev_fri_mon:"ముమ్",
     ann_title: "ముఖ్యమైన ప్రకటనలు", ann_sub: "సమాజ సభ్యులకు తాజా అప్‌డేట్‌లు.",
     ann_urgent: "అత్యవసర నోటీసు", ann_general: "సాధారణ ప్రకటన", ann_info: "సమాచారం", ann_welfare: "సంక్షేమ ప్రకటన", ann_youth: "యువత",
     ann1_text: "అంత్యక్రియల సహాయ పథకం దరఖాస్తు ప్రక్రియ — అర్హుడైన కుటుంబాలు అంజుమన్ కార్యాలయానికి నేరుగా సంప్రదించవచ్చు.", ann1_date: "జూన్ 2024",
@@ -3360,6 +3377,7 @@ const T = {
     mf_title: "Islamic Front<br>Manifesto",
     mf_lead: "What we promised and where we stand — placed transparently before you.",
     mf_download: "Download Manifesto (PDF)",
+    mf_f_all: "All", mf_f_done: "Completed", mf_f_prog: "In Progress", mf_f_pend: "Upcoming",
     mf_legend_done: "✓ Completed",
     mf_legend_progress: "⏳ In Progress",
     mf_legend_pending: "○ Upcoming",
@@ -3478,6 +3496,9 @@ const T = {
     evr3_title: "Stitching Training — 20 Women Graduated", evr3_meta: "May 2024 · Machine distribution",
     evf1_title: "Friday Special Khutbah — Unity & Service", evf1_meta: "Every Friday · All 18 mosques · 1:00 PM",
     evf2_title: "Anjuman Scheme Announcements", evf2_meta: "After prayers · All mosques",
+    mon_jan:"JAN", mon_feb:"FEB", mon_mar:"MAR", mon_apr:"APR", mon_may:"MAY", mon_jun:"JUN",
+    mon_jul:"JUL", mon_aug:"AUG", mon_sep:"SEP", mon_oct:"OCT", mon_nov:"NOV", mon_dec:"DEC",
+    ev_fri_day:"FRI", ev_fri_mon:"JUM",
     ann_title: "Important Announcements", ann_sub: "Latest updates for community members.",
     ann_urgent: "Urgent Notice", ann_general: "General Announcement", ann_info: "Information", ann_welfare: "Welfare Notice", ann_youth: "Youth",
     ann1_text: "Funeral Aid Scheme application process — eligible families can directly contact the Anjuman office.", ann1_date: "June 2024",
@@ -3551,6 +3572,20 @@ function applyLang(l) {
   langBtn.title = l === 'te' ? 'Currently: Telugu — Click for English' : 'Currently: English — Click for Telugu';
   langBtn.setAttribute('aria-label', l === 'te' ? 'Switch to English (currently Telugu)' : 'Switch to Telugu (currently English)');
 }
+
+function filterManifesto(filter, btn) {
+  document.querySelectorAll('#mf-filter-bar .mf-filter-btn').forEach(function(b) { b.classList.remove('active'); });
+  btn.classList.add('active');
+  var cards = document.querySelectorAll('#manifesto-grid .mf-card');
+  cards.forEach(function(card) {
+    if (filter === 'all' || card.classList.contains(filter)) {
+      card.style.display = '';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+window.filterManifesto = filterManifesto;
 
 function toggleScheme(btn) {
   var body = document.getElementById('scheme-body');
@@ -3695,6 +3730,13 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.bn-item').forEach(function(item){
       item.classList.toggle('bn-active', item.dataset.section === activeId);
     });
+    /* Sync hub tabs to the currently visible section */
+    if(activeId && SECTION_TO_TAB[activeId]){
+      var targetTab = SECTION_TO_TAB[activeId];
+      document.querySelectorAll('.hub-tab').forEach(function(t){
+        t.classList.toggle('active', t.dataset.tab === targetTab);
+      });
+    }
     /* Update the URL hash so users can share direct section links */
     if(activeId && window.history && window.history.replaceState){
       window.history.replaceState(null,'','#'+activeId);
