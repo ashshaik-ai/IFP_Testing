@@ -1407,6 +1407,14 @@
   }
   .vf-submit:hover { opacity: 0.9; transform: translateY(-1px); }
   .vf-note { font-size: 12px; color: rgba(245,230,192,0.4); text-align: center; margin-top: 12px; }
+  .vf-error-msg { font-size: 11.5px; color: #f87171; margin-top: 4px; display: none; }
+  .vf-group.has-error .vf-input, .vf-group.has-error .vf-select, .vf-group.has-error .vf-textarea {
+    border-color: rgba(248,113,113,0.5); box-shadow: 0 0 0 3px rgba(248,113,113,0.1);
+  }
+  .vf-group.has-error .vf-error-msg { display: block; }
+  .vf-input.is-valid, .vf-select.is-valid, .vf-textarea.is-valid {
+    border-color: rgba(34,197,94,0.4);
+  }
 
   @media (max-width: 768px) { .vol-grid { grid-template-columns: 1fr; gap: 32px; } }
 
@@ -2758,15 +2766,17 @@
         <form onsubmit="submitVolunteerForm(event)">
           <div class="vf-group">
             <label class="vf-label" for="vf-name" data-key="vf_name_label">పూర్తి పేరు</label>
-            <input id="vf-name" class="vf-input" type="text" placeholder="మీ పేరు" required data-key-placeholder="vf_name_ph" autocomplete="name">
+            <input id="vf-name" class="vf-input" type="text" placeholder="మీ పేరు" required data-key-placeholder="vf_name_ph" autocomplete="name" aria-required="true" aria-describedby="vf-name-err">
+            <span id="vf-name-err" class="vf-error-msg" role="alert" data-err-te="పేరు నమోదు చేయండి" data-err-en="Please enter your name">పేరు నమోదు చేయండి</span>
           </div>
           <div class="vf-group">
             <label class="vf-label" for="vf-phone" data-key="vf_phone_label">ఫోన్ నంబర్</label>
-            <input id="vf-phone" class="vf-input" type="tel" placeholder="మీ ఫోన్ నంబర్" required data-key-placeholder="vf_phone_ph" autocomplete="tel">
+            <input id="vf-phone" class="vf-input" type="tel" placeholder="మీ ఫోన్ నంబర్" required data-key-placeholder="vf_phone_ph" autocomplete="tel" aria-required="true" aria-describedby="vf-phone-err">
+            <span id="vf-phone-err" class="vf-error-msg" role="alert" data-err-te="సరైన ఫోన్ నంబర్ నమోదు చేయండి" data-err-en="Please enter a valid phone number">సరైన ఫోన్ నంబర్ నమోదు చేయండి</span>
           </div>
           <div class="vf-group">
             <label class="vf-label" for="vf-area" data-key="vf_area_label">స్వచ్ఛంద సేవ విభాగం</label>
-            <select id="vf-area" class="vf-select" required>
+            <select id="vf-area" class="vf-select" required aria-required="true" aria-describedby="vf-area-err">
               <option value="" data-key="vf_select_default">విభాగం ఎంచుకోండి</option>
               <option value="youth" data-key="vol1_title">యూత్ వింగ్</option>
               <option value="women" data-key="vol2_title">మహిళా వింగ్</option>
@@ -2774,6 +2784,7 @@
               <option value="education" data-key="vol4_title">విద్యా స్వచ్ఛంద సేవ</option>
               <option value="blood" data-key="vol5_title">రక్తదాన నెట్‌వర్క్</option>
             </select>
+            <span id="vf-area-err" class="vf-error-msg" role="alert" data-err-te="విభాగం ఎంచుకోండి" data-err-en="Please select a department">విభాగం ఎంచుకోండి</span>
           </div>
           <div class="vf-group">
             <label class="vf-label" for="vf-msg" data-key="vf_msg_label">సందేశం (ఐచ్ఛికం)</label>
@@ -3989,19 +4000,66 @@ window.switchEventTab = switchEventTab;
 /* Volunteer form */
 function submitVolunteerForm(e) {
   e.preventDefault();
-  var btn = e.target.querySelector('.vf-submit');
+  var form = e.target;
+  var valid = true;
+  var fields = [
+    { id: 'vf-name', check: function(v){ return v.trim().length >= 2; } },
+    { id: 'vf-phone', check: function(v){ return /^\+?[\d\s\-]{7,}$/.test(v.trim()); } },
+    { id: 'vf-area', check: function(v){ return v !== ''; } }
+  ];
+  fields.forEach(function(f) {
+    var el = document.getElementById(f.id);
+    var group = el.closest('.vf-group');
+    var errEl = document.getElementById(f.id + '-err');
+    if (!f.check(el.value)) {
+      valid = false;
+      group.classList.add('has-error');
+      el.setAttribute('aria-invalid', 'true');
+      if (errEl) {
+        errEl.textContent = errEl.getAttribute(lang === 'te' ? 'data-err-te' : 'data-err-en') || errEl.textContent;
+      }
+    } else {
+      group.classList.remove('has-error');
+      el.setAttribute('aria-invalid', 'false');
+      el.classList.add('is-valid');
+    }
+  });
+  if (!valid) {
+    var firstErr = form.querySelector('.vf-group.has-error .vf-input, .vf-group.has-error .vf-select');
+    if (firstErr) firstErr.focus();
+    return;
+  }
+  var btn = form.querySelector('.vf-submit');
   var origText = btn.textContent;
-  btn.textContent = lang === 'te' ? '✓ నమోదు అయింది! త్వరలో సంప్రదిస్తాము.' : '✓ Registered! We will contact you soon.';
+  btn.innerHTML = '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> ' + (lang === 'te' ? 'నమోదు అయింది! త్వరలో సంప్రదిస్తాము.' : 'Registered! We will contact you soon.');
   btn.style.background = 'linear-gradient(135deg, #16a34a, #22c55e)';
   btn.disabled = true;
+  form.querySelectorAll('.vf-input, .vf-select').forEach(function(el){ el.classList.remove('is-valid'); });
   setTimeout(function(){
     btn.textContent = origText;
     btn.style.background = '';
     btn.disabled = false;
-    e.target.reset();
-  }, 4000);
+    form.reset();
+  }, 5000);
 }
 window.submitVolunteerForm = submitVolunteerForm;
+
+/* Clear VF field errors on input */
+(function() {
+  document.addEventListener('DOMContentLoaded', function() {
+    ['vf-name','vf-phone','vf-area'].forEach(function(id) {
+      var el = document.getElementById(id);
+      if (!el) return;
+      el.addEventListener('input', function() {
+        var group = el.closest('.vf-group');
+        if (group && group.classList.contains('has-error')) {
+          group.classList.remove('has-error');
+          el.setAttribute('aria-invalid', 'false');
+        }
+      });
+    });
+  });
+})();
 
 /* Footer nav update — add new sections */
 (function(){
