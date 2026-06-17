@@ -1734,17 +1734,17 @@
 
 <!-- HUB TABS -->
 <nav class="hub-tabs" id="hub-tabs" aria-label="Page sections">
-  <div class="hub-tabs-track">
-    <button class="hub-tab active" data-tab="overview" onclick="switchHubTab('overview',this)" data-key="tab_overview">అవలోకనం</button>
-    <button class="hub-tab" data-tab="schemes" onclick="switchHubTab('schemes',this)" data-key="tab_schemes">పథకాలు &amp; మౌలిక సదుపాయాలు</button>
-    <button class="hub-tab" data-tab="community" onclick="switchHubTab('community',this)" data-key="tab_community">సమాజం</button>
-    <button class="hub-tab" data-tab="about" onclick="switchHubTab('about',this)" data-key="tab_about">గురించి &amp; సంప్రదించండి</button>
-    <button class="hub-tab" data-tab="knowledge" onclick="switchHubTab('knowledge',this)" data-key="tab_knowledge">విజ్ఞాన కేంద్రం</button>
+  <div class="hub-tabs-track" role="tablist" aria-label="Page sections">
+    <button class="hub-tab active" data-tab="overview" onclick="switchHubTab('overview',this)" data-key="tab_overview" role="tab" aria-selected="true" aria-controls="pane-overview">అవలోకనం</button>
+    <button class="hub-tab" data-tab="schemes" onclick="switchHubTab('schemes',this)" data-key="tab_schemes" role="tab" aria-selected="false" aria-controls="pane-schemes">పథకాలు &amp; మౌలిక సదుపాయాలు</button>
+    <button class="hub-tab" data-tab="community" onclick="switchHubTab('community',this)" data-key="tab_community" role="tab" aria-selected="false" aria-controls="pane-community">సమాజం</button>
+    <button class="hub-tab" data-tab="about" onclick="switchHubTab('about',this)" data-key="tab_about" role="tab" aria-selected="false" aria-controls="pane-about">గురించి &amp; సంప్రదించండి</button>
+    <button class="hub-tab" data-tab="knowledge" onclick="switchHubTab('knowledge',this)" data-key="tab_knowledge" role="tab" aria-selected="false" aria-controls="pane-knowledge">విజ్ఞాన కేంద్రం</button>
   </div>
 </nav>
 
 <div class="hub-panes">
-<div class="hub-pane active" id="pane-overview" data-pane="overview">
+<div class="hub-pane active" id="pane-overview" data-pane="overview" role="tabpanel" aria-labelledby="pane-overview">
 
 <!-- VICTORY -->
 <section class="victory" id="victory">
@@ -2073,7 +2073,7 @@
 </section>
 
 </div>
-<div class="hub-pane" id="pane-schemes" data-pane="schemes">
+<div class="hub-pane" id="pane-schemes" data-pane="schemes" role="tabpanel" aria-labelledby="pane-schemes">
 
 <!-- SCHEME -->
 <section class="scheme" id="scheme">
@@ -2192,7 +2192,7 @@
 </section>
 
 </div>
-<div class="hub-pane" id="pane-about" data-pane="about">
+<div class="hub-pane" id="pane-about" data-pane="about" role="tabpanel" aria-labelledby="pane-about">
 
 <!-- ABOUT -->
 <section class="about" id="about">
@@ -2287,7 +2287,7 @@
 </section>
 
 </div>
-<div class="hub-pane" id="pane-community" data-pane="community">
+<div class="hub-pane" id="pane-community" data-pane="community" role="tabpanel" aria-labelledby="pane-community">
 
 <!-- ═══════════════════════════════════════════════════════
      SECTION SEAM — marks the shift from core info to community
@@ -2888,7 +2888,7 @@
 </section>
 
 </div>
-<div class="hub-pane" id="pane-knowledge" data-pane="knowledge">
+<div class="hub-pane" id="pane-knowledge" data-pane="knowledge" role="tabpanel" aria-labelledby="pane-knowledge">
 
 <!-- ═══════════════════════════════════════════════════════
      KNOWLEDGE CENTER DISCOVERY
@@ -3754,9 +3754,12 @@ document.addEventListener('DOMContentLoaded', function () {
   function firstTrackedSectionIdIn(tabId){ return TAB_FIRST_SECTION[tabId]||null; }
 
   function switchHubTab(tabId, btn, opts){
-    document.querySelectorAll('.hub-tab').forEach(function(t){t.classList.remove('active');});
-    if(btn) btn.classList.add('active');
-    else { var b=document.querySelector('.hub-tab[data-tab="'+tabId+'"]'); if(b)b.classList.add('active'); }
+    document.querySelectorAll('.hub-tab').forEach(function(t){
+      t.classList.remove('active');
+      t.setAttribute('aria-selected', 'false');
+    });
+    var activeBtn = btn || document.querySelector('.hub-tab[data-tab="'+tabId+'"]');
+    if(activeBtn) { activeBtn.classList.add('active'); activeBtn.setAttribute('aria-selected', 'true'); }
     document.querySelectorAll('.hub-pane').forEach(function(p){
       p.classList.toggle('active', p.dataset.pane===tabId);
     });
