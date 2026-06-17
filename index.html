@@ -1222,24 +1222,24 @@
   .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
   .gal-item {
     border-radius: 12px; overflow: hidden; cursor: pointer;
-    background: linear-gradient(135deg, var(--green-deep), var(--green-mid));
-    aspect-ratio: 4/3; position: relative;
-    transition: transform 0.3s cubic-bezier(.22,.61,.36,1), box-shadow 0.3s;
+    background: linear-gradient(145deg, #0d3b1e 0%, #1a5c30 50%, #0f2e17 100%);
+    aspect-ratio: 4/3; position: relative; border: 1px solid rgba(200,146,42,0.15);
+    transition: transform 0.3s cubic-bezier(.22,.61,.36,1), box-shadow 0.3s, border-color 0.3s;
     display: none;
   }
   .gal-item.gal-visible { display: block; }
-  .gal-item:hover { transform: scale(1.03); box-shadow: 0 12px 36px rgba(13,59,30,0.2); }
+  .gal-item:hover { transform: scale(1.03); box-shadow: 0 16px 48px rgba(13,59,30,0.3); border-color: rgba(200,146,42,0.35); }
   .gal-item-inner {
     width: 100%; height: 100%; display: flex; flex-direction: column;
-    align-items: center; justify-content: center; gap: 10px; padding: 16px;
+    align-items: center; justify-content: center; gap: 12px; padding: 16px;
   }
   .gal-item-inner img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
-  .gal-placeholder-icon { font-size: 36px; opacity: 0.6; }
-  .gal-placeholder-text { font-size: 12px; color: rgba(200,146,42,0.7); text-align: center; letter-spacing: 0.5px; }
+  .gal-placeholder-icon { opacity: 0.7; filter: drop-shadow(0 2px 8px rgba(200,146,42,0.3)); }
+  .gal-placeholder-text { font-size: 11px; color: rgba(200,146,42,0.6); text-align: center; letter-spacing: 0.5px; line-height: 1.5; }
   .gal-overlay {
     position: absolute; inset: 0;
-    background: linear-gradient(to top, rgba(7,23,12,0.92) 0%, rgba(7,23,12,0.3) 50%, transparent 100%);
-    opacity: 0; transition: opacity 0.3s; display: flex; align-items: flex-end; padding: 16px;
+    background: linear-gradient(to top, rgba(7,23,12,0.90) 0%, rgba(7,23,12,0.2) 55%, transparent 100%);
+    opacity: 0.55; transition: opacity 0.3s; display: flex; align-items: flex-end; padding: 14px 16px;
   }
   .gal-item:hover .gal-overlay { opacity: 1; }
   .gal-caption { font-size: 13px; font-weight: 600; color: var(--white); }
@@ -1454,14 +1454,19 @@
      Browsable grids become horizontal swipe on mobile. Scroll-fade
      edge affordance via .carousel-wrap (same pattern as portals). */
   .carousel-wrap { position:relative; }
-  .carousel-wrap::after {
-    content:''; position:absolute; top:0; right:0; bottom:0; width:32px;
-    pointer-events:none; z-index:1;
-    background:linear-gradient(to right,rgba(250,246,238,0),rgba(250,246,238,0.96));
-  }
-  .achievements .carousel-wrap::after,
-  .success-stories .carousel-wrap::after {
-    background:linear-gradient(to right,rgba(255,255,255,0),rgba(255,255,255,0.96));
+  @media (max-width: 600px) {
+    .carousel-wrap::after {
+      content:''; position:absolute; top:0; right:0; bottom:0; width:40px;
+      pointer-events:none; z-index:1;
+      background:linear-gradient(to right,rgba(250,246,238,0),rgba(250,246,238,0.96));
+    }
+    .achievements .carousel-wrap::after,
+    .success-stories .carousel-wrap::after {
+      background:linear-gradient(to right,rgba(255,255,255,0),rgba(255,255,255,0.96));
+    }
+    .gallery .carousel-wrap::after {
+      background:linear-gradient(to right,rgba(13,59,30,0),rgba(13,59,30,0.96));
+    }
   }
 
   @media (max-width: 600px) {
@@ -2263,7 +2268,7 @@
     <h2 class="section-title" data-key="stories_title">సఫలత కథలు</h2>
     <p class="section-lead" data-key="stories_lead">మా పని వెనక మానవ ముఖాలు — ఇస్లామిక్ ఫ్రంట్ పథకాలు మరియు కార్యక్రమాల ద్వారా జీవితాలు ఎలా మారాయో.</p>
 
-    <div class="stories-tabs">
+    <div class="stories-tabs" role="group" aria-label="Filter stories by category">
       <button class="story-tab active" onclick="filterStories('all', this)" data-key="stories_all">అన్నీ</button>
       <button class="story-tab" onclick="filterStories('welfare', this)" data-key="stories_welfare">సంక్షేమం</button>
       <button class="story-tab" onclick="filterStories('women', this)" data-key="stories_women">మహిళా సాధికారత</button>
@@ -2521,13 +2526,13 @@
     <div class="events-grid">
       <!-- Events column -->
       <div>
-        <div class="events-tabs">
-          <button class="ev-tab active" onclick="switchEventTab('upcoming', this)" data-key="ev_upcoming">రాబోయేవి</button>
-          <button class="ev-tab" onclick="switchEventTab('recent', this)" data-key="ev_recent">ఇటీవలి</button>
-          <button class="ev-tab" onclick="switchEventTab('friday', this)" data-key="ev_friday">శుక్రవారం</button>
+        <div class="events-tabs" role="tablist" aria-label="Event categories">
+          <button class="ev-tab active" role="tab" aria-selected="true" aria-controls="ev-upcoming" onclick="switchEventTab('upcoming', this)" data-key="ev_upcoming">రాబోయేవి</button>
+          <button class="ev-tab" role="tab" aria-selected="false" aria-controls="ev-recent" onclick="switchEventTab('recent', this)" data-key="ev_recent">ఇటీవలి</button>
+          <button class="ev-tab" role="tab" aria-selected="false" aria-controls="ev-friday" onclick="switchEventTab('friday', this)" data-key="ev_friday">శుక్రవారం</button>
         </div>
 
-        <div class="events-list" id="ev-upcoming">
+        <div class="events-list" id="ev-upcoming" role="tabpanel" aria-label="Upcoming events">
           <div class="event-item">
             <div class="event-date-box"><div class="ed-day">20</div><div class="ed-mon" data-key="mon_jun">జూన్</div></div>
             <div class="event-info">
@@ -2562,7 +2567,7 @@
           </div>
         </div>
 
-        <div class="events-list" id="ev-recent" style="display:none">
+        <div class="events-list" id="ev-recent" role="tabpanel" aria-label="Recent events" style="display:none">
           <div class="event-item">
             <div class="event-date-box"><div class="ed-day">10</div><div class="ed-mon" data-key="mon_jun">జూన్</div></div>
             <div class="event-info">
@@ -2589,7 +2594,7 @@
           </div>
         </div>
 
-        <div class="events-list" id="ev-friday" style="display:none">
+        <div class="events-list" id="ev-friday" role="tabpanel" aria-label="Friday prayers" style="display:none">
           <div class="event-item">
             <div class="event-date-box"><div class="ed-day" data-key="ev_fri_day">జు</div><div class="ed-mon" data-key="ev_fri_mon">ముమ్</div></div>
             <div class="event-info">
@@ -3922,8 +3927,12 @@ document.getElementById('lightbox') && document.getElementById('lightbox').addEv
 
 /* Events tab switch */
 function switchEventTab(id, btn) {
-  document.querySelectorAll('.ev-tab').forEach(function(t){ t.classList.remove('active'); });
+  document.querySelectorAll('.ev-tab').forEach(function(t){
+    t.classList.remove('active');
+    t.setAttribute('aria-selected', 'false');
+  });
   btn.classList.add('active');
+  btn.setAttribute('aria-selected', 'true');
   ['upcoming','recent','friday'].forEach(function(tab){
     var el = document.getElementById('ev-'+tab);
     if (el) el.style.display = (tab === id) ? 'flex' : 'none';
