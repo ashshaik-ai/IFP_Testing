@@ -305,6 +305,42 @@
     if (sk) sk.textContent = getLang() === 'te' ? 'ముఖ్య విషయానికి వెళ్లండి' : 'Skip to content';
   }).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
 
+  /* ── Shared scroll-reveal: activates .ifx-reveal → .ifx-visible ── */
+  /* Also auto-attaches .ifx-reveal to common portal card elements    */
+  var PORTAL_CARD_SELS = [
+    '.alf-card', '.ph-card', '.surah-card', '.qd-card',
+    '.step-card', '.miss-card', '.sw-card', '.gl-card',
+    '.dua-card', '.name-card', '.word-card', '.if-ref-card'
+  ];
+  function attachPortalReveal() {
+    PORTAL_CARD_SELS.forEach(function(sel){
+      document.querySelectorAll(sel).forEach(function(el, i){
+        if (!el.classList.contains('ifx-reveal') && !el.classList.contains('reveal')) {
+          el.classList.add('ifx-reveal');
+          el.style.transitionDelay = Math.min(i, 7) * 70 + 'ms';
+        }
+      });
+    });
+  }
+  function initIfxReveal() {
+    attachPortalReveal();
+    var noMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!('IntersectionObserver' in window) || noMotion) {
+      document.querySelectorAll('.ifx-reveal,.ifx-reveal-left,.ifx-reveal-scale').forEach(function(el){ el.classList.add('ifx-visible'); });
+      return;
+    }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting) { e.target.classList.add('ifx-visible'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -32px 0px' });
+    document.querySelectorAll('.ifx-reveal,.ifx-reveal-left,.ifx-reveal-scale').forEach(function(el){ io.observe(el); });
+  }
+
   /* expose a tiny API for future components (quiz/flashcard/search) */
-  window.IFCore = { toast: toast, getLang: getLang, playAudio: playAudio, certificate: certificate };
+  window.IFCore = { toast: toast, getLang: getLang, playAudio: playAudio, certificate: certificate, initIfxReveal: initIfxReveal };
+
+  /* run ifx reveal after DOMContentLoaded (if not already booted) */
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function(){ setTimeout(initIfxReveal, 0); });
+  else setTimeout(initIfxReveal, 0);
 })();
