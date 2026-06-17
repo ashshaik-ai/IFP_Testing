@@ -56,12 +56,15 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
 /* HERO */
 .sg-hero{padding:112px 5vw 52px;background:linear-gradient(160deg,var(--green-deep) 0%,#0a2a14 60%,#102b12 100%);position:relative;overflow:hidden;isolation:isolate}
 .sg-hero::before{content:'';position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse 60% 55% at 85% 25%,rgba(200,146,42,0.14),transparent 65%),radial-gradient(ellipse 50% 50% at 5% 95%,rgba(46,139,87,0.16),transparent 60%);pointer-events:none}
+/* ── Hero entrance animations ── */
+@keyframes sgFadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 .sg-hero-in{max-width:880px;margin:0 auto;position:relative;z-index:1;text-align:center}
-.sg-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(200,146,42,0.12);border:1px solid rgba(200,146,42,0.34);color:var(--gold-light);font-size:11px;font-weight:600;letter-spacing:1.4px;text-transform:uppercase;padding:7px 16px;border-radius:100px;margin-bottom:22px}
-.sg-hero h1{font-family:'Playfair Display',serif;font-size:clamp(27px,5.2vw,46px);font-weight:800;color:var(--white);line-height:1.15;margin-bottom:18px}
+.sg-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(200,146,42,0.12);border:1px solid rgba(200,146,42,0.34);color:var(--gold-light);font-size:11px;font-weight:600;letter-spacing:1.4px;text-transform:uppercase;padding:7px 16px;border-radius:100px;margin-bottom:22px;animation:sgFadeUp .5s .1s cubic-bezier(.22,.61,.36,1) both}
+.sg-hero h1{font-family:'Playfair Display',serif;font-size:clamp(27px,5.2vw,46px);font-weight:800;color:var(--white);line-height:1.15;margin-bottom:18px;animation:sgFadeUp .5s .22s cubic-bezier(.22,.61,.36,1) both}
 .sg-hero h1 span{background:linear-gradient(135deg,var(--gold-light),#fff4cf);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-.sg-hero p.lead{font-family:'Cormorant Garamond',serif;font-size:clamp(16px,2.3vw,21px);color:rgba(245,230,192,0.85);line-height:1.6;max-width:680px;margin:0 auto 26px}
-.sg-disclaimer{display:flex;gap:12px;align-items:flex-start;text-align:left;background:rgba(255,255,255,0.05);border:1px solid rgba(200,146,42,0.3);border-left:4px solid var(--gold);border-radius:12px;padding:16px 18px;max-width:640px;margin:0 auto;color:rgba(245,230,192,0.82);font-size:13.5px;line-height:1.65}
+.sg-hero p.lead{font-family:'Cormorant Garamond',serif;font-size:clamp(16px,2.3vw,21px);color:rgba(245,230,192,0.85);line-height:1.6;max-width:680px;margin:0 auto 26px;animation:sgFadeUp .5s .34s cubic-bezier(.22,.61,.36,1) both}
+.sg-disclaimer{display:flex;gap:12px;align-items:flex-start;text-align:left;background:rgba(255,255,255,0.05);border:1px solid rgba(200,146,42,0.3);border-left:4px solid var(--gold);border-radius:12px;padding:16px 18px;max-width:640px;margin:0 auto;color:rgba(245,230,192,0.82);font-size:13.5px;line-height:1.65;animation:sgFadeUp .5s .46s cubic-bezier(.22,.61,.36,1) both}
+@media(prefers-reduced-motion:reduce){.sg-eyebrow,.sg-hero h1,.sg-hero p.lead,.sg-disclaimer{animation:none!important}}
 .sg-disclaimer b{color:var(--gold-light)}
 .sg-disclaimer .ic{font-size:20px;flex-shrink:0;line-height:1.2}
 
@@ -113,7 +116,8 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
 /* CARD GRID + EXPANDABLE CARDS */
 .gx-grid{display:grid;grid-template-columns:1fr;gap:14px;margin-top:8px}
 @media(min-width:640px){.gx-grid{grid-template-columns:1fr 1fr}}
-.gx-card{background:var(--white);border:1px solid var(--border);border-left:4px solid var(--track,var(--gold));border-radius:14px;overflow:hidden;transition:box-shadow .25s,transform .25s}
+.gx-card{background:var(--white);border:1px solid var(--border);border-left:4px solid var(--track,var(--gold));border-radius:14px;overflow:hidden;transition:box-shadow .28s cubic-bezier(.22,.61,.36,1),transform .28s cubic-bezier(.22,.61,.36,1),border-color .28s}
+.gx-card:hover:not(.open){box-shadow:0 4px 16px rgba(13,59,30,0.08);transform:translateY(-1px);border-color:rgba(200,146,42,0.4)}
 .gx-card.open{box-shadow:0 12px 32px rgba(13,59,30,0.14),0 2px 8px rgba(200,146,42,0.10);transform:translateY(-2px)}
 .gx-head{width:100%;display:flex;align-items:flex-start;gap:13px;padding:16px 18px;cursor:pointer;background:none;border:none;text-align:left;font-family:inherit}
 .gx-ic{width:40px;height:40px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;background:rgba(200,146,42,0.1);background:color-mix(in srgb,var(--track,var(--gold)) 12%,white);border:1px solid var(--border);border:1px solid color-mix(in srgb,var(--track,var(--gold)) 28%,white)}
