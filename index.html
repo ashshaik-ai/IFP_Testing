@@ -229,7 +229,9 @@
   .hub-tab.active { background: var(--green-deep); color: var(--gold-light); border-color: var(--green-deep); }
   .hub-panes { background: var(--cream); }
   .hub-pane { display: none; }
-  .hub-pane.active { display: block; }
+  .hub-pane.active { display: block; animation: hubPaneIn 0.32s cubic-bezier(0.22,0.61,0.36,1) both; }
+  @keyframes hubPaneIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  @media (prefers-reduced-motion: reduce) { .hub-pane.active { animation: none; } }
   @media (max-width: 768px) {
     .hub-tabs-track { padding: 10px 5vw; gap: 6px; }
     .hub-tab { font-size: 12.5px; padding: 7px 14px; }
@@ -2208,8 +2210,9 @@
       <div class="map-box">
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30622.95!2d80.508!3d16.430!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a35e8f6f3e11f4b%3A0x1!2sMangalagiri%2C%20Andhra%20Pradesh%20522503!5e0!3m2!1ste!2sin!4v1716556800000!5m2!1ste!2sin"
+          width="600" height="380"
           allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-          title="Mangalagiri Map">
+          title="Mangalagiri, Andhra Pradesh — Islamic Front location">
         </iframe>
       </div>
       <div class="offices">
