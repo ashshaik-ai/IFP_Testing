@@ -18,3 +18,11 @@ desktop.ini
 # Large source media (not web-optimized) — keep out of the repo
 assets/Medical camp photos/
 *.psd
+
+# Test tooling (Playwright)
+node_modules/
+package.json
+package-lock.json
+playwright-report/
+test-results/
+tests/
