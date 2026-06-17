@@ -1610,6 +1610,26 @@ body { animation: ifx-page-in 0.38s cubic-bezier(0.22, 0.61, 0.36, 1) both; }
 .alf-card:hover { transform: translateY(-3px) scale(1.02) !important; box-shadow: 0 8px 20px rgba(13,59,30,0.10) !important; }
 
 /* ═══════════════════════════════════════════════════════
+   GLOBAL QUALITY-OF-LIFE POLISH
+   ═══════════════════════════════════════════════════════ */
+
+/* Premium text selection across all pages */
+::selection {
+  background: rgba(200,146,42,0.22) !important;
+  color: #1a1208 !important;
+}
+
+/* Smoother image rendering globally */
+img {
+  image-rendering: -webkit-optimize-contrast;
+}
+
+/* Button cursor for all interactive elements */
+button, [role="button"], [tabindex="0"] {
+  cursor: pointer;
+}
+
+/* ═══════════════════════════════════════════════════════
    LESSON PAGE PREMIUM — hero entrance + section depth
    ═══════════════════════════════════════════════════════ */
 
