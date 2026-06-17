@@ -1883,6 +1883,67 @@ button, [role="button"], [tabindex="0"] {
   border-radius: 4px !important;
 }
 
+/* ═══════════════════════════════════════════════════════
+   SEERAH + HISTORY PORTAL — card hover polish
+   ═══════════════════════════════════════════════════════ */
+
+/* Seerah: story explorer stage cards */
+.se-stage {
+  transition: transform 0.28s cubic-bezier(0.22,0.61,0.36,1), box-shadow 0.28s, border-color 0.28s !important;
+}
+.se-stage:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 10px 28px rgba(13,59,30,0.10) !important;
+  border-color: rgba(200,146,42,0.4) !important;
+}
+
+/* Seerah: lesson blocks */
+.se-block {
+  transition: transform 0.25s cubic-bezier(0.22,0.61,0.36,1), box-shadow 0.25s !important;
+}
+.se-block:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 18px rgba(13,59,30,0.09) !important;
+}
+
+/* History: empire blocks */
+.emp-block {
+  transition: transform 0.28s cubic-bezier(0.22,0.61,0.36,1), box-shadow 0.28s, border-color 0.28s !important;
+}
+.emp-block:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 10px 28px rgba(13,59,30,0.10) !important;
+  border-color: rgba(200,146,42,0.38) !important;
+}
+
+/* History + Quran: timeline nodes */
+.et-node, .et-mnode, .qt-node, .qt-mnode {
+  transition: transform 0.22s cubic-bezier(0.22,0.61,0.36,1), box-shadow 0.22s !important;
+}
+.et-node:hover, .et-mnode:hover, .qt-node:hover, .qt-mnode:hover {
+  transform: scale(1.12) !important;
+  box-shadow: 0 4px 12px rgba(200,146,42,0.3) !important;
+}
+
+/* Dashboard tiles: lift on hover */
+.dash-tile {
+  transition: transform 0.28s cubic-bezier(0.22,0.61,0.36,1), box-shadow 0.28s, border-color 0.28s !important;
+}
+.dash-tile:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: 0 8px 22px rgba(13,59,30,0.10) !important;
+  border-color: rgba(200,146,42,0.4) !important;
+}
+
+/* Kids: XP mission cards */
+.xp-card, .mission-card {
+  transition: transform 0.28s cubic-bezier(0.22,0.61,0.36,1), box-shadow 0.28s !important;
+}
+.xp-card:hover, .mission-card:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 10px 26px rgba(13,59,30,0.10) !important;
+}
+
 /* Smooth all anchor transitions */
 a {
   transition: color 0.18s, opacity 0.18s !important;
