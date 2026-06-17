@@ -36,8 +36,8 @@
 
   function T() {
     return te()
-      ? { kc: 'నాలెడ్జ్ చెక్', kcs: 'మీరు నేర్చుకున్నది పరీక్షించుకోండి', q: 'ప్రశ్న', of: '/', ok: '🎉 సరైనది!', no: '💡 సరైన సమాధానం ఆకుపచ్చలో', next: 'తదుపరి →', refl: 'ఆలోచించండి', mark: 'పాఠం పూర్తి చేయండి ✓', done: 'పూర్తయింది ✓', cont: 'తర్వాత', go: 'కొనసాగించు →', score: 'స్కోరు', retry: 'మళ్ళీ ప్రయత్నించండి' }
-      : { kc: 'Knowledge Check', kcs: 'Check what you learned on this page', q: 'Question', of: 'of', ok: '🎉 Correct!', no: '💡 Correct answer in green', next: 'Next →', refl: 'Reflect', mark: 'Mark lesson complete ✓', done: 'Completed ✓', cont: 'Up next', go: 'Continue →', score: 'Score', retry: 'Try again' };
+      ? { kc: 'నాలెడ్జ్ చెక్', kcs: 'మీరు నేర్చుకున్నది పరీక్షించుకోండి', q: 'ప్రశ్న', of: '/', ok: '✓ సరైనది!', no: '→ సరైన సమాధానం ఆకుపచ్చలో', next: 'తదుపరి →', refl: 'ఆలోచించండి', mark: 'పాఠం పూర్తి చేయండి ✓', done: 'పూర్తయింది ✓', cont: 'తర్వాత', go: 'కొనసాగించు →', score: 'స్కోరు', retry: 'మళ్ళీ ప్రయత్నించండి' }
+      : { kc: 'Knowledge Check', kcs: 'Check what you learned on this page', q: 'Question', of: 'of', ok: '✓ Correct!', no: '→ Correct answer in green', next: 'Next →', refl: 'Reflect', mark: 'Mark lesson complete ✓', done: 'Completed ✓', cont: 'Up next', go: 'Continue →', score: 'Score', retry: 'Try again' };
   }
 
   function quizHtml(t) {

@@ -43,7 +43,7 @@
   .nav-home:hover { color: var(--gold-light); }
   .lang-btn { display: flex; align-items: center; gap: 6px; background: rgba(200,146,42,0.12); border: 1.5px solid rgba(200,146,42,0.4); color: var(--gold-light); padding: 7px 16px; border-radius: 100px; font-size: 12px; font-weight: 500; cursor: pointer; letter-spacing: 0.8px; font-family: inherit; transition: background 0.2s, transform 0.15s; white-space: nowrap; flex-shrink: 0; }
   .lang-btn:hover { background: rgba(200,146,42,0.22); transform: translateY(-1px); }
-  .lang-btn::before { content: '🌐'; font-size: 13px; }
+  .lang-btn::before { content: ''; display: inline-block; width: 14px; height: 14px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23e8b84b' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20'/%3E%3C/svg%3E") center/contain no-repeat; vertical-align: middle; }
 
   /* HERO */
   .kc-hero { padding: 130px 5vw 70px; background: linear-gradient(160deg, var(--green-deep) 0%, #0a2e17 55%, #122b0f 100%); position: relative; overflow: hidden; isolation: isolate; }
@@ -73,7 +73,7 @@
   }
   .kc-hero-inner { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
   .kc-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(200,146,42,0.12); border: 1px solid rgba(200,146,42,0.35); border-radius: 100px; padding: 6px 16px; margin-bottom: 22px; font-size: 12px; color: var(--gold-light); letter-spacing: 1.5px; text-transform: uppercase; }
-  .kc-badge::before { content: '★\FE0E'; font-size: 10px; }
+  .kc-badge::before { content: ''; display: inline-block; width: 10px; height: 10px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23e8b84b'%3E%3Cpolygon points='12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2'/%3E%3C/svg%3E") center/contain no-repeat; vertical-align: middle; }
   .kc-hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(34px, 5vw, 60px); font-weight: 900; color: var(--white); line-height: 1.15; margin-bottom: 16px; }
   :lang(te) .kc-hero h1 { line-height: 1.35; }
   .kc-hero h1 span { color: var(--gold-light); }
@@ -364,7 +364,7 @@
 
   /* FIVE PILLARS */
   .pillars { background: var(--cream); position: relative; overflow: hidden; }
-  .pillars::before { content: '☪\FE0E'; position: absolute; left: -3vw; bottom: -4vw; font-size: clamp(180px, 24vw, 320px); color: rgba(13,59,30,0.035); line-height: 1; pointer-events: none; }
+  .pillars::before { content: ''; position: absolute; left: -3vw; bottom: -4vw; width: clamp(200px, 26vw, 340px); height: clamp(200px, 26vw, 340px); background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cpath d='M130 25a75 75 0 1 0 0 150 60 60 0 1 1 0-150z' fill='%230d3b1e' opacity='0.04'/%3E%3C/svg%3E") center/contain no-repeat; pointer-events: none; }
   .pillars-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-top: 44px; position: relative; z-index: 1; }
   .pillar-card { position: relative; background: var(--white); border: 1px solid var(--border); border-radius: 14px; padding: 30px 20px 26px; text-align: center; transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), box-shadow 0.35s, border-color 0.35s; overflow: hidden; }
   .pillar-card::after { content: ''; position: absolute; left: 0; top: 0; height: 4px; width: 100%; background: linear-gradient(90deg, var(--gold), var(--gold-light)); transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease; }

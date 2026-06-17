@@ -39,7 +39,7 @@
   function playAudio(btn) {
     var url = btn.getAttribute('data-if-audio');
     var te = getLang() === 'te';
-    if (!url || url === 'pending' || url === '#') { toast(te ? '🔊 ఆడియో త్వరలో వస్తుంది' : '🔊 Audio coming soon'); return; }
+    if (!url || url === 'pending' || url === '#') { toast(te ? 'ఆడియో త్వరలో వస్తుంది' : 'Audio coming soon'); return; }
     var a = ensureAudio();
     if (curBtn === btn && !a.paused) { a.pause(); clearAudio(); return; }
     clearAudio();
@@ -47,7 +47,7 @@
     var p = a.play();
     if (p && p.then) {
       p.then(function () { curBtn = btn; btn.classList.add('if-audio-playing'); })
-       .catch(function () { toast(te ? '⚠️ ఆడియో లోడ్ కాలేదు' : '⚠️ Could not load audio'); });
+       .catch(function () { toast(te ? 'ఆడియో లోడ్ కాలేదు' : 'Could not load audio'); });
     } else { curBtn = btn; btn.classList.add('if-audio-playing'); }
   }
   document.addEventListener('click', function (e) {
@@ -73,47 +73,60 @@
 
   /* ── Trusted-Sources reference library (per portal) ── */
   /* Items: {ic, url, name, den (desc EN), dte (desc TE)} */
+  /* SVG icon set for reference cards */
+  var IC = {
+    book: '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>',
+    scroll: '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/></svg>',
+    grad:   '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>',
+    play:   '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><polygon points="10 8 16 12 10 16 10 8"/></svg>',
+    star:   '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>',
+    flask:  '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6M9 3l-3 9h12l-3-9M6 12a6 6 0 0 0 12 0"/></svg>',
+    col:    '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="18"/><rect x="14" y="3" width="7" height="18"/><line x1="10" y1="12" x2="14" y2="12"/></svg>',
+    moon:   '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>',
+    pen:    '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg>'
+  };
+
   var REFS = {
     'learn-quran': [
-      { ic: '📖', url: 'https://quran.com', name: 'Quran.com', den: 'Read, listen, and compare translations.', dte: 'ఖురాన్ చదవండి, వినండి, అనువాదాలు పోల్చండి.' },
-      { ic: '📚', url: 'https://tanzil.net', name: 'Tanzil.net', den: 'Verified, accurate Quran text.', dte: 'ధృవీకరించిన, ఖచ్చితమైన ఖురాన్ పాఠం.' },
-      { ic: '🔤', url: 'https://corpus.quran.com', name: 'Quranic Arabic Corpus', den: 'Word-by-word grammar and analysis.', dte: 'పదం-వారీ వ్యాకరణం, విశ్లేషణ.' },
-      { ic: '▶️', url: 'https://bayyinah.com', name: 'Bayyinah', den: 'In-depth Quran and Arabic study.', dte: 'లోతైన ఖురాన్, అరబిక్ అధ్యయనం.' },
-      { ic: '📜', url: 'https://sunnah.com', name: 'Sunnah.com', den: 'Authentic Hadith collections.', dte: 'ప్రామాణిక హదీస్ సంకలనాలు.' }
+      { ic: IC.book,   url: 'https://quran.com', name: 'Quran.com', den: 'Read, listen, and compare translations.', dte: 'ఖురాన్ చదవండి, వినండి, అనువాదాలు పోల్చండి.' },
+      { ic: IC.scroll, url: 'https://tanzil.net', name: 'Tanzil.net', den: 'Verified, accurate Quran text.', dte: 'ధృవీకరించిన, ఖచ్చితమైన ఖురాన్ పాఠం.' },
+      { ic: IC.col,    url: 'https://corpus.quran.com', name: 'Quranic Arabic Corpus', den: 'Word-by-word grammar and analysis.', dte: 'పదం-వారీ వ్యాకరణం, విశ్లేషణ.' },
+      { ic: IC.play,   url: 'https://bayyinah.com', name: 'Bayyinah', den: 'In-depth Quran and Arabic study.', dte: 'లోతైన ఖురాన్, అరబిక్ అధ్యయనం.' },
+      { ic: IC.scroll, url: 'https://sunnah.com', name: 'Sunnah.com', den: 'Authentic Hadith collections.', dte: 'ప్రామాణిక హదీస్ సంకలనాలు.' }
     ],
     'learn-salah': [
-      { ic: '🎓', url: 'https://seekersguidance.org', name: 'SeekersGuidance', den: 'Free, scholar-led Islamic courses.', dte: 'పండితుల నేతృత్వంలో ఉచిత ఇస్లామిక్ కోర్సులు.' },
-      { ic: '📜', url: 'https://sunnah.com', name: 'Sunnah.com', den: 'Hadith on prayer and purification.', dte: 'నమాజ్, పరిశుద్ధతపై హదీసులు.' },
-      { ic: '📖', url: 'https://quran.com', name: 'Quran.com', den: 'Quranic verses on Salah.', dte: 'నమాజ్‌పై ఖురాన్ ఆయతులు.' },
-      { ic: '✦', url: 'https://yaqeeninstitute.org', name: 'Yaqeen Institute', den: 'Research on worship and spirituality.', dte: 'ఆరాధన, ఆధ్యాత్మికతపై పరిశోధన.' }
+      { ic: IC.grad,   url: 'https://seekersguidance.org', name: 'SeekersGuidance', den: 'Free, scholar-led Islamic courses.', dte: 'పండితుల నేతృత్వంలో ఉచిత ఇస్లామిక్ కోర్సులు.' },
+      { ic: IC.scroll, url: 'https://sunnah.com', name: 'Sunnah.com', den: 'Hadith on prayer and purification.', dte: 'నమాజ్, పరిశుద్ధతపై హదీసులు.' },
+      { ic: IC.book,   url: 'https://quran.com', name: 'Quran.com', den: 'Quranic verses on Salah.', dte: 'నమాజ్‌పై ఖురాన్ ఆయతులు.' },
+      { ic: IC.star,   url: 'https://yaqeeninstitute.org', name: 'Yaqeen Institute', den: 'Research on worship and spirituality.', dte: 'ఆరాధన, ఆధ్యాత్మికతపై పరిశోధన.' }
     ],
     'seerah': [
-      { ic: '✦', url: 'https://yaqeeninstitute.org', name: 'Yaqeen Institute', den: 'Researched Seerah articles and series.', dte: 'పరిశోధనాత్మక సీరా వ్యాసాలు, సిరీస్‌లు.' },
-      { ic: '🎓', url: 'https://seekersguidance.org', name: 'SeekersGuidance', den: 'Structured Seerah courses.', dte: 'నిర్మాణాత్మక సీరా కోర్సులు.' },
-      { ic: '📖', url: 'https://quran.com', name: 'Quran.com', den: 'Verses in their historical context.', dte: 'చారిత్రక సందర్భంలో ఆయతులు.' },
-      { ic: '📜', url: 'https://sunnah.com', name: 'Sunnah.com', den: 'Prophetic narrations and biography.', dte: 'ప్రవక్త వచనాలు, జీవిత చరిత్ర.' }
+      { ic: IC.star,   url: 'https://yaqeeninstitute.org', name: 'Yaqeen Institute', den: 'Researched Seerah articles and series.', dte: 'పరిశోధనాత్మక సీరా వ్యాసాలు, సిరీస్‌లు.' },
+      { ic: IC.grad,   url: 'https://seekersguidance.org', name: 'SeekersGuidance', den: 'Structured Seerah courses.', dte: 'నిర్మాణాత్మక సీరా కోర్సులు.' },
+      { ic: IC.book,   url: 'https://quran.com', name: 'Quran.com', den: 'Verses in their historical context.', dte: 'చారిత్రక సందర్భంలో ఆయతులు.' },
+      { ic: IC.scroll, url: 'https://sunnah.com', name: 'Sunnah.com', den: 'Prophetic narrations and biography.', dte: 'ప్రవక్త వచనాలు, జీవిత చరిత్ర.' }
     ],
     'islamic-history': [
-      { ic: '✦', url: 'https://yaqeeninstitute.org', name: 'Yaqeen Institute', den: 'Essays on Islamic history and thought.', dte: 'ఇస్లామిక్ చరిత్ర, ఆలోచనపై వ్యాసాలు.' },
-      { ic: '🔬', url: 'https://muslimheritage.com', name: 'Muslim Heritage', den: 'Science and civilization (1001 Inventions).', dte: 'విజ్ఞానం, నాగరికత (1001 ఆవిష్కరణలు).' },
-      { ic: '🏛️', url: 'https://lostislamichistory.com', name: 'Lost Islamic History', den: 'Accessible, balanced history.', dte: 'సులభమైన, సమతుల్య చరిత్ర.' },
-      { ic: '📖', url: 'https://quran.com', name: 'Quran.com', den: 'Stories and lessons of past nations.', dte: 'గత జాతుల కథలు, పాఠాలు.' }
+      { ic: IC.star,   url: 'https://yaqeeninstitute.org', name: 'Yaqeen Institute', den: 'Essays on Islamic history and thought.', dte: 'ఇస్లామిక్ చరిత్ర, ఆలోచనపై వ్యాసాలు.' },
+      { ic: IC.flask,  url: 'https://muslimheritage.com', name: 'Muslim Heritage', den: 'Science and civilization (1001 Inventions).', dte: 'విజ్ఞానం, నాగరికత (1001 ఆవిష్కరణలు).' },
+      { ic: IC.col,    url: 'https://lostislamichistory.com', name: 'Lost Islamic History', den: 'Accessible, balanced history.', dte: 'సులభమైన, సమతుల్య చరిత్ర.' },
+      { ic: IC.book,   url: 'https://quran.com', name: 'Quran.com', den: 'Stories and lessons of past nations.', dte: 'గత జాతుల కథలు, పాఠాలు.' }
     ],
     'kids-islam': [
-      { ic: '📖', url: 'https://quran.com', name: 'Quran.com', den: 'Read and listen to the Quran with kids.', dte: 'పిల్లలతో ఖురాన్ చదవండి, వినండి.' },
-      { ic: '📜', url: 'https://sunnah.com', name: 'Sunnah.com', den: 'Simple authentic Hadith.', dte: 'సరళమైన ప్రామాణిక హదీసులు.' },
-      { ic: '🎓', url: 'https://seekersguidance.org', name: 'SeekersGuidance', den: 'Family and parenting guidance.', dte: 'కుటుంబం, పేరెంటింగ్ మార్గదర్శనం.' }
+      { ic: IC.book,   url: 'https://quran.com', name: 'Quran.com', den: 'Read and listen to the Quran with kids.', dte: 'పిల్లలతో ఖురాన్ చదవండి, వినండి.' },
+      { ic: IC.scroll, url: 'https://sunnah.com', name: 'Sunnah.com', den: 'Simple authentic Hadith.', dte: 'సరళమైన ప్రామాణిక హదీసులు.' },
+      { ic: IC.grad,   url: 'https://seekersguidance.org', name: 'SeekersGuidance', den: 'Family and parenting guidance.', dte: 'కుటుంబం, పేరెంటింగ్ మార్గదర్శనం.' }
     ],
     'learn-arabic': [
-      { ic: '🌙', url: 'https://www.madinaharabic.com', name: 'Madinah Arabic', den: 'Step-by-step Arabic lessons.', dte: 'దశలవారీ అరబిక్ పాఠాలు.' },
-      { ic: '🔤', url: 'https://corpus.quran.com', name: 'Quranic Arabic Corpus', den: 'Word-by-word Quranic grammar.', dte: 'పదం-వారీ ఖురానీ వ్యాకరణం.' },
-      { ic: '▶️', url: 'https://bayyinah.com', name: 'Bayyinah', den: 'Arabic and Quran study.', dte: 'అరబిక్, ఖురాన్ అధ్యయనం.' },
-      { ic: '📖', url: 'https://quran.com', name: 'Quran.com', den: 'Practise reading real Quranic text.', dte: 'నిజమైన ఖురాన్ పాఠం చదవడం అభ్యసించండి.' }
+      { ic: IC.moon,   url: 'https://www.madinaharabic.com', name: 'Madinah Arabic', den: 'Step-by-step Arabic lessons.', dte: 'దశలవారీ అరబిక్ పాఠాలు.' },
+      { ic: IC.col,    url: 'https://corpus.quran.com', name: 'Quranic Arabic Corpus', den: 'Word-by-word Quranic grammar.', dte: 'పదం-వారీ ఖురానీ వ్యాకరణం.' },
+      { ic: IC.play,   url: 'https://bayyinah.com', name: 'Bayyinah', den: 'Arabic and Quran study.', dte: 'అరబిక్, ఖురాన్ అధ్యయనం.' },
+      { ic: IC.book,   url: 'https://quran.com', name: 'Quran.com', den: 'Practise reading real Quranic text.', dte: 'నిజమైన ఖురాన్ పాఠం చదవడం అభ్యసించండి.' }
     ],
     'learn-urdu': [
-      { ic: '🖋️', url: 'https://rekhta.org', name: 'Rekhta', den: 'Urdu literature, poetry, and dictionary.', dte: 'ఉర్దూ సాహిత్యం, కవిత్వం, నిఘంటువు.' },
-      { ic: '📖', url: 'https://quran.com', name: 'Quran.com', den: 'Quran with Urdu translation.', dte: 'ఉర్దూ అనువాదంతో ఖురాన్.' },
-      { ic: '🎓', url: 'https://seekersguidance.org', name: 'SeekersGuidance', den: 'Islamic learning in many languages.', dte: 'అనేక భాషలలో ఇస్లామిక్ అభ్యాసం.' }
+      { ic: IC.pen,    url: 'https://rekhta.org', name: 'Rekhta', den: 'Urdu literature, poetry, and dictionary.', dte: 'ఉర్దూ సాహిత్యం, కవిత్వం, నిఘంటువు.' },
+      { ic: IC.book,   url: 'https://quran.com', name: 'Quran.com', den: 'Quran with Urdu translation.', dte: 'ఉర్దూ అనువాదంతో ఖురాన్.' },
+      { ic: IC.grad,   url: 'https://seekersguidance.org', name: 'SeekersGuidance', den: 'Islamic learning in many languages.', dte: 'అనేక భాషలలో ఇస్లామిక్ అభ్యాసం.' }
     ]
   };
 
@@ -169,14 +182,14 @@
       ? { cert: 'పూర్తి ధృవీకరణ పత్రం', awarded: 'ఇది ఇచ్చబడింది', completed: 'విజయవంతంగా పూర్తి చేసినందుకు', score: 'స్కోరు', org: 'ఇస్లామిక్ ఫ్రంట్ · జ్ఞాన కేంద్రం', date: 'తేదీ', print: 'ముద్రించండి / PDF సేవ్ చేయండి' }
       : { cert: 'Certificate of Completion', awarded: 'This is awarded to', completed: 'for successfully completing', score: 'Score', org: 'Islamic Front · Knowledge Center', date: 'Date', print: 'Print / Save as PDF' };
     var w = window.open('', '_blank', 'width=900,height=650');
-    if (!w) { toast(te ? '⚠️ పాప్‌అప్‌ను అనుమతించండి' : '⚠️ Please allow pop-ups for the certificate'); return; }
+    if (!w) { toast(te ? 'పాప్‌అప్‌ను అనుమతించండి' : 'Please allow pop-ups for the certificate'); return; }
     var html = '<!doctype html><html lang="' + (te ? 'te' : 'en') + '"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
       + '<title>' + L.cert + '</title>'
       + '<style>'
       + 'body{margin:0;font-family:"Segoe UI",system-ui,sans-serif;background:#0d3b1e;display:flex;align-items:center;justify-content:center;min-height:100vh;padding:24px}'
       + '.c{background:#faf6ee;width:100%;max-width:760px;border:3px solid #c8922a;border-radius:14px;padding:48px 44px;text-align:center;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.4)}'
       + '.c::after{content:"";position:absolute;inset:10px;border:1px solid rgba(200,146,42,.45);border-radius:8px;pointer-events:none}'
-      + '.seal{font-size:46px;line-height:1}'
+      + '.seal{width:56px;height:56px;margin:0 auto 4px;display:flex;align-items:center;justify-content:center}'
       + '.org{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#c8922a;margin:10px 0 18px;font-weight:700}'
       + '.t{font-family:Georgia,serif;font-size:30px;color:#0d3b1e;font-weight:700;margin-bottom:18px}'
       + '.lbl{font-size:13px;color:#7a6840;margin:14px 0 4px}'
@@ -186,7 +199,7 @@
       + '.btn{margin:22px auto 0;display:inline-block;background:#c8922a;color:#0d3b1e;font-weight:700;border:none;padding:12px 26px;border-radius:100px;font-size:14px;cursor:pointer}'
       + '@media print{body{background:#fff;padding:0}.btn{display:none}.c{box-shadow:none;border-color:#c8922a}}'
       + '</style></head><body><div class="c">'
-      + '<div class="seal">🕌</div><div class="org">' + L.org + '</div>'
+      + '<div class="seal"><svg viewBox="0 0 60 60" width="56" height="56" xmlns="http://www.w3.org/2000/svg"><circle cx="30" cy="30" r="28" fill="none" stroke="#c8922a" stroke-width="1.5"/><path d="M38 16a13 13 0 1 0 0 26 10 10 0 1 1 0-26z" fill="#c8922a" opacity="0.8"/><circle cx="44" cy="22" r="4" fill="#c8922a" opacity="0.6"/></svg></div><div class="org">' + L.org + '</div>'
       + '<div class="t">' + L.cert + '</div>'
       + '<div class="lbl">' + L.awarded + '</div><div class="nm">' + name + '</div>'
       + '<div class="lbl">' + L.completed + '</div><div class="crs">' + title + '</div>'

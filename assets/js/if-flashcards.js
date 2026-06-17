@@ -60,7 +60,7 @@
     if (!order.length) order = dueList();
     var c = CFG.cards[order[pos]] || CFG.cards[0];
     var back = te ? c.back_te : c.back_en;
-    var audioBtn = c.audio ? '<button type="button" class="iffc-audio" data-if-audio="' + c.audio + '" aria-label="audio">🔊</button>' : '';
+    var audioBtn = c.audio ? '<button type="button" class="iffc-audio" data-if-audio="' + c.audio + '" aria-label="audio"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg></button>' : '';
     root.innerHTML =
       '<div class="iffc-bar"><span>' + T.done + ': <b>' + mastered() + '</b> ' + T.of + ' ' + CFG.cards.length + '</span>'
       + '<span class="iffc-count">' + (pos + 1) + ' / ' + order.length + '</span></div>'

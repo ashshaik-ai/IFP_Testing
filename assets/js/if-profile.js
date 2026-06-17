@@ -41,19 +41,20 @@
   function achievements(s) {
     var portalsTouched = 0; PORTALS.forEach(function (p) { if (doneCount(p.k) > 0) portalsTouched++; });
     var poly = doneCount('arabic') > 0 && doneCount('urdu') > 0;
+    var S = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">';
     return [
-      { i: '🌱', en: 'First Lesson', te: 'మొదటి పాఠం', on: s.lessons >= 1 },
-      { i: '📚', en: 'Five Lessons', te: 'ఐదు పాఠాలు', on: s.lessons >= 5 },
-      { i: '🎓', en: 'Ten Lessons', te: 'పది పాఠాలు', on: s.lessons >= 10 },
-      { i: '🏅', en: '25 Lessons', te: '25 పాఠాలు', on: s.lessons >= 25 },
-      { i: '🏆', en: 'All Lessons', te: 'అన్ని పాఠాలు', on: s.lessons >= TOTAL },
-      { i: '✅', en: 'First Quiz', te: 'మొదటి క్విజ్', on: s.quizzes >= 1 },
-      { i: '🧠', en: 'Quiz Master', te: 'క్విజ్ మాస్టర్', on: s.quizzes >= 5 },
-      { i: '⭐', en: 'Level 5', te: 'స్థాయి 5', on: s.level >= 5 },
-      { i: '🌟', en: 'Level 10', te: 'స్థాయి 10', on: s.level >= 10 },
-      { i: '🔥', en: '7-Day Streak', te: '7 రోజుల వరుస', on: s.streak >= 7 },
-      { i: '🗣️', en: 'Language Learner', te: 'భాషా అభ్యాసకుడు', on: poly },
-      { i: '🧭', en: 'Explorer', te: 'అన్వేషకుడు', on: portalsTouched >= 4 }
+      { i: S + '<path d="M12 2l2 7h7l-5.5 4 2 7L12 16l-5.5 4 2-7L3 9h7z"/></svg>', en: 'First Lesson', te: 'మొదటి పాఠం', on: s.lessons >= 1 },
+      { i: S + '<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5z"/><path d="M8 7h8M8 11h5"/></svg>', en: 'Five Lessons', te: 'ఐదు పాఠాలు', on: s.lessons >= 5 },
+      { i: S + '<path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>', en: 'Ten Lessons', te: 'పది పాఠాలు', on: s.lessons >= 10 },
+      { i: S + '<circle cx="12" cy="8" r="6"/><path d="M12 14l-4 8h8z"/></svg>', en: '25 Lessons', te: '25 పాఠాలు', on: s.lessons >= 25 },
+      { i: S + '<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>', en: 'All Lessons', te: 'అన్ని పాఠాలు', on: s.lessons >= TOTAL },
+      { i: S + '<polyline points="20 6 9 17 4 12"/></svg>', en: 'First Quiz', te: 'మొదటి క్విజ్', on: s.quizzes >= 1 },
+      { i: S + '<path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v11m0 0H5a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2h-4m-6 0V9"/></svg>', en: 'Quiz Master', te: 'క్విజ్ మాస్టర్', on: s.quizzes >= 5 },
+      { i: S + '<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>', en: 'Level 5', te: 'స్థాయి 5', on: s.level >= 5 },
+      { i: S + '<path d="M13 2L3 14h9l-1 8 10-12h-9z"/></svg>', en: 'Level 10', te: 'స్థాయి 10', on: s.level >= 10 },
+      { i: S + '<path d="M12 2C9 8 6 10 6 14a6 6 0 0 0 12 0c0-4-3-6-6-12z"/></svg>', en: '7-Day Streak', te: '7 రోజుల వరుస', on: s.streak >= 7 },
+      { i: S + '<path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/></svg>', en: 'Language Learner', te: 'భాషా అభ్యాసకుడు', on: poly },
+      { i: S + '<circle cx="12" cy="12" r="9"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>', en: 'Explorer', te: 'అన్వేషకుడు', on: portalsTouched >= 4 }
     ];
   }
 

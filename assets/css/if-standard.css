@@ -822,3 +822,574 @@ summary:focus-visible{
   outline: 2.5px solid var(--ifx-gold, #c8922a) !important;
   outline-offset: 2px !important;
 }
+
+/* ==========================================================================
+   ULTRA-PREMIUM DESIGN SYSTEM — Global cinematic & micro-interaction layer
+   Append-only, opt-in class names. Never forces unwanted layout changes.
+   ========================================================================== */
+
+/* ── Premium Extended Tokens ── */
+:root {
+  --ifx-glow-gold: 0 0 32px rgba(200,146,42,0.25), 0 0 8px rgba(232,184,75,0.15);
+  --ifx-glow-green: 0 0 32px rgba(46,139,87,0.2);
+  --ifx-glass: rgba(255,255,255,0.06);
+  --ifx-glass-border: rgba(255,255,255,0.12);
+  --ifx-ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ifx-ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ifx-ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ifx-duration-fast: 160ms;
+  --ifx-duration-base: 280ms;
+  --ifx-duration-slow: 520ms;
+}
+
+/* ── Scroll-triggered reveal system (complements existing .reveal) ── */
+.ifx-reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity var(--ifx-duration-slow) var(--ifx-ease-out),
+              transform var(--ifx-duration-slow) var(--ifx-ease-out);
+}
+.ifx-reveal.ifx-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.ifx-reveal-left {
+  opacity: 0;
+  transform: translateX(-28px);
+  transition: opacity var(--ifx-duration-slow) var(--ifx-ease-out),
+              transform var(--ifx-duration-slow) var(--ifx-ease-out);
+}
+.ifx-reveal-left.ifx-visible { opacity: 1; transform: translateX(0); }
+.ifx-reveal-scale {
+  opacity: 0;
+  transform: scale(0.92);
+  transition: opacity var(--ifx-duration-slow) var(--ifx-ease-out),
+              transform var(--ifx-duration-slow) var(--ifx-ease-spring);
+}
+.ifx-reveal-scale.ifx-visible { opacity: 1; transform: scale(1); }
+
+/* Stagger children */
+.ifx-stagger > *:nth-child(1) { transition-delay: 0ms; }
+.ifx-stagger > *:nth-child(2) { transition-delay: 80ms; }
+.ifx-stagger > *:nth-child(3) { transition-delay: 160ms; }
+.ifx-stagger > *:nth-child(4) { transition-delay: 240ms; }
+.ifx-stagger > *:nth-child(5) { transition-delay: 320ms; }
+.ifx-stagger > *:nth-child(6) { transition-delay: 400ms; }
+.ifx-stagger > *:nth-child(7) { transition-delay: 480ms; }
+.ifx-stagger > *:nth-child(8) { transition-delay: 560ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  .ifx-reveal, .ifx-reveal-left, .ifx-reveal-scale {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* ── Premium card hover — lift with gold shimmer ── */
+.ifx-card-premium {
+  position: relative;
+  overflow: hidden;
+  transition: transform var(--ifx-duration-base) var(--ifx-ease-out),
+              box-shadow var(--ifx-duration-base) ease,
+              border-color var(--ifx-duration-base) ease;
+}
+.ifx-card-premium::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg,
+    rgba(232,184,75,0) 0%,
+    rgba(232,184,75,0.06) 50%,
+    rgba(232,184,75,0) 100%
+  );
+  opacity: 0;
+  transition: opacity var(--ifx-duration-base) ease;
+  pointer-events: none;
+}
+.ifx-card-premium:hover::before { opacity: 1; }
+.ifx-card-premium:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(13,59,30,0.18), 0 2px 8px rgba(200,146,42,0.12);
+  border-color: rgba(200,146,42,0.5) !important;
+}
+.ifx-card-premium:active { transform: translateY(-1px); }
+
+/* ── Magnetic button effect (premium CTA) ── */
+.ifx-btn-magnetic {
+  transition: transform var(--ifx-duration-fast) var(--ifx-ease-spring),
+              box-shadow var(--ifx-duration-base) ease;
+  will-change: transform;
+}
+.ifx-btn-magnetic:hover {
+  box-shadow: var(--ifx-glow-gold) !important;
+}
+
+/* ── Glass morphism overlay utility ── */
+.ifx-glass {
+  background: var(--ifx-glass) !important;
+  backdrop-filter: blur(12px) saturate(1.4) !important;
+  -webkit-backdrop-filter: blur(12px) saturate(1.4) !important;
+  border-color: var(--ifx-glass-border) !important;
+}
+
+/* ── Gradient text utility ── */
+.ifx-text-gradient {
+  background: linear-gradient(135deg, var(--ifx-gold-light, #e8b84b), var(--ifx-gold, #c8922a));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ── Premium section dividers ── */
+.ifx-divider-ornament {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  justify-content: center;
+  margin: 20px 0;
+  opacity: 0.35;
+}
+.ifx-divider-ornament::before,
+.ifx-divider-ornament::after {
+  content: '';
+  flex: 1;
+  max-width: 120px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--ifx-gold, #c8922a));
+}
+.ifx-divider-ornament::after {
+  background: linear-gradient(to left, transparent, var(--ifx-gold, #c8922a));
+}
+.ifx-divider-ornament span {
+  width: 8px;
+  height: 8px;
+  background: var(--ifx-gold, #c8922a);
+  border-radius: 50%;
+  display: block;
+}
+
+/* ── Kinetic number counter (enhanced) ── */
+.ifx-counter {
+  font-variant-numeric: tabular-nums;
+  will-change: contents;
+}
+
+/* ── Premium hover underline link ── */
+.ifx-link-underline {
+  text-decoration: none;
+  position: relative;
+}
+.ifx-link-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background: var(--ifx-gold, #c8922a);
+  transition: width var(--ifx-duration-base) var(--ifx-ease-out);
+}
+.ifx-link-underline:hover::after { width: 100%; }
+
+/* ── Floating label inputs (premium form feel) ── */
+.ifx-field {
+  position: relative;
+  margin-bottom: 20px;
+}
+.ifx-field input,
+.ifx-field select,
+.ifx-field textarea {
+  width: 100%;
+  padding: 18px 14px 8px;
+  border: 1px solid rgba(200,146,42,0.3);
+  border-radius: 8px;
+  background: rgba(255,255,255,0.05);
+  color: inherit;
+  font: inherit;
+  transition: border-color var(--ifx-duration-base) ease;
+}
+.ifx-field input:focus,
+.ifx-field select:focus,
+.ifx-field textarea:focus {
+  border-color: var(--ifx-gold, #c8922a);
+  outline: none;
+}
+.ifx-field label {
+  position: absolute;
+  top: 50%;
+  left: 14px;
+  transform: translateY(-50%);
+  font-size: 14px;
+  opacity: 0.6;
+  pointer-events: none;
+  transition: all var(--ifx-duration-fast) ease;
+}
+.ifx-field input:focus ~ label,
+.ifx-field input:not(:placeholder-shown) ~ label {
+  top: 10px;
+  font-size: 11px;
+  opacity: 0.8;
+  color: var(--ifx-gold, #c8922a);
+}
+
+/* ── Shimmer loading skeleton ── */
+@keyframes ifx-shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.ifx-skeleton {
+  background: linear-gradient(90deg,
+    rgba(200,146,42,0.06) 25%,
+    rgba(200,146,42,0.14) 50%,
+    rgba(200,146,42,0.06) 75%
+  );
+  background-size: 200% 100%;
+  animation: ifx-shimmer 1.8s ease infinite;
+  border-radius: 8px;
+}
+
+/* ── Parallax depth ornament (CSS only) ── */
+.ifx-depth-ornament {
+  position: absolute;
+  pointer-events: none;
+  will-change: transform;
+}
+
+/* ── Tag / chip component ── */
+.ifx-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  border: 1px solid transparent;
+  transition: all var(--ifx-duration-fast) ease;
+}
+.ifx-chip-gold {
+  background: rgba(200,146,42,0.1);
+  color: var(--ifx-gold, #c8922a);
+  border-color: rgba(200,146,42,0.25);
+}
+.ifx-chip-green {
+  background: rgba(46,139,87,0.1);
+  color: #2e8b57;
+  border-color: rgba(46,139,87,0.25);
+}
+.ifx-chip:hover { transform: translateY(-1px); }
+
+/* ── Icon wrapper (replaces emoji containers) ── */
+.ifx-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: 10px;
+}
+.ifx-icon-sm { width: 32px; height: 32px; }
+.ifx-icon-md { width: 44px; height: 44px; }
+.ifx-icon-lg { width: 56px; height: 56px; }
+.ifx-icon-gold {
+  background: rgba(200,146,42,0.1);
+  border: 1px solid rgba(200,146,42,0.2);
+  color: var(--ifx-gold, #c8922a);
+}
+.ifx-icon-green {
+  background: rgba(46,139,87,0.08);
+  border: 1px solid rgba(46,139,87,0.15);
+  color: #2e8b57;
+}
+
+/* ── Hero particle canvas (if injected) ── */
+#ifx-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Cinematic section separator ── */
+.ifx-wave-sep {
+  overflow: hidden;
+  line-height: 0;
+  margin: -2px 0;
+}
+.ifx-wave-sep svg {
+  display: block;
+  width: 100%;
+}
+
+/* ── Stat card premium (number + label treatment) ── */
+.ifx-stat {
+  text-align: center;
+  padding: 24px 20px;
+  border-radius: var(--radius, 16px);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(200,146,42,0.2);
+  backdrop-filter: blur(8px);
+  transition: transform var(--ifx-duration-base) var(--ifx-ease-out),
+              border-color var(--ifx-duration-base) ease;
+}
+.ifx-stat:hover {
+  transform: translateY(-3px);
+  border-color: rgba(200,146,42,0.45);
+  box-shadow: 0 8px 28px rgba(13,59,30,0.2);
+}
+.ifx-stat-num {
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 700;
+  line-height: 1;
+  background: linear-gradient(135deg, #e8b84b, #c8922a);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.ifx-stat-label {
+  font-size: 12px;
+  letter-spacing: 0.8px;
+  opacity: 0.65;
+  margin-top: 6px;
+  text-transform: uppercase;
+}
+
+/* ── Portal card upgrade (knowledge center portals) ── */
+.ld-portal {
+  transition: transform var(--ifx-duration-base) var(--ifx-ease-out),
+              box-shadow var(--ifx-duration-base) ease,
+              border-color var(--ifx-duration-base) ease !important;
+}
+.ld-portal:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: 0 8px 28px rgba(13,59,30,0.12) !important;
+}
+
+/* ── Volunteer card upgrade ── */
+.vol-card {
+  transition: transform var(--ifx-duration-base) var(--ifx-ease-out),
+              box-shadow var(--ifx-duration-base) ease,
+              border-color var(--ifx-duration-base) ease !important;
+}
+.vol-card:hover {
+  transform: translateX(0) translateY(-3px) !important;
+  box-shadow: 0 10px 32px rgba(13,59,30,0.13) !important;
+  border-color: rgba(46,139,87,0.5) !important;
+}
+
+/* ── Hero section premium enhancements ── */
+.hero {
+  background: linear-gradient(
+    160deg,
+    #0a2b15 0%,
+    #0d3b1e 40%,
+    #0b2d18 70%,
+    #091e0f 100%
+  ) !important;
+}
+.hero::before {
+  background-image:
+    radial-gradient(ellipse 55% 70% at 82% 48%, rgba(200,146,42,0.08) 0%, transparent 65%),
+    radial-gradient(ellipse 30% 30% at 15% 80%, rgba(46,139,87,0.12) 0%, transparent 60%),
+    repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 48px,
+      rgba(200,146,42,0.018) 48px,
+      rgba(200,146,42,0.018) 49px
+    ) !important;
+}
+
+/* Nav premium: smooth entrance on scroll */
+nav {
+  transition: background var(--ifx-duration-base) ease,
+              box-shadow var(--ifx-duration-base) ease;
+}
+
+/* Scheme cards premium */
+.scheme-card {
+  transition: transform var(--ifx-duration-base) var(--ifx-ease-out),
+              box-shadow var(--ifx-duration-base) ease,
+              border-color var(--ifx-duration-base) ease !important;
+  overflow: hidden !important;
+}
+
+/* Achievement card upgrade */
+.ach-card {
+  transition: transform var(--ifx-duration-base) var(--ifx-ease-out),
+              box-shadow var(--ifx-duration-base) ease !important;
+}
+
+/* Event items premium */
+.event-item {
+  transition: transform var(--ifx-duration-base) var(--ifx-ease-out),
+              border-color var(--ifx-duration-base) ease,
+              box-shadow var(--ifx-duration-base) ease !important;
+}
+.event-item:hover {
+  transform: translateX(4px) !important;
+}
+
+/* ── Section title premium treatment ── */
+.section-title {
+  letter-spacing: -0.02em !important;
+}
+
+/* ── Footer premium ── */
+.footer-col ul li a {
+  transition: color var(--ifx-duration-fast) ease,
+              padding-left var(--ifx-duration-fast) ease !important;
+  padding-left: 0 !important;
+}
+.footer-col ul li a:hover {
+  color: var(--ifx-gold, #c8922a) !important;
+  padding-left: 4px !important;
+}
+
+/* ── Premium scrollbar (webkit only) ── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: rgba(200,146,42,0.35);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover { background: rgba(200,146,42,0.6); }
+
+/* ── Text selection brand color ── */
+::selection {
+  background: rgba(200,146,42,0.25);
+  color: #1a1208;
+}
+
+/* ── Premium image treatment ── */
+img {
+  transition: filter var(--ifx-duration-base) ease;
+}
+.member-photo:hover,
+.leader-photo-frame img:hover {
+  filter: brightness(1.05) saturate(1.1);
+}
+
+/* ── Animation keyframes (premium) ── */
+@keyframes ifx-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+@keyframes ifx-pulse-ring {
+  0% { box-shadow: 0 0 0 0 rgba(200,146,42,0.4); }
+  100% { box-shadow: 0 0 0 20px rgba(200,146,42,0); }
+}
+@keyframes ifx-gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+@keyframes ifx-entrance {
+  from { opacity: 0; transform: translateY(16px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.ifx-float { animation: ifx-float 4s ease-in-out infinite; }
+.ifx-entrance { animation: ifx-entrance 0.5s var(--ifx-ease-out) both; }
+
+/* ── Portal nav sticky premium ── */
+.al-sticky, .lu-sticky {
+  backdrop-filter: blur(14px) saturate(1.3) !important;
+  -webkit-backdrop-filter: blur(14px) saturate(1.3) !important;
+  transition: box-shadow var(--ifx-duration-base) ease !important;
+}
+
+/* ── Bottom nav premium mobile ── */
+.bottom-nav {
+  backdrop-filter: blur(16px) saturate(1.4) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(1.4) !important;
+}
+
+/* ── WhatsApp FAB premium ── */
+.wa-fab {
+  box-shadow: 0 4px 18px rgba(37,211,102,0.4) !important;
+  transition: transform var(--ifx-duration-fast) var(--ifx-ease-spring),
+              box-shadow var(--ifx-duration-fast) ease !important;
+}
+.wa-fab:hover {
+  transform: scale(1.1) !important;
+  box-shadow: 0 6px 28px rgba(37,211,102,0.55) !important;
+}
+
+/* ── Search FAB premium ── */
+#ifsr-fab {
+  box-shadow: 0 4px 18px rgba(13,59,30,0.35) !important;
+  transition: transform var(--ifx-duration-fast) var(--ifx-ease-spring),
+              box-shadow var(--ifx-duration-fast) ease !important;
+}
+#ifsr-fab:hover {
+  transform: scale(1.1) !important;
+  box-shadow: 0 6px 28px rgba(13,59,30,0.5) !important;
+}
+
+/* ── Hub tabs premium ── */
+.hub-tab {
+  transition: color var(--ifx-duration-fast) ease,
+              border-color var(--ifx-duration-fast) ease !important;
+  position: relative;
+}
+.hub-tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--ifx-gold, #c8922a), var(--ifx-gold-light, #e8b84b));
+  border-radius: 2px 2px 0 0;
+}
+
+/* ── Member cards premium ── */
+.member-card {
+  transition: transform var(--ifx-duration-base) var(--ifx-ease-spring),
+              box-shadow var(--ifx-duration-base) ease !important;
+}
+.member-card:hover {
+  transform: translateY(-6px) scale(1.02) !important;
+  box-shadow: 0 16px 40px rgba(13,59,30,0.2) !important;
+}
+
+/* Accessibility: keep reduced-motion clean */
+@media (prefers-reduced-motion: reduce) {
+  .ifx-float, .ifx-entrance, .ifx-skeleton { animation: none !important; }
+  .ld-portal, .vol-card, .event-item, .member-card,
+  .scheme-card, .ach-card, .hub-tab, .wa-fab, #ifsr-fab {
+    transition: none !important;
+  }
+}
+
+/* ── Replace portal phase badge star/star emoji with SVG dot ── */
+.al-phase::before {
+  content: '' !important;
+  display: inline-block !important;
+  width: 9px !important;
+  height: 9px !important;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23c8922a'%3E%3Cpolygon points='12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2'/%3E%3C/svg%3E") center/contain no-repeat !important;
+  font-size: 0 !important;
+  vertical-align: middle !important;
+}
+
+/* ── kids-islam: kalimah card crescent watermark ── */
+.kalimah-card::after {
+  content: '' !important;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cpath d='M130 25a75 75 0 1 0 0 150 60 60 0 1 1 0-150z' fill='%23f5e6c0' opacity='0.07'/%3E%3C/svg%3E") right bottom/7rem no-repeat !important;
+  font-size: 0 !important;
+}
+
+/* ── student-guidance lang-btn globe icon ── */
+.lang-btn::before {
+  content: '' !important;
+  display: inline-block !important;
+  width: 14px !important;
+  height: 14px !important;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23e8b84b' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20'/%3E%3C/svg%3E") center/contain no-repeat !important;
+  vertical-align: middle !important;
+  font-size: 0 !important;
+}

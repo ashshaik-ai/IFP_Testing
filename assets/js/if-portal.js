@@ -46,11 +46,11 @@
   })();
 
   var DEFAULT_BADGES = [
-    { id: 'first', en: 'First Lesson', te: 'మొదటి పాఠం', icon: '🌱', need: 1 },
-    { id: 'half', en: 'Halfway There', te: 'సగం పూర్తి', icon: '📚', need: Math.ceil(N / 2) },
-    { id: 'all', en: 'All Lessons', te: 'అన్ని పాఠాలు', icon: '🏆', need: N },
-    { id: 's3', en: '3-Day Streak', te: '3 రోజుల వరుస', icon: '🔥', streak: 3 },
-    { id: 's7', en: '7-Day Streak', te: '7 రోజుల వరుస', icon: '⭐', streak: 7 }
+    { id: 'first', en: 'First Lesson', te: 'మొదటి పాఠం', icon: '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2 7h7l-5.5 4 2 7L12 16l-5.5 4 2-7L3 9h7z"/></svg>', need: 1 },
+    { id: 'half', en: 'Halfway There', te: 'సగం పూర్తి', icon: '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5z"/><path d="M8 7h8M8 11h5"/></svg>', need: Math.ceil(N / 2) },
+    { id: 'all', en: 'All Lessons', te: 'అన్ని పాఠాలు', icon: '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M12 14l-4 8h8z"/></svg>', need: N },
+    { id: 's3', en: '3-Day Streak', te: '3 రోజుల వరుస', icon: '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9z"/></svg>', streak: 3 },
+    { id: 's7', en: '7-Day Streak', te: '7 రోజుల వరుస', icon: '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>', streak: 7 }
   ];
   var BADGES = CFG.badges && CFG.badges.length ? CFG.badges : DEFAULT_BADGES;
   function unlocked(b) { return (b.need ? state.done.length >= b.need : false) || (b.streak ? (state.streak || 0) >= b.streak : false); }
@@ -85,12 +85,12 @@
     var stats = '<div class="ifp-grid">'
       + '<div class="ifp-card ifp-stat"><div class="ifp-ring-host" id="ifp-ring"></div>'
       + '<div class="ifp-stat-meta"><b>' + state.done.length + ' / ' + N + '</b><span>' + (T ? 'పూర్తయిన పాఠాలు' : 'Lessons complete') + '</span></div></div>'
-      + '<div class="ifp-card ifp-stat"><div class="ifp-flame">🔥</div>'
+      + '<div class="ifp-card ifp-stat"><div class="ifp-flame"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2C9 8 6 10 6 14a6 6 0 0 0 12 0c0-4-3-6-6-12z"/><path d="M10 17c.6 1.2 2 2 2 2s1.4-.8 2-2"/></svg></div>'
       + '<div class="ifp-stat-meta"><b>' + (state.streak || 1) + '</b><span>' + (T ? 'రోజుల వరుస' : 'Day streak') + '</span></div></div>';
 
     var contInner = allDone
-      ? '<b>' + (T ? '🎉 అన్ని పాఠాలు పూర్తయ్యాయి!' : '🎉 All lessons complete!') + '</b>'
-        + '<button type="button" class="ifx-btn ifx-btn-primary" id="ifp-cert">' + (T ? 'సర్టిఫికెట్ పొందండి 🎓' : 'Get certificate 🎓') + '</button>'
+      ? '<b>' + (T ? 'అన్ని పాఠాలు పూర్తయ్యాయి!' : 'All lessons complete!') + '</b>'
+        + '<button type="button" class="ifx-btn ifx-btn-primary" id="ifp-cert">' + (T ? 'సర్టిఫికెట్ పొందండి' : 'Get certificate') + '</button>'
       : '<div><span class="ifp-mini">' + (T ? 'తదుపరి సిఫార్సు' : 'Recommended next') + '</span><b>' + esc(nx ? title(nx) : '') + '</b></div>'
         + '<a class="ifx-btn ifx-btn-primary" href="#if-lessons">' + (T ? 'కొనసాగించండి →' : 'Continue →') + '</a>';
     var cont = '<div class="ifp-card ifp-continue">' + contInner + '</div>';

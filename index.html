@@ -132,14 +132,14 @@
     color: var(--gold); margin-right: 10px; flex-shrink: 0; }
   .lang-btn { display: flex; align-items: center; gap: 6px; background: rgba(200,146,42,0.12); border: 1.5px solid rgba(200,146,42,0.4); color: var(--gold-light); padding: 7px 16px; border-radius: 100px; font-size: 12px; font-weight: 500; cursor: pointer; letter-spacing: 0.8px; font-family: inherit; transition: background 0.2s, transform 0.15s; white-space: nowrap; flex-shrink: 0; }
   .lang-btn:hover { background: rgba(200,146,42,0.22); transform: translateY(-1px); }
-  .lang-btn::before { content: '🌐'; font-size: 13px; }
+  .lang-btn::before { content: ''; display: inline-block; width: 14px; height: 14px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23e8b84b' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20'/%3E%3C/svg%3E") center/contain no-repeat; vertical-align: middle; }
   /* KNOWLEDGE CENTER NAV PILL */
   .nav-kc { display: inline-flex; align-items: center; gap: 6px; background: linear-gradient(135deg, rgba(200,146,42,0.22), rgba(200,146,42,0.1)); border: 1.5px solid rgba(232,184,75,0.55); color: var(--gold-light); text-decoration: none; padding: 7px 16px; border-radius: 100px; font-size: 12px; font-weight: 500; letter-spacing: 0.6px; white-space: nowrap; flex-shrink: 0; transition: background 0.2s, transform 0.15s, box-shadow 0.2s; }
-  .nav-kc::before { content: '☪\FE0E'; font-size: 13px; }
+  .nav-kc::before { content: ''; display: inline-block; width: 14px; height: 14px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23e8b84b' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 2a7 7 0 0 1 7 7c0 5-7 13-7 13S5 14 5 9a7 7 0 0 1 7-7z'/%3E%3Ccircle cx='12' cy='9' r='2.5'/%3E%3C/svg%3E") center/contain no-repeat; vertical-align: middle; }
   .nav-kc::after { content: '↗'; font-size: 12px; opacity: 0.7; }
   .nav-kc:hover { background: linear-gradient(135deg, rgba(200,146,42,0.34), rgba(200,146,42,0.18)); transform: translateY(-1px); box-shadow: 0 3px 12px rgba(200,146,42,0.18); }
   .nav-guide { display: inline-flex; align-items: center; gap: 6px; background: linear-gradient(135deg, rgba(46,139,87,0.32), rgba(46,139,87,0.15)); border: 1.5px solid rgba(125,224,164,0.5); color: #bdeccd; text-decoration: none; padding: 7px 16px; border-radius: 100px; font-size: 12px; font-weight: 600; letter-spacing: 0.6px; white-space: nowrap; flex-shrink: 0; transition: background 0.2s, transform 0.15s, box-shadow 0.2s; }
-  .nav-guide::before { content: '🎓'; font-size: 13px; }
+  .nav-guide::before { content: ''; display: inline-block; width: 14px; height: 14px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23bdeccd' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M22 10v6M2 10l10-5 10 5-10 5z'/%3E%3Cpath d='M6 12v5c3 3 9 3 12 0v-5'/%3E%3C/svg%3E") center/contain no-repeat; vertical-align: middle; }
   .nav-guide:hover { background: linear-gradient(135deg, rgba(46,139,87,0.46), rgba(46,139,87,0.24)); transform: translateY(-1px); box-shadow: 0 3px 12px rgba(46,139,87,0.22); }
   /* Collapse the inline nav to the burger early enough that the 6 links + 2 pills
      + language toggle never crowd/overlap the brand text. In Telugu that whole
@@ -165,10 +165,10 @@
   /* HERO */
   .hero { min-height: 100vh; min-height: 100svh; background: linear-gradient(160deg, var(--green-deep) 0%, #0a2e17 50%, #122b0f 100%); display: flex; align-items: center; padding: 100px 5vw 80px; position: relative; overflow: hidden; }
   .hero::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(200,146,42,0.06) 0%, transparent 70%), repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(200,146,42,0.02) 40px, rgba(200,146,42,0.02) 41px); }
-  .hero::after { content: '☽\FE0E'; position: absolute; right: 6vw; top: 12vh; font-size: clamp(160px, 20vw, 260px); color: rgba(200,146,42,0.06); line-height: 1; pointer-events: none; }
+  .hero::after { content: ''; position: absolute; right: 4vw; top: 8vh; width: clamp(180px, 22vw, 280px); height: clamp(180px, 22vw, 280px); background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cpath d='M130 25a75 75 0 1 0 0 150 60 60 0 1 1 0-150z' fill='%23c8922a' opacity='0.07'/%3E%3C/svg%3E") center/contain no-repeat; pointer-events: none; }
   .hero-content { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr auto; gap: 60px; align-items: center; max-width: 1100px; width: 100%; }
   .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(200,146,42,0.12); border: 1px solid rgba(200,146,42,0.35); border-radius: 100px; padding: 6px 16px; margin-bottom: 28px; font-size: 12px; color: var(--gold-light); letter-spacing: 1.5px; text-transform: uppercase; }
-  .hero-badge::before { content: '★\FE0E'; font-size: 10px; }
+  .hero-badge::before { content: ''; display: inline-block; width: 10px; height: 10px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23e8b84b'%3E%3Cpolygon points='12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2'/%3E%3C/svg%3E") center/contain no-repeat; vertical-align: middle; }
   .hero-title { font-family: 'Playfair Display', 'Noto Sans Telugu', serif; font-size: clamp(48px, 7vw, 88px); font-weight: 900; color: var(--white); line-height: 1.08; margin-bottom: 10px; }
   :lang(te) .hero-title { line-height: 1.5; }
   .hero-title span { color: var(--gold-light); display: block; }
@@ -293,7 +293,7 @@
   .scheme-collapse { max-height: 0; overflow: hidden; transition: max-height .55s cubic-bezier(.16,1,.3,1); }
   .scheme-collapse.open { max-height: 3200px; }
   .scheme-card { background: var(--green-deep); border-radius: 10px; padding: 48px 44px; position: relative; overflow: hidden; }
-  .scheme-card::before { content: '♦\FE0E'; position: absolute; bottom: -20px; right: 20px; font-size: 160px; color: rgba(200,146,42,0.06); line-height: 1; }
+  .scheme-card::before { content: ''; position: absolute; bottom: -20px; right: 10px; width: 160px; height: 160px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpolygon points='50 5 95 50 50 95 5 50' fill='%23c8922a' opacity='0.07'/%3E%3C/svg%3E") center/contain no-repeat; pointer-events: none; }
   .scheme-label { display: inline-block; background: rgba(200,146,42,0.15); border: 1px solid rgba(200,146,42,0.3); color: var(--gold-light); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; padding: 5px 14px; border-radius: 100px; margin-bottom: 24px; }
   .scheme-amount { font-family: 'Playfair Display', serif; font-size: 68px; font-weight: 900; color: var(--gold-light); line-height: 1; margin-bottom: 4px; }
   .scheme-amount-sub { font-size: 14px; color: rgba(245,230,192,0.5); margin-bottom: 28px; letter-spacing: 0.5px; }
@@ -381,7 +381,7 @@
 
   /* KNOWLEDGE CENTER PROMO (secondary initiative) */
   .kc-promo { background: linear-gradient(150deg, #0a2e17 0%, #103a1f 55%, #0d3b1e 100%); position: relative; overflow: hidden; border-top: 1px solid rgba(200,146,42,0.18); }
-  .kc-promo::before { content: '☪\FE0E'; position: absolute; right: 4vw; top: 50%; transform: translateY(-50%); font-size: clamp(150px, 18vw, 250px); color: rgba(200,146,42,0.05); line-height: 1; pointer-events: none; }
+  .kc-promo::before { content: ''; position: absolute; right: 3vw; top: 50%; transform: translateY(-50%); width: clamp(160px, 20vw, 260px); height: clamp(160px, 20vw, 260px); background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cpath d='M130 25a75 75 0 1 0 0 150 60 60 0 1 1 0-150z' fill='%23c8922a' opacity='0.06'/%3E%3Ccircle cx='145' cy='55' r='10' fill='%23c8922a' opacity='0.06'/%3E%3C/svg%3E") center/contain no-repeat; pointer-events: none; }
   .kc-promo .inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1.05fr 1fr; gap: 56px; align-items: center; }
   .kc-promo .section-tag { color: var(--gold-light); }
   .kc-promo .section-tag::before { background: var(--gold-light); }
@@ -2658,7 +2658,7 @@
     <div class="vol-grid">
       <div class="vol-programs">
         <div class="vol-card reveal">
-          <div class="vol-icon">👥</div>
+          <div class="vol-icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#2e8b57" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="7" r="4"/><path d="M17 11a4 4 0 0 1 0 8"/><path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/></svg></div>
           <div>
             <div class="vol-title" data-key="vol1_title">యూత్ వింగ్</div>
             <div class="vol-desc" data-key="vol1_desc">18–35 సంవత్సరాల యువతీయువకులకు నాయకత్వ శిక్షణ, సమాజ సేవా కార్యక్రమాలు మరియు ఇస్లామిక్ విద్యా అవకాశాలు.</div>
@@ -2666,7 +2666,7 @@
           </div>
         </div>
         <div class="vol-card reveal">
-          <div class="vol-icon">👩</div>
+          <div class="vol-icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#2e8b57" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="7" r="4"/><path d="M3 21v-2a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v2"/><path d="M9 14l1.5 3 1.5-1.5 1.5 1.5 1.5-3"/></svg></div>
           <div>
             <div class="vol-title" data-key="vol2_title">మహిళా వింగ్</div>
             <div class="vol-desc" data-key="vol2_desc">మహిళా సాధికారత, శిక్షణ కార్యక్రమాలు, సమాజ ఆరోగ్య కార్యక్రమాలు మరియు మహిళా నాయకత్వ అభివృద్ధి.</div>
@@ -2674,7 +2674,7 @@
           </div>
         </div>
         <div class="vol-card reveal">
-          <div class="vol-icon">🏥</div>
+          <div class="vol-icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#2e8b57" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/><path d="M12 8v4M10 10h4"/></svg></div>
           <div>
             <div class="vol-title" data-key="vol3_title">ఆరోగ్య సేవ</div>
             <div class="vol-desc" data-key="vol3_desc">మెడికల్ క్యాంప్‌లు, ఉచిత ఆరోగ్య తనిఖీలు, బ్లడ్ డొనేషన్ నెట్‌వర్క్ మరియు అత్యవసర ఆరోగ్య సహాయ కార్యక్రమాలు.</div>
@@ -2682,7 +2682,7 @@
           </div>
         </div>
         <div class="vol-card reveal">
-          <div class="vol-icon">📚</div>
+          <div class="vol-icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#2e8b57" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/><path d="M8 7h8M8 11h6"/></svg></div>
           <div>
             <div class="vol-title" data-key="vol4_title">విద్యా స్వచ్ఛంద సేవ</div>
             <div class="vol-desc" data-key="vol4_desc">మదర్సా విద్యార్థులకు ట్యూటరింగ్, ఇంగ్లిష్ & కంప్యూటర్ శిక్షణ మరియు కెరీర్ మార్గదర్శకత్వ కార్యక్రమాలు.</div>
@@ -2690,7 +2690,7 @@
           </div>
         </div>
         <div class="vol-card reveal">
-          <div class="vol-icon">🩸</div>
+          <div class="vol-icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#2e8b57" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2C6.5 12 4 15.5 4 17a8 8 0 0 0 16 0c0-1.5-2.5-5-8-15z"/><path d="M8 17a4 4 0 0 0 8 0"/></svg></div>
           <div>
             <div class="vol-title" data-key="vol5_title">రక్తదాన నెట్‌వర్క్</div>
             <div class="vol-desc" data-key="vol5_desc">అత్యవసర రక్తదాన అవసరాలకు వేగంగా స్పందించే స్వచ్ఛంద దాతల నెట్‌వర్క్‌లో చేరండి.</div>
@@ -2841,35 +2841,35 @@
         <div class="ld-portal-arrow" aria-hidden="true">→</div>
       </a>
       <a href="knowledge-center/learn-quran/index.html" class="ld-portal reveal">
-        <div class="ld-portal-icon">📖</div>
+        <div class="ld-portal-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#2e8b57" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
         <div class="ld-portal-info">
           <div class="ld-portal-name" data-key="ld_quran">ఖురాన్ నేర్చుకోండి</div>
         </div>
         <div class="ld-portal-arrow" aria-hidden="true">→</div>
       </a>
       <a href="knowledge-center/learn-salah/index.html" class="ld-portal reveal">
-        <div class="ld-portal-icon">🕌</div>
+        <div class="ld-portal-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#2e8b57" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20h18M5 20V10l7-7 7 7v10"/><path d="M10 20v-5h4v5"/><path d="M12 3v2M9 6l1.5 1.5M15 6l-1.5 1.5"/></svg></div>
         <div class="ld-portal-info">
           <div class="ld-portal-name" data-key="ld_salah">నమాజ్ నేర్చుకోండి</div>
         </div>
         <div class="ld-portal-arrow" aria-hidden="true">→</div>
       </a>
       <a href="knowledge-center/seerah/index.html" class="ld-portal reveal">
-        <div class="ld-portal-icon">⭐</div>
+        <div class="ld-portal-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#2e8b57" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 3"/><path d="M9.5 3.5a9 9 0 0 1 5 0"/></svg></div>
         <div class="ld-portal-info">
           <div class="ld-portal-name" data-key="ld_seerah">సీరహ్</div>
         </div>
         <div class="ld-portal-arrow" aria-hidden="true">→</div>
       </a>
       <a href="knowledge-center/islamic-history/index.html" class="ld-portal reveal">
-        <div class="ld-portal-icon">🏛</div>
+        <div class="ld-portal-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#2e8b57" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg></div>
         <div class="ld-portal-info">
           <div class="ld-portal-name" data-key="ld_history">ఇస్లామిక్ చరిత్ర</div>
         </div>
         <div class="ld-portal-arrow" aria-hidden="true">→</div>
       </a>
       <a href="knowledge-center/kids-islam/index.html" class="ld-portal reveal">
-        <div class="ld-portal-icon">🧒</div>
+        <div class="ld-portal-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#2e8b57" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M8 14s-4 1-4 5h16c0-4-4-5-4-5"/><path d="M10 17l1 2 1-1 1 1 1-2"/></svg></div>
         <div class="ld-portal-info">
           <div class="ld-portal-name" data-key="ld_kids">పిల్లల ఇస్లాం</div>
         </div>

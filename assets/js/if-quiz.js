@@ -29,12 +29,12 @@
     if (!root) return;
     var te = lang() === 'te';
     var T = te
-      ? { label: 'ఆడుతూ నేర్చుకోండి', q: 'ప్రశ్న', of: '/', pts: 'పాయింట్లు', best: 'అత్యుత్తమం', next: 'తదుపరి', restart: 'మళ్ళీ మొదలుపెట్టండి', ok: '🎉 సరైనది! +10', no: '💡 సరైన సమాధానం ఆకుపచ్చలో ఉంది', src: 'మూలం', done: 'పూర్తయింది!' }
-      : { label: 'Play & Learn', q: 'Question', of: 'of', pts: 'Points', best: 'Best', next: 'Next', restart: 'Restart', ok: '🎉 Correct! +10', no: '💡 The correct answer is shown in green', src: 'Source', done: 'Quiz complete!' };
+      ? { label: 'ఆడుతూ నేర్చుకోండి', q: 'ప్రశ్న', of: '/', pts: 'పాయింట్లు', best: 'అత్యుత్తమం', next: 'తదుపరి', restart: 'మళ్ళీ మొదలుపెట్టండి', ok: '✓ సరైనది! +10', no: '→ సరైన సమాధానం ఆకుపచ్చలో ఉంది', src: 'మూలం', done: 'పూర్తయింది!' }
+      : { label: 'Play & Learn', q: 'Question', of: 'of', pts: 'Points', best: 'Best', next: 'Next', restart: 'Restart', ok: '✓ Correct! +10', no: '→ The correct answer is shown in green', src: 'Source', done: 'Quiz complete!' };
     var total = CFG.questions.length;
 
     if (idx >= total) {
-      var certLbl = te ? 'సర్టిఫికెట్ 🎓' : 'Certificate 🎓';
+      var certLbl = te ? 'సర్టిఫికెట్' : 'Certificate';
       root.innerHTML = '<div class="ifq-bar"><span>' + T.pts + ': <b>' + points + '</b></span><span>' + T.best + ': <b>' + loadBest() + '</b></span></div>'
         + '<div class="ifq-done">' + T.done + ' <b>' + points + ' / ' + (total * 10) + '</b></div>'
         + '<div style="text-align:center;display:flex;gap:10px;justify-content:center;flex-wrap:wrap">'
