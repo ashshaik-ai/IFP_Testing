@@ -1975,10 +1975,10 @@
       </div>
     </div>
     <div class="mf-filter-bar" id="mf-filter-bar" role="group" aria-label="Filter promises by status">
-      <button class="mf-filter-btn active" data-filter="all" onclick="filterManifesto('all',this)" data-key="mf_f_all">అన్నీ</button>
-      <button class="mf-filter-btn" data-filter="mf-done" onclick="filterManifesto('mf-done',this)" data-key="mf_f_done">పూర్తయింది</button>
-      <button class="mf-filter-btn" data-filter="mf-progress" onclick="filterManifesto('mf-progress',this)" data-key="mf_f_prog">పురోగతిలో</button>
-      <button class="mf-filter-btn" data-filter="mf-pending" onclick="filterManifesto('mf-pending',this)" data-key="mf_f_pend">రాబోతున్నది</button>
+      <button class="mf-filter-btn active" data-filter="all" onclick="filterManifesto('all',this)" aria-pressed="true" data-key="mf_f_all">అన్నీ</button>
+      <button class="mf-filter-btn" data-filter="mf-done" onclick="filterManifesto('mf-done',this)" aria-pressed="false" data-key="mf_f_done">పూర్తయింది</button>
+      <button class="mf-filter-btn" data-filter="mf-progress" onclick="filterManifesto('mf-progress',this)" aria-pressed="false" data-key="mf_f_prog">పురోగతిలో</button>
+      <button class="mf-filter-btn" data-filter="mf-pending" onclick="filterManifesto('mf-pending',this)" aria-pressed="false" data-key="mf_f_pend">రాబోతున్నది</button>
     </div>
     <div class="manifesto-grid" id="manifesto-grid">
 
@@ -2295,11 +2295,11 @@
     <p class="section-lead" data-key="stories_lead">మా పని వెనక మానవ ముఖాలు — ఇస్లామిక్ ఫ్రంట్ పథకాలు మరియు కార్యక్రమాల ద్వారా జీవితాలు ఎలా మారాయో.</p>
 
     <div class="stories-tabs" role="group" aria-label="Filter stories by category">
-      <button class="story-tab active" onclick="filterStories('all', this)" data-key="stories_all">అన్నీ</button>
-      <button class="story-tab" onclick="filterStories('welfare', this)" data-key="stories_welfare">సంక్షేమం</button>
-      <button class="story-tab" onclick="filterStories('women', this)" data-key="stories_women">మహిళా సాధికారత</button>
-      <button class="story-tab" onclick="filterStories('education', this)" data-key="stories_education">విద్య</button>
-      <button class="story-tab" onclick="filterStories('student', this)" data-key="stories_student">విద్యార్థులు</button>
+      <button class="story-tab active" onclick="filterStories('all', this)" aria-pressed="true" data-key="stories_all">అన్నీ</button>
+      <button class="story-tab" onclick="filterStories('welfare', this)" aria-pressed="false" data-key="stories_welfare">సంక్షేమం</button>
+      <button class="story-tab" onclick="filterStories('women', this)" aria-pressed="false" data-key="stories_women">మహిళా సాధికారత</button>
+      <button class="story-tab" onclick="filterStories('education', this)" aria-pressed="false" data-key="stories_education">విద్య</button>
+      <button class="story-tab" onclick="filterStories('student', this)" aria-pressed="false" data-key="stories_student">విద్యార్థులు</button>
     </div>
 
     <div class="carousel-wrap">
@@ -2418,13 +2418,13 @@
     <h2 class="section-title" data-key="gallery_title">మా కార్యక్రమాలు</h2>
     <p class="section-lead" data-key="gallery_lead">ఇస్లామిక్ ఫ్రంట్ కార్యకలాపాలు — సంక్షేమ కార్యక్రమాలు, సమాజ ఉత్సవాలు, మసీదు నిర్వహణ మరియు మహిళా సాధికారత.</p>
 
-    <div class="gallery-cats">
-      <button class="gcat-btn active" onclick="filterGallery('all', this)" data-key="gcat_all">అన్నీ</button>
-      <button class="gcat-btn" onclick="filterGallery('welfare', this)" data-key="gcat_welfare">సంక్షేమ కార్యక్రమాలు</button>
-      <button class="gcat-btn" onclick="filterGallery('events', this)" data-key="gcat_events">సమాజ ఉత్సవాలు</button>
-      <button class="gcat-btn" onclick="filterGallery('mosque', this)" data-key="gcat_mosque">మసీదు కార్యకలాపాలు</button>
-      <button class="gcat-btn" onclick="filterGallery('education', this)" data-key="gcat_education">విద్యా కార్యక్రమాలు</button>
-      <button class="gcat-btn" onclick="filterGallery('women', this)" data-key="gcat_women">మహిళా కార్యక్రమాలు</button>
+    <div class="gallery-cats" role="group" aria-label="Filter gallery by category">
+      <button class="gcat-btn active" onclick="filterGallery('all', this)" aria-pressed="true" data-key="gcat_all">అన్నీ</button>
+      <button class="gcat-btn" onclick="filterGallery('welfare', this)" aria-pressed="false" data-key="gcat_welfare">సంక్షేమ కార్యక్రమాలు</button>
+      <button class="gcat-btn" onclick="filterGallery('events', this)" aria-pressed="false" data-key="gcat_events">సమాజ ఉత్సవాలు</button>
+      <button class="gcat-btn" onclick="filterGallery('mosque', this)" aria-pressed="false" data-key="gcat_mosque">మసీదు కార్యకలాపాలు</button>
+      <button class="gcat-btn" onclick="filterGallery('education', this)" aria-pressed="false" data-key="gcat_education">విద్యా కార్యక్రమాలు</button>
+      <button class="gcat-btn" onclick="filterGallery('women', this)" aria-pressed="false" data-key="gcat_women">మహిళా కార్యక్రమాలు</button>
     </div>
 
     <div class="carousel-wrap">
@@ -3612,8 +3612,9 @@ function applyLang(l) {
 }
 
 function filterManifesto(filter, btn) {
-  document.querySelectorAll('#mf-filter-bar .mf-filter-btn').forEach(function(b) { b.classList.remove('active'); });
+  document.querySelectorAll('#mf-filter-bar .mf-filter-btn').forEach(function(b) { b.classList.remove('active'); b.setAttribute('aria-pressed', 'false'); });
   btn.classList.add('active');
+  btn.setAttribute('aria-pressed', 'true');
   var cards = document.querySelectorAll('#manifesto-grid .mf-card');
   cards.forEach(function(card) {
     if (filter === 'all' || card.classList.contains(filter)) {
@@ -3906,8 +3907,9 @@ window.toggleAchEvidence = toggleAchEvidence;
 
 /* Stories filter */
 function filterStories(cat, btn) {
-  document.querySelectorAll('.story-tab').forEach(function(t){ t.classList.remove('active'); });
+  document.querySelectorAll('.story-tab').forEach(function(t){ t.classList.remove('active'); t.setAttribute('aria-pressed', 'false'); });
   btn.classList.add('active');
+  btn.setAttribute('aria-pressed', 'true');
   document.querySelectorAll('.story-card').forEach(function(c){
     if (cat === 'all' || c.dataset.category === cat) {
       c.classList.add('story-visible');
@@ -3920,8 +3922,9 @@ window.filterStories = filterStories;
 
 /* Gallery filter */
 function filterGallery(cat, btn) {
-  document.querySelectorAll('.gcat-btn').forEach(function(b){ b.classList.remove('active'); });
+  document.querySelectorAll('.gcat-btn').forEach(function(b){ b.classList.remove('active'); b.setAttribute('aria-pressed', 'false'); });
   btn.classList.add('active');
+  btn.setAttribute('aria-pressed', 'true');
   document.querySelectorAll('.gal-item').forEach(function(i){
     if (cat === 'all' || i.dataset.category === cat) {
       i.classList.add('gal-visible');
