@@ -139,7 +139,13 @@
   /* ZAKAT */
   .zakat { background: var(--cream); }
   .zakat-wrap { display: grid; grid-template-columns: 1.1fr 1fr; gap: 36px; margin-top: 40px; align-items: start; }
-  .zakat-form { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 28px 28px 30px; }
+  .zakat-form { background: var(--white); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+  .zf-header { background: linear-gradient(135deg, var(--green-deep) 0%, #1a5c35 100%); padding: 18px 28px 16px; display: flex; align-items: center; gap: 12px; }
+  .zf-header-icon { width: 38px; height: 38px; background: rgba(200,146,42,0.18); border-radius: 9px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .zf-header-title { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700; color: var(--white); }
+  .zf-header-sub { font-size: 11px; color: rgba(245,230,192,0.6); margin-top: 2px; letter-spacing: 0.3px; }
+  .zf-body { padding: 20px 28px 28px; }
+  .zr-amount { font-family: 'Playfair Display', serif; font-size: 46px; font-weight: 900; color: var(--gold-light); line-height: 1; margin-bottom: 6px; transition: opacity 0.25s ease; }
   .zf-group { margin-bottom: 16px; }
   .zf-group label { display: block; font-size: 13px; color: var(--text-mid); font-weight: 500; margin-bottom: 6px; }
   .zf-group .zf-hint { font-size: 11.5px; color: var(--text-muted); font-weight: 400; }
@@ -150,7 +156,7 @@
   .zf-divider { height: 1px; background: var(--border); margin: 20px 0; }
   .zakat-result { background: var(--green-deep); border-radius: 12px; padding: 30px 28px; position: relative; overflow: hidden; position: sticky; top: 84px; }
   .zr-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: rgba(245,230,192,0.55); margin-bottom: 8px; }
-  .zr-amount { font-family: 'Playfair Display', serif; font-size: 46px; font-weight: 900; color: var(--gold-light); line-height: 1; margin-bottom: 6px; }
+  /* .zr-amount defined above in .zakat-form block */
   .zr-status { font-size: 13px; color: rgba(245,230,192,0.8); margin-bottom: 22px; line-height: 1.6; }
   .zr-line { display: flex; justify-content: space-between; font-size: 13px; padding: 9px 0; border-top: 1px solid rgba(200,146,42,0.18); color: rgba(245,230,192,0.75); }
   .zr-line span:last-child { font-weight: 600; color: var(--white); }
@@ -1176,6 +1182,14 @@
 
     <div class="zakat-wrap">
       <div class="zakat-form">
+        <div class="zf-header">
+          <div class="zf-header-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#e8b84b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="2"/><line x1="8" y1="10" x2="8" y2="10" stroke-width="3"/><line x1="12" y1="10" x2="12" y2="10" stroke-width="3"/><line x1="16" y1="10" x2="16" y2="10" stroke-width="3"/><line x1="8" y1="14" x2="8" y2="14" stroke-width="3"/><line x1="12" y1="14" x2="12" y2="14" stroke-width="3"/><line x1="16" y1="14" x2="16" y2="14" stroke-width="3"/><line x1="7" y1="6" x2="17" y2="6"/></svg></div>
+          <div>
+            <div class="zf-header-title" data-te="మీ ఆస్తులు నమోదు చేయండి" data-en="Enter Your Assets">Enter Your Assets</div>
+            <div class="zf-header-sub" data-te="లైవ్ ధరలతో జకాత్ లెక్కింపు" data-en="Zakat calculated with live metal prices">Zakat calculated with live metal prices</div>
+          </div>
+        </div>
+        <div class="zf-body">
         <div class="zf-group">
           <label for="z-cash" data-te="నగదు &amp; బ్యాంకు పొదుపు" data-en="Cash &amp; bank savings">నగదు &amp; బ్యాంకు పొదుపు</label>
           <div class="zf-input"><span class="zf-cur">₹</span><input type="number" id="z-cash" min="0" placeholder="0" inputmode="decimal" oninput="calcZakat()"></div>
@@ -1199,6 +1213,7 @@
           <label for="z-liab"><span data-te="తీసివేయాల్సిన అప్పులు" data-en="Debts to subtract">తీసివేయాల్సిన అప్పులు</span><span class="tip" tabindex="0">i<span class="tip-pop" data-te="మీరు చెల్లించాల్సిన స్వల్పకాలిక అప్పులు &amp; బకాయిలు. ఇవి మొత్తం ఆస్తుల నుండి తీసివేయబడతాయి." data-en="Short-term debts and dues you must pay. These are subtracted from your total assets.">Short-term debts and dues you must pay. These are subtracted from your total assets.</span></span></label>
           <div class="zf-input"><span class="zf-cur">₹</span><input type="number" id="z-liab" min="0" placeholder="0" inputmode="decimal" oninput="calcZakat()"></div>
         </div>
+        </div><!-- /zf-body -->
       </div>
 
       <div class="zakat-result">
@@ -2237,7 +2252,8 @@ function calcZakat() {
   var nisab = NISAB_SILVER_G * METAL.silverG;
   var due = nisab > 0 && net >= nisab;
   var zakat = due ? net * 0.025 : 0;
-  document.getElementById('zr-amount').textContent = inr(zakat);
+  var amEl = document.getElementById('zr-amount');
+  if (amEl) { amEl.style.opacity = '0'; setTimeout(function(){ amEl.textContent = inr(zakat); amEl.style.opacity = '1'; }, 120); }
   document.getElementById('zr-assets').textContent = inr(assets);
   document.getElementById('zr-liab').textContent = inr(liab);
   document.getElementById('zr-net').textContent = inr(net);
