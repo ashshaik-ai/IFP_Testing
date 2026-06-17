@@ -357,6 +357,23 @@
     markScroll();
   })();
 
+  /* ── aria-current sync for scroll-spy nav links ── */
+  (function initAriaCurrent() {
+    var sticky = document.querySelector('.al-sticky, .kc-sticky');
+    if (!sticky) return;
+    var links = sticky.querySelectorAll('a[data-spy]');
+    if (!links.length) return;
+    var mo = new MutationObserver(function(muts) {
+      muts.forEach(function(m) {
+        if (m.attributeName === 'class') {
+          var isActive = m.target.classList.contains('spy-active');
+          m.target.setAttribute('aria-current', isActive ? 'true' : 'false');
+        }
+      });
+    });
+    links.forEach(function(a) { mo.observe(a, { attributes: true, attributeFilter: ['class'] }); });
+  })();
+
   /* ── Scroll-progress bar (portal pages; homepage has its own) ── */
   (function initScrollProgress() {
     if (document.getElementById('scroll-progress') || document.getElementById('ifx-scroll-progress')) return;
