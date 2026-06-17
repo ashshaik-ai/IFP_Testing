@@ -57,10 +57,14 @@ body>nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(13,59,3
 .al-hero-content{min-width:0}
 .al-hero-display{position:relative;display:flex;align-items:center;justify-content:center;min-width:0;text-align:center}
 .al-hero-display::before{content:'';position:absolute;width:min(440px,92%);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(200,146,42,0.18),transparent 68%);z-index:-1;pointer-events:none}
-.kid-hero-emoji{font-size:clamp(76px,17vw,158px);line-height:1;filter:drop-shadow(0 12px 26px rgba(0,0,0,.35));animation:kidBob 3.2s ease-in-out infinite}
-.kid-hero-stars{font-size:clamp(20px,4vw,34px);letter-spacing:10px;margin-top:6px;animation:kidTwinkle 2.4s ease-in-out infinite}
-@keyframes kidBob{0%,100%{transform:translateY(0) rotate(-1.5deg)}50%{transform:translateY(-14px) rotate(1.5deg)}}
-@keyframes kidTwinkle{0%,100%{opacity:.55}50%{opacity:1}}
+.kid-hero-art{display:flex;justify-content:center;align-items:center;animation:kidBob 3.8s ease-in-out infinite;filter:drop-shadow(0 16px 32px rgba(0,0,0,.3))}
+.kid-hero-art .k-star{animation:kidTwinkle 2.4s ease-in-out infinite}
+.kid-hero-art .k-star-1{animation-delay:0s}
+.kid-hero-art .k-star-2{animation-delay:.7s}
+.kid-hero-art .k-star-3{animation-delay:1.3s}
+.kid-hero-stars{display:flex;justify-content:center;margin-top:10px;animation:kidTwinkle 2.8s ease-in-out infinite}
+@keyframes kidBob{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-10px) rotate(1deg)}}
+@keyframes kidTwinkle{0%,100%{opacity:.5}50%{opacity:1}}
 .al-hero-calligraphy{font-family:'Amiri',serif;direction:rtl;text-align:center;font-size:clamp(26px,4.5vw,52px);line-height:1.6;color:var(--gold-light);background:linear-gradient(135deg,#fff3cf 0%,var(--gold-light) 42%,var(--gold) 78%,#a9741c 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-top:10px}
 .al-breadcrumb{display:flex;align-items:center;gap:7px;font-size:12px;color:rgba(245,230,192,0.5);margin-bottom:20px;flex-wrap:wrap}
 .al-breadcrumb a{color:rgba(245,230,192,0.5);text-decoration:none;transition:color .2s}
@@ -83,7 +87,7 @@ body>nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(13,59,3
 .al-stat{display:flex;flex-direction:column;gap:2px}
 .al-stat-num{font-family:'Playfair Display','Noto Sans Telugu',serif;font-size:28px;font-weight:700;background:linear-gradient(135deg,var(--gold-light),#fffbe0);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
 .al-stat-label{font-size:10.5px;color:rgba(245,230,192,0.5);letter-spacing:0.8px;text-transform:uppercase}
-@media(prefers-reduced-motion:reduce){.al-phase,.al-hero h1,.al-hero-lead,.al-cta-row,.al-hero-stats,.kid-hero-emoji,.kid-hero-stars{animation:none!important}}
+@media(prefers-reduced-motion:reduce){.al-phase,.al-hero h1,.al-hero-lead,.al-cta-row,.al-hero-stats,.kid-hero-art,.kid-hero-stars,.k-star{animation:none!important}}
 
 /* STICKY NAV */
 .al-sticky{position:fixed;top:68px;left:0;right:0;z-index:90;background:rgba(13,59,30,0.97);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid rgba(200,146,42,0.28);box-shadow:0 4px 18px rgba(0,0,0,0.16);transform:translateY(-130%);transition:transform .32s cubic-bezier(.16,1,.3,1)}
@@ -641,8 +645,50 @@ body>nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(13,59,3
     </div>
     <div class="al-hero-display">
       <div>
-        <div class="kid-hero-emoji"><svg viewBox="0 0 24 24" width="64" height="64" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3C9 3 6 5.5 6 9h12c0-3.5-3-6-6-6z"/><rect x="4" y="9" width="16" height="2" rx="1"/><path d="M6 11v8h4v-5h4v5h4v-8"/><path d="M2 21h20"/></svg></div>
-        <div class="kid-hero-stars"><svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+        <div class="kid-hero-art" aria-hidden="true">
+          <svg viewBox="0 0 220 220" width="220" height="220" xmlns="http://www.w3.org/2000/svg">
+            <!-- Glowing backdrop orb -->
+            <circle cx="110" cy="110" r="100" fill="url(#kidOrb)" opacity="0.85"/>
+            <!-- Decorative geometric ring -->
+            <circle cx="110" cy="110" r="94" fill="none" stroke="rgba(200,146,42,0.4)" stroke-width="1.2" stroke-dasharray="6 4"/>
+            <!-- Open book -->
+            <g transform="translate(50,78)">
+              <path d="M60 80 C60 80 30 72 5 80 L5 10 C30 2 60 10 60 10 Z" fill="rgba(255,255,255,0.12)" stroke="rgba(200,146,42,0.6)" stroke-width="1.5"/>
+              <path d="M60 80 C60 80 90 72 115 80 L115 10 C90 2 60 10 60 10 Z" fill="rgba(255,255,255,0.09)" stroke="rgba(200,146,42,0.5)" stroke-width="1.5"/>
+              <line x1="60" y1="10" x2="60" y2="80" stroke="rgba(200,146,42,0.7)" stroke-width="1.5"/>
+              <!-- Book lines left page -->
+              <line x1="16" y1="28" x2="52" y2="23" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+              <line x1="16" y1="38" x2="52" y2="33" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+              <line x1="16" y1="48" x2="52" y2="43" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+              <!-- Arabic text right page -->
+              <text x="86" y="40" text-anchor="middle" font-family="Amiri,serif" font-size="12" fill="rgba(232,184,75,0.9)" direction="rtl">اقرأ</text>
+              <text x="86" y="56" text-anchor="middle" font-family="Amiri,serif" font-size="10" fill="rgba(232,184,75,0.6)" direction="rtl">بِسْمِ رَبِّكَ</text>
+            </g>
+            <!-- Stars scattered -->
+            <polygon points="40,42 42,36 44,42 50,42 45,46 47,52 42,48 37,52 39,46 34,42" fill="rgba(232,184,75,0.7)" class="k-star k-star-1"/>
+            <polygon points="175,55 177,49 179,55 185,55 180,59 182,65 177,61 172,65 174,59 169,55" fill="rgba(200,146,42,0.55)" class="k-star k-star-2"/>
+            <polygon points="25,140 27,135 29,140 34,140 30,143 31,148 27,145 22,148 24,143 20,140" fill="rgba(232,184,75,0.45)" class="k-star k-star-3"/>
+            <polygon points="185,150 187,145 189,150 194,150 190,153 191,158 187,155 183,158 184,153 180,150" fill="rgba(200,146,42,0.5)" class="k-star k-star-2"/>
+            <!-- Crescent moon -->
+            <path d="M150 35 A28 28 0 1 1 150 91 A20 20 0 1 0 150 35" fill="rgba(232,184,75,0.7)" transform="rotate(-25, 162, 63)"/>
+            <defs>
+              <radialGradient id="kidOrb" cx="50%" cy="45%" r="50%">
+                <stop offset="0%" stop-color="rgba(59,130,246,0.22)"/>
+                <stop offset="50%" stop-color="rgba(46,139,87,0.18)"/>
+                <stop offset="100%" stop-color="rgba(13,59,30,0.08)"/>
+              </radialGradient>
+            </defs>
+          </svg>
+        </div>
+        <div class="kid-hero-stars" aria-hidden="true">
+          <svg viewBox="0 0 120 24" width="120" height="24" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="12,2 14,8 20,8 15,12 17,18 12,14 7,18 9,12 4,8 10,8" fill="rgba(232,184,75,0.9)"/>
+            <polygon points="36,3 38,9 44,9 39,13 41,19 36,15 31,19 33,13 28,9 34,9" fill="rgba(200,146,42,0.6)"/>
+            <polygon points="60,2 62,8 68,8 63,12 65,18 60,14 55,18 57,12 52,8 58,8" fill="rgba(232,184,75,0.85)"/>
+            <polygon points="84,3 86,9 92,9 87,13 89,19 84,15 79,19 81,13 76,9 82,9" fill="rgba(200,146,42,0.55)"/>
+            <polygon points="108,2 110,8 116,8 111,12 113,18 108,14 103,18 105,12 100,8 106,8" fill="rgba(232,184,75,0.8)"/>
+          </svg>
+        </div>
         <div class="al-hero-calligraphy" lang="ar" dir="rtl">إِسْلَامُ الأَطْفَال</div>
       </div>
     </div>
@@ -1172,7 +1218,7 @@ body>nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(13,59,3
     </div>
     <div class="ch-grid reveal">
       <div class="ch-panel">
-        <div class="ch-panel-title">🗓️ <span data-te="నేటి లక్ష్యాలు" data-en="Today's Goals">Today's Goals</span></div>
+        <div class="ch-panel-title"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:-2px;margin-right:5px"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><span data-te="నేటి లక్ష్యాలు" data-en="Today's Goals">Today's Goals</span></div>
         <div class="ch-date" id="ch-date"></div>
         <div class="ch-list" id="ch-list"><!-- rendered by JS --></div>
         <div class="ch-progress-label">

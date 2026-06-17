@@ -1448,6 +1448,11 @@ img {
    GLOBAL PREMIUM UPGRADES — applied via cascade priority
    ═══════════════════════════════════════════════════════ */
 
+/* ── Nav scroll shadow: depth cue when page is scrolled ── */
+body > nav.if-nav-scrolled {
+  box-shadow: 0 2px 20px rgba(0,0,0,0.22), 0 1px 0 rgba(200,146,42,0.18) !important;
+}
+
 /* ── Portal list hover: lift instead of slide ── */
 .ld-portal:hover {
   transform: translateY(-3px) !important;
@@ -1633,27 +1638,55 @@ button, [role="button"], [tabindex="0"] {
    LESSON PAGE PREMIUM — hero entrance + section depth
    ═══════════════════════════════════════════════════════ */
 
-/* Shared hero entrance for all lesson pages */
+/* Shared hero entrance for all lesson pages — Arabic + Urdu portal lessons */
 @keyframes if-lesson-hero-in {
   from { opacity: 0; transform: translateY(12px); }
   to { opacity: 1; transform: none; }
 }
+/* Arabic lesson pages: .lesson-hero children */
 .lesson-hero .breadcrumb { animation: if-lesson-hero-in 0.45s 0.05s cubic-bezier(0.22, 0.61, 0.36, 1) both; }
 .lesson-hero .lesson-badge { animation: if-lesson-hero-in 0.45s 0.15s cubic-bezier(0.22, 0.61, 0.36, 1) both; }
 .lesson-hero h1 { animation: if-lesson-hero-in 0.45s 0.25s cubic-bezier(0.22, 0.61, 0.36, 1) both; }
 .lesson-hero .lesson-ar { animation: if-lesson-hero-in 0.45s 0.34s cubic-bezier(0.22, 0.61, 0.36, 1) both; }
 .lesson-hero .lesson-sub { animation: if-lesson-hero-in 0.45s 0.42s cubic-bezier(0.22, 0.61, 0.36, 1) both; }
+/* Urdu lesson pages: .l-hero children */
+.l-hero .l-breadcrumb { animation: if-lesson-hero-in 0.45s 0.05s cubic-bezier(0.22, 0.61, 0.36, 1) both; }
+.l-hero .l-hero-badge { animation: if-lesson-hero-in 0.45s 0.15s cubic-bezier(0.22, 0.61, 0.36, 1) both; }
+.l-hero h1 { animation: if-lesson-hero-in 0.45s 0.25s cubic-bezier(0.22, 0.61, 0.36, 1) both; }
+.l-hero .l-hero-ur { animation: if-lesson-hero-in 0.45s 0.34s cubic-bezier(0.22, 0.61, 0.36, 1) both; }
+.l-hero .l-hero-sub { animation: if-lesson-hero-in 0.45s 0.42s cubic-bezier(0.22, 0.61, 0.36, 1) both; }
+.l-hero .l-hero-stats { animation: if-lesson-hero-in 0.45s 0.50s cubic-bezier(0.22, 0.61, 0.36, 1) both; }
 @media (prefers-reduced-motion: reduce) {
   .lesson-hero .breadcrumb,
   .lesson-hero .lesson-badge,
   .lesson-hero h1,
   .lesson-hero .lesson-ar,
-  .lesson-hero .lesson-sub { animation: none !important; }
+  .lesson-hero .lesson-sub,
+  .l-hero .l-breadcrumb,
+  .l-hero .l-hero-badge,
+  .l-hero h1,
+  .l-hero .l-hero-ur,
+  .l-hero .l-hero-sub,
+  .l-hero .l-hero-stats { animation: none !important; }
 }
 
 /* Lesson callout boxes: subtle lift on hover */
-.callout { transition: box-shadow 0.28s, transform 0.28s cubic-bezier(0.22,0.61,0.36,1) !important; }
-.callout:hover { transform: translateY(-2px) !important; box-shadow: 0 6px 18px rgba(13,59,30,0.08) !important; }
+.callout, .pron-callout {
+  transition: box-shadow 0.28s, transform 0.28s cubic-bezier(0.22,0.61,0.36,1) !important;
+}
+.callout:hover, .pron-callout:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 18px rgba(13,59,30,0.08) !important;
+}
+
+/* Arabic grammar: example + conjugation block hover */
+.ex-card, .conj-block {
+  transition: transform 0.28s cubic-bezier(0.22,0.61,0.36,1), box-shadow 0.28s !important;
+}
+.ex-card:hover, .conj-block:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 18px rgba(13,59,30,0.08) !important;
+}
 
 /* Lesson: section background alternation depth */
 .sec:nth-child(even) { background: linear-gradient(180deg, var(--white, #fff) 0%, #fafaf8 100%); }
@@ -1666,4 +1699,199 @@ button, [role="button"], [tabindex="0"] {
 .example-card:hover, .grammar-card:hover, .vocab-card:hover, .exercise-card:hover {
   transform: translateY(-2px) !important;
   box-shadow: 0 6px 18px rgba(13,59,30,0.08) !important;
+}
+
+/* ═══════════════════════════════════════════════════════
+   ISLAMIC KNOWLEDGE PAGE — hero entrance + tool polish
+   ═══════════════════════════════════════════════════════ */
+
+/* Staggered entrance for KC hero elements */
+@keyframes ifkc-slide-up {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: none; }
+}
+.kc-badge   { animation: ifkc-slide-up 0.55s cubic-bezier(0.22,0.61,0.36,1) 0.05s both !important; }
+.kc-hero h1 { animation: ifkc-slide-up 0.60s cubic-bezier(0.22,0.61,0.36,1) 0.18s both !important; }
+.kc-hero p  { animation: ifkc-slide-up 0.60s cubic-bezier(0.22,0.61,0.36,1) 0.30s both !important; }
+.kc-jump    { animation: ifkc-slide-up 0.55s cubic-bezier(0.22,0.61,0.36,1) 0.42s both !important; }
+@media (prefers-reduced-motion: reduce) {
+  .kc-badge, .kc-hero h1, .kc-hero p, .kc-jump { animation: none !important; }
+}
+
+/* KC tool cards: lift on hover */
+.kc-tool {
+  transition: transform 0.28s cubic-bezier(0.22,0.61,0.36,1), box-shadow 0.28s, border-color 0.28s !important;
+}
+.kc-tool:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 12px 32px rgba(13,59,30,0.10) !important;
+  border-color: rgba(200,146,42,0.4) !important;
+}
+
+/* Zakat calculator input focus ring */
+.zakat-input:focus, .zakat-select:focus {
+  outline: none !important;
+  border-color: var(--gold, #c8922a) !important;
+  box-shadow: 0 0 0 3px rgba(200,146,42,0.14) !important;
+}
+
+/* Prayer times panel: subtle section glow */
+.prayer-section, .prayer-tool {
+  background: linear-gradient(160deg, #fff 0%, #fdfbf5 100%) !important;
+}
+
+/* ═══════════════════════════════════════════════════════
+   PORTAL INDEX PAGES — section header & card depth
+   ═══════════════════════════════════════════════════════ */
+
+/* Section dividers: give each section visual identity */
+.al-sec:nth-child(even) {
+  background: linear-gradient(180deg, var(--white, #fff) 0%, #fafdf9 100%) !important;
+}
+.al-sec:nth-child(odd) {
+  background: linear-gradient(180deg, var(--cream, #faf6ee) 0%, #f7f2e8 100%) !important;
+}
+
+/* Portal progress dashboard section — depth */
+.ifp-sec {
+  background: linear-gradient(160deg, #f8fdf9 0%, #f2f9f4 100%) !important;
+  border-top: 1px solid rgba(200,146,42,0.12) !important;
+  border-bottom: 1px solid rgba(200,146,42,0.12) !important;
+}
+
+/* Sticky portal nav: better active indicator */
+.al-sticky .active {
+  color: var(--gold, #c8922a) !important;
+  background: rgba(200,146,42,0.12) !important;
+  border-color: rgba(200,146,42,0.4) !important;
+}
+
+/* CM (cross-module) card: badge styling enhancement */
+.cm-badge.avail {
+  background: linear-gradient(135deg, rgba(200,146,42,0.16), rgba(200,146,42,0.08)) !important;
+  border: 1px solid rgba(200,146,42,0.4) !important;
+  color: var(--gold, #c8922a) !important;
+}
+
+/* Portal lesson row: stronger hover for lc items */
+.lc-item {
+  transition: background 0.2s, transform 0.22s cubic-bezier(0.22,0.61,0.36,1) !important;
+}
+.lc-item:hover {
+  background: rgba(200,146,42,0.07) !important;
+  transform: translateX(3px) !important;
+}
+
+/* Step cards in salah: stronger visual separation */
+.step-card {
+  border-left: 3px solid var(--gold, #c8922a) !important;
+}
+.step-card:hover {
+  border-left-color: var(--gold-light, #e8b84b) !important;
+}
+
+/* Era/period cards in history: gradient top-border */
+.era-card, .period-card {
+  transition: transform 0.28s cubic-bezier(0.22,0.61,0.36,1), box-shadow 0.28s !important;
+  border-top: 3px solid transparent !important;
+  background-clip: padding-box !important;
+}
+.era-card:hover, .period-card:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 12px 30px rgba(13,59,30,0.10) !important;
+}
+
+/* ═══════════════════════════════════════════════════════
+   HOMEPAGE — final depth refinements
+   ═══════════════════════════════════════════════════════ */
+
+/* Scheme cards: richer hover */
+.scheme-card {
+  transition: transform 0.28s cubic-bezier(0.22,0.61,0.36,1), box-shadow 0.28s, border-color 0.28s !important;
+}
+.scheme-card:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: 0 8px 24px rgba(13,59,30,0.10) !important;
+  border-color: rgba(200,146,42,0.4) !important;
+}
+
+/* Milestone / stat numbers: gradient shimmer */
+.ms-num, .infra-num {
+  background: linear-gradient(135deg, var(--gold-light, #e8b84b) 0%, #fffbe0 60%, var(--gold, #c8922a) 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+/* Timeline item: smoother left-border reveal on hover */
+.tl-item {
+  transition: transform 0.25s cubic-bezier(0.22,0.61,0.36,1) !important;
+}
+.tl-item:hover {
+  transform: translateX(4px) !important;
+}
+
+/* Evidence card section: subtle background differentiation */
+.evidence-card {
+  transition: transform 0.28s cubic-bezier(0.22,0.61,0.36,1), box-shadow 0.28s !important;
+}
+.evidence-card:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: 0 8px 24px rgba(13,59,30,0.09) !important;
+}
+
+/* FAB button: premium pulse ring on hover */
+.fab:hover::after {
+  content: '' !important;
+  position: absolute !important;
+  inset: -6px !important;
+  border-radius: 50% !important;
+  border: 2px solid rgba(200,146,42,0.35) !important;
+  animation: ifFabPulse 0.6s cubic-bezier(0.22,0.61,0.36,1) both !important;
+  pointer-events: none !important;
+}
+@keyframes ifFabPulse {
+  from { opacity: 1; transform: scale(0.9); }
+  to   { opacity: 0; transform: scale(1.4); }
+}
+.fab { position: relative !important; overflow: visible !important; }
+
+/* ═══════════════════════════════════════════════════════
+   SCROLL REVEAL — upgrade timing across all portals
+   ═══════════════════════════════════════════════════════ */
+
+/* Sharpen .reveal transitions from the per-page 0.6s ease to premium cubic-bezier */
+.reveal {
+  transition: opacity 0.55s cubic-bezier(0.22,0.61,0.36,1), transform 0.55s cubic-bezier(0.22,0.61,0.36,1) !important;
+}
+
+/* ═══════════════════════════════════════════════════════
+   GLOBAL MICRO-INTERACTIONS
+   ═══════════════════════════════════════════════════════ */
+
+/* Link hover: smooth underline slide for body copy */
+.article a, .res-card a, p a {
+  text-underline-offset: 3px !important;
+  text-decoration-thickness: 1px !important;
+  transition: color 0.2s, text-decoration-color 0.2s !important;
+}
+
+/* Focus indicator: gold glow ring everywhere */
+:focus-visible {
+  outline: 2px solid rgba(200,146,42,0.8) !important;
+  outline-offset: 3px !important;
+  border-radius: 4px !important;
+}
+
+/* Smooth all anchor transitions */
+a {
+  transition: color 0.18s, opacity 0.18s !important;
+}
+
+/* CTA buttons: scale on active press */
+.al-cta, .ifx-btn, .kc-cta, .sg-cta-btn {
+  transition: transform 0.18s cubic-bezier(0.22,0.61,0.36,1), box-shadow 0.18s !important;
+}
+.al-cta:active, .ifx-btn:active, .kc-cta:active, .sg-cta-btn:active {
+  transform: scale(0.97) !important;
 }

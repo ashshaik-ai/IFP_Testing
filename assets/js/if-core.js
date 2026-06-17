@@ -343,4 +343,14 @@
   /* run ifx reveal after DOMContentLoaded (if not already booted) */
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function(){ setTimeout(initIfxReveal, 0); });
   else setTimeout(initIfxReveal, 0);
+
+  /* ── Nav scroll shadow: adds .scrolled to body>nav when page scrolled ── */
+  (function initNavShadow() {
+    function markScroll() {
+      var nav = document.querySelector('body > nav');
+      if (nav) nav.classList.toggle('if-nav-scrolled', window.scrollY > 8);
+    }
+    window.addEventListener('scroll', markScroll, { passive: true });
+    markScroll();
+  })();
 })();
