@@ -356,4 +356,18 @@
     window.addEventListener('scroll', markScroll, { passive: true });
     markScroll();
   })();
+
+  /* ── Scroll-progress bar (portal pages; homepage has its own) ── */
+  (function initScrollProgress() {
+    if (document.getElementById('scroll-progress') || document.getElementById('ifx-scroll-progress')) return;
+    var bar = document.createElement('div');
+    bar.id = 'ifx-scroll-progress';
+    bar.setAttribute('aria-hidden', 'true');
+    bar.setAttribute('role', 'presentation');
+    document.body.insertBefore(bar, document.body.firstChild);
+    window.addEventListener('scroll', function() {
+      var docH = Math.max(document.documentElement.scrollHeight - window.innerHeight, 1);
+      bar.style.width = Math.min(100, (window.scrollY / docH) * 100) + '%';
+    }, { passive: true });
+  })();
 })();

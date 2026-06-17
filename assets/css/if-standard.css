@@ -2032,3 +2032,12 @@ a {
   display: inline-flex !important;
   align-items: center !important;
 }
+
+/* ── Sitewide scroll-progress bar (injected by if-core.js on portal pages) ── */
+#ifx-scroll-progress {
+  position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+  background: linear-gradient(90deg, var(--ifx-gold, #c8922a), var(--ifx-gold-light, #e8b84b) 60%, rgba(200,146,42,0.3));
+  z-index: 9999; pointer-events: none;
+  transition: width 0.08s linear;
+}
+@media print { #ifx-scroll-progress { display: none; } }
