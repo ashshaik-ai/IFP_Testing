@@ -347,6 +347,14 @@
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function(){ setTimeout(initIfxReveal, 0); });
   else setTimeout(initIfxReveal, 0);
 
+  /* ── Ensure <main> landmark exists for WCAG 2.1 landmark navigation ── */
+  (function ensureMain() {
+    if (document.querySelector('main, [role="main"]')) return;
+    var nav = document.querySelector('body > nav');
+    var firstSection = nav ? nav.nextElementSibling : document.querySelector('body > section, body > div.inner, body > div[class]');
+    if (firstSection) firstSection.setAttribute('role', 'main');
+  })();
+
   /* ── Nav scroll shadow: adds .scrolled to body>nav when page scrolled ── */
   (function initNavShadow() {
     function markScroll() {
