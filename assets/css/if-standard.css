@@ -42,6 +42,14 @@
 section[id], [id].ifx-anchor{ scroll-margin-top: var(--ifx-nav-h); }
 html{ scroll-behavior: smooth; }
 
+/* ---- A4. Global reading comfort — body text line-height ---- */
+/* Applies across every page. 1.7 for body prose; p, li get a bit more air.  */
+body{ line-height: 1.65; }
+p, li{ line-height: 1.75; }
+
+/* ---- A5. Consistent image behaviour ---- */
+img{ max-width: 100%; height: auto; }
+
 /* ==========================================================================
    Unified primitives (opt-in; do not restyle existing markup automatically)
    ========================================================================== */
