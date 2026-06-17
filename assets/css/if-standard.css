@@ -2015,3 +2015,16 @@ a {
   box-shadow: 0 8px 22px rgba(13,59,30,0.09) !important;
   border-color: rgba(200,146,42,0.38) !important;
 }
+
+/* ── Portal sticky-nav link touch targets (WCAG 2.5.5 — 44px minimum) ──
+   Covers .al-sticky, .se-sticky, .ih-sticky, .kq-sticky etc.
+   The per-page selectors vary; this catches all of them via the inner wrapper. */
+.al-sticky a, .se-sticky a, .ih-sticky a, .kq-sticky a,
+.ks-sticky a, .ku-sticky a, .kc-sticky a {
+  min-height: 36px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+}
+.al-cta:not([style]) {
+  min-height: 48px !important;
+}
