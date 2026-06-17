@@ -1422,6 +1422,7 @@
     padding: 4px 10px; border-radius: 100px;
   }
   .ev-tag.ev-done { background: rgba(22,163,74,0.1); color: #16a34a; border: 1px solid rgba(22,163,74,0.2); }
+  .ev-tag.ev-done::before { content: ''; display: inline-block; width: 11px; height: 11px; flex-shrink: 0; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2316a34a' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E"); background-size: contain; background-repeat: no-repeat; background-position: center; }
   .ev-tag.ev-date { background: rgba(200,146,42,0.08); color: var(--gold); border: 1px solid rgba(200,146,42,0.2); }
   .ev-tag.ev-impact { background: rgba(46,139,87,0.08); color: var(--green-mid); border: 1px solid rgba(46,139,87,0.15); }
   .ach-expand-btn {
@@ -1834,8 +1835,8 @@
         <button class="ach-expand-btn" onclick="toggleAchEvidence(this)" aria-expanded="false" type="button"><span data-key="ach_view_evidence">సాక్ష్యాలు చూడండి</span> <span class="ach-chev" aria-hidden="true"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></span></button>
         <div class="ach-evidence">
           <div class="ach-evidence-row">
-            <span class="ev-tag ev-done">✓ పూర్తి AC వ్యవస్థాపన</span>
-            <span class="ev-tag ev-done">✓ పూర్తి రీమోడలింగ్</span>
+            <span class="ev-tag ev-done">పూర్తి AC వ్యవస్థాపన</span>
+            <span class="ev-tag ev-done">పూర్తి రీమోడలింగ్</span>
             <span class="ev-tag ev-date">2023–2024</span>
           </div>
           <div class="ach-evidence-row">
@@ -1852,7 +1853,7 @@
         <button class="ach-expand-btn" onclick="toggleAchEvidence(this)" aria-expanded="false" type="button"><span data-key="ach_view_evidence">సాక్ష్యాలు చూడండి</span> <span class="ach-chev" aria-hidden="true"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></span></button>
         <div class="ach-evidence">
           <div class="ach-evidence-row">
-            <span class="ev-tag ev-done">✓ క్రమబద్ధ వసూలు వ్యవస్థ</span>
+            <span class="ev-tag ev-done">క్రమబద్ధ వసూలు వ్యవస్థ</span>
             <span class="ev-tag ev-date">2023 నుండి</span>
           </div>
           <div class="ach-evidence-row">
@@ -1869,8 +1870,8 @@
         <button class="ach-expand-btn" onclick="toggleAchEvidence(this)" aria-expanded="false" type="button"><span data-key="ach_view_evidence">సాక్ష్యాలు చూడండి</span> <span class="ach-chev" aria-hidden="true"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></span></button>
         <div class="ach-evidence">
           <div class="ach-evidence-row">
-            <span class="ev-tag ev-done">✓ 120+ దుకాణాల తనిఖీ</span>
-            <span class="ev-tag ev-done">✓ సబ్‌లీజ్ పూర్తిగా రద్దు</span>
+            <span class="ev-tag ev-done">120+ దుకాణాల తనిఖీ</span>
+            <span class="ev-tag ev-done">సబ్‌లీజ్ పూర్తిగా రద్దు</span>
           </div>
           <div class="ach-evidence-row">
             <span class="ev-tag ev-impact">₹27 లక్షలు అదనపు లాభం</span>
@@ -1886,7 +1887,7 @@
         <button class="ach-expand-btn" onclick="toggleAchEvidence(this)" aria-expanded="false" type="button"><span data-key="ach_view_evidence">సాక్ష్యాలు చూడండి</span> <span class="ach-chev" aria-hidden="true"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></span></button>
         <div class="ach-evidence">
           <div class="ach-evidence-row">
-            <span class="ev-tag ev-done">✓ క్రియాశీల పథకం</span>
+            <span class="ev-tag ev-done">క్రియాశీల పథకం</span>
             <span class="ev-tag ev-impact">250+ కుటుంబాలు సేవ పొందాయి</span>
           </div>
           <div class="ach-evidence-row">
@@ -1903,8 +1904,8 @@
         <button class="ach-expand-btn" onclick="toggleAchEvidence(this)" aria-expanded="false" type="button"><span data-key="ach_view_evidence">సాక్ష్యాలు చూడండి</span> <span class="ach-chev" aria-hidden="true"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></span></button>
         <div class="ach-evidence">
           <div class="ach-evidence-row">
-            <span class="ev-tag ev-done">✓ 18 మసీదులు క్రియాశీలంగా</span>
-            <span class="ev-tag ev-done">✓ 5 మదర్సాలు</span>
+            <span class="ev-tag ev-done">18 మసీదులు క్రియాశీలంగా</span>
+            <span class="ev-tag ev-done">5 మదర్సాలు</span>
           </div>
           <div class="ach-evidence-row">
             <span class="ev-tag ev-impact">3,000+ ఓటర్ల విశ్వాసం</span>
@@ -1920,8 +1921,8 @@
         <button class="ach-expand-btn" onclick="toggleAchEvidence(this)" aria-expanded="false" type="button"><span data-key="ach_view_evidence">సాక్ష్యాలు చూడండి</span> <span class="ach-chev" aria-hidden="true"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></span></button>
         <div class="ach-evidence">
           <div class="ach-evidence-row">
-            <span class="ev-tag ev-done">✓ కేంద్రం నెలకొల్పబడింది</span>
-            <span class="ev-tag ev-done">✓ శిక్షణ కొనసాగుతున్నది</span>
+            <span class="ev-tag ev-done">కేంద్రం నెలకొల్పబడింది</span>
+            <span class="ev-tag ev-done">శిక్షణ కొనసాగుతున్నది</span>
           </div>
           <div class="ach-evidence-row">
             <span class="ev-tag ev-impact">మహిళా ఆర్థిక స్వాతంత్ర్యం</span>
