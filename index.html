@@ -186,7 +186,7 @@
       top: 0;
       left: 0;
       right: 0;
-      z-index: 100;
+      z-index: 1000;
       background: rgba(13, 59, 30, 1);
       border-bottom: 1px solid rgba(200, 146, 42, 0.3);
       padding: 0 5vw;
@@ -884,21 +884,23 @@
     .hub-tabs {
       position: sticky;
       top: 68px;
-      z-index: 90;
+      z-index: 900;
       background: rgba(13, 59, 30, 1);
       border-bottom: 1px solid rgba(200, 146, 42, 0.3);
       display: flex;
       justify-content: center;
-      padding: 16px 5vw;
+      padding: 12px 5vw;
+      margin: 0;
     }
 
     .hub-tabs-track {
       display: inline-flex;
-      background: var(--white);
-      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(200, 146, 42, 0.2);
       border-radius: 100px;
-      padding: 5px;
-      box-shadow: 0 4px 14px rgba(13, 59, 30, 0.05);
+      padding: 4px;
+      gap: 0;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
       overflow-x: auto;
       scrollbar-width: none;
       -webkit-overflow-scrolling: touch;
@@ -920,7 +922,7 @@
       font-size: 13.5px;
       font-weight: 600;
       letter-spacing: .2px;
-      color: var(--text-mid);
+      color: rgba(255, 255, 255, 0.7);
       background: transparent;
       border: none;
       border-radius: 100px;
@@ -932,10 +934,12 @@
       white-space: nowrap;
       transition: background 0.25s, color 0.25s, transform 0.15s, box-shadow 0.25s;
       -webkit-tap-highlight-color: transparent;
+      margin: 0;
     }
 
     .hub-tab:hover {
-      color: var(--green-deep);
+      color: var(--gold-light);
+      background: rgba(255, 255, 255, 0.05);
     }
 
     .hub-tab:active {
@@ -943,9 +947,9 @@
     }
 
     .hub-tab.active {
-      background: var(--green-deep);
-      color: var(--gold-light);
-      box-shadow: 0 2px 8px rgba(13, 59, 30, 0.2);
+      background: var(--gold);
+      color: var(--green-deep);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     }
 
     .hub-panes {
@@ -981,17 +985,19 @@
 
     @media (max-width: 768px) {
       .hub-tabs {
-        padding: 12px 5vw;
+        padding: 8px 5vw;
         justify-content: flex-start;
       }
 
       .hub-tabs-track {
-        padding: 4px;
+        padding: 3px;
+        gap: 0;
       }
 
       .hub-tab {
         font-size: 12.5px;
-        padding: 7px 14px;
+        padding: 6px 14px;
+        min-height: 36px;
       }
     }
 
