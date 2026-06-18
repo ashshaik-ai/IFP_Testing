@@ -107,6 +107,7 @@
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       text-rendering: optimizeLegibility;
+      line-height: 1.6;
     }
 
     /* ── Global premium polish ── */
@@ -882,24 +883,28 @@
       margin: 0 auto;
     }
 
-    /* HUB TABS — homepage section navigator */
     .hub-tabs {
       position: sticky;
       top: 68px;
       z-index: 90;
       background: var(--cream);
       border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: center;
+      padding: 16px 5vw;
     }
 
     .hub-tabs-track {
-      display: flex;
-      gap: 8px;
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 12px 5vw;
+      display: inline-flex;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 5px;
+      box-shadow: 0 4px 14px rgba(13, 59, 30, 0.05);
       overflow-x: auto;
       scrollbar-width: none;
       -webkit-overflow-scrolling: touch;
+      max-width: 100%;
     }
 
     .hub-tabs-track::-webkit-scrollbar {
@@ -918,28 +923,31 @@
       font-weight: 600;
       letter-spacing: .2px;
       color: var(--text-mid);
-      background: var(--white);
-      border: 1px solid var(--border);
+      background: transparent;
+      border: none;
       border-radius: 100px;
       padding: 8px 18px;
-      min-height: 44px;
+      min-height: 40px;
       display: inline-flex;
       align-items: center;
       cursor: pointer;
       white-space: nowrap;
-      transition: background .2s, color .2s, border-color .2s;
+      transition: background 0.25s, color 0.25s, transform 0.15s, box-shadow 0.25s;
       -webkit-tap-highlight-color: transparent;
     }
 
     .hub-tab:hover {
-      border-color: var(--gold);
       color: var(--green-deep);
+    }
+
+    .hub-tab:active {
+      transform: scale(0.96);
     }
 
     .hub-tab.active {
       background: var(--green-deep);
       color: var(--gold-light);
-      border-color: var(--green-deep);
+      box-shadow: 0 2px 8px rgba(13, 59, 30, 0.2);
     }
 
     .hub-panes {
@@ -974,9 +982,13 @@
     }
 
     @media (max-width: 768px) {
+      .hub-tabs {
+        padding: 12px 5vw;
+        justify-content: flex-start;
+      }
+
       .hub-tabs-track {
-        padding: 10px 5vw;
-        gap: 6px;
+        padding: 4px;
       }
 
       .hub-tab {
@@ -5474,6 +5486,59 @@
       .footer-col ul li a::before {
         color: #333 !important;
       }
+    }    /* --- UX Audit Polish --- */
+    .hstat, .ms-chip, .mf-card, .ach-card {
+      transition: transform 0.25s cubic-bezier(0.22, 0.61, 0.36, 1), box-shadow 0.25s, border-color 0.25s;
+    }
+    .hstat:hover {
+      transform: translateY(-2px);
+      border-color: rgba(200, 146, 42, 0.45);
+      box-shadow: 0 8px 24px -12px rgba(200, 146, 42, 0.5);
+    }
+    .hstat:active, .ms-chip:active, .mf-card:active, .ach-card:active {
+      transform: scale(0.98);
+    }
+    .ms-chip:hover {
+      transform: translateY(-2px);
+      border-color: rgba(200, 146, 42, 0.5);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+    .mf-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(13, 59, 30, 0.08);
+    }
+    @media (max-width: 768px) {
+      .wa-fab {
+        bottom: 80px; /* Lift above bottom nav */
+        z-index: 101;
+      }
+    }
+    /* Skeleton Loader placeholder for missing email to make it look intentional */
+    .ca-mail .ca-title {
+      position: relative;
+      overflow: hidden;
+      color: transparent !important;
+      background: linear-gradient(90deg, rgba(200,146,42,0.1) 25%, rgba(200,146,42,0.2) 50%, rgba(200,146,42,0.1) 75%);
+      background-size: 200% 100%;
+      animation: skeletonLoading 1.5s infinite;
+      border-radius: 4px;
+      user-select: none;
+    }
+    .ca-mail .ca-title::after {
+      content: 'Coming Soon';
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(200,146,42,0.6);
+      font-size: 11px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    @keyframes skeletonLoading {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
     }
   </style>
   <link rel="stylesheet" href="assets/css/if-standard.css">
