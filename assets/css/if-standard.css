@@ -1346,19 +1346,9 @@ img {
 
 /* ── Hub tabs premium ── */
 .hub-tab {
-  transition: color var(--ifx-duration-fast) ease,
-              border-color var(--ifx-duration-fast) ease !important;
+  transition: color 0.25s ease, transform 0.15s ease !important;
   position: relative;
-}
-.hub-tab.active::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, var(--ifx-gold, #c8922a), var(--ifx-gold-light, #e8b84b));
-  border-radius: 2px 2px 0 0;
+  z-index: 1;
 }
 
 /* ── Member cards premium ── */

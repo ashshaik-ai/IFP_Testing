@@ -187,13 +187,21 @@
       left: 0;
       right: 0;
       z-index: 1000;
-      background: rgba(13, 59, 30, 1);
+      background: rgba(13, 59, 30, 0.92);
+      backdrop-filter: blur(14px) saturate(1.2);
+      -webkit-backdrop-filter: blur(14px) saturate(1.2);
       border-bottom: 1px solid rgba(200, 146, 42, 0.3);
       padding: 0 5vw;
       display: flex;
       align-items: center;
       justify-content: space-between;
       height: 68px;
+      transition: box-shadow 0.35s ease, background 0.35s ease;
+    }
+
+    nav.if-nav-scrolled {
+      background: rgba(13, 59, 30, 0.97);
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.25), 0 1px 0 rgba(200, 146, 42, 0.18);
     }
 
     .nav-brand {
@@ -885,26 +893,48 @@
       position: sticky;
       top: 68px;
       z-index: 900;
-      background: rgba(13, 59, 30, 1);
-      border-bottom: 1px solid rgba(200, 146, 42, 0.3);
+      background: rgba(13, 59, 30, 0.95);
+      backdrop-filter: blur(12px) saturate(1.2);
+      -webkit-backdrop-filter: blur(12px) saturate(1.2);
+      border-bottom: 1px solid rgba(200, 146, 42, 0.25);
       display: flex;
       justify-content: center;
-      padding: 12px 5vw;
+      padding: 10px 5vw;
       margin: 0;
+      transition: box-shadow 0.35s ease;
+    }
+
+    .hub-tabs.hub-stuck {
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     }
 
     .hub-tabs-track {
       display: inline-flex;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(200, 146, 42, 0.2);
+      position: relative;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(200, 146, 42, 0.22);
       border-radius: 100px;
       padding: 4px;
       gap: 0;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
       overflow-x: auto;
       scrollbar-width: none;
       -webkit-overflow-scrolling: touch;
       max-width: 100%;
+    }
+
+    /* Sliding pill indicator */
+    .hub-tabs-pill {
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      height: calc(100% - 8px);
+      border-radius: 100px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      box-shadow: 0 2px 10px rgba(200, 146, 42, 0.35);
+      transition: transform 0.35s cubic-bezier(0.22, 0.61, 0.36, 1), width 0.3s cubic-bezier(0.22, 0.61, 0.36, 1);
+      pointer-events: none;
+      z-index: 0;
     }
 
     .hub-tabs-track::-webkit-scrollbar {
@@ -922,7 +952,7 @@
       font-size: 13.5px;
       font-weight: 600;
       letter-spacing: .2px;
-      color: rgba(255, 255, 255, 0.7);
+      color: rgba(255, 255, 255, 0.6);
       background: transparent;
       border: none;
       border-radius: 100px;
@@ -932,14 +962,15 @@
       align-items: center;
       cursor: pointer;
       white-space: nowrap;
-      transition: background 0.25s, color 0.25s, transform 0.15s, box-shadow 0.25s;
+      transition: color 0.25s ease, transform 0.15s ease;
       -webkit-tap-highlight-color: transparent;
       margin: 0;
+      position: relative;
+      z-index: 1;
     }
 
     .hub-tab:hover {
       color: var(--gold-light);
-      background: rgba(255, 255, 255, 0.05);
     }
 
     .hub-tab:active {
@@ -947,9 +978,8 @@
     }
 
     .hub-tab.active {
-      background: var(--gold);
       color: var(--green-deep);
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      font-weight: 700;
     }
 
     .hub-panes {
@@ -2304,6 +2334,19 @@
      PROFESSIONAL ANIMATIONS & ENHANCEMENTS
   ═══════════════════════════════════════ */
 
+    /* FOUC prevention: hide elements before JS adds .reveal class */
+    .ach-card,
+    .infra-card,
+    .member-card,
+    .office-card,
+    .tl-item,
+    .mf-ring-item,
+    .ld-portal,
+    .scheme-bar,
+    .kc-tool {
+      opacity: 0;
+    }
+
     /* Scroll Reveal — subtle, decisive */
     .reveal {
       opacity: 0;
@@ -3576,7 +3619,7 @@
         bottom: 0;
         left: 0;
         right: 0;
-        z-index: 80;
+        z-index: 800;
         background: rgba(7, 23, 12, 0.97);
         backdrop-filter: blur(16px);
         -webkit-backdrop-filter: blur(16px);
@@ -5197,13 +5240,19 @@
       letter-spacing: 1.5px;
       text-decoration: none;
       text-transform: uppercase;
-      transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
+      transition: background 0.25s ease, transform 0.2s cubic-bezier(0.22, 0.61, 0.36, 1), box-shadow 0.3s ease, border-color 0.25s ease;
+      animation: fadeUp 0.7s ease-out 0.7s both;
     }
 
     .hero-cta-secondary:hover {
       background: rgba(200, 146, 42, 0.14);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 22px rgba(200, 146, 42, 0.22);
+      border-color: rgba(200, 146, 42, 0.75);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 28px rgba(200, 146, 42, 0.28), 0 0 0 1px rgba(200, 146, 42, 0.15);
+    }
+
+    .hero-cta-secondary:active {
+      transform: translateY(-1px) scale(0.98);
     }
 
     /* ── Mobile bottom-right stack (single source of truth) ──
@@ -8303,7 +8352,7 @@
       }
 
 
-      /* ── Hub tabs: section-to-tab routing + pane switching ── */
+      /* ── Hub tabs: section-to-tab routing + pane switching + sliding pill ── */
       var SECTION_TO_TAB = {
         victory: 'overview', achievements: 'overview', manifesto: 'overview',
         scheme: 'schemes', infra: 'schemes',
@@ -8320,6 +8369,31 @@
         });
       }
 
+      /* ── Sliding pill indicator ── */
+      var hubTrack = document.querySelector('.hub-tabs-track');
+      var hubPill = null;
+      if (hubTrack) {
+        hubPill = document.createElement('div');
+        hubPill.className = 'hub-tabs-pill';
+        hubTrack.insertBefore(hubPill, hubTrack.firstChild);
+      }
+
+      function positionPill(activeBtn) {
+        if (!hubPill || !activeBtn || !hubTrack) return;
+        var trackRect = hubTrack.getBoundingClientRect();
+        var btnRect = activeBtn.getBoundingClientRect();
+        var offset = btnRect.left - trackRect.left - 4 + hubTrack.scrollLeft;
+        hubPill.style.width = btnRect.width + 'px';
+        hubPill.style.transform = 'translateX(' + offset + 'px)';
+      }
+
+      /* Position pill on initial active tab */
+      var initialActive = document.querySelector('.hub-tab.active');
+      if (initialActive) {
+        /* Delay slightly to ensure layout is computed */
+        requestAnimationFrame(function () { positionPill(initialActive); });
+      }
+
       var TAB_FIRST_SECTION = { overview: 'victory', schemes: 'scheme', community: 'stories', about: 'about', knowledge: 'learning' };
       function firstTrackedSectionIdIn(tabId) { return TAB_FIRST_SECTION[tabId] || null; }
 
@@ -8329,7 +8403,11 @@
           t.setAttribute('aria-selected', 'false');
         });
         var activeBtn = btn || document.querySelector('.hub-tab[data-tab="' + tabId + '"]');
-        if (activeBtn) { activeBtn.classList.add('active'); activeBtn.setAttribute('aria-selected', 'true'); }
+        if (activeBtn) {
+          activeBtn.classList.add('active');
+          activeBtn.setAttribute('aria-selected', 'true');
+          positionPill(activeBtn);
+        }
         document.querySelectorAll('.hub-pane').forEach(function (p) {
           p.classList.toggle('active', p.dataset.pane === tabId);
         });
@@ -8350,6 +8428,26 @@
         return false;
       }
       routeHashToTab(window.location.hash, true);
+
+      /* ── Hub-tabs sticky shadow detection ── */
+      var hubTabsEl = document.getElementById('hub-tabs');
+      if (hubTabsEl) {
+        var sentinel = document.createElement('div');
+        sentinel.style.cssText = 'height:1px;margin:0;padding:0;border:0;visibility:hidden;pointer-events:none;';
+        hubTabsEl.parentNode.insertBefore(sentinel, hubTabsEl);
+        var stickyIO = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            hubTabsEl.classList.toggle('hub-stuck', !e.isIntersecting);
+          });
+        }, { threshold: 0, rootMargin: '-68px 0px 0px 0px' });
+        stickyIO.observe(sentinel);
+      }
+
+      /* Reposition pill on window resize */
+      window.addEventListener('resize', function () {
+        var ab = document.querySelector('.hub-tab.active');
+        if (ab) positionPill(ab);
+      });
 
       /* Check tab strip overflow for the fade-edge affordance */
       function checkHubTabsOverflow() {
@@ -8382,6 +8480,9 @@
           document.querySelectorAll('.hub-tab').forEach(function (t) {
             t.classList.toggle('active', t.dataset.tab === targetTab);
           });
+          /* Reposition sliding pill on scroll-driven tab change */
+          var scrollActiveBtn = document.querySelector('.hub-tab[data-tab="' + targetTab + '"]');
+          if (scrollActiveBtn) positionPill(scrollActiveBtn);
         }
         /* Update the URL hash so users can share direct section links */
         if (activeId && window.history && window.history.replaceState) {
