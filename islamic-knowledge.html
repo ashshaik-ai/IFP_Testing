@@ -59,7 +59,7 @@
   .nav-home { display: inline-flex; align-items: center; gap: 7px; color: rgba(255,255,255,0.82); text-decoration: none; font-size: 13px; letter-spacing: 0.5px; transition: color 0.2s; white-space: nowrap; }
   .nav-home::before { content: '\2190'; font-size: 15px; }
   .nav-home:hover { color: var(--gold-light); }
-  .lang-btn { display: flex; align-items: center; gap: 6px; background: rgba(200,146,42,0.12); border: 1.5px solid rgba(200,146,42,0.4); color: var(--gold-light); padding: 7px 16px; border-radius: 100px; font-size: 12px; font-weight: 500; cursor: pointer; letter-spacing: 0.8px; font-family: inherit; transition: background 0.2s, transform 0.15s; white-space: nowrap; flex-shrink: 0; }
+  .lang-btn { display: flex; align-items: center; gap: 6px; min-height: 44px; background: rgba(200,146,42,0.12); border: 1.5px solid rgba(200,146,42,0.4); color: var(--gold-light); padding: 7px 16px; border-radius: 100px; font-size: 12px; font-weight: 500; cursor: pointer; letter-spacing: 0.8px; font-family: inherit; transition: background 0.2s, transform 0.15s; white-space: nowrap; flex-shrink: 0; }
   .lang-btn:hover { background: rgba(200,146,42,0.22); transform: translateY(-1px); }
   .lang-btn::before { content: ''; display: inline-block; width: 14px; height: 14px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23e8b84b' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20'/%3E%3C/svg%3E") center/contain no-repeat; vertical-align: middle; }
 
@@ -96,8 +96,8 @@
   :lang(te) .kc-hero h1 { line-height: 1.35; }
   .kc-hero h1 span { color: var(--gold-light); }
   .kc-hero p { font-family: 'Cormorant Garamond', 'Noto Sans Telugu', serif; font-size: clamp(16px, 2vw, 21px); color: rgba(245,230,192,0.75); max-width: 620px; line-height: 1.7; }
-  .kc-jump { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 30px; }
-  .kc-jump a { font-size: 12.5px; color: rgba(245,230,192,0.85); text-decoration: none; border: 1px solid rgba(200,146,42,0.35); background: rgba(200,146,42,0.08); padding: 7px 15px; border-radius: 100px; transition: background 0.2s, transform 0.15s; min-height: 40px; display: inline-flex; align-items: center; }
+  .kc-jump { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+  .kc-jump a { font-size: 12.5px; color: rgba(245,230,192,0.85); text-decoration: none; border: 1px solid rgba(200,146,42,0.35); background: rgba(200,146,42,0.08); padding: 0 16px; border-radius: 100px; transition: background 0.2s, transform 0.15s; min-height: 44px; display: inline-flex; align-items: center; }
   .kc-jump a:hover { background: rgba(200,146,42,0.2); transform: translateY(-1px); }
 
   /* STICKY QUICK-JUMP NAV */
@@ -195,18 +195,17 @@
   .lp-card.lp-nisab .lp-unit { color: rgba(245,230,192,0.6); }
   .lp-status { display: flex; align-items: center; gap: 7px; font-size: 12px; color: var(--text-muted); margin-top: 14px; }
   .lp-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
-  .lp-dot.live { background: #3fbf6a; box-shadow: 0 0 0 0 rgba(63,191,106,0.6); animation: lpPulse 2s infinite; }
+  .lp-dot.live { background: #3fbf6a; box-shadow: 0 0 0 3px rgba(63,191,106,0.16); }
   .lp-dot.stale { background: #d99a2b; }
   .lp-dot.err { background: #c0512b; }
-  @keyframes lpPulse { 0%{box-shadow:0 0 0 0 rgba(63,191,106,0.5);} 70%{box-shadow:0 0 0 7px rgba(63,191,106,0);} 100%{box-shadow:0 0 0 0 rgba(63,191,106,0);} }
 
   /* TOOLTIP */
-  .tip { position: relative; display: inline-flex; align-items: center; justify-content: center; width: 15px; height: 15px; margin-left: 5px; border-radius: 50%; border: 1px solid var(--text-muted); color: var(--text-muted); font-size: 10px; font-weight: 700; cursor: help; vertical-align: middle; }
-  .tip::after { content: ''; position: absolute; inset: -15px; }
+  .tip { position: relative; display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; margin: -14px -10px -14px 1px; border: 0; color: var(--text-muted); font-size: 0; font-weight: 700; cursor: help; vertical-align: middle; }
+  .tip::before { content: 'i'; display: inline-flex; align-items: center; justify-content: center; width: 15px; height: 15px; border-radius: 50%; border: 1px solid currentColor; font-size: 10px; line-height: 1; }
   .tip-pop { position: absolute; bottom: 145%; left: 50%; transform: translateX(-50%) translateY(4px); width: 210px; background: var(--green-deep); color: rgba(245,230,192,0.95); font-size: 11.5px; font-weight: 400; line-height: 1.55; letter-spacing: 0; text-transform: none; padding: 10px 12px; border-radius: 8px; box-shadow: 0 8px 24px rgba(0,0,0,0.22); opacity: 0; visibility: hidden; transition: opacity 0.2s, transform 0.2s; z-index: 20; pointer-events: none; text-align: left; }
   .tip-pop::after { content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); border: 6px solid transparent; border-top-color: var(--green-deep); }
   .tip:hover .tip-pop, .tip:focus .tip-pop, .tip:focus-within .tip-pop { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
-  .zr-label .tip { border-color: rgba(245,230,192,0.5); color: rgba(245,230,192,0.7); }
+  .zr-label .tip { color: rgba(245,230,192,0.7); }
 
   /* RESOURCE CARDS */
   .resources { background: var(--white); }
@@ -573,9 +572,6 @@
     <h1 data-te="ఇస్లామిక్ <span>నాలెడ్జ్ సెంటర్</span>" data-en="Islamic <span>Knowledge Center</span>">ఇస్లామిక్ <span>నాలెడ్జ్ సెంటర్</span></h1>
     <p data-te="ప్రతి ముస్లిం కుటుంబానికి ఉపయోగపడే ఇస్లామిక్ సాధనాలు మరియు విశ్వసనీయ వనరులు — జకాత్ లెక్కింపు, నమాజ్ వేళలు, తదుపరి నమాజ్ కౌంట్‌డౌన్, ఖురాన్ మరియు హదీస్ వనరులు ఒకే చోట." data-en="Practical Islamic tools and trusted resources for every Muslim family — Zakat calculation, daily Salah timings, a next-prayer countdown, and authentic Quran &amp; Hadith resources, all in one place.">ప్రతి ముస్లిం కుటుంబానికి ఉపయోగపడే ఇస్లామిక్ సాధనాలు మరియు విశ్వసనీయ వనరులు — జకాత్ లెక్కింపు, నమాజ్ వేళలు, తదుపరి నమాజ్ కౌంట్‌డౌన్, ఖురాన్ మరియు హదీస్ వనరులు ఒకే చోట.</p>
     <nav class="kc-jump" aria-label="Jump to section">
-      <span class="kcj-group" data-te="భాషలు నేర్చుకోండి" data-en="Learn the languages">భాషలు నేర్చుకోండి</span>
-      <a href="#learn-arabic" data-te="✦ అరబిక్ నేర్చుకోండి" data-en="✦ Learn Arabic" style="background:rgba(200,146,42,0.12);border-color:rgba(200,146,42,0.42);color:var(--gold-light);font-weight:600">✦ అరబిక్ నేర్చుకోండి</a>
-      <a href="#learn-urdu" data-te="✦ ఉర్దూ నేర్చుకోండి" data-en="✦ Learn Urdu" style="background:rgba(200,146,42,0.12);border-color:rgba(200,146,42,0.42);color:var(--gold-light);font-weight:600">✦ ఉర్దూ నేర్చుకోండి</a>
       <span class="kcj-group" data-te="ఇక్కడ మొదలుపెట్టండి" data-en="Start here">ఇక్కడ మొదలుపెట్టండి</span>
       <a href="#basics" data-te="ఇస్లాం మూలాలు" data-en="Start Here">ఇస్లాం మూలాలు</a>
       <a href="#pillars" data-te="ఐదు మూలస్తంభాలు" data-en="Five Pillars">ఐదు మూలస్తంభాలు</a>
@@ -607,8 +603,6 @@
 <nav class="kc-sticky" id="kc-sticky" aria-label="Knowledge Center sections">
   <div class="kc-sticky-inner">
     <a href="index.html" class="kc-sticky-home" data-te="← హోమ్" data-en="← Home">← హోమ్</a>
-    <a href="#learn-arabic"  data-spy="learn-arabic"  data-te="✦ అరబిక్ నేర్చుకోండి" data-en="✦ Learn Arabic" style="background:rgba(200,146,42,0.1);border-color:rgba(200,146,42,0.36);color:var(--gold-light);font-weight:600">✦ అరబిక్ నేర్చుకోండి</a>
-    <a href="#learn-urdu"    data-spy="learn-urdu"    data-te="✦ ఉర్దూ నేర్చుకోండి" data-en="✦ Learn Urdu" style="background:rgba(200,146,42,0.1);border-color:rgba(200,146,42,0.36);color:var(--gold-light);font-weight:600">✦ ఉర్దూ నేర్చుకోండి</a>
     <a href="#basics"      data-spy="basics"      data-te="ఇక్కడ మొదలుపెట్టండి" data-en="Start Here">ఇక్కడ మొదలుపెట్టండి</a>
     <a href="#pillars"     data-spy="pillars"     data-te="ఐదు మూలస్తంభాలు" data-en="Five Pillars">ఐదు మూలస్తంభాలు</a>
     <a href="#wudu"        data-spy="wudu"        data-te="వుజూ మార్గదర్శి" data-en="Wudu Guide">వుజూ మార్గదర్శి</a>
@@ -2040,13 +2034,7 @@
     <p class="kcf-note" data-te="ఇస్లామిక్ నాలెడ్జ్ సెంటర్ — సమాజ సేవకు అనుబంధంగా అందించబడిన విజ్ఞాన వనరు." data-en="Islamic Knowledge Center — a knowledge resource offered alongside our community service.">ఇస్లామిక్ నాలెడ్జ్ సెంటర్ — సమాజ సేవకు అనుబంధంగా అందించబడిన విజ్ఞాన వనరు.</p>
     <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:18px">
       <a href="index.html" class="kcf-back" data-te="← హోమ్" data-en="← Home">← హోమ్</a>
-      <a href="knowledge-center/learn-salah/index.html" class="kcf-back" style="border-color:rgba(200,146,42,0.5)" data-te="నమాజ్ నేర్చుకోండి ↗" data-en="Learn Salah ↗">నమాజ్ నేర్చుకోండి ↗</a>
-      <a href="knowledge-center/seerah/index.html" class="kcf-back" style="border-color:rgba(200,146,42,0.5)" data-te="సీరా ↗" data-en="Seerah ↗">సీరా ↗</a>
-      <a href="knowledge-center/islamic-history/index.html" class="kcf-back" style="border-color:rgba(200,146,42,0.5)" data-te="ఇస్లామిక్ చరిత్ర ↗" data-en="Islamic History ↗">ఇస్లామిక్ చరిత్ర ↗</a>
-      <a href="knowledge-center/kids-islam/index.html" class="kcf-back" style="border-color:rgba(200,146,42,0.5)" data-te="పిల్లల ఇస్లాం ↗" data-en="Kids' Islam ↗">పిల్లల ఇస్లాం ↗</a>
-      <a href="knowledge-center/learn-quran/index.html" class="kcf-back" style="border-color:rgba(200,146,42,0.5)" data-te="ఖురాన్ నేర్చుకోండి ↗" data-en="Learn Quran ↗">ఖురాన్ నేర్చుకోండి ↗</a>
-      <a href="knowledge-center/learn-arabic/index.html" class="kcf-back" style="border-color:rgba(200,146,42,0.5)" data-te="అరబిక్ నేర్చుకోండి ↗" data-en="Learn Arabic ↗">అరబిక్ నేర్చుకోండి ↗</a>
-      <a href="knowledge-center/learn-urdu/index.html" class="kcf-back" style="border-color:rgba(200,146,42,0.5)" data-te="ఉర్దూ నేర్చుకోండి ↗" data-en="Learn Urdu ↗">ఉర్దూ నేర్చుకోండి ↗</a>
+      <a href="#lang-portals" class="kcf-back" style="border-color:rgba(200,146,42,0.5)" data-te="అభ్యాస పోర్టల్స్ చూడండి" data-en="View Learning Portals">అభ్యాస పోర్టల్స్ చూడండి</a>
     </div>
     <p class="kcf-copy">© 2024 Islamic Front, Mangalagiri.</p>
   </div>

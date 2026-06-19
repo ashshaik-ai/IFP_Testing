@@ -303,7 +303,11 @@
       background: transparent;
       border: 1.5px solid rgba(200, 146, 42, .35);
       border-radius: 8px;
-      padding: 8px 10px;
+      width: 44px;
+      min-height: 44px;
+      padding: 0;
+      align-items: center;
+      justify-content: center;
       cursor: pointer;
       transition: border-color .2s, background .2s;
       flex-shrink: 0;
@@ -460,6 +464,7 @@
       border: 1.5px solid rgba(200, 146, 42, 0.4);
       color: var(--gold-light);
       padding: 7px 16px;
+      min-height: 44px;
       border-radius: 100px;
       font-size: 12px;
       font-weight: 500;
@@ -2298,35 +2303,9 @@
       transition: background .25s, transform .2s cubic-bezier(.22, .61, .36, 1), box-shadow .25s;
     }
 
-    .hero-cta::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -130%;
-      width: 55%;
-      height: 100%;
-      background: linear-gradient(120deg, transparent, rgba(255, 255, 255, .5), transparent);
-      transform: skewX(-20deg);
-      pointer-events: none;
-    }
-
     .hero-cta:hover {
       transform: translateY(-3px);
       box-shadow: 0 16px 34px -8px rgba(200, 146, 42, .6);
-    }
-
-    .hero-cta:hover::after {
-      animation: ctaShine .85s ease;
-    }
-
-    @keyframes ctaShine {
-      from {
-        left: -130%;
-      }
-
-      to {
-        left: 150%;
-      }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -3605,6 +3584,7 @@
       .bottom-nav {
         display: flex;
         position: fixed;
+        top: auto;
         bottom: 0;
         left: 0;
         right: 0;
@@ -3612,6 +3592,9 @@
         background: rgba(7, 23, 12, 0.97);
         backdrop-filter: blur(16px);
         -webkit-backdrop-filter: blur(16px);
+        height: auto;
+        justify-content: stretch;
+        border-bottom: 0;
         border-top: 1px solid rgba(200, 146, 42, 0.28);
         padding-bottom: env(safe-area-inset-bottom, 0px);
         box-shadow: 0 -4px 28px rgba(0, 0, 0, 0.42);
@@ -3715,70 +3698,166 @@
   ══════════════════════════════════════════════════════ */
 
     /* ── Sticky Mobile Contact Bar ── */
-    .sticky-contact-bar {
+    /* Mobile contact actions: one polished entry point instead of a crowded bottom strip. */
+    .mobile-help-fab,
+    .mobile-action-sheet {
       display: none;
-      position: fixed;
-      bottom: 62px;
-      left: 0;
-      right: 0;
-      z-index: 79;
-      background: var(--green-deep);
-      border-top: 1px solid rgba(200, 146, 42, 0.35);
-      padding: 0;
-      height: 48px;
-      box-shadow: 0 -2px 16px rgba(0, 0, 0, 0.3);
     }
 
     @media (max-width: 768px) {
-      .sticky-contact-bar {
-        display: flex;
+      .mobile-help-fab {
+        position: fixed;
+        right: 16px;
+        bottom: calc(62px + 14px + env(safe-area-inset-bottom, 0px));
+        z-index: 950;
+        min-width: 118px;
+        height: 52px;
+        border: 1px solid rgba(200, 146, 42, 0.48);
+        border-radius: 999px;
+        background: linear-gradient(135deg, var(--gold), var(--gold-light));
+        color: var(--green-deep);
+        box-shadow: 0 14px 34px rgba(13, 59, 30, 0.24), 0 4px 16px rgba(200, 146, 42, 0.22);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 0 18px;
+        font: 800 12px/1 var(--font-sans);
+        letter-spacing: 0.02em;
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
       }
-    }
 
-    .scb-inner {
-      display: flex;
-      width: 100%;
-      height: 100%;
-    }
+      .mobile-help-fab:active {
+        transform: translateY(1px) scale(0.98);
+      }
 
-    .scb-btn {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      text-decoration: none;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-      color: rgba(255, 255, 255, 0.85);
-      border-right: 1px solid rgba(200, 146, 42, 0.2);
-      transition: background 0.15s;
-    }
+      .mobile-help-fab svg {
+        width: 18px;
+        height: 18px;
+        flex: 0 0 auto;
+      }
 
-    .scb-btn:last-child {
-      border-right: none;
-    }
+      .mobile-action-sheet {
+        position: fixed;
+        inset: 0;
+        z-index: 1200;
+        display: block;
+        visibility: hidden;
+        pointer-events: none;
+      }
 
-    .scb-btn:active {
-      background: rgba(200, 146, 42, 0.12);
-    }
+      .mobile-action-sheet.is-open {
+        visibility: visible;
+        pointer-events: auto;
+      }
 
-    .scb-btn.scb-wa {
-      color: #25d366;
-    }
+      .mas-backdrop {
+        position: absolute;
+        inset: 0;
+        background: rgba(6, 24, 14, 0.58);
+        opacity: 0;
+        transition: opacity 0.22s ease;
+      }
 
-    .scb-btn.scb-call {
-      color: #60c8ff;
-    }
+      .mobile-action-sheet.is-open .mas-backdrop {
+        opacity: 1;
+      }
 
-    .scb-btn.scb-mail {
-      color: var(--gold-light);
-    }
+      .mas-panel {
+        position: absolute;
+        left: 10px;
+        right: 10px;
+        bottom: calc(62px + 10px + env(safe-area-inset-bottom, 0px));
+        border: 1px solid rgba(200, 146, 42, 0.26);
+        border-radius: 18px;
+        background: rgba(255, 253, 247, 0.98);
+        box-shadow: 0 24px 60px rgba(0, 0, 0, 0.24);
+        padding: 14px;
+        transform: translateY(18px);
+        opacity: 0;
+        transition: transform 0.24s cubic-bezier(0.22, 0.61, 0.36, 1), opacity 0.2s ease;
+      }
 
-    .scb-icon {
-      font-size: 15px;
-      line-height: 1;
+      .mobile-action-sheet.is-open .mas-panel {
+        transform: translateY(0);
+        opacity: 1;
+      }
+
+      .mas-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 2px 2px 12px;
+      }
+
+      .mas-title {
+        color: var(--green-deep);
+        font: 800 15px/1.25 var(--font-serif);
+      }
+
+      .mas-close {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        border: 1px solid rgba(13, 59, 30, 0.12);
+        background: rgba(13, 59, 30, 0.05);
+        color: var(--green-deep);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+      }
+
+      .mas-actions {
+        display: grid;
+        gap: 8px;
+      }
+
+      .mas-action {
+        min-height: 56px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        border-radius: 12px;
+        border: 1px solid rgba(13, 59, 30, 0.09);
+        background: #fff;
+        color: var(--ink);
+        text-decoration: none;
+        padding: 10px 12px;
+      }
+
+      .mas-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        background: rgba(200, 146, 42, 0.12);
+        color: var(--green);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex: 0 0 auto;
+      }
+
+      .mas-copy {
+        min-width: 0;
+        display: grid;
+        gap: 3px;
+      }
+
+      .mas-label {
+        color: var(--green-deep);
+        font-size: 14px;
+        font-weight: 800;
+        line-height: 1.2;
+      }
+
+      .mas-desc {
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.35;
+      }
     }
 
     /* ── WhatsApp Floating Action Button ── */
@@ -3815,21 +3894,7 @@
       inset: -4px;
       border-radius: 50%;
       border: 2px solid rgba(37, 211, 102, 0.3);
-      animation: waPulse 2.5s ease infinite;
-    }
-
-    @keyframes waPulse {
-
-      0%,
-      100% {
-        transform: scale(1);
-        opacity: 0.6
-      }
-
-      50% {
-        transform: scale(1.22);
-        opacity: 0
-      }
+      opacity: 0.55;
     }
 
     @media (max-width: 768px) {
@@ -4112,6 +4177,27 @@
       margin-top: 6px;
       line-height: 1.6;
       max-width: 480px;
+    }
+
+    @media (max-width: 600px) {
+      .seam-inner {
+        max-width: 100%;
+        min-width: 0;
+        gap: 12px;
+      }
+
+      .seam-line {
+        max-width: 54px;
+      }
+
+      .seam-text {
+        min-width: 0;
+        max-width: 100%;
+      }
+
+      .seam-sub {
+        max-width: 100%;
+      }
     }
 
     .seam-links {
@@ -5094,7 +5180,8 @@
       border: 1px solid var(--border);
       color: var(--text-muted);
       border-radius: 6px;
-      padding: 6px 14px;
+      min-height: 44px;
+      padding: 0 14px;
       font-size: 12px;
       font-family: inherit;
       cursor: pointer;
@@ -5244,28 +5331,18 @@
       transform: translateY(-1px) scale(0.98);
     }
 
-    /* ── Mobile bottom-right stack (single source of truth) ──
-     Four elements share this corner, bottom-up: bottom-nav (62px) ->
-     sticky-contact-bar (48px) -> WhatsApp FAB (56px, +16px gap) ->
-     back-to-top (46px, +14px gap). Every offset below carries the same
-     env(safe-area-inset-bottom) term so the whole stack shifts together
-     on devices with a home-indicator inset instead of only the top two
-     elements shifting and the rest colliding with them. */
+    /* ── Mobile bottom-right stack (single source of truth) ── */
     @media (max-width: 768px) {
       body {
-        padding-bottom: calc(62px + 48px + env(safe-area-inset-bottom, 0px));
-      }
-
-      .sticky-contact-bar {
-        bottom: calc(62px + env(safe-area-inset-bottom, 0px));
+        padding-bottom: calc(62px + env(safe-area-inset-bottom, 0px));
       }
 
       .wa-fab {
-        bottom: calc(62px + 48px + 16px + env(safe-area-inset-bottom, 0px));
+        display: none;
       }
 
       .back-to-top {
-        bottom: calc(62px + 48px + 16px + 50px + 14px + env(safe-area-inset-bottom, 0px));
+        bottom: calc(62px + 76px + env(safe-area-inset-bottom, 0px));
       }
     }
 
@@ -5383,7 +5460,6 @@
       .hero-cta,
       .kc-promo,
       .wa-fab,
-      .sticky-contact-bar,
       .vf-submit,
       .cert-btn,
       .ach-expand-btn,
@@ -5551,8 +5627,7 @@
     }
     @media (max-width: 768px) {
       .wa-fab {
-        bottom: 80px; /* Lift above bottom nav */
-        z-index: 101;
+        display: none;
       }
     }
     /* Skeleton Loader placeholder for missing email to make it look intentional */
@@ -5560,9 +5635,7 @@
       position: relative;
       overflow: hidden;
       color: transparent !important;
-      background: linear-gradient(90deg, rgba(200,146,42,0.1) 25%, rgba(200,146,42,0.2) 50%, rgba(200,146,42,0.1) 75%);
-      background-size: 200% 100%;
-      animation: skeletonLoading 1.5s infinite;
+      background: rgba(200,146,42,0.10);
       border-radius: 4px;
       user-select: none;
     }
@@ -5577,10 +5650,6 @@
       font-size: 11px;
       letter-spacing: 1px;
       text-transform: uppercase;
-    }
-    @keyframes skeletonLoading {
-      0% { background-position: 200% 0; }
-      100% { background-position: -200% 0; }
     }
   </style>
   <link rel="stylesheet" href="assets/css/if-standard.css">
@@ -7571,15 +7640,6 @@
                     <line x1="8" y1="17" x2="14" y2="17" />
                   </svg></span><span class="kc-tool-tx" data-key="kc_t5">హదీస్ వనరులు</span>
               </a>
-              <a href="knowledge-center/learn-arabic/index.html" class="kc-tool">
-                <span class="kc-tool-ic" style="font-family:'serif';font-size:22px;line-height:1">ع</span><span
-                  class="kc-tool-tx" data-key="kc_t6">అరబిక్ నేర్చుకోండి</span>
-              </a>
-              <a href="knowledge-center/learn-urdu/index.html" class="kc-tool">
-                <span class="kc-tool-ic"
-                  style="font-family:'Noto Nastaliq Urdu','serif';font-size:20px;line-height:1.6">و</span><span
-                  class="kc-tool-tx" data-key="kc_t7">ఉర్దూ నేర్చుకోండి</span>
-              </a>
             </div>
           </div>
         </section>
@@ -7607,8 +7667,6 @@
             <li><a href="#volunteer" data-key="footer_l_volunteer">స్వచ్ఛంద సేవ</a></li>
             <li><a href="#scheme" data-key="footer_l4">అంత్యక్రియల సహాయ పథకం</a></li>
             <li><a href="#about" data-key="footer_l5">స్థాపకుని గురించి</a></li>
-            <li><a href="knowledge-center/learn-arabic/index.html" data-key="footer_l6">అరబిక్ నేర్చుకోండి</a></li>
-            <li><a href="knowledge-center/learn-urdu/index.html" data-key="footer_l7">ఉర్దూ నేర్చుకోండి</a></li>
           </ul>
         </div>
         <div class="footer-col">
@@ -7643,42 +7701,69 @@
     </svg>
   </a>
 
-  <!-- Sticky Mobile Contact Bar -->
-  <div class="sticky-contact-bar">
-    <div class="scb-inner">
-      <a href="tel:+919032906677" class="scb-btn scb-call">
-        <span class="scb-icon"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
-            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path
-              d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-          </svg></span>
-        <span data-key="scb_call">కాల్</span>
-      </a>
-      <a href="https://wa.me/919032906677" target="_blank" rel="noopener" class="scb-btn scb-wa">
-        <span class="scb-icon"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
-            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-          </svg></span>
-        <span data-key="scb_wa">WhatsApp</span>
-      </a>
-      <a href="mailto:islamicfront.mangalagiri@gmail.com" class="scb-btn scb-mail">
-        <span class="scb-icon"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
-            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-            <polyline points="22,6 12,13 2,6" />
-          </svg></span>
-        <span data-key="scb_mail">ఇమెయిల్</span>
-      </a>
-      <a href="#community-contact" class="scb-btn">
-        <span class="scb-icon"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
-            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <circle cx="9" cy="7" r="4" />
-            <path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2" />
-            <path d="M17 11a4 4 0 0 1 0 8" />
-            <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-          </svg></span>
-        <span data-key="scb_help">సహాయం</span>
-      </a>
+  <!-- Mobile Contact Actions -->
+  <button class="mobile-help-fab" id="mobile-help-fab" type="button" aria-expanded="false"
+    aria-controls="mobile-action-sheet">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+      stroke-linejoin="round" aria-hidden="true">
+      <path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z" />
+      <path d="M8 10h8" />
+      <path d="M8 14h5" />
+    </svg>
+    <span data-key="mobile_help_fab">సహాయం</span>
+  </button>
+  <div class="mobile-action-sheet" id="mobile-action-sheet" aria-hidden="true">
+    <div class="mas-backdrop" data-mas-close aria-hidden="true"></div>
+    <div class="mas-panel" role="dialog" aria-modal="true" aria-labelledby="mas-title">
+      <div class="mas-head">
+        <div class="mas-title" id="mas-title" data-key="mobile_actions_title">మేము ఎలా సహాయం చేయగలం?</div>
+        <button class="mas-close" type="button" data-mas-close aria-label="Close contact actions">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M18 6 6 18" />
+            <path d="m6 6 12 12" />
+          </svg>
+        </button>
+      </div>
+      <div class="mas-actions">
+        <a href="tel:+919032906677" class="mas-action">
+          <span class="mas-icon"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor"
+              stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+            </svg></span>
+          <span class="mas-copy"><span class="mas-label" data-key="mobile_action_call">కాల్ చేయండి</span><span
+              class="mas-desc" data-key="mobile_action_call_desc">నేరుగా ఫోన్‌లో మాట్లాడండి</span></span>
+        </a>
+        <a href="https://wa.me/919032906677" target="_blank" rel="noopener" class="mas-action">
+          <span class="mas-icon"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor"
+              stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+            </svg></span>
+          <span class="mas-copy"><span class="mas-label" data-key="mobile_action_whatsapp">WhatsApp</span><span
+              class="mas-desc" data-key="mobile_action_whatsapp_desc">త్వరగా సందేశం పంపండి</span></span>
+        </a>
+        <a href="mailto:islamicfront.mangalagiri@gmail.com" class="mas-action">
+          <span class="mas-icon"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor"
+              stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+              <polyline points="22,6 12,13 2,6" />
+            </svg></span>
+          <span class="mas-copy"><span class="mas-label" data-key="mobile_action_email">ఇమెయిల్</span><span
+              class="mas-desc" data-key="mobile_action_email_desc">వివరంగా రాయండి</span></span>
+        </a>
+        <a href="#community-contact" class="mas-action">
+          <span class="mas-icon"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor"
+              stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="9" cy="7" r="4" />
+              <path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2" />
+              <path d="M17 11a4 4 0 0 1 0 8" />
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+            </svg></span>
+          <span class="mas-copy"><span class="mas-label" data-key="mobile_action_help">సహాయ కేంద్రం</span><span
+              class="mas-desc" data-key="mobile_action_help_desc">సేవలు, సమయం, సంప్రదింపు వివరాలు</span></span>
+        </a>
+      </div>
     </div>
   </div>
   <script>
@@ -7840,7 +7925,7 @@
         footer_links_h: "త్వరిత లింకులు",
         footer_l1: "మా విజయం 2023", footer_l2: "సాధనలు", footer_l3: "మేనిఫెస్టో",
         footer_l_stories: "సఫలత కథలు", footer_l_events: "కార్యక్రమాలు", footer_l_volunteer: "స్వచ్ఛంద సేవ",
-        footer_l4: "అంత్యక్రియల సహాయ పథకం", footer_l5: "స్థాపకుని గురించి", footer_l6: "అరబిక్ నేర్చుకోండి", footer_l7: "ఉర్దూ నేర్చుకోండి",
+        footer_l4: "అంత్యక్రియల సహాయ పథకం", footer_l5: "స్థాపకుని గురించి",
         footer_contact_h: "సంప్రదించండి",
         footer_addr1: "మంగళగిరి, గుంటూరు జిల్లా",
         footer_addr2: "ఆంధ్రప్రదేశ్ – 522503",
@@ -7942,8 +8027,17 @@
         ld_lead: "ఖురాన్, నమాజ్, సీరహ్, చరిత్ర, భాషలు మరియు మరిన్ని — ఉచిత, నిర్మాణాత్మక అభ్యాస పోర్టల్‌లు. ప్రారంభించడానికి ఏదైనా పోర్టల్ తెరవండి.",
         ld_arabic: "అరబిక్ నేర్చుకోండి", ld_urdu: "ఉర్దూ నేర్చుకోండి", ld_quran: "ఖురాన్ నేర్చుకోండి", ld_salah: "నమాజ్ నేర్చుకోండి", ld_seerah: "సీరహ్", ld_history: "ఇస్లామిక్ చరిత్ర", ld_kids: "పిల్లల ఇస్లాం",
 
-        /* Sticky contact bar */
-        scb_call: "కాల్", scb_wa: "WhatsApp", scb_mail: "ఇమెయిల్", scb_help: "సహాయం",
+        /* Mobile contact actions */
+        mobile_help_fab: "సహాయం",
+        mobile_actions_title: "మేము ఎలా సహాయం చేయగలం?",
+        mobile_action_call: "కాల్ చేయండి",
+        mobile_action_call_desc: "నేరుగా ఫోన్‌లో మాట్లాడండి",
+        mobile_action_whatsapp: "WhatsApp",
+        mobile_action_whatsapp_desc: "త్వరగా సందేశం పంపండి",
+        mobile_action_email: "ఇమెయిల్",
+        mobile_action_email_desc: "వివరంగా రాయండి",
+        mobile_action_help: "సహాయ కేంద్రం",
+        mobile_action_help_desc: "సేవలు, సమయం, సంప్రదింపు వివరాలు",
 
         /* Hub tabs */
         tab_overview: "అవలోకనం",
@@ -8109,7 +8203,7 @@
         footer_links_h: "Quick Links",
         footer_l1: "Our Victory 2023", footer_l2: "Achievements", footer_l3: "Manifesto",
         footer_l_stories: "Success Stories", footer_l_events: "Events", footer_l_volunteer: "Volunteer",
-        footer_l4: "Funeral Aid Scheme", footer_l5: "About the Founder", footer_l6: "Learn Arabic", footer_l7: "Learn Urdu",
+        footer_l4: "Funeral Aid Scheme", footer_l5: "About the Founder",
         footer_contact_h: "Contact",
         footer_addr1: "Mangalagiri, Guntur District",
         footer_addr2: "Andhra Pradesh – 522503",
@@ -8211,8 +8305,17 @@
         ld_lead: "Free, structured learning portals — Quran, Salah, Seerah, history, languages and more. Open any portal to begin.",
         ld_arabic: "Learn Arabic", ld_urdu: "Learn Urdu", ld_quran: "Learn Quran", ld_salah: "Learn Salah", ld_seerah: "Seerah", ld_history: "Islamic History", ld_kids: "Kids Islam",
 
-        /* Sticky contact bar */
-        scb_call: "Call", scb_wa: "WhatsApp", scb_mail: "Email", scb_help: "Help",
+        /* Mobile contact actions */
+        mobile_help_fab: "Help",
+        mobile_actions_title: "How can we help?",
+        mobile_action_call: "Call",
+        mobile_action_call_desc: "Speak with us directly",
+        mobile_action_whatsapp: "WhatsApp",
+        mobile_action_whatsapp_desc: "Send a quick message",
+        mobile_action_email: "Email",
+        mobile_action_email_desc: "Write with more detail",
+        mobile_action_help: "Help center",
+        mobile_action_help_desc: "Services, hours, and contact details",
 
         /* Hub tabs */
         tab_overview: "Overview",
@@ -8384,13 +8487,26 @@
       var TAB_FIRST_SECTION = { overview: 'victory', schemes: 'scheme', community: 'stories', about: 'about', knowledge: 'learning' };
       function firstTrackedSectionIdIn(tabId) { return TAB_FIRST_SECTION[tabId] || null; }
 
+      function scrollToHomepageSection(id, behavior) {
+        var target = document.getElementById(id);
+        if (!target) return;
+        var topNav = document.querySelector('body > nav');
+        var hubTabs = document.getElementById('hub-tabs');
+        var offset = (topNav ? topNav.getBoundingClientRect().height : 68);
+        if (target.closest('.hub-pane') && hubTabs) {
+          offset += hubTabs.getBoundingClientRect().height;
+        }
+        var y = target.getBoundingClientRect().top + window.scrollY - offset - 10;
+        window.scrollTo({ top: Math.max(0, y), behavior: behavior || 'smooth' });
+      }
+
       /* Lock flag: prevents IntersectionObserver from overriding a user's manual tab click */
       var tabSwitchLock = false;
       var tabSwitchTimer = null;
 
       function switchHubTab(tabId, btn, opts) {
         /* Set lock so IO does not revert the tab during the next ~1.2 s */
-        if (!(opts && opts.fromHashRoute)) {
+        if (!(opts && opts.skipLock)) {
           tabSwitchLock = true;
           clearTimeout(tabSwitchTimer);
           tabSwitchTimer = setTimeout(function () { tabSwitchLock = false; }, 1200);
@@ -8413,18 +8529,41 @@
         if (!(opts && opts.fromHashRoute) && window.history && window.history.replaceState) {
           window.history.replaceState(null, '', '#tab-' + tabId);
         }
+        if (!(opts && (opts.fromHashRoute || opts.skipScroll))) {
+          setTimeout(function () {
+            scrollToHomepageSection(firstTrackedSectionIdIn(tabId), 'smooth');
+          }, 80);
+          setTimeout(function () {
+            scrollToHomepageSection(firstTrackedSectionIdIn(tabId), 'smooth');
+          }, 420);
+        }
       }
       window.switchHubTab = switchHubTab;
 
       function routeHashToTab(hash, fromLoad) {
         var id = (hash || '').replace('#', '');
+        if (id.indexOf('tab-') === 0) {
+          var tabId = id.replace('tab-', '');
+          if (TAB_FIRST_SECTION[tabId]) {
+            switchHubTab(tabId, null, { fromHashRoute: true });
+            setTimeout(function () {
+              scrollToHomepageSection(firstTrackedSectionIdIn(tabId), fromLoad ? 'auto' : 'smooth');
+            }, 120);
+            return true;
+          }
+        }
         if (id && SECTION_TO_TAB[id]) {
           switchHubTab(SECTION_TO_TAB[id], null, { fromHashRoute: true });
+          setTimeout(function () {
+            scrollToHomepageSection(id, fromLoad ? 'auto' : 'smooth');
+          }, 120);
           return true;
         }
         return false;
       }
       routeHashToTab(window.location.hash, true);
+      window.addEventListener('load', function () { routeHashToTab(window.location.hash, true); });
+      window.addEventListener('hashchange', function () { routeHashToTab(window.location.hash, false); });
 
       /* ── Hub-tabs sticky shadow detection ── */
       var hubTabsEl = document.getElementById('hub-tabs');
@@ -8509,11 +8648,10 @@
           var id = (href === '#home' || href === '#') ? 'home' : href.replace('#', '');
           if (SECTION_TO_TAB[id]) {
             /* Switch tab first (sets tabSwitchLock internally) */
-            switchHubTab(SECTION_TO_TAB[id], null, {});
+            switchHubTab(SECTION_TO_TAB[id], null, { skipScroll: true });
             /* After the pane becomes visible, scroll to the target section */
             setTimeout(function () {
-              var target = document.getElementById(id);
-              if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              scrollToHomepageSection(id, 'smooth');
             }, 50);
             e.preventDefault();
           }
@@ -8565,6 +8703,42 @@
         if (a.id === 'bn-more') return;
         a.addEventListener('click', function () { closeDrawer(); });
       });
+      /* Mobile contact action sheet */
+      var mobileHelpFab = document.getElementById('mobile-help-fab');
+      var mobileActionSheet = document.getElementById('mobile-action-sheet');
+      var lastMobileActionFocus = null;
+      function openMobileActions() {
+        if (!mobileHelpFab || !mobileActionSheet) return;
+        lastMobileActionFocus = document.activeElement;
+        mobileActionSheet.classList.add('is-open');
+        mobileActionSheet.setAttribute('aria-hidden', 'false');
+        mobileHelpFab.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden';
+        var firstAction = mobileActionSheet.querySelector('.mas-action, .mas-close');
+        if (firstAction) setTimeout(function () { firstAction.focus(); }, 80);
+      }
+      function closeMobileActions(options) {
+        if (!mobileHelpFab || !mobileActionSheet) return;
+        mobileActionSheet.classList.remove('is-open');
+        mobileActionSheet.setAttribute('aria-hidden', 'true');
+        mobileHelpFab.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+        if (!options || !options.keepFocus) {
+          var target = lastMobileActionFocus && document.contains(lastMobileActionFocus) ? lastMobileActionFocus : mobileHelpFab;
+          if (target) target.focus();
+        }
+      }
+      if (mobileHelpFab) mobileHelpFab.addEventListener('click', function () {
+        mobileActionSheet && mobileActionSheet.classList.contains('is-open') ? closeMobileActions() : openMobileActions();
+      });
+      if (mobileActionSheet) {
+        mobileActionSheet.querySelectorAll('[data-mas-close]').forEach(function (btn) {
+          btn.addEventListener('click', function () { closeMobileActions(); });
+        });
+        mobileActionSheet.querySelectorAll('.mas-action').forEach(function (action) {
+          action.addEventListener('click', function () { closeMobileActions({ keepFocus: true }); });
+        });
+      }
       /* Back to top */
       var bttBtn = document.getElementById('back-to-top');
       window.addEventListener('scroll', function () {
@@ -8575,6 +8749,10 @@
       /* Escape key closes the drawer and returns focus to whichever button opened it
          (.nav-burger on desktop, #bn-more on mobile — only one is visible at a time) */
       document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && mobileActionSheet && mobileActionSheet.classList.contains('is-open')) {
+          closeMobileActions();
+          return;
+        }
         if (e.key === 'Escape' && navDrawer && navDrawer.classList.contains('open')) {
           closeDrawer();
           var opener = (navBurger && navBurger.offsetParent !== null) ? navBurger : bnMore;

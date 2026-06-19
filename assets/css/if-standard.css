@@ -96,7 +96,7 @@ img{ max-width: 100%; height: auto; }
 /* Breadcrumb system (A3) */
 .ifx-crumbs{ max-width: var(--ifx-container); margin-inline:auto; padding: 14px var(--ifx-space-x) 0; font-size:13px; }
 .ifx-crumbs ol{ list-style:none; display:flex; flex-wrap:wrap; gap:6px; align-items:center; margin:0; padding:0; }
-.ifx-crumbs a{ color: var(--text-muted, #7a6840); text-decoration:none; min-height: 44px; display: inline-flex; align-items: center; }
+.ifx-crumbs a{ color: var(--text-muted, #7a6840); text-decoration:none; min-width: 44px; min-height: 44px; display: inline-flex; align-items: center; }
 .ifx-crumbs a:hover{ color: var(--ifx-gold); }
 .ifx-crumbs li+li::before{ content:"›"; margin-right:6px; color: var(--text-muted, #7a6840); opacity:.7; }
 .ifx-crumbs [aria-current="page"]{ color: var(--text-dark, #1a1208); font-weight:600; }
@@ -371,6 +371,61 @@ html { scrollbar-color: rgba(13,59,30,.35) transparent; }
 
 
 /* Learner Profile / Achievements / Roadmap modal (if-profile.js) */
+#ifxp{
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 92;
+  min-width: 148px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border: 1px solid rgba(200,146,42,.38);
+  border-radius: 100px;
+  background: rgba(13,59,30,.94);
+  color: var(--gold-light,#e8b84b);
+  box-shadow: 0 10px 28px rgba(13,59,30,.22);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+}
+.ifxp-spark{ color: var(--ifx-gold,#c8922a); font-size: 14px; }
+.ifxp-lvl,.ifxp-xp{ white-space: nowrap; }
+.ifxp-bar{
+  width: 34px;
+  height: 5px;
+  overflow: hidden;
+  border-radius: 100px;
+  background: rgba(245,230,192,.18);
+}
+.ifxp-bar > i{ display:block; height:100%; border-radius:inherit; background:linear-gradient(90deg,#c8922a,#e8b84b); }
+.ifxp-toast{
+  position: fixed;
+  right: 18px;
+  bottom: 76px;
+  z-index: 1003;
+  max-width: min(300px, calc(100vw - 32px));
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: var(--green-deep,#0d3b1e);
+  color: var(--gold-light,#e8b84b);
+  box-shadow: 0 10px 28px rgba(13,59,30,.24);
+  font-size: 13px;
+  font-weight: 700;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity .2s, transform .2s;
+}
+.ifxp-toast.on{ opacity:1; transform:none; }
+@media(max-width:560px){
+  #ifxp{ right: 12px; bottom: 12px; min-width: 128px; padding-inline: 10px; }
+  .ifxp-bar{ width: 26px; }
+}
+
 #ifpr-ov{ position:fixed; inset:0; z-index:1002; background:rgba(13,30,18,.6); -webkit-backdrop-filter:blur(5px); backdrop-filter:blur(5px); display:none; align-items:flex-start; justify-content:center; padding:6vh 16px; overflow:auto; }
 #ifpr-ov.on{ display:flex; }
 .ifpr-modal{ width:100%; max-width:560px; background:var(--cream,#faf6ee); border-radius:20px; box-shadow:var(--ifx-shadow-lg); padding:22px; animation:ifx-rise .25s ease; }
@@ -550,7 +605,7 @@ html { scrollbar-color: rgba(13,59,30,.35) transparent; }
   min-height: 44px !important;
   display: inline-flex !important;
   align-items: center !important;
-  padding: 8px 16px !important;
+  padding: 0 16px !important;
 }
 
 /* Homepage volunteer form: better input sizing */
@@ -721,9 +776,12 @@ span.hmfp-label, .hmfp-li span{ font-size: 12px !important; }
 /* Student-guidance: demand-level badge (ఎక్కువ / మధ్యస్థం etc.) at 11px */
 .lvl{ font-size: 12px !important; }
 
-/* Islamic-knowledge: "next" pill chip at 9.5px and Zakat tooltip trigger at 10px */
+/* Islamic-knowledge: compact chips and tooltip trigger */
 .next-pill{ font-size: 12px !important; }
-.tip{ font-size: 12px !important; }
+.tip{
+  min-width: 44px !important;
+  min-height: 44px !important;
+}
 
 /* Islamic-knowledge: Wudu step "Recite" labels — inline 10.5px */
 .ws-recite-label{ font-size: 12px !important; }
@@ -904,43 +962,8 @@ summary:focus-visible{
 }
 
 /* ── Premium card hover — lift with gold shimmer ── */
-.ifx-card-premium {
-  position: relative;
-  overflow: hidden;
-  transition: transform var(--ifx-duration-base) var(--ifx-ease-out),
-              box-shadow var(--ifx-duration-base) ease,
-              border-color var(--ifx-duration-base) ease;
-}
-.ifx-card-premium::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg,
-    rgba(232,184,75,0) 0%,
-    rgba(232,184,75,0.06) 50%,
-    rgba(232,184,75,0) 100%
-  );
-  opacity: 0;
-  transition: opacity var(--ifx-duration-base) ease;
-  pointer-events: none;
-}
-.ifx-card-premium:hover::before { opacity: 1; }
-.ifx-card-premium:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(13,59,30,0.18), 0 2px 8px rgba(200,146,42,0.12);
-  border-color: rgba(200,146,42,0.5) !important;
-}
-.ifx-card-premium:active { transform: translateY(-1px); }
 
 /* ── Magnetic button effect (premium CTA) ── */
-.ifx-btn-magnetic {
-  transition: transform var(--ifx-duration-fast) var(--ifx-ease-spring),
-              box-shadow var(--ifx-duration-base) ease;
-  will-change: transform;
-}
-.ifx-btn-magnetic:hover {
-  box-shadow: var(--ifx-glow-gold) !important;
-}
 
 /* ── Glass morphism overlay utility ── */
 .ifx-glass {
@@ -1051,21 +1074,6 @@ summary:focus-visible{
 }
 
 /* ── Shimmer loading skeleton ── */
-@keyframes ifx-shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
-}
-.ifx-skeleton {
-  background: linear-gradient(90deg,
-    rgba(200,146,42,0.06) 25%,
-    rgba(200,146,42,0.14) 50%,
-    rgba(200,146,42,0.06) 75%
-  );
-  background-size: 200% 100%;
-  animation: ifx-shimmer 1.8s ease infinite;
-  border-radius: 8px;
-}
-
 /* ── Parallax depth ornament (CSS only) ── */
 .ifx-depth-ornament {
   position: absolute;
@@ -1290,26 +1298,11 @@ img {
 }
 
 /* ── Animation keyframes (premium) ── */
-@keyframes ifx-float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
-}
-@keyframes ifx-pulse-ring {
-  0% { box-shadow: 0 0 0 0 rgba(200,146,42,0.4); }
-  100% { box-shadow: 0 0 0 20px rgba(200,146,42,0); }
-}
 @keyframes ifx-gradient-shift {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
-@keyframes ifx-entrance {
-  from { opacity: 0; transform: translateY(16px) scale(0.98); }
-  to   { opacity: 1; transform: translateY(0) scale(1); }
-}
-
-.ifx-float { animation: ifx-float 4s ease-in-out infinite; }
-.ifx-entrance { animation: ifx-entrance 0.5s var(--ifx-ease-out) both; }
 
 /* ── Portal nav sticky premium ── */
 .al-sticky, .lu-sticky {
@@ -1365,7 +1358,6 @@ img {
 
 /* Accessibility: keep reduced-motion clean */
 @media (prefers-reduced-motion: reduce) {
-  .ifx-float, .ifx-entrance, .ifx-skeleton { animation: none !important; }
   .ld-portal, .vol-card, .event-item, .member-card,
   .scheme-card, .ach-card, .hub-tab, .wa-fab, #ifsr-fab {
     transition: none !important;
@@ -1468,12 +1460,7 @@ body > nav.if-nav-scrolled {
 }
 
 /* ── Global: smooth page fade-in entrance ── */
-@keyframes ifx-page-in {
-  from { opacity: 0; transform: translateY(6px); }
-  to { opacity: 1; transform: none; }
-}
-body { animation: ifx-page-in 0.38s cubic-bezier(0.22, 0.61, 0.36, 1) both; }
-@media (prefers-reduced-motion: reduce) { body { animation: none !important; } }
+body { opacity: 1; }
 
 /* ── Member photo hover zoom ── */
 .member-photo { transition: transform 0.4s cubic-bezier(0.22, 0.61, 0.36, 1) !important; }
@@ -1851,21 +1838,6 @@ button, [role="button"], [tabindex="0"] {
 }
 
 /* FAB button: premium pulse ring on hover */
-.fab:hover::after {
-  content: '' !important;
-  position: absolute !important;
-  inset: -6px !important;
-  border-radius: 50% !important;
-  border: 2px solid rgba(200,146,42,0.35) !important;
-  animation: ifFabPulse 0.6s cubic-bezier(0.22,0.61,0.36,1) both !important;
-  pointer-events: none !important;
-}
-@keyframes ifFabPulse {
-  from { opacity: 1; transform: scale(0.9); }
-  to   { opacity: 0; transform: scale(1.4); }
-}
-.fab { position: relative !important; overflow: visible !important; }
-
 /* ═══════════════════════════════════════════════════════
    SCROLL REVEAL — upgrade timing across all portals
    ═══════════════════════════════════════════════════════ */

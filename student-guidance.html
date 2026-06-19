@@ -74,8 +74,13 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
 .sg-hero h1{font-family:'Playfair Display',serif;font-size:clamp(27px,5.2vw,46px);font-weight:800;color:var(--white);line-height:1.15;margin-bottom:18px;animation:sgFadeUp .5s .22s cubic-bezier(.22,.61,.36,1) both}
 .sg-hero h1 span{background:linear-gradient(135deg,var(--gold-light),#fff4cf);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .sg-hero p.lead{font-family:'Cormorant Garamond',serif;font-size:clamp(16px,2.3vw,21px);color:rgba(245,230,192,0.85);line-height:1.6;max-width:680px;margin:0 auto 26px;animation:sgFadeUp .5s .34s cubic-bezier(.22,.61,.36,1) both}
+.sg-hero-actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin:0 auto 22px;animation:sgFadeUp .5s .4s cubic-bezier(.22,.61,.36,1) both}
+.sg-hero-action{min-height:46px;display:inline-flex;align-items:center;justify-content:center;border-radius:100px;padding:0 18px;text-decoration:none;font-size:13px;font-weight:700;letter-spacing:.2px;border:1px solid rgba(200,146,42,.42);transition:background .2s,color .2s,border-color .2s,transform .18s}
+.sg-hero-action.primary{background:var(--gold);color:var(--green-deep);border-color:var(--gold)}
+.sg-hero-action.secondary{background:rgba(245,230,192,.08);color:var(--gold-light)}
+.sg-hero-action:hover{transform:translateY(-2px)}
 .sg-disclaimer{display:flex;gap:12px;align-items:flex-start;text-align:left;background:rgba(255,255,255,0.05);border:1px solid rgba(200,146,42,0.3);border-left:4px solid var(--gold);border-radius:12px;padding:16px 18px;max-width:640px;margin:0 auto;color:rgba(245,230,192,0.82);font-size:13.5px;line-height:1.65;animation:sgFadeUp .5s .46s cubic-bezier(.22,.61,.36,1) both}
-@media(prefers-reduced-motion:reduce){.sg-eyebrow,.sg-hero h1,.sg-hero p.lead,.sg-disclaimer{animation:none!important}}
+@media(prefers-reduced-motion:reduce){.sg-eyebrow,.sg-hero h1,.sg-hero p.lead,.sg-hero-actions,.sg-disclaimer{animation:none!important;transition:none!important}}
 .sg-disclaimer b{color:var(--gold-light)}
 .sg-disclaimer .ic{font-size:20px;flex-shrink:0;line-height:1.2}
 
@@ -254,7 +259,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
 .cg-search-wrap input{width:100%;padding:11px 40px;min-height:44px;border:1.5px solid var(--border);border-radius:100px;font-size:16px;font-family:inherit;background:var(--white);color:var(--text-dark);transition:border-color .2s,box-shadow .2s;box-sizing:border-box}
 .cg-search-wrap input:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(200,146,42,0.14)}
 .cg-goals{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;margin-bottom:24px}
-.cg-goal-btn{font-size:12px;font-weight:600;color:var(--text-mid);background:var(--white);border:1px solid var(--border);padding:7px 14px;border-radius:100px;cursor:pointer;font-family:inherit;transition:all .18s;white-space:nowrap}
+.cg-goal-btn{min-height:44px;font-size:12px;font-weight:600;color:var(--text-mid);background:var(--white);border:1px solid var(--border);padding:0 14px;border-radius:100px;cursor:pointer;font-family:inherit;transition:all .18s;white-space:nowrap}
 .cg-goal-btn:hover{border-color:var(--green-deep);color:var(--green-deep)}
 .cg-goal-btn.active{background:var(--green-deep);color:var(--gold-light);border-color:var(--green-deep)}
 /* result card */
@@ -300,11 +305,8 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
 @media(prefers-reduced-motion:reduce){.gx-card,.sg-section-hdr,.qa-block,.myth-card,.scheme-block{opacity:1!important;transform:none!important;transition:none!important}}
 </style>
 <link rel="stylesheet" href="assets/css/if-standard.css">
-<script defer src="assets/js/if-engage.js"></script>
 <script defer src="assets/js/if-search.js"></script>
 <script defer src="assets/js/if-media.js"></script>
-<script defer src="assets/js/if-xp.js"></script>
-<script defer src="assets/js/if-profile.js"></script>
 <script defer src="assets/js/if-order.js"></script>
 <script defer src="assets/js/if-jsonld.js"></script>
 </head>
@@ -329,6 +331,10 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
     <div class="sg-eyebrow" data-te="★ భవిష్యత్ పాత్‌వేస్ సెంటర్" data-en="★ Future Pathways Center">★ భవిష్యత్ పాత్‌వేస్ సెంటర్</div>
     <h1 data-te="10వ తరగతి లేదా ఇంటర్మీడియట్ తర్వాత <span>ఏమి చేయాలో తెలీడం లేదా?</span>" data-en="Confused About What To Do <span>After 10th or Intermediate?</span>">10వ తరగతి లేదా ఇంటర్మీడియట్ తర్వాత <span>ఏమి చేయాలో తెలీడం లేదా?</span></h1>
     <p class="lead" data-te="ప్రతి సంవత్సరం వేలాది విద్యార్థులు భవిష్యత్ అవకాశాలు, పోటీ, ఖర్చులు, నష్టాలు మరియు కెరీర్ ఫలితాలు అర్థం చేసుకోకుండా కోర్సులు ఎంచుకుంటారు. ఈ మార్గదర్శన కేంద్రం మీకు వాస్తవం ఆధారంగా సమాచారంతో నిర్ణయాలు తీసుకోవడంలో సహాయపడుతుంది." data-en="Every year thousands of students choose courses without understanding the future opportunities, competition, costs, risks, and career outcomes. This guidance center helps you make informed decisions based on reality.">ప్రతి సంవత్సరం వేలాది విద్యార్థులు భవిష్యత్ అవకాశాలు, పోటీ, ఖర్చులు, నష్టాలు మరియు కెరీర్ ఫలితాలు అర్థం చేసుకోకుండా కోర్సులు ఎంచుకుంటారు. ఈ మార్గదర్శన కేంద్రం మీకు వాస్తవం ఆధారంగా సమాచారంతో నిర్ణయాలు తీసుకోవడంలో సహాయపడుతుంది.</p>
+    <div class="sg-hero-actions" aria-label="Start guidance">
+      <a class="sg-hero-action primary" href="#career" data-te="కెరీర్ గోల్ కనుగొనండి" data-en="Find a Career Goal">కెరీర్ గోల్ కనుగొనండి</a>
+      <a class="sg-hero-action secondary" href="#after10" data-te="కోర్సులు పోల్చండి" data-en="Compare Courses">కోర్సులు పోల్చండి</a>
+    </div>
     <div class="sg-disclaimer">
       <span class="ic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="3" x2="12" y2="21"/><path d="M3 9l9-6 9 6"/><path d="M5 13l-2 4 6 2-4-6z"/><path d="M19 13l2 4-6 2 4-6z"/></svg></span>
       <span data-te="<b>మా హామీ:</b> మేము ఏ నిర్దిష్ట కోర్సు, కళాశాల, కోచింగ్ సెంటర్ లేదా కెరీర్‌ను ప్రమోట్ చేయం. విద్యార్థులు మరియు తల్లిదండ్రులు సమాచారం ఆధారంగా నిర్ణయాలు తీసుకోవడంలో సహాయపడటమే మా లక్ష్యం." data-en="<b>Our promise:</b> We do not promote any specific course, college, coaching center, or career. Our only goal is to help students and parents make informed decisions."><b>మా హామీ:</b> మేము ఏ నిర్దిష్ట కోర్సు, కళాశాల, కోచింగ్ సెంటర్ లేదా కెరీర్‌ను ప్రమోట్ చేయం. విద్యార్థులు మరియు తల్లిదండ్రులు సమాచారం ఆధారంగా నిర్ణయాలు తీసుకోవడంలో సహాయపడటమే మా లక్ష్యం.</span>
