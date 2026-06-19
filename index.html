@@ -361,9 +361,13 @@
       border-left: 1px solid rgba(200, 146, 42, .25);
       z-index: 201;
       transform: translateX(100%);
-      transition: transform .35s cubic-bezier(.22, .61, .36, 1);
-      display: flex;
+      display: none;
       flex-direction: column;
+      transition: transform .35s cubic-bezier(.22, .61, .36, 1);
+    }
+
+    .nav-drawer.open-display {
+      display: flex;
     }
 
     .nav-drawer.open {
@@ -8519,6 +8523,8 @@
       var navDrClose = document.getElementById('nav-drawer-close');
       var bnMore = document.getElementById('bn-more');
       function openDrawer() {
+        navDrawer.classList.add('open-display');
+        navDrawer.offsetHeight; /* force reflow */
         navDrawer.classList.add('open');
         navDrawer.setAttribute('aria-hidden', 'false');
         navOverlay.classList.add('open');
@@ -8538,6 +8544,11 @@
         navBurger.setAttribute('aria-expanded', 'false');
         if (bnMore) bnMore.setAttribute('aria-expanded', 'false');
         document.body.style.overflow = '';
+        setTimeout(function() {
+          if (!navDrawer.classList.contains('open')) {
+            navDrawer.classList.remove('open-display');
+          }
+        }, 360);
       }
       if (navBurger) navBurger.addEventListener('click', function () { navDrawer.classList.contains('open') ? closeDrawer() : openDrawer(); });
       if (bnMore) bnMore.addEventListener('click', function () { navDrawer.classList.contains('open') ? closeDrawer() : openDrawer(); });

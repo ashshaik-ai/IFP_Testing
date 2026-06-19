@@ -1,7 +1,7 @@
 // @ts-check
 const { defineConfig, devices } = require('@playwright/test');
 
-const BASE_URL = 'https://ashshaik-ai.github.io/IFP_Testing/';
+const BASE_URL = process.env.BASE_URL || 'http://127.0.0.1:9090/';
 
 module.exports = defineConfig({
   testDir: './tests',
@@ -23,4 +23,9 @@ module.exports = defineConfig({
       use: { ...devices['Desktop Chrome'] },
     },
   ],
+  webServer: {
+    command: 'node scripts/serve.js',
+    port: 9090,
+    reuseExistingServer: true,
+  },
 });

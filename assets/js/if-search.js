@@ -131,4 +131,50 @@
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', build); else build();
   new MutationObserver(paintChrome).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
+  window.addEventListener('open-search', open);
+  
+  // Add navbar search icon on desktop if .nav-right is present
+  function addNavbarSearch() {
+    var navRight = document.querySelector('.nav-right');
+    if (navRight && !document.querySelector('.nav-search-btn')) {
+      var navSearch = document.createElement('button');
+      navSearch.className = 'nav-search-btn';
+      navSearch.type = 'button';
+      navSearch.setAttribute('aria-label', 'Search');
+      navSearch.innerHTML = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg>';
+      navSearch.addEventListener('click', open);
+      
+      navSearch.style.background = 'none';
+      navSearch.style.border = 'none';
+      navSearch.style.color = 'var(--gold-light, #e8b84b)';
+      navSearch.style.cursor = 'pointer';
+      navSearch.style.display = 'inline-flex';
+      navSearch.style.alignItems = 'center';
+      navSearch.style.justifyContent = 'center';
+      navSearch.style.padding = '8px';
+      navSearch.style.borderRadius = '50%';
+      navSearch.style.transition = 'background 0.2s, color 0.2s';
+      navSearch.style.minHeight = '36px';
+      navSearch.style.minWidth = '36px';
+      navSearch.style.marginRight = '8px';
+      navSearch.style.verticalAlign = 'middle';
+      
+      navSearch.addEventListener('mouseenter', function() {
+        navSearch.style.background = 'rgba(200, 146, 42, 0.12)';
+        navSearch.style.color = '#ffffff';
+      });
+      navSearch.addEventListener('mouseleave', function() {
+        navSearch.style.background = 'none';
+        navSearch.style.color = 'var(--gold-light, #e8b84b)';
+      });
+
+      var langBtn = document.getElementById('lang-btn');
+      if (langBtn) {
+        navRight.insertBefore(navSearch, langBtn);
+      } else {
+        navRight.appendChild(navSearch);
+      }
+    }
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', addNavbarSearch); else addNavbarSearch();
 })();

@@ -2038,3 +2038,9 @@ a {
   transition: width 0.08s linear;
 }
 @media print { #ifx-scroll-progress { display: none; } }
+
+@media (min-width: 769px) {
+  #ifsr-fab {
+    display: none !important;
+  }
+}
