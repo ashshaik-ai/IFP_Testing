@@ -8401,7 +8401,17 @@
       var TAB_FIRST_SECTION = { overview: 'victory', schemes: 'scheme', community: 'stories', about: 'about', knowledge: 'learning' };
       function firstTrackedSectionIdIn(tabId) { return TAB_FIRST_SECTION[tabId] || null; }
 
+      /* Lock flag: prevents IntersectionObserver from overriding a user's manual tab click */
+      var tabSwitchLock = false;
+      var tabSwitchTimer = null;
+
       function switchHubTab(tabId, btn, opts) {
+        /* Set lock so IO does not revert the tab during the next ~1.2 s */
+        if (!(opts && opts.fromHashRoute)) {
+          tabSwitchLock = true;
+          clearTimeout(tabSwitchTimer);
+          tabSwitchTimer = setTimeout(function () { tabSwitchLock = false; }, 1200);
+        }
         document.querySelectorAll('.hub-tab').forEach(function (t) {
           t.classList.remove('active');
           t.setAttribute('aria-selected', 'false');
@@ -8478,8 +8488,8 @@
           item.classList.toggle('bn-active', isActive);
           if (item.dataset.section) item.setAttribute('aria-current', isActive ? 'page' : 'false');
         });
-        /* Sync hub tabs to the currently visible section */
-        if (activeId && SECTION_TO_TAB[activeId]) {
+        /* Sync hub tabs to the currently visible section – only when no manual click is in progress */
+        if (!tabSwitchLock && activeId && SECTION_TO_TAB[activeId]) {
           var targetTab = SECTION_TO_TAB[activeId];
           document.querySelectorAll('.hub-tab').forEach(function (t) {
             t.classList.toggle('active', t.dataset.tab === targetTab);
@@ -8495,6 +8505,8 @@
       }
       var sectionIO = new IntersectionObserver(function (entries) {
         entries.forEach(function (e) { secVis[e.target.id] = e.isIntersecting; });
+        /* Don't override a recently-clicked tab with scroll-inferred section */
+        if (tabSwitchLock) return;
         var best = null;
         TRACKED_IDS.forEach(function (id) {
           if (secVis[id]) {
@@ -8509,10 +8521,19 @@
          that targets a section now living inside a hub-pane must switch to that pane first,
          otherwise the browser's native anchor-scroll lands on a display:none target. */
       document.querySelectorAll('a[href^="#"]').forEach(function (a) {
-        a.addEventListener('click', function () {
+        a.addEventListener('click', function (e) {
           var href = this.getAttribute('href');
           var id = (href === '#home' || href === '#') ? 'home' : href.replace('#', '');
-          if (SECTION_TO_TAB[id]) switchHubTab(SECTION_TO_TAB[id], null, { fromHashRoute: true });
+          if (SECTION_TO_TAB[id]) {
+            /* Switch tab first (sets tabSwitchLock internally) */
+            switchHubTab(SECTION_TO_TAB[id], null, {});
+            /* After the pane becomes visible, scroll to the target section */
+            setTimeout(function () {
+              var target = document.getElementById(id);
+              if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 50);
+            e.preventDefault();
+          }
           setNavActive(id);
         });
       });
