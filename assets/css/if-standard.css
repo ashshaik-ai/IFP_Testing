@@ -2009,3 +2009,77 @@ a {
     display: none !important;
   }
 }
+
+/* ── Phase 1 Mobile UX Enhancements ── */
+.bn-item:active, .lang-btn:active, .why-card:active, .res-card:active, .learn-card:active, .lp-card:active, .ll:active, .ws-dot:active, .ws-btn:active, .nav-drawer-close:active, .why-icon:active, .cm-card:active {
+  transform: scale(0.96) !important;
+  filter: brightness(0.96) !important;
+}
+
+@media (max-width: 768px) {
+  /* Transform fullscreen drawer into a native-like bottom sheet modal */
+  .nav-drawer {
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    top: auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    max-height: 85vh !important;
+    border-radius: 20px 20px 0 0 !important;
+    transform: translateY(100%) !important;
+    transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    border-left: none !important;
+    border-top: 1.5px solid rgba(200, 146, 42, 0.4) !important;
+    box-shadow: 0 -8px 36px rgba(0, 0, 0, 0.3) !important;
+    overflow-y: auto !important;
+    padding-bottom: 24px !important;
+  }
+  
+  .nav-drawer.open {
+    transform: translateY(0) !important;
+  }
+  
+  .nav-drawer-handle {
+    width: 44px !important;
+    height: 5px !important;
+    background: rgba(200, 146, 42, 0.35) !important;
+    border-radius: 100px !important;
+    margin: 8px auto 0 !important;
+    display: block !important;
+  }
+  
+  .nav-drawer-header {
+    padding-top: 4px !important;
+    position: relative !important;
+    border-bottom: 1px solid rgba(200, 146, 42, 0.15) !important;
+    margin-bottom: 12px !important;
+  }
+  
+  /* Hide navbar on scroll down to save vertical screen space */
+  body > nav {
+    transition: transform 0.3s ease !important;
+  }
+  
+  body.nav-hidden > nav {
+    transform: translateY(-100%) !important;
+  }
+  
+  /* Align all sticky items at top: 0 when header navbar is hidden */
+  .al-sticky, .kc-sticky, .lu-sticky, .tab-nav, .lesson-nav, .sg-tools, .hub-tabs {
+    transition: top 0.3s ease !important;
+  }
+  
+  body.nav-hidden .al-sticky,
+  body.nav-hidden .kc-sticky,
+  body.nav-hidden .lu-sticky,
+  body.nav-hidden .tab-nav,
+  body.nav-hidden .lesson-nav,
+  body.nav-hidden .sg-tools,
+  body.nav-hidden .hub-tabs {
+    top: 0 !important;
+  }
+}
+

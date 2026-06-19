@@ -381,4 +381,189 @@
     });
     links.forEach(function(a) { mo.observe(a, { attributes: true, attributeFilter: ['class'] }); });
   })();
+
+  /* ── Phase 1: Mobile Navigation App Shell Injection ── */
+  (function initAppShell() {
+    function isHubPage() {
+      var p = (location.pathname || '').replace(/\\/g, '/').toLowerCase();
+      if (p.indexOf('islamic-knowledge.html') >= 0) return true;
+      if (p.indexOf('student-guidance.html') >= 0) return true;
+      var m = p.match(/knowledge-center\/([^\/]+)\/(index\.html)?$/);
+      if (m) return true;
+      if (p.match(/knowledge-center\/?$/)) return true;
+      return false;
+    }
+
+    function setup() {
+      if (!isHubPage()) return;
+      if (document.getElementById('bottom-nav')) return;
+      if (!document.body) return;
+
+      var p = (location.pathname || '').replace(/\\/g, '/').toLowerCase();
+      var isHome = p.indexOf('index.html') >= 0 || p === '/' || p.slice(-1) === '/';
+      var isGuidance = p.indexOf('student-guidance.html') >= 0;
+      var isKnowledge = (p.indexOf('islamic-knowledge.html') >= 0 || p.indexOf('knowledge-center/') >= 0) && !isHome;
+      var base = (p.indexOf('knowledge-center/') >= 0) ? '../../' : '';
+      var te = getLang() === 'te';
+
+      // Inject bottom nav bar
+      var nav = document.createElement('nav');
+      nav.className = 'bottom-nav';
+      nav.id = 'bottom-nav';
+      nav.setAttribute('aria-label', 'Page navigation');
+      nav.innerHTML = 
+          '<a href="' + base + 'index.html#home" class="bn-item' + (isHome ? ' bn-active' : '') + '" aria-current="' + (isHome ? 'page' : 'false') + '">'
+        + '  <svg class="bn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
+        + '    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />'
+        + '    <polyline points="9 22 9 12 15 12 15 22" />'
+        + '  </svg>'
+        + '  <span class="bn-label">' + (te ? 'హోమ్' : 'Home') + '</span>'
+        + '</a>'
+        + '<a href="' + base + 'islamic-knowledge.html" class="bn-item' + (isKnowledge ? ' bn-active' : '') + '" aria-current="' + (isKnowledge ? 'page' : 'false') + '">'
+        + '  <svg class="bn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
+        + '    <path d="M12 2C9 3 6 5.5 6 9h12c0-3.5-3-6-6-6z"/><rect x="4" y="9" width="16" height="2" rx="1"/><path d="M6 11v8h4v-5h4v5h4v-8"/><path d="M2 21h20"/>'
+        + '  </svg>'
+        + '  <span class="bn-label">' + (te ? 'నాలెడ్జ్' : 'Knowledge') + '</span>'
+        + '</a>'
+        + '<a href="' + base + 'student-guidance.html" class="bn-item' + (isGuidance ? ' bn-active' : '') + '" aria-current="' + (isGuidance ? 'page' : 'false') + '">'
+        + '  <svg class="bn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
+        + '    <path d="M22 10L12 5 2 10l10 5 10-5z" />'
+        + '    <path d="M6 12v5c0 1 2.5 2.5 6 2.5s6-1.5 6-2.5v-5" />'
+        + '  </svg>'
+        + '  <span class="bn-label">' + (te ? 'మార్గదర్శనం' : 'Guidance') + '</span>'
+        + '</a>'
+        + '<button type="button" class="bn-item" id="bn-profile-tab" aria-label="Open learner profile">'
+        + '  <svg class="bn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
+        + '    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />'
+        + '    <circle cx="12" cy="7" r="4" />'
+        + '  </svg>'
+        + '  <span class="bn-label">' + (te ? 'ప్రొఫైల్' : 'Profile') + '</span>'
+        + '</button>'
+        + '<button type="button" class="bn-item" id="bn-more" aria-haspopup="true" aria-expanded="false" aria-controls="nav-drawer">'
+        + '  <svg class="bn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
+        + '    <circle cx="12" cy="12" r="1" />'
+        + '    <circle cx="19" cy="12" r="1" />'
+        + '    <circle cx="5" cy="12" r="1" />'
+        + '  </svg>'
+        + '  <span class="bn-label">' + (te ? 'మరిన్ని' : 'More') + '</span>'
+        + '</button>';
+      document.body.appendChild(nav);
+
+      // Inject bottom sheet drawer and overlay if not present
+      if (!document.getElementById('nav-drawer')) {
+        var overlay = document.createElement('div');
+        overlay.className = 'nav-overlay';
+        overlay.id = 'nav-overlay';
+        document.body.appendChild(overlay);
+
+        var drawer = document.createElement('div');
+        drawer.className = 'nav-drawer';
+        drawer.id = 'nav-drawer';
+        drawer.setAttribute('role', 'dialog');
+        drawer.setAttribute('aria-modal', 'true');
+        drawer.setAttribute('aria-label', 'Navigation menu');
+        drawer.setAttribute('aria-hidden', 'true');
+        drawer.innerHTML = 
+            '<div class="nav-drawer-header">'
+          + '  <div class="nav-drawer-handle"></div>'
+          + '  <span class="nav-drawer-brand">' + (te ? 'ఇస్లామిక్ ఫ్రంట్' : 'Islamic Front') + '</span>'
+          + '  <button class="nav-drawer-close" id="nav-drawer-close" aria-label="Close menu">&#x2715;</button>'
+          + '</div>'
+          + '<ul class="nav-drawer-links">'
+          + '  <li><a href="' + base + 'index.html#home">' + (te ? 'హోమ్' : 'Home') + '</a></li>'
+          + '  <li><a href="' + base + 'index.html#victory">' + (te ? 'మా విజయం' : 'Our Victory') + '</a></li>'
+          + '  <li><a href="' + base + 'index.html#achievements">' + (te ? 'సాధనలు' : 'Achievements') + '</a></li>'
+          + '  <li><a href="' + base + 'index.html#manifesto">' + (te ? 'మేనిఫెస్టో' : 'Manifesto') + '</a></li>'
+          + '  <li><a href="' + base + 'index.html#stories">' + (te ? 'సఫలత కథలు' : 'Success Stories') + '</a></li>'
+          + '  <li><a href="' + base + 'index.html#events">' + (te ? 'కార్యక్రమాలు' : 'Events') + '</a></li>'
+          + '  <li><a href="' + base + 'index.html#volunteer">' + (te ? 'స్వచ్ఛంద సేవ' : 'Volunteer') + '</a></li>'
+          + '  <li><a href="' + base + 'index.html#about">' + (te ? 'మా గురించి' : 'About Us') + '</a></li>'
+          + '  <li><a href="' + base + 'index.html#community-contact">' + (te ? 'సంప్రదించండి' : 'Contact') + '</a></li>'
+          + '</ul>';
+        document.body.appendChild(drawer);
+      }
+
+      // Event binding
+      var navDrawer = document.getElementById('nav-drawer');
+      var navOverlay = document.getElementById('nav-overlay');
+      var navDrClose = document.getElementById('nav-drawer-close');
+      var bnMore = document.getElementById('bn-more');
+      var bnProfile = document.getElementById('bn-profile-tab');
+
+      function openDrawer() {
+        navDrawer.classList.add('open-display');
+        navDrawer.offsetHeight; // force reflow
+        navDrawer.classList.add('open');
+        navDrawer.setAttribute('aria-hidden', 'false');
+        navOverlay.classList.add('open');
+        if (bnMore) bnMore.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden';
+        var firstLink = navDrawer.querySelector('a');
+        if (firstLink) setTimeout(function () { firstLink.focus(); }, 360);
+      }
+      
+      function closeDrawer() {
+        navDrawer.classList.remove('open');
+        navDrawer.setAttribute('aria-hidden', 'true');
+        navOverlay.classList.remove('open');
+        if (bnMore) bnMore.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      }
+
+      if (bnMore) bnMore.addEventListener('click', function () { navDrawer.classList.contains('open') ? closeDrawer() : openDrawer(); });
+      if (navDrClose) navDrClose.addEventListener('click', closeDrawer);
+      if (navOverlay) navOverlay.addEventListener('click', closeDrawer);
+      if (bnProfile) {
+        bnProfile.addEventListener('click', function () {
+          if (window.IFProfile) {
+            window.IFProfile.open();
+          }
+        });
+      }
+
+      // Dismiss drawer on escape key
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && navDrawer.classList.contains('open')) closeDrawer(); });
+      
+      // Auto-update bottom nav texts when language changes
+      new MutationObserver(function () {
+        var isTe = getLang() === 'te';
+        var labels = document.querySelectorAll('.bottom-nav .bn-label');
+        if (labels.length >= 4) {
+          labels[0].textContent = isTe ? 'హోమ్' : 'Home';
+          labels[1].textContent = isTe ? 'నాలెడ్జ్' : 'Knowledge';
+          labels[2].textContent = isTe ? 'మార్గదర్శనం' : 'Guidance';
+          labels[3].textContent = isTe ? 'ప్రొఫైల్' : 'Profile';
+          if (labels[4]) labels[4].textContent = isTe ? 'మరిన్ని' : 'More';
+        }
+        var db = document.querySelector('.nav-drawer-brand');
+        if (db) db.textContent = isTe ? 'ఇస్లామిక్ ఫ్రంట్' : 'Islamic Front';
+      }).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', setup);
+    } else {
+      setup();
+    }
+  })();
+
+  /* ── Hide Header Navbar on scroll down on mobile ── */
+  (function initScrollHide() {
+    var lastScrollY = window.scrollY;
+    var threshold = 80;
+    window.addEventListener('scroll', function () {
+      var cur = window.scrollY;
+      if (window.innerWidth <= 768) {
+        if (cur > threshold && cur > lastScrollY) {
+          document.body.classList.add('nav-hidden');
+        } else if (cur < lastScrollY || cur <= threshold) {
+          document.body.classList.remove('nav-hidden');
+        }
+      } else {
+        document.body.classList.remove('nav-hidden');
+      }
+      lastScrollY = cur;
+    }, { passive: true });
+  })();
 })();
+
