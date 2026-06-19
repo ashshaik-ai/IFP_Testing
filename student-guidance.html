@@ -132,6 +132,15 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
 /* CARD GRID + EXPANDABLE CARDS */
 .gx-grid{display:grid;grid-template-columns:1fr;gap:14px;margin-top:8px}
 @media(min-width:640px){.gx-grid{grid-template-columns:1fr 1fr}}
+.sg-feed-collapsed{display:none!important}
+.sg-feed-meta{display:none;margin:-14px 0 18px;font-size:12.5px;color:var(--text-muted);font-weight:600}
+.sg-more-row{display:none;margin:18px 0 4px;text-align:center}
+.sg-more-btn{min-height:44px;border:1px solid rgba(200,146,42,0.35);background:var(--white);color:var(--green-deep);border-radius:100px;padding:0 18px;font-family:inherit;font-size:12.5px;font-weight:700;cursor:pointer;box-shadow:0 4px 14px rgba(13,59,30,0.06);transition:background .2s,color .2s,border-color .2s,transform .2s}
+.sg-more-btn:hover{background:var(--green-deep);color:var(--gold-light);border-color:var(--green-deep)}
+@media(max-width:768px){
+  .sg-feed-meta{display:block}
+  .sg-more-row{display:block}
+}
 .gx-card{background:var(--white);border:1px solid var(--border);border-left:4px solid var(--track,var(--gold));border-radius:14px;overflow:hidden;transition:box-shadow .28s cubic-bezier(.22,.61,.36,1),transform .28s cubic-bezier(.22,.61,.36,1),border-color .28s}
 .gx-card:hover:not(.open){box-shadow:0 4px 16px rgba(13,59,30,0.08);transform:translateY(-1px);border-color:rgba(200,146,42,0.4)}
 .gx-card.open{box-shadow:0 12px 32px rgba(13,59,30,0.14),0 2px 8px rgba(200,146,42,0.10);transform:translateY(-2px)}
@@ -1638,9 +1647,81 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
      are collapsed by default — user picks their stream first, then the relevant
      section expands. On desktop, "All" remains the default (no collapse). */
   var STREAM_SECTION_IDS = ['mpc','bipc','commerce','arts'];
+  var STREAM_CARD_LIMIT = 10;
   var isMobileStream = window.matchMedia('(max-width:768px)').matches;
   var activeStream = isMobileStream ? 'none' : 'all';
   var streamPills = Array.prototype.slice.call(document.querySelectorAll('.sg-stream-pill'));
+  var expandedFeeds = {};
+  var feedControls = {};
+
+  function getFeedText(sec, shown, total){
+    var title = sec.querySelector('.sg-shead h2');
+    var name = title ? title.textContent.trim() : '';
+    if(sgLang === 'en'){
+      return 'Showing ' + shown + ' of ' + total + (name ? ' in ' + name : '');
+    }
+    return (name ? name + 'లో ' : '') + total + 'లో ' + shown + ' చూపిస్తున్నాం';
+  }
+
+  function ensureFeedControl(sec){
+    if(feedControls[sec.id]) return feedControls[sec.id];
+    var head = sec.querySelector('.sg-shead');
+    var grid = sec.querySelector('.gx-grid');
+    if(!head || !grid) return null;
+    var meta = document.createElement('div');
+    meta.className = 'sg-feed-meta';
+    meta.setAttribute('aria-live','polite');
+    head.appendChild(meta);
+    var row = document.createElement('div');
+    row.className = 'sg-more-row';
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'sg-more-btn';
+    btn.addEventListener('click', function(){
+      expandedFeeds[sec.id] = true;
+      applyFeedLimits(norm(input.value).trim());
+    });
+    row.appendChild(btn);
+    grid.insertAdjacentElement('afterend', row);
+    feedControls[sec.id] = {meta: meta, row: row, btn: btn};
+    return feedControls[sec.id];
+  }
+
+  function resetFeedCollapse(){
+    cards.forEach(function(c){ c.classList.remove('sg-feed-collapsed'); });
+    Object.keys(feedControls).forEach(function(id){
+      feedControls[id].meta.textContent = '';
+      feedControls[id].row.style.display = 'none';
+    });
+  }
+
+  function applyFeedLimits(q){
+    resetFeedCollapse();
+    if(!isMobileStream || q || activeStream === 'none') return;
+    STREAM_SECTION_IDS.forEach(function(id){
+      var sec = document.getElementById(id);
+      if(!sec || sec.classList.contains('sg-hide')) return;
+      var control = ensureFeedControl(sec);
+      if(!control) return;
+      var visibleCards = Array.prototype.slice.call(sec.querySelectorAll('.gx-card:not(.sg-hide)'));
+      var total = visibleCards.length;
+      if(total <= STREAM_CARD_LIMIT){
+        control.meta.textContent = total ? getFeedText(sec, total, total) : '';
+        return;
+      }
+      var expanded = !!expandedFeeds[id];
+      var shown = expanded ? total : STREAM_CARD_LIMIT;
+      visibleCards.forEach(function(card, index){
+        card.classList.toggle('sg-feed-collapsed', !expanded && index >= STREAM_CARD_LIMIT);
+      });
+      control.meta.textContent = getFeedText(sec, shown, total);
+      control.row.style.display = expanded ? 'none' : 'block';
+      control.btn.textContent = sgLang === 'en'
+        ? 'Show ' + (total - STREAM_CARD_LIMIT) + ' more'
+        : 'ఇంకా ' + (total - STREAM_CARD_LIMIT) + ' చూపండి';
+      control.btn.setAttribute('aria-label', control.btn.textContent);
+    });
+  }
 
   function cardMatchesStream(c){
     if(activeStream === 'all') return true;
@@ -1688,12 +1769,21 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
     noRes.style.display = (anyVisible || activeStream === 'none') ? 'none' : 'block';
     var prompt = document.getElementById('sgStreamPrompt');
     if(prompt) prompt.style.display = (!q && activeStream === 'none') ? 'block' : 'none';
+    applyFeedLimits(q);
   }
 
   var t;
   input.addEventListener('input', function(){ clearTimeout(t); t=setTimeout(function(){ applyFilters(); }, 120); });
   clearBtn.addEventListener('click', function(){ input.value=''; applyFilters(); input.focus(); });
   if(resetBtn) resetBtn.addEventListener('click', function(){ input.value=''; applyFilters(); input.focus(); });
+
+  window.addEventListener('resize', function(){
+    var nowMobile = window.matchMedia('(max-width:768px)').matches;
+    if(nowMobile === isMobileStream) return;
+    isMobileStream = nowMobile;
+    if(!isMobileStream && activeStream === 'none') activeStream = 'all';
+    initStreamState();
+  }, {passive:true});
 
   streamPills.forEach(function(p){
     p.addEventListener('click', function(){
@@ -1743,6 +1833,13 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
     } else if(isMobileStream){
       activeStream = 'none';
       streamPills.forEach(function(pp){ pp.classList.remove('active'); pp.setAttribute('aria-pressed','false'); });
+    } else {
+      activeStream = 'all';
+      streamPills.forEach(function(pp){
+        var match = pp.getAttribute('data-stream-id') === 'all';
+        pp.classList.toggle('active', match);
+        pp.setAttribute('aria-pressed', match ? 'true' : 'false');
+      });
     }
     applyFilters();
   }
@@ -2119,6 +2216,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
     /* Search placeholder */
     var si = document.getElementById('sgSearch');
     if (si) si.placeholder = SEARCH_PH[l] || SEARCH_PH.en;
+    if (typeof applyFeedLimits === 'function') applyFeedLimits(norm(input.value).trim());
     /* Lang button label */
     var btn = document.getElementById('langToggle');
     if (btn) btn.textContent = l === 'te' ? 'English' : 'తెలుగు';
