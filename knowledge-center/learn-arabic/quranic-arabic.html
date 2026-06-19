@@ -26,7 +26,7 @@ a{color:inherit;text-decoration:none}
 ::selection{background:rgba(200,146,42,0.28)}
 
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(13,59,30,0.92);backdrop-filter:blur(12px);padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:68px;border-bottom:1px solid rgba(200,146,42,0.18)}
+body>nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(13,59,30,0.92);backdrop-filter:blur(12px);padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:68px;border-bottom:1px solid rgba(200,146,42,0.18)}
 .nav-brand{display:flex;align-items:center;gap:10px;color:var(--gold-light);font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700}
 .nav-logo{width:38px;height:38px;border-radius:50%;object-fit:cover;flex-shrink:0}
 .nav-logo-svg{display:none;width:38px;height:38px;flex-shrink:0}
@@ -124,9 +124,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(13,59,30,0.9
 #btt.show{opacity:1;transform:translateY(0)}
 #btt:hover{transform:translateY(-3px)}
 
-@media print{nav,.tab-nav,#btt,.lang-btn{display:none!important}}
+@media print{body>nav,.tab-nav,#btt,.lang-btn{display:none!important}}
 @media(max-width:600px){
-  nav{height:auto;min-height:68px;padding:8px 16px;flex-wrap:wrap}
+  body>nav{height:auto;min-height:68px;padding:8px 16px;flex-wrap:wrap}
   .nav-links a{display:none}
   .nav-links{gap:8px}
   .lesson-hero,.sec,.dark-sec,.next-sec{padding-left:16px;padding-right:16px}
@@ -529,6 +529,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(13,59,30,0.9
 var lang = localStorage.getItem('if-lang') || 'te';
 function applyLang(l){
   lang = l; localStorage.setItem('if-lang', l);
+  document.documentElement.lang = (l === 'te') ? 'te' : 'en';
   document.querySelectorAll('[data-te]').forEach(function(el){
     var val = el.getAttribute('data-' + l);
     if(val) el.innerHTML = val;

@@ -118,8 +118,9 @@ body>nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,59,3
 /* RESPONSIVE */
 @media(max-width:860px){.letter-grid{grid-template-columns:repeat(5,1fr)}.tips-grid{grid-template-columns:1fr}}
 @media(max-width:600px){.letter-grid{grid-template-columns:repeat(4,1fr);gap:8px}.lc-letter{font-size:30px}.lc-name{font-size:10px}.ld-top{flex-direction:column;gap:12px}.ld-big{font-size:56px}.lesson-hero h1{font-size:26px}}
+@media(max-width:600px){.lh-wm{display:none}}
 @media(max-width:420px){.letter-grid{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:560px){body>nav .nav-sub{display:none}body>nav .nav-back span{display:none}}
+@media(max-width:560px){body>nav{padding-left:12px;padding-right:12px}body>nav .nav-sub{display:none}body>nav .nav-right{gap:8px;min-width:0;flex-shrink:0}body>nav .nav-back{min-width:44px;justify-content:center}body>nav .nav-back span{display:none!important}body>nav .lang-btn{padding-left:12px;padding-right:12px}}
 
 /* PRINT */
 @media print{body>nav{display:none!important}.letter-detail{display:block!important;background:white!important;border:1pt solid #ccc!important}}
