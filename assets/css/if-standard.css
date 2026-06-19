@@ -737,6 +737,8 @@ span.hmfp-label, .hmfp-li span{ font-size: 12px !important; }
 
 /* Homepage: manifesto download button — bump to exactly 44px */
 .mf-download-btn{ min-height: 44px !important; }
+.mf-filter-btn{ min-height: 44px !important; }
+.nav-search-btn{ min-width: 44px !important; min-height: 44px !important; display: inline-flex !important; align-items: center !important; justify-content: center !important; }
 
 /* Flashcard audio button: already has ::after +3px extension; make element itself 44px */
 .iffc-audio{ width: 44px !important; height: 44px !important; }
@@ -2023,9 +2025,9 @@ a {
 
 /* ── Portal sticky-nav link touch targets (WCAG 2.5.5 — 44px minimum) ──
    All portal index pages share .al-sticky for their floating secondary nav.
-   The kc-sticky is on the KC page. Both need ≥36px clickable height. */
+   The kc-sticky is on the KC page. */
 .al-sticky a, .kc-sticky a {
-  min-height: 36px !important;
+  min-height: 44px !important;
   display: inline-flex !important;
   align-items: center !important;
 }

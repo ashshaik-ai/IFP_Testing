@@ -1,5 +1,7 @@
 # Claude Code tooling — never deploy
 .claude/
+.codex/
+.playwright-mcp/
 
 # Temp image-processing scripts (generated during development)
 _logo_*.py
@@ -17,6 +19,7 @@ desktop.ini
 .env.local
 # Large source media (not web-optimized) — keep out of the repo
 assets/Medical camp photos/
+assets/logo_upscayl*.png
 *.psd
 
 # Test tooling (Playwright)

@@ -1,6 +1,6 @@
 # DECISIONS.md — Implementation Notes & Known Decisions
 
-> Lightweight ADR-style log of *why* the project is the way it is, plus active work and known issues. Read this to avoid re-litigating settled choices or re-discovering known quirks. Orientation: [../CLAUDE.md](../CLAUDE.md).
+> Lightweight ADR-style log of *why* the project is the way it is, plus active work and known issues. Read this to avoid re-litigating settled choices or re-discovering known quirks. Orientation: [../AGENTS.md](../AGENTS.md) or [../CLAUDE.md](../CLAUDE.md).
 
 ---
 

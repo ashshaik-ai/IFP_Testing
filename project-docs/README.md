@@ -1,6 +1,6 @@
 # project-docs/
 
-On-demand deep documentation. **Daily work needs only the 3 root files** — start at [../CLAUDE.md](../CLAUDE.md); come here for mechanics and edge cases.
+On-demand deep documentation. **Daily work needs only the 3 root files** — start at [../AGENTS.md](../AGENTS.md) or [../CLAUDE.md](../CLAUDE.md); come here for mechanics and edge cases.
 
 ## Index
 
@@ -23,7 +23,8 @@ On-demand deep documentation. **Daily work needs only the 3 root files** — sta
 | [DECISIONS.md](DECISIONS.md) | Implementation notes, active work, known issues |
 
 ## Daily docs (root)
-- [../CLAUDE.md](../CLAUDE.md) — master index + cheat-sheet
+- [../AGENTS.md](../AGENTS.md) — agent master index + workflow
+- [../CLAUDE.md](../CLAUDE.md) — Claude master index + cheat-sheet
 - [../PROJECT_RULES.md](../PROJECT_RULES.md) — rules & Definition of Done
 - [../LOCALIZATION_RULES.md](../LOCALIZATION_RULES.md) — i18n quick rules
 

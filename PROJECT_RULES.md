@@ -1,6 +1,6 @@
 # PROJECT_RULES.md
 
-> Daily rules. Orientation: [CLAUDE.md](CLAUDE.md). Deep rationale lives in [project-docs/DECISIONS.md](project-docs/DECISIONS.md); design detail in [project-docs/DESIGN_SYSTEM.md](project-docs/DESIGN_SYSTEM.md).
+> Daily rules. Orientation: [AGENTS.md](AGENTS.md) or [CLAUDE.md](CLAUDE.md). Deep rationale lives in [project-docs/DECISIONS.md](project-docs/DECISIONS.md); design detail in [project-docs/DESIGN_SYSTEM.md](project-docs/DESIGN_SYSTEM.md).
 
 ---
 
