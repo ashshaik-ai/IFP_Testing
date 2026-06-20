@@ -408,11 +408,20 @@
     function setup() {
       if (!isHubPage()) return;
       if (!document.body) return;
-      document.body.classList.add('if-app-shell');
 
       var p = (location.pathname || '').replace(/\\/g, '/').toLowerCase();
       var isHome = p === '/' || (/\/index\.html$/.test(p) && p.indexOf('knowledge-center/') < 0);
-      if (isHome) document.body.classList.add('if-home-app');
+      var mobileMql = window.matchMedia ? window.matchMedia('(max-width: 768px)') : null;
+      function syncShellClasses() {
+        var active = !mobileMql || mobileMql.matches;
+        document.body.classList.toggle('if-app-shell', active);
+        document.body.classList.toggle('if-home-app', active && isHome);
+      }
+      syncShellClasses();
+      if (mobileMql) {
+        if (mobileMql.addEventListener) mobileMql.addEventListener('change', syncShellClasses);
+        else if (mobileMql.addListener) mobileMql.addListener(syncShellClasses);
+      }
       if (document.getElementById('bottom-nav')) return;
       var isGuidance = p.indexOf('student-guidance.html') >= 0;
       var isKnowledge = (p.indexOf('islamic-knowledge.html') >= 0 || p.indexOf('knowledge-center/') >= 0) && !isHome;
@@ -740,10 +749,24 @@
 
     function setup() {
       if (!isLongAppPage() || !document.body) return;
-      document.body.classList.add('if-app-shell');
-      if (isKnowledgeCenterPage()) document.body.classList.add('if-kc-app');
-      if (isStudentGuidancePage()) document.body.classList.add('if-sg-app');
-      if (isLearningPortalPage()) document.body.classList.add('if-learning-app');
+      var mobileMql = window.matchMedia ? window.matchMedia('(max-width: 768px)') : null;
+      function mobileAppActive() {
+        return !mobileMql || mobileMql.matches;
+      }
+      function syncAppScreenClasses() {
+        var active = mobileAppActive();
+        document.body.classList.toggle('if-app-shell', active);
+        document.body.classList.toggle('if-kc-app', active && isKnowledgeCenterPage());
+        document.body.classList.toggle('if-sg-app', active && isStudentGuidancePage());
+        document.body.classList.toggle('if-learning-app', active && isLearningPortalPage());
+        if (active && document.querySelector('.if-screen-active')) document.body.classList.add('if-app-screen-ready');
+        if (!active) document.body.classList.remove('if-app-screen-ready');
+      }
+      syncAppScreenClasses();
+      if (mobileMql) {
+        if (mobileMql.addEventListener) mobileMql.addEventListener('change', syncAppScreenClasses);
+        else if (mobileMql.addListener) mobileMql.addListener(syncAppScreenClasses);
+      }
       var main = document.querySelector('main') || document.body;
       var hero = (isStudentGuidancePage() ? document.querySelector('.sg-hero') : null) || main.querySelector('header[id], .al-hero, .lu-hero, .kc-hero, .hero');
       if (!hero || document.getElementById('if-app-tabs')) return;
@@ -785,7 +808,8 @@
           btn.classList.toggle('is-active', active);
           btn.setAttribute('aria-pressed', active ? 'true' : 'false');
         });
-        document.body.classList.add('if-app-screen-ready');
+        if (mobileAppActive()) document.body.classList.add('if-app-screen-ready');
+        else document.body.classList.remove('if-app-screen-ready');
         if (shouldScroll) tabs.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
 
@@ -815,7 +839,7 @@
         if (activateForHash(a.getAttribute('href'))) e.preventDefault();
       });
       if (location.hash && activateForHash(location.hash)) {
-        document.body.classList.add('if-app-screen-ready');
+        if (mobileAppActive()) document.body.classList.add('if-app-screen-ready');
       } else {
         activate(initialScreen, false);
       }

@@ -664,6 +664,23 @@ span.hmfp-label, .hmfp-li span{ font-size: 12px !important; }
 /* Breadcrumb text: don't go below 12px */
 .al-breadcrumb, .ifx-crumbs{ font-size: 13px !important; }
 
+/* Sub-lesson breadcrumbs and microcopy: match the newer mobile polish layer */
+.lh-breadcrumb,
+.l-breadcrumb{
+  font-size: 13px !important;
+}
+.lh-breadcrumb a,
+.l-breadcrumb a{
+  min-width: 44px !important;
+  min-height: 44px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+}
+.lc-name,
+.lc-tr{
+  font-size: 12.5px !important;
+}
+
 /* Homepage nav: brand logo and KC link — min 44×44px */
 .nav-brand{ min-height: 44px !important; display: inline-flex !important; align-items: center !important; }
 .nav-kc{ min-height: 44px !important; min-width: 44px !important; display: inline-flex !important; align-items: center !important; justify-content: center !important; }
@@ -788,6 +805,19 @@ span.hmfp-label, .hmfp-li span{ font-size: 12px !important; }
 
 /* if-lesson.js external resource links — raise from 36px to 44px */
 .ifl-links a{ min-height: 44px !important; }
+
+/* Learning portal controls: keep all quiz/completion controls at usable size */
+.lc-complete,
+.ifl-opt,
+.ifs-opt,
+.ifq-opt,
+.city-map,
+.quiz-cat{
+  min-height: 44px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
 
 /* Student-guidance: chips nav links ← raise to 44px */
 .sg-chips a{ min-height: 44px !important; }
@@ -2490,6 +2520,21 @@ a {
 
   body.if-learning-app .if-app-tabs {
     top: 0 !important;
+  }
+
+  body.if-learning-app .lu-hero {
+    padding-top: 72px !important;
+    padding-bottom: 8px !important;
+  }
+
+  body.if-learning-app .lu-hero-inner {
+    gap: 10px !important;
+  }
+
+  body.if-learning-app .lu-hero-display,
+  body.if-learning-app .lu-hero-desc,
+  body.if-learning-app .lu-hero-stats {
+    display: none !important;
   }
 
   body.if-learning-app .al-hero .al-stats,
