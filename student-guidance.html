@@ -352,6 +352,25 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
     </div>
   </div>
 </header>
+
+<section class="if-sg-dashboard" aria-label="Student guidance quick actions">
+  <a class="if-sg-action" href="#career">
+    <strong data-te="కెరీర్ గోల్" data-en="Career Goal">కెరీర్ గోల్</strong>
+    <span data-te="మీ లక్ష్యం నుంచి మార్గం చూడండి" data-en="Find the path from your goal">మీ లక్ష్యం నుంచి మార్గం చూడండి</span>
+  </a>
+  <a class="if-sg-action" href="#after10">
+    <strong data-te="స్ట్రీమ్ ఎంచుకోండి" data-en="Pick Stream">స్ట్రీమ్ ఎంచుకోండి</strong>
+    <span data-te="MPC, BiPC, కామర్స్ లేదా ఆర్ట్స్" data-en="MPC, BiPC, Commerce or Arts">MPC, BiPC, కామర్స్ లేదా ఆర్ట్స్</span>
+  </a>
+  <a class="if-sg-action" href="#reality">
+    <strong data-te="మార్గాలు పోల్చండి" data-en="Compare Paths">మార్గాలు పోల్చండి</strong>
+    <span data-te="సమయం, ఖర్చు, పోటీ, రిస్క్" data-en="Time, cost, competition, risk">సమయం, ఖర్చు, పోటీ, రిస్క్</span>
+  </a>
+  <a class="if-sg-action" href="#scholarships">
+    <strong data-te="సహాయం పొందండి" data-en="Get Support">సహాయం పొందండి</strong>
+    <span data-te="స్కాలర్‌షిప్‌లు మరియు పథకాలు" data-en="Scholarships and schemes">స్కాలర్‌షిప్‌లు మరియు పథకాలు</span>
+  </a>
+</section>
 <nav class="ifx-crumbs" aria-label="Breadcrumb">
   <ol>
     <li><a href="index.html" data-te="హోమ్" data-en="Home">హోమ్</a></li>
@@ -1402,7 +1421,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
 </section>
 
 <!-- SECTION 9: REALITY TABLE -->
-<section class="sg-sec" id="reality">
+<section class="sg-sec" id="reality" data-nocards>
   <div class="sg-in">
     <div class="sg-shead">
       <div class="sg-snum" data-te="విభాగం 9" data-en="Section 9">విభాగం 9</div>
@@ -1608,6 +1627,15 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
 (function(){
   'use strict';
 
+  function setQaState(item, checked){
+    item.classList.toggle('checked', checked);
+    item.setAttribute('aria-checked', checked ? 'true' : 'false');
+  }
+
+  function toggleQaState(item){
+    setQaState(item, !item.classList.contains('checked'));
+  }
+
   /* Expand / collapse cards (event delegation) */
   document.addEventListener('click', function(e){
     var head = e.target.closest('.gx-head');
@@ -1618,7 +1646,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
     }
     /* self-assessment checkboxes */
     var qa = e.target.closest('.qa-item');
-    if(qa){ qa.classList.toggle('checked'); }
+    if(qa){ toggleQaState(qa); }
   });
 
   /* Keyboard support for self-assessment */
@@ -1627,7 +1655,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
     item.setAttribute('role','checkbox');
     item.setAttribute('aria-checked','false');
     item.addEventListener('keydown', function(e){
-      if(e.key==='Enter'||e.key===' '){ e.preventDefault(); item.classList.toggle('checked'); item.setAttribute('aria-checked', item.classList.contains('checked')); }
+      if(e.key==='Enter'||e.key===' '){ e.preventDefault(); toggleQaState(item); }
     });
   });
 
@@ -1647,7 +1675,8 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
      are collapsed by default — user picks their stream first, then the relevant
      section expands. On desktop, "All" remains the default (no collapse). */
   var STREAM_SECTION_IDS = ['mpc','bipc','commerce','arts'];
-  var STREAM_CARD_LIMIT = 10;
+  var LIMITED_SECTION_IDS = ['after10','mpc','bipc','commerce','arts','exams','govt'];
+  var STREAM_CARD_LIMIT = 6;
   var isMobileStream = window.matchMedia('(max-width:768px)').matches;
   var activeStream = isMobileStream ? 'none' : 'all';
   var streamPills = Array.prototype.slice.call(document.querySelectorAll('.sg-stream-pill'));
@@ -1697,8 +1726,8 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
 
   function applyFeedLimits(q){
     resetFeedCollapse();
-    if(!isMobileStream || q || activeStream === 'none') return;
-    STREAM_SECTION_IDS.forEach(function(id){
+    if(!isMobileStream || q) return;
+    LIMITED_SECTION_IDS.forEach(function(id){
       var sec = document.getElementById(id);
       if(!sec || sec.classList.contains('sg-hide')) return;
       var control = ensureFeedControl(sec);
@@ -1820,6 +1849,20 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
   /* Apply initial mobile stream state — collapse stream sections, deactivate pills.
      If the URL hash names a stream section, auto-select it (handles deep-links).
      Also wired to hashchange so back/forward and in-page hash links work. */
+  document.addEventListener('click', function(e){
+    var tab = e.target.closest && e.target.closest('.if-app-tab');
+    if(!tab || !isMobileStream) return;
+    if(tab.getAttribute('data-screen') === 'explore') return;
+    activeStream = 'all';
+    expandedFeeds = {};
+    streamPills.forEach(function(pp){
+      var isAll = pp.getAttribute('data-stream-id') === 'all';
+      pp.classList.toggle('active', isAll);
+      pp.setAttribute('aria-pressed', isAll ? 'true' : 'false');
+    });
+    applyFilters();
+  });
+
   function initStreamState(){
     var hash = window.location.hash.replace('#','');
     if(STREAM_SECTION_IDS.indexOf(hash) !== -1){
@@ -2186,6 +2229,31 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
   /* 78 — PM YASASVI */
   CB_TE[78] = '<div class="gx-field"><span class="gx-field-k">అర్హత</span><span class="gx-field-v">9వ తరగతి (ప్రీ-మెట్రిక్) లేదా 11వ తరగతి (పోస్ట్-మెట్రిక్); OBC/EBC/DNT కమ్యూనిటీ; కుటుంబ ఆదాయం ≤ ₹2.5 లక్ష/సంవత్సరం; భారత పౌరుడు. చాలా AP ముస్లింలు OBC/EBC కేటగిరీ కింద అర్హులు.</span></div><div class="gx-field"><span class="gx-field-k">ప్రయోజనం</span><span class="gx-field-v">ప్రీ-మెట్రిక్ (9–10వ తరగతి): ₹75,000/సంవత్సరం. పోస్ట్-మెట్రిక్ (11–12వ తరగతి): ₹1,25,000/సంవత్సరం. విద్యార్థి బ్యాంక్ ఖాతాకు నేరుగా చెల్లింపు.</span></div><div class="gx-field"><span class="gx-field-k">దరఖాస్తు</span><span class="gx-field-v">scholarships.gov.in (NSP). NTA నిర్వహించే YASASVI ఎంట్రెన్స్ టెస్ట్ (YET) ఆధారంగా ఎంపిక, లేదా కొన్ని కేటగిరీలకు నేరుగా మెరిట్ ఆధారంగా.</span></div><div class="gx-field"><span class="gx-field-k">గడువు</span><span class="gx-field-v">ప్రతి సంవత్సరం ఆగస్టు–అక్టోబర్; జులై నుండి NSP పోర్టల్ తనిఖీ చేయండి. అర్హులైన చాలా మంది విద్యార్థులు ఇది ఉందని తెలియక ఈ స్కాలర్‌షిప్ మిస్ చేస్తున్నారు — వార్తను వ్యాప్తి చేయండి.</span></div><div class="gx-field"><span class="gx-field-k">పత్రాలు</span><span class="gx-field-v">OBC/EBC/DNT కాస్ట్ సర్టిఫికేట్, ఆదాయ సర్టిఫికేట్, ఆధార్, స్కూల్ ID, గత సంవత్సరం మార్క్‌షీట్, బ్యాంక్ పాస్‌బుక్.</span></div>';
 
+  function buildRealityCards(){
+    var table = document.querySelector('#reality .sg-table');
+    if(!table) return;
+    var wrap = document.querySelector('#reality .sg-reality-cards');
+    if(!wrap){
+      wrap = document.createElement('div');
+      wrap.className = 'sg-reality-cards';
+      wrap.setAttribute('aria-live','polite');
+      var tableWrap = document.querySelector('#reality .sg-tablewrap');
+      if(tableWrap) tableWrap.insertAdjacentElement('afterend', wrap);
+    }
+    var heads = Array.prototype.slice.call(table.querySelectorAll('thead th')).map(function(th){
+      return th.textContent.trim();
+    });
+    var rows = Array.prototype.slice.call(table.querySelectorAll('tbody tr'));
+    wrap.innerHTML = rows.map(function(row){
+      var cells = Array.prototype.slice.call(row.children);
+      var title = cells[0] ? cells[0].innerHTML : '';
+      var pairs = cells.slice(1).map(function(cell, index){
+        return '<div class="sg-reality-row"><span class="sg-reality-k">' + (heads[index + 1] || '') + '</span><span class="sg-reality-v">' + cell.innerHTML + '</span></div>';
+      }).join('');
+      return '<article class="sg-reality-card"><h3>' + title + '</h3>' + pairs + '</article>';
+    }).join('');
+  }
+
   function applyLang(l) {
     document.documentElement.lang = l === 'te' ? 'te' : 'en';
     localStorage.setItem(LANG_KEY, l);
@@ -2213,6 +2281,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
         bodyIn.setAttribute('data-en-body', bodyIn.innerHTML);
       bodyIn.innerHTML = l === 'te' ? CB_TE[i] : bodyIn.getAttribute('data-en-body');
     });
+    buildRealityCards();
     /* Search placeholder */
     var si = document.getElementById('sgSearch');
     if (si) si.placeholder = SEARCH_PH[l] || SEARCH_PH.en;
@@ -2712,6 +2781,14 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       }).join('');
 
       var backupTags = (d.backups || []).map(function(b){ return '<span class="cg-tag">'+b+'</span>'; }).join('');
+      var nextTarget = '#reality';
+      var group = (f.group || '').toLowerCase();
+      if(group.indexOf('mpc') >= 0) nextTarget = '#mpc';
+      else if(group.indexOf('bipc') >= 0) nextTarget = '#bipc';
+      else if(group.indexOf('commerce') >= 0) nextTarget = '#commerce';
+      else if(group.indexOf('arts') >= 0) nextTarget = '#arts';
+      var nextText = L === 'te' ? 'తర్వాతి దశ చూడండి' : 'See Next Step';
+      var compareText = L === 'te' ? 'వాస్తవ పోలిక చూడండి' : 'View Reality Check';
 
       cgResult.innerHTML =
         '<div class="cg-card">'
@@ -2732,6 +2809,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
             +'<div class="cg-flow">'+flow+'</div>'
           +'</div>'
           +(backupTags ? '<div class="cg-backup-row"><div class="cg-section-label">'+lbl.backups+'</div><div class="cg-tag-list">'+backupTags+'</div></div>' : '')
+          +'<div class="cg-next-row"><a class="cg-next-link" href="'+nextTarget+'">'+nextText+'</a><a class="cg-next-link secondary" href="#reality">'+compareText+'</a></div>'
         +'</div>';
 
       cgResult.classList.add('visible');

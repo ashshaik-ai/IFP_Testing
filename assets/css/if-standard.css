@@ -2020,6 +2020,41 @@ a {
   display: none;
 }
 
+.if-sg-dashboard {
+  display: none;
+}
+
+.sg-reality-cards {
+  display: none;
+}
+
+.cg-next-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.cg-next-link {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 0 16px;
+  border: 1px solid rgba(200,146,42,0.34);
+  background: var(--ifx-green-deep,#0d3b1e);
+  color: var(--ifx-gold-light,#f5e6c0);
+  font-size: 13px;
+  font-weight: 750;
+  text-decoration: none;
+}
+
+.cg-next-link.secondary {
+  background: #fff;
+  color: var(--ifx-green-deep,#0d3b1e);
+}
+
 @media (min-width: 769px) {
   body.if-app-shell {
     padding-bottom: 0 !important;
@@ -2187,6 +2222,198 @@ a {
 
   body.if-kc-app .zakat-form.zakat-wizard-ready .zakat-actions {
     bottom: calc(74px + env(safe-area-inset-bottom, 0px)) !important;
+  }
+
+  body.if-sg-app .sg-hero {
+    min-height: auto !important;
+    padding: 76px 5vw 14px !important;
+  }
+
+  body.if-sg-app .sg-brand {
+    flex: 0 0 46px !important;
+    min-width: 46px !important;
+    justify-content: center !important;
+    overflow: hidden !important;
+  }
+
+  body.if-sg-app .sg-brand-logo {
+    flex: 0 0 38px !important;
+  }
+
+  body.if-sg-app .sg-hero h1 {
+    font-size: clamp(24px, 7.4vw, 32px) !important;
+    line-height: 1.12 !important;
+    margin-bottom: 10px !important;
+  }
+
+  body.if-sg-app .sg-hero p.lead {
+    font-size: 14.5px !important;
+    line-height: 1.55 !important;
+    margin-bottom: 0 !important;
+  }
+
+  body.if-sg-app .sg-eyebrow,
+  body.if-sg-app .sg-hero-actions {
+    display: none !important;
+  }
+
+  body.if-sg-app .sg-eyebrow,
+  body.if-sg-app .sg-hero h1,
+  body.if-sg-app .sg-hero p.lead,
+  body.if-sg-app .sg-hero-actions,
+  body.if-sg-app .if-sg-dashboard {
+    animation: none !important;
+  }
+
+  body.if-sg-app .sg-disclaimer {
+    display: none !important;
+  }
+
+  body.if-sg-app .if-sg-dashboard {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 8px !important;
+    padding: 10px 5vw 8px !important;
+    background: #faf6ee !important;
+  }
+
+  body.if-sg-app .if-sg-action {
+    min-height: 64px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    gap: 4px !important;
+    padding: 10px 11px !important;
+    border: 1px solid rgba(200,146,42,0.28) !important;
+    border-radius: 14px !important;
+    background: #fff !important;
+    color: var(--text-mid,#5f5139) !important;
+    text-decoration: none !important;
+    box-shadow: 0 6px 18px rgba(13,59,30,0.06) !important;
+  }
+
+  body.if-sg-app .if-sg-action strong {
+    color: var(--ifx-green-deep) !important;
+    font-size: 13.5px !important;
+    line-height: 1.2 !important;
+    letter-spacing: 0 !important;
+  }
+
+  body.if-sg-app .if-sg-action span {
+    color: var(--text-muted,#766a55) !important;
+    font-size: 11.5px !important;
+    line-height: 1.35 !important;
+    letter-spacing: 0 !important;
+  }
+
+  body.if-sg-app .ifx-crumbs,
+  body.if-sg-app .sg-chips-wrap {
+    display: none !important;
+  }
+
+  body.if-sg-app .sg-tools {
+    position: static !important;
+    top: auto !important;
+    z-index: auto !important;
+    padding: 14px 5vw 8px !important;
+    border-bottom: 0 !important;
+    background: #faf6ee !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  body.if-sg-app .sg-search-wrap {
+    gap: 10px !important;
+  }
+
+  body.if-sg-app .sg-stream-wrap {
+    justify-content: flex-start !important;
+    gap: 7px !important;
+    overflow-x: auto !important;
+    padding-bottom: 2px !important;
+    scrollbar-width: none !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  body.if-sg-app .sg-stream-wrap::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  body.if-sg-app .sg-stream-label {
+    display: none !important;
+  }
+
+  body.if-sg-app .sg-stream-pill {
+    flex: 0 0 auto !important;
+    min-height: 44px !important;
+    padding: 0 15px !important;
+    transform: none !important;
+  }
+
+  body.if-sg-app .sg-stream-prompt {
+    margin: 2px 0 0 !important;
+    font-size: 12.5px !important;
+    line-height: 1.5 !important;
+  }
+
+  body.if-sg-app .gx-card:hover,
+  body.if-sg-app .gx-card:hover:not(.open),
+  body.if-sg-app .gx-card.open {
+    transform: none !important;
+  }
+
+  body.if-sg-app #stories .sg-stories {
+    display: none !important;
+  }
+
+  body.if-sg-app .sg-reality-cards {
+    display: grid !important;
+    gap: 12px !important;
+    margin-top: 12px !important;
+  }
+
+  body.if-sg-app .sg-tablewrap {
+    display: none !important;
+  }
+
+  body.if-sg-app .sg-reality-card {
+    border: 1px solid rgba(200,146,42,0.26) !important;
+    border-radius: 14px !important;
+    background: #fff !important;
+    padding: 15px !important;
+    box-shadow: 0 6px 18px rgba(13,59,30,0.06) !important;
+  }
+
+  body.if-sg-app .sg-reality-card h3 {
+    margin: 0 0 10px !important;
+    color: var(--ifx-green-deep) !important;
+    font-family: inherit !important;
+    font-size: 16px !important;
+    line-height: 1.25 !important;
+    letter-spacing: 0 !important;
+  }
+
+  body.if-sg-app .sg-reality-row {
+    display: grid !important;
+    grid-template-columns: minmax(92px, 38%) 1fr !important;
+    gap: 10px !important;
+    padding: 8px 0 !important;
+    border-top: 1px dashed rgba(200,146,42,0.18) !important;
+  }
+
+  body.if-sg-app .sg-reality-k {
+    color: var(--text-muted,#766a55) !important;
+    font-size: 12px !important;
+    font-weight: 750 !important;
+    line-height: 1.45 !important;
+    letter-spacing: 0 !important;
+  }
+
+  body.if-sg-app .sg-reality-v {
+    color: var(--text-mid,#5f5139) !important;
+    font-size: 13.5px !important;
+    line-height: 1.55 !important;
   }
 
   /* Retire competing floating controls on app-shell mobile pages. */

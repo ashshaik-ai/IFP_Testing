@@ -579,15 +579,27 @@
       { id: 'faqs', te: 'ప్రశ్నలు', en: 'FAQs' }
     ];
 
+    var SG_TABS = [
+      { id: 'start', te: 'ప్రారంభం', en: 'Start' },
+      { id: 'explore', te: 'ఎంచుకోండి', en: 'Explore' },
+      { id: 'compare', te: 'పోల్చండి', en: 'Compare' },
+      { id: 'support', te: 'సహాయం', en: 'Support' },
+      { id: 'values', te: 'విలువలు', en: 'Values' }
+    ];
+
     function isLongAppPage() {
       var p = (location.pathname || '').replace(/\\/g, '/').toLowerCase();
-      if (p.indexOf('student-guidance.html') >= 0) return false;
+      if (p.indexOf('student-guidance.html') >= 0) return true;
       if (p.indexOf('islamic-knowledge.html') >= 0) return true;
       return /knowledge-center\/[^\/]+\/?(index\.html)?$/.test(p);
     }
 
     function isKnowledgeCenterPage() {
       return (location.pathname || '').replace(/\\/g, '/').toLowerCase().indexOf('islamic-knowledge.html') >= 0;
+    }
+
+    function isStudentGuidancePage() {
+      return (location.pathname || '').replace(/\\/g, '/').toLowerCase().indexOf('student-guidance.html') >= 0;
     }
 
     function screenForKnowledgeCenter(section) {
@@ -600,8 +612,21 @@
       return 'library';
     }
 
+    function screenForStudentGuidance(section) {
+      var id = (section.id || '').toLowerCase();
+      var cls = (section.className || '').toString().toLowerCase();
+      if (cls.indexOf('sg-tools') >= 0) return 'explore';
+      if (/^(career|before)$/.test(id)) return 'start';
+      if (/^(after10|mpc|bipc|commerce|arts)$/.test(id)) return 'explore';
+      if (/^(exams|govt|reality|passion)$/.test(id)) return 'compare';
+      if (id === 'scholarships') return 'support';
+      if (/^(islamic|stories)$/.test(id) || cls.indexOf('sg-final') >= 0) return 'values';
+      return 'explore';
+    }
+
     function screenFor(section, index) {
       if (isKnowledgeCenterPage()) return screenForKnowledgeCenter(section);
+      if (isStudentGuidancePage()) return screenForStudentGuidance(section);
       var id = (section.id || '').toLowerCase();
       var cls = (section.className || '').toString().toLowerCase();
       var text = (id + ' ' + cls).toLowerCase();
@@ -624,13 +649,14 @@
       if (!isLongAppPage() || !document.body) return;
       document.body.classList.add('if-app-shell');
       if (isKnowledgeCenterPage()) document.body.classList.add('if-kc-app');
+      if (isStudentGuidancePage()) document.body.classList.add('if-sg-app');
       var main = document.querySelector('main') || document.body;
-      var hero = main.querySelector('header[id], .al-hero, .lu-hero, .kc-hero, .hero');
+      var hero = (isStudentGuidancePage() ? document.querySelector('.sg-hero') : null) || main.querySelector('header[id], .al-hero, .lu-hero, .kc-hero, .hero');
       if (!hero || document.getElementById('if-app-tabs')) return;
-      var sections = Array.prototype.slice.call(main.querySelectorAll('section[id]'));
+      var sections = Array.prototype.slice.call(main.querySelectorAll(isStudentGuidancePage() ? '.sg-tools, section[id], .sg-final' : 'section[id]'));
       if (sections.length < 3) return;
-      var tabsDef = isKnowledgeCenterPage() ? KC_TABS : DEFAULT_TABS;
-      var initialScreen = isKnowledgeCenterPage() ? 'today' : 'overview';
+      var tabsDef = isStudentGuidancePage() ? SG_TABS : (isKnowledgeCenterPage() ? KC_TABS : DEFAULT_TABS);
+      var initialScreen = isStudentGuidancePage() ? 'start' : (isKnowledgeCenterPage() ? 'today' : 'overview');
 
       sections.forEach(function(section, index){
         section.classList.add('if-app-screen');
