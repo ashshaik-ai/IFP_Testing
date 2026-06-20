@@ -1,10 +1,12 @@
 /* Islamic Front — service worker (conservative).
    HTML: network-first (pages never go stale), cache fallback when offline.
-   Same-origin assets: cache-first with background refresh.
+   Same-origin JS/CSS: network-first, cache fallback (keeps app shell fresh after deploys).
+   Other same-origin assets: cache-first.
    Cross-origin (fonts, recitation audio CDN): left to the browser. */
-var CACHE = 'if-cache-v1';
+var CACHE = 'if-cache-v2';
 var PRECACHE = [
   'assets/css/if-shared.css',
+  'assets/css/if-standard.css',
   'assets/js/if-core.js',
   'assets/js/if-flashcards.js',
   'assets/js/if-quiz.js'
@@ -30,7 +32,8 @@ self.addEventListener('fetch', function (e) {
   if (url.origin !== self.location.origin) return; /* never intercept cross-origin */
 
   var isHTML = req.mode === 'navigate' || (req.headers.get('accept') || '').indexOf('text/html') >= 0;
-  if (isHTML) {
+  var isAppAsset = /\.(?:js|css)$/i.test(url.pathname);
+  if (isHTML || isAppAsset) {
     e.respondWith(
       fetch(req).then(function (r) {
         var copy = r.clone(); caches.open(CACHE).then(function (c) { c.put(req, copy); });

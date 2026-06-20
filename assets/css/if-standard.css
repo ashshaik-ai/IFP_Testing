@@ -2062,6 +2062,7 @@ a {
 
   body.if-app-shell .bottom-nav,
   body.if-app-shell .if-app-tabs,
+  body.if-app-shell .if-learning-dashboard,
   body.if-app-shell .nav-overlay,
   body.if-app-shell .nav-drawer {
     display: none !important;
@@ -2416,6 +2417,81 @@ a {
     line-height: 1.55 !important;
   }
 
+  body.if-learning-app .al-hero,
+  body.if-learning-app .lu-hero,
+  body.if-learning-app .hero {
+    min-height: auto !important;
+    padding-top: 76px !important;
+    padding-bottom: 18px !important;
+  }
+
+  body.if-learning-app .al-hero h1,
+  body.if-learning-app .lu-hero h1,
+  body.if-learning-app .hero h1 {
+    font-size: clamp(26px, 8vw, 36px) !important;
+    line-height: 1.12 !important;
+    margin-bottom: 10px !important;
+    letter-spacing: 0 !important;
+  }
+
+  body.if-learning-app .al-hero p,
+  body.if-learning-app .lu-hero p,
+  body.if-learning-app .hero p {
+    font-size: 14.5px !important;
+    line-height: 1.6 !important;
+  }
+
+  body.if-learning-app .al-hero *,
+  body.if-learning-app .lu-hero *,
+  body.if-learning-app .hero *,
+  body.if-learning-app .if-learning-dashboard {
+    animation: none !important;
+  }
+
+  body.if-learning-app .if-learning-dashboard {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 8px !important;
+    padding: 10px 5vw 8px !important;
+    background: #faf6ee !important;
+    border-bottom: 1px solid rgba(200,146,42,0.14) !important;
+  }
+
+  body.if-learning-app .if-learning-action {
+    min-height: 66px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    gap: 4px !important;
+    padding: 10px 11px !important;
+    border: 1px solid rgba(200,146,42,0.28) !important;
+    border-radius: 14px !important;
+    background: #fff !important;
+    color: var(--text-mid,#5f5139) !important;
+    text-decoration: none !important;
+    box-shadow: 0 6px 18px rgba(13,59,30,0.06) !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  body.if-learning-app .if-learning-action strong {
+    color: var(--ifx-green-deep,#0d3b1e) !important;
+    font-size: 13.5px !important;
+    line-height: 1.2 !important;
+    letter-spacing: 0 !important;
+  }
+
+  body.if-learning-app .if-learning-action span {
+    color: var(--text-muted,#766a55) !important;
+    font-size: 11.5px !important;
+    line-height: 1.35 !important;
+    letter-spacing: 0 !important;
+  }
+
+  body.if-learning-app .if-app-tabs {
+    top: 0 !important;
+  }
+
   /* Retire competing floating controls on app-shell mobile pages. */
   body.if-app-shell #btt,
   body.if-app-shell #sgtt,
@@ -2503,7 +2579,11 @@ a {
   body.if-app-shell .sg-section-hdr,
   body.if-app-shell .qa-block,
   body.if-app-shell .myth-card,
-  body.if-app-shell .scheme-block {
+  body.if-app-shell .scheme-block,
+  body.if-app-shell .ll,
+  body.if-app-shell .word-card,
+  body.if-app-shell .phrase-card,
+  body.if-app-shell .letter-card {
     opacity: 1 !important;
     transform: none !important;
     transition: none !important;
@@ -2530,7 +2610,11 @@ a {
   body.if-app-shell .dua-card,
   body.if-app-shell .name-card,
   body.if-app-shell .miss-card,
-  body.if-app-shell .alf-card {
+  body.if-app-shell .alf-card,
+  body.if-app-shell .ll,
+  body.if-app-shell .word-card,
+  body.if-app-shell .phrase-card,
+  body.if-app-shell .letter-card {
     transition: none !important;
   }
 
@@ -2553,7 +2637,11 @@ a {
   body.if-app-shell .dua-card:hover,
   body.if-app-shell .name-card:hover,
   body.if-app-shell .miss-card:hover,
-  body.if-app-shell .alf-card:hover {
+  body.if-app-shell .alf-card:hover,
+  body.if-app-shell .ll:hover,
+  body.if-app-shell .word-card:hover,
+  body.if-app-shell .phrase-card:hover,
+  body.if-app-shell .letter-card:hover {
     transform: none !important;
     box-shadow: inherit !important;
   }
@@ -2577,9 +2665,14 @@ a {
 
   body.if-app-shell main p a,
   body.if-app-shell .sg-cta-note a,
+  body.if-app-shell .lu-nav-links a,
+  body.if-app-shell .al-hero-breadcrumb a,
+  body.if-app-shell .lu-hero-breadcrumb a,
   body.if-app-shell footer a {
     display: inline-flex !important;
     align-items: center !important;
+    justify-content: center !important;
+    min-width: 44px !important;
     min-height: 44px !important;
   }
 

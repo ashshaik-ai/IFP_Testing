@@ -587,6 +587,14 @@
       { id: 'values', te: 'విలువలు', en: 'Values' }
     ];
 
+    var LEARNING_TABS = [
+      { id: 'start', te: 'ప్రారంభం', en: 'Start' },
+      { id: 'path', te: 'మార్గం', en: 'Path' },
+      { id: 'lessons', te: 'పాఠాలు', en: 'Lessons' },
+      { id: 'practice', te: 'ప్రాక్టీస్', en: 'Practice' },
+      { id: 'more', te: 'మరిన్ని', en: 'More' }
+    ];
+
     function isLongAppPage() {
       var p = (location.pathname || '').replace(/\\/g, '/').toLowerCase();
       if (p.indexOf('student-guidance.html') >= 0) return true;
@@ -600,6 +608,11 @@
 
     function isStudentGuidancePage() {
       return (location.pathname || '').replace(/\\/g, '/').toLowerCase().indexOf('student-guidance.html') >= 0;
+    }
+
+    function isLearningPortalPage() {
+      var p = (location.pathname || '').replace(/\\/g, '/').toLowerCase();
+      return /knowledge-center\/[^\/]+\/?(index\.html)?$/.test(p);
     }
 
     function screenForKnowledgeCenter(section) {
@@ -624,9 +637,23 @@
       return 'explore';
     }
 
+    function screenForLearningPortal(section, index) {
+      var id = (section.id || '').toLowerCase();
+      var cls = (section.className || '').toString().toLowerCase();
+      var text = (id + ' ' + cls).toLowerCase();
+      if (/^(knowledge|coming|if-refs|resources|references|faq|faqs)$/.test(id) || /(knowledge|coming|resource|reference|source|faq|footer|contact)/.test(text)) return 'more';
+      if (/^(roadmap|journey|path|timeline)$/.test(id) || /(roadmap|journey|path|timeline|stage)/.test(text)) return 'path';
+      if (/^(levels|lessons|lesson|modules|curriculum|pillars|foundations?)$/.test(id) || /(level|lesson|module|curriculum|reading|foundation|pillar)/.test(text)) return 'lessons';
+      if (/^(alphabet|word|phrases|practice|challenge|quiz|surahs|guide|steps|wudu|duas|names|stories|character|personalities|civilization|mistakes)$/.test(id)) return 'practice';
+      if (/(alphabet|word|phrase|practice|challenge|quiz|surah|guide|step|dua|name|story|character|personalit|civilization|mistake|tracker|simulator)/.test(text)) return 'practice';
+      if (index === 0 || /^(why|intro|overview|purpose|benefits?|about)$/.test(id)) return 'start';
+      return index < 2 ? 'start' : 'more';
+    }
+
     function screenFor(section, index) {
       if (isKnowledgeCenterPage()) return screenForKnowledgeCenter(section);
       if (isStudentGuidancePage()) return screenForStudentGuidance(section);
+      if (isLearningPortalPage()) return screenForLearningPortal(section, index);
       var id = (section.id || '').toLowerCase();
       var cls = (section.className || '').toString().toLowerCase();
       var text = (id + ' ' + cls).toLowerCase();
@@ -645,18 +672,83 @@
       });
     }
 
+    function findFirstId(ids) {
+      for (var i = 0; i < ids.length; i += 1) {
+        if (document.getElementById(ids[i])) return ids[i];
+      }
+      return '';
+    }
+
+    function injectLearningDashboard(anchorNode) {
+      if (!isLearningPortalPage() || document.getElementById('if-learning-dashboard')) return [];
+      var actions = [
+        {
+          target: findFirstId(['roadmap', 'journey', 'timeline']),
+          te: 'పాఠ్య మార్గం',
+          en: 'Learning Path',
+          subTe: 'ఏ క్రమంలో నేర్చుకోవాలో చూడండి',
+          subEn: 'See the recommended order'
+        },
+        {
+          target: findFirstId(['levels', 'lessons', 'modules']),
+          te: 'పాఠాలు',
+          en: 'Lessons',
+          subTe: 'స్థాయిలు, మాడ్యూల్స్ ప్రారంభించండి',
+          subEn: 'Start levels and modules'
+        },
+        {
+          target: findFirstId(['alphabet', 'word', 'phrases', 'surahs', 'guide', 'steps', 'quiz', 'challenge', 'stories', 'names', 'duas']),
+          te: 'ప్రాక్టీస్',
+          en: 'Practice',
+          subTe: 'కార్డులు, ప్రశ్నలు, గైడ్‌లు',
+          subEn: 'Cards, quizzes, and guides'
+        },
+        {
+          target: findFirstId(['coming', 'knowledge', 'if-refs', 'resources']),
+          te: 'మరిన్ని',
+          en: 'More',
+          subTe: 'మాడ్యూల్స్, వనరులు, మూలాలు',
+          subEn: 'Modules, resources, sources'
+        }
+      ].filter(function(action){ return action.target; });
+      if (!actions.length) return [];
+
+      var dash = document.createElement('nav');
+      dash.className = 'if-learning-dashboard';
+      dash.id = 'if-learning-dashboard';
+      dash.setAttribute('aria-label', 'Learning quick actions');
+      dash.innerHTML = actions.map(function(action){
+        var title = getLang() === 'te' ? action.te : action.en;
+        var sub = getLang() === 'te' ? action.subTe : action.subEn;
+        return '<a class="if-learning-action" href="#' + action.target + '"><strong data-te="' + action.te + '" data-en="' + action.en + '">' + title + '</strong><span data-te="' + action.subTe + '" data-en="' + action.subEn + '">' + sub + '</span></a>';
+      }).join('');
+      anchorNode.insertAdjacentElement('afterend', dash);
+      return Array.prototype.slice.call(dash.querySelectorAll('.if-learning-action'));
+    }
+
+    function syncLearningDashboard(actions) {
+      var te = getLang() === 'te';
+      actions.forEach(function(action){
+        var title = action.querySelector('strong');
+        var sub = action.querySelector('span');
+        if (title) title.textContent = title.getAttribute(te ? 'data-te' : 'data-en');
+        if (sub) sub.textContent = sub.getAttribute(te ? 'data-te' : 'data-en');
+      });
+    }
+
     function setup() {
       if (!isLongAppPage() || !document.body) return;
       document.body.classList.add('if-app-shell');
       if (isKnowledgeCenterPage()) document.body.classList.add('if-kc-app');
       if (isStudentGuidancePage()) document.body.classList.add('if-sg-app');
+      if (isLearningPortalPage()) document.body.classList.add('if-learning-app');
       var main = document.querySelector('main') || document.body;
       var hero = (isStudentGuidancePage() ? document.querySelector('.sg-hero') : null) || main.querySelector('header[id], .al-hero, .lu-hero, .kc-hero, .hero');
       if (!hero || document.getElementById('if-app-tabs')) return;
       var sections = Array.prototype.slice.call(main.querySelectorAll(isStudentGuidancePage() ? '.sg-tools, section[id], .sg-final' : 'section[id]'));
       if (sections.length < 3) return;
-      var tabsDef = isStudentGuidancePage() ? SG_TABS : (isKnowledgeCenterPage() ? KC_TABS : DEFAULT_TABS);
-      var initialScreen = isStudentGuidancePage() ? 'start' : (isKnowledgeCenterPage() ? 'today' : 'overview');
+      var tabsDef = isStudentGuidancePage() ? SG_TABS : (isKnowledgeCenterPage() ? KC_TABS : (isLearningPortalPage() ? LEARNING_TABS : DEFAULT_TABS));
+      var initialScreen = isStudentGuidancePage() ? 'start' : (isKnowledgeCenterPage() ? 'today' : (isLearningPortalPage() ? 'start' : 'overview'));
 
       sections.forEach(function(section, index){
         section.classList.add('if-app-screen');
@@ -671,6 +763,7 @@
         return '<button type="button" class="if-app-tab' + (index === 0 ? ' is-active' : '') + '" data-screen="' + tab.id + '" data-te="' + tab.te + '" data-en="' + tab.en + '" aria-pressed="' + (index === 0 ? 'true' : 'false') + '">' + (getLang() === 'te' ? tab.te : tab.en) + '</button>';
       }).join('');
       hero.insertAdjacentElement('afterend', tabs);
+      var learningActions = injectLearningDashboard(tabs);
 
       var buttons = Array.prototype.slice.call(tabs.querySelectorAll('.if-app-tab'));
       function activate(screen, shouldScroll) {
@@ -725,7 +818,10 @@
         activate(initialScreen, false);
       }
 
-      new MutationObserver(function(){ syncLanguage(buttons); }).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
+      new MutationObserver(function(){
+        syncLanguage(buttons);
+        syncLearningDashboard(learningActions);
+      }).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
     }
 
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', setup);
