@@ -26,7 +26,7 @@ const server = http.createServer((req, res) => {
     safePath = '/index.html';
   }
 
-  const filePath = path.join(ROOT, safePath);
+  let filePath = path.join(ROOT, safePath);
 
   if (!filePath.startsWith(ROOT)) {
     console.log(`[ERR] Forbidden: ${filePath}`);
@@ -36,12 +36,17 @@ const server = http.createServer((req, res) => {
   }
 
   fs.stat(filePath, (err, stats) => {
-    if (err || !stats.isFile()) {
-      console.log(`[404] Not Found: ${filePath}`);
-      res.statusCode = 404;
-      res.end('Not Found');
-      return;
+    if (!err && stats.isDirectory()) {
+      filePath = path.join(filePath, 'index.html');
     }
+
+    fs.stat(filePath, (fileErr, fileStats) => {
+      if (fileErr || !fileStats.isFile()) {
+        console.log(`[404] Not Found: ${filePath}`);
+        res.statusCode = 404;
+        res.end('Not Found');
+        return;
+      }
 
     const ext = path.extname(filePath).toLowerCase();
     const contentType = MIME_TYPES[ext] || 'application/octet-stream';
@@ -58,6 +63,7 @@ const server = http.createServer((req, res) => {
     stream.pipe(res);
     res.on('finish', () => {
       console.log(`[RES] 200 OK: ${req.url}`);
+    });
     });
   });
 });

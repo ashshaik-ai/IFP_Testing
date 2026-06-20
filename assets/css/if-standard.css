@@ -2016,7 +2016,351 @@ a {
   filter: brightness(0.96) !important;
 }
 
+.if-kc-dashboard {
+  display: none;
+}
+
+@media (min-width: 769px) {
+  body.if-app-shell {
+    padding-bottom: 0 !important;
+  }
+
+  body.if-app-shell .bottom-nav,
+  body.if-app-shell .if-app-tabs,
+  body.if-app-shell .nav-overlay,
+  body.if-app-shell .nav-drawer {
+    display: none !important;
+  }
+
+  body.if-app-screen-ready .if-app-screen {
+    display: block !important;
+  }
+}
+
 @media (max-width: 768px) {
+  /* Phase 3 app shell: one canonical mobile chrome layer */
+  body.if-app-shell {
+    padding-bottom: calc(74px + env(safe-area-inset-bottom, 0px)) !important;
+    overflow-x: hidden !important;
+  }
+
+  body.if-app-shell .bottom-nav {
+    display: flex !important;
+    position: fixed !important;
+    top: auto !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    z-index: 1200 !important;
+    width: 100% !important;
+    min-height: 64px !important;
+    height: auto !important;
+    padding: 6px 8px calc(6px + env(safe-area-inset-bottom, 0px)) !important;
+    border-top: 1px solid rgba(200,146,42,0.28) !important;
+    border-bottom: 0 !important;
+    background: rgba(7,23,12,0.97) !important;
+    box-shadow: 0 -8px 32px rgba(0,0,0,0.34) !important;
+    transform: none !important;
+  }
+
+  body.if-app-shell .bottom-nav .bn-item {
+    flex: 1 1 0 !important;
+    min-width: 44px !important;
+    min-height: 52px !important;
+    display: inline-flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 3px !important;
+    padding: 6px 3px !important;
+    border: 0 !important;
+    border-radius: 12px !important;
+    background: transparent !important;
+    color: rgba(255,255,255,0.58) !important;
+    text-decoration: none !important;
+    font: inherit !important;
+    -webkit-tap-highlight-color: transparent !important;
+  }
+
+  body.if-app-shell .bottom-nav .bn-item.bn-active {
+    color: var(--ifx-gold-light) !important;
+    background: rgba(200,146,42,0.09) !important;
+  }
+
+  body.if-app-shell .bottom-nav .bn-icon {
+    width: 21px !important;
+    height: 21px !important;
+    flex: 0 0 auto !important;
+  }
+
+  body.if-app-shell .bottom-nav .bn-label {
+    display: block !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+    font-size: 10.5px !important;
+    font-weight: 650 !important;
+    line-height: 1.15 !important;
+    letter-spacing: 0 !important;
+  }
+
+  body.if-kc-app .kc-jump {
+    display: none !important;
+  }
+
+  body.if-kc-app .if-kc-dashboard {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 10px !important;
+    margin-top: 22px !important;
+    max-width: 560px !important;
+  }
+
+  body.if-kc-app .if-kc-action {
+    min-height: 72px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    gap: 4px !important;
+    padding: 14px 14px !important;
+    border: 1px solid rgba(200,146,42,0.34) !important;
+    border-radius: 14px !important;
+    background: rgba(255,255,255,0.08) !important;
+    color: rgba(245,230,192,0.86) !important;
+    text-decoration: none !important;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.08) !important;
+  }
+
+  body.if-kc-app .if-kc-action strong {
+    color: var(--ifx-gold-light) !important;
+    font-size: 13.5px !important;
+    line-height: 1.25 !important;
+    letter-spacing: 0 !important;
+  }
+
+  body.if-kc-app .if-kc-action span {
+    color: rgba(245,230,192,0.62) !important;
+    font-size: 11.5px !important;
+    line-height: 1.35 !important;
+    letter-spacing: 0 !important;
+  }
+
+  body.if-kc-app .kc-badge,
+  body.if-kc-app .kc-hero h1,
+  body.if-kc-app .kc-hero p,
+  body.if-kc-app .if-kc-dashboard {
+    animation: none !important;
+  }
+
+  body.if-kc-app #lang-portals {
+    padding: 30px 5vw !important;
+  }
+
+  body.if-kc-app #lang-portals .sec-lead {
+    margin-bottom: 20px !important;
+  }
+
+  body.if-kc-app #lang-portals .ifo-portals {
+    display: flex !important;
+    grid-template-columns: none !important;
+    gap: 12px !important;
+    overflow-x: auto !important;
+    padding: 2px 0 10px !important;
+    scroll-snap-type: x mandatory !important;
+    scrollbar-width: none !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  body.if-kc-app #lang-portals .ifo-portals::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  body.if-kc-app #lang-portals .ifo-portals > a {
+    flex: 0 0 min(82vw, 320px) !important;
+    min-height: 44px !important;
+    padding: 20px 18px !important;
+    transform: none !important;
+    transition: none !important;
+    scroll-snap-align: start !important;
+  }
+
+  body.if-kc-app .zakat-form.zakat-wizard-ready .zakat-actions {
+    bottom: calc(74px + env(safe-area-inset-bottom, 0px)) !important;
+  }
+
+  /* Retire competing floating controls on app-shell mobile pages. */
+  body.if-app-shell #btt,
+  body.if-app-shell #sgtt,
+  body.if-app-shell .back-to-top,
+  body.if-app-shell #ifsr-fab,
+  body.if-app-shell #ifxp,
+  body.if-app-shell .ifxp-toast,
+  body.if-app-shell .mobile-help-fab,
+  body.if-app-shell .mobile-action-sheet {
+    display: none !important;
+  }
+
+  /* Bottom nav owns primary navigation; page-local sticky bars become app tabs. */
+  body.if-app-shell.if-app-screen-ready .al-sticky,
+  body.if-app-shell.if-app-screen-ready .kc-sticky,
+  body.if-app-shell.if-app-screen-ready .lu-sticky {
+    display: none !important;
+  }
+
+  /* Footer link clusters duplicate bottom-nav routes on mobile. */
+  body.if-app-shell .footer-col ul,
+  body.if-app-shell .kc-footer .kcf-back,
+  body.if-app-shell .sg-foot-links,
+  body.if-app-shell .site-footer-links,
+  body.if-app-shell .al-footer-links,
+  body.if-app-shell .lu-footer-links {
+    display: none !important;
+  }
+
+  /* App screen tabs: replace long mobile scroll stacks with contained screens. */
+  .if-app-tabs {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 700 !important;
+    display: flex !important;
+    gap: 8px !important;
+    overflow-x: auto !important;
+    padding: 10px 5vw !important;
+    background: rgba(250,246,238,0.96) !important;
+    border-bottom: 1px solid rgba(200,146,42,0.20) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    scrollbar-width: none !important;
+    scroll-snap-type: x mandatory !important;
+  }
+
+  .if-app-tabs::-webkit-scrollbar { display: none !important; }
+
+  .if-app-tab {
+    min-width: 44px !important;
+    min-height: 44px !important;
+    flex: 0 0 auto !important;
+    border: 1px solid rgba(200,146,42,0.26) !important;
+    border-radius: 100px !important;
+    padding: 0 15px !important;
+    background: #fff !important;
+    color: var(--text-mid,#5f5139) !important;
+    font: inherit !important;
+    font-size: 13px !important;
+    font-weight: 750 !important;
+    letter-spacing: 0 !important;
+    scroll-snap-align: start !important;
+  }
+
+  .if-app-tab.is-active {
+    background: var(--ifx-green-deep) !important;
+    border-color: var(--ifx-green-deep) !important;
+    color: var(--ifx-gold-light) !important;
+  }
+
+  body.if-app-screen-ready .if-app-screen:not(.if-screen-active) {
+    display: none !important;
+  }
+
+  body.if-app-screen-ready .if-screen-active {
+    animation: none !important;
+  }
+
+  /* Mobile quiet-motion: remove scroll reveal and decorative hover motion. */
+  body.if-app-shell .reveal,
+  body.if-app-shell .ifx-reveal,
+  body.if-app-shell .ifx-reveal-left,
+  body.if-app-shell .ifx-reveal-scale,
+  body.if-app-shell .gx-card,
+  body.if-app-shell .sg-section-hdr,
+  body.if-app-shell .qa-block,
+  body.if-app-shell .myth-card,
+  body.if-app-shell .scheme-block {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+    will-change: auto !important;
+  }
+
+  body.if-app-shell .ld-portal,
+  body.if-app-shell .vol-card,
+  body.if-app-shell .event-item,
+  body.if-app-shell .member-card,
+  body.if-app-shell .scheme-card,
+  body.if-app-shell .ach-card,
+  body.if-app-shell .why-card,
+  body.if-app-shell .res-card,
+  body.if-app-shell .learn-card,
+  body.if-app-shell .lc,
+  body.if-app-shell .cm-card,
+  body.if-app-shell .surah-card,
+  body.if-app-shell .step-card,
+  body.if-app-shell .qd-card,
+  body.if-app-shell .sw-card,
+  body.if-app-shell .gl-card,
+  body.if-app-shell .dua-card,
+  body.if-app-shell .name-card,
+  body.if-app-shell .miss-card,
+  body.if-app-shell .alf-card {
+    transition: none !important;
+  }
+
+  body.if-app-shell .ld-portal:hover,
+  body.if-app-shell .vol-card:hover,
+  body.if-app-shell .event-item:hover,
+  body.if-app-shell .member-card:hover,
+  body.if-app-shell .scheme-card:hover,
+  body.if-app-shell .ach-card:hover,
+  body.if-app-shell .why-card:hover,
+  body.if-app-shell .res-card:hover,
+  body.if-app-shell .learn-card:hover,
+  body.if-app-shell .lc:hover,
+  body.if-app-shell .cm-card:hover,
+  body.if-app-shell .surah-card:hover,
+  body.if-app-shell .step-card:hover,
+  body.if-app-shell .qd-card:hover,
+  body.if-app-shell .sw-card:hover,
+  body.if-app-shell .gl-card:hover,
+  body.if-app-shell .dua-card:hover,
+  body.if-app-shell .name-card:hover,
+  body.if-app-shell .miss-card:hover,
+  body.if-app-shell .alf-card:hover {
+    transform: none !important;
+    box-shadow: inherit !important;
+  }
+
+  body.if-app-shell p,
+  body.if-app-shell li,
+  body.if-app-shell label,
+  body.if-app-shell td,
+  body.if-app-shell th {
+    font-size: max(13.5px, 0.875rem) !important;
+    line-height: 1.75 !important;
+  }
+
+  body.if-app-shell a,
+  body.if-app-shell button,
+  body.if-app-shell [role="button"],
+  body.if-app-shell input,
+  body.if-app-shell select {
+    min-height: 44px;
+  }
+
+  body.if-app-shell main p a,
+  body.if-app-shell .sg-cta-note a,
+  body.if-app-shell footer a {
+    display: inline-flex !important;
+    align-items: center !important;
+    min-height: 44px !important;
+  }
+
+  body.if-app-shell .sg-table td:first-child,
+  body.if-app-shell .sg-table th:first-child {
+    position: static !important;
+  }
+
   /* Transform fullscreen drawer into a native-like bottom sheet modal */
   .nav-drawer {
     position: fixed !important;
@@ -2036,10 +2380,22 @@ a {
     box-shadow: 0 -8px 36px rgba(0, 0, 0, 0.3) !important;
     overflow-y: auto !important;
     padding-bottom: 24px !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+
+  .nav-drawer:not(.open-display) {
+    display: none !important;
+  }
+
+  .nav-drawer.open-display {
+    display: block !important;
   }
   
   .nav-drawer.open {
     transform: translateY(0) !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
   }
   
   .nav-drawer-handle {
@@ -2082,4 +2438,3 @@ a {
     top: 0 !important;
   }
 }
-

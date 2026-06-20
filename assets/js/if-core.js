@@ -316,6 +316,13 @@
     '.tool-card', '.feature-card', '.benefit-card', '.achievement-card'
   ];
   function attachPortalReveal() {
+    if (window.matchMedia && window.matchMedia('(max-width: 768px)').matches) {
+      document.querySelectorAll('.ifx-reveal,.ifx-reveal-left,.ifx-reveal-scale').forEach(function(el){
+        el.classList.add('ifx-visible');
+        el.style.transitionDelay = '';
+      });
+      return;
+    }
     PORTAL_CARD_SELS.forEach(function(sel){
       document.querySelectorAll(sel).forEach(function(el, i){
         if (!el.classList.contains('ifx-reveal') && !el.classList.contains('reveal')) {
@@ -384,23 +391,27 @@
 
   /* ── Phase 1: Mobile Navigation App Shell Injection ── */
   (function initAppShell() {
+    function isPortalPath(p) {
+      return /knowledge-center\/[^\/]+\/?(index\.html)?$/.test(p);
+    }
+
     function isHubPage() {
       var p = (location.pathname || '').replace(/\\/g, '/').toLowerCase();
       if (p.indexOf('islamic-knowledge.html') >= 0) return true;
       if (p.indexOf('student-guidance.html') >= 0) return true;
-      var m = p.match(/knowledge-center\/([^\/]+)\/(index\.html)?$/);
-      if (m) return true;
+      if (isPortalPath(p)) return true;
       if (p.match(/knowledge-center\/?$/)) return true;
       return false;
     }
 
     function setup() {
       if (!isHubPage()) return;
-      if (document.getElementById('bottom-nav')) return;
       if (!document.body) return;
+      document.body.classList.add('if-app-shell');
+      if (document.getElementById('bottom-nav')) return;
 
       var p = (location.pathname || '').replace(/\\/g, '/').toLowerCase();
-      var isHome = p.indexOf('index.html') >= 0 || p === '/' || p.slice(-1) === '/';
+      var isHome = p === '/' || (/\/index\.html$/.test(p) && p.indexOf('knowledge-center/') < 0);
       var isGuidance = p.indexOf('student-guidance.html') >= 0;
       var isKnowledge = (p.indexOf('islamic-knowledge.html') >= 0 || p.indexOf('knowledge-center/') >= 0) && !isHome;
       var base = (p.indexOf('knowledge-center/') >= 0) ? '../../' : '';
@@ -508,6 +519,9 @@
         navOverlay.classList.remove('open');
         if (bnMore) bnMore.setAttribute('aria-expanded', 'false');
         document.body.style.overflow = '';
+        setTimeout(function () {
+          if (!navDrawer.classList.contains('open')) navDrawer.classList.remove('open-display');
+        }, 420);
       }
 
       if (bnMore) bnMore.addEventListener('click', function () { navDrawer.classList.contains('open') ? closeDrawer() : openDrawer(); });
@@ -547,6 +561,151 @@
     }
   })();
 
+  /* ── Phase 3: Mobile app-screen containment for long hub/portal pages ── */
+  (function initAppScreens() {
+    var DEFAULT_TABS = [
+      { id: 'overview', te: 'అవలోకనం', en: 'Overview' },
+      { id: 'learn', te: 'అభ్యాసం', en: 'Learn' },
+      { id: 'practice', te: 'ప్రాక్టీస్', en: 'Practice' },
+      { id: 'resources', te: 'వనరులు', en: 'Resources' },
+      { id: 'references', te: 'మూలాలు', en: 'References' }
+    ];
+
+    var KC_TABS = [
+      { id: 'today', te: 'ఈ రోజు', en: 'Today' },
+      { id: 'learn', te: 'అభ్యాసం', en: 'Learn' },
+      { id: 'practice', te: 'ప్రాక్టీస్', en: 'Practice' },
+      { id: 'library', te: 'లైబ్రరీ', en: 'Library' },
+      { id: 'faqs', te: 'ప్రశ్నలు', en: 'FAQs' }
+    ];
+
+    function isLongAppPage() {
+      var p = (location.pathname || '').replace(/\\/g, '/').toLowerCase();
+      if (p.indexOf('student-guidance.html') >= 0) return false;
+      if (p.indexOf('islamic-knowledge.html') >= 0) return true;
+      return /knowledge-center\/[^\/]+\/?(index\.html)?$/.test(p);
+    }
+
+    function isKnowledgeCenterPage() {
+      return (location.pathname || '').replace(/\\/g, '/').toLowerCase().indexOf('islamic-knowledge.html') >= 0;
+    }
+
+    function screenForKnowledgeCenter(section) {
+      var id = (section.id || '').toLowerCase();
+      if (/^(salah|zakat|lang-portals)$/.test(id)) return 'today';
+      if (/^(basics|pillars|learn-arabic|learn-urdu)$/.test(id)) return 'learn';
+      if (/^(wudu|salah-guide|guides)$/.test(id)) return 'practice';
+      if (/^(quran|hadith|akhlaq|modern-life|quran-science)$/.test(id)) return 'library';
+      if (id === 'faqs') return 'faqs';
+      return 'library';
+    }
+
+    function screenFor(section, index) {
+      if (isKnowledgeCenterPage()) return screenForKnowledgeCenter(section);
+      var id = (section.id || '').toLowerCase();
+      var cls = (section.className || '').toString().toLowerCase();
+      var text = (id + ' ' + cls).toLowerCase();
+      if (index === 0 || /(why|pillar|intro|about|overview|purpose|benefit)/.test(text)) return 'overview';
+      if (/(level|lesson|learn|roadmap|journey|module|curriculum|alphabet|reading|foundation|guide|portal|path)/.test(text)) return 'learn';
+      if (/(practice|challenge|quiz|word|phrase|progress|dua|surah|tajweed|step|mistake|timeline|story|character|names)/.test(text)) return 'practice';
+      if (/(resource|knowledge|faq|article|coming|tool|calculator|prayer|zakat|link|download)/.test(text)) return 'resources';
+      if (/(source|reference|ref|hadith|quran|footer|contact)/.test(text)) return 'references';
+      return index < 2 ? 'overview' : 'resources';
+    }
+
+    function syncLanguage(tabs) {
+      var te = getLang() === 'te';
+      tabs.forEach(function(btn){
+        btn.textContent = btn.getAttribute(te ? 'data-te' : 'data-en');
+      });
+    }
+
+    function setup() {
+      if (!isLongAppPage() || !document.body) return;
+      document.body.classList.add('if-app-shell');
+      if (isKnowledgeCenterPage()) document.body.classList.add('if-kc-app');
+      var main = document.querySelector('main') || document.body;
+      var hero = main.querySelector('header[id], .al-hero, .lu-hero, .kc-hero, .hero');
+      if (!hero || document.getElementById('if-app-tabs')) return;
+      var sections = Array.prototype.slice.call(main.querySelectorAll('section[id]'));
+      if (sections.length < 3) return;
+      var tabsDef = isKnowledgeCenterPage() ? KC_TABS : DEFAULT_TABS;
+      var initialScreen = isKnowledgeCenterPage() ? 'today' : 'overview';
+
+      sections.forEach(function(section, index){
+        section.classList.add('if-app-screen');
+        section.setAttribute('data-app-screen', screenFor(section, index));
+      });
+
+      var tabs = document.createElement('nav');
+      tabs.className = 'if-app-tabs';
+      tabs.id = 'if-app-tabs';
+      tabs.setAttribute('aria-label', 'App sections');
+      tabs.innerHTML = tabsDef.map(function(tab, index){
+        return '<button type="button" class="if-app-tab' + (index === 0 ? ' is-active' : '') + '" data-screen="' + tab.id + '" data-te="' + tab.te + '" data-en="' + tab.en + '" aria-pressed="' + (index === 0 ? 'true' : 'false') + '">' + (getLang() === 'te' ? tab.te : tab.en) + '</button>';
+      }).join('');
+      hero.insertAdjacentElement('afterend', tabs);
+
+      var buttons = Array.prototype.slice.call(tabs.querySelectorAll('.if-app-tab'));
+      function activate(screen, shouldScroll) {
+        var hasSection = false;
+        sections.forEach(function(section){
+          var match = section.getAttribute('data-app-screen') === screen;
+          section.classList.toggle('if-screen-active', match);
+          if (match) hasSection = true;
+        });
+        if (!hasSection) {
+          sections.forEach(function(section, index){
+            section.classList.toggle('if-screen-active', index === 0);
+          });
+        }
+        buttons.forEach(function(btn){
+          var active = btn.getAttribute('data-screen') === screen;
+          btn.classList.toggle('is-active', active);
+          btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+        });
+        document.body.classList.add('if-app-screen-ready');
+        if (shouldScroll) tabs.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
+      function activateForHash(hash) {
+        if (!hash || hash.charAt(0) !== '#') return false;
+        var target = document.getElementById(hash.slice(1));
+        if (!target || !target.classList.contains('if-app-screen')) return false;
+        var screen = target.getAttribute('data-app-screen');
+        if (!screen) return false;
+        activate(screen, false);
+        try { history.pushState(null, '', hash); } catch (e) {}
+        setTimeout(function(){
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 30);
+        return true;
+      }
+
+      buttons.forEach(function(btn){
+        btn.addEventListener('click', function(){
+          activate(btn.getAttribute('data-screen'), true);
+        });
+      });
+      document.addEventListener('click', function(e){
+        if (!window.matchMedia || !window.matchMedia('(max-width: 768px)').matches) return;
+        var a = e.target.closest ? e.target.closest('a[href^="#"]') : null;
+        if (!a) return;
+        if (activateForHash(a.getAttribute('href'))) e.preventDefault();
+      });
+      if (location.hash && activateForHash(location.hash)) {
+        document.body.classList.add('if-app-screen-ready');
+      } else {
+        activate(initialScreen, false);
+      }
+
+      new MutationObserver(function(){ syncLanguage(buttons); }).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
+    }
+
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', setup);
+    else setup();
+  })();
+
   /* ── Hide Header Navbar on scroll down on mobile ── */
   (function initScrollHide() {
     var lastScrollY = window.scrollY;
@@ -566,4 +725,3 @@
     }, { passive: true });
   })();
 })();
-
