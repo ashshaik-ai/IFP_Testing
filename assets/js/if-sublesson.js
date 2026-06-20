@@ -34,6 +34,24 @@
   var LETTERS = ['A', 'B', 'C', 'D'];
   var root, qi = 0, qAns = false, qScore = 0;
 
+  function initScrollHide() {
+    var lastY = window.scrollY || 0;
+    var threshold = 72;
+    window.addEventListener('scroll', function () {
+      var y = window.scrollY || 0;
+      if (window.innerWidth <= 768) {
+        if (y > threshold && y > lastY) document.body.classList.add('nav-hidden');
+        else if (y < lastY || y <= threshold) document.body.classList.remove('nav-hidden');
+      } else {
+        document.body.classList.remove('nav-hidden');
+      }
+      lastY = y;
+    }, { passive: true });
+    window.addEventListener('resize', function () {
+      if (window.innerWidth > 768) document.body.classList.remove('nav-hidden');
+    }, { passive: true });
+  }
+
   function T() {
     return te()
       ? { kc: 'నాలెడ్జ్ చెక్', kcs: 'మీరు నేర్చుకున్నది పరీక్షించుకోండి', q: 'ప్రశ్న', of: '/', ok: '✓ సరైనది!', no: '→ సరైన సమాధానం ఆకుపచ్చలో', next: 'తదుపరి →', refl: 'ఆలోచించండి', mark: 'పాఠం పూర్తి చేయండి ✓', done: 'పూర్తయింది ✓', cont: 'తర్వాత', go: 'కొనసాగించు →', score: 'స్కోరు', retry: 'మళ్ళీ ప్రయత్నించండి' }
@@ -117,6 +135,11 @@
     render();
   }
 
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', inject); else inject();
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function () { initScrollHide(); inject(); });
+  } else {
+    initScrollHide();
+    inject();
+  }
   new MutationObserver(function () { render(); }).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
 })();

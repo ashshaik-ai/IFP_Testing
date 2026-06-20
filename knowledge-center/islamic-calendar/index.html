@@ -113,7 +113,7 @@
     /* ── CALENDAR SECTION ── */
     #monthly-calendar{background:#fff}
     .cal-controls{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;gap:12px;flex-wrap:wrap}
-    .cal-nav-btn{background:var(--green-deep);color:#fff;border:none;width:40px;height:40px;border-radius:50%;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;transition:background var(--transition);flex-shrink:0}
+    .cal-nav-btn{background:var(--green-deep);color:#fff;border:none;width:44px;height:44px;border-radius:50%;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;transition:background var(--transition);flex-shrink:0}
     .cal-nav-btn:hover{background:var(--green-mid)}
     .cal-month-label{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:700;color:var(--green-deep);text-align:center;flex:1}
     .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;background:var(--green-deep);border-radius:var(--radius);overflow:hidden}
@@ -565,6 +565,14 @@ var HIJRI_MONTHS_EN = ['Muharram','Safar','Rabi\' al-Awwal','Rabi\' al-Thani','J
 var HIJRI_MONTHS_AR = ['مُحَرَّم','صَفَر','رَبِيعُ الأَوَّل','رَبِيعُ الثَّانِي','جُمَادَى الأُولَى','جُمَادَى الثَّانِيَة','رَجَب','شَعْبَان','رَمَضَان','شَوَّال','ذُو القَعْدَة','ذُو الحِجَّة'];
 var HIJRI_MONTHS_TE = ['ముహర్రమ్','సఫర్','రబీ అల్-అవ్వల్','రబీ అల్-థానీ','జుమాదా అల్-అవ్వల్','జుమాదా అల్-థానియా','రజబ్','షాబాన్','రమదాన్','షవ్వాల్','ధుల్ ఖాదా','ధుల్ హిజ్జా'];
 
+function hijriMonthName(month, lang) {
+  var index = Number(month) - 1;
+  if (!Number.isFinite(index) || index < 0 || index >= 12) return '';
+  if (lang === 'ar') return HIJRI_MONTHS_AR[index] || HIJRI_MONTHS_EN[index] || '';
+  if (lang === 'te') return HIJRI_MONTHS_TE[index] || HIJRI_MONTHS_EN[index] || '';
+  return HIJRI_MONTHS_EN[index] || '';
+}
+
 var MONTHS_DATA = [
   {no:1,  ar:'مُحَرَّم',      tr:'Muharram',        en:'Month of Sacredness',          te:'పవిత్రత నెల',        sacred:true},
   {no:2,  ar:'صَفَر',         tr:'Safar',            en:'Month of Emptiness / Travel',  te:'ప్రయాణం నెల',        sacred:false},
@@ -657,9 +665,9 @@ function renderCurrentDate() {
   var now = new Date();
   var d = now.getDate(), m = now.getMonth()+1, y = now.getFullYear();
   var h = gregToHijri(d, m, y);
-  var monthEnAr = HIJRI_MONTHS_AR[h.month-1];
-  var monthEn   = HIJRI_MONTHS_EN[h.month-1];
-  var monthTe   = HIJRI_MONTHS_TE[h.month-1];
+  var monthEnAr = hijriMonthName(h.month, 'ar');
+  var monthEn   = hijriMonthName(h.month, 'en');
+  var monthTe   = hijriMonthName(h.month, 'te');
   var monthLabel = currentLang === 'te' ? monthTe : monthEn;
 
   document.getElementById('hijri-today').textContent = h.day + ' ' + monthLabel + ' ' + h.year + ' AH';
@@ -724,10 +732,11 @@ function renderCalendar() {
     var hasEvent = checkEventOnGreg(d, calMonth, calYear);
     var cls = 'cal-day' + (isToday?' today':'') + (hasEvent?' has-event':'');
     var eventDot = hasEvent ? '<div class="cal-event-dot" aria-hidden="true"></div>' : '';
-    var hiLabel = h.day + ' ' + (currentLang==='te' ? HIJRI_MONTHS_TE[h.month-1] : HIJRI_MONTHS_EN[h.month-1]);
+    var monthLabel = hijriMonthName(h.month, currentLang);
+    var hiLabel = h.day + (monthLabel ? ' ' + monthLabel : '');
     html += '<div class="'+cls+'" role="gridcell" aria-label="'+d+' '+GREG_MONTHS[calMonth-1]+', '+hiLabel+'">';
     html += '<span class="greg-date">'+d+'</span>';
-    html += '<div class="hijri-date">'+h.day+' '+(currentLang==='te' ? HIJRI_MONTHS_TE[h.month-1].substring(0,6) : HIJRI_MONTHS_EN[h.month-1].substring(0,6))+'</div>';
+    html += '<div class="hijri-date">'+h.day+(monthLabel ? ' '+monthLabel.substring(0,6) : '')+'</div>';
     html += eventDot + '</div>';
   }
 
@@ -758,8 +767,8 @@ function convertG2H() {
   var y = parseInt(document.getElementById('g2h-year').value);
   if (!d || !m || !y) return;
   var h = gregToHijri(d, m, y);
-  var ml = currentLang==='te' ? HIJRI_MONTHS_TE[h.month-1] : HIJRI_MONTHS_EN[h.month-1];
-  var mar = HIJRI_MONTHS_AR[h.month-1];
+  var ml = hijriMonthName(h.month, currentLang);
+  var mar = hijriMonthName(h.month, 'ar');
   document.getElementById('g2h-out').textContent = h.day + ' ' + ml + ' ' + h.year + ' AH';
   document.getElementById('g2h-out-ar').textContent = h.day + ' ' + mar + ' ' + h.year + ' هـ';
 }

@@ -391,6 +391,8 @@
 
   /* ── Phase 1: Mobile Navigation App Shell Injection ── */
   (function initAppShell() {
+    var shellMqlBound = false;
+
     function isPortalPath(p) {
       return /knowledge-center\/[^\/]+\/?(index\.html)?$/.test(p);
     }
@@ -412,16 +414,32 @@
       var p = (location.pathname || '').replace(/\\/g, '/').toLowerCase();
       var isHome = p === '/' || (/\/index\.html$/.test(p) && p.indexOf('knowledge-center/') < 0);
       var mobileMql = window.matchMedia ? window.matchMedia('(max-width: 768px)') : null;
+      function isMobileShell() {
+        return !mobileMql || mobileMql.matches;
+      }
+      function removeInjectedShell() {
+        ['bottom-nav', 'nav-overlay', 'nav-drawer'].forEach(function (id) {
+          var el = document.getElementById(id);
+          if (el) el.remove();
+        });
+      }
       function syncShellClasses() {
-        var active = !mobileMql || mobileMql.matches;
+        var active = isMobileShell();
         document.body.classList.toggle('if-app-shell', active);
         document.body.classList.toggle('if-home-app', active && isHome);
+        if (!active) removeInjectedShell();
       }
       syncShellClasses();
-      if (mobileMql) {
-        if (mobileMql.addEventListener) mobileMql.addEventListener('change', syncShellClasses);
-        else if (mobileMql.addListener) mobileMql.addListener(syncShellClasses);
+      if (mobileMql && !shellMqlBound) {
+        var onShellChange = function () {
+          syncShellClasses();
+          if (isMobileShell()) setup();
+        };
+        if (mobileMql.addEventListener) mobileMql.addEventListener('change', onShellChange);
+        else if (mobileMql.addListener) mobileMql.addListener(onShellChange);
+        shellMqlBound = true;
       }
+      if (!isMobileShell()) return;
       if (document.getElementById('bottom-nav')) return;
       var isGuidance = p.indexOf('student-guidance.html') >= 0;
       var isKnowledge = (p.indexOf('islamic-knowledge.html') >= 0 || p.indexOf('knowledge-center/') >= 0) && !isHome;
@@ -439,27 +457,27 @@
         + '    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />'
         + '    <polyline points="9 22 9 12 15 12 15 22" />'
         + '  </svg>'
-        + '  <span class="bn-label">' + (te ? 'హోమ్' : 'Home') + '</span>'
+        + '  <span class="bn-label" data-bn-label="home">' + (te ? 'హోమ్' : 'Home') + '</span>'
         + '</a>'
         + '<a href="' + base + 'islamic-knowledge.html" class="bn-item' + (isKnowledge ? ' bn-active' : '') + '" aria-current="' + (isKnowledge ? 'page' : 'false') + '">'
         + '  <svg class="bn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
         + '    <path d="M12 2C9 3 6 5.5 6 9h12c0-3.5-3-6-6-6z"/><rect x="4" y="9" width="16" height="2" rx="1"/><path d="M6 11v8h4v-5h4v5h4v-8"/><path d="M2 21h20"/>'
         + '  </svg>'
-        + '  <span class="bn-label">' + (te ? 'నాలెడ్జ్' : 'Knowledge') + '</span>'
+        + '  <span class="bn-label" data-bn-label="knowledge">' + (te ? 'నాలెడ్జ్' : 'Knowledge') + '</span>'
         + '</a>'
         + '<a href="' + base + 'student-guidance.html" class="bn-item' + (isGuidance ? ' bn-active' : '') + '" aria-current="' + (isGuidance ? 'page' : 'false') + '">'
         + '  <svg class="bn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
         + '    <path d="M22 10L12 5 2 10l10 5 10-5z" />'
         + '    <path d="M6 12v5c0 1 2.5 2.5 6 2.5s6-1.5 6-2.5v-5" />'
         + '  </svg>'
-        + '  <span class="bn-label">' + (te ? 'మార్గదర్శనం' : 'Guidance') + '</span>'
+        + '  <span class="bn-label" data-bn-label="guidance">' + (te ? 'మార్గదర్శనం' : 'Guidance') + '</span>'
         + '</a>'
         + '<button type="button" class="bn-item" id="bn-profile-tab" aria-label="Open learner profile">'
         + '  <svg class="bn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
         + '    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />'
         + '    <circle cx="12" cy="7" r="4" />'
         + '  </svg>'
-        + '  <span class="bn-label">' + (te ? 'ప్రొఫైల్' : 'Profile') + '</span>'
+        + '  <span class="bn-label" data-bn-label="profile">' + (te ? 'ప్రొఫైల్' : 'Profile') + '</span>'
         + '</button>'
         + '<button type="button" class="bn-item" id="bn-more" aria-haspopup="true" aria-expanded="false" aria-controls="nav-drawer">'
         + '  <svg class="bn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
@@ -467,7 +485,7 @@
         + '    <circle cx="19" cy="12" r="1" />'
         + '    <circle cx="5" cy="12" r="1" />'
         + '  </svg>'
-        + '  <span class="bn-label">' + (te ? 'మరిన్ని' : 'More') + '</span>'
+        + '  <span class="bn-label" data-bn-label="more">' + (te ? 'మరిన్ని' : 'More') + '</span>'
         + '</button>';
       document.body.appendChild(nav);
 
@@ -552,14 +570,17 @@
       // Auto-update bottom nav texts when language changes
       new MutationObserver(function () {
         var isTe = getLang() === 'te';
-        var labels = document.querySelectorAll('.bottom-nav .bn-label');
-        if (labels.length >= 4) {
-          labels[0].textContent = isTe ? 'హోమ్' : 'Home';
-          labels[1].textContent = isTe ? 'నాలెడ్జ్' : 'Knowledge';
-          labels[2].textContent = isTe ? 'మార్గదర్శనం' : 'Guidance';
-          labels[3].textContent = isTe ? 'ప్రొఫైల్' : 'Profile';
-          if (labels[4]) labels[4].textContent = isTe ? 'మరిన్ని' : 'More';
-        }
+        var copy = {
+          home: { te: 'హోమ్', en: 'Home' },
+          knowledge: { te: 'నాలెడ్జ్', en: 'Knowledge' },
+          guidance: { te: 'మార్గదర్శనం', en: 'Guidance' },
+          profile: { te: 'ప్రొఫైల్', en: 'Profile' },
+          more: { te: 'మరిన్ని', en: 'More' }
+        };
+        document.querySelectorAll('.bottom-nav .bn-label[data-bn-label]').forEach(function (label) {
+          var key = label.getAttribute('data-bn-label');
+          if (copy[key]) label.textContent = isTe ? copy[key].te : copy[key].en;
+        });
         var db = document.querySelector('.nav-drawer-brand');
         if (db) db.textContent = isTe ? 'ఇస్లామిక్ ఫ్రంట్' : 'Islamic Front';
       }).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
@@ -574,6 +595,8 @@
 
   /* ── Phase 3: Mobile app-screen containment for long hub/portal pages ── */
   (function initAppScreens() {
+    var screenMqlBound = false;
+
     var DEFAULT_TABS = [
       { id: 'overview', te: 'అవలోకనం', en: 'Overview' },
       { id: 'learn', te: 'అభ్యాసం', en: 'Learn' },
@@ -759,14 +782,26 @@
         document.body.classList.toggle('if-kc-app', active && isKnowledgeCenterPage());
         document.body.classList.toggle('if-sg-app', active && isStudentGuidancePage());
         document.body.classList.toggle('if-learning-app', active && isLearningPortalPage());
+        if (!active) {
+          ['if-app-tabs', 'if-learning-dashboard'].forEach(function (id) {
+            var el = document.getElementById(id);
+            if (el) el.remove();
+          });
+        }
         if (active && document.querySelector('.if-screen-active')) document.body.classList.add('if-app-screen-ready');
         if (!active) document.body.classList.remove('if-app-screen-ready');
       }
       syncAppScreenClasses();
-      if (mobileMql) {
-        if (mobileMql.addEventListener) mobileMql.addEventListener('change', syncAppScreenClasses);
-        else if (mobileMql.addListener) mobileMql.addListener(syncAppScreenClasses);
+      if (mobileMql && !screenMqlBound) {
+        var onScreenChange = function () {
+          syncAppScreenClasses();
+          if (mobileAppActive()) setup();
+        };
+        if (mobileMql.addEventListener) mobileMql.addEventListener('change', onScreenChange);
+        else if (mobileMql.addListener) mobileMql.addListener(onScreenChange);
+        screenMqlBound = true;
       }
+      if (!mobileAppActive()) return;
       var main = document.querySelector('main') || document.body;
       var hero = (isStudentGuidancePage() ? document.querySelector('.sg-hero') : null) || main.querySelector('header[id], .al-hero, .lu-hero, .kc-hero, .hero');
       if (!hero || document.getElementById('if-app-tabs')) return;

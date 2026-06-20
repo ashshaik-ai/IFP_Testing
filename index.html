@@ -8289,7 +8289,7 @@
       });
       /* System B: data-te / data-en used on portal desc elements */
       document.querySelectorAll('[data-te][data-en]').forEach(el => {
-        el.textContent = l === 'en' ? el.dataset.en : el.dataset.te;
+        el.innerHTML = l === 'en' ? el.dataset.en : el.dataset.te;
       });
       document.getElementById('html-root').lang = l;
       document.title = l === 'te' ? 'ఇస్లామిక్ ఫ్రంట్ – మంగళగిరి' : 'Islamic Front – Mangalagiri';
@@ -8734,7 +8734,7 @@
           entries.forEach(function (e) {
             if (e.isIntersecting) { runCounter(e.target); countIO.unobserve(e.target); }
           });
-        }, { threshold: 0.4 });
+        }, { threshold: 0.1 });
         counters.forEach(function (el) { countIO.observe(el); });
       }
     });

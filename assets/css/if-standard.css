@@ -501,6 +501,14 @@ html { scrollbar-color: rgba(13,59,30,.35) transparent; }
 }
 .nav-home span{ display: inline !important; }
 
+.ic-nav-brand, .hu-nav-brand, .sp-nav-brand, .wg-nav-brand,
+.ic-nav-back, .hu-nav-back, .sp-nav-back, .wg-nav-back,
+.ic-lang-btn, .hu-lang-btn, .sp-lang-btn, .wg-lang-btn {
+  min-height: 44px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+}
+
 /* Homepage: manifesto progress labels — raise from 10px → 12px */
 .hmfp-label{ font-size: 12px !important; }
 .hmfp-legend .hmfp-li{ font-size: 12px !important; }
@@ -2034,6 +2042,35 @@ a {
   align-items: center !important;
 }
 
+@media (min-width: 769px) and (max-width: 1280px) {
+  .nav-right,
+  .sg-nav-links {
+    gap: 6px !important;
+  }
+
+  .nav-right .nav-home,
+  .sg-nav-links a {
+    padding-inline: 9px !important;
+    font-size: 12px !important;
+  }
+
+  .nav-brand,
+  .sg-brand {
+    max-width: min(52vw, 520px) !important;
+  }
+}
+
+.sg-stream-pill:hover {
+  background: rgba(13,59,30,0.08) !important;
+  border-color: rgba(200,146,42,0.42) !important;
+  color: var(--green-deep,#0d3b1e) !important;
+}
+
+.nm-fav {
+  min-width: 44px !important;
+  min-height: 44px !important;
+}
+
 @media (min-width: 769px) {
   #ifsr-fab {
     display: none !important;
@@ -2041,7 +2078,7 @@ a {
 }
 
 /* ── Phase 1 Mobile UX Enhancements ── */
-.bn-item:active, .lang-btn:active, .why-card:active, .res-card:active, .learn-card:active, .lp-card:active, .ll:active, .ws-dot:active, .ws-btn:active, .nav-drawer-close:active, .why-icon:active, .cm-card:active {
+.bn-item:active, .lang-btn:active, .why-card:active, .res-card:active, .learn-card:active, .lp-card:active, .ll:active, .ws-dot:active, .ws-btn:active, .nav-drawer-close:active, .why-icon:active, .cm-card:active, .if-app-tab:active, .ifq-opt:active, .quiz-opt:active, .quiz-cat:active, .ch-item:active, .mz-card:active, .nm-fav:active, .if-learning-action:active, .if-kc-action:active {
   transform: scale(0.96) !important;
   filter: brightness(0.96) !important;
 }
@@ -2090,15 +2127,17 @@ a {
     padding-bottom: 0 !important;
   }
 
-  body.if-app-shell .bottom-nav,
-  body.if-app-shell .if-app-tabs,
-  body.if-app-shell .if-learning-dashboard,
-  body.if-app-shell .nav-overlay,
-  body.if-app-shell .nav-drawer {
+  .bottom-nav,
+  .if-app-tabs,
+  .if-learning-dashboard,
+  .if-kc-dashboard,
+  .if-sg-dashboard,
+  .nav-overlay,
+  .nav-drawer {
     display: none !important;
   }
 
-  body.if-app-screen-ready .if-app-screen {
+  .if-app-screen {
     display: block !important;
   }
 }
@@ -2519,7 +2558,7 @@ a {
   }
 
   body.if-learning-app .if-app-tabs {
-    top: 0 !important;
+    top: 68px !important;
   }
 
   body.if-learning-app .lu-hero {
@@ -2561,7 +2600,12 @@ a {
   body.if-app-shell nav:not(.bottom-nav) .sg-nav-links a.home,
   body.if-app-shell nav:not(.bottom-nav) .sg-nav-links a.kc,
   body.if-learning-app nav:not(.bottom-nav) .nav-right a.nav-back,
-  body.if-learning-app nav:not(.bottom-nav) .lu-nav-links a {
+  body.if-learning-app nav:not(.bottom-nav) .lu-nav-links a,
+  body.if-learning-app nav:not(.bottom-nav) .nav-back,
+  body.if-learning-app nav:not(.bottom-nav) .ic-nav-back,
+  body.if-learning-app nav:not(.bottom-nav) .hu-nav-back,
+  body.if-learning-app nav:not(.bottom-nav) .sp-nav-back,
+  body.if-learning-app nav:not(.bottom-nav) .wg-nav-back {
     display: none !important;
   }
 
@@ -2597,7 +2641,7 @@ a {
   /* App screen tabs: replace long mobile scroll stacks with contained screens. */
   .if-app-tabs {
     position: sticky !important;
-    top: 0 !important;
+    top: 68px !important;
     z-index: 700 !important;
     display: flex !important;
     gap: 8px !important;
@@ -2612,6 +2656,10 @@ a {
   }
 
   .if-app-tabs::-webkit-scrollbar { display: none !important; }
+
+  body.nav-hidden .if-app-tabs {
+    top: 0 !important;
+  }
 
   .if-app-tab {
     min-width: 44px !important;
@@ -2818,7 +2866,7 @@ a {
   }
   
   /* Align all sticky items at top: 0 when header navbar is hidden */
-  .al-sticky, .kc-sticky, .lu-sticky, .tab-nav, .lesson-nav, .sg-tools, .hub-tabs {
+  .al-sticky, .kc-sticky, .lu-sticky, .tab-nav, .lesson-nav, .sg-tools, .hub-tabs, .if-app-tabs {
     transition: top 0.3s ease !important;
   }
   
@@ -2828,7 +2876,8 @@ a {
   body.nav-hidden .tab-nav,
   body.nav-hidden .lesson-nav,
   body.nav-hidden .sg-tools,
-  body.nav-hidden .hub-tabs {
+  body.nav-hidden .hub-tabs,
+  body.nav-hidden .if-app-tabs {
     top: 0 !important;
   }
 }
