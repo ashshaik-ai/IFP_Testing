@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="te" id="html-root">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ఇస్లామిక్ కేలండర్ & తేదీ మార్పిడి | Islamic Calendar & Date Converter | Islamic Front Mangalagiri</title>
+  <meta name="description" content="హిజ్రీ-గ్రెగోరియన్ తేదీ మార్పిడి, ఇస్లామిక్ నెలలు, రమదాన్ ఈద్ ముఖ్యమైన ఇస్లామిక్ ఘటనల కౌంట్‌డౌన్.">
+  <link rel="icon" href="../../assets/logo-emblem.png" type="image/png">
+  <meta name="theme-color" content="#0d3b1e">
+  <!-- OG -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="ఇస్లామిక్ కేలండర్ & తేదీ మార్పిడి | Islamic Calendar">
+  <meta property="og:description" content="హిజ్రీ-గ్రెగోరియన్ తేదీ మార్పిడి, ఇస్లామిక్ నెలలు, ముఖ్యమైన ఇస్లామిక్ ఘటనల కౌంట్‌డౌన్.">
+  <meta property="og:image" content="https://ashshaik-ai.github.io/IFP_Testing/assets/logo.png">
+  <meta property="og:url" content="https://ashshaik-ai.github.io/IFP_Testing/knowledge-center/islamic-calendar/">
+  <meta property="og:site_name" content="Islamic Front Mangalagiri">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ఇస్లామిక్ కేలండర్ & తేదీ మార్పిడి">
+  <meta name="twitter:description" content="హిజ్రీ-గ్రెగోరియన్ తేదీ మార్పిడి, ఇస్లామిక్ నెలలు, ముఖ్యమైన ఇస్లామిక్ ఘటనల కౌంట్‌డౌన్.">
+  <meta name="twitter:image" content="https://ashshaik-ai.github.io/IFP_Testing/assets/logo.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LearningResource",
+    "name": "Islamic Calendar & Date Converter",
+    "description": "Hijri-Gregorian date conversion, Islamic months, and countdown to major Islamic events.",
+    "provider": {"@type": "Organization", "name": "Islamic Front Mangalagiri"},
+    "url": "https://ashshaik-ai.github.io/IFP_Testing/knowledge-center/islamic-calendar/",
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://ashshaik-ai.github.io/IFP_Testing/"},
+        {"@type": "ListItem", "position": 2, "name": "Knowledge Center", "item": "https://ashshaik-ai.github.io/IFP_Testing/islamic-knowledge.html"},
+        {"@type": "ListItem", "position": 3, "name": "Islamic Calendar", "item": "https://ashshaik-ai.github.io/IFP_Testing/knowledge-center/islamic-calendar/"}
+      ]
+    }
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@300;400;500;600&family=Noto+Sans+Telugu:wght@300;400;500;600&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/if-standard.css">
+  <style>
+    :root {
+      --green-deep:#0d3b1e;--green-mid:#1a5c30;--green-light:#e8f5ee;
+      --gold:#c8922a;--gold-light:#e8b84b;--gold-pale:#fdf6e3;
+      --cream:#fdfaf5;--ink:#1a1a2e;--ink-muted:#4a4a6a;
+      --radius:12px;--radius-lg:20px;--shadow:0 4px 24px rgba(13,59,30,.10);
+      --shadow-lg:0 12px 48px rgba(13,59,30,.18);
+      --transition:0.22s cubic-bezier(.4,0,.2,1);
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'DM Sans','Noto Sans Telugu',sans-serif;background:var(--cream);color:var(--ink);overflow-x:hidden}
+
+    /* ── NAV ── */
+    .ic-nav{position:fixed;top:0;left:0;right:0;height:68px;background:rgba(13,59,30,.97);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);display:flex;align-items:center;padding:0 20px;gap:16px;z-index:1000;box-shadow:0 2px 16px rgba(0,0,0,.18)}
+    .ic-nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+    .ic-nav-brand img{width:36px;height:36px;border-radius:50%;object-fit:cover}
+    .ic-nav-brand span{color:#fff;font-weight:600;font-size:.95rem;font-family:'Playfair Display',serif}
+    .ic-nav-back{margin-left:auto;color:rgba(255,255,255,.85);text-decoration:none;font-size:.85rem;display:flex;align-items:center;gap:6px;padding:6px 12px;border-radius:8px;transition:background var(--transition)}
+    .ic-nav-back:hover{background:rgba(255,255,255,.12)}
+    .ic-nav-back svg{width:16px;height:16px}
+    .ic-lang-btn{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#fff;padding:6px 14px;border-radius:20px;font-size:.8rem;cursor:pointer;transition:background var(--transition);font-family:inherit}
+    .ic-lang-btn:hover{background:rgba(255,255,255,.22)}
+
+    /* ── STICKY SUB-NAV ── */
+    .al-sticky{position:sticky;top:68px;z-index:900;background:rgba(13,59,30,.96);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid rgba(200,146,42,.25);overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+    .al-sticky::-webkit-scrollbar{display:none}
+    .al-sticky-inner{display:flex;gap:0;padding:0 12px;min-width:max-content}
+    .al-sticky a{color:rgba(255,255,255,.72);text-decoration:none;font-size:.8rem;font-weight:500;padding:12px 14px;white-space:nowrap;border-bottom:2px solid transparent;transition:color var(--transition),border-color var(--transition);min-height:44px;display:inline-flex;align-items:center}
+    .al-sticky a:hover,.al-sticky a.spy-active{color:#fff;border-bottom-color:var(--gold)}
+    .al-sticky a[aria-current="true"]{color:var(--gold-light)}
+
+    /* ── HERO ── */
+    .al-hero{background:linear-gradient(135deg,var(--green-deep) 0%,#1a4a2a 60%,#0a2e14 100%);padding:130px 20px 60px;text-align:center;position:relative;overflow:hidden}
+    .al-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 20%,rgba(200,146,42,.12),transparent 60%),radial-gradient(ellipse at 70% 80%,rgba(26,92,48,.4),transparent 50%);pointer-events:none}
+    .al-breadcrumb{font-size:.75rem;color:rgba(255,255,255,.55);margin-bottom:14px;display:flex;align-items:center;justify-content:center;gap:6px}
+    .al-breadcrumb a{color:rgba(255,255,255,.65);text-decoration:none}
+    .al-breadcrumb a:hover{color:var(--gold-light)}
+    .al-phase{display:inline-block;background:rgba(200,146,42,.18);border:1px solid rgba(200,146,42,.45);color:var(--gold-light);font-size:.7rem;font-weight:600;padding:4px 14px;border-radius:20px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:18px}
+    .al-hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.9rem,5vw,3.2rem);font-weight:700;color:#fff;line-height:1.15;margin-bottom:14px}
+    .al-hero-lead{font-size:clamp(.95rem,2vw,1.15rem);color:rgba(255,255,255,.78);max-width:580px;margin:0 auto 28px;line-height:1.65}
+    .al-hero-display{font-family:'Amiri',serif;font-size:clamp(2.4rem,8vw,5rem);color:rgba(200,146,42,.85);line-height:1.1;margin:12px 0 0;direction:rtl;unicode-bidi:bidi-override}
+    .al-cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:20px}
+    .al-cta-btn{padding:11px 26px;border-radius:26px;font-size:.9rem;font-weight:600;cursor:pointer;transition:transform var(--transition),box-shadow var(--transition);text-decoration:none;border:none;font-family:inherit}
+    .al-cta-btn.primary{background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--green-deep)}
+    .al-cta-btn.primary:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(200,146,42,.45)}
+    .al-cta-btn.outline{background:transparent;border:2px solid rgba(255,255,255,.4);color:#fff}
+    .al-cta-btn.outline:hover{background:rgba(255,255,255,.1);transform:translateY(-2px)}
+    .al-hero-stats{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;margin-top:24px}
+    .al-stat{text-align:center}
+    .al-stat-n{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;color:var(--gold-light)}
+    .al-stat-l{font-size:.72rem;color:rgba(255,255,255,.58);text-transform:uppercase;letter-spacing:.06em}
+
+    /* ── SECTION BASE ── */
+    section{padding:56px 20px}
+    .section-inner{max-width:1100px;margin:0 auto}
+    .section-title{font-family:'Playfair Display',serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:700;color:var(--green-deep);margin-bottom:8px}
+    .section-sub{color:var(--ink-muted);font-size:.95rem;margin-bottom:36px;line-height:1.6}
+    .gold-line{width:48px;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold-light));border-radius:2px;margin:0 0 28px}
+
+    /* ── CURRENT DATE CARD ── */
+    #today-date{background:linear-gradient(135deg,var(--green-deep),var(--green-mid));padding:48px 20px}
+    .date-hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:700px;margin:0 auto}
+    @media(max-width:560px){.date-hero-grid{grid-template-columns:1fr}}
+    .date-card{background:rgba(255,255,255,.08);border:1px solid rgba(200,146,42,.25);border-radius:var(--radius-lg);padding:28px 24px;text-align:center;color:#fff}
+    .date-card-label{font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.55);margin-bottom:8px}
+    .date-card-main{font-family:'Playfair Display',serif;font-size:clamp(1.3rem,4vw,2rem);font-weight:700;color:var(--gold-light);line-height:1.25;margin-bottom:6px}
+    .date-card-sub{font-size:.85rem;color:rgba(255,255,255,.7)}
+    .date-card.hijri-card .date-card-ar{font-family:'Amiri',serif;font-size:1.6rem;color:rgba(200,146,42,.9);direction:rtl;margin-top:6px}
+    #live-clock{font-size:.8rem;color:rgba(255,255,255,.5);text-align:center;margin-top:16px;max-width:700px;margin-left:auto;margin-right:auto}
+
+    /* ── CALENDAR SECTION ── */
+    #monthly-calendar{background:#fff}
+    .cal-controls{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;gap:12px;flex-wrap:wrap}
+    .cal-nav-btn{background:var(--green-deep);color:#fff;border:none;width:40px;height:40px;border-radius:50%;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;transition:background var(--transition);flex-shrink:0}
+    .cal-nav-btn:hover{background:var(--green-mid)}
+    .cal-month-label{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:700;color:var(--green-deep);text-align:center;flex:1}
+    .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;background:var(--green-deep);border-radius:var(--radius);overflow:hidden}
+    .cal-grid .day-hdr{background:var(--green-deep);color:rgba(255,255,255,.7);font-size:.7rem;font-weight:600;text-align:center;padding:10px 4px;text-transform:uppercase;letter-spacing:.05em}
+    .cal-day{background:#fff;min-height:68px;padding:6px 8px;position:relative;cursor:default;transition:background var(--transition)}
+    .cal-day.today{background:var(--gold-pale);border:2px solid var(--gold)}
+    .cal-day.other-month{background:#f9f9f9}
+    .cal-day.other-month .greg-date{color:#ccc}
+    .cal-day.has-event{cursor:pointer}
+    .cal-day.has-event:hover{background:var(--green-light)}
+    .greg-date{font-size:.95rem;font-weight:600;color:var(--ink);line-height:1}
+    .hijri-date{font-size:.68rem;color:var(--ink-muted);margin-top:3px;line-height:1.2}
+    .cal-event-dot{width:6px;height:6px;background:var(--gold);border-radius:50%;position:absolute;bottom:6px;right:8px}
+    .cal-legend{display:flex;gap:16px;flex-wrap:wrap;margin-top:16px;font-size:.8rem;color:var(--ink-muted)}
+    .cal-legend-item{display:flex;align-items:center;gap:6px}
+    .cal-legend-dot{width:10px;height:10px;border-radius:50%;background:var(--gold)}
+    .cal-legend-today{width:10px;height:10px;border-radius:2px;background:var(--gold-pale);border:1.5px solid var(--gold)}
+
+    /* ── CONVERTER ── */
+    #converter{background:var(--green-light)}
+    .conv-grid{display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:center;max-width:720px;margin:0 auto}
+    @media(max-width:600px){.conv-grid{grid-template-columns:1fr;text-align:center}}
+    .conv-box{background:#fff;border:1.5px solid rgba(13,59,30,.12);border-radius:var(--radius);padding:24px 20px}
+    .conv-box label{display:block;font-size:.78rem;font-weight:600;color:var(--green-deep);text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px}
+    .conv-box input,.conv-box select{width:100%;border:1.5px solid rgba(13,59,30,.18);border-radius:8px;padding:10px 12px;font-size:.95rem;font-family:inherit;color:var(--ink);background:#fff;outline:none;transition:border-color var(--transition)}
+    .conv-box input:focus,.conv-box select:focus{border-color:var(--green-mid)}
+    .conv-row{display:flex;gap:8px;margin-top:10px}
+    .conv-row input,.conv-row select{flex:1}
+    .conv-arrow{font-size:1.8rem;color:var(--green-mid);font-weight:300;text-align:center}
+    .conv-btn{display:block;width:100%;margin-top:14px;padding:11px;background:var(--green-deep);color:#fff;border:none;border-radius:8px;font-size:.9rem;font-weight:600;cursor:pointer;font-family:inherit;transition:background var(--transition)}
+    .conv-btn:hover{background:var(--green-mid)}
+    .conv-result{margin-top:20px;background:#fff;border:1.5px solid var(--gold);border-radius:var(--radius);padding:20px;text-align:center;display:none}
+    .conv-result.visible{display:block}
+    .conv-result-main{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--green-deep);margin-bottom:6px}
+    .conv-result-sub{font-size:.85rem;color:var(--ink-muted)}
+    .conv-result-ar{font-family:'Amiri',serif;font-size:1.4rem;color:var(--gold);direction:rtl;margin-top:6px}
+
+    /* ── MONTHS ── */
+    #islamic-months{background:#fff}
+    .months-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
+    .month-card{background:var(--cream);border:1.5px solid rgba(13,59,30,.1);border-radius:var(--radius);padding:20px;transition:transform var(--transition),box-shadow var(--transition);cursor:default}
+    .month-card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+    .month-card.current-month{border-color:var(--gold);background:var(--gold-pale)}
+    .month-no{font-size:.72rem;font-weight:700;color:var(--ink-muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px}
+    .month-ar{font-family:'Amiri',serif;font-size:1.5rem;color:var(--green-deep);direction:rtl;margin-bottom:4px}
+    .month-en{font-weight:700;color:var(--green-deep);font-size:1rem;margin-bottom:2px}
+    .month-tr{font-size:.85rem;color:var(--ink-muted);margin-bottom:6px}
+    .month-mean{font-size:.78rem;color:var(--green-mid);font-weight:600}
+    .month-badge{display:inline-block;background:var(--green-deep);color:#fff;font-size:.65rem;padding:2px 8px;border-radius:10px;margin-top:6px}
+
+    /* ── EVENTS ── */
+    #islamic-events{background:linear-gradient(135deg,var(--green-deep),#0a2e14)}
+    #islamic-events .section-title,#islamic-events .section-sub{color:#fff}
+    #islamic-events .section-sub{color:rgba(255,255,255,.7)}
+    .events-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
+    .event-card{background:rgba(255,255,255,.07);border:1px solid rgba(200,146,42,.2);border-radius:var(--radius-lg);padding:24px 22px;transition:transform var(--transition),box-shadow var(--transition)}
+    .event-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.3)}
+    .event-icon{font-size:2rem;margin-bottom:12px}
+    .event-name-en{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--gold-light);margin-bottom:4px}
+    .event-name-te{font-size:.85rem;color:rgba(255,255,255,.65);margin-bottom:10px}
+    .event-desc{font-size:.82rem;color:rgba(255,255,255,.6);line-height:1.6;margin-bottom:14px}
+    .event-countdown{background:rgba(200,146,42,.15);border:1px solid rgba(200,146,42,.3);border-radius:8px;padding:10px 14px}
+    .event-countdown-label{font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.5);margin-bottom:4px}
+    .event-countdown-val{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--gold-light);display:flex;align-items:baseline;gap:6px}
+    .event-countdown-days{font-size:.75rem;color:rgba(255,255,255,.6)}
+    .event-date-hijri{font-size:.75rem;color:rgba(255,255,255,.5);margin-top:6px;font-style:italic}
+
+    /* ── MODULES / COMING ── */
+    #coming{background:var(--green-light)}
+    .coming-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px}
+    .coming-card{background:#fff;border:1.5px solid rgba(13,59,30,.1);border-radius:var(--radius);padding:18px;text-align:center;text-decoration:none;transition:transform var(--transition),box-shadow var(--transition);display:block}
+    .coming-card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+    .coming-card.here{border-color:var(--gold);background:var(--gold-pale);cursor:default;pointer-events:none}
+    .coming-icon{font-size:1.8rem;margin-bottom:8px}
+    .coming-title{font-weight:700;color:var(--green-deep);font-size:.9rem;margin-bottom:4px}
+    .coming-tag{font-size:.68rem;color:var(--ink-muted);text-transform:uppercase;letter-spacing:.07em}
+    .coming-tag.available{color:var(--green-mid);font-weight:600}
+    .coming-tag.here-tag{color:var(--gold);font-weight:700}
+
+    /* ── FOOTER ── */
+    .lu-footer{background:var(--green-deep);color:rgba(255,255,255,.65);text-align:center;padding:32px 20px;font-size:.82rem}
+    .lu-footer a{color:var(--gold-light);text-decoration:none}
+    .lu-footer a:hover{text-decoration:underline}
+
+    /* ── BTT ── */
+    #btt{position:fixed;bottom:24px;right:24px;width:44px;height:44px;background:var(--green-deep);border:2px solid var(--gold);border-radius:50%;color:#fff;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:800;transition:opacity var(--transition),transform var(--transition);box-shadow:var(--shadow)}
+    #btt.show{display:flex}
+    #btt:hover{transform:translateY(-3px)}
+
+    @media(max-width:700px){
+      section{padding:36px 16px}
+      .al-hero{padding:110px 16px 48px}
+      .conv-arrow{transform:rotate(90deg)}
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="ic-nav" aria-label="Main navigation">
+  <a href="../../index.html" class="ic-nav-brand">
+    <img src="../../assets/logo-emblem.png" alt="Islamic Front Mangalagiri">
+    <svg id="nav-svg-ic" width="36" height="36" viewBox="0 0 36 36" aria-hidden="true" style="display:none">
+      <circle cx="18" cy="18" r="17" fill="#1a5c30" stroke="#c8922a" stroke-width="1.5"/>
+      <text x="18" y="23" text-anchor="middle" font-family="serif" font-size="16" fill="#c8922a">📅</text>
+    </svg>
+    <span data-te="ఇస్లామిక్ ఫ్రంట్" data-en="Islamic Front">ఇస్లామిక్ ఫ్రంట్</span>
+  </a>
+  <a href="../../islamic-knowledge.html" class="ic-nav-back" aria-label="Back to Knowledge Center">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M10 12L6 8l4-4"/></svg>
+    <span data-te="జ్ఞాన కేంద్రం" data-en="Knowledge Center">జ్ఞాన కేంద్రం</span>
+  </a>
+  <button class="ic-lang-btn" id="lang-btn" onclick="toggleLang()" aria-label="Switch language">EN</button>
+</nav>
+
+<!-- STICKY SUB-NAV -->
+<nav class="al-sticky" id="al-sticky" aria-label="Page sections">
+  <div class="al-sticky-inner">
+    <a href="#today-date" data-spy="today-date" data-te="నేటి తేదీ" data-en="Today's Date">నేటి తేదీ</a>
+    <a href="#monthly-calendar" data-spy="monthly-calendar" data-te="నెల కేలండర్" data-en="Monthly Calendar">నెల కేలండర్</a>
+    <a href="#converter" data-spy="converter" data-te="తేదీ మార్పిడి" data-en="Date Converter">తేదీ మార్పిడి</a>
+    <a href="#islamic-months" data-spy="islamic-months" data-te="ఇస్లామిక్ నెలలు" data-en="Islamic Months">ఇస్లామిక్ నెలలు</a>
+    <a href="#islamic-events" data-spy="islamic-events" data-te="ముఖ్య ఘటనలు" data-en="Key Events">ముఖ్య ఘటనలు</a>
+    <a href="#coming" data-spy="coming" data-te="మరిన్ని పోర్టల్స్" data-en="More Portals">మరిన్ని పోర్టల్స్</a>
+  </div>
+</nav>
+
+<main id="main-content">
+
+<!-- HERO -->
+<header class="al-hero" id="home" role="banner">
+  <div class="al-breadcrumb" aria-label="Breadcrumb">
+    <a href="../../index.html" data-te="హోమ్" data-en="Home">హోమ్</a>
+    <span aria-hidden="true">›</span>
+    <a href="../../islamic-knowledge.html" data-te="జ్ఞాన కేంద్రం" data-en="Knowledge Center">జ్ఞాన కేంద్రం</a>
+    <span aria-hidden="true">›</span>
+    <span data-te="ఇస్లామిక్ కేలండర్" data-en="Islamic Calendar">ఇస్లామిక్ కేలండర్</span>
+  </div>
+  <div class="al-phase" data-te="హిజ్రీ కేలండర్" data-en="Hijri Calendar">హిజ్రీ కేలండర్</div>
+  <h1 data-te="ఇస్లామిక్ కేలండర్ & తేదీ మార్పిడి" data-en="Islamic Calendar & Date Converter">ఇస్లామిక్ కేలండర్ & తేదీ మార్పిడి</h1>
+  <p class="al-hero-lead" data-te="హిజ్రీ-గ్రెగోరియన్ తేదీ మార్పిడి, ఇస్లామిక్ నెలలు, రమదాన్-ఈద్ వంటి ముఖ్యమైన ఇస్లామిక్ ఘటనల కౌంట్‌డౌన్ అన్నీ ఒకేచోట." data-en="Hijri-Gregorian date conversion, Islamic months, and countdowns to Ramadan, Eid and all major Islamic events — all in one place.">హిజ్రీ-గ్రెగోరియన్ తేదీ మార్పిడి, ఇస్లామిక్ నెలలు, రమదాన్-ఈద్ వంటి ముఖ్యమైన ఇస్లామిక్ ఘటనల కౌంట్‌డౌన్ అన్నీ ఒకేచోట.</p>
+  <div class="al-cta-row">
+    <a href="#converter" class="al-cta-btn primary" data-te="తేదీ మార్చండి" data-en="Convert a Date">తేదీ మార్చండి</a>
+    <a href="#islamic-events" class="al-cta-btn outline" data-te="కౌంట్‌డౌన్ చూడండి" data-en="View Countdowns">కౌంట్‌డౌన్ చూడండి</a>
+  </div>
+  <div class="al-hero-stats">
+    <div class="al-stat"><div class="al-stat-n">12</div><div class="al-stat-l" data-te="ఇస్లామిక్ నెలలు" data-en="Islamic Months">ఇస్లామిక్ నెలలు</div></div>
+    <div class="al-stat"><div class="al-stat-n">8</div><div class="al-stat-l" data-te="ముఖ్య ఘటనలు" data-en="Key Events">ముఖ్య ఘటనలు</div></div>
+    <div class="al-stat"><div class="al-stat-n">354</div><div class="al-stat-l" data-te="హిజ్రీ రోజులు/సంవత్సరం" data-en="Hijri Days/Year">హిజ్రీ రోజులు/సంవత్సరం</div></div>
+  </div>
+  <div class="al-hero-display" lang="ar" dir="rtl" aria-label="السنة الهجرية">السنة الهجرية</div>
+</header>
+
+<!-- TODAY'S DATE -->
+<section id="today-date" aria-labelledby="today-title">
+  <div class="section-inner" style="text-align:center">
+    <h2 class="section-title" id="today-title" data-te="నేటి ఇస్లామిక్ తేదీ" data-en="Today's Islamic Date">నేటి ఇస్లామిక్ తేదీ</h2>
+    <div class="gold-line" style="margin:0 auto 28px"></div>
+    <div class="date-hero-grid">
+      <div class="date-card hijri-card">
+        <div class="date-card-label" data-te="హిజ్రీ తేదీ" data-en="Hijri Date">హిజ్రీ తేదీ</div>
+        <div class="date-card-main" id="hijri-today">—</div>
+        <div class="date-card-ar" id="hijri-today-ar" lang="ar" dir="rtl" aria-label="Hijri date in Arabic">—</div>
+        <div class="date-card-sub" id="hijri-year-label">AH</div>
+      </div>
+      <div class="date-card">
+        <div class="date-card-label" data-te="గ్రెగోరియన్ తేదీ" data-en="Gregorian Date">గ్రెగోరియన్ తేదీ</div>
+        <div class="date-card-main" id="greg-today">—</div>
+        <div class="date-card-sub" id="greg-day-name">—</div>
+        <div class="date-card-sub" id="greg-year">CE</div>
+      </div>
+    </div>
+    <div id="live-clock" aria-live="polite" aria-atomic="true"></div>
+  </div>
+</section>
+
+<!-- MONTHLY CALENDAR -->
+<section id="monthly-calendar" aria-labelledby="cal-title">
+  <div class="section-inner">
+    <h2 class="section-title" id="cal-title" data-te="నెల కేలండర్" data-en="Monthly Calendar">నెల కేలండర్</h2>
+    <p class="section-sub" data-te="ప్రతి రోజు గ్రెగోరియన్ మరియు హిజ్రీ తేదీలు చూడండి." data-en="View both Gregorian and Hijri dates for every day of the month.">ప్రతి రోజు గ్రెగోరియన్ మరియు హిజ్రీ తేదీలు చూడండి.</p>
+    <div class="gold-line"></div>
+    <div class="cal-controls">
+      <button class="cal-nav-btn" id="cal-prev" onclick="changeMonth(-1)" aria-label="Previous month">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M10 12L6 8l4-4"/></svg>
+      </button>
+      <div class="cal-month-label" id="cal-month-label" aria-live="polite"></div>
+      <button class="cal-nav-btn" id="cal-next" onclick="changeMonth(1)" aria-label="Next month">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 4l4 4-4 4"/></svg>
+      </button>
+    </div>
+    <div class="cal-grid" id="cal-grid" role="grid" aria-label="Calendar">
+      <!-- Days injected by JS -->
+    </div>
+    <div class="cal-legend">
+      <div class="cal-legend-item"><div class="cal-legend-today"></div><span data-te="నేడు" data-en="Today">నేడు</span></div>
+      <div class="cal-legend-item"><div class="cal-legend-dot"></div><span data-te="ఇస్లామిక్ ఘటన" data-en="Islamic Event">ఇస్లామిక్ ఘటన</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONVERTER -->
+<section id="converter" aria-labelledby="conv-title">
+  <div class="section-inner">
+    <h2 class="section-title" id="conv-title" data-te="తేదీ మార్పిడి" data-en="Date Converter">తేదీ మార్పిడి</h2>
+    <p class="section-sub" data-te="హిజ్రీ ↔ గ్రెగోరియన్ తేదీలను ఇక్కడ మార్చుకోండి." data-en="Convert dates between Hijri and Gregorian calendars instantly.">హిజ్రీ ↔ గ్రెగోరియన్ తేదీలను ఇక్కడ మార్చుకోండి.</p>
+    <div class="gold-line"></div>
+
+    <!-- Gregorian → Hijri -->
+    <div style="margin-bottom:40px">
+      <h3 style="font-family:'Playfair Display',serif;color:var(--green-deep);margin-bottom:16px;font-size:1.1rem" data-te="గ్రెగోరియన్ → హిజ్రీ" data-en="Gregorian → Hijri">గ్రెగోరియన్ → హిజ్రీ</h3>
+      <div class="conv-grid">
+        <div class="conv-box">
+          <label for="g2h-day" data-te="రోజు" data-en="Day">రోజు</label>
+          <div class="conv-row">
+            <input type="number" id="g2h-day" min="1" max="31" placeholder="DD" aria-label="Day">
+            <select id="g2h-month" aria-label="Month">
+              <option value="1">January</option><option value="2">February</option><option value="3">March</option>
+              <option value="4">April</option><option value="5">May</option><option value="6">June</option>
+              <option value="7">July</option><option value="8">August</option><option value="9">September</option>
+              <option value="10">October</option><option value="11">November</option><option value="12">December</option>
+            </select>
+            <input type="number" id="g2h-year" min="622" max="2200" placeholder="YYYY" aria-label="Year">
+          </div>
+          <button class="conv-btn" onclick="convertG2H()" data-te="మార్చండి" data-en="Convert">మార్చండి</button>
+        </div>
+        <div class="conv-arrow" aria-hidden="true">→</div>
+        <div class="conv-box">
+          <div class="conv-result visible" id="g2h-result" aria-live="polite" aria-atomic="true">
+            <div class="conv-result-label" style="font-size:.75rem;color:var(--ink-muted);margin-bottom:6px" data-te="హిజ్రీ తేదీ" data-en="Hijri Date">హిజ్రీ తేదీ</div>
+            <div class="conv-result-main" id="g2h-out">—</div>
+            <div class="conv-result-ar" id="g2h-out-ar" lang="ar" dir="rtl">—</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hijri → Gregorian -->
+    <div>
+      <h3 style="font-family:'Playfair Display',serif;color:var(--green-deep);margin-bottom:16px;font-size:1.1rem" data-te="హిజ్రీ → గ్రెగోరియన్" data-en="Hijri → Gregorian">హిజ్రీ → గ్రెగోరియన్</h3>
+      <div class="conv-grid">
+        <div class="conv-box">
+          <label data-te="హిజ్రీ తేదీ" data-en="Hijri Date">హిజ్రీ తేదీ</label>
+          <div class="conv-row">
+            <input type="number" id="h2g-day" min="1" max="30" placeholder="DD" aria-label="Hijri Day">
+            <select id="h2g-month" aria-label="Hijri Month">
+              <option value="1">Muharram</option><option value="2">Safar</option><option value="3">Rabi al-Awwal</option>
+              <option value="4">Rabi al-Thani</option><option value="5">Jumada al-Awwal</option><option value="6">Jumada al-Thani</option>
+              <option value="7">Rajab</option><option value="8">Sha'ban</option><option value="9">Ramadan</option>
+              <option value="10">Shawwal</option><option value="11">Dhul Qa'dah</option><option value="12">Dhul Hijjah</option>
+            </select>
+            <input type="number" id="h2g-year" min="1" max="1600" placeholder="AH" aria-label="Hijri Year">
+          </div>
+          <button class="conv-btn" onclick="convertH2G()" data-te="మార్చండి" data-en="Convert">మార్చండి</button>
+        </div>
+        <div class="conv-arrow" aria-hidden="true">→</div>
+        <div class="conv-box">
+          <div class="conv-result visible" id="h2g-result" aria-live="polite" aria-atomic="true">
+            <div class="conv-result-label" style="font-size:.75rem;color:var(--ink-muted);margin-bottom:6px" data-te="గ్రెగోరియన్ తేదీ" data-en="Gregorian Date">గ్రెగోరియన్ తేదీ</div>
+            <div class="conv-result-main" id="h2g-out">—</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ISLAMIC MONTHS -->
+<section id="islamic-months" aria-labelledby="months-title">
+  <div class="section-inner">
+    <h2 class="section-title" id="months-title" data-te="ఇస్లామిక్ నెలలు" data-en="The 12 Islamic Months">ఇస్లామిక్ నెలలు</h2>
+    <p class="section-sub" data-te="హిజ్రీ కేలండర్‌లోని 12 నెలలు మరియు వాటి అర్థాలు." data-en="The 12 months of the Hijri calendar with their meanings and significance.">హిజ్రీ కేలండర్‌లోని 12 నెలలు మరియు వాటి అర్థాలు.</p>
+    <div class="gold-line"></div>
+    <div class="months-grid" id="months-grid" aria-label="Islamic months">
+      <!-- Rendered by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ISLAMIC EVENTS -->
+<section id="islamic-events" aria-labelledby="events-title">
+  <div class="section-inner">
+    <h2 class="section-title" id="events-title" data-te="ముఖ్యమైన ఇస్లామిక్ ఘటనలు" data-en="Key Islamic Events">ముఖ్యమైన ఇస్లామిక్ ఘటనలు</h2>
+    <p class="section-sub" data-te="రమదాన్, ఈద్ అల్-ఫిత్ర్, ఈద్ అల్-అద్హా మరియు ఇతర ముఖ్యమైన ఇస్లామిక్ ఘటనలకు కౌంట్‌డౌన్." data-en="Live countdowns to Ramadan, Eid al-Fitr, Eid al-Adha, and other major Islamic events.">రమదాన్, ఈద్ అల్-ఫిత్ర్, ఈద్ అల్-అద్హా మరియు ఇతర ముఖ్యమైన ఇస్లామిక్ ఘటనలకు కౌంట్‌డౌన్.</p>
+    <div class="gold-line"></div>
+    <div class="events-grid" id="events-grid" aria-label="Islamic events countdown">
+      <!-- Rendered by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- COMING PORTALS -->
+<section id="coming" aria-labelledby="coming-title">
+  <div class="section-inner">
+    <h2 class="section-title" id="coming-title" data-te="మరిన్ని నేర్చుకోండి" data-en="Explore More Portals">మరిన్ని నేర్చుకోండి</h2>
+    <p class="section-sub" data-te="ఇస్లామిక్ జ్ఞాన కేంద్రంలోని అన్ని పోర్టల్స్ అన్వేషించండి." data-en="Explore all portals in the Islamic Knowledge Center.">ఇస్లామిక్ జ్ఞాన కేంద్రంలోని అన్ని పోర్టల్స్ అన్వేషించండి.</p>
+    <div class="gold-line"></div>
+    <div class="coming-grid">
+      <div class="coming-card here" aria-current="page">
+        <div class="coming-icon">📅</div>
+        <div class="coming-title" data-te="ఇస్లామిక్ కేలండర్" data-en="Islamic Calendar">ఇస్లామిక్ కేలండర్</div>
+        <div class="coming-tag here-tag" data-te="మీరు ఇక్కడ ఉన్నారు" data-en="You Are Here">మీరు ఇక్కడ ఉన్నారు</div>
+      </div>
+      <a href="../names-of-allah/index.html" class="coming-card">
+        <div class="coming-icon">✨</div>
+        <div class="coming-title" data-te="అల్లాహ్ యొక్క 99 పేర్లు" data-en="99 Names of Allah">అల్లాహ్ యొక్క 99 పేర్లు</div>
+        <div class="coming-tag available" data-te="అందుబాటులో ఉంది" data-en="Available">అందుబాటులో ఉంది</div>
+      </a>
+      <a href="../hajj-umrah/index.html" class="coming-card">
+        <div class="coming-icon">🕋</div>
+        <div class="coming-title" data-te="హజ్ & ఉమ్రా గైడ్" data-en="Hajj & Umrah Guide">హజ్ & ఉమ్రా గైడ్</div>
+        <div class="coming-tag available" data-te="అందుబాటులో ఉంది" data-en="Available">అందుబాటులో ఉంది</div>
+      </a>
+      <a href="../special-prayers/index.html" class="coming-card">
+        <div class="coming-icon">🤲</div>
+        <div class="coming-title" data-te="ప్రత్యేక నమాజులు" data-en="Special Prayers">ప్రత్యేక నమాజులు</div>
+        <div class="coming-tag available" data-te="అందుబాటులో ఉంది" data-en="Available">అందుబాటులో ఉంది</div>
+      </a>
+      <a href="../womens-guidance/index.html" class="coming-card">
+        <div class="coming-icon">🌸</div>
+        <div class="coming-title" data-te="మహిళల ఇస్లామిక్ మార్గదర్శకత్వం" data-en="Women's Islamic Guidance">మహిళల ఇస్లామిక్ మార్గదర్శకత్వం</div>
+        <div class="coming-tag available" data-te="అందుబాటులో ఉంది" data-en="Available">అందుబాటులో ఉంది</div>
+      </a>
+      <a href="../learn-quran/index.html" class="coming-card">
+        <div class="coming-icon">📖</div>
+        <div class="coming-title" data-te="ఖురాన్ నేర్చుకోండి" data-en="Learn Quran">ఖురాన్ నేర్చుకోండి</div>
+        <div class="coming-tag available" data-te="అందుబాటులో ఉంది" data-en="Available">అందుబాటులో ఉంది</div>
+      </a>
+      <a href="../learn-salah/index.html" class="coming-card">
+        <div class="coming-icon">🕌</div>
+        <div class="coming-title" data-te="నమాజు నేర్చుకోండి" data-en="Learn Salah">నమాజు నేర్చుకోండి</div>
+        <div class="coming-tag available" data-te="అందుబాటులో ఉంది" data-en="Available">అందుబాటులో ఉంది</div>
+      </a>
+      <a href="../seerah/index.html" class="coming-card">
+        <div class="coming-icon">🌟</div>
+        <div class="coming-title" data-te="సీరా" data-en="Seerah">సీరా</div>
+        <div class="coming-tag available" data-te="అందుబాటులో ఉంది" data-en="Available">అందుబాటులో ఉంది</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="lu-footer">
+  <p data-te="ఇస్లామిక్ ఫ్రంట్ మంగళగిరి — సేవ, విద్య, విశ్వాసం." data-en="Islamic Front Mangalagiri — Service, Education, Faith.">ఇస్లామిక్ ఫ్రంట్ మంగళగిరి — సేవ, విద్య, విశ్వాసం.</p>
+  <p style="margin-top:8px"><a href="../../islamic-knowledge.html" data-te="జ్ఞాన కేంద్రానికి తిరిగి వెళ్ళండి" data-en="Back to Knowledge Center">జ్ఞాన కేంద్రానికి తిరిగి వెళ్ళండి</a></p>
+</footer>
+
+</main>
+
+<!-- BTT -->
+<button id="btt" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M10 15V5M5 10l5-5 5 5"/></svg>
+</button>
+
+<script>
+// ═══════════════════════════════════════════════
+// HIJRI / KUWAITI TABULAR CALENDAR ALGORITHM
+// ═══════════════════════════════════════════════
+// Based on the Kuwaiti/civil (tabular) Islamic calendar.
+// Leap years: 2,5,7,10,13,16,18,21,24,26,29 in each 30-year cycle.
+// Each year has 354 days (12 lunar months); leap years have 355.
+
+var HIJRI_EPOCH = 1948439.5; // Julian Day Number of 1 Muharram 1 AH
+
+function isHijriLeap(y) {
+  return [2,5,7,10,13,16,18,21,24,26,29].indexOf(((y-1)%30)+1) !== -1;
+}
+
+function hijriYearDays(y) { return isHijriLeap(y) ? 355 : 354; }
+
+// Gregorian date → Julian Day Number
+function gregToJD(day, month, year) {
+  var a = Math.floor((14 - month) / 12);
+  var y = year + 4800 - a;
+  var m = month + 12 * a - 3;
+  return day + Math.floor((153*m+2)/5) + 365*y + Math.floor(y/4) - Math.floor(y/100) + Math.floor(y/400) - 32045;
+}
+
+// Julian Day Number → Gregorian
+function jdToGreg(jd) {
+  var z = Math.floor(jd + 0.5);
+  var a = Math.floor((z - 1867216.25) / 36524.25);
+  a = z + 1 + a - Math.floor(a / 4);
+  var b = a + 1524;
+  var c = Math.floor((b - 122.1) / 365.25);
+  var d = Math.floor(365.25 * c);
+  var e = Math.floor((b - d) / 30.6001);
+  var day = b - d - Math.floor(30.6001 * e);
+  var month = e < 14 ? e - 1 : e - 13;
+  var year = month > 2 ? c - 4716 : c - 4715;
+  return { day: day, month: month, year: year };
+}
+
+// Julian Day Number → Hijri
+function jdToHijri(jd) {
+  jd = Math.floor(jd) + 0.5;
+  var z = jd - HIJRI_EPOCH;
+  var cyc = Math.floor(z / 10631);
+  z -= 10631 * cyc;
+  var j = Math.floor((z - 29) / 354.367);
+  // accumulate from year start
+  var year = 30 * cyc + j + 1;
+  var yearStart = j * 354 + Math.floor((j * 11 + 3) / 30);
+  var doy = Math.floor(z) - yearStart + 1;
+  var month = 0, day = 0, rem = doy;
+  var ML = [30,29,30,29,30,29,30,29,30,29,30, isHijriLeap(year)?30:29];
+  for (var m=0; m<12; m++) {
+    if (rem <= ML[m]) { month = m+1; day = rem; break; }
+    rem -= ML[m];
+  }
+  return { day: day, month: month, year: year };
+}
+
+// Hijri → Julian Day Number
+function hijriToJD(day, month, year) {
+  var y = year - 1;
+  var jd = HIJRI_EPOCH + 29.5*(month-1) + day - 1
+    + Math.floor(11*year*Math.floor((11+month)/12) > 0 ? 0 : 0); // simplified
+  // Accurate Kuwaiti algorithm:
+  jd = HIJRI_EPOCH
+    + (year - 1) * 354
+    + Math.floor((year * 11 + 3) / 30)
+    + Math.floor(29.5 * (month - 1))
+    + (month === 12 && isHijriLeap(year) ? 30 : Math.floor(29.5 * month) - Math.floor(29.5 * (month-1)))
+    + day - 1;
+  // simpler exact form:
+  jd = HIJRI_EPOCH
+    + (year - 1) * 354
+    + Math.floor(((11 * year) + 3) / 30)
+    + Math.floor(29.5 * (month - 1))
+    + day - 1;
+  return jd;
+}
+
+// Gregorian ↔ Hijri
+function gregToHijri(day, month, year) {
+  return jdToHijri(gregToJD(day, month, year));
+}
+function hijriToGreg(day, month, year) {
+  return jdToGreg(hijriToJD(day, month, year));
+}
+
+// ═══════════════════════════════════════════════
+// DATA
+// ═══════════════════════════════════════════════
+
+var HIJRI_MONTHS_EN = ['Muharram','Safar','Rabi\' al-Awwal','Rabi\' al-Thani','Jumada al-Awwal','Jumada al-Thani','Rajab','Sha\'ban','Ramadan','Shawwal','Dhul Qa\'dah','Dhul Hijjah'];
+var HIJRI_MONTHS_AR = ['مُحَرَّم','صَفَر','رَبِيعُ الأَوَّل','رَبِيعُ الثَّانِي','جُمَادَى الأُولَى','جُمَادَى الثَّانِيَة','رَجَب','شَعْبَان','رَمَضَان','شَوَّال','ذُو القَعْدَة','ذُو الحِجَّة'];
+var HIJRI_MONTHS_TE = ['ముహర్రమ్','సఫర్','రబీ అల్-అవ్వల్','రబీ అల్-థానీ','జుమాదా అల్-అవ్వల్','జుమాదా అల్-థానియా','రజబ్','షాబాన్','రమదాన్','షవ్వాల్','ధుల్ ఖాదా','ధుల్ హిజ్జా'];
+
+var MONTHS_DATA = [
+  {no:1,  ar:'مُحَرَّم',      tr:'Muharram',        en:'Month of Sacredness',          te:'పవిత్రత నెల',        sacred:true},
+  {no:2,  ar:'صَفَر',         tr:'Safar',            en:'Month of Emptiness / Travel',  te:'ప్రయాణం నెల',        sacred:false},
+  {no:3,  ar:'رَبِيعُ الأَوَّل', tr:'Rabi\' al-Awwal', en:'First Spring',               te:'మొదటి వసంతం',       sacred:false,note:'Birth of Prophet ﷺ'},
+  {no:4,  ar:'رَبِيعُ الثَّانِي',tr:'Rabi\' al-Thani', en:'Second Spring',              te:'రెండవ వసంతం',       sacred:false},
+  {no:5,  ar:'جُمَادَى الأُولَى', tr:'Jumada al-Awwal', en:'First Freeze',             te:'మొదటి చలి',         sacred:false},
+  {no:6,  ar:'جُمَادَى الثَّانِيَة',tr:'Jumada al-Thani',en:'Second Freeze',           te:'రెండవ చలి',         sacred:false},
+  {no:7,  ar:'رَجَب',          tr:'Rajab',            en:'Month of Reverence',           te:'గౌరవం నెల',         sacred:true,note:'Night Journey (Isra\' Mi\'raj)'},
+  {no:8,  ar:'شَعْبَان',       tr:'Sha\'ban',         en:'Month of Branching',           te:'శాఖలు నెల',         sacred:false,note:'Night of Bara\'ah'},
+  {no:9,  ar:'رَمَضَان',       tr:'Ramadan',          en:'Month of Fasting & Quran',     te:'రోజాల & ఖురాన్ నెల', sacred:false,note:'Laylatul Qadr, Fasting'},
+  {no:10, ar:'شَوَّال',        tr:'Shawwal',          en:'Month of Uplift',              te:'ఉత్థానం నెల',        sacred:false,note:'Eid al-Fitr (1 Shawwal)'},
+  {no:11, ar:'ذُو القَعْدَة',   tr:'Dhul Qa\'dah',    en:'Month of Rest',                te:'విశ్రాంతి నెల',      sacred:true},
+  {no:12, ar:'ذُو الحِجَّة',    tr:'Dhul Hijjah',     en:'Month of Hajj',                te:'హజ్ నెల',           sacred:true,note:'Eid al-Adha (10 Dhul Hijjah)'}
+];
+
+// Islamic events — approximate Hijri dates for 2025/2026 CE / 1446-1447 AH
+// We compute countdowns dynamically from today's date
+var EVENTS_DATA = [
+  {icon:'🌙', en:'Ramadan', te:'రమదాన్',
+    desc_en:'The holy month of fasting, Quran revelation, prayers, and spiritual reflection.',
+    desc_te:'రోజా, ఖురాన్, దుఆ మరియు ఆధ్యాత్మిక ఆత్మశోధన యొక్క పవిత్ర మాసం.',
+    hijri_day:1, hijri_month:9},
+  {icon:'🎉', en:'Eid al-Fitr', te:'ఈద్ అల్-ఫిత్ర్',
+    desc_en:'Festival of breaking the fast — celebrated on 1 Shawwal after Ramadan.',
+    desc_te:'రమదాన్ ముగిన్న తర్వాత షవ్వాల్ 1 న జరుపుకునే ఈద్.',
+    hijri_day:1, hijri_month:10},
+  {icon:'🕋', en:'Hajj Season', te:'హజ్ సీజన్',
+    desc_en:'Annual Islamic pilgrimage to Mecca — Dhul Hijjah 8–13.',
+    desc_te:'ధుల్ హిజ్జా 8–13 మధ్య మక్కాకు వార్షిక ఇస్లామిక్ తీర్థయాత్ర.',
+    hijri_day:8, hijri_month:12},
+  {icon:'🐄', en:'Eid al-Adha', te:'ఈద్ అల్-అద్హా',
+    desc_en:'Festival of Sacrifice — commemorating Prophet Ibrahim\'s ﷺ obedience to Allah.',
+    desc_te:'ఇబ్రాహీమ్ ﷺ యొక్క అల్లాహ్ పట్ల విధేయతను స్మరించే ఖుర్బాన్ పండుగ.',
+    hijri_day:10, hijri_month:12},
+  {icon:'🌒', en:'Islamic New Year', te:'ఇస్లామిక్ నూతన సంవత్సరం',
+    desc_en:'1 Muharram — beginning of the new Hijri year, marking the migration of Prophet ﷺ.',
+    desc_te:'ముహర్రమ్ 1 — హిజ్రీ నూతన సంవత్సరం; ప్రవక్త ﷺ హిజ్రత్ స్మరణ.',
+    hijri_day:1, hijri_month:1},
+  {icon:'💔', en:'Day of Ashura', te:'ఆషూరా రోజు',
+    desc_en:'10 Muharram — day of fasting commemorating Prophet Musa\'s ﷺ salvation.',
+    desc_te:'ముహర్రమ్ 10 — ముసా ﷺ విముక్తిని స్మరించే రోజా రోజు.',
+    hijri_day:10, hijri_month:1},
+  {icon:'✨', en:'Laylatul Qadr', te:'లైలతుల్ ఖద్ర్',
+    desc_en:'The Night of Power in Ramadan — better than 1,000 months. Sought in odd nights of the last 10.',
+    desc_te:'రమదాన్‌లోని 27వ రాత్రి — 1,000 నెలల కంటే శ్రేష్ఠమైన ఖద్ర్ రాత్రి.',
+    hijri_day:27, hijri_month:9},
+  {icon:'🌠', en:'Isra\' & Mi\'raj', te:'ఇస్రా & మిరాజ్',
+    desc_en:'Night Journey and Ascension of Prophet Muhammad ﷺ — 27 Rajab.',
+    desc_te:'ప్రవక్త ముహమ్మద్ ﷺ యొక్క రాత్రి ప్రయాణం మరియు ఆరోహణ — రజబ్ 27.',
+    hijri_day:27, hijri_month:7}
+];
+
+var GREG_MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+var DAYS_SHORT = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+
+// ═══════════════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════════════
+var calYear, calMonth; // Gregorian
+var currentLang = 'te';
+var today = new Date();
+
+// ═══════════════════════════════════════════════
+// LANGUAGE
+// ═══════════════════════════════════════════════
+function applyLang(l) {
+  currentLang = l;
+  document.getElementById('html-root').lang = l;
+  document.getElementById('lang-btn').textContent = l === 'te' ? 'EN' : 'TE';
+  document.querySelectorAll('[data-te]').forEach(function(el) {
+    el.innerHTML = l === 'te' ? el.getAttribute('data-te') : el.getAttribute('data-en');
+  });
+  // Re-render dynamic sections
+  renderCurrentDate();
+  renderCalendar();
+  renderMonths();
+  renderEvents();
+}
+
+function toggleLang() {
+  var l = currentLang === 'te' ? 'en' : 'te';
+  localStorage.setItem('if-lang', l);
+  applyLang(l);
+}
+
+// ═══════════════════════════════════════════════
+// CURRENT DATE
+// ═══════════════════════════════════════════════
+function renderCurrentDate() {
+  var now = new Date();
+  var d = now.getDate(), m = now.getMonth()+1, y = now.getFullYear();
+  var h = gregToHijri(d, m, y);
+  var monthEnAr = HIJRI_MONTHS_AR[h.month-1];
+  var monthEn   = HIJRI_MONTHS_EN[h.month-1];
+  var monthTe   = HIJRI_MONTHS_TE[h.month-1];
+  var monthLabel = currentLang === 'te' ? monthTe : monthEn;
+
+  document.getElementById('hijri-today').textContent = h.day + ' ' + monthLabel + ' ' + h.year + ' AH';
+  document.getElementById('hijri-today-ar').textContent = h.day + ' ' + monthEnAr + ' ' + h.year;
+  document.getElementById('hijri-year-label').textContent = currentLang === 'te' ? 'హిజ్రీ సంవత్సరం ' + h.year : 'Hijri Year ' + h.year;
+
+  var gregMonthLabel = GREG_MONTHS[m-1];
+  document.getElementById('greg-today').textContent = d + ' ' + gregMonthLabel + ' ' + y;
+  var dayNames_te = ['ఆదివారం','సోమవారం','మంగళవారం','బుధవారం','గురువారం','శుక్రవారం','శనివారం'];
+  var dayNames_en = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  document.getElementById('greg-day-name').textContent = currentLang === 'te' ? dayNames_te[now.getDay()] : dayNames_en[now.getDay()];
+  document.getElementById('greg-year').textContent = currentLang === 'te' ? 'క్రైస్తవ శకం ' + y : 'Common Era ' + y;
+}
+
+function updateClock() {
+  var now = new Date();
+  var h = now.getHours(), m = now.getMinutes(), s = now.getSeconds();
+  var ampm = h >= 12 ? 'PM' : 'AM';
+  h = h % 12 || 12;
+  var ts = (h < 10 ? '0'+h : h) + ':' + (m < 10 ? '0'+m : m) + ':' + (s < 10 ? '0'+s : s) + ' ' + ampm;
+  var el = document.getElementById('live-clock');
+  if (el) el.textContent = currentLang === 'te' ? 'ప్రస్తుత సమయం: ' + ts : 'Current Time: ' + ts;
+}
+
+// ═══════════════════════════════════════════════
+// CALENDAR
+// ═══════════════════════════════════════════════
+function changeMonth(delta) {
+  calMonth += delta;
+  if (calMonth > 12) { calMonth = 1; calYear++; }
+  if (calMonth < 1)  { calMonth = 12; calYear--; }
+  renderCalendar();
+}
+
+function renderCalendar() {
+  calYear  = calYear  || today.getFullYear();
+  calMonth = calMonth || today.getMonth()+1;
+  var grid = document.getElementById('cal-grid');
+  var label = document.getElementById('cal-month-label');
+  label.textContent = GREG_MONTHS[calMonth-1] + ' ' + calYear;
+
+  var daysInMonth = new Date(calYear, calMonth, 0).getDate();
+  var firstDay = new Date(calYear, calMonth-1, 1).getDay();
+  var prevMonthDays = new Date(calYear, calMonth-1, 0).getDate();
+
+  var html = DAYS_SHORT.map(function(d){ return '<div class="day-hdr" role="columnheader">'+d+'</div>'; }).join('');
+
+  var todayD = today.getDate(), todayM = today.getMonth()+1, todayY = today.getFullYear();
+
+  // prev month filler
+  for (var i = firstDay-1; i >= 0; i--) {
+    var pDay = prevMonthDays - i;
+    var pM = calMonth-1 || 12, pY = calMonth === 1 ? calYear-1 : calYear;
+    var ph = gregToHijri(pDay, pM, pY);
+    html += '<div class="cal-day other-month" role="gridcell" aria-label="'+pDay+' '+GREG_MONTHS[pM-1]+'"><span class="greg-date">'+pDay+'</span><div class="hijri-date">'+ph.day+'</div></div>';
+  }
+
+  // current month
+  for (var d = 1; d <= daysInMonth; d++) {
+    var isToday = (d===todayD && calMonth===todayM && calYear===todayY);
+    var h = gregToHijri(d, calMonth, calYear);
+    var hasEvent = checkEventOnGreg(d, calMonth, calYear);
+    var cls = 'cal-day' + (isToday?' today':'') + (hasEvent?' has-event':'');
+    var eventDot = hasEvent ? '<div class="cal-event-dot" aria-hidden="true"></div>' : '';
+    var hiLabel = h.day + ' ' + (currentLang==='te' ? HIJRI_MONTHS_TE[h.month-1] : HIJRI_MONTHS_EN[h.month-1]);
+    html += '<div class="'+cls+'" role="gridcell" aria-label="'+d+' '+GREG_MONTHS[calMonth-1]+', '+hiLabel+'">';
+    html += '<span class="greg-date">'+d+'</span>';
+    html += '<div class="hijri-date">'+h.day+' '+(currentLang==='te' ? HIJRI_MONTHS_TE[h.month-1].substring(0,6) : HIJRI_MONTHS_EN[h.month-1].substring(0,6))+'</div>';
+    html += eventDot + '</div>';
+  }
+
+  // next month filler
+  var totalCells = Math.ceil((firstDay + daysInMonth) / 7) * 7;
+  var nextDay = 1;
+  for (var k = firstDay + daysInMonth; k < totalCells; k++) {
+    var nM = calMonth===12 ? 1 : calMonth+1, nY = calMonth===12 ? calYear+1 : calYear;
+    var nh = gregToHijri(nextDay, nM, nY);
+    html += '<div class="cal-day other-month" role="gridcell"><span class="greg-date">'+nextDay+'</span><div class="hijri-date">'+nh.day+'</div></div>';
+    nextDay++;
+  }
+
+  grid.innerHTML = html;
+}
+
+function checkEventOnGreg(d, m, y) {
+  var h = gregToHijri(d, m, y);
+  return EVENTS_DATA.some(function(ev) { return ev.hijri_day === h.day && ev.hijri_month === h.month; });
+}
+
+// ═══════════════════════════════════════════════
+// CONVERTER
+// ═══════════════════════════════════════════════
+function convertG2H() {
+  var d = parseInt(document.getElementById('g2h-day').value);
+  var m = parseInt(document.getElementById('g2h-month').value);
+  var y = parseInt(document.getElementById('g2h-year').value);
+  if (!d || !m || !y) return;
+  var h = gregToHijri(d, m, y);
+  var ml = currentLang==='te' ? HIJRI_MONTHS_TE[h.month-1] : HIJRI_MONTHS_EN[h.month-1];
+  var mar = HIJRI_MONTHS_AR[h.month-1];
+  document.getElementById('g2h-out').textContent = h.day + ' ' + ml + ' ' + h.year + ' AH';
+  document.getElementById('g2h-out-ar').textContent = h.day + ' ' + mar + ' ' + h.year + ' هـ';
+}
+
+function convertH2G() {
+  var d = parseInt(document.getElementById('h2g-day').value);
+  var m = parseInt(document.getElementById('h2g-month').value);
+  var y = parseInt(document.getElementById('h2g-year').value);
+  if (!d || !m || !y) return;
+  var g = hijriToGreg(d, m, y);
+  var ml = GREG_MONTHS[g.month-1];
+  document.getElementById('h2g-out').textContent = g.day + ' ' + ml + ' ' + g.year + ' CE';
+}
+
+// ═══════════════════════════════════════════════
+// MONTHS
+// ═══════════════════════════════════════════════
+function renderMonths() {
+  var todayH = gregToHijri(today.getDate(), today.getMonth()+1, today.getFullYear());
+  var html = MONTHS_DATA.map(function(mo) {
+    var isCurrent = mo.no === todayH.month;
+    var cls = 'month-card' + (isCurrent?' current-month':'');
+    var sacred = mo.sacred ? '<span class="month-badge" data-te="పవిత్ర నెల" data-en="Sacred Month">'+(currentLang==='te'?'పవిత్ర నెల':'Sacred Month')+'</span>' : '';
+    var note = mo.note ? '<div style="font-size:.72rem;color:var(--green-mid);margin-top:4px">'+mo.note+'</div>' : '';
+    var meaning = currentLang==='te' ? mo.te : mo.en;
+    return '<div class="'+cls+'" aria-label="'+mo.tr+'">'
+      +'<div class="month-no">'+(currentLang==='te'?'నెల ':'Month ')+mo.no+'</div>'
+      +'<div class="month-ar" lang="ar" dir="rtl">'+mo.ar+'</div>'
+      +'<div class="month-en">'+mo.tr+'</div>'
+      +'<div class="month-mean">'+meaning+'</div>'
+      +sacred+note
+      +(isCurrent?'<div style="font-size:.7rem;color:var(--gold);font-weight:700;margin-top:4px">'+(currentLang==='te'?'▸ ప్రస్తుత నెల':'▸ Current Month')+'</div>':'')
+      +'</div>';
+  }).join('');
+  document.getElementById('months-grid').innerHTML = html;
+}
+
+// ═══════════════════════════════════════════════
+// EVENTS & COUNTDOWN
+// ═══════════════════════════════════════════════
+function nextOccurrenceGreg(hijri_day, hijri_month) {
+  // Find the next Gregorian date for this Hijri day/month from today
+  var todayH = gregToHijri(today.getDate(), today.getMonth()+1, today.getFullYear());
+  var targetYear = todayH.year;
+  // If this month already passed this year, use next year
+  if (hijri_month < todayH.month || (hijri_month === todayH.month && hijri_day < todayH.day)) {
+    targetYear++;
+  }
+  var g = hijriToGreg(hijri_day, hijri_month, targetYear);
+  return new Date(g.year, g.month-1, g.day);
+}
+
+function daysUntil(targetDate) {
+  var diff = targetDate - new Date(today.getFullYear(), today.getMonth(), today.getDate());
+  return Math.round(diff / 86400000);
+}
+
+function renderEvents() {
+  var html = EVENTS_DATA.map(function(ev) {
+    var name = currentLang==='te' ? ev.te : ev.en;
+    var desc = currentLang==='te' ? ev.desc_te : ev.desc_en;
+    var next = nextOccurrenceGreg(ev.hijri_day, ev.hijri_month);
+    var days = daysUntil(next);
+    var hijriLabel = ev.hijri_day + ' ' + (currentLang==='te' ? HIJRI_MONTHS_TE[ev.hijri_month-1] : HIJRI_MONTHS_EN[ev.hijri_month-1]);
+    var countdownText, daysWord;
+    if (days === 0) {
+      countdownText = currentLang==='te' ? 'నేడు!' : 'Today!';
+      daysWord = '';
+    } else if (days === 1) {
+      countdownText = '1';
+      daysWord = currentLang==='te' ? 'రేపు' : 'Tomorrow';
+    } else {
+      countdownText = days;
+      daysWord = currentLang==='te' ? 'రోజులు మిగిలాయి' : 'days remaining';
+    }
+    return '<div class="event-card">'
+      +'<div class="event-icon" aria-hidden="true">'+ev.icon+'</div>'
+      +'<div class="event-name-en">'+name+'</div>'
+      +'<div class="event-desc">'+desc+'</div>'
+      +'<div class="event-countdown">'
+        +'<div class="event-countdown-label">'+(currentLang==='te'?'కౌంట్‌డౌన్':'Countdown')+'</div>'
+        +'<div class="event-countdown-val">'
+          +'<span>'+countdownText+'</span>'
+          +'<span class="event-countdown-days">'+daysWord+'</span>'
+        +'</div>'
+        +'<div class="event-date-hijri">'+hijriLabel+'</div>'
+      +'</div>'
+      +'</div>';
+  }).join('');
+  document.getElementById('events-grid').innerHTML = html;
+}
+
+// ═══════════════════════════════════════════════
+// SCROLL SPY
+// ═══════════════════════════════════════════════
+function initSpy() {
+  var links = document.querySelectorAll('.al-sticky a[data-spy]');
+  if (!links.length) return;
+  var targets = [];
+  links.forEach(function(a) {
+    var el = document.getElementById(a.getAttribute('data-spy'));
+    if (el) targets.push({el:el, a:a});
+  });
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) {
+        targets.forEach(function(t) { t.a.classList.remove('spy-active'); });
+        var active = targets.find(function(t){ return t.el === e.target; });
+        if (active) active.a.classList.add('spy-active');
+      }
+    });
+  }, {rootMargin:'-70px 0px -60% 0px'});
+  targets.forEach(function(t){ observer.observe(t.el); });
+}
+
+// ═══════════════════════════════════════════════
+// BTT
+// ═══════════════════════════════════════════════
+window.addEventListener('scroll', function() {
+  var btt = document.getElementById('btt');
+  if (btt) btt.classList.toggle('show', window.scrollY > 400);
+}, {passive:true});
+
+// ═══════════════════════════════════════════════
+// BOOT
+// ═══════════════════════════════════════════════
+(function boot() {
+  var saved = localStorage.getItem('if-lang') || 'te';
+  applyLang(saved);
+  initSpy();
+  setInterval(updateClock, 1000);
+  updateClock();
+  // Pre-fill today in converter
+  var now = new Date();
+  document.getElementById('g2h-day').value = now.getDate();
+  document.getElementById('g2h-month').value = now.getMonth()+1;
+  document.getElementById('g2h-year').value = now.getFullYear();
+  convertG2H();
+  var th = gregToHijri(now.getDate(), now.getMonth()+1, now.getFullYear());
+  document.getElementById('h2g-day').value = th.day;
+  document.getElementById('h2g-month').value = th.month;
+  document.getElementById('h2g-year').value = th.year;
+  convertH2G();
+})();
+</script>
+
+<script defer src="../../assets/js/if-core.js"></script>
+
+</body>
+</html>
