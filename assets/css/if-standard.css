@@ -2135,7 +2135,7 @@ a {
     overflow: hidden !important;
     text-overflow: ellipsis !important;
     white-space: nowrap !important;
-    font-size: 10.5px !important;
+    font-size: 11.5px !important;
     font-weight: 650 !important;
     line-height: 1.15 !important;
     letter-spacing: 0 !important;
@@ -2177,7 +2177,7 @@ a {
 
   body.if-kc-app .if-kc-action span {
     color: rgba(245,230,192,0.62) !important;
-    font-size: 11.5px !important;
+    font-size: 12.5px !important;
     line-height: 1.35 !important;
     letter-spacing: 0 !important;
   }
@@ -2302,7 +2302,7 @@ a {
 
   body.if-sg-app .if-sg-action span {
     color: var(--text-muted,#766a55) !important;
-    font-size: 11.5px !important;
+    font-size: 12.5px !important;
     line-height: 1.35 !important;
     letter-spacing: 0 !important;
   }
@@ -2483,13 +2483,41 @@ a {
 
   body.if-learning-app .if-learning-action span {
     color: var(--text-muted,#766a55) !important;
-    font-size: 11.5px !important;
+    font-size: 12.5px !important;
     line-height: 1.35 !important;
     letter-spacing: 0 !important;
   }
 
   body.if-learning-app .if-app-tabs {
     top: 0 !important;
+  }
+
+  body.if-learning-app .al-hero .al-stats,
+  body.if-learning-app .lu-hero .al-stats,
+  body.if-learning-app .hero .al-stats {
+    margin-top: 14px !important;
+  }
+
+  body.if-learning-app .al-hero {
+    max-height: 82vh !important;
+  }
+
+  body.if-home-app .hub-tab {
+    min-height: 44px !important;
+    font-size: 13px !important;
+  }
+
+  body.if-home-app .footer-col ul {
+    display: none !important;
+  }
+
+  /* Bottom nav already provides these routes on app-shell mobile pages. */
+  body.if-app-shell nav:not(.bottom-nav) .nav-right a.nav-home,
+  body.if-app-shell nav:not(.bottom-nav) .sg-nav-links a.home,
+  body.if-app-shell nav:not(.bottom-nav) .sg-nav-links a.kc,
+  body.if-learning-app nav:not(.bottom-nav) .nav-right a.nav-back,
+  body.if-learning-app nav:not(.bottom-nav) .lu-nav-links a {
+    display: none !important;
   }
 
   /* Retire competing floating controls on app-shell mobile pages. */
@@ -2651,7 +2679,7 @@ a {
   body.if-app-shell label,
   body.if-app-shell td,
   body.if-app-shell th {
-    font-size: max(13.5px, 0.875rem) !important;
+    font-size: max(14px, 0.875rem) !important;
     line-height: 1.75 !important;
   }
 
@@ -2666,6 +2694,7 @@ a {
   body.if-app-shell main p a,
   body.if-app-shell .sg-cta-note a,
   body.if-app-shell .lu-nav-links a,
+  body.if-app-shell .al-breadcrumb a,
   body.if-app-shell .al-hero-breadcrumb a,
   body.if-app-shell .lu-hero-breadcrumb a,
   body.if-app-shell footer a {
@@ -2739,7 +2768,7 @@ a {
     transition: transform 0.3s ease !important;
   }
   
-  body.nav-hidden > nav {
+  body.nav-hidden > nav:not(.bottom-nav) {
     transform: translateY(-100%) !important;
   }
   

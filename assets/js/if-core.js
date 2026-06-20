@@ -397,6 +397,7 @@
 
     function isHubPage() {
       var p = (location.pathname || '').replace(/\\/g, '/').toLowerCase();
+      if (p === '/' || (/\/index\.html$/.test(p) && p.indexOf('knowledge-center/') < 0)) return true;
       if (p.indexOf('islamic-knowledge.html') >= 0) return true;
       if (p.indexOf('student-guidance.html') >= 0) return true;
       if (isPortalPath(p)) return true;
@@ -408,10 +409,11 @@
       if (!isHubPage()) return;
       if (!document.body) return;
       document.body.classList.add('if-app-shell');
-      if (document.getElementById('bottom-nav')) return;
 
       var p = (location.pathname || '').replace(/\\/g, '/').toLowerCase();
       var isHome = p === '/' || (/\/index\.html$/.test(p) && p.indexOf('knowledge-center/') < 0);
+      if (isHome) document.body.classList.add('if-home-app');
+      if (document.getElementById('bottom-nav')) return;
       var isGuidance = p.indexOf('student-guidance.html') >= 0;
       var isKnowledge = (p.indexOf('islamic-knowledge.html') >= 0 || p.indexOf('knowledge-center/') >= 0) && !isHome;
       var base = (p.indexOf('knowledge-center/') >= 0) ? '../../' : '';

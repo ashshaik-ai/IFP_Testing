@@ -3575,101 +3575,6 @@
       background-image: url("data:image/svg+xml,%3Csvg width='14' height='14' viewBox='0 0 14 14' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='7' cy='7' r='6.5' stroke='%237a6840' stroke-opacity='0.45' stroke-width='1.2' stroke-dasharray='2.5 2'/%3E%3Cpath d='M5 7h4M7.5 5l2 2-2 2' stroke='%237a6840' stroke-opacity='0.7' stroke-width='1.3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
     }
 
-    /* ── Bottom navigation (mobile only) ── */
-    .bottom-nav {
-      display: none;
-    }
-
-    @media (max-width: 768px) {
-      .bottom-nav {
-        display: flex;
-        position: fixed;
-        top: auto;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        z-index: 800;
-        background: rgba(7, 23, 12, 0.97);
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
-        height: auto;
-        justify-content: stretch;
-        border-bottom: 0;
-        border-top: 1px solid rgba(200, 146, 42, 0.28);
-        padding-bottom: env(safe-area-inset-bottom, 0px);
-        box-shadow: 0 -4px 28px rgba(0, 0, 0, 0.42);
-      }
-
-      .bn-item {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        padding: 10px 4px 8px;
-        text-decoration: none;
-        color: rgba(255, 255, 255, 0.38);
-        transition: color .18s, background .18s;
-        gap: 3px;
-        position: relative;
-        min-width: 0;
-        /* Neutralize default <button> chrome so #bn-more matches its <a> siblings exactly */
-        background: none;
-        border: none;
-        font: inherit;
-        cursor: pointer;
-        -webkit-tap-highlight-color: transparent;
-      }
-
-      .bn-item.bn-active {
-        color: var(--gold-light);
-      }
-
-      .bn-item.bn-active::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 28px;
-        height: 2px;
-        background: var(--gold);
-        border-radius: 0 0 3px 3px;
-      }
-
-      .bn-item:active {
-        background: rgba(200, 146, 42, 0.07);
-      }
-
-      .bn-icon {
-        width: 22px;
-        height: 22px;
-        flex-shrink: 0;
-      }
-
-      .bn-item.bn-active .bn-icon {
-        filter: drop-shadow(0 0 5px rgba(200, 146, 42, 0.48));
-      }
-
-      .bn-label {
-        font-size: 9px;
-        font-weight: 500;
-        letter-spacing: 0.2px;
-        text-align: center;
-        line-height: 1.2;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        max-width: 100%;
-      }
-    }
-
-    @media (max-width: 380px) {
-      .bn-label {
-        display: none;
-      }
-    }
-
     /* ── Mobile tap feedback (touch devices) ── */
     @media (max-width: 768px) and (hover: none) {
 
@@ -8040,11 +7945,11 @@
         mobile_action_help_desc: "సేవలు, సమయం, సంప్రదింపు వివరాలు",
 
         /* Hub tabs */
-        tab_overview: "అవలోకనం",
-        tab_schemes: "పథకాలు & మౌలిక సదుపాయాలు",
+        tab_overview: "ఈ రోజు",
+        tab_schemes: "పథకాలు",
         tab_community: "సమాజం",
-        tab_about: "మా గురించి & సంప్రదింపు",
-        tab_knowledge: "నాలెడ్జ్ సెంటర్"
+        tab_about: "సంప్రదింపు",
+        tab_knowledge: "అభ్యాసం"
       },
       en: {
         skip_link: "Skip to main content",
@@ -8318,11 +8223,11 @@
         mobile_action_help_desc: "Services, hours, and contact details",
 
         /* Hub tabs */
-        tab_overview: "Overview",
-        tab_schemes: "Schemes & Infrastructure",
+        tab_overview: "Today",
+        tab_schemes: "Schemes",
         tab_community: "Community",
-        tab_about: "About & Contact",
-        tab_knowledge: "Knowledge Center"
+        tab_about: "Contact",
+        tab_knowledge: "Learning"
       }
     };
 
