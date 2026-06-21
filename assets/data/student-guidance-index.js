@@ -2,7 +2,7 @@
    Compact authoring/search index only; student-guidance.html remains the rendering source for now. */
 (function () {
   window.IF_STUDENT_GUIDANCE_INDEX = {
-  "generatedAt": "2026-06-21T16:10:39.033Z",
+  "generatedAt": "2026-06-21T19:34:31.364Z",
   "count": 79,
   "cards": [
     {

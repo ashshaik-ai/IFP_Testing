@@ -1,6 +1,8 @@
-# AGENTS.md — Master Index
+# AGENTS.md — Master Index (Codex entry point)
 
 > Project map and entry point. **Daily work = 3 root files:** this, [PROJECT_RULES.md](PROJECT_RULES.md) (development rules), [LOCALIZATION_RULES.md](LOCALIZATION_RULES.md) (i18n rules). Everything else loads on demand from [project-docs/](project-docs/README.md). Code is the source of truth — if a doc disagrees, fix the doc.
+
+> **Dual-agent repo.** This project is worked on by both **Codex** (reads this file) and **Claude Code** (reads CLAUDE.md). Both share the same codebase and the same `TASK.md` handoff baton. Read `TASK.md` first every session — it tells you whether a task is in progress, blocked, or done.
 
 ## What this is
 
@@ -41,12 +43,93 @@ Per-page sections & anchors: [project-docs/PAGES.md](project-docs/PAGES.md).
 
 ## Agent workflow
 
-1. Read this file, [PROJECT_RULES.md](PROJECT_RULES.md), and [LOCALIZATION_RULES.md](LOCALIZATION_RULES.md) before editing.
-2. Load only the task-relevant deep docs from [project-docs/](project-docs/README.md).
-3. Check the page's localization system before changing text: `index.html` uses System A; all other pages use System B unless documented otherwise.
-4. For cross-cutting UI, nav, i18n, SEO, or design changes, apply the same pattern to every affected self-contained page.
-5. Verify at least Telugu/English toggle, mobile/desktop layout, console errors, and nav offsets on changed pages.
-6. Do not commit or push unless explicitly asked.
+1. **Read `TASK.md` first.** If STATUS is BLOCKED and direction includes `codex`, pick up that task — do not start anything else. If STATUS is DONE, confirm to the user and reset to IDLE.
+2. Read this file, [PROJECT_RULES.md](PROJECT_RULES.md), and [LOCALIZATION_RULES.md](LOCALIZATION_RULES.md) before editing.
+3. Load only the task-relevant deep docs from [project-docs/](project-docs/README.md).
+4. Check the page's localization system before changing text: `index.html` uses System A; all other pages use System B unless documented otherwise.
+5. For cross-cutting UI, nav, i18n, SEO, or design changes, apply the same pattern to every affected self-contained page.
+6. Verify at least Telugu/English toggle, mobile/desktop layout, console errors, and nav offsets on changed pages.
+7. Do not commit or push unless explicitly asked.
+8. **Before stopping on any multi-step task**, update `TASK.md` with STATUS: BLOCKED and fill in STEPS_DONE + STEPS_REMAINING + NOTES so Claude Code can continue.
+
+---
+
+## Codex skill equivalents
+
+Claude Code has a `.claude/skills/` system with invocable skills. Codex cannot call those, but must follow the same logic. When you recognise one of these tasks, apply the equivalent steps below.
+
+### `/catalog-sync` equivalent
+
+**Trigger:** user asks to audit the catalog, or you added a page/portal/lesson.
+
+Steps:
+1. Read `assets/data/site-catalog.js`.
+2. For every entry in `pages[]`, `portals[]`, `lessons[]`: verify `id`, `url`, `title_en`, `title_te`, `desc_en`, `desc_te`, `tags[]` are all present.
+3. For every non-`#` URL in the catalog, confirm the file exists on disk.
+4. Glob `knowledge-center/**/*.html` + root `*.html` — flag any file not in the catalog.
+5. For each portal, count its lessons in `lessons[]` and compare to `portal.total`.
+6. Check `progressKey` uniqueness across all portals (pattern: `if-<id>-progress`).
+7. Report: errors (file missing, count mismatch, orphan) then warnings (missing field).
+
+### `/design-sync` equivalent
+
+**Trigger:** user wants to change a color token, nav height, or font site-wide.
+
+Steps:
+1. Grep for the old token value across all `*.html` and `assets/css/*.css`.
+2. If token is nav `height:68px` — also update `scroll-margin-top`, hero `padding-top`, and sticky `top` in every affected file (Category B cascade: all four values change together).
+3. If token is a color (`--gold`, `--green-deep`, etc.) — swap value in every `:root {}` block.
+4. If token is a font — update `font-family` declaration AND the Google Fonts `<link href>` URL.
+5. Re-grep for the old value to confirm zero stale occurrences.
+6. Report: files changed, cascade applied, verification result.
+
+### `/portal-audit` equivalent
+
+**Trigger:** user asks for portal consistency check, or after adding/modifying a portal.
+
+Check every portal index in `knowledge-center/*/index.html` across these dimensions:
+- Nav `height:68px` fixed, brand `href="../../"`, `.lang-btn` `min-height:44px`
+- `[id]{scroll-margin-top}` ≥ 110px
+- `<h1>` has both `data-te` and `data-en`; hero `padding-top` ≥ 110px
+- Sticky sub-nav `position:sticky; top:68px`; links have `data-spy` matching section `id` values
+- `window.IF_PORTAL = {` present with `key`, `name_en`, `name_te`, `lessons[]`
+- Script order: IF_PORTAL config → `if-core.js` → data file → `if-lesson.js` → `if-portal.js`
+- Every `data-te` element also has `data-en` (and vice versa)
+- `div#ifp-root` and `div#if-lessons` injection anchors present
+- `<main>` landmark, one `<h1>`, skip link, `<footer>` present
+- Buttons/links `min-height:44px`
+- All `<script src>` use relative `../../assets/` paths with `defer`
+- `<title>` + `<meta description>` + JSON-LD `@type:LearningResource` + breadcrumb present
+
+### `/translate-cards` equivalent
+
+**Trigger:** user asks to translate student-guidance card bodies, continue CB_TE[] work.
+
+Steps:
+1. Read `student-guidance.html` — count non-empty `CB_TE[]` entries (Telugu Unicode U+0C00–U+0C7F present).
+2. Report progress: X/81 complete. Next untranslated index: N.
+3. Read `assets/data/student-guidance-index.js` for card metadata.
+4. For the batch (default 5, or as specified): translate `CB_EN[i]` → `CB_TE[i]`.
+5. House style: keep Latin for `B.Tech`, `NEET`, `JEE`, `CA`, `MBBS`, `IIT`, URLs, `₹`, stream codes (`MPC`, `BiPC`). Translate difficulty labels (`Very high` → `చాలా ఎక్కువ`, `High` → `ఎక్కువ`, `Extreme` → `అత్యంత`, `Medium` → `మధ్యస్థం`). Preserve HTML structure (same tags, same `<li>` count).
+6. Write each translated body to `CB_TE[i]` — verify index alignment before writing.
+7. Never overwrite an already-translated entry; never touch `CB_EN[]` or `CH[]`.
+8. Report: cards translated this session, total progress X/81, next index.
+
+### `/lesson-scaffold` equivalent
+
+**Trigger:** user asks to add a new lesson to a portal.
+
+Steps:
+1. Confirm: portal id, lesson slug, title_en, title_te, desc_en, desc_te, sections (4–6), position (prev/next).
+2. Read the portal's `index.html` to extract current `IF_PORTAL.lessons[]` and script list.
+3. Create `knowledge-center/<portal>/<slug>.html` — include: fixed nav, hero with `data-te`+`data-en` on `<h1>`, sticky sub-nav with `data-spy` links, content sections each with an `id`, `div#if-sublesson-root`, prev/next nav, `window.IF_SUBLESSON` config, `if-core.js` + `if-sublesson.js` scripts.
+4. All asset paths: `../../assets/` (relative, never absolute). All `<script src>` have `defer`.
+5. Append to `assets/data/site-catalog.js` `lessons[]`: `{ id: '<portal>-<slug>', portal: '<portal>', kind: 'lesson', url: 'knowledge-center/<portal>/<slug>.html', title_en, title_te, tags }`.
+6. Append to portal `index.html` `IF_PORTAL.lessons[]`: `{ id: '<slug>', en: '<title_en>', te: '<title_te>' }`.
+7. Increment `total` on the portal's catalog entry.
+8. Run catalog-sync equivalent to verify.
+
+---
 
 ## Active work
 

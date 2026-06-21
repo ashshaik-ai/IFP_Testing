@@ -457,10 +457,13 @@
       }
       if (!isMobileShell()) return;
       if (document.getElementById('bottom-nav')) return;
-      var isGuidance = p.indexOf('student-guidance.html') >= 0;
       var isKnowledge = (p.indexOf('islamic-knowledge.html') >= 0 || p.indexOf('knowledge-center/') >= 0) && !isHome;
       var base = (p.indexOf('knowledge-center/') >= 0) ? '../../' : '';
       var te = getLang() === 'te';
+      var hash = window.location.hash || '';
+      var isSchemeHash = isHome && (hash === '#scheme' || hash === '#schemes');
+      var isContactHash = isHome && (hash === '#community-contact' || hash === '#contact');
+      var isHomeActive = isHome && !isSchemeHash && !isContactHash;
 
       // Inject bottom nav bar
       var nav = document.createElement('nav');
@@ -468,33 +471,31 @@
       nav.id = 'bottom-nav';
       nav.setAttribute('aria-label', 'Page navigation');
       nav.innerHTML = 
-          '<a href="' + base + 'index.html#home" class="bn-item' + (isHome ? ' bn-active" aria-current="page' : '') + '">'
+          '<a href="' + base + 'index.html#home" class="bn-item' + (isHomeActive ? ' bn-active" aria-current="page' : '') + '">'
         + '  <svg class="bn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
         + '    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />'
         + '    <polyline points="9 22 9 12 15 12 15 22" />'
         + '  </svg>'
         + '  <span class="bn-label" data-bn-label="home">' + (te ? 'హోమ్' : 'Home') + '</span>'
         + '</a>'
+        + '<a href="' + base + 'index.html#scheme" class="bn-item' + (isSchemeHash ? ' bn-active" aria-current="page' : '') + '">'
+        + '  <svg class="bn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
+        + '    <path d="M4 19V8l8-4 8 4v11" /><path d="M4 19h16" /><path d="M8 19v-6h8v6" />'
+        + '  </svg>'
+        + '  <span class="bn-label" data-bn-label="schemes">' + (te ? 'పథకాలు' : 'Schemes') + '</span>'
+        + '</a>'
         + '<a href="' + base + 'islamic-knowledge.html" class="bn-item' + (isKnowledge ? ' bn-active" aria-current="page' : '') + '">'
         + '  <svg class="bn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
         + '    <path d="M12 2C9 3 6 5.5 6 9h12c0-3.5-3-6-6-6z"/><rect x="4" y="9" width="16" height="2" rx="1"/><path d="M6 11v8h4v-5h4v5h4v-8"/><path d="M2 21h20"/>'
         + '  </svg>'
-        + '  <span class="bn-label" data-bn-label="knowledge">' + (te ? 'నాలెడ్జ్' : 'Knowledge') + '</span>'
+        + '  <span class="bn-label" data-bn-label="learn">' + (te ? 'అభ్యాసం' : 'Learn') + '</span>'
         + '</a>'
-        + '<a href="' + base + 'student-guidance.html" class="bn-item' + (isGuidance ? ' bn-active" aria-current="page' : '') + '">'
+        + '<a href="' + base + 'index.html#community-contact" class="bn-item' + (isContactHash ? ' bn-active" aria-current="page' : '') + '">'
         + '  <svg class="bn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
-        + '    <path d="M22 10L12 5 2 10l10 5 10-5z" />'
-        + '    <path d="M6 12v5c0 1 2.5 2.5 6 2.5s6-1.5 6-2.5v-5" />'
+        + '    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.37 2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.12.9.35 1.77.7 2.61a2 2 0 0 1-.45 2.11L6.91 9.09a16 16 0 0 0 6 6l1.47-1.47a2 2 0 0 1 2.11-.45c.84.35 1.71.58 2.61.7A2 2 0 0 1 22 16.92z" />'
         + '  </svg>'
-        + '  <span class="bn-label" data-bn-label="guidance">' + (te ? 'మార్గదర్శనం' : 'Guidance') + '</span>'
+        + '  <span class="bn-label" data-bn-label="contact">' + (te ? 'సంప్రదించండి' : 'Contact') + '</span>'
         + '</a>'
-        + '<button type="button" class="bn-item" id="bn-profile-tab" aria-label="Open learner profile">'
-        + '  <svg class="bn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
-        + '    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />'
-        + '    <circle cx="12" cy="7" r="4" />'
-        + '  </svg>'
-        + '  <span class="bn-label" data-bn-label="profile">' + (te ? 'ప్రొఫైల్' : 'Profile') + '</span>'
-        + '</button>'
         + '<button type="button" class="bn-item" id="bn-more" aria-haspopup="true" aria-expanded="false" aria-controls="nav-drawer">'
         + '  <svg class="bn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
         + '    <circle cx="12" cy="12" r="1" />'
@@ -526,7 +527,7 @@
           + '  <button class="nav-drawer-close" id="nav-drawer-close" aria-label="Close menu">&#x2715;</button>'
           + '</div>'
           + '<ul class="nav-drawer-links">'
-          + '  <li><a href="' + base + 'index.html#home">' + (te ? 'హోమ్' : 'Home') + '</a></li>'
+          + '  <li><a href="' + base + 'student-guidance.html">' + (te ? 'విద్యార్థి మార్గదర్శనం' : 'Student Guidance') + '</a></li>'
           + '  <li><a href="' + base + 'index.html#victory">' + (te ? 'మా విజయం' : 'Our Victory') + '</a></li>'
           + '  <li><a href="' + base + 'index.html#achievements">' + (te ? 'సాధనలు' : 'Achievements') + '</a></li>'
           + '  <li><a href="' + base + 'index.html#manifesto">' + (te ? 'మేనిఫెస్టో' : 'Manifesto') + '</a></li>'
@@ -534,7 +535,6 @@
           + '  <li><a href="' + base + 'index.html#events">' + (te ? 'కార్యక్రమాలు' : 'Events') + '</a></li>'
           + '  <li><a href="' + base + 'index.html#volunteer">' + (te ? 'స్వచ్ఛంద సేవ' : 'Volunteer') + '</a></li>'
           + '  <li><a href="' + base + 'index.html#about">' + (te ? 'మా గురించి' : 'About Us') + '</a></li>'
-          + '  <li><a href="' + base + 'index.html#community-contact">' + (te ? 'సంప్రదించండి' : 'Contact') + '</a></li>'
           + '</ul>';
         document.body.appendChild(drawer);
       }
@@ -544,7 +544,6 @@
       var navOverlay = document.getElementById('nav-overlay');
       var navDrClose = document.getElementById('nav-drawer-close');
       var bnMore = document.getElementById('bn-more');
-      var bnProfile = document.getElementById('bn-profile-tab');
 
       function openDrawer() {
         navDrawer.classList.add('open-display');
@@ -572,13 +571,6 @@
       if (bnMore) bnMore.addEventListener('click', function () { navDrawer.classList.contains('open') ? closeDrawer() : openDrawer(); });
       if (navDrClose) navDrClose.addEventListener('click', closeDrawer);
       if (navOverlay) navOverlay.addEventListener('click', closeDrawer);
-      if (bnProfile) {
-        bnProfile.addEventListener('click', function () {
-          if (window.IFProfile) {
-            window.IFProfile.open();
-          }
-        });
-      }
 
       // Dismiss drawer on escape key
       document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && navDrawer.classList.contains('open')) closeDrawer(); });
@@ -588,9 +580,9 @@
         var isTe = getLang() === 'te';
         var copy = {
           home: { te: 'హోమ్', en: 'Home' },
-          knowledge: { te: 'నాలెడ్జ్', en: 'Knowledge' },
-          guidance: { te: 'మార్గదర్శనం', en: 'Guidance' },
-          profile: { te: 'ప్రొఫైల్', en: 'Profile' },
+          schemes: { te: 'పథకాలు', en: 'Schemes' },
+          learn: { te: 'అభ్యాసం', en: 'Learn' },
+          contact: { te: 'సంప్రదించండి', en: 'Contact' },
           more: { te: 'మరిన్ని', en: 'More' }
         };
         document.querySelectorAll('.bottom-nav .bn-label[data-bn-label]').forEach(function (label) {

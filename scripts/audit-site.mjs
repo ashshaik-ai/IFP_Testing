@@ -39,6 +39,29 @@ function loadCatalog() {
 function heading(level, text) {
   return `${'#'.repeat(level)} ${text}\n`;
 }
+function htmlTags(text) {
+  const tags = [];
+  let start = -1;
+  let quote = '';
+  for (let i = 0; i < text.length; i += 1) {
+    const ch = text[i];
+    if (start < 0) {
+      if (ch === '<') start = i;
+      continue;
+    }
+    if (quote) {
+      if (ch === quote) quote = '';
+      continue;
+    }
+    if (ch === '"' || ch === "'") {
+      quote = ch;
+    } else if (ch === '>') {
+      tags.push(text.slice(start, i + 1));
+      start = -1;
+    }
+  }
+  return tags;
+}
 
 const catalog = loadCatalog();
 const htmlFiles = walk(ROOT).filter(f => /\.html$/i.test(f) && !rel(f).startsWith('project-docs/audits/'));
@@ -61,11 +84,9 @@ for (const file of htmlFiles) {
   for (const m of text.matchAll(/(?:^|[\s<])id=["']([^"']+)["']/g)) ids.set(m[1], (ids.get(m[1]) || 0) + 1);
   for (const [id, count] of ids) if (count > 1) add('high', 'duplicate-id', rel(file), `${id} appears ${count} times`);
 
-  for (const m of text.matchAll(/<[^>]+data-te=["'][^"']*["'][^>]*>/g)) {
-    if (!/data-en=/.test(m[0])) add('medium', 'i18n-missing-en', rel(file), m[0].slice(0, 120));
-  }
-  for (const m of text.matchAll(/<[^>]+data-en=["'][^"']*["'][^>]*>/g)) {
-    if (!/data-te=/.test(m[0]) && !/data-key=/.test(m[0])) add('medium', 'i18n-missing-te', rel(file), m[0].slice(0, 120));
+  for (const tag of htmlTags(text)) {
+    if (/\sdata-te=/.test(tag) && !/\sdata-en=/.test(tag)) add('medium', 'i18n-missing-en', rel(file), tag.slice(0, 120));
+    if (/\sdata-en=/.test(tag) && !/\sdata-te=/.test(tag) && !/\sdata-key=/.test(tag)) add('medium', 'i18n-missing-te', rel(file), tag.slice(0, 120));
   }
 
   if (!/<link\s+rel=["']manifest["']/.test(text)) add('low', 'pwa-manifest-missing', rel(file), 'No manifest link');

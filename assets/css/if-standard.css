@@ -52,6 +52,14 @@
 section[id], [id].ifx-anchor{ scroll-margin-top: var(--ifx-nav-h); }
 html{ scroll-behavior: smooth; }
 
+/* Reveal effects are progressive enhancement: content stays visible without JS. */
+html:not(.if-js) .reveal,
+html:not(.if-js) .ifx-reveal{
+  opacity: 1 !important;
+  transform: none !important;
+  visibility: visible !important;
+}
+
 /* ---- A3. Font rendering — crisp text on all platforms ---- */
 html {
   -webkit-font-smoothing: antialiased;
@@ -2863,9 +2871,7 @@ a {
   body.if-app-shell .back-to-top,
   body.if-app-shell #ifsr-fab,
   body.if-app-shell #ifxp,
-  body.if-app-shell .ifxp-toast,
-  body.if-app-shell .mobile-help-fab,
-  body.if-app-shell .mobile-action-sheet {
+  body.if-app-shell .ifxp-toast {
     display: none !important;
   }
 

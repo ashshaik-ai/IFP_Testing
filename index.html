@@ -240,12 +240,12 @@
     .nav-right {
       display: flex;
       align-items: center;
-      gap: 28px;
+      gap: 18px;
     }
 
     .nav-links {
       display: flex;
-      gap: 24px;
+      gap: clamp(10px, 1.4vw, 20px);
       list-style: none;
     }
 
@@ -570,7 +570,7 @@
      "squeeze zone" across most real laptop/desktop widths (roughly 1024–1500px)
      where the brand title and the first nav link visibly overlapped. The drawer
      already holds every one of these links, so it's safe to fold them away early. */
-    @media (max-width: 1500px) {
+    @media (max-width: 1023px) {
       .nav-links {
         display: none;
       }
@@ -3660,169 +3660,6 @@
      COMMUNITY PLATFORM — NEW SECTIONS CSS
   ══════════════════════════════════════════════════════ */
 
-    /* ── Sticky Mobile Contact Bar ── */
-    /* Mobile contact actions: one polished entry point instead of a crowded bottom strip. */
-    .mobile-help-fab,
-    .mobile-action-sheet {
-      display: none;
-    }
-
-    @media (max-width: 768px) {
-      .mobile-help-fab {
-        position: fixed;
-        right: 16px;
-        bottom: calc(62px + 14px + env(safe-area-inset-bottom, 0px));
-        z-index: 950;
-        min-width: 118px;
-        height: 52px;
-        border: 1px solid rgba(200, 146, 42, 0.48);
-        border-radius: 999px;
-        background: linear-gradient(135deg, var(--gold), var(--gold-light));
-        color: var(--green-deep);
-        box-shadow: 0 14px 34px rgba(13, 59, 30, 0.24), 0 4px 16px rgba(200, 146, 42, 0.22);
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-        padding: 0 18px;
-        font: 800 12px/1 var(--font-sans);
-        letter-spacing: 0.02em;
-        cursor: pointer;
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
-      }
-
-      .mobile-help-fab:active {
-        transform: translateY(1px) scale(0.98);
-      }
-
-      .mobile-help-fab svg {
-        width: 18px;
-        height: 18px;
-        flex: 0 0 auto;
-      }
-
-      .mobile-action-sheet {
-        position: fixed;
-        inset: 0;
-        z-index: 1200;
-        display: block;
-        visibility: hidden;
-        pointer-events: none;
-      }
-
-      .mobile-action-sheet.is-open {
-        visibility: visible;
-        pointer-events: auto;
-      }
-
-      .mas-backdrop {
-        position: absolute;
-        inset: 0;
-        background: rgba(6, 24, 14, 0.58);
-        opacity: 0;
-        transition: opacity 0.22s ease;
-      }
-
-      .mobile-action-sheet.is-open .mas-backdrop {
-        opacity: 1;
-      }
-
-      .mas-panel {
-        position: absolute;
-        left: 10px;
-        right: 10px;
-        bottom: calc(62px + 10px + env(safe-area-inset-bottom, 0px));
-        border: 1px solid rgba(200, 146, 42, 0.26);
-        border-radius: 18px;
-        background: rgba(255, 253, 247, 0.98);
-        box-shadow: 0 24px 60px rgba(0, 0, 0, 0.24);
-        padding: 14px;
-        transform: translateY(18px);
-        opacity: 0;
-        transition: transform 0.24s cubic-bezier(0.22, 0.61, 0.36, 1), opacity 0.2s ease;
-      }
-
-      .mobile-action-sheet.is-open .mas-panel {
-        transform: translateY(0);
-        opacity: 1;
-      }
-
-      .mas-head {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 12px;
-        padding: 2px 2px 12px;
-      }
-
-      .mas-title {
-        color: var(--green-deep);
-        font: 800 15px/1.25 var(--font-serif);
-      }
-
-      .mas-close {
-        width: 42px;
-        height: 42px;
-        border-radius: 50%;
-        border: 1px solid rgba(13, 59, 30, 0.12);
-        background: rgba(13, 59, 30, 0.05);
-        color: var(--green-deep);
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-      }
-
-      .mas-actions {
-        display: grid;
-        gap: 8px;
-      }
-
-      .mas-action {
-        min-height: 56px;
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        border-radius: 12px;
-        border: 1px solid rgba(13, 59, 30, 0.09);
-        background: #fff;
-        color: var(--ink);
-        text-decoration: none;
-        padding: 10px 12px;
-      }
-
-      .mas-icon {
-        width: 40px;
-        height: 40px;
-        border-radius: 10px;
-        background: rgba(200, 146, 42, 0.12);
-        color: var(--green);
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        flex: 0 0 auto;
-      }
-
-      .mas-copy {
-        min-width: 0;
-        display: grid;
-        gap: 3px;
-      }
-
-      .mas-label {
-        color: var(--green-deep);
-        font-size: 14px;
-        font-weight: 800;
-        line-height: 1.2;
-      }
-
-      .mas-desc {
-        color: var(--muted);
-        font-size: 12px;
-        line-height: 1.35;
-      }
-    }
-
     /* ── WhatsApp Floating Action Button ── */
     .wa-fab {
       position: fixed;
@@ -4464,6 +4301,36 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 16px;
+    }
+
+    .gallery-archive .gallery-cats {
+      display: none;
+    }
+
+    .gallery-archive-note {
+      max-width: 760px;
+      margin: -10px auto 24px;
+      padding: 14px 18px;
+      border: 1px solid rgba(200, 146, 42, 0.24);
+      border-radius: 8px;
+      background: rgba(13, 59, 30, 0.04);
+      color: var(--text-muted);
+      font-size: 14px;
+      line-height: 1.65;
+      text-align: center;
+    }
+
+    .gallery-archive .carousel-wrap {
+      max-width: 880px;
+      margin-inline: auto;
+    }
+
+    .gallery-archive .gallery-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .gallery-archive .gal-item.gal-visible:nth-child(n+4) {
+      display: none;
     }
 
     .gal-item {
@@ -5385,7 +5252,7 @@
       border-radius: 999px;
       padding: 11px 18px;
       text-decoration: none;
-      font-size: 13px;
+      font-size: 12.5px;
       font-weight: 700;
       color: var(--green-deep);
       background: linear-gradient(135deg, var(--gold), var(--gold-light));
@@ -5513,6 +5380,7 @@
       .gal-item.gal-visible {
         display: flex;
       }
+
     }
 
     /* ── Print styles ── */
@@ -5731,7 +5599,7 @@
   <a href="#main-content" class="skip-link" data-key="skip_link">ప్రధాన విషయానికి వెళ్ళండి</a>
   <!-- NAV -->
   <nav aria-label="Main navigation">
-    <a href="#" class="nav-brand">
+    <a href="index.html#home" class="nav-brand">
       <img src="assets/logo-emblem.png" class="nav-logo" alt="ఇస్లామిక్ ఫ్రంట్ లోగో" data-alt-te="ఇస్లామిక్ ఫ్రంట్ లోగో" data-alt-en="Islamic Front Logo"
         onerror="this.style.display='none';document.getElementById('nav-svg').style.display='block'">
       <svg id="nav-svg" style="display:none;width:42px;height:42px;" viewBox="0 0 42 42"
@@ -5750,16 +5618,13 @@
     </a>
     <div class="nav-right">
       <ul class="nav-links">
-        <li><a href="#victory" data-key="nav_victory">మా విజయం</a></li>
-        <li><a href="#achievements" data-key="nav_achievements">సాధనలు</a></li>
-        <li><a href="#manifesto" data-key="nav_manifesto">మేనిఫెస్టో</a></li>
-        <li><a href="#stories" data-key="nav_stories">కథలు</a></li>
-        <li><a href="#events" data-key="nav_events">కార్యక్రమాలు</a></li>
+        <li><a href="#home" data-key="nav_home">హోమ్</a></li>
+        <li><a href="#scheme" data-key="nav_scheme">సహాయ పథకం</a></li>
+        <li><a href="islamic-knowledge.html" data-key="nav_knowledge">నాలెడ్జ్ సెంటర్</a></li>
+        <li><a href="student-guidance.html" data-key="nav_guidance_short">మార్గదర్శనం</a></li>
+        <li><a href="#about" data-key="nav_about">మా గురించి</a></li>
         <li><a href="#community-contact" data-key="nav_contact">సంప్రదించండి</a></li>
       </ul>
-      <span class="nav-sep" aria-hidden="true"></span>
-      <a href="student-guidance.html" class="nav-guide" data-key="nav_guidance">విద్యార్థి మార్గదర్శనం</a>
-      <a href="islamic-knowledge.html" class="nav-kc" data-key="nav_knowledge">నాలెడ్జ్ సెంటర్</a>
       <button class="lang-btn" id="lang-btn" onclick="toggleLang()"
         title="ప్రస్తుతం: తెలుగు — ఆంగ్లంలోకి మారడానికి నొక్కండి"
         aria-label="Switch to English (currently viewing in Telugu)">English</button>
@@ -5779,9 +5644,6 @@
       <button class="nav-drawer-close" id="nav-drawer-close" aria-label="Close menu">&#x2715;</button>
     </div>
     <ul class="nav-drawer-links">
-      <li><a href="student-guidance.html" data-key="nav_guidance">విద్యార్థి మార్గదర్శనం</a></li>
-      <li><a href="islamic-knowledge.html" data-key="nav_knowledge">నాలెడ్జ్ సెంటర్</a></li>
-      <li><a href="#home" data-key="nav_home">హోమ్</a></li>
       <li><a href="#victory" data-key="nav_victory">మా విజయం</a></li>
       <li><a href="#achievements" data-key="nav_achievements">సాధనలు</a></li>
       <li><a href="#manifesto" data-key="nav_manifesto">మేనిఫెస్టో</a></li>
@@ -5789,8 +5651,6 @@
       <li><a href="#gallery" data-key="nav_gallery">మా కార్యక్రమాలు</a></li>
       <li><a href="#events" data-key="nav_events">కార్యక్రమాలు</a></li>
       <li><a href="#volunteer" data-key="nav_volunteer">స్వచ్ఛంద సేవ</a></li>
-      <li><a href="#about" data-key="nav_about">మా గురించి</a></li>
-      <li><a href="#community-contact" data-key="nav_contact">సంప్రదించండి</a></li>
     </ul>
   </div>
 
@@ -6851,12 +6711,13 @@
         <!-- ═══════════════════════════════════════════════════════
      OUR WORK GALLERY
 ═══════════════════════════════════════════════════════ -->
-        <section class="our-work" id="gallery">
+        <section class="our-work gallery-archive" id="gallery">
           <div class="inner">
             <div class="section-tag" data-key="gallery_tag">మా పని</div>
             <h2 class="section-title" data-key="gallery_title">మా కార్యక్రమాలు</h2>
             <p class="section-lead" data-key="gallery_lead">ఇస్లామిక్ ఫ్రంట్ కార్యకలాపాలు — సంక్షేమ కార్యక్రమాలు, సమాజ
               ఉత్సవాలు, మసీదు నిర్వహణ మరియు మహిళా సాధికారత.</p>
+            <div class="gallery-archive-note" data-key="gallery_archive_note">పూర్తి ఫోటో ఆర్కైవ్ సిద్ధం చేస్తున్నారు. ప్రస్తుతం ముఖ్య కార్యక్రమాల విభాగాలను సంక్షిప్తంగా చూపిస్తున్నాము.</div>
 
             <div class="gallery-cats" role="group" aria-label="Filter gallery by category">
               <button class="gcat-btn active" onclick="filterGallery('all', this)" aria-pressed="true"
@@ -7458,13 +7319,13 @@
             <div class="contact-info-strip reveal">
               <div class="ci-item">
                 <div class="ci-label" data-key="ci_phone">ఫోన్</div>
-                <div class="ci-value"><a href="tel:+919032906677">+91 90329 06677</a><br><span
-                    style="font-size:12px;color:rgba(245,230,192,0.82);">త్వరలో అప్‌డేట్ చేయబడుతుంది</span></div>
+                <div class="ci-value"><a href="tel:+919032906677">+91 90329 06677</a><br><span data-key="ci_phone_note"
+                    style="font-size:12px;color:rgba(245,230,192,0.88);">ప్రజా సహాయం కోసం అందుబాటులో ఉంది</span></div>
               </div>
               <div class="ci-item">
                 <div class="ci-label" data-key="ci_whatsapp">WhatsApp</div>
                 <div class="ci-value"><a href="https://wa.me/919032906677" target="_blank" rel="noopener">+91 90329
-                    06677</a><br><span style="font-size:12px;color:rgba(245,230,192,0.82);">త్వరలో అప్‌డేట్</span></div>
+                    06677</a><br><span data-key="ci_whatsapp_note" style="font-size:12px;color:rgba(245,230,192,0.88);">త్వరిత స్పందన కోసం WhatsApp</span></div>
               </div>
               <div class="ci-item">
                 <div class="ci-label" data-key="ci_address">చిరునామా</div>
@@ -7793,71 +7654,6 @@
     </svg>
   </a>
 
-  <!-- Mobile Contact Actions -->
-  <button class="mobile-help-fab" id="mobile-help-fab" type="button" aria-label="సహాయం మరియు సంప్రదింపు ఎంపికలు" data-aria-te="సహాయం మరియు సంప్రదింపు ఎంపికలు" data-aria-en="Help and contact options" aria-expanded="false"
-    aria-controls="mobile-action-sheet">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-      stroke-linejoin="round" aria-hidden="true">
-      <path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z" />
-      <path d="M8 10h8" />
-      <path d="M8 14h5" />
-    </svg>
-    <span data-key="mobile_help_fab">సహాయం</span>
-  </button>
-  <div class="mobile-action-sheet" id="mobile-action-sheet" aria-hidden="true">
-    <div class="mas-backdrop" data-mas-close aria-hidden="true"></div>
-    <div class="mas-panel" role="dialog" aria-modal="true" aria-labelledby="mas-title">
-      <div class="mas-head">
-        <div class="mas-title" id="mas-title" data-key="mobile_actions_title">మేము ఎలా సహాయం చేయగలం?</div>
-        <button class="mas-close" type="button" data-mas-close aria-label="సంప్రదింపు ఎంపికలు మూసివేయండి" data-aria-te="సంప్రదింపు ఎంపికలు మూసివేయండి" data-aria-en="Close contact actions">
-          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2"
-            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M18 6 6 18" />
-            <path d="m6 6 12 12" />
-          </svg>
-        </button>
-      </div>
-      <div class="mas-actions">
-        <a href="tel:+919032906677" class="mas-action">
-          <span class="mas-icon"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor"
-              stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path
-                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-            </svg></span>
-          <span class="mas-copy"><span class="mas-label" data-key="mobile_action_call">కాల్ చేయండి</span><span
-              class="mas-desc" data-key="mobile_action_call_desc">నేరుగా ఫోన్‌లో మాట్లాడండి</span></span>
-        </a>
-        <a href="https://wa.me/919032906677" target="_blank" rel="noopener" class="mas-action">
-          <span class="mas-icon"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor"
-              stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-            </svg></span>
-          <span class="mas-copy"><span class="mas-label" data-key="mobile_action_whatsapp">WhatsApp</span><span
-              class="mas-desc" data-key="mobile_action_whatsapp_desc">త్వరగా సందేశం పంపండి</span></span>
-        </a>
-        <a href="mailto:islamicfront.mangalagiri@gmail.com" class="mas-action">
-          <span class="mas-icon"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor"
-              stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-              <polyline points="22,6 12,13 2,6" />
-            </svg></span>
-          <span class="mas-copy"><span class="mas-label" data-key="mobile_action_email">ఇమెయిల్</span><span
-              class="mas-desc" data-key="mobile_action_email_desc">వివరంగా రాయండి</span></span>
-        </a>
-        <a href="#community-contact" class="mas-action">
-          <span class="mas-icon"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor"
-              stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <circle cx="9" cy="7" r="4" />
-              <path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2" />
-              <path d="M17 11a4 4 0 0 1 0 8" />
-              <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-            </svg></span>
-          <span class="mas-copy"><span class="mas-label" data-key="mobile_action_help">సహాయ కేంద్రం</span><span
-              class="mas-desc" data-key="mobile_action_help_desc">సేవలు, సమయం, సంప్రదింపు వివరాలు</span></span>
-        </a>
-      </div>
-    </div>
-  </div>
   <script>
     const T = {
       te: {
@@ -8057,15 +7853,16 @@
         gallery_tag: "మా పని", gallery_title: "మా కార్యక్రమాలు",
         gallery_lead: "ఇస్లామిక్ ఫ్రంట్ కార్యకలాపాలు — సంక్షేమ కార్యక్రమాలు, సమాజ ఉత్సవాలు, మసీదు నిర్వహణ మరియు మహిళా సాధికారత.",
         gcat_all: "అన్నీ", gcat_welfare: "సంక్షేమ కార్యక్రమాలు", gcat_events: "సమాజ ఉత్సవాలు", gcat_mosque: "మసీదు కార్యకలాపాలు", gcat_education: "విద్యా కార్యక్రమాలు", gcat_women: "మహిళా కార్యక్రమాలు",
-        gal1_text: "ఈద్ ఉత్సవం\nఫోటో త్వరలో", gal1_cap: "ఈద్ ఉత్సవం 2024",
-        gal2_text: "సహాయ పంపిణీ\nఫోటో త్వరలో", gal2_cap: "అంత్యక్రియల సహాయ పంపిణీ",
-        gal3_text: "మసీదు\nఫోటో త్వరలో", gal3_cap: "మసీదు పునర్నిర్మాణం",
-        gal4_text: "కుట్టు శిక్షణ\nఫోటో త్వరలో", gal4_cap: "కుట్టు శిక్షణా కేంద్రం",
-        gal5_text: "మదర్సా\nఫోటో త్వరలో", gal5_cap: "మదర్సా తరగతులు",
-        gal6_text: "మెడికల్ క్యాంప్\nఫోటో త్వరలో", gal6_cap: "మెడికల్ క్యాంప్ 2024",
-        gal7_text: "ఇఫ్తార్ కార్యక్రమం\nఫోటో త్వరలో", gal7_cap: "రమజాన్ ఇఫ్తార్ 2024",
-        gal8_text: "స్కాలర్‌షిప్\nఫోటో త్వరలో", gal8_cap: "స్కాలర్‌షిప్ పంపిణీ 2023",
-        gal9_text: "హాల్ నిర్మాణం\nఫోటో త్వరలో", gal9_cap: "కన్వెన్షన్ హాల్ అప్‌గ్రేడ్",
+        gallery_archive_note: "పూర్తి ఫోటో ఆర్కైవ్ సిద్ధం చేస్తున్నారు. ప్రస్తుతం ముఖ్య కార్యక్రమాల విభాగాలను సంక్షిప్తంగా చూపిస్తున్నాము.",
+        gal1_text: "ఈద్ ఉత్సవం", gal1_cap: "ఈద్ ఉత్సవం 2024",
+        gal2_text: "సహాయ పంపిణీ", gal2_cap: "అంత్యక్రియల సహాయ పంపిణీ",
+        gal3_text: "మసీదు", gal3_cap: "మసీదు పునర్నిర్మాణం",
+        gal4_text: "కుట్టు శిక్షణ", gal4_cap: "కుట్టు శిక్షణా కేంద్రం",
+        gal5_text: "మదర్సా", gal5_cap: "మదర్సా తరగతులు",
+        gal6_text: "మెడికల్ క్యాంప్", gal6_cap: "మెడికల్ క్యాంప్ 2024",
+        gal7_text: "ఇఫ్తార్ కార్యక్రమం", gal7_cap: "రమజాన్ ఇఫ్తార్ 2024",
+        gal8_text: "స్కాలర్‌షిప్", gal8_cap: "స్కాలర్‌షిప్ పంపిణీ 2023",
+        gal9_text: "హాల్ నిర్మాణం", gal9_cap: "కన్వెన్షన్ హాల్ అప్‌గ్రేడ్",
 
         /* Events */
         events_tag: "కార్యక్రమాలు & ప్రకటనలు", events_title: "రాబోయే కార్యక్రమాలు",
@@ -8115,6 +7912,7 @@
         ca_scheme_label: "పథకాలు", ca_scheme_title: "సంక్షేమ పథకాలకు దరఖాస్తు", ca_scheme_desc: "అంత్యక్రియల సహాయం, మహిళా శిక్షణ, స్కాలర్‌షిప్‌లు — అర్హత తెలుసుకోండి.", ca_scheme_action: "పథకాలు చూడండి",
         ca_hours_label: "కార్యాలయ వేళలు", ca_hours_title: "మేము ఎప్పుడు అందుబాటులో ఉంటాం", ca_hours_desc: "సోమ–శని: ఉ. 9:00 – సా. 6:00<br>ఆదివారం: ఉ. 10:00 – మ. 2:00<br>అత్యవసరం: 24/7",
         ci_phone: "ఫోన్", ci_whatsapp: "WhatsApp", ci_address: "చిరునామా", ci_hours_short: "వేళలు",
+        ci_phone_note: "ప్రజా సహాయం కోసం అందుబాటులో ఉంది", ci_whatsapp_note: "త్వరిత స్పందన కోసం WhatsApp",
         ci_addr_val: "మంగళగిరి, గుంటూరు జిల్లా<br>ఆంధ్రప్రదేశ్ – 522503", ci_hours_val: "సో–శ: 9AM–6PM<br>అత్యవసరం: 24/7",
 
         /* Knowledge Center Portals */
@@ -8386,15 +8184,16 @@
         gallery_tag: "Our Work", gallery_title: "Community Activities",
         gallery_lead: "Islamic Front activities — welfare programmes, community events, mosque maintenance, and women's empowerment.",
         gcat_all: "All", gcat_welfare: "Welfare Activities", gcat_events: "Community Events", gcat_mosque: "Mosque Activities", gcat_education: "Educational Programmes", gcat_women: "Women's Initiatives",
-        gal1_text: "Eid Celebration\nPhoto coming soon", gal1_cap: "Eid Celebration 2024",
-        gal2_text: "Aid Distribution\nPhoto coming soon", gal2_cap: "Funeral Aid Distribution",
-        gal3_text: "Mosque\nPhoto coming soon", gal3_cap: "Mosque Renovation",
-        gal4_text: "Stitching Training\nPhoto coming soon", gal4_cap: "Stitching Training Centre",
-        gal5_text: "Madrasa\nPhoto coming soon", gal5_cap: "Madrasa Classes",
-        gal6_text: "Medical Camp\nPhoto coming soon", gal6_cap: "Medical Camp 2024",
-        gal7_text: "Iftar Programme\nPhoto coming soon", gal7_cap: "Ramadan Iftar 2024",
-        gal8_text: "Scholarship\nPhoto coming soon", gal8_cap: "Scholarship Distribution 2023",
-        gal9_text: "Hall Construction\nPhoto coming soon", gal9_cap: "Convention Hall Upgrade",
+        gallery_archive_note: "The full photo archive is being prepared. For now, the key programme areas are shown in a compact preview.",
+        gal1_text: "Eid Celebration", gal1_cap: "Eid Celebration 2024",
+        gal2_text: "Aid Distribution", gal2_cap: "Funeral Aid Distribution",
+        gal3_text: "Mosque", gal3_cap: "Mosque Renovation",
+        gal4_text: "Stitching Training", gal4_cap: "Stitching Training Centre",
+        gal5_text: "Madrasa", gal5_cap: "Madrasa Classes",
+        gal6_text: "Medical Camp", gal6_cap: "Medical Camp 2024",
+        gal7_text: "Iftar Programme", gal7_cap: "Ramadan Iftar 2024",
+        gal8_text: "Scholarship", gal8_cap: "Scholarship Distribution 2023",
+        gal9_text: "Hall Construction", gal9_cap: "Convention Hall Upgrade",
 
         /* Events */
         events_tag: "Events & Announcements", events_title: "Upcoming Events",
@@ -8444,6 +8243,7 @@
         ca_scheme_label: "Schemes", ca_scheme_title: "Apply for Welfare Schemes", ca_scheme_desc: "Funeral aid, women's training, scholarships — learn about eligibility for any scheme.", ca_scheme_action: "View Schemes",
         ca_hours_label: "Office Hours", ca_hours_title: "When We Are Available", ca_hours_desc: "Mon–Sat: 9:00 AM – 6:00 PM<br>Sunday: 10:00 AM – 2:00 PM<br>Emergency funeral aid: 24/7",
         ci_phone: "Phone", ci_whatsapp: "WhatsApp", ci_address: "Address", ci_hours_short: "Hours",
+        ci_phone_note: "Available for public assistance", ci_whatsapp_note: "WhatsApp for quick response",
         ci_addr_val: "Mangalagiri, Guntur District<br>Andhra Pradesh – 522503", ci_hours_val: "Mon–Sat: 9AM–6PM<br>Emergency: 24/7",
 
         /* Knowledge Center Portals */
@@ -8953,42 +8753,6 @@
         if (a.id === 'bn-more') return;
         a.addEventListener('click', function () { closeDrawer(); });
       });
-      /* Mobile contact action sheet */
-      var mobileHelpFab = document.getElementById('mobile-help-fab');
-      var mobileActionSheet = document.getElementById('mobile-action-sheet');
-      var lastMobileActionFocus = null;
-      function openMobileActions() {
-        if (!mobileHelpFab || !mobileActionSheet) return;
-        lastMobileActionFocus = document.activeElement;
-        mobileActionSheet.classList.add('is-open');
-        mobileActionSheet.setAttribute('aria-hidden', 'false');
-        mobileHelpFab.setAttribute('aria-expanded', 'true');
-        document.body.style.overflow = 'hidden';
-        var firstAction = mobileActionSheet.querySelector('.mas-action, .mas-close');
-        if (firstAction) setTimeout(function () { firstAction.focus(); }, 80);
-      }
-      function closeMobileActions(options) {
-        if (!mobileHelpFab || !mobileActionSheet) return;
-        mobileActionSheet.classList.remove('is-open');
-        mobileActionSheet.setAttribute('aria-hidden', 'true');
-        mobileHelpFab.setAttribute('aria-expanded', 'false');
-        document.body.style.overflow = '';
-        if (!options || !options.keepFocus) {
-          var target = lastMobileActionFocus && document.contains(lastMobileActionFocus) ? lastMobileActionFocus : mobileHelpFab;
-          if (target) target.focus();
-        }
-      }
-      if (mobileHelpFab) mobileHelpFab.addEventListener('click', function () {
-        mobileActionSheet && mobileActionSheet.classList.contains('is-open') ? closeMobileActions() : openMobileActions();
-      });
-      if (mobileActionSheet) {
-        mobileActionSheet.querySelectorAll('[data-mas-close]').forEach(function (btn) {
-          btn.addEventListener('click', function () { closeMobileActions(); });
-        });
-        mobileActionSheet.querySelectorAll('.mas-action').forEach(function (action) {
-          action.addEventListener('click', function () { closeMobileActions({ keepFocus: true }); });
-        });
-      }
       /* Back to top */
       var bttBtn = document.getElementById('back-to-top');
       window.addEventListener('scroll', function () {
@@ -8999,10 +8763,6 @@
       /* Escape key closes the drawer and returns focus to whichever button opened it
          (.nav-burger on desktop, #bn-more on mobile — only one is visible at a time) */
       document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape' && mobileActionSheet && mobileActionSheet.classList.contains('is-open')) {
-          closeMobileActions();
-          return;
-        }
         if (e.key === 'Escape' && navDrawer && navDrawer.classList.contains('open')) {
           closeDrawer();
           var opener = (navBurger && navBurger.offsetParent !== null) ? navBurger : bnMore;

@@ -253,6 +253,23 @@
   .learn-card:hover { transform: translateY(-4px); box-shadow: 0 10px 28px rgba(13,59,30,0.09); border-color: rgba(200,146,42,0.5); }
   .learn-card h3 { font-family: 'Playfair Display', serif; font-size: 17px; color: var(--green-deep); font-weight: 600; margin-bottom: 10px; display: flex; align-items: center; gap: 9px; }
   .learn-card p { font-size: 13.5px; color: var(--text-mid); line-height: 1.75; }
+  .learn-redirect { background: var(--cream); }
+  .learn-redirect .kc-inner { max-width: 760px; text-align: center; }
+  .learn-redirect-actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 26px; }
+  .kc-primary-link,
+  .kc-secondary-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 13px 24px;
+    border-radius: 7px;
+    font-size: 13px;
+    font-weight: 800;
+    text-decoration: none;
+  }
+  .kc-primary-link { background: linear-gradient(135deg,var(--gold),var(--gold-light)); color: var(--green-deep); box-shadow: 0 8px 24px rgba(200,146,42,0.24); }
+  .kc-secondary-link { border: 1px solid rgba(13,59,30,0.22); color: var(--green-deep); background: rgba(255,255,255,0.72); }
   .learn-ref { display: inline-block; margin-top: 12px; font-size: 12px; font-weight: 600; color: var(--green-mid); background: rgba(46,139,87,0.08); border: 1px solid rgba(46,139,87,0.18); border-radius: 100px; padding: 4px 12px; }
 
   /* FAQ / UNDERSTANDING ISLAM — articles + accordion */
@@ -2057,60 +2074,27 @@
   </div>
 </section>
 
-<!-- LEARN ARABIC — FEATURED SECTION -->
-<section class="kc-sec learn" id="learn-arabic">
+<!-- LEARNING PORTAL COMPATIBILITY ANCHORS -->
+<section class="kc-sec learn learn-redirect" id="learn-arabic">
   <div class="kc-inner">
-    <div class="sec-tag reveal" data-te="కొత్త మాడ్యూల్" data-en="New Module">కొత్త మాడ్యూల్</div>
+    <div class="sec-tag reveal" data-te="అభ్యాస పోర్టల్" data-en="Learning Portal">అభ్యాస పోర్టల్</div>
     <h2 class="sec-title reveal" data-te="అరబిక్ నేర్చుకోండి" data-en="Learn Arabic">అరబిక్ నేర్చుకోండి</h2>
-    <p class="sec-lead reveal" data-te="అక్షరమాల నుండి ఖురానీ అరబిక్ వరకు — 6 స్థాయిల ఉచిత, నిర్మాణబద్ధమైన అభ్యాస మార్గం. ఇప్పుడు స్థాయిలు 1–4 అందుబాటులో ఉన్నాయి." data-en="A structured, free roadmap from the alphabet to Quranic Arabic — 6 levels, with Levels 1–4 available now.">అక్షరమాల నుండి ఖురానీ అరబిక్ వరకు — 6 స్థాయిల ఉచిత, నిర్మాణబద్ధమైన అభ్యాస మార్గం. ఇప్పుడు స్థాయిలు 1–4 అందుబాటులో ఉన్నాయి.</p>
-    <div class="learn-grid reveal" style="transition-delay:.1s">
-      <a href="knowledge-center/learn-arabic/alphabet.html" class="learn-card" style="text-decoration:none;display:block">
-        <h3 data-te="స్థాయి 1 · అక్షరమాల" data-en="Level 1 · Arabic Alphabet">స్థాయి 1 · అక్షరమాల</h3>
-        <p data-te="28 అరబిక్ అక్షరాలు, ఉచ్చారణ మరియు 4 అక్షర రూపాలు నేర్చుకోండి." data-en="Learn all 28 Arabic letters, pronunciation, and 4 letter forms.">28 అరబిక్ అక్షరాలు, ఉచ్చారణ మరియు 4 అక్షర రూపాలు నేర్చుకోండి.</p>
-        <span class="learn-ref" style="font-family:'Amiri',serif;font-size:14px;direction:rtl;padding:5px 14px" dir="rtl" lang="ar">الحروف الهجائية →</span>
-      </a>
-      <a href="knowledge-center/learn-arabic/harakat.html" class="learn-card" style="text-decoration:none;display:block">
-        <h3 data-te="స్థాయి 2 · హరకాత్ మరియు పఠనం" data-en="Level 2 · Harakat &amp; Reading">స్థాయి 2 · హరకాత్ మరియు పఠనం</h3>
-        <p data-te="ఫత్హా, కస్రా, దమ్మా, సుకూన్ మరియు తన్వీన్ నేర్చుకుని సరిగ్గా చదవండి." data-en="Master Fatha, Kasra, Damma, Sukoon and Tanween for correct recitation.">ఫత్హా, కస్రా, దమ్మా, సుకూన్ మరియు తన్వీన్ నేర్చుకుని సరిగ్గా చదవండి.</p>
-        <span class="learn-ref" style="font-family:'Amiri',serif;font-size:14px;direction:rtl;padding:5px 14px" dir="rtl" lang="ar">التشكيل والقراءة →</span>
-      </a>
-      <a href="knowledge-center/learn-arabic/vocabulary.html" class="learn-card" style="text-decoration:none;display:block">
-        <h3 data-te="స్థాయి 3 · మూల పదజాలం" data-en="Level 3 · Basic Vocabulary">స్థాయి 3 · మూల పదజాలం</h3>
-        <p data-te="అరబిక్ సంఖ్యలు, ఇస్లామిక్ శుభాకాంక్షలు మరియు సాధారణ పదాలు నేర్చుకోండి." data-en="Learn Arabic numbers, Islamic greetings, and essential daily words.">అరబిక్ సంఖ్యలు, ఇస్లామిక్ శుభాకాంక్షలు మరియు సాధారణ పదాలు నేర్చుకోండి.</p>
-        <span class="learn-ref" style="font-family:'Amiri',serif;font-size:14px;direction:rtl;padding:5px 14px" dir="rtl" lang="ar">المفردات الأساسية →</span>
-      </a>
-    </div>
-    <div style="text-align:center;margin-top:32px" class="reveal" style="transition-delay:.2s">
-      <a href="knowledge-center/learn-arabic/index.html" style="display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--green-deep);font-weight:700;font-size:13px;letter-spacing:1px;text-transform:uppercase;padding:15px 36px;border-radius:6px;text-decoration:none;box-shadow:0 8px 28px -8px rgba(200,146,42,0.5)" data-te="పూర్తి అభ్యాస పోర్టల్ తెరవండి" data-en="Open Full Learning Portal">Open Full Learning Portal ↗</a>
+    <p class="sec-lead reveal" data-te="అరబిక్ పాఠాలు ఇప్పుడు ప్రత్యేక పోర్టల్‌లో ఉన్నాయి. అక్షరమాల, హరకాత్, పదజాలం మరియు ఖురానిక్ అరబిక్ మార్గాన్ని అక్కడ కొనసాగించండి." data-en="Arabic lessons now live in the dedicated portal. Continue with alphabet, harakat, vocabulary, and the Quranic Arabic path there.">అరబిక్ పాఠాలు ఇప్పుడు ప్రత్యేక పోర్టల్‌లో ఉన్నాయి. అక్షరమాల, హరకాత్, పదజాలం మరియు ఖురానిక్ అరబిక్ మార్గాన్ని అక్కడ కొనసాగించండి.</p>
+    <div class="learn-redirect-actions reveal">
+      <a href="knowledge-center/learn-arabic/index.html" class="kc-primary-link" data-te="అరబిక్ పోర్టల్ తెరవండి" data-en="Open Arabic Portal">అరబిక్ పోర్టల్ తెరవండి</a>
+      <a href="#lang-portals" class="kc-secondary-link" data-te="అన్ని అభ్యాస పోర్టల్స్ చూడండి" data-en="View All Learning Portals">అన్ని అభ్యాస పోర్టల్స్ చూడండి</a>
     </div>
   </div>
 </section>
 
-<!-- LEARN URDU — FEATURED SECTION -->
-<section class="kc-sec learn" id="learn-urdu">
+<section class="kc-sec learn learn-redirect" id="learn-urdu">
   <div class="kc-inner">
-    <div class="sec-tag reveal" data-te="కొత్త మాడ్యూల్" data-en="New Module">కొత్త మాడ్యూల్</div>
+    <div class="sec-tag reveal" data-te="అభ్యాస పోర్టల్" data-en="Learning Portal">అభ్యాస పోర్టల్</div>
     <h2 class="sec-title reveal" data-te="ఉర్దూ నేర్చుకోండి" data-en="Learn Urdu">ఉర్దూ నేర్చుకోండి</h2>
-    <p class="sec-lead reveal" data-te="నస్తాలీఖ్ లిపి నుండి ఇస్లామిక్ సాహిత్యం వరకు — 6 స్థాయిల ఉచిత, నిర్మాణబద్ధమైన ఉర్దూ అభ్యాస మార్గం. అన్ని 6 స్థాయిలు ఇప్పుడు అందుబాటులో ఉన్నాయి." data-en="A structured, free roadmap from Nastaliq script to Islamic literature — 6 levels, all now available.">నస్తాలీఖ్ లిపి నుండి ఇస్లామిక్ సాహిత్యం వరకు — 6 స్థాయిల ఉచిత, నిర్మాణబద్ధమైన ఉర్దూ అభ్యాస మార్గం. అన్ని 6 స్థాయిలు ఇప్పుడు అందుబాటులో ఉన్నాయి.</p>
-    <div class="learn-grid reveal" style="transition-delay:.1s">
-      <a href="knowledge-center/learn-urdu/alphabet.html" class="learn-card" style="text-decoration:none;display:block">
-        <h3 data-te="స్థాయి 1 · అక్షరమాల" data-en="Level 1 · Urdu Alphabet">స్థాయి 1 · అక్షరమాల</h3>
-        <p data-te="38 ఉర్దూ అక్షరాలు, ఉచ్చారణ మరియు అక్షర రూపాలు నేర్చుకోండి." data-en="Learn all 38 Urdu letters, pronunciation, and letter forms in Nastaliq script.">38 ఉర్దూ అక్షరాలు, ఉచ్చారణ మరియు అక్షర రూపాలు నేర్చుకోండి.</p>
-        <span class="learn-ref" style="font-family:'Noto Nastaliq Urdu','Amiri',serif;font-size:14px;direction:rtl;padding:5px 14px;line-height:2" dir="rtl" lang="ur">حروفِ تہجی →</span>
-      </a>
-      <a href="knowledge-center/learn-urdu/reading-basics.html" class="learn-card" style="text-decoration:none;display:block">
-        <h3 data-te="స్థాయి 2 · చదవడం బేసిక్స్" data-en="Level 2 · Reading Basics">స్థాయి 2 · చదవడం బేసిక్స్</h3>
-        <p data-te="అక్షరాల కలయిక, పద నిర్మాణం మరియు మొదటి ఉర్దూ వాక్యాలు చదవండి." data-en="Learn how letters join, form words, and read your first Urdu sentences.">అక్షరాల కలయిక, పద నిర్మాణం మరియు మొదటి ఉర్దూ వాక్యాలు చదవండి.</p>
-        <span class="learn-ref" style="font-family:'Noto Nastaliq Urdu','Amiri',serif;font-size:14px;direction:rtl;padding:5px 14px;line-height:2" dir="rtl" lang="ur">پڑھنے کی بنیادیں →</span>
-      </a>
-      <a href="knowledge-center/learn-urdu/islamic-urdu.html" class="learn-card" style="text-decoration:none;display:block">
-        <h3 data-te="స్థాయి 5 · ఇస్లామిక్ ఉర్దూ" data-en="Level 5 · Islamic Urdu">స్థాయి 5 · ఇస్లామిక్ ఉర్దూ</h3>
-        <p data-te="ఉర్దూ ఇస్లామిక్ పరిభాష, దర్స్ వాక్యాలు మరియు ఉర్దూ ఇస్లామిక్ పుస్తకాలు." data-en="Islamic terminology, dars phrases, and start reading Urdu Islamic books.">ఉర్దూ ఇస్లామిక్ పరిభాష, దర్స్ వాక్యాలు మరియు ఉర్దూ ఇస్లామిక్ పుస్తకాలు.</p>
-        <span class="learn-ref" style="font-family:'Noto Nastaliq Urdu','Amiri',serif;font-size:14px;direction:rtl;padding:5px 14px;line-height:2" dir="rtl" lang="ur">اسلامی اردو →</span>
-      </a>
-    </div>
-    <div style="text-align:center;margin-top:32px" class="reveal">
-      <a href="knowledge-center/learn-urdu/index.html" style="display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--green-deep);font-weight:700;font-size:13px;letter-spacing:1px;text-transform:uppercase;padding:15px 36px;border-radius:6px;text-decoration:none;box-shadow:0 8px 28px -8px rgba(200,146,42,0.5)" data-te="ఉర్దూ లెర్నింగ్ పోర్టల్ తెరవండి" data-en="Open Urdu Learning Portal">Open Urdu Learning Portal ↗</a>
+    <p class="sec-lead reveal" data-te="ఉర్దూ పాఠాలు ఇప్పుడు ప్రత్యేక పోర్టల్‌లో ఉన్నాయి. నస్తాలీఖ్ లిపి, చదవడం, ఇస్లామిక్ ఉర్దూ మరియు సాహిత్య మార్గాన్ని అక్కడ కొనసాగించండి." data-en="Urdu lessons now live in the dedicated portal. Continue with Nastaliq script, reading, Islamic Urdu, and literature there.">ఉర్దూ పాఠాలు ఇప్పుడు ప్రత్యేక పోర్టల్‌లో ఉన్నాయి. నస్తాలీఖ్ లిపి, చదవడం, ఇస్లామిక్ ఉర్దూ మరియు సాహిత్య మార్గాన్ని అక్కడ కొనసాగించండి.</p>
+    <div class="learn-redirect-actions reveal">
+      <a href="knowledge-center/learn-urdu/index.html" class="kc-primary-link" data-te="ఉర్దూ పోర్టల్ తెరవండి" data-en="Open Urdu Portal">ఉర్దూ పోర్టల్ తెరవండి</a>
+      <a href="#lang-portals" class="kc-secondary-link" data-te="అన్ని అభ్యాస పోర్టల్స్ చూడండి" data-en="View All Learning Portals">అన్ని అభ్యాస పోర్టల్స్ చూడండి</a>
     </div>
   </div>
 </section>
