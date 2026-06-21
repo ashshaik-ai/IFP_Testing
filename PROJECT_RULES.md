@@ -7,7 +7,7 @@
 ## 1. Non-negotiables
 
 1. **No build tools / frameworks / deps.** Pure HTML/CSS/JS; must run by opening an `.html`.
-2. **No shared CSS/JS.** Every page is self-contained → cross-cutting changes are applied to **each** affected page identically.
+2. **Shared static layer exists.** Prefer existing shared assets (`assets/css/if-standard.css`, `assets/css/if-shared.css`, `assets/js/if-*.js`) for cross-cutting behavior, then patch page-local inline code only where the page has bespoke UI.
 3. **Telugu is default.** Never ship a page that defaults to English by accident (portals are a known exception — [LOCALIZATION_RULES.md](LOCALIZATION_RULES.md)).
 4. **Never hand-edit `rates.json`** — machine-generated ([project-docs/AUTOMATION_RATES.md](project-docs/AUTOMATION_RATES.md)).
 5. **Facts of record are immutable** — founder, dates, 7/9 seats, manifesto, addresses. Copy exactly from [project-docs/COMMUNITY_SCHEMES.md](project-docs/COMMUNITY_SCHEMES.md).
@@ -20,7 +20,7 @@
 
 | ✅ Do | ❌ Don't |
 |---|---|
-| Repeat cross-cutting edits in every page | Assume a shared CSS/JS file exists |
+| Use existing shared CSS/JS for cross-cutting fixes | Recreate shared behavior separately in each page |
 | Add `data-te`+`data-en` (or `data-key`) for new text | Ship English-only or Telugu-only strings |
 | Keep nav at 68px and sync all offsets | Change nav height without fixing cascades |
 | Use `:root` colour variables | Hardcode brand hex inline |

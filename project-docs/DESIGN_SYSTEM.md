@@ -30,7 +30,7 @@ Always use the variable, never raw hex, when one exists.
 | Role | Family | Used for |
 |---|---|---|
 | Display | **Playfair Display** (400–900) | h1, hero titles, nav title, section titles |
-| Accent serif | **Cormorant Garamond** | hero subtitles, pull quotes |
+| Accent serif | **Playfair Display** | hero subtitles, pull quotes |
 | Body/UI | **DM Sans** (300–500) | paragraphs, buttons, nav links |
 | Telugu | **Noto Sans Telugu** (300–700) | all Telugu text |
 | Arabic | **Amiri** (400/700) | `lang="ar"` script |

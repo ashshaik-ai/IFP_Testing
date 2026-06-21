@@ -12,7 +12,7 @@ Legend Sev: 🔴 High · 🟠 Med · 🟡 Low. Status: ⬜ todo · ✅ done · �
 | 1 | ✅ | Homepage SEO `<head>` (description, OG, theme-color, JSON-LD) | 🔴 | High | S | Added Org+WebSite JSON-LD, OG, description, theme-color |
 | 2 | ✅ | Urdu lesson script renders in Nastaliq not Amiri | 🟡 | Med | S | Scoped `.ifl-ar` font override in learn-urdu |
 | 3 | ✅ | theme-color on Knowledge Center + Student Guidance | 🟠 | Med | S | Added `<meta name="theme-color">` |
-| 4 | 🟦 | Wire `if-core.js` into index/islamic-knowledge/student-guidance | 🟠 | High | M | islamic-knowledge.html done; index.html intentionally excluded (clean-homepage decision, T35) — re-confirm intent before doing student-guidance.html |
+| 4 | 🟦 | Wire shared app-shell/search/profile assets into top pages | 🟠 | High | M | islamic-knowledge.html + student-guidance.html use `if-core.js`; homepage intentionally keeps bespoke nav but now uses shared search/profile assets and `if-standard.css` |
 | 5 | ⬜ | Sitewide `<meta name="theme-color">` on remaining static pages | 🟡 | Low | S | Add tag to 12 sub-lessons |
 | 6 | ⬜ | JSON-LD Organization + WebSite + SearchAction (site) | 🔴 | High | S | Add to homepage + KC |
 | 7 | ⬜ | JSON-LD Course per learning portal | 🟠 | Med | M | Course/CreativeWork schema per portal index |
@@ -46,7 +46,7 @@ Legend Sev: 🔴 High · 🟠 Med · 🟡 Low. Status: ⬜ todo · ✅ done · �
 | 30 | ⬜ | Backfill Seerah (Companions deep-dive, Farewell Hajj detail) | 🟡 | Med | M | New entries |
 | 31 | ⬜ | Graded end-of-level exam (10 Qs) via `if-quiz` per portal | 🟠 | High | M | Pass score → certificate |
 | 32 | ⬜ | Vary reflection prompts (currently formulaic) | 🟡 | Low | M | Author diverse prompts |
-| 33 | 🟦 | "Continue learning / resume" CTA on portal heroes | 🟠 | Med | M | Done at dashboard placement (`if-portal.js`/`if-recent.js`, below hero) on all 7 portals. A homepage version (`if-resume.js`) was built then deliberately removed (T35/T36, "clean homepage" decision) — file still exists unwired; do NOT re-add without checking intent first. True hero-level (inside the hero banner itself) placement remains undone everywhere |
+| 33 | 🟦 | "Continue learning / resume" CTA on portal heroes/homepage | 🟠 | Med | M | Done at dashboard placement (`if-portal.js`/`if-recent.js`) on all 7 portals; homepage now has a compact rail below the hero that appears only when existing progress/recent data exists |
 | 34 | ⬜ | Global learner dashboard (aggregate XP/streak/progress) | 🟠 | High | L | `if-profile.js` (opened from XP HUD) already aggregates this across all 7 portals — re-verify whether a dedicated page/homepage widget is still wanted on top of the modal |
 | 35 | 🟦 | Streaks + XP on all portals (not just Kids) | 🟠 | High | M | `if-xp.js` (level/XP HUD) is on all 22 pages; Kids' bespoke mission/streak system not yet unified into it |
 | 36 | 🟦 | Persistent "All Portals" switcher in shared nav | 🟠 | Med | M | `if-profile.js`'s roadmap (inside the modal opened from the XP HUD) lists/links all 7 portals — covers the need but isn't a persistent nav-bar dropdown as originally scoped |

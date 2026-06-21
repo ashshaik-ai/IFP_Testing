@@ -8,7 +8,7 @@ Static multilingual website for **Islamic Front, Mangalagiri** (Muslim community
 
 ## Stack
 
-Pure **HTML + CSS + vanilla JS** — no framework, no build, no deps; open an `.html` to run (`start index.html`). **Every page is self-contained (its own inline `<style>` + `<script>`); there is no shared CSS/JS → cross-cutting changes are N-file edits.** Only Node piece: `scripts/update-rates.mjs` (run by a GitHub Action). Static hosting.
+Pure **HTML + CSS + vanilla JS** — no framework, no build, no deps; open an `.html` to run (`start index.html`). Pages still carry substantial inline CSS/JS, but the platform now also uses shared static assets such as `assets/css/if-standard.css`, `assets/css/if-shared.css`, and `assets/js/if-*.js` for cross-page components, search, profile, and mobile app-shell behavior. Only Node piece: `scripts/update-rates.mjs` (run by a GitHub Action). Static hosting.
 
 ## Repo map
 

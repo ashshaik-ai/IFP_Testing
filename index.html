@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/png" href="assets/logo-emblem.png">
 <link rel="apple-touch-icon" href="assets/logo-emblem.png">
+<link rel="manifest" href="assets/manifest.json">
   <meta name="theme-color" content="#0d3b1e">
   <meta name="description"
     content="Islamic Front, Mangalagiri — a Muslim community-welfare and political organisation. Community schemes, infrastructure, and a free multilingual Knowledge Center: Zakat tools, prayer guides, and learning portals for Arabic, Urdu, Quran, Salah, Seerah, Islamic History, and Kids. Telugu and English.">
@@ -60,7 +61,7 @@
       "description": "Community welfare and a free multilingual Islamic Knowledge Center: Zakat tools, prayer guides, and learning portals for Arabic, Urdu, Quran, Salah, Seerah, Islamic History and Kids.",
       "potentialAction": {
         "@type": "SearchAction",
-        "target": "https://ashshaik-ai.github.io/IFP_Testing/student-guidance.html?q={search_term_string}",
+        "target": "https://ashshaik-ai.github.io/IFP_Testing/?q={search_term_string}",
         "query-input": "required name=search_term_string"
       }
     }
@@ -71,7 +72,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@300;400;500&family=Noto+Sans+Telugu:wght@300;400;500;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Sans:wght@300;400;500&family=Noto+Sans+Telugu:wght@300;400;500;700&display=swap"
     rel="stylesheet">
   <style>
     *,
@@ -230,7 +231,7 @@
     }
 
     .nav-sub {
-      font-size: 10px;
+      font-size: 12px;
       color: rgba(232, 184, 75, 0.7);
       letter-spacing: 1.5px;
       text-transform: uppercase;
@@ -692,7 +693,7 @@
     }
 
     .hero-subtitle {
-      font-family: 'Cormorant Garamond', 'Noto Sans Telugu', serif;
+      font-family: 'Noto Sans Telugu', serif;
       font-size: clamp(16px, 2vw, 22px);
       color: rgba(245, 230, 192, 0.9);
       margin-bottom: 36px;
@@ -845,7 +846,7 @@
     }
 
     .leader-title-text {
-      font-size: 10.5px;
+      font-size: 12px;
       color: rgba(232, 184, 75, 0.9);
       letter-spacing: 1.1px;
       text-transform: uppercase;
@@ -861,7 +862,7 @@
     }
 
     .section-tag {
-      font-size: 11px;
+      font-size: 12px;
       letter-spacing: 2px;
       text-transform: uppercase;
       color: var(--gold);
@@ -1087,7 +1088,7 @@
 
     .lead-info {
       font-size: 13px;
-      color: rgba(245, 230, 192, 0.55);
+      color: rgba(245,230,192,0.82);
       line-height: 1.7;
       margin: 18px auto 0;
       max-width: 620px;
@@ -1131,7 +1132,7 @@
     }
 
     .ms-lab {
-      font-size: 11px;
+      font-size: 12px;
       letter-spacing: 1.2px;
       text-transform: uppercase;
       color: rgba(245, 230, 192, 0.62);
@@ -1224,7 +1225,7 @@
     }
 
     .member-role {
-      font-size: 10px;
+      font-size: 12px;
       color: var(--gold);
       letter-spacing: 1px;
       text-transform: uppercase;
@@ -1310,7 +1311,7 @@
       background: rgba(46, 139, 87, 0.08);
       color: var(--green-mid);
       border-radius: 100px;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 500;
       letter-spacing: 0.5px;
       padding: 4px 12px;
@@ -1364,7 +1365,7 @@
     }
 
     .scheme-bar-tag {
-      font-size: 10px;
+      font-size: 12px;
       letter-spacing: 2px;
       text-transform: uppercase;
       color: var(--gold-light);
@@ -1424,7 +1425,7 @@
       background: rgba(200, 146, 42, 0.15);
       border: 1px solid rgba(200, 146, 42, 0.3);
       color: var(--gold-light);
-      font-size: 10px;
+      font-size: 12px;
       letter-spacing: 2px;
       text-transform: uppercase;
       padding: 5px 14px;
@@ -1443,7 +1444,7 @@
 
     .scheme-amount-sub {
       font-size: 14px;
-      color: rgba(245, 230, 192, 0.5);
+      color: rgba(245,230,192,0.82);
       margin-bottom: 28px;
       letter-spacing: 0.5px;
     }
@@ -1604,7 +1605,7 @@
     }
 
     .mf-num {
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 700;
       color: var(--gold);
       margin-bottom: 8px;
@@ -1625,7 +1626,7 @@
       margin-top: 14px;
       padding: 4px 12px;
       border-radius: 100px;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 600;
       letter-spacing: 0.5px;
     }
@@ -1833,7 +1834,7 @@
     }
 
     .tl-year {
-      font-size: 11px;
+      font-size: 12px;
       letter-spacing: 1px;
       color: var(--gold);
       font-weight: 500;
@@ -1874,6 +1875,7 @@
       overflow: hidden;
       border: 1px solid var(--border);
       height: 380px;
+      background: linear-gradient(135deg, rgba(13,59,30,0.96), rgba(26,92,48,0.94));
     }
 
     .map-box iframe {
@@ -1881,6 +1883,62 @@
       height: 100%;
       border: none;
       display: block;
+    }
+
+    .map-facade {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      text-align: center;
+      padding: 28px;
+      color: var(--gold-pale);
+      background:
+        linear-gradient(135deg, rgba(13,59,30,0.84), rgba(13,59,30,0.94)),
+        repeating-linear-gradient(45deg, rgba(200,146,42,0.10) 0 1px, transparent 1px 18px);
+    }
+
+    .map-pin {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold-light);
+      background: rgba(200,146,42,0.14);
+      border: 1px solid rgba(200,146,42,0.35);
+    }
+
+    .map-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--gold-light);
+      margin-bottom: 4px;
+    }
+
+    .map-copy {
+      font-size: 14px;
+      color: rgba(245,230,192,0.82);
+      line-height: 1.6;
+    }
+
+    .map-load {
+      min-height: 44px;
+      border: 0;
+      border-radius: 999px;
+      padding: 11px 22px;
+      font: 700 12px/1 'DM Sans', 'Noto Sans Telugu', sans-serif;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--green-deep);
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      cursor: pointer;
+      box-shadow: 0 10px 26px rgba(0,0,0,0.24);
     }
 
     .offices {
@@ -1910,7 +1968,7 @@
     }
 
     .office-type {
-      font-size: 10px;
+      font-size: 12px;
       letter-spacing: 2px;
       text-transform: uppercase;
       color: var(--gold);
@@ -1956,7 +2014,7 @@
     }
 
     .opponents-label {
-      font-size: 11px;
+      font-size: 12px;
       letter-spacing: 1.5px;
       text-transform: uppercase;
       color: var(--text-muted);
@@ -2142,12 +2200,12 @@
 
     .footer-brand p {
       font-size: 13px;
-      color: rgba(245, 230, 192, 0.5);
+      color: rgba(245,230,192,0.82);
       line-height: 1.7;
     }
 
     .footer-col h4 {
-      font-size: 11px;
+      font-size: 12px;
       letter-spacing: 1.5px;
       text-transform: uppercase;
       color: var(--gold-light);
@@ -2163,7 +2221,7 @@
 
     .footer-col ul li {
       font-size: 13px;
-      color: rgba(245, 230, 192, 0.5);
+      color: rgba(245,230,192,0.82);
     }
 
     .footer-bottom {
@@ -2178,7 +2236,7 @@
 
     .footer-bottom p {
       font-size: 12px;
-      color: rgba(245, 230, 192, 0.3);
+      color: rgba(245,230,192,0.82);
     }
 
     /* ANIMATIONS */
@@ -2361,10 +2419,10 @@
     }
 
     .hmfp-label {
-      font-size: 10px;
+      font-size: 12px;
       letter-spacing: 1.8px;
       text-transform: uppercase;
-      color: rgba(245, 230, 192, .45);
+      color: rgba(245,230,192,0.82);
     }
 
     .hmfp-pct {
@@ -2416,8 +2474,8 @@
       display: flex;
       align-items: center;
       gap: 5px;
-      font-size: 10px;
-      color: rgba(245, 230, 192, .4);
+      font-size: 12px;
+      color: rgba(245,230,192,0.82);
     }
 
     .hmfp-dot {
@@ -2494,7 +2552,7 @@
     }
 
     .mf-ring-count {
-      font-size: 9px;
+      font-size: 12px;
       color: var(--text-muted);
       margin-top: 2px;
     }
@@ -2511,7 +2569,7 @@
     }
 
     .mf-ring-sub {
-      font-size: 11px;
+      font-size: 12px;
       color: var(--text-muted);
       line-height: 1.6;
     }
@@ -2715,12 +2773,12 @@
 
       .lang-btn {
         padding: 6px 10px;
-        font-size: 11px;
+        font-size: 12px;
       }
 
       .nav-kc {
         padding: 6px 11px;
-        font-size: 11px;
+        font-size: 12px;
       }
 
       .nav-right {
@@ -2782,7 +2840,7 @@
       }
 
       .mf-ring-sub {
-        font-size: 10px;
+        font-size: 12px;
       }
     }
 
@@ -3086,7 +3144,7 @@
     }
 
     .footer-col ul li a {
-      color: rgba(245, 230, 192, 0.55);
+      color: rgba(245,230,192,0.82);
       text-decoration: none;
       font-size: 13px;
       display: inline-flex;
@@ -3185,7 +3243,7 @@
       .hero-badge {
         margin-bottom: 16px;
         padding: 5px 13px;
-        font-size: 11px;
+        font-size: 12px;
       }
 
       /* Compact stat cards: shrink to content & left-align so they don't
@@ -3211,7 +3269,7 @@
       }
 
       .hstat-label {
-        font-size: 9px;
+        font-size: 12px;
         letter-spacing: .2px;
         line-height: 1.3;
         margin-top: 3px;
@@ -3253,7 +3311,7 @@
       }
 
       .ms-lab {
-        font-size: 10px;
+        font-size: 12px;
         letter-spacing: .8px;
       }
 
@@ -3378,7 +3436,7 @@
       }
 
       .member-role {
-        font-size: 9px;
+        font-size: 12px;
       }
     }
 
@@ -3424,7 +3482,7 @@
         width: fit-content;
         max-width: 100%;
         align-self: flex-start;
-        font-size: 10px;
+        font-size: 12px;
         letter-spacing: .9px;
         padding: 5px 13px;
         margin-bottom: 16px;
@@ -3537,7 +3595,7 @@
       }
 
       .hero-headtext .hero-badge {
-        font-size: 9px;
+        font-size: 12px;
         padding: 4px 11px;
         letter-spacing: .6px;
       }
@@ -3931,10 +3989,10 @@
     }
 
     .ca-label {
-      font-size: 10px;
+      font-size: 12px;
       letter-spacing: 2px;
       text-transform: uppercase;
-      color: rgba(245, 230, 192, 0.45);
+      color: rgba(245,230,192,0.82);
       font-weight: 500;
     }
 
@@ -3948,7 +4006,7 @@
 
     .ca-desc {
       font-size: 13px;
-      color: rgba(245, 230, 192, 0.55);
+      color: rgba(245,230,192,0.82);
       line-height: 1.65;
       flex: 1;
     }
@@ -3992,7 +4050,7 @@
     }
 
     .ci-label {
-      font-size: 9px;
+      font-size: 12px;
       letter-spacing: 2px;
       text-transform: uppercase;
       color: rgba(200, 146, 42, 0.55);
@@ -4149,7 +4207,7 @@
       }
 
       .seam-links a {
-        font-size: 11.5px;
+        font-size: 12px;
         padding: 7px 13px;
       }
     }
@@ -4260,7 +4318,7 @@
       right: 12px;
       background: rgba(13, 59, 30, 0.85);
       color: var(--gold-light);
-      font-size: 10px;
+      font-size: 12px;
       letter-spacing: 1px;
       text-transform: uppercase;
       padding: 4px 10px;
@@ -4308,7 +4366,7 @@
     }
 
     .story-chip {
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 600;
       letter-spacing: 0.3px;
       background: rgba(46, 139, 87, 0.08);
@@ -4344,10 +4402,10 @@
     }
 
     .ss-label {
-      font-size: 11px;
+      font-size: 12px;
       letter-spacing: 1px;
       text-transform: uppercase;
-      color: rgba(245, 230, 192, 0.55);
+      color: rgba(245,230,192,0.82);
       margin-top: 6px;
     }
 
@@ -4449,13 +4507,30 @@
       inset: 0;
     }
 
+    .gal-photo-frame,
+    .gal-photo-frame picture {
+      display: block;
+      width: 100%;
+      height: 100%;
+      padding: 0;
+    }
+
+    .gal-photo-frame img {
+      filter: saturate(1.02) contrast(1.02);
+      transition: transform .35s ease;
+    }
+
+    .gal-item:hover .gal-photo-frame img {
+      transform: scale(1.04);
+    }
+
     .gal-placeholder-icon {
       opacity: 0.7;
       filter: drop-shadow(0 2px 8px rgba(200, 146, 42, 0.3));
     }
 
     .gal-placeholder-text {
-      font-size: 11px;
+      font-size: 12px;
       color: rgba(200, 146, 42, 0.6);
       text-align: center;
       letter-spacing: 0.5px;
@@ -4484,7 +4559,7 @@
     }
 
     .gal-tag {
-      font-size: 10px;
+      font-size: 12px;
       color: var(--gold-light);
       letter-spacing: 1px;
       text-transform: uppercase;
@@ -4555,6 +4630,15 @@
       display: block;
     }
 
+    #lb-picture {
+      width: 100%;
+      height: 100%;
+    }
+
+    #lb-picture:not([hidden]) {
+      display: block;
+    }
+
     .lb-placeholder {
       text-align: center;
       padding: 40px;
@@ -4577,7 +4661,7 @@
 
     .lb-sub {
       font-size: 13px;
-      color: rgba(245, 230, 192, 0.5);
+      color: rgba(245,230,192,0.82);
       margin-top: 4px;
     }
 
@@ -4709,7 +4793,7 @@
     }
 
     .ed-mon {
-      font-size: 9px;
+      font-size: 12px;
       letter-spacing: 1.5px;
       text-transform: uppercase;
       color: rgba(200, 146, 42, 0.65);
@@ -4721,7 +4805,7 @@
     }
 
     .ev-type {
-      font-size: 10px;
+      font-size: 12px;
       letter-spacing: 1.5px;
       text-transform: uppercase;
       color: var(--gold);
@@ -4782,7 +4866,7 @@
     }
 
     .ann-category {
-      font-size: 10px;
+      font-size: 12px;
       letter-spacing: 1.5px;
       text-transform: uppercase;
       color: var(--text-muted);
@@ -4798,7 +4882,7 @@
     }
 
     .ann-date {
-      font-size: 11px;
+      font-size: 12px;
       color: var(--text-muted);
     }
 
@@ -4874,7 +4958,7 @@
     }
 
     .vol-spots {
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 600;
       color: var(--green-mid);
       margin-top: 8px;
@@ -4915,7 +4999,7 @@
     }
 
     .vf-label {
-      font-size: 11px;
+      font-size: 12px;
       letter-spacing: 1px;
       text-transform: uppercase;
       color: rgba(200, 146, 42, 0.7);
@@ -4983,13 +5067,13 @@
 
     .vf-note {
       font-size: 12px;
-      color: rgba(245, 230, 192, 0.4);
+      color: rgba(245,230,192,0.82);
       text-align: center;
       margin-top: 12px;
     }
 
     .vf-error-msg {
-      font-size: 11.5px;
+      font-size: 12px;
       color: #f87171;
       margin-top: 4px;
       display: none;
@@ -5043,7 +5127,7 @@
       display: inline-flex;
       align-items: center;
       gap: 5px;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 600;
       padding: 4px 10px;
       border-radius: 100px;
@@ -5192,8 +5276,23 @@
       transform: translateX(4px);
     }
 
+    .ld-portal-teaser .ld-portal:nth-of-type(n+5) {
+      display: none;
+    }
+
+    .ld-all-portals {
+      margin-top: 18px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .ld-all-portals .hero-cta-secondary {
+      background: var(--green-deep);
+      color: var(--gold-light);
+    }
+
     .ld-portal-meta {
-      font-size: 10.5px;
+      font-size: 12px;
       color: rgba(46, 139, 87, 0.7);
       margin-top: 3px;
       letter-spacing: 0.3px;
@@ -5234,6 +5333,68 @@
 
     .hero-cta-secondary:active {
       transform: translateY(-1px) scale(0.98);
+    }
+
+    .continue-rail {
+      background: var(--cream);
+      padding: 18px 5vw 0;
+    }
+
+    .continue-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 18px;
+      border: 1px solid rgba(200,146,42,0.24);
+      border-radius: 12px;
+      background: var(--white);
+      box-shadow: 0 8px 28px rgba(13,59,30,0.08);
+    }
+
+    .continue-tag {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 4px;
+    }
+
+    .continue-inner h2 {
+      font-size: clamp(18px, 2.4vw, 24px);
+      color: var(--green-deep);
+      font-family: 'Playfair Display', 'Noto Sans Telugu', serif;
+      line-height: 1.2;
+    }
+
+    .continue-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .continue-actions a {
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 11px 18px;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--green-deep);
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    }
+
+    .continue-actions a.secondary {
+      color: var(--green-mid);
+      background: rgba(46,139,87,0.08);
+      border: 1px solid rgba(46,139,87,0.18);
     }
 
     /* ── Mobile bottom-right stack (single source of truth) ── */
@@ -5552,18 +5713,19 @@
       align-items: center;
       justify-content: center;
       color: rgba(200,146,42,0.6);
-      font-size: 11px;
+      font-size: 12px;
       letter-spacing: 1px;
       text-transform: uppercase;
     }
   </style>
   <link rel="stylesheet" href="assets/css/if-standard.css">
   <script defer src="assets/js/if-search.js"></script>
+  <script defer src="assets/js/if-profile.js"></script>
   <script defer src="assets/js/if-order.js"></script>
   <script defer src="assets/js/if-jsonld.js"></script>
 </head>
 
-<body class="if-app-shell">
+<body class="if-app-shell if-home-app">
   <a href="#main-content" class="skip-link" data-key="skip_link">ప్రధాన విషయానికి వెళ్ళండి</a>
   <!-- NAV -->
   <nav aria-label="Main navigation">
@@ -5701,7 +5863,7 @@
         </div>
         <div class="leader-card">
           <div class="leader-photo-frame">
-            <!-- FOUNDER PHOTO: place image at founder/shaik-akram.jpg -->
+            <!-- Founder portrait uses the optimized local asset. -->
             <img src="assets/founder/shaik-akram-2.jpg" alt="జనాబ్ షేక్ అక్రమ్"
               style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;" fetchpriority="high"
               onerror="this.style.display='none';document.getElementById('hero-ph').style.display='flex'">
@@ -5716,6 +5878,16 @@
             </div>
           </div>
         </div>
+      </div>
+    </section>
+
+    <section class="continue-rail" id="continue-learning" hidden aria-label="Continue learning">
+      <div class="continue-inner">
+        <div>
+          <div class="continue-tag" data-key="continue_tag">మీ అభ్యాసం</div>
+          <h2 data-key="continue_title">మీరు ప్రారంభించిన చోటు నుంచే కొనసాగండి</h2>
+        </div>
+        <div class="continue-actions" id="continue-actions"></div>
       </div>
     </section>
 
@@ -6384,7 +6556,7 @@
           <div class="inner">
             <div class="founder-frame">
               <div class="founder-photo-box">
-                <img src="assets/founder/shaik-akram.jpg" alt="జనాబ్ షేక్ అక్రమ్" loading="lazy"
+                <img src="assets/founder/shaik-akram-2.jpg" alt="జనాబ్ షేక్ అక్రమ్" loading="lazy" width="640" height="640"
                   onerror="this.style.display='none';document.getElementById('about-ph').style.display='flex'">
                 <div id="about-ph" class="big-avatar" style="display:none">SA</div>
                 <div class="founder-ribbon">
@@ -6465,12 +6637,20 @@
             <p class="section-lead" data-key="contact_lead">ఇస్లామిక్ ఫ్రంట్ మరియు అంజుమన్ కార్యాలయాలు మంగళగిరిలో మీ
               సేవలో ఉన్నాయి.</p>
             <div class="contact-grid">
-              <div class="map-box">
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30622.95!2d80.508!3d16.430!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a35e8f6f3e11f4b%3A0x1!2sMangalagiri%2C%20Andhra%20Pradesh%20522503!5e0!3m2!1ste!2sin!4v1716556800000!5m2!1ste!2sin"
-                  width="600" height="380" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-                  title="Mangalagiri, Andhra Pradesh — Islamic Front location">
-                </iframe>
+              <div class="map-box" id="map-box">
+                <div class="map-facade">
+                  <div class="map-pin" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M12 21s7-6.1 7-12a7 7 0 1 0-14 0c0 5.9 7 12 7 12z" />
+                      <circle cx="12" cy="9" r="2.5" />
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="map-title" data-key="map_title">మంగళగిరి, ఆంధ్రప్రదేశ్</div>
+                    <div class="map-copy" data-key="map_copy">లైవ్ మ్యాప్‌ను అవసరమైనప్పుడు మాత్రమే లోడ్ చేస్తాము.</div>
+                  </div>
+                  <button type="button" class="map-load" id="map-load" data-key="map_load">మ్యాప్ లోడ్ చేయండి</button>
+                </div>
               </div>
               <div class="offices">
                 <div class="office-card">
@@ -6694,18 +6874,12 @@
             <div class="carousel-wrap">
               <div class="gallery-grid">
 
-                <div class="gal-item gal-visible" data-category="events"
-                  onclick="openLightbox(''), 'ఈద్ ఉత్సవం 2024', 'సమాజ ఉత్సవాలు', 'మంగళగిరి', '2024')" role="button"
-                  tabindex="0">
-                  <div class="gal-item-inner">
-                    <div class="gal-placeholder-icon"><svg viewBox="0 0 24 24" width="32" height="32" fill="none"
-                        stroke="rgba(200,146,42,0.5)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"
-                        aria-hidden="true">
-                        <rect x="2" y="20" width="20" height="2" />
-                        <rect x="3" y="9" width="18" height="11" />
-                        <path d="M2 9h20M12 4L2 9M12 4l10 5" />
-                      </svg></div>
-                    <div class="gal-placeholder-text" data-key="gal1_text">ఈద్ ఉత్సవం<br>ఫోటో త్వరలో</div>
+                <div class="gal-item gal-visible" data-category="events" data-image="assets/gallery/eid-celebration.webp" data-fallback="assets/gallery/eid-celebration.png" role="button" tabindex="0">
+                  <div class="gal-item-inner gal-photo-frame">
+                    <picture>
+                      <source srcset="assets/gallery/eid-celebration.webp" type="image/webp">
+                      <img src="assets/gallery/eid-celebration.png" width="960" height="960" loading="lazy" decoding="async" alt="" aria-hidden="true">
+                    </picture>
                   </div>
                   <div class="gal-overlay">
                     <div>
@@ -6715,17 +6889,12 @@
                   </div>
                 </div>
 
-                <div class="gal-item gal-visible" data-category="welfare"
-                  onclick="openLightbox(''), 'అంత్యక్రియల సహాయ పంపిణీ', 'సంక్షేమ కార్యక్రమాలు', 'మంగళగిరి', 'కొనసాగుతున్న పథకం')"
-                  role="button" tabindex="0">
-                  <div class="gal-item-inner">
-                    <div class="gal-placeholder-icon"><svg viewBox="0 0 24 24" width="32" height="32" fill="none"
-                        stroke="rgba(200,146,42,0.5)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"
-                        aria-hidden="true">
-                        <path
-                          d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-                      </svg></div>
-                    <div class="gal-placeholder-text" data-key="gal2_text">సహాయ పంపిణీ<br>ఫోటో త్వరలో</div>
+                <div class="gal-item gal-visible" data-category="welfare" data-image="assets/gallery/funeral-aid.webp" data-fallback="assets/gallery/funeral-aid.png" role="button" tabindex="0">
+                  <div class="gal-item-inner gal-photo-frame">
+                    <picture>
+                      <source srcset="assets/gallery/funeral-aid.webp" type="image/webp">
+                      <img src="assets/gallery/funeral-aid.png" width="960" height="960" loading="lazy" decoding="async" alt="" aria-hidden="true">
+                    </picture>
                   </div>
                   <div class="gal-overlay">
                     <div>
@@ -6735,17 +6904,12 @@
                   </div>
                 </div>
 
-                <div class="gal-item gal-visible" data-category="mosque"
-                  onclick="openLightbox(''), 'అంజుమన్ మసీదు – పునర్నిర్మాణం', 'మసీదు కార్యకలాపాలు', 'మంగళగిరి', 'కొనసాగుతున్నది')"
-                  role="button" tabindex="0">
-                  <div class="gal-item-inner">
-                    <div class="gal-placeholder-icon"><svg viewBox="0 0 24 24" width="32" height="32" fill="none"
-                        stroke="rgba(200,146,42,0.5)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"
-                        aria-hidden="true">
-                        <path d="M3 20h18M5 20V10l7-7 7 7v10" />
-                        <path d="M10 20v-5h4v5" />
-                      </svg></div>
-                    <div class="gal-placeholder-text" data-key="gal3_text">మసీదు<br>ఫోటో త్వరలో</div>
+                <div class="gal-item gal-visible" data-category="mosque" data-image="assets/gallery/mosque-renovation.webp" data-fallback="assets/gallery/mosque-renovation.png" role="button" tabindex="0">
+                  <div class="gal-item-inner gal-photo-frame">
+                    <picture>
+                      <source srcset="assets/gallery/mosque-renovation.webp" type="image/webp">
+                      <img src="assets/gallery/mosque-renovation.png" width="960" height="960" loading="lazy" decoding="async" alt="" aria-hidden="true">
+                    </picture>
                   </div>
                   <div class="gal-overlay">
                     <div>
@@ -6755,18 +6919,12 @@
                   </div>
                 </div>
 
-                <div class="gal-item gal-visible" data-category="women"
-                  onclick="openLightbox(''), 'కుట్టు శిక్షణా కేంద్రం', 'మహిళా కార్యక్రమాలు', 'మంగళగిరి', '2023–ప్రస్తుతం')"
-                  role="button" tabindex="0">
-                  <div class="gal-item-inner">
-                    <div class="gal-placeholder-icon"><svg viewBox="0 0 24 24" width="32" height="32" fill="none"
-                        stroke="rgba(200,146,42,0.5)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"
-                        aria-hidden="true">
-                        <circle cx="12" cy="7" r="4" />
-                        <path d="M3 21v-2a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v2" />
-                        <path d="M9 14l1.5 3 1.5-1.5 1.5 1.5 1.5-3" />
-                      </svg></div>
-                    <div class="gal-placeholder-text" data-key="gal4_text">కుట్టు శిక్షణ<br>ఫోటో త్వరలో</div>
+                <div class="gal-item gal-visible" data-category="women" data-image="assets/gallery/tailoring-center.webp" data-fallback="assets/gallery/tailoring-center.png" role="button" tabindex="0">
+                  <div class="gal-item-inner gal-photo-frame">
+                    <picture>
+                      <source srcset="assets/gallery/tailoring-center.webp" type="image/webp">
+                      <img src="assets/gallery/tailoring-center.png" width="960" height="960" loading="lazy" decoding="async" alt="" aria-hidden="true">
+                    </picture>
                   </div>
                   <div class="gal-overlay">
                     <div>
@@ -6776,17 +6934,12 @@
                   </div>
                 </div>
 
-                <div class="gal-item gal-visible" data-category="education"
-                  onclick="openLightbox(''), 'మదర్సా తరగతులు', 'విద్యా కార్యక్రమాలు', 'మంగళగిరి', 'కొనసాగుతున్నది')"
-                  role="button" tabindex="0">
-                  <div class="gal-item-inner">
-                    <div class="gal-placeholder-icon"><svg viewBox="0 0 24 24" width="32" height="32" fill="none"
-                        stroke="rgba(200,146,42,0.5)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"
-                        aria-hidden="true">
-                        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
-                        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
-                      </svg></div>
-                    <div class="gal-placeholder-text" data-key="gal5_text">మదర్సా<br>ఫోటో త్వరలో</div>
+                <div class="gal-item gal-visible" data-category="education" data-image="assets/gallery/madrasa-classes.webp" data-fallback="assets/gallery/madrasa-classes.png" role="button" tabindex="0">
+                  <div class="gal-item-inner gal-photo-frame">
+                    <picture>
+                      <source srcset="assets/gallery/madrasa-classes.webp" type="image/webp">
+                      <img src="assets/gallery/madrasa-classes.png" width="960" height="960" loading="lazy" decoding="async" alt="" aria-hidden="true">
+                    </picture>
                   </div>
                   <div class="gal-overlay">
                     <div>
@@ -6796,16 +6949,12 @@
                   </div>
                 </div>
 
-                <div class="gal-item gal-visible" data-category="welfare"
-                  onclick="openLightbox(''), 'మెడికల్ క్యాంప్ 2024', 'సంక్షేమ కార్యక్రమాలు', 'మంగళగిరి', '2024')"
-                  role="button" tabindex="0">
-                  <div class="gal-item-inner">
-                    <div class="gal-placeholder-icon"><svg viewBox="0 0 24 24" width="32" height="32" fill="none"
-                        stroke="rgba(200,146,42,0.5)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"
-                        aria-hidden="true">
-                        <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
-                      </svg></div>
-                    <div class="gal-placeholder-text" data-key="gal6_text">మెడికల్ క్యాంప్<br>ఫోటో త్వరలో</div>
+                <div class="gal-item gal-visible" data-category="welfare" data-image="assets/gallery/medical-camp.webp" data-fallback="assets/gallery/medical-camp.png" role="button" tabindex="0">
+                  <div class="gal-item-inner gal-photo-frame">
+                    <picture>
+                      <source srcset="assets/gallery/medical-camp.webp" type="image/webp">
+                      <img src="assets/gallery/medical-camp.png" width="960" height="960" loading="lazy" decoding="async" alt="" aria-hidden="true">
+                    </picture>
                   </div>
                   <div class="gal-overlay">
                     <div>
@@ -6815,16 +6964,12 @@
                   </div>
                 </div>
 
-                <div class="gal-item gal-visible" data-category="events"
-                  onclick="openLightbox(''), 'రమజాన్ ఇఫ్తార్ 2024', 'సమాజ ఉత్సవాలు', 'మంగళగిరి', '2024')" role="button"
-                  tabindex="0">
-                  <div class="gal-item-inner">
-                    <div class="gal-placeholder-icon"><svg viewBox="0 0 24 24" width="32" height="32" fill="none"
-                        stroke="rgba(200,146,42,0.5)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"
-                        aria-hidden="true">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-                      </svg></div>
-                    <div class="gal-placeholder-text" data-key="gal7_text">ఇఫ్తార్ కార్యక్రమం<br>ఫోటో త్వరలో</div>
+                <div class="gal-item gal-visible" data-category="events" data-image="assets/gallery/ramadan-iftar.webp" data-fallback="assets/gallery/ramadan-iftar.png" role="button" tabindex="0">
+                  <div class="gal-item-inner gal-photo-frame">
+                    <picture>
+                      <source srcset="assets/gallery/ramadan-iftar.webp" type="image/webp">
+                      <img src="assets/gallery/ramadan-iftar.png" width="960" height="960" loading="lazy" decoding="async" alt="" aria-hidden="true">
+                    </picture>
                   </div>
                   <div class="gal-overlay">
                     <div>
@@ -6834,17 +6979,12 @@
                   </div>
                 </div>
 
-                <div class="gal-item gal-visible" data-category="education"
-                  onclick="openLightbox(''), 'స్కాలర్‌షిప్ పంపిణీ 2023', 'విద్యా కార్యక్రమాలు', 'మంగళగిరి', '2023')"
-                  role="button" tabindex="0">
-                  <div class="gal-item-inner">
-                    <div class="gal-placeholder-icon"><svg viewBox="0 0 24 24" width="32" height="32" fill="none"
-                        stroke="rgba(200,146,42,0.5)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"
-                        aria-hidden="true">
-                        <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
-                        <path d="M6 12v5c3 3 9 3 12 0v-5" />
-                      </svg></div>
-                    <div class="gal-placeholder-text" data-key="gal8_text">స్కాలర్‌షిప్<br>ఫోటో త్వరలో</div>
+                <div class="gal-item gal-visible" data-category="education" data-image="assets/gallery/scholarship-distribution.webp" data-fallback="assets/gallery/scholarship-distribution.png" role="button" tabindex="0">
+                  <div class="gal-item-inner gal-photo-frame">
+                    <picture>
+                      <source srcset="assets/gallery/scholarship-distribution.webp" type="image/webp">
+                      <img src="assets/gallery/scholarship-distribution.png" width="960" height="960" loading="lazy" decoding="async" alt="" aria-hidden="true">
+                    </picture>
                   </div>
                   <div class="gal-overlay">
                     <div>
@@ -6854,19 +6994,12 @@
                   </div>
                 </div>
 
-                <div class="gal-item gal-visible" data-category="mosque"
-                  onclick="openLightbox(''), 'కన్వెన్షన్ హాల్ అప్‌గ్రేడ్', 'మసీదు కార్యకలాపాలు', 'మంగళగిరి', '2023–ప్రస్తుతం')"
-                  role="button" tabindex="0">
-                  <div class="gal-item-inner">
-                    <div class="gal-placeholder-icon"><svg viewBox="0 0 24 24" width="32" height="32" fill="none"
-                        stroke="rgba(200,146,42,0.5)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"
-                        aria-hidden="true">
-                        <line x1="2" y1="20" x2="22" y2="20" />
-                        <line x1="12" y1="2" x2="12" y2="20" />
-                        <polyline points="7 7 12 2 17 7" />
-                        <line x1="7" y1="12" x2="17" y2="12" />
-                      </svg></div>
-                    <div class="gal-placeholder-text" data-key="gal9_text">హాల్ నిర్మాణం<br>ఫోటో త్వరలో</div>
+                <div class="gal-item gal-visible" data-category="mosque" data-image="assets/gallery/convention-hall.webp" data-fallback="assets/gallery/convention-hall.png" role="button" tabindex="0">
+                  <div class="gal-item-inner gal-photo-frame">
+                    <picture>
+                      <source srcset="assets/gallery/convention-hall.webp" type="image/webp">
+                      <img src="assets/gallery/convention-hall.png" width="960" height="960" loading="lazy" decoding="async" alt="" aria-hidden="true">
+                    </picture>
                   </div>
                   <div class="gal-overlay">
                     <div>
@@ -6886,6 +7019,10 @@
           <div class="lb-content">
             <button class="lb-close" onclick="closeLightbox()" aria-label="Close">&#x2715;</button>
             <div class="lb-img-box">
+              <picture id="lb-picture" hidden>
+                <source id="lb-source" srcset="" type="image/webp">
+                <img id="lb-img" src="" alt="" width="960" height="960" loading="lazy" decoding="async">
+              </picture>
               <div class="lb-placeholder" id="lb-placeholder">
                 <span class="lb-placeholder-icon" id="lb-icon"><svg viewBox="0 0 24 24" width="40" height="40"
                     fill="none" stroke="rgba(200,146,42,0.6)" stroke-width="1.4" stroke-linecap="round"
@@ -7320,12 +7457,12 @@
               <div class="ci-item">
                 <div class="ci-label" data-key="ci_phone">ఫోన్</div>
                 <div class="ci-value"><a href="tel:+919032906677">+91 90329 06677</a><br><span
-                    style="font-size:12px;color:rgba(245,230,192,0.45);">త్వరలో అప్‌డేట్ చేయబడుతుంది</span></div>
+                    style="font-size:12px;color:rgba(245,230,192,0.82);">త్వరలో అప్‌డేట్ చేయబడుతుంది</span></div>
               </div>
               <div class="ci-item">
                 <div class="ci-label" data-key="ci_whatsapp">WhatsApp</div>
                 <div class="ci-value"><a href="https://wa.me/919032906677" target="_blank" rel="noopener">+91 90329
-                    06677</a><br><span style="font-size:12px;color:rgba(245,230,192,0.45);">త్వరలో అప్‌డేట్</span></div>
+                    06677</a><br><span style="font-size:12px;color:rgba(245,230,192,0.82);">త్వరలో అప్‌డేట్</span></div>
               </div>
               <div class="ci-item">
                 <div class="ci-label" data-key="ci_address">చిరునామా</div>
@@ -7352,15 +7489,15 @@
             <p class="section-lead" data-key="ld_lead">ఖురాన్, నమాజ్, సీరహ్, చరిత్ర, భాషలు మరియు మరిన్ని — ఉచిత,
               నిర్మాణాత్మక అభ్యాస పోర్టల్‌లు. ప్రారంభించడానికి ఏదైనా పోర్టల్ తెరవండి.</p>
 
-            <div class="ld-portal-list">
+            <div class="ld-portal-list ld-portal-teaser">
               <a href="knowledge-center/learn-arabic/index.html" class="ld-portal reveal">
                 <div class="ld-portal-icon" style="font-family:serif;font-size:20px">ع</div>
                 <div class="ld-portal-info">
                   <div class="ld-portal-name" data-key="ld_arabic">అరబిక్ నేర్చుకోండి</div>
                   <div class="ld-portal-desc" data-te="అక్షరాల నుండి ఖురాన్ వ్యాకరణం వరకు"
-                    data-en="Letters to Quranic grammar">అక్షరాల నుండి ఖురాన్ వ్యాకరణం వరకు</div>
-                  <div class="ld-portal-meta"><span data-te="6 స్థాయిలు" data-en="6 Levels">6 స్థాయిలు</span> · <span
-                      data-te="ఉచితం" data-en="Free">ఉచితం</span></div>
+                    data-en="Letters to Quranic grammar" data-key="ld_portal_auto_1">అక్షరాల నుండి ఖురాన్ వ్యాకరణం వరకు</div>
+                  <div class="ld-portal-meta"><span data-te="6 స్థాయిలు" data-en="6 Levels" data-key="ld_portal_auto_2">6 స్థాయిలు</span> · <span
+                      data-te="ఉచితం" data-en="Free" data-key="ld_portal_auto_3">ఉచితం</span></div>
                 </div>
                 <div class="ld-portal-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14"
                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -7374,9 +7511,9 @@
                 <div class="ld-portal-info">
                   <div class="ld-portal-name" data-key="ld_urdu">ఉర్దూ నేర్చుకోండి</div>
                   <div class="ld-portal-desc" data-te="లిపి, పదాలు, ఇస్లామిక్ ఉర్దూ"
-                    data-en="Script, vocabulary, Islamic Urdu">లిపి, పదాలు, ఇస్లామిక్ ఉర్దూ</div>
-                  <div class="ld-portal-meta"><span data-te="6 స్థాయిలు" data-en="6 Levels">6 స్థాయిలు</span> · <span
-                      data-te="ఉచితం" data-en="Free">ఉచితం</span></div>
+                    data-en="Script, vocabulary, Islamic Urdu" data-key="ld_portal_auto_4">లిపి, పదాలు, ఇస్లామిక్ ఉర్దూ</div>
+                  <div class="ld-portal-meta"><span data-te="6 స్థాయిలు" data-en="6 Levels" data-key="ld_portal_auto_5">6 స్థాయిలు</span> · <span
+                      data-te="ఉచితం" data-en="Free" data-key="ld_portal_auto_6">ఉచితం</span></div>
                 </div>
                 <div class="ld-portal-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14"
                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -7393,9 +7530,9 @@
                 <div class="ld-portal-info">
                   <div class="ld-portal-name" data-key="ld_quran">ఖురాన్ నేర్చుకోండి</div>
                   <div class="ld-portal-desc" data-te="పఠనం, తజ్వీద్, తఫ్సీర్, హిఫ్జ్"
-                    data-en="Reading, Tajweed, Tafseer, Hifz">పఠనం, తజ్వీద్, తఫ్సీర్, హిఫ్జ్</div>
-                  <div class="ld-portal-meta"><span data-te="4 మాడ్యూల్స్" data-en="4 Modules">4 మాడ్యూల్స్</span> ·
-                    <span data-te="ఉచితం" data-en="Free">ఉచితం</span></div>
+                    data-en="Reading, Tajweed, Tafseer, Hifz" data-key="ld_portal_auto_7">పఠనం, తజ్వీద్, తఫ్సీర్, హిఫ్జ్</div>
+                  <div class="ld-portal-meta"><span data-te="4 మాడ్యూల్స్" data-en="4 Modules" data-key="ld_portal_auto_8">4 మాడ్యూల్స్</span> ·
+                    <span data-te="ఉచితం" data-en="Free" data-key="ld_portal_auto_9">ఉచితం</span></div>
                 </div>
                 <div class="ld-portal-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14"
                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -7412,10 +7549,10 @@
                   </svg></div>
                 <div class="ld-portal-info">
                   <div class="ld-portal-name" data-key="ld_salah">నమాజ్ నేర్చుకోండి</div>
-                  <div class="ld-portal-desc" data-te="వుదూ, రకాత్ దశలు, దుయాలు" data-en="Wudu, Rakat steps, Duas">వుదూ,
+                  <div class="ld-portal-desc" data-te="వుదూ, రకాత్ దశలు, దుయాలు" data-en="Wudu, Rakat steps, Duas" data-key="ld_portal_auto_10">వుదూ,
                     రకాత్ దశలు, దుయాలు</div>
-                  <div class="ld-portal-meta"><span data-te="6 మాడ్యూల్స్" data-en="6 Modules">6 మాడ్యూల్స్</span> ·
-                    <span data-te="ఉచితం" data-en="Free">ఉచితం</span></div>
+                  <div class="ld-portal-meta"><span data-te="6 మాడ్యూల్స్" data-en="6 Modules" data-key="ld_portal_auto_11">6 మాడ్యూల్స్</span> ·
+                    <span data-te="ఉచితం" data-en="Free" data-key="ld_portal_auto_12">ఉచితం</span></div>
                 </div>
                 <div class="ld-portal-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14"
                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -7432,10 +7569,10 @@
                   </svg></div>
                 <div class="ld-portal-info">
                   <div class="ld-portal-name" data-key="ld_seerah">సీరహ్</div>
-                  <div class="ld-portal-desc" data-te="ప్రవక్త ﷺ జీవిత చరిత్ర" data-en="Life of the Prophet ﷺ">ప్రవక్త ﷺ
+                  <div class="ld-portal-desc" data-te="ప్రవక్త ﷺ జీవిత చరిత్ర" data-en="Life of the Prophet ﷺ" data-key="ld_portal_auto_13">ప్రవక్త ﷺ
                     జీవిత చరిత్ర</div>
-                  <div class="ld-portal-meta"><span data-te="10 దశల టైమ్‌లైన్" data-en="10-Stage Timeline">10 దశల
-                      టైమ్‌లైన్</span> · <span data-te="ఉచితం" data-en="Free">ఉచితం</span></div>
+                  <div class="ld-portal-meta"><span data-te="10 దశల టైమ్‌లైన్" data-en="10-Stage Timeline" data-key="ld_portal_auto_14">10 దశల
+                      టైమ్‌లైన్</span> · <span data-te="ఉచితం" data-en="Free" data-key="ld_portal_auto_15">ఉచితం</span></div>
                 </div>
                 <div class="ld-portal-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14"
                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -7454,9 +7591,9 @@
                 <div class="ld-portal-info">
                   <div class="ld-portal-name" data-key="ld_history">ఇస్లామిక్ చరిత్ర</div>
                   <div class="ld-portal-desc" data-te="ఖులఫా రాశిదూన్ నుండి ఆధునిక యుగం వరకు"
-                    data-en="Rashidun to the modern era">ఖులఫా రాశిదూన్ నుండి ఆధునిక యుగం వరకు</div>
-                  <div class="ld-portal-meta"><span data-te="6 యుగాలు" data-en="6 Eras">6 యుగాలు</span> · <span
-                      data-te="ఉచితం" data-en="Free">ఉచితం</span></div>
+                    data-en="Rashidun to the modern era" data-key="ld_portal_auto_16">ఖులఫా రాశిదూన్ నుండి ఆధునిక యుగం వరకు</div>
+                  <div class="ld-portal-meta"><span data-te="6 యుగాలు" data-en="6 Eras" data-key="ld_portal_auto_17">6 యుగాలు</span> · <span
+                      data-te="ఉచితం" data-en="Free" data-key="ld_portal_auto_18">ఉచితం</span></div>
                 </div>
                 <div class="ld-portal-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14"
                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -7473,10 +7610,10 @@
                   </svg></div>
                 <div class="ld-portal-info">
                   <div class="ld-portal-name" data-key="ld_kids">పిల్లల ఇస్లాం</div>
-                  <div class="ld-portal-desc" data-te="5–15 సంవత్సరాల వయసు పిల్లలకు" data-en="For children ages 5–15">
+                  <div class="ld-portal-desc" data-te="5–15 సంవత్సరాల వయసు పిల్లలకు" data-en="For children ages 5–15" data-key="ld_portal_auto_19">
                     5–15 సంవత్సరాల వయసు పిల్లలకు</div>
-                  <div class="ld-portal-meta"><span data-te="6 అభ్యాస విభాగాలు" data-en="6 Learning Sections">6 అభ్యాస
-                      విభాగాలు</span> · <span data-te="ఉచితం" data-en="Free">ఉచితం</span></div>
+                  <div class="ld-portal-meta"><span data-te="6 అభ్యాస విభాగాలు" data-en="6 Learning Sections" data-key="ld_portal_auto_20">6 అభ్యాస
+                      విభాగాలు</span> · <span data-te="ఉచితం" data-en="Free" data-key="ld_portal_auto_21">ఉచితం</span></div>
                 </div>
                 <div class="ld-portal-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14"
                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -7487,48 +7624,51 @@
               <a href="knowledge-center/names-of-allah/index.html" class="ld-portal reveal">
                 <div class="ld-portal-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#2e8b57" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
                 <div class="ld-portal-info">
-                  <div class="ld-portal-name" data-te="అల్లాహ్ యొక్క 99 పేర్లు" data-en="99 Names of Allah">అల్లాహ్ యొక్క 99 పేర్లు</div>
-                  <div class="ld-portal-desc" data-te="అస్మా అల్-హుస్నా — కార్డులు, వర్గాలు, కంఠస్థం" data-en="Asma ul-Husna — cards, categories, memorization">అస్మా అల్-హుస్నా — కార్డులు, వర్గాలు, కంఠస్థం</div>
-                  <div class="ld-portal-meta"><span data-te="99 పేర్లు" data-en="99 Names">99 పేర్లు</span> · <span data-te="ఉచితం" data-en="Free">ఉచితం</span></div>
+                  <div class="ld-portal-name" data-te="అల్లాహ్ యొక్క 99 పేర్లు" data-en="99 Names of Allah" data-key="ld_portal_auto_22">అల్లాహ్ యొక్క 99 పేర్లు</div>
+                  <div class="ld-portal-desc" data-te="అస్మా అల్-హుస్నా — కార్డులు, వర్గాలు, కంఠస్థం" data-en="Asma ul-Husna — cards, categories, memorization" data-key="ld_portal_auto_23">అస్మా అల్-హుస్నా — కార్డులు, వర్గాలు, కంఠస్థం</div>
+                  <div class="ld-portal-meta"><span data-te="99 పేర్లు" data-en="99 Names" data-key="ld_portal_auto_24">99 పేర్లు</span> · <span data-te="ఉచితం" data-en="Free" data-key="ld_portal_auto_25">ఉచితం</span></div>
                 </div>
                 <div class="ld-portal-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
               </a>
               <a href="knowledge-center/islamic-calendar/index.html" class="ld-portal reveal">
                 <div class="ld-portal-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#2e8b57" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
                 <div class="ld-portal-info">
-                  <div class="ld-portal-name" data-te="ఇస్లామిక్ కేలండర్" data-en="Islamic Calendar">ఇస్లామిక్ కేలండర్</div>
-                  <div class="ld-portal-desc" data-te="హిజ్రీ ↔ గ్రెగోరియన్ మార్పిడి, కౌంట్‌డౌన్లు" data-en="Hijri ↔ Gregorian conversion, countdowns">హిజ్రీ ↔ గ్రెగోరియన్ మార్పిడి, కౌంట్‌డౌన్లు</div>
-                  <div class="ld-portal-meta"><span data-te="12 నెలలు · 8 ఘటనలు" data-en="12 Months · 8 Events">12 నెలలు · 8 ఘటనలు</span> · <span data-te="ఉచితం" data-en="Free">ఉచితం</span></div>
+                  <div class="ld-portal-name" data-te="ఇస్లామిక్ కేలండర్" data-en="Islamic Calendar" data-key="ld_portal_auto_26">ఇస్లామిక్ కేలండర్</div>
+                  <div class="ld-portal-desc" data-te="హిజ్రీ ↔ గ్రెగోరియన్ మార్పిడి, కౌంట్‌డౌన్లు" data-en="Hijri ↔ Gregorian conversion, countdowns" data-key="ld_portal_auto_27">హిజ్రీ ↔ గ్రెగోరియన్ మార్పిడి, కౌంట్‌డౌన్లు</div>
+                  <div class="ld-portal-meta"><span data-te="12 నెలలు · 8 ఘటనలు" data-en="12 Months · 8 Events" data-key="ld_portal_auto_28">12 నెలలు · 8 ఘటనలు</span> · <span data-te="ఉచితం" data-en="Free" data-key="ld_portal_auto_29">ఉచితం</span></div>
                 </div>
                 <div class="ld-portal-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
               </a>
               <a href="knowledge-center/hajj-umrah/index.html" class="ld-portal reveal">
                 <div class="ld-portal-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#2e8b57" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M9 21V9l3-6 3 6v12M3 12h4M17 12h4"/></svg></div>
                 <div class="ld-portal-info">
-                  <div class="ld-portal-name" data-te="హజ్ & ఉమ్రా గైడ్" data-en="Hajj & Umrah Guide">హజ్ & ఉమ్రా గైడ్</div>
-                  <div class="ld-portal-desc" data-te="దశల వారీగా, దుఆలు, చెక్‌లిస్ట్" data-en="Step-by-step, duas, checklist">దశల వారీగా, దుఆలు, చెక్‌లిస్ట్</div>
-                  <div class="ld-portal-meta"><span data-te="5 ఉమ్రా + 8 హజ్ దశలు" data-en="5 Umrah + 8 Hajj Steps">5 ఉమ్రా + 8 హజ్ దశలు</span> · <span data-te="ఉచితం" data-en="Free">ఉచితం</span></div>
+                  <div class="ld-portal-name" data-te="హజ్ & ఉమ్రా గైడ్" data-en="Hajj & Umrah Guide" data-key="ld_portal_auto_30">హజ్ & ఉమ్రా గైడ్</div>
+                  <div class="ld-portal-desc" data-te="దశల వారీగా, దుఆలు, చెక్‌లిస్ట్" data-en="Step-by-step, duas, checklist" data-key="ld_portal_auto_31">దశల వారీగా, దుఆలు, చెక్‌లిస్ట్</div>
+                  <div class="ld-portal-meta"><span data-te="5 ఉమ్రా + 8 హజ్ దశలు" data-en="5 Umrah + 8 Hajj Steps" data-key="ld_portal_auto_32">5 ఉమ్రా + 8 హజ్ దశలు</span> · <span data-te="ఉచితం" data-en="Free" data-key="ld_portal_auto_33">ఉచితం</span></div>
                 </div>
                 <div class="ld-portal-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
               </a>
               <a href="knowledge-center/special-prayers/index.html" class="ld-portal reveal">
                 <div class="ld-portal-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#2e8b57" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2C8 6 4 10 4 14a8 8 0 0016 0c0-4-4-8-8-12z"/></svg></div>
                 <div class="ld-portal-info">
-                  <div class="ld-portal-name" data-te="ప్రత్యేక నమాజులు" data-en="Special Prayers">ప్రత్యేక నమాజులు</div>
-                  <div class="ld-portal-desc" data-te="ఈద్, జనాజా, తహజ్జుద్, తరావీహ్, ఇస్తిఖారా" data-en="Eid, Janazah, Tahajjud, Taraweeh, Istikhara">ఈద్, జనాజా, తహజ్జుద్, తరావీహ్, ఇస్తిఖారా</div>
-                  <div class="ld-portal-meta"><span data-te="10 ప్రత్యేక నమాజులు" data-en="10 Special Prayers">10 ప్రత్యేక నమాజులు</span> · <span data-te="ఉచితం" data-en="Free">ఉచితం</span></div>
+                  <div class="ld-portal-name" data-te="ప్రత్యేక నమాజులు" data-en="Special Prayers" data-key="ld_portal_auto_34">ప్రత్యేక నమాజులు</div>
+                  <div class="ld-portal-desc" data-te="ఈద్, జనాజా, తహజ్జుద్, తరావీహ్, ఇస్తిఖారా" data-en="Eid, Janazah, Tahajjud, Taraweeh, Istikhara" data-key="ld_portal_auto_35">ఈద్, జనాజా, తహజ్జుద్, తరావీహ్, ఇస్తిఖారా</div>
+                  <div class="ld-portal-meta"><span data-te="10 ప్రత్యేక నమాజులు" data-en="10 Special Prayers" data-key="ld_portal_auto_36">10 ప్రత్యేక నమాజులు</span> · <span data-te="ఉచితం" data-en="Free" data-key="ld_portal_auto_37">ఉచితం</span></div>
                 </div>
                 <div class="ld-portal-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
               </a>
               <a href="knowledge-center/womens-guidance/index.html" class="ld-portal reveal">
                 <div class="ld-portal-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#2e8b57" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M12 12v8M9 18h6"/></svg></div>
                 <div class="ld-portal-info">
-                  <div class="ld-portal-name" data-te="మహిళల ఇస్లామిక్ మార్గదర్శకత్వం" data-en="Women's Islamic Guidance">మహిళల ఇస్లామిక్ మార్గదర్శకత్వం</div>
-                  <div class="ld-portal-desc" data-te="హైద్, నిఫాస్, తహారా, గుస్ల్, రమదాన్" data-en="Hayd, Nifas, Taharah, Ghusl, Ramadan">హైద్, నిఫాస్, తహారా, గుస్ల్, రమదాన్</div>
-                  <div class="ld-portal-meta"><span data-te="5 అంశాలు · 15+ FAQs" data-en="5 Topics · 15+ FAQs">5 అంశాలు · 15+ FAQs</span> · <span data-te="ఉచితం" data-en="Free">ఉచితం</span></div>
+                  <div class="ld-portal-name" data-te="మహిళల ఇస్లామిక్ మార్గదర్శకత్వం" data-en="Women's Islamic Guidance" data-key="ld_portal_auto_38">మహిళల ఇస్లామిక్ మార్గదర్శకత్వం</div>
+                  <div class="ld-portal-desc" data-te="హైద్, నిఫాస్, తహారా, గుస్ల్, రమదాన్" data-en="Hayd, Nifas, Taharah, Ghusl, Ramadan" data-key="ld_portal_auto_39">హైద్, నిఫాస్, తహారా, గుస్ల్, రమదాన్</div>
+                  <div class="ld-portal-meta"><span data-te="5 అంశాలు · 15+ FAQs" data-en="5 Topics · 15+ FAQs" data-key="ld_portal_auto_40">5 అంశాలు · 15+ FAQs</span> · <span data-te="ఉచితం" data-en="Free" data-key="ld_portal_auto_41">ఉచితం</span></div>
                 </div>
                 <div class="ld-portal-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
               </a>
+            </div>
+            <div class="ld-all-portals">
+              <a href="islamic-knowledge.html#lang-portals" class="hero-cta-secondary" data-key="ld_all_portals">అన్ని పోర్టల్‌లు చూడండి</a>
             </div>
           </div>
         </section>
@@ -7869,6 +8009,9 @@
         kc_t3: "తదుపరి నమాజ్ కౌంట్‌డౌన్",
         kc_t4: "ఖురాన్ వనరులు",
         kc_t5: "హదీస్ వనరులు",
+        map_title: "మంగళగిరి, ఆంధ్రప్రదేశ్",
+        map_copy: "లైవ్ మ్యాప్‌ను అవసరమైనప్పుడు మాత్రమే లోడ్ చేస్తాము.",
+        map_load: "మ్యాప్ లోడ్ చేయండి",
         kc_t6: "అరబిక్ నేర్చుకోండి",
         kc_t7: "ఉర్దూ నేర్చుకోండి",
         footer_desc: "2011 నుండి మంగళగిరి, ఆంధ్రప్రదేశ్ ముస్లిం సమాజానికి సేవ చేస్తున్నాము.<br>జనాబ్ షేక్ అక్రమ్ నాయకత్వంలో, అంజుమన్‌- యి- హిమాయతుల్‌ ఇస్లాం ద్వారా<br>పారదర్శక, అభివృద్ధి-కేంద్రిత పాలనకు కట్టుబడి ఉన్నాము.",
@@ -7975,7 +8118,55 @@
         /* Knowledge Center Portals */
         ld_tag: "నాలెడ్జ్ సెంటర్", ld_title: "నాలెడ్జ్ సెంటర్‌ను అన్వేషించండి",
         ld_lead: "ఖురాన్, నమాజ్, సీరహ్, చరిత్ర, భాషలు మరియు మరిన్ని — ఉచిత, నిర్మాణాత్మక అభ్యాస పోర్టల్‌లు. ప్రారంభించడానికి ఏదైనా పోర్టల్ తెరవండి.",
+        ld_all_portals: "అన్ని పోర్టల్‌లు చూడండి",
+        continue_tag: "మీ అభ్యాసం",
+        continue_title: "మీరు ప్రారంభించిన చోటు నుంచే కొనసాగండి",
+        continue_primary: "కొనసాగించండి",
+        continue_profile: "ప్రొఫైల్ చూడండి",
         ld_arabic: "అరబిక్ నేర్చుకోండి", ld_urdu: "ఉర్దూ నేర్చుకోండి", ld_quran: "ఖురాన్ నేర్చుకోండి", ld_salah: "నమాజ్ నేర్చుకోండి", ld_seerah: "సీరహ్", ld_history: "ఇస్లామిక్ చరిత్ర", ld_kids: "పిల్లల ఇస్లాం",
+
+        /* Homepage portal card strings */
+        ld_portal_auto_1: "అక్షరాల నుండి ఖురాన్ వ్యాకరణం వరకు",
+        ld_portal_auto_2: "6 స్థాయిలు",
+        ld_portal_auto_3: "ఉచితం",
+        ld_portal_auto_4: "లిపి, పదాలు, ఇస్లామిక్ ఉర్దూ",
+        ld_portal_auto_5: "6 స్థాయిలు",
+        ld_portal_auto_6: "ఉచితం",
+        ld_portal_auto_7: "పఠనం, తజ్వీద్, తఫ్సీర్, హిఫ్జ్",
+        ld_portal_auto_8: "4 మాడ్యూల్స్",
+        ld_portal_auto_9: "ఉచితం",
+        ld_portal_auto_10: "వుదూ, రకాత్ దశలు, దుయాలు",
+        ld_portal_auto_11: "6 మాడ్యూల్స్",
+        ld_portal_auto_12: "ఉచితం",
+        ld_portal_auto_13: "ప్రవక్త ﷺ జీవిత చరిత్ర",
+        ld_portal_auto_14: "10 దశల టైమ్‌లైన్",
+        ld_portal_auto_15: "ఉచితం",
+        ld_portal_auto_16: "ఖులఫా రాశిదూన్ నుండి ఆధునిక యుగం వరకు",
+        ld_portal_auto_17: "6 యుగాలు",
+        ld_portal_auto_18: "ఉచితం",
+        ld_portal_auto_19: "5–15 సంవత్సరాల వయసు పిల్లలకు",
+        ld_portal_auto_20: "6 అభ్యాస విభాగాలు",
+        ld_portal_auto_21: "ఉచితం",
+        ld_portal_auto_22: "అల్లాహ్ యొక్క 99 పేర్లు",
+        ld_portal_auto_23: "అస్మా అల్-హుస్నా — కార్డులు, వర్గాలు, కంఠస్థం",
+        ld_portal_auto_24: "99 పేర్లు",
+        ld_portal_auto_25: "ఉచితం",
+        ld_portal_auto_26: "ఇస్లామిక్ కేలండర్",
+        ld_portal_auto_27: "హిజ్రీ ↔ గ్రెగోరియన్ మార్పిడి, కౌంట్‌డౌన్లు",
+        ld_portal_auto_28: "12 నెలలు · 8 ఘటనలు",
+        ld_portal_auto_29: "ఉచితం",
+        ld_portal_auto_30: "హజ్ & ఉమ్రా గైడ్",
+        ld_portal_auto_31: "దశల వారీగా, దుఆలు, చెక్‌లిస్ట్",
+        ld_portal_auto_32: "5 ఉమ్రా + 8 హజ్ దశలు",
+        ld_portal_auto_33: "ఉచితం",
+        ld_portal_auto_34: "ప్రత్యేక నమాజులు",
+        ld_portal_auto_35: "ఈద్, జనాజా, తహజ్జుద్, తరావీహ్, ఇస్తిఖారా",
+        ld_portal_auto_36: "10 ప్రత్యేక నమాజులు",
+        ld_portal_auto_37: "ఉచితం",
+        ld_portal_auto_38: "మహిళల ఇస్లామిక్ మార్గదర్శకత్వం",
+        ld_portal_auto_39: "హైద్, నిఫాస్, తహారా, గుస్ల్, రమదాన్",
+        ld_portal_auto_40: "5 అంశాలు · 15+ FAQs",
+        ld_portal_auto_41: "ఉచితం",
 
         /* Mobile contact actions */
         mobile_help_fab: "సహాయం",
@@ -8147,6 +8338,9 @@
         kc_t3: "Next Salah Countdown",
         kc_t4: "Quran Resources",
         kc_t5: "Hadith Resources",
+        map_title: "Mangalagiri, Andhra Pradesh",
+        map_copy: "The live map loads only when you need it.",
+        map_load: "Load map",
         kc_t6: "Learn Arabic",
         kc_t7: "Learn Urdu",
         footer_desc: "Serving the Muslim community of Mangalagiri, Andhra Pradesh since 2011.<br>Under the leadership of Janab Shaik Akram, committed to transparent,<br>development-focused governance through Anjuman-e-Himayatul Islam.",
@@ -8253,7 +8447,55 @@
         /* Knowledge Center Portals */
         ld_tag: "Knowledge Center", ld_title: "Explore the Knowledge Center",
         ld_lead: "Free, structured learning portals — Quran, Salah, Seerah, history, languages and more. Open any portal to begin.",
+        ld_all_portals: "View all portals",
+        continue_tag: "Your learning",
+        continue_title: "Continue where you left off",
+        continue_primary: "Continue",
+        continue_profile: "View profile",
         ld_arabic: "Learn Arabic", ld_urdu: "Learn Urdu", ld_quran: "Learn Quran", ld_salah: "Learn Salah", ld_seerah: "Seerah", ld_history: "Islamic History", ld_kids: "Kids Islam",
+
+        /* Homepage portal card strings */
+        ld_portal_auto_1: "Letters to Quranic grammar",
+        ld_portal_auto_2: "6 Levels",
+        ld_portal_auto_3: "Free",
+        ld_portal_auto_4: "Script, vocabulary, Islamic Urdu",
+        ld_portal_auto_5: "6 Levels",
+        ld_portal_auto_6: "Free",
+        ld_portal_auto_7: "Reading, Tajweed, Tafseer, Hifz",
+        ld_portal_auto_8: "4 Modules",
+        ld_portal_auto_9: "Free",
+        ld_portal_auto_10: "Wudu, Rakat steps, Duas",
+        ld_portal_auto_11: "6 Modules",
+        ld_portal_auto_12: "Free",
+        ld_portal_auto_13: "Life of the Prophet ﷺ",
+        ld_portal_auto_14: "10-Stage Timeline",
+        ld_portal_auto_15: "Free",
+        ld_portal_auto_16: "Rashidun to the modern era",
+        ld_portal_auto_17: "6 Eras",
+        ld_portal_auto_18: "Free",
+        ld_portal_auto_19: "For children ages 5–15",
+        ld_portal_auto_20: "6 Learning Sections",
+        ld_portal_auto_21: "Free",
+        ld_portal_auto_22: "99 Names of Allah",
+        ld_portal_auto_23: "Asma ul-Husna — cards, categories, memorization",
+        ld_portal_auto_24: "99 Names",
+        ld_portal_auto_25: "Free",
+        ld_portal_auto_26: "Islamic Calendar",
+        ld_portal_auto_27: "Hijri ↔ Gregorian conversion, countdowns",
+        ld_portal_auto_28: "12 Months · 8 Events",
+        ld_portal_auto_29: "Free",
+        ld_portal_auto_30: "Hajj & Umrah Guide",
+        ld_portal_auto_31: "Step-by-step, duas, checklist",
+        ld_portal_auto_32: "5 Umrah + 8 Hajj Steps",
+        ld_portal_auto_33: "Free",
+        ld_portal_auto_34: "Special Prayers",
+        ld_portal_auto_35: "Eid, Janazah, Tahajjud, Taraweeh, Istikhara",
+        ld_portal_auto_36: "10 Special Prayers",
+        ld_portal_auto_37: "Free",
+        ld_portal_auto_38: "Women's Islamic Guidance",
+        ld_portal_auto_39: "Hayd, Nifas, Taharah, Ghusl, Ramadan",
+        ld_portal_auto_40: "5 Topics · 15+ FAQs",
+        ld_portal_auto_41: "Free",
 
         /* Mobile contact actions */
         mobile_help_fab: "Help",
@@ -8276,6 +8518,53 @@
       }
     };
 
+    function readJSON(key, fallback) {
+      try { return JSON.parse(localStorage.getItem(key)) || fallback; } catch (e) { return fallback; }
+    }
+
+    function renderContinueRail() {
+      var rail = document.getElementById('continue-learning');
+      var actions = document.getElementById('continue-actions');
+      if (!rail || !actions) return;
+      var recent = readJSON('if-recent', []);
+      var portals = [
+        { key: 'quran', url: 'knowledge-center/learn-quran/index.html', te: 'ఖురాన్', en: 'Quran' },
+        { key: 'salah', url: 'knowledge-center/learn-salah/index.html', te: 'నమాజ్', en: 'Salah' },
+        { key: 'seerah', url: 'knowledge-center/seerah/index.html', te: 'సీరహ్', en: 'Seerah' },
+        { key: 'history', url: 'knowledge-center/islamic-history/index.html', te: 'చరిత్ర', en: 'History' },
+        { key: 'arabic', url: 'knowledge-center/learn-arabic/index.html', te: 'అరబిక్', en: 'Arabic' },
+        { key: 'urdu', url: 'knowledge-center/learn-urdu/index.html', te: 'ఉర్దూ', en: 'Urdu' },
+        { key: 'kids', url: 'knowledge-center/kids-islam/index.html', te: 'పిల్లల ఇస్లాం', en: 'Kids Islam' }
+      ];
+      var choice = null;
+      if (Array.isArray(recent) && recent.length && recent[0].url) {
+        choice = { url: recent[0].url, title: (recent[0].title || '').replace(/\s*[–—|].*$/, '').trim() };
+      }
+      if (!choice) {
+        portals.some(function (p) {
+          var prog = readJSON('if-' + p.key + '-progress', {});
+          var done = prog.done || prog.levels || [];
+          if (done.length) {
+            choice = { url: p.url, title: lang === 'en' ? p.en : p.te };
+            return true;
+          }
+          return false;
+        });
+      }
+      if (!choice) { rail.hidden = true; actions.innerHTML = ''; return; }
+      rail.hidden = false;
+      var title = choice.title ? ': ' + choice.title : '';
+      actions.innerHTML = '<a href="' + choice.url + '">' + T[lang].continue_primary + title + '</a>'
+        + '<a href="#" class="secondary" data-open-profile>' + T[lang].continue_profile + '</a>';
+    }
+
+    document.addEventListener('click', function (e) {
+      var btn = e.target.closest && e.target.closest('[data-open-profile]');
+      if (!btn) return;
+      e.preventDefault();
+      if (window.IFProfile) window.IFProfile.open();
+    });
+
     let lang = (function () { try { return localStorage.getItem('if-lang') === 'en' ? 'en' : 'te'; } catch (e) { return 'te'; } })();
 
     function applyLang(l) {
@@ -8286,10 +8575,6 @@
         if (val === undefined) return;
         if (el.dataset.html === 'true') { el.innerHTML = val; }
         else { el.textContent = val; }
-      });
-      /* System B: data-te / data-en used on portal desc elements */
-      document.querySelectorAll('[data-te][data-en]').forEach(el => {
-        el.innerHTML = l === 'en' ? el.dataset.en : el.dataset.te;
       });
       document.querySelectorAll('[data-alt-te][data-alt-en]').forEach(el => {
         el.setAttribute('alt', l === 'en' ? el.dataset.altEn : el.dataset.altTe);
@@ -8307,6 +8592,7 @@
       langBtn.style.fontFamily = l === 'te' ? "'DM Sans', sans-serif" : "'Noto Sans Telugu', sans-serif";
       langBtn.title = l === 'te' ? 'Currently: Telugu — Click for English' : 'Currently: English — Click for Telugu';
       langBtn.setAttribute('aria-label', l === 'te' ? 'Switch to English (currently Telugu)' : 'Switch to Telugu (currently English)');
+      renderContinueRail();
     }
 
     function filterManifesto(filter, btn) {
@@ -8803,10 +9089,23 @@
     window.filterGallery = filterGallery;
 
     /* Lightbox */
-    function openLightbox(icon, caption, sub, place, when) {
+    function openLightbox(image, caption, sub, place, when) {
       var lb = document.getElementById('lightbox');
       if (!lb) return;
-      // lb-icon keeps its default SVG — gallery items don't have real photos yet
+      var picture = document.getElementById('lb-picture');
+      var source = document.getElementById('lb-source');
+      var img = document.getElementById('lb-img');
+      var placeholder = document.getElementById('lb-placeholder');
+      if (image && picture && source && img) {
+        source.srcset = image;
+        img.src = image.replace(/\.webp$/i, '.png');
+        img.alt = caption || '';
+        picture.hidden = false;
+        if (placeholder) placeholder.hidden = true;
+      } else {
+        if (picture) picture.hidden = true;
+        if (placeholder) placeholder.hidden = false;
+      }
       document.getElementById('lb-caption').textContent = caption;
       document.getElementById('lb-sub').textContent = sub;
       var metaEl = document.getElementById('lb-meta');
@@ -8830,9 +9129,34 @@
         e.target.click();
       }
     });
+    document.querySelectorAll('.gal-item[data-image]').forEach(function (item) {
+      item.addEventListener('click', function () {
+        var caption = (item.querySelector('.gal-caption') || {}).textContent || '';
+        var sub = (item.querySelector('.gal-tag') || {}).textContent || '';
+        var place = document.documentElement.lang === 'en' ? 'Mangalagiri' : 'మంగళగిరి';
+        openLightbox(item.dataset.image, caption, sub, place, '');
+      });
+    });
     document.getElementById('lightbox') && document.getElementById('lightbox').addEventListener('click', function (e) {
       if (e.target === this) closeLightbox();
     });
+
+    var mapLoadBtn = document.getElementById('map-load');
+    if (mapLoadBtn) {
+      mapLoadBtn.addEventListener('click', function () {
+        var box = document.getElementById('map-box');
+        if (!box) return;
+        var iframe = document.createElement('iframe');
+        iframe.src = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30622.95!2d80.508!3d16.430!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a35e8f6f3e11f4b%3A0x1!2sMangalagiri%2C%20Andhra%20Pradesh%20522503!5e0!3m2!1ste!2sin!4v1716556800000!5m2!1ste!2sin';
+        iframe.width = '600';
+        iframe.height = '380';
+        iframe.allowFullscreen = true;
+        iframe.loading = 'lazy';
+        iframe.referrerPolicy = 'no-referrer-when-downgrade';
+        iframe.title = 'Mangalagiri, Andhra Pradesh — Islamic Front location';
+        box.replaceChildren(iframe);
+      });
+    }
 
     /* Events tab switch */
     function switchEventTab(id, btn) {

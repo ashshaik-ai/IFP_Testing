@@ -18,7 +18,7 @@
 
 - **Janab Shaik Akram** — Founder, Islamic Front.
 - Also serves as **Director of the Andhra Pradesh State Waqf Board**, bringing state-level experience to the local community.
-- Photos: `assets/founder/shaik-akram.jpg`, `assets/founder/shaik-akram-2.jpg`.
+- Photos: optimized founder portrait `assets/founder/shaik-akram-2.jpg`; legacy founder portrait remains in assets for reference.
 
 ---
 

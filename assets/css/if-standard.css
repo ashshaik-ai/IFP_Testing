@@ -357,7 +357,7 @@ img, video{ max-width:100%; height:auto; }
 .ifp-chip:hover{ border-color:var(--ifx-gold); }
 .ifp-badges{ display:flex; flex-wrap:wrap; gap:18px; }
 .ifp-badge-wrap{ display:flex; flex-direction:column; align-items:center; gap:6px; width:84px; text-align:center; }
-.ifp-badge-lbl{ font-size:11px; color:var(--text-muted,#7a6840); line-height:1.3; }
+.ifp-badge-lbl{ font-size: 12px; color:var(--text-muted,#7a6840); line-height:1.3; }
 .ifp-list{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:8px; }
 .ifp-li{ display:flex; align-items:center; gap:12px; padding:12px 14px; border:1px solid var(--border,rgba(200,146,42,.25)); border-radius:14px; background:var(--white,#fff); }
 .ifp-li.done{ background:rgba(46,139,87,.06); border-color:rgba(46,139,87,.35); }
@@ -415,7 +415,7 @@ img, video{ max-width:100%; height:auto; }
 .ifsr-item{ display:flex; align-items:center; gap:12px; padding:13px 16px; text-decoration:none; border-bottom:1px solid rgba(200,146,42,.12); }
 .ifsr-item:hover{ background:rgba(200,146,42,.08); }
 .ifsr-t{ color:var(--text-dark,#1a1208); font-weight:600; }
-.ifsr-cat{ font-size:11px; font-weight:700; padding:3px 9px; border-radius:100px; white-space:nowrap; }
+.ifsr-cat{ font-size: 12px; font-weight:700; padding:3px 9px; border-radius:100px; white-space:nowrap; }
 .ifsr-P{ background:rgba(46,139,87,.15); color:#1a5c30; } .ifsr-L{ background:rgba(200,146,42,.16); color:#8a5a12; }
 .ifsr-T{ background:rgba(37,99,235,.14); color:#1e40af; } .ifsr-A{ background:rgba(124,58,237,.14); color:#5b21b6; }
 .ifsr-G{ background:rgba(13,148,136,.14); color:#0f766e; } .ifsr-X{ background:rgba(122,104,64,.16); color:#5a4a22; }
@@ -432,7 +432,7 @@ img, video{ max-width:100%; height:auto; }
 .ifm-meta{ display:flex; flex-direction:column; gap:2px; flex:1; min-width:0; }
 .ifm-type{ color:var(--green-deep,#0d3b1e); font-size:14px; }
 .ifm-lbl{ color:var(--text-muted,#7a6840); font-size:13px; }
-.ifm-soon{ font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--ifx-gold); background:rgba(200,146,42,.12); padding:5px 11px; border-radius:100px; white-space:nowrap; }
+.ifm-soon{ font-size: 12px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--ifx-gold); background:rgba(200,146,42,.12); padding:5px 11px; border-radius:100px; white-space:nowrap; }
 .ifm-cap{ font-size:12px; color:var(--text-muted,#7a6840); margin-top:6px; text-align:center; }
 .ifm-live audio{ width:100%; }
 @media(max-width:480px){ .ifm-ph{ flex-wrap:wrap; } }
@@ -461,7 +461,7 @@ img, video{ max-width:100%; height:auto; }
 
 /* Knowledge Center jump-nav category labels (grouped hierarchy) */
 .kc-jump{ align-items:center; }
-.kc-jump .kcj-group{ flex-basis:100%; width:100%; margin:14px 0 2px; font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--gold-light,#e8b84b); opacity:.92; }
+.kc-jump .kcj-group{ flex-basis:100%; width:100%; margin:14px 0 2px; font-size: 12px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--gold-light,#e8b84b); opacity:.92; }
 .kc-jump .kcj-group:first-child{ margin-top:0; }
 
 /* Accessibility: quiz/check answers must not rely on colour alone */
@@ -489,7 +489,7 @@ html { scrollbar-color: rgba(13,59,30,.35) transparent; }
 .ifl-progress-top b{ color:var(--green-deep,#0d3b1e); }
 .ifl-progress-bar{ height:8px; border-radius:100px; background:rgba(200,146,42,.15); overflow:hidden; }
 .ifl-progress-bar > i{ display:block; height:100%; background:linear-gradient(90deg,#1a5c30,#2e8b57); border-radius:100px; transition:width .6s ease; }
-.ifl-tier{ display:inline-block; margin-left:8px; font-size:10px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; color:var(--gold,#c8922a); background:rgba(200,146,42,.12); padding:2px 7px; border-radius:100px; vertical-align:middle; }
+.ifl-tier{ display:inline-block; margin-left:8px; font-size: 12px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; color:var(--gold,#c8922a); background:rgba(200,146,42,.12); padding:2px 7px; border-radius:100px; vertical-align:middle; }
 .ifl-item.ifl-done > .ifl-head .ifl-num{ background:#2e8b57; color:#fff; }
 .ifl-item.ifl-current > .ifl-head .ifl-num{ background:var(--gold,#c8922a); color:#fff; }
 .ifl-item.ifl-locked > .ifl-head{ opacity:.62; }
@@ -497,7 +497,7 @@ html { scrollbar-color: rgba(13,59,30,.35) transparent; }
 
 /* Inline section-level quick check (if-lesson.js) */
 .ifl-check{ margin-top:12px; padding:12px 14px; border:1px dashed rgba(46,139,87,.4); border-radius:10px; background:rgba(46,139,87,.05); }
-.ifl-check-lbl{ display:block; font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:#2e8b57; margin-bottom:8px; }
+.ifl-check-lbl{ display:block; font-size: 12px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:#2e8b57; margin-bottom:8px; }
 .ifl-check .ifl-quiz{ margin:0; }
 
 /* "Apply It" practical-application block in lessons (if-lesson.js) */
@@ -511,7 +511,7 @@ html { scrollbar-color: rgba(13,59,30,.35) transparent; }
 .ifl-faq p{ margin:4px 0 10px; color:var(--text-mid,#3d3018); line-height:1.6; }
 .ifl-revision{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:7px; }
 .ifl-revision li{ padding-left:26px; position:relative; color:var(--text-mid,#3d3018); }
-.ifl-revision li::before{ content:'✓'; position:absolute; left:0; top:1px; width:18px; height:18px; border-radius:4px; background:#2e8b57; color:#fff; font-size:11px; display:grid; place-items:center; }
+.ifl-revision li::before{ content:'✓'; position:absolute; left:0; top:1px; width:18px; height:18px; border-radius:4px; background:#2e8b57; color:#fff; font-size: 12px; display:grid; place-items:center; }
 .ifl-complete{ margin-top:16px; text-align:center; }
 .ifl-done-btn{ min-height:44px; padding:10px 24px; border-radius:100px; border:1px solid var(--ifx-gold); background:transparent; color:var(--green-deep,#0d3b1e); font:inherit; font-weight:700; cursor:pointer; transition:background .2s,color .2s; }
 .ifl-done-btn:hover{ background:var(--ifx-gold); }
@@ -548,7 +548,7 @@ html { scrollbar-color: rgba(13,59,30,.35) transparent; }
   height: 5px;
   overflow: hidden;
   border-radius: 100px;
-  background: rgba(245,230,192,.18);
+  background: rgba(245,230,192,0.82);
 }
 .ifxp-bar > i{ display:block; height:100%; border-radius:inherit; background:linear-gradient(90deg,#c8922a,#e8b84b); }
 .ifxp-toast{
@@ -589,10 +589,10 @@ html { scrollbar-color: rgba(13,59,30,.35) transparent; }
 .ifpr-stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(110px,1fr)); gap:10px; margin:16px 0; }
 .ifpr-stat{ background:var(--white,#fff); border:1px solid var(--border,rgba(200,146,42,.25)); border-radius:12px; padding:12px; text-align:center; }
 .ifpr-stat b{ display:block; font-size:20px; color:var(--green-deep,#0d3b1e); }
-.ifpr-stat span{ font-size:11px; color:var(--text-muted,#7a6840); }
+.ifpr-stat span{ font-size: 12px; color:var(--text-muted,#7a6840); }
 .ifpr-sec-h{ font-weight:700; color:var(--green-deep,#0d3b1e); margin:18px 0 10px; }
 .ifpr-badges{ display:grid; grid-template-columns:repeat(auto-fill,minmax(80px,1fr)); gap:10px; }
-.ifpr-badge{ background:var(--white,#fff); border:1px solid var(--border,rgba(200,146,42,.25)); border-radius:12px; padding:10px 6px; text-align:center; font-size:11px; color:var(--text-mid,#3d3018); }
+.ifpr-badge{ background:var(--white,#fff); border:1px solid var(--border,rgba(200,146,42,.25)); border-radius:12px; padding:10px 6px; text-align:center; font-size: 12px; color:var(--text-mid,#3d3018); }
 .ifpr-badge.locked{ opacity:.5; }
 .ifpr-bi{ display:block; font-size:24px; margin-bottom:4px; }
 .ifpr-roads{ display:flex; flex-direction:column; gap:10px; }
@@ -602,7 +602,7 @@ html { scrollbar-color: rgba(13,59,30,.35) transparent; }
 .ifpr-road-pct{ color:var(--ifx-gold); }
 .ifpr-road-bar{ height:7px; border-radius:100px; background:rgba(200,146,42,.15); overflow:hidden; margin:7px 0 4px; }
 .ifpr-road-bar > i{ display:block; height:100%; background:linear-gradient(90deg,#1a5c30,#2e8b57); border-radius:100px; }
-.ifpr-road-sub{ font-size:11px; color:var(--text-muted,#7a6840); }
+.ifpr-road-sub{ font-size: 12px; color:var(--text-muted,#7a6840); }
 @media(max-width:480px){ .ifpr-modal{ padding:16px; } }
 
 /* ==========================================================================
@@ -919,16 +919,16 @@ span.hmfp-label, .hmfp-li span{ font-size: 12px !important; }
 }
 
 /* History/Islamic-history: tier label and check labels — raise to ≥11px */
-.ifl-tier, .ifl-check-lbl{ font-size: 11px !important; }
+.ifl-tier, .ifl-check-lbl{ font-size: 12px !important; }
 
 /* Kids-islam: XP badge label — raise from 10px */
-.mz-xp{ font-size: 11px !important; }
+.mz-xp{ font-size: 12px !important; }
 
 /* Urdu/History portal stat label spans without class (e.g. "అక్షరాలు", "స్థాయిలు") */
 .al-stat{ font-size: 12px !important; }
 
 /* Homepage: scheme-label, ca-label, ci-label — raise from 9–10px to 11px */
-.ca-label, .ci-label, .ss-label{ font-size: 11px !important; }
+.ca-label, .ci-label, .ss-label{ font-size: 12px !important; }
 
 /* if-lesson.js rendered tier + quick-check labels */
 .ifl-tier{ font-size: 12px !important; }
@@ -1254,7 +1254,7 @@ summary:focus-visible{
 .ifx-field input:focus ~ label,
 .ifx-field input:not(:placeholder-shown) ~ label {
   top: 10px;
-  font-size: 11px;
+  font-size: 12px;
   opacity: 0.8;
   color: var(--ifx-gold, #c8922a);
 }
@@ -1274,7 +1274,7 @@ summary:focus-visible{
   gap: 6px;
   padding: 4px 12px;
   border-radius: 100px;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.8px;
   text-transform: uppercase;
@@ -2417,7 +2417,7 @@ a {
     overflow: hidden !important;
     text-overflow: ellipsis !important;
     white-space: nowrap !important;
-    font-size: 11.5px !important;
+    font-size: 12px !important;
     font-weight: 650 !important;
     line-height: 1.15 !important;
     letter-spacing: 0 !important;
@@ -2805,6 +2805,12 @@ a {
   }
 
   body.if-home-app .footer-col ul {
+    display: none !important;
+  }
+
+  body.if-home-app nav:not(.bottom-nav) ul,
+  body.if-home-app nav:not(.bottom-nav) .nav-guide,
+  body.if-home-app nav:not(.bottom-nav) .nav-kc {
     display: none !important;
   }
 

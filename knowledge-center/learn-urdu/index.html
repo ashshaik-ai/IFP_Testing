@@ -12,7 +12,7 @@
 <meta name="description" content="Learn Urdu online with our structured 6-level portal. Access the vast Islamic literature in Urdu — alphabets, reading, writing, and Islamic Urdu vocabulary.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:wght@300;400;500&family=Noto+Sans+Telugu:wght@300;400;500;700&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Sans:wght@300;400;500&family=Noto+Sans+Telugu:wght@300;400;500;700&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
 <style>
 :root{
   --green-deep:#0d3b1e;--green-mid:#1a5c30;--green-light:#2e8b57;
@@ -38,7 +38,7 @@ a{color:inherit;text-decoration:none}
 .lu-nav-brand{display:flex;align-items:center;gap:12px;text-decoration:none}
 .lu-nav-logo{width:42px;height:42px;border-radius:50%;object-fit:cover}
 .lu-nav-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--gold-light);letter-spacing:0.5px;line-height:1.2}
-.lu-nav-sub{font-size:10px;color:rgba(232,184,75,0.7);letter-spacing:1.5px;text-transform:uppercase}
+.lu-nav-sub{font-size: 12px;color:rgba(232,184,75,0.7);letter-spacing:1.5px;text-transform:uppercase}
 .lu-nav-links{display:flex;align-items:center;gap:18px}
 .lu-nav-links a{color:rgba(245,230,192,0.80);font-size:.82rem;font-weight:500;transition:color .2s}
 .lu-nav-links a:hover{color:var(--gold-light)}
@@ -54,15 +54,15 @@ a{color:inherit;text-decoration:none}
 .lu-hero-display::before{content:'';position:absolute;width:min(440px,92%);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(200,146,42,0.18),transparent 68%);z-index:-1;pointer-events:none}
 .lu-hero-calligraphy{font-family:'Noto Nastaliq Urdu',serif;direction:rtl;text-align:center;font-size:clamp(46px,7.5vw,104px);line-height:2;color:var(--gold-light);background:linear-gradient(135deg,#fff3cf 0%,var(--gold-light) 42%,var(--gold) 78%,#a9741c 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 10px 30px rgba(200,146,42,0.28));animation:luCalliIn 1s cubic-bezier(.16,1,.3,1) .25s both;overflow:visible}
 @keyframes luCalliIn{from{opacity:0;transform:translateY(18px) scale(.96)}to{opacity:1;transform:none}}
-.lu-hero-breadcrumb{display:flex;align-items:center;gap:7px;font-size:12px;color:rgba(245,230,192,.50);margin-bottom:20px;flex-wrap:wrap}
-.lu-hero-breadcrumb a{color:rgba(245,230,192,.50);transition:color .2s}
+.lu-hero-breadcrumb{display:flex;align-items:center;gap:7px;font-size:12px;color:rgba(245,230,192,0.82);margin-bottom:20px;flex-wrap:wrap}
+.lu-hero-breadcrumb a{color:rgba(245,230,192,0.82);transition:color .2s}
 .lu-hero-breadcrumb a:hover{color:var(--gold-light)}
-.lu-hero-breadcrumb span{color:rgba(245,230,192,.28)}
-.lu-hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(200,146,42,0.10);border:1px solid rgba(200,146,42,0.32);border-radius:100px;padding:6px 16px;margin-bottom:22px;font-size:11px;color:var(--gold-light);letter-spacing:1.5px;text-transform:uppercase;animation:luSlideUp .7s cubic-bezier(.16,1,.3,1) .05s both}
-.lu-hero-badge span{font-size:.7rem}
+.lu-hero-breadcrumb span{color:rgba(245,230,192,0.82)}
+.lu-hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(200,146,42,0.10);border:1px solid rgba(200,146,42,0.32);border-radius:100px;padding:6px 16px;margin-bottom:22px;font-size: 12px;color:var(--gold-light);letter-spacing:1.5px;text-transform:uppercase;animation:luSlideUp .7s cubic-bezier(.16,1,.3,1) .05s both}
+.lu-hero-badge span{font-size: .75rem}
 .lu-hero h1{font-family:'Playfair Display','Noto Sans Telugu',serif;font-size:clamp(32px,5vw,58px);font-weight:900;color:var(--white);line-height:1.12;margin-bottom:14px;animation:luSlideUp .8s cubic-bezier(.16,1,.3,1) .2s both}
 .lu-hero h1 span{background:linear-gradient(135deg,var(--gold-light),#fff8cc);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-.lu-hero-tagline{font-family:'Cormorant Garamond','Noto Sans Telugu',serif;font-size:clamp(1.05rem,2.2vw,1.5rem);font-style:italic;color:rgba(245,230,192,.80);margin-bottom:14px;animation:luSlideUp .8s cubic-bezier(.16,1,.3,1) .3s both}
+.lu-hero-tagline{font-family:'Noto Sans Telugu',serif;font-size:clamp(1.05rem,2.2vw,1.5rem);font-style:italic;color:rgba(245,230,192,.80);margin-bottom:14px;animation:luSlideUp .8s cubic-bezier(.16,1,.3,1) .3s both}
 .lu-hero-desc{max-width:600px;font-family:'Noto Sans Telugu','DM Sans',sans-serif;font-size:clamp(.9rem,1.7vw,1.02rem);color:rgba(245,230,192,.72);line-height:1.85;margin-bottom:32px;animation:luSlideUp .8s cubic-bezier(.16,1,.3,1) .35s both}
 .lu-hero-cta-row{display:flex;align-items:center;gap:16px;flex-wrap:wrap;animation:luSlideUp .8s cubic-bezier(.16,1,.3,1) .4s both}
 .lu-hero-cta{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--green-deep);font-weight:700;font-size:12px;letter-spacing:1.2px;text-transform:uppercase;padding:15px 34px;border-radius:6px;box-shadow:0 10px 32px -10px rgba(200,146,42,0.55),inset 0 1px 0 rgba(255,255,255,0.2);transition:transform .2s,box-shadow .2s}
@@ -71,7 +71,7 @@ a{color:inherit;text-decoration:none}
 .lu-hero-stats{display:flex;gap:30px;flex-wrap:wrap;margin-top:42px;animation:luSlideUp .8s cubic-bezier(.16,1,.3,1) .5s both}
 .lu-hero-stat{display:flex;flex-direction:column;gap:2px}
 .lu-hero-stat strong{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;background:linear-gradient(135deg,var(--gold-light),#fffbe0);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
-.lu-hero-stat span{font-size:10.5px;color:rgba(245,230,192,.50);text-transform:uppercase;letter-spacing:.08em;font-weight:500}
+.lu-hero-stat span{font-size: 12px;color:rgba(245,230,192,0.82);text-transform:uppercase;letter-spacing:.08em;font-weight:500}
 @keyframes luSlideUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 @keyframes luSlideUpSm{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 @media(prefers-reduced-motion:reduce){.lu-hero-badge,.lu-hero-calligraphy,.lu-hero h1,.lu-hero-tagline,.lu-hero-desc,.lu-hero-cta-row,.lu-hero-stats{animation:none!important}}
@@ -89,7 +89,7 @@ a{color:inherit;text-decoration:none}
 /* SECTIONS */
 .lu-sec{padding:80px 5vw}
 .lu-sec-inner{max-width:1100px;margin:0 auto}
-.lu-sec-label{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.lu-sec-label{font-size: .75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
 .lu-sec-title{font-family:'Playfair Display',serif;font-size:clamp(1.7rem,4vw,2.4rem);font-weight:700;color:var(--text-dark);margin-bottom:10px;line-height:1.25}
 .lu-sec-title span{color:var(--green-light)}
 .lu-sec-subtitle{font-size:1rem;color:var(--text-muted);max-width:540px;line-height:1.75}
@@ -122,7 +122,7 @@ a{color:inherit;text-decoration:none}
 /* ROADMAP */
 .rm-sec{background:var(--green-deep);padding:80px 5vw}
 .rm-sec-inner{max-width:1100px;margin:0 auto}
-.rm-label{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.rm-label{font-size: .75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
 .rm-title{font-family:'Playfair Display',serif;font-size:clamp(1.7rem,4vw,2.4rem);font-weight:700;color:var(--white);margin-bottom:10px}
 .rm-title span{color:var(--gold-light)}
 .rm-subtitle{font-size:.95rem;color:rgba(245,230,192,.65);max-width:520px;line-height:1.7;margin-bottom:52px}
@@ -131,13 +131,13 @@ a{color:inherit;text-decoration:none}
 .rm-node{display:flex;flex-direction:column;align-items:center;flex:1;position:relative;z-index:1}
 .rm-dot{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:700;font-size:1.1rem;margin-bottom:14px;transition:transform .3s;cursor:default;flex-shrink:0}
 .rm-dot.done{background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--green-deep);box-shadow:0 4px 16px rgba(200,146,42,0.40)}
-.rm-dot.soon{background:rgba(255,255,255,0.08);border:2px solid rgba(200,146,42,0.30);color:rgba(245,230,192,0.50)}
+.rm-dot.soon{background:rgba(255,255,255,0.08);border:2px solid rgba(200,146,42,0.30);color:rgba(245,230,192,0.82)}
 .rm-node:hover .rm-dot{transform:translateY(-4px) scale(1.08);box-shadow:0 8px 22px rgba(200,146,42,0.50)}
 .rm-node-title{font-family:'Playfair Display',serif;font-size:.82rem;font-weight:600;color:var(--white);text-align:center;margin-bottom:4px}
 .rm-node-ur{font-family:'Noto Nastaliq Urdu',serif;font-size:.95rem;color:var(--gold-light);direction:rtl;line-height:2}
-.rm-node-tag{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:3px 9px;border-radius:12px;margin-top:6px}
+.rm-node-tag{font-size: .75rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:3px 9px;border-radius:12px;margin-top:6px}
 .rm-node-tag.avail{background:rgba(46,139,87,0.25);color:#7de0a4}
-.rm-node-tag.soon{background:rgba(255,255,255,0.08);color:rgba(245,230,192,0.45)}
+.rm-node-tag.soon{background:rgba(255,255,255,0.08);color:rgba(245,230,192,0.82)}
 /* Mobile roadmap */
 .rm-mobile{display:none;flex-direction:column;gap:0}
 .rm-mnode{display:flex;align-items:flex-start;gap:16px;padding:16px 0;position:relative}
@@ -145,13 +145,13 @@ a{color:inherit;text-decoration:none}
 .rm-mnode:last-child::after{display:none}
 .rm-mdot{width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:700;font-size:1.05rem;flex-shrink:0}
 .rm-mdot.done{background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--green-deep);box-shadow:0 4px 14px rgba(200,146,42,0.35)}
-.rm-mdot.soon{background:rgba(255,255,255,0.08);border:2px solid rgba(200,146,42,0.25);color:rgba(245,230,192,0.45)}
+.rm-mdot.soon{background:rgba(255,255,255,0.08);border:2px solid rgba(200,146,42,0.25);color:rgba(245,230,192,0.82)}
 .rm-minfo{padding-top:6px}
 .rm-minfo strong{display:block;font-family:'Playfair Display',serif;font-size:.92rem;color:var(--white);margin-bottom:3px}
 .rm-minfo .ur{font-family:'Noto Nastaliq Urdu',serif;font-size:.95rem;color:var(--gold-light);direction:rtl;display:block;line-height:2}
-.rm-minfo em{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:2px 8px;border-radius:10px;margin-top:6px;display:inline-block;font-style:normal}
+.rm-minfo em{font-size: .75rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:2px 8px;border-radius:10px;margin-top:6px;display:inline-block;font-style:normal}
 .rm-minfo em.avail{background:rgba(46,139,87,0.25);color:#7de0a4}
-.rm-minfo em.soon{background:rgba(255,255,255,0.08);color:rgba(245,230,192,0.45)}
+.rm-minfo em.soon{background:rgba(255,255,255,0.08);color:rgba(245,230,192,0.82)}
 @media(max-width:700px){.rm-track{display:none}.rm-mobile{display:flex}}
 
 /* LEVEL CARDS */
@@ -164,7 +164,7 @@ a{color:inherit;text-decoration:none}
 .lc-info{flex:1}
 .lc-info h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--text-dark);margin-bottom:3px}
 .lc-ur{font-family:'Noto Nastaliq Urdu',serif;font-size:.95rem;color:var(--text-muted);direction:rtl;line-height:2;display:block}
-.lc-tag{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:3px 10px;border-radius:12px}
+.lc-tag{font-size: .75rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:3px 10px;border-radius:12px}
 .lc-tag.avail{background:rgba(46,139,87,0.12);color:var(--green-light);border:1px solid rgba(46,139,87,0.25)}
 .lc-tag.soon{background:rgba(200,146,42,0.08);color:var(--gold);border:1px solid rgba(200,146,42,0.20)}
 .lc-chevron{color:var(--text-muted);transition:transform .3s;flex-shrink:0}
@@ -175,7 +175,7 @@ a{color:inherit;text-decoration:none}
 .lc-lessons{display:flex;flex-direction:column;gap:9px;margin:18px 0 0}
 .ll{display:flex;align-items:center;gap:14px;padding:12px 16px;border:1px solid rgba(200,146,42,0.14);border-radius:10px;text-decoration:none;background:rgba(200,146,42,0.02);transition:background .18s,border-color .18s,transform .18s}
 .ll:hover{background:rgba(200,146,42,0.08);border-color:rgba(200,146,42,0.36);transform:translateX(4px)}
-.ll-num{font-size:10.5px;font-weight:700;color:var(--gold);background:rgba(200,146,42,0.1);border-radius:100px;padding:2px 9px;flex-shrink:0;white-space:nowrap}
+.ll-num{font-size: 12px;font-weight:700;color:var(--gold);background:rgba(200,146,42,0.1);border-radius:100px;padding:2px 9px;flex-shrink:0;white-space:nowrap}
 .ll-info{flex:1;min-width:0}
 .ll-name{display:block;font-size:13.5px;font-weight:600;color:var(--text-dark)}
 .ll-ur{display:block;font-family:'Noto Nastaliq Urdu',serif;font-size:14px;color:var(--text-muted);margin-top:2px;direction:rtl;line-height:2;overflow:visible;padding-bottom:3px}
@@ -188,19 +188,19 @@ a{color:inherit;text-decoration:none}
 /* WORD OF THE DAY */
 .word-sec{background:var(--green-deep);padding:80px 5vw}
 .word-inner{max-width:900px;margin:0 auto;text-align:center}
-.word-label{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.word-label{font-size: .75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
 .word-title{font-family:'Playfair Display',serif;font-size:clamp(1.7rem,4vw,2.4rem);font-weight:700;color:var(--white);margin-bottom:8px}
 .word-subtitle{font-size:.92rem;color:rgba(245,230,192,.60);margin-bottom:44px}
 .word-card{background:rgba(255,255,255,0.05);border:1px solid rgba(200,146,42,0.25);border-radius:20px;padding:40px 36px;max-width:580px;margin:0 auto 28px;position:relative;overflow:hidden}
 .word-card::before{content:'';position:absolute;top:-60px;right:-60px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(200,146,42,0.08),transparent 70%)}
 #word-ur{font-family:'Noto Nastaliq Urdu',serif;font-size:clamp(3rem,10vw,5.5rem);color:var(--gold-light);direction:rtl;line-height:2.2;margin-bottom:8px;display:block}
-#word-tr{font-family:'Cormorant Garamond',serif;font-size:clamp(1.1rem,3vw,1.5rem);color:rgba(245,230,192,.70);font-style:italic;margin-bottom:10px}
+#word-tr{font-family:serif;font-size:clamp(1.1rem,3vw,1.5rem);color:rgba(245,230,192,.70);font-style:italic;margin-bottom:10px}
 #word-en{font-size:clamp(.95rem,2.5vw,1.1rem);color:var(--gold);font-weight:600;margin-bottom:16px}
 #word-note{font-size:.87rem;color:rgba(245,230,192,.60);line-height:1.8;font-style:italic;border-top:1px solid rgba(200,146,42,0.18);padding-top:16px;margin-top:4px}
 .word-nav{display:flex;align-items:center;justify-content:center;gap:16px}
 .word-btn{background:rgba(255,255,255,0.07);border:1px solid rgba(200,146,42,0.25);color:rgba(245,230,192,.70);width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;font-size:1.1rem}
 .word-btn:hover{background:rgba(200,146,42,0.20);color:var(--gold-light)}
-#word-counter{font-size:.8rem;color:rgba(245,230,192,.45);min-width:60px;text-align:center}
+#word-counter{font-size:.8rem;color:rgba(245,230,192,0.82);min-width:60px;text-align:center}
 
 /* COMING SOON */
 .coming-sec{background:var(--cream);padding:80px 5vw}
@@ -215,18 +215,18 @@ a{color:inherit;text-decoration:none}
 .cm-card.dim .cm-icon{background:rgba(0,0,0,0.04)}
 .cm-body h4{font-family:'Playfair Display',serif;font-size:.97rem;font-weight:700;color:var(--text-dark);margin-bottom:4px}
 .cm-body p{font-size:.80rem;color:var(--text-muted);line-height:1.6;margin-bottom:8px}
-.cm-badge{font-size:.60rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;padding:3px 9px;border-radius:10px;display:inline-block}
+.cm-badge{font-size: .75rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;padding:3px 9px;border-radius:10px;display:inline-block}
 .cm-badge.avail{background:rgba(46,139,87,0.12);color:var(--green-light)}
 .cm-badge.soon{background:rgba(200,146,42,0.10);color:var(--gold)}
 
 /* FOOTER */
 .lu-footer{background:var(--green-deep);border-top:1px solid rgba(200,146,42,0.18);padding:48px 20px 36px;text-align:center}
 .lu-footer-brand{font-family:'Noto Nastaliq Urdu',serif;font-size:2.6rem;color:var(--gold-light);direction:rtl;display:block;margin-bottom:6px;line-height:2}
-.lu-footer-tag{font-size:.85rem;color:rgba(245,230,192,.55);margin-bottom:28px}
+.lu-footer-tag{font-size:.85rem;color:rgba(245,230,192,0.82);margin-bottom:28px}
 .lu-footer-links{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:28px}
 .lu-footer-links a{color:rgba(245,230,192,.60);font-size:.82rem;padding:7px 16px;border:1px solid rgba(200,146,42,0.20);border-radius:20px;transition:all .2s}
 .lu-footer-links a:hover{color:var(--gold-light);border-color:rgba(200,146,42,0.50)}
-.lu-footer-copy{font-size:.75rem;color:rgba(245,230,192,.30)}
+.lu-footer-copy{font-size:.75rem;color:rgba(245,230,192,0.82)}
 
 /* BACK TO TOP */
 #btt{position:fixed;bottom:28px;right:22px;width:46px;height:46px;border-radius:50%;background:var(--gold);color:var(--green-deep);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(200,146,42,0.45);cursor:pointer;border:none;opacity:0;transform:translateY(16px);transition:all .3s;z-index:700}
@@ -296,7 +296,7 @@ a{color:inherit;text-decoration:none}
   /* Word section */
   .word-card{padding:28px 20px}
   /* Roadmap */
-  .rm-node-title{font-size:.72rem}
+  .rm-node-title{font-size: .75rem}
   .rm-dot{width:44px;height:44px;font-size:.95rem}
 }
 </style>

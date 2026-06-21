@@ -27,6 +27,11 @@
     { c: 'A', te: 'తరచూ అడిగే ప్రశ్నలు', en: 'FAQs', u: 'islamic-knowledge.html#faqs', k: 'questions' },
 
     { c: 'P', te: 'పిల్లల ఇస్లాం', en: 'Kids Islam', u: 'knowledge-center/kids-islam/index.html', k: 'children stories beginners' },
+    { c: 'P', te: 'అల్లాహ్ యొక్క 99 పేర్లు', en: '99 Names of Allah', u: 'knowledge-center/names-of-allah/index.html', k: 'asma ul husna names memorization' },
+    { c: 'P', te: 'ఇస్లామిక్ కేలండర్', en: 'Islamic Calendar', u: 'knowledge-center/islamic-calendar/index.html', k: 'hijri gregorian dates events' },
+    { c: 'P', te: 'హజ్ & ఉమ్రా గైడ్', en: 'Hajj and Umrah Guide', u: 'knowledge-center/hajj-umrah/index.html', k: 'pilgrimage duas checklist' },
+    { c: 'P', te: 'ప్రత్యేక నమాజులు', en: 'Special Prayers', u: 'knowledge-center/special-prayers/index.html', k: 'eid janazah tahajjud taraweeh istikhara' },
+    { c: 'P', te: 'మహిళల ఇస్లామిక్ మార్గదర్శకత్వం', en: "Women's Islamic Guidance", u: 'knowledge-center/womens-guidance/index.html', k: 'women taharah ghusl ramadan' },
     { c: 'P', te: 'అరబిక్ నేర్చుకోండి', en: 'Learn Arabic', u: 'knowledge-center/learn-arabic/index.html', k: 'arabic language' },
     { c: 'L', te: 'అరబిక్ వర్ణమాల', en: 'The Arabic Alphabet', u: 'knowledge-center/learn-arabic/alphabet.html', k: 'letters huroof' },
     { c: 'L', te: 'హరకాత్, అచ్చులు', en: 'Harakat and Vowels', u: 'knowledge-center/learn-arabic/harakat.html', k: 'fatha kasra damma' },
@@ -127,6 +132,12 @@
   }
 
   function open() { if (!ov) return; ov.classList.add('on'); paintChrome(); setTimeout(function () { input.focus(); }, 30); }
+  function openWithQuery(q) {
+    open();
+    if (!input || !q) return;
+    input.value = q;
+    run();
+  }
   function close() {
     if (ov) ov.classList.remove('on');
     var navSearch = document.querySelector('.nav-search-btn');
@@ -141,9 +152,16 @@
     else if (e.key === 'Escape') close();
   });
 
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', build); else build();
+  function openInitialQuery() {
+    var q = '';
+    try { q = new URLSearchParams(location.search).get('q') || ''; } catch (e) {}
+    if (q) setTimeout(function () { openWithQuery(q); }, 60);
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function () { build(); openInitialQuery(); });
+  else { build(); openInitialQuery(); }
   new MutationObserver(paintChrome).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
-  window.addEventListener('open-search', open);
+  window.addEventListener('open-search', function (e) { openWithQuery(e && e.detail && e.detail.query); });
   
   // Add navbar search icon on desktop if .nav-right is present
   function addNavbarSearch() {

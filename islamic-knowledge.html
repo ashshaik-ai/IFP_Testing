@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/png" href="assets/logo-emblem.png">
 <link rel="apple-touch-icon" href="assets/logo-emblem.png">
+<link rel="manifest" href="assets/manifest.json">
 <meta name="theme-color" content="#0d3b1e">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebPage","name":"Islamic Knowledge Center — Islamic Front, Mangalagiri","url":"https://ashshaik-ai.github.io/IFP_Testing/islamic-knowledge.html","description":"Free Islamic tools: Zakat calculator, daily Salah timings, prayer countdown, and authentic Quran & Hadith resources.","inLanguage":["te","en"],"isPartOf":{"@type":"WebSite","name":"Islamic Front, Mangalagiri","url":"https://ashshaik-ai.github.io/IFP_Testing/"},"breadcrumb":{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://ashshaik-ai.github.io/IFP_Testing/"},{"@type":"ListItem","position":2,"name":"Knowledge Center","item":"https://ashshaik-ai.github.io/IFP_Testing/islamic-knowledge.html"}]}}
@@ -25,7 +26,7 @@
 <meta name="twitter:image" content="https://ashshaik-ai.github.io/IFP_Testing/assets/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:wght@300;400;500&family=Noto+Sans+Telugu:wght@300;400;500;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Sans:wght@300;400;500&family=Noto+Sans+Telugu:wght@300;400;500;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
@@ -54,7 +55,7 @@
   .nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
   .nav-logo { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; }
   .nav-title { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: var(--gold-light); letter-spacing: 0.5px; line-height: 1.2; }
-  .nav-sub { font-size: 10px; color: rgba(232,184,75,0.7); letter-spacing: 1.5px; text-transform: uppercase; }
+  .nav-sub { font-size: 12px; color: rgba(232,184,75,0.7); letter-spacing: 1.5px; text-transform: uppercase; }
   .nav-right { display: flex; align-items: center; gap: 18px; }
   .nav-home { display: inline-flex; align-items: center; gap: 7px; color: rgba(255,255,255,0.82); text-decoration: none; font-size: 13px; letter-spacing: 0.5px; transition: color 0.2s; white-space: nowrap; }
   .nav-home::before { content: '\2190'; font-size: 15px; }
@@ -95,7 +96,7 @@
   .kc-hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(34px, 5vw, 60px); font-weight: 900; color: var(--white); line-height: 1.15; margin-bottom: 16px; }
   :lang(te) .kc-hero h1 { line-height: 1.35; }
   .kc-hero h1 span { color: var(--gold-light); }
-  .kc-hero p { font-family: 'Cormorant Garamond', 'Noto Sans Telugu', serif; font-size: clamp(16px, 2vw, 21px); color: rgba(245,230,192,0.75); max-width: 620px; line-height: 1.7; }
+  .kc-hero p { font-family: 'Noto Sans Telugu', serif; font-size: clamp(16px, 2vw, 21px); color: rgba(245,230,192,0.75); max-width: 620px; line-height: 1.7; }
   .kc-jump { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
   .kc-jump a { font-size: 12.5px; color: rgba(245,230,192,0.85); text-decoration: none; border: 1px solid rgba(200,146,42,0.35); background: rgba(200,146,42,0.08); padding: 0 16px; border-radius: 100px; transition: background 0.2s, transform 0.15s; min-height: 44px; display: inline-flex; align-items: center; }
   .kc-jump a:hover { background: rgba(200,146,42,0.2); transform: translateY(-1px); }
@@ -115,7 +116,7 @@
   /* SECTIONS */
   section.kc-sec { padding: 72px 5vw; }
   .kc-inner { max-width: 1100px; margin: 0 auto; }
-  .sec-tag { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+  .sec-tag { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
   .sec-tag::before { content: ''; display: block; width: 30px; height: 1px; background: var(--gold); }
   .sec-title { font-family: 'Playfair Display', serif; font-size: clamp(26px, 3.4vw, 40px); font-weight: 700; color: var(--green-deep); line-height: 1.18; margin-bottom: 14px; }
   .sec-lead { font-size: 15px; color: var(--text-muted); max-width: 620px; line-height: 1.75; }
@@ -137,7 +138,7 @@
   .salah-row .sr-ic { font-size: 17px; }
   .salah-row .sr-time { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700; color: var(--green-deep); }
   .salah-row.sr-muted .sr-name, .salah-row.sr-muted .sr-time { color: var(--text-muted); font-weight: 500; }
-  .next-pill { font-size: 9.5px; letter-spacing: 1px; text-transform: uppercase; color: var(--gold); border: 1px solid var(--gold); border-radius: 100px; padding: 2px 8px; margin-left: 8px; }
+  .next-pill { font-size: 12px; letter-spacing: 1px; text-transform: uppercase; color: var(--gold); border: 1px solid var(--gold); border-radius: 100px; padding: 2px 8px; margin-left: 8px; }
   .asr-toggle { display: flex; gap: 8px; margin-top: 18px; align-items: center; flex-wrap: wrap; }
   .asr-toggle .at-label { font-size: 12px; color: var(--text-muted); }
   .asr-btn { font-size: 12px; font-family: inherit; cursor: pointer; border: 1px solid var(--border); background: var(--white); color: var(--text-mid); padding: 6px 14px; min-height: 44px; display: inline-flex; align-items: center; border-radius: 100px; transition: all 0.2s; }
@@ -146,13 +147,13 @@
   /* COUNTDOWN */
   .countdown-card { background: var(--green-deep); border-radius: 12px; padding: 32px 30px; position: relative; overflow: hidden; }
   .countdown-card::before { content: ''; position: absolute; right: 18px; bottom: 6px; width: 110px; height: 110px; opacity: 0.06; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpolyline points='12 6 12 12 16 14'/%3E%3C/svg%3E") center/contain no-repeat; }
-  .cd-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: rgba(245,230,192,0.55); margin-bottom: 10px; }
+  .cd-label { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: rgba(245,230,192,0.82); margin-bottom: 10px; }
   .cd-next { font-family: 'Playfair Display', serif; font-size: 30px; font-weight: 700; color: var(--gold-light); line-height: 1; margin-bottom: 6px; }
   .cd-at { font-size: 13px; color: rgba(245,230,192,0.7); margin-bottom: 24px; }
   .cd-timer { display: flex; gap: 12px; }
   .cd-unit { background: rgba(255,255,255,0.05); border: 1px solid rgba(200,146,42,0.25); border-radius: 8px; padding: 14px 0; flex: 1; text-align: center; }
   .cd-num { font-family: 'Playfair Display', serif; font-size: 30px; font-weight: 700; color: var(--white); line-height: 1; }
-  .cd-u { font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: rgba(245,230,192,0.5); margin-top: 7px; }
+  .cd-u { font-size: 12px; letter-spacing: 1px; text-transform: uppercase; color: rgba(245,230,192,0.82); margin-top: 7px; }
 
   /* ZAKAT */
   .zakat { background: var(--cream); }
@@ -161,20 +162,20 @@
   .zf-header { background: linear-gradient(135deg, var(--green-deep) 0%, #1a5c35 100%); padding: 18px 28px 16px; display: flex; align-items: center; gap: 12px; }
   .zf-header-icon { width: 38px; height: 38px; background: rgba(200,146,42,0.18); border-radius: 9px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
   .zf-header-title { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700; color: var(--white); }
-  .zf-header-sub { font-size: 11px; color: rgba(245,230,192,0.6); margin-top: 2px; letter-spacing: 0.3px; }
+  .zf-header-sub { font-size: 12px; color: rgba(245,230,192,0.6); margin-top: 2px; letter-spacing: 0.3px; }
   .zf-body { padding: 20px 28px 28px; }
   .zakat-stepper, .zakat-actions, .zf-step-title, .zf-step-note { display: none; }
   .zr-amount { font-family: 'Playfair Display', serif; font-size: 46px; font-weight: 900; color: var(--gold-light); line-height: 1; margin-bottom: 6px; transition: opacity 0.25s ease; }
   .zf-group { margin-bottom: 16px; }
   .zf-group label { display: block; font-size: 13px; color: var(--text-mid); font-weight: 500; margin-bottom: 6px; }
-  .zf-group .zf-hint { font-size: 11.5px; color: var(--text-muted); font-weight: 400; }
+  .zf-group .zf-hint { font-size: 12px; color: var(--text-muted); font-weight: 400; }
   .zf-input { display: flex; align-items: center; border: 1px solid var(--border); border-radius: 7px; overflow: hidden; background: var(--cream); transition: border-color 0.2s; }
   .zf-input:focus-within { border-color: var(--gold); }
   .zf-input .zf-cur { padding: 0 12px; font-size: 14px; color: var(--text-muted); background: rgba(200,146,42,0.08); align-self: stretch; display: flex; align-items: center; border-right: 1px solid var(--border); }
   .zf-input input { flex: 1; border: none; background: transparent; padding: 11px 12px; font-size: 16px; font-family: inherit; color: var(--text-dark); outline: none; width: 100%; }
   .zf-divider { height: 1px; background: var(--border); margin: 20px 0; }
   .zakat-result { background: var(--green-deep); border-radius: 12px; padding: 30px 28px; position: relative; overflow: hidden; position: sticky; top: 84px; }
-  .zr-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: rgba(245,230,192,0.55); margin-bottom: 8px; }
+  .zr-label { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: rgba(245,230,192,0.82); margin-bottom: 8px; }
   /* .zr-amount defined above in .zakat-form block */
   .zr-status { font-size: 13px; color: rgba(245,230,192,0.8); margin-bottom: 22px; line-height: 1.6; }
   .zr-line { display: flex; justify-content: space-between; font-size: 13px; padding: 9px 0; border-top: 1px solid rgba(200,146,42,0.18); color: rgba(245,230,192,0.75); }
@@ -215,7 +216,7 @@
   .lp-ic { font-size: 16px; }
   .lp-val { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: var(--green-deep); line-height: 1.1; }
   .lp-card.lp-nisab .lp-val { color: var(--gold-light); }
-  .lp-unit { font-size: 11px; color: var(--text-muted); margin-top: 3px; }
+  .lp-unit { font-size: 12px; color: var(--text-muted); margin-top: 3px; }
   .lp-card.lp-nisab .lp-unit { color: rgba(245,230,192,0.6); }
   .lp-status { display: flex; align-items: center; gap: 7px; font-size: 12px; color: var(--text-muted); margin-top: 14px; }
   .lp-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
@@ -225,8 +226,8 @@
 
   /* TOOLTIP */
   .tip { position: relative; display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; margin: -14px -10px -14px 1px; border: 0; color: var(--text-muted); font-size: 0; font-weight: 700; cursor: help; vertical-align: middle; }
-  .tip::before { content: 'i'; display: inline-flex; align-items: center; justify-content: center; width: 15px; height: 15px; border-radius: 50%; border: 1px solid currentColor; font-size: 10px; line-height: 1; }
-  .tip-pop { position: absolute; bottom: 145%; left: 50%; transform: translateX(-50%) translateY(4px); width: 210px; background: var(--green-deep); color: rgba(245,230,192,0.95); font-size: 11.5px; font-weight: 400; line-height: 1.55; letter-spacing: 0; text-transform: none; padding: 10px 12px; border-radius: 8px; box-shadow: 0 8px 24px rgba(0,0,0,0.22); opacity: 0; visibility: hidden; transition: opacity 0.2s, transform 0.2s; z-index: 20; pointer-events: none; text-align: left; }
+  .tip::before { content: 'i'; display: inline-flex; align-items: center; justify-content: center; width: 15px; height: 15px; border-radius: 50%; border: 1px solid currentColor; font-size: 12px; line-height: 1; }
+  .tip-pop { position: absolute; bottom: 145%; left: 50%; transform: translateX(-50%) translateY(4px); width: 210px; background: var(--green-deep); color: rgba(245,230,192,0.95); font-size: 12px; font-weight: 400; line-height: 1.55; letter-spacing: 0; text-transform: none; padding: 10px 12px; border-radius: 8px; box-shadow: 0 8px 24px rgba(0,0,0,0.22); opacity: 0; visibility: hidden; transition: opacity 0.2s, transform 0.2s; z-index: 20; pointer-events: none; text-align: left; }
   .tip-pop::after { content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); border: 6px solid transparent; border-top-color: var(--green-deep); }
   .tip:hover .tip-pop, .tip:focus .tip-pop, .tip:focus-within .tip-pop { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
   .zr-label .tip { color: rgba(245,230,192,0.7); }
@@ -252,7 +253,7 @@
   .learn-card:hover { transform: translateY(-4px); box-shadow: 0 10px 28px rgba(13,59,30,0.09); border-color: rgba(200,146,42,0.5); }
   .learn-card h3 { font-family: 'Playfair Display', serif; font-size: 17px; color: var(--green-deep); font-weight: 600; margin-bottom: 10px; display: flex; align-items: center; gap: 9px; }
   .learn-card p { font-size: 13.5px; color: var(--text-mid); line-height: 1.75; }
-  .learn-ref { display: inline-block; margin-top: 12px; font-size: 11.5px; font-weight: 600; color: var(--green-mid); background: rgba(46,139,87,0.08); border: 1px solid rgba(46,139,87,0.18); border-radius: 100px; padding: 4px 12px; }
+  .learn-ref { display: inline-block; margin-top: 12px; font-size: 12px; font-weight: 600; color: var(--green-mid); background: rgba(46,139,87,0.08); border: 1px solid rgba(46,139,87,0.18); border-radius: 100px; padding: 4px 12px; }
 
   /* FAQ / UNDERSTANDING ISLAM — articles + accordion */
   .faqs { background: var(--cream); }
@@ -260,29 +261,29 @@
   .article { background: var(--white); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; margin-bottom: 32px; box-shadow: 0 2px 14px rgba(13,59,30,0.06); }
   .article-header { background: linear-gradient(135deg, var(--green-deep) 0%, #0f3520 100%); padding: 30px 34px 26px; position: relative; overflow: hidden; }
   .article-header::after { content: ''; position: absolute; bottom: -30px; right: -30px; width: 120px; height: 120px; border-radius: 50%; background: rgba(200,146,42,0.07); pointer-events: none; }
-  .article-num { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: rgba(200,146,42,0.6); margin-bottom: 10px; }
+  .article-num { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: rgba(200,146,42,0.6); margin-bottom: 10px; }
   .article-title { font-family: 'Playfair Display', 'Noto Sans Telugu', serif; font-size: clamp(19px,2.8vw,26px); font-weight: 700; color: var(--white); line-height: 1.3; }
-  .article-summary { font-family: 'Cormorant Garamond', 'Noto Sans Telugu', serif; font-size: clamp(15px,1.6vw,17px); font-style: italic; color: rgba(245,230,192,0.62); line-height: 1.65; margin-top: 14px; border-top: 1px solid rgba(200,146,42,0.18); padding-top: 14px; }
+  .article-summary { font-family: 'Noto Sans Telugu', serif; font-size: clamp(15px,1.6vw,17px); font-style: italic; color: rgba(245,230,192,0.62); line-height: 1.65; margin-top: 14px; border-top: 1px solid rgba(200,146,42,0.18); padding-top: 14px; }
   .article-body { padding: 30px 34px 34px; }
   .article-body h3 { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 600; color: var(--green-deep); margin: 26px 0 10px; display: flex; align-items: center; gap: 8px; }
   .article-body h3:first-child { margin-top: 0; }
-  .article-body h3::before { content: '\2726'; font-size: 10px; color: var(--gold); flex-shrink: 0; }
+  .article-body h3::before { content: '\2726'; font-size: 12px; color: var(--gold); flex-shrink: 0; }
   .article-body p { font-size: 14.5px; color: var(--text-mid); line-height: 1.8; margin-bottom: 14px; }
   .article-body p:last-child { margin-bottom: 0; }
   .quran-quote { background: rgba(46,139,87,0.06); border-left: 3px solid var(--gold); border-radius: 0 10px 10px 0; padding: 16px 20px; margin: 20px 0; }
   .quran-arabic { font-family: 'Amiri', 'Traditional Arabic', serif; font-size: 21px; color: var(--green-deep); direction: rtl; line-height: 2; margin-bottom: 8px; }
-  .quran-trans { font-family: 'Cormorant Garamond', serif; font-size: 15px; font-style: italic; color: var(--text-mid); line-height: 1.6; margin-bottom: 4px; }
+  .quran-trans { font-family: serif; font-size: 15px; font-style: italic; color: var(--text-mid); line-height: 1.6; margin-bottom: 4px; }
   .quran-trans-te { font-family: 'Noto Sans Telugu', sans-serif; font-size: 13px; color: var(--text-muted); line-height: 1.6; margin-bottom: 6px; }
-  .quran-ref { font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: var(--gold); font-weight: 600; }
+  .quran-ref { font-size: 12px; letter-spacing: 1px; text-transform: uppercase; color: var(--gold); font-weight: 600; }
   .key-points { background: rgba(200,146,42,0.07); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; margin-top: 24px; }
-  .key-points-title { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 12px; }
+  .key-points-title { font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 12px; }
   .key-points ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
   .key-points li { font-size: 13.5px; color: var(--text-mid); padding-left: 22px; position: relative; line-height: 1.55; }
   .key-points li::before { content: '\2713'; position: absolute; left: 0; top: 1px; color: var(--green-light); font-weight: 700; font-size: 12px; }
 
   .qa-wrap { max-width: 860px; margin: 8px auto 0; }
   .qa-cat { margin-bottom: 30px; }
-  .qa-cat-title { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+  .qa-cat-title { font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
   .qa-cat-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
   .qa-item { border: 1px solid rgba(200,146,42,0.18); border-radius: 10px; background: var(--white); overflow: hidden; margin-bottom: 8px; transition: border-color 0.2s, box-shadow 0.2s; }
   .qa-item.qa-open { border-color: rgba(200,146,42,0.45); box-shadow: 0 4px 18px rgba(13,59,30,0.07); }
@@ -361,9 +362,9 @@
   /* dua after wudu */
   .wudu-dua { max-width: 720px; margin: 24px auto 0; background: var(--green-deep); border: 1px solid rgba(200,146,42,0.4); border-radius: 18px; padding: 30px 34px 32px; text-align: center; position: relative; overflow: hidden; }
   .wudu-dua::before { content: '\6'; position: absolute; right: -2vw; top: -3vw; font-size: clamp(120px,18vw,200px); color: rgba(200,146,42,0.06); line-height: 1; pointer-events: none; }
-  .wd-tag { display: inline-block; font-family: 'DM Sans', sans-serif; font-size: 11.5px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold-light); border: 1px solid rgba(200,146,42,0.4); border-radius: 100px; padding: 6px 16px; margin-bottom: 18px; position: relative; }
+  .wd-tag { display: inline-block; font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold-light); border: 1px solid rgba(200,146,42,0.4); border-radius: 100px; padding: 6px 16px; margin-bottom: 18px; position: relative; }
   .wd-ar { font-family: 'Amiri', serif; direction: rtl; font-size: clamp(22px,3.2vw,30px); line-height: 1.9; color: var(--gold-light); margin-bottom: 16px; position: relative; }
-  .wd-tl { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 16px; color: rgba(245,230,192,0.9); line-height: 1.7; margin-bottom: 14px; position: relative; }
+  .wd-tl { font-family: serif; font-style: italic; font-size: 16px; color: rgba(245,230,192,0.9); line-height: 1.7; margin-bottom: 14px; position: relative; }
   .wd-trans { font-size: 14px; color: rgba(245,230,192,0.82); line-height: 1.8; max-width: 560px; margin: 0 auto 14px; font-family: 'Noto Sans Telugu', 'DM Sans', sans-serif; position: relative; }
   .wd-note { font-size: 13px; color: rgba(245,230,192,0.65); line-height: 1.75; max-width: 560px; margin: 0 auto 16px; font-family: 'Noto Sans Telugu', 'DM Sans', sans-serif; position: relative; }
   .wd-ref { font-size: 12px; color: var(--gold-light); letter-spacing: 0.5px; position: relative; }
@@ -371,9 +372,9 @@
 
   /* SALAH GUIDE — recitation block within a step */
   .ws-recite { margin: 18px auto 0; max-width: 560px; background: linear-gradient(180deg, rgba(46,139,87,0.06), rgba(200,146,42,0.05)); border: 1px solid var(--border); border-radius: 14px; padding: 18px 20px 16px; }
-  .ws-recite-label { display: inline-block; font-family: 'DM Sans', sans-serif; font-size: 10.5px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold); background: rgba(200,146,42,0.1); border: 1px solid var(--border); border-radius: 100px; padding: 4px 13px; margin-bottom: 12px; }
+  .ws-recite-label { display: inline-block; font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold); background: rgba(200,146,42,0.1); border: 1px solid var(--border); border-radius: 100px; padding: 4px 13px; margin-bottom: 12px; }
   .ws-ar { font-family: 'Amiri', serif; direction: rtl; font-size: clamp(20px,3vw,27px); line-height: 1.95; color: var(--green-deep); margin-bottom: 10px; }
-  .ws-translit { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 15.5px; color: var(--gold-700, var(--gold)); line-height: 1.6; margin-bottom: 9px; }
+  .ws-translit { font-family: serif; font-style: italic; font-size: 15.5px; color: var(--gold-700, var(--gold)); line-height: 1.6; margin-bottom: 9px; }
   .ws-trans { font-size: 13.5px; color: var(--text-mid); line-height: 1.75; font-family: 'Noto Sans Telugu', 'DM Sans', sans-serif; }
   /* notes card */
   .salah-notes { max-width: 720px; margin: 24px auto 0; background: var(--white); border: 1px solid var(--border); border-radius: 18px; padding: 28px 30px 24px; box-shadow: 0 6px 24px rgba(13,59,30,0.06); }
@@ -392,7 +393,7 @@
   .tcard-faith { background: rgba(46,139,87,0.06); border-left-color: var(--green-mid); }
   .tcard-science { background: rgba(120,140,160,0.07); border-left-color: #6b7d8f; }
   .tcard-practical { background: rgba(200,146,42,0.07); border-left-color: var(--gold); }
-  .tcard-label { display: inline-block; font-family: 'DM Sans', 'Noto Sans Telugu', sans-serif; font-size: 10.5px; font-weight: 700; letter-spacing: 0.7px; text-transform: uppercase; padding: 3px 11px; border-radius: 100px; margin-bottom: 9px; }
+  .tcard-label { display: inline-block; font-family: 'DM Sans', 'Noto Sans Telugu', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.7px; text-transform: uppercase; padding: 3px 11px; border-radius: 100px; margin-bottom: 9px; }
   .tcard-faith .tcard-label { color: var(--green-deep); background: rgba(46,139,87,0.14); }
   .tcard-science .tcard-label { color: #41525f; background: rgba(107,125,143,0.16); }
   .tcard-practical .tcard-label { color: var(--gold-700, #a3741f); background: rgba(200,146,42,0.16); }
@@ -411,7 +412,7 @@
   .kcf-note { font-size: 13px; color: rgba(245,230,192,0.6); line-height: 1.7; max-width: 540px; margin: 0 auto 18px; }
   .kcf-back { display: inline-block; font-size: 13px; color: var(--gold-light); text-decoration: none; border: 1px solid rgba(200,146,42,0.4); padding: 9px 22px; border-radius: 100px; transition: background 0.2s; }
   .kcf-back:hover { background: rgba(200,146,42,0.15); }
-  .kcf-copy { font-size: 12px; color: rgba(245,230,192,0.3); margin-top: 22px; }
+  .kcf-copy { font-size: 12px; color: rgba(245,230,192,0.82); margin-top: 22px; }
 
   /* FIVE PILLARS */
   .pillars { background: var(--cream); position: relative; overflow: hidden; }
@@ -424,11 +425,11 @@
   .pillar-card:hover .pc-ic { transform: scale(1.12) rotate(-4deg); }
   .pc-num { position: absolute; top: 12px; right: 16px; font-family: 'Playfair Display', serif; font-size: 30px; font-weight: 700; color: rgba(200,146,42,0.16); line-height: 1; }
   .pc-ic { width: 64px; height: 64px; margin: 0 auto 16px; border-radius: 50%; background: linear-gradient(145deg, rgba(200,146,42,0.14), rgba(46,139,87,0.08)); border: 1px solid rgba(200,146,42,0.25); display: flex; align-items: center; justify-content: center; font-size: 30px; transition: transform 0.4s cubic-bezier(0.16,1,0.3,1); }
-  .pc-ar { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 600; color: var(--gold); line-height: 1; margin-bottom: 7px; direction: rtl; }
+  .pc-ar { font-family: serif; font-size: 24px; font-weight: 600; color: var(--gold); line-height: 1; margin-bottom: 7px; direction: rtl; }
   .pc-name { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: var(--green-deep); margin-bottom: 3px; }
-  .pc-sub { font-size: 11.5px; letter-spacing: 1px; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 12px; }
+  .pc-sub { font-size: 12px; letter-spacing: 1px; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 12px; }
   .pc-desc { font-size: 12.5px; color: var(--text-muted); line-height: 1.6; margin-bottom: 14px; }
-  .pc-ref { display: inline-block; font-size: 10.5px; font-weight: 600; color: var(--green-mid); background: rgba(46,139,87,0.08); border: 1px solid rgba(46,139,87,0.18); border-radius: 100px; padding: 3px 10px; }
+  .pc-ref { display: inline-block; font-size: 12px; font-weight: 600; color: var(--green-mid); background: rgba(46,139,87,0.08); border: 1px solid rgba(46,139,87,0.18); border-radius: 100px; padding: 3px 10px; }
 
   /* SCROLL REVEAL */
   .reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1); }
@@ -453,7 +454,7 @@
     .nav-right { gap: 8px; min-width: 0; }
     .nav-home span { display: none; }
     .nav-home { min-width: 44px; justify-content: center; padding: 0 6px !important; }
-    .lang-btn { padding: 6px 11px; font-size: 11px; min-height: 44px; }
+    .lang-btn { padding: 6px 11px; font-size: 12px; min-height: 44px; }
   }
   @media (max-width: 520px) {
     body > nav { padding: 0 14px; }
@@ -473,7 +474,7 @@
     .wudu-dua { padding: 26px 20px 28px; }
     .ws-ic { width: 76px; height: 76px; font-size: 38px; }
     .ws-stage { min-height: 250px; }
-    .ws-dot { width: 26px; height: 26px; font-size: 11px; }
+    .ws-dot { width: 26px; height: 26px; font-size: 12px; }
     .ws-nav { gap: 10px; }
     .ws-btn { padding: 12px 14px; font-size: 13px; }
     .ws-recite { padding: 15px 15px 13px; }
@@ -584,6 +585,13 @@
   </div>
 </nav>
 
+<nav class="ifx-crumbs" aria-label="బ్రెడ్‌క్రంబ్" data-aria-te="బ్రెడ్‌క్రంబ్" data-aria-en="Breadcrumb">
+  <ol>
+    <li><a href="index.html" data-te="హోమ్" data-en="Home">హోమ్</a></li>
+    <li aria-current="page" data-te="నాలెడ్జ్ సెంటర్" data-en="Knowledge Center">నాలెడ్జ్ సెంటర్</li>
+  </ol>
+</nav>
+
 <main id="main-content">
 <!-- HERO -->
 <header class="kc-hero">
@@ -674,42 +682,42 @@
         <div style="font-family:'Amiri',serif;font-size:2.4rem;color:var(--gold-light);direction:rtl;line-height:1.4;margin-bottom:12px" lang="ar" dir="rtl">ع</div>
         <h3 style="font-family:'Playfair Display',serif;font-size:1.25rem;color:var(--white);font-weight:700;margin-bottom:8px" data-te="అరబిక్ నేర్చుకోండి" data-en="Learn Arabic">అరబిక్ నేర్చుకోండి</h3>
         <p style="font-size:.88rem;color:rgba(245,230,192,.65);line-height:1.75;margin-bottom:14px" data-te="అక్షరమాల నుండి రోజువారీ అరబిక్ వరకు — 6 స్థాయిలు, 4 అందుబాటులో ఉన్నాయి." data-en="From the alphabet to Daily Arabic — 6 levels, 4 now available.">అక్షరమాల నుండి రోజువారీ అరబిక్ వరకు — 6 స్థాయిలు, 4 అందుబాటులో ఉన్నాయి.</p>
-        <span style="font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(46,139,87,0.25);color:#7de0a4;border:1px solid rgba(46,139,87,0.40);border-radius:20px;padding:4px 12px" data-te="స్థాయిలు 1–4 అందుబాటులో ఉన్నాయి" data-en="Levels 1–4 Available">స్థాయిలు 1–4 అందుబాటులో ఉన్నాయి</span>
+        <span style="font-size: .75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(46,139,87,0.25);color:#7de0a4;border:1px solid rgba(46,139,87,0.40);border-radius:20px;padding:4px 12px" data-te="స్థాయిలు 1–4 అందుబాటులో ఉన్నాయి" data-en="Levels 1–4 Available">స్థాయిలు 1–4 అందుబాటులో ఉన్నాయి</span>
       </a>
       <a href="knowledge-center/learn-urdu/index.html" style="text-decoration:none;display:block;background:rgba(255,255,255,0.07);border:1px solid rgba(200,146,42,0.40);border-radius:14px;padding:28px 24px;transition:all .25s;position:relative;overflow:hidden" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(200,146,42,0.70)'" onmouseout="this.style.transform='';this.style.borderColor='rgba(200,146,42,0.40)'">
         <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold-light))"></div>
         <div style="font-family:'Noto Nastaliq Urdu','Amiri',serif;font-size:2.4rem;color:var(--gold-light);direction:rtl;line-height:2;margin-bottom:4px" lang="ur" dir="rtl">اردو</div>
         <h3 style="font-family:'Playfair Display',serif;font-size:1.25rem;color:var(--white);font-weight:700;margin-bottom:8px" data-te="ఉర్దూ నేర్చుకోండి" data-en="Learn Urdu">ఉర్దూ నేర్చుకోండి</h3>
         <p style="font-size:.88rem;color:rgba(245,230,192,.65);line-height:1.75;margin-bottom:14px" data-te="నస్తాలీఖ్ అక్షరమాల నుండి అధ్యయనం వరకు — 6 స్థాయిలు, అన్నీ అందుబాటులో ఉన్నాయి." data-en="From Nastaliq alphabet to advanced reading — all 6 levels now available.">నస్తాలీఖ్ అక్షరమాల నుండి అధ్యయనం వరకు — 6 స్థాయిలు, అన్నీ అందుబాటులో ఉన్నాయి.</p>
-        <span style="font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(46,139,87,0.25);color:#7de0a4;border:1px solid rgba(46,139,87,0.40);border-radius:20px;padding:4px 12px" data-te="అన్ని 6 స్థాయిలు అందుబాటులో ఉన్నాయి" data-en="All 6 Levels Available">అన్ని 6 స్థాయిలు అందుబాటులో ఉన్నాయి</span>
+        <span style="font-size: .75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(46,139,87,0.25);color:#7de0a4;border:1px solid rgba(46,139,87,0.40);border-radius:20px;padding:4px 12px" data-te="అన్ని 6 స్థాయిలు అందుబాటులో ఉన్నాయి" data-en="All 6 Levels Available">అన్ని 6 స్థాయిలు అందుబాటులో ఉన్నాయి</span>
       </a>
       <a href="knowledge-center/learn-quran/index.html" style="text-decoration:none;display:block;background:rgba(255,255,255,0.07);border:1px solid rgba(200,146,42,0.40);border-radius:14px;padding:28px 24px;transition:all .25s;position:relative;overflow:hidden" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(200,146,42,0.70)'" onmouseout="this.style.transform='';this.style.borderColor='rgba(200,146,42,0.40)'">
         <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold-light))"></div>
         <div style="font-family:'Amiri',serif;font-size:2.4rem;color:var(--gold-light);direction:rtl;line-height:1.4;margin-bottom:12px" lang="ar" dir="rtl">قرآن</div>
         <h3 style="font-family:'Playfair Display',serif;font-size:1.25rem;color:var(--white);font-weight:700;margin-bottom:8px" data-te="ఖురాన్ నేర్చుకోండి" data-en="Learn Quran">ఖురాన్ నేర్చుకోండి</h3>
         <p style="font-size:.88rem;color:rgba(245,230,192,.65);line-height:1.75;margin-bottom:14px" data-te="పఠనం నుండి తజ్వీద్, హిఫ్జ్ మరియు తఫ్సీర్ వరకు — 6 స్థాయిల ప్రయాణం." data-en="From reading to Tajweed, Hifz, and Tafseer — a 6-level journey.">పఠనం నుండి తజ్వీద్, హిఫ్జ్ మరియు తఫ్సీర్ వరకు — 6 స్థాయిల ప్రయాణం.</p>
-        <span style="font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(46,139,87,0.25);color:#7de0a4;border:1px solid rgba(46,139,87,0.40);border-radius:20px;padding:4px 12px" data-te="ఇప్పుడే అందుబాటులో ఉంది" data-en="Available Now">ఇప్పుడే అందుబాటులో ఉంది</span>
+        <span style="font-size: .75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(46,139,87,0.25);color:#7de0a4;border:1px solid rgba(46,139,87,0.40);border-radius:20px;padding:4px 12px" data-te="ఇప్పుడే అందుబాటులో ఉంది" data-en="Available Now">ఇప్పుడే అందుబాటులో ఉంది</span>
       </a>
       <a href="knowledge-center/learn-salah/index.html" style="text-decoration:none;display:block;background:rgba(255,255,255,0.07);border:1px solid rgba(200,146,42,0.40);border-radius:14px;padding:28px 24px;transition:all .25s;position:relative;overflow:hidden" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(200,146,42,0.70)'" onmouseout="this.style.transform='';this.style.borderColor='rgba(200,146,42,0.40)'">
         <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold-light))"></div>
         <div style="font-family:'Amiri',serif;font-size:2.4rem;color:var(--gold-light);direction:rtl;line-height:1.4;margin-bottom:12px" lang="ar" dir="rtl">الصَّلَاة</div>
         <h3 style="font-family:'Playfair Display',serif;font-size:1.25rem;color:var(--white);font-weight:700;margin-bottom:8px" data-te="నమాజ్ నేర్చుకోండి" data-en="Learn Salah">నమాజ్ నేర్చుకోండి</h3>
         <p style="font-size:.88rem;color:rgba(245,230,192,.65);line-height:1.75;margin-bottom:14px" data-te="పరిశుద్ధత మరియు వుదూ నుండి నమాజ్ దశలు, దువాల వరకు — 6 స్థాయిల ప్రయాణం." data-en="From purification and wudu to the prayer steps and duas — a 6-level journey.">పరిశుద్ధత మరియు వుదూ నుండి నమాజ్ దశలు, దువాల వరకు — 6 స్థాయిల ప్రయాణం.</p>
-        <span style="font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(46,139,87,0.25);color:#7de0a4;border:1px solid rgba(46,139,87,0.40);border-radius:20px;padding:4px 12px" data-te="ఇప్పుడే అందుబాటులో ఉంది" data-en="Available Now">ఇప్పుడే అందుబాటులో ఉంది</span>
+        <span style="font-size: .75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(46,139,87,0.25);color:#7de0a4;border:1px solid rgba(46,139,87,0.40);border-radius:20px;padding:4px 12px" data-te="ఇప్పుడే అందుబాటులో ఉంది" data-en="Available Now">ఇప్పుడే అందుబాటులో ఉంది</span>
       </a>
       <a href="knowledge-center/seerah/index.html" style="text-decoration:none;display:block;background:rgba(255,255,255,0.07);border:1px solid rgba(200,146,42,0.40);border-radius:14px;padding:28px 24px;transition:all .25s;position:relative;overflow:hidden" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(200,146,42,0.70)'" onmouseout="this.style.transform='';this.style.borderColor='rgba(200,146,42,0.40)'">
         <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold-light))"></div>
         <div style="font-family:'Amiri',serif;font-size:2.4rem;color:var(--gold-light);direction:rtl;line-height:1.4;margin-bottom:12px" lang="ar" dir="rtl">السِّيرَة</div>
         <h3 style="font-family:'Playfair Display',serif;font-size:1.25rem;color:var(--white);font-weight:700;margin-bottom:8px" data-te="సీరా" data-en="Seerah">సీరా</h3>
         <p style="font-size:.88rem;color:rgba(245,230,192,.65);line-height:1.75;margin-bottom:14px" data-te="ప్రవక్త ﷺ జీవితం, ముఖ్య ఘట్టాలు మరియు స్వభావం — 6 స్థాయిల ప్రయాణం." data-en="The life of the Prophet ﷺ, major events, and his character — a 6-level journey.">ప్రవక్త ﷺ జీవితం, ముఖ్య ఘట్టాలు మరియు స్వభావం — 6 స్థాయిల ప్రయాణం.</p>
-        <span style="font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(46,139,87,0.25);color:#7de0a4;border:1px solid rgba(46,139,87,0.40);border-radius:20px;padding:4px 12px" data-te="ఇప్పుడే అందుబాటులో ఉంది" data-en="Available Now">ఇప్పుడే అందుబాటులో ఉంది</span>
+        <span style="font-size: .75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(46,139,87,0.25);color:#7de0a4;border:1px solid rgba(46,139,87,0.40);border-radius:20px;padding:4px 12px" data-te="ఇప్పుడే అందుబాటులో ఉంది" data-en="Available Now">ఇప్పుడే అందుబాటులో ఉంది</span>
       </a>
       <a href="knowledge-center/islamic-history/index.html" style="text-decoration:none;display:block;background:rgba(255,255,255,0.07);border:1px solid rgba(200,146,42,0.40);border-radius:14px;padding:28px 24px;transition:all .25s;position:relative;overflow:hidden" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(200,146,42,0.70)'" onmouseout="this.style.transform='';this.style.borderColor='rgba(200,146,42,0.40)'">
         <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold-light))"></div>
         <div style="font-family:'Amiri',serif;font-size:2.4rem;color:var(--gold-light);direction:rtl;line-height:1.4;margin-bottom:12px" lang="ar" dir="rtl">التاريخ</div>
         <h3 style="font-family:'Playfair Display',serif;font-size:1.25rem;color:var(--white);font-weight:700;margin-bottom:8px" data-te="ఇస్లామిక్ చరిత్ర" data-en="Islamic History">ఇస్లామిక్ చరిత్ర</h3>
         <p style="font-size:.88rem;color:rgba(245,230,192,.65);line-height:1.75;margin-bottom:14px" data-te="ఖిలాఫత్ నుండి ఆధునిక యుగం వరకు — సామ్రాజ్యాలు, స్వర్ణయుగం & ప్రముఖులు, 6 స్థాయిల ప్రయాణం." data-en="From the Caliphate to the modern era — empires, the Golden Age & great figures, a 6-level journey.">From the Caliphate to the modern era — empires, the Golden Age &amp; great figures, a 6-level journey.</p>
-        <span style="font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(46,139,87,0.25);color:#7de0a4;border:1px solid rgba(46,139,87,0.40);border-radius:20px;padding:4px 12px" data-te="ఇప్పుడే అందుబాటులో ఉంది" data-en="Available Now">ఇప్పుడే అందుబాటులో ఉంది</span>
+        <span style="font-size: .75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(46,139,87,0.25);color:#7de0a4;border:1px solid rgba(46,139,87,0.40);border-radius:20px;padding:4px 12px" data-te="ఇప్పుడే అందుబాటులో ఉంది" data-en="Available Now">ఇప్పుడే అందుబాటులో ఉంది</span>
       </a>
       <a href="knowledge-center/kids-islam/index.html" style="text-decoration:none;display:block;background:rgba(255,255,255,0.07);border:1px solid rgba(200,146,42,0.40);border-radius:14px;padding:28px 24px;transition:all .25s;position:relative;overflow:hidden" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(200,146,42,0.70)'" onmouseout="this.style.transform='';this.style.borderColor='rgba(200,146,42,0.40)'">
         <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#3b82f6,#ec4899)"></div>
@@ -719,41 +727,41 @@
         </div>
         <h3 style="font-family:'Playfair Display',serif;font-size:1.25rem;color:var(--white);font-weight:700;margin-bottom:8px" data-te="పిల్లల ఇస్లాం" data-en="Kids' Islam">పిల్లల ఇస్లాం</h3>
         <p style="font-size:.88rem;color:rgba(245,230,192,.65);line-height:1.75;margin-bottom:14px" data-te="పిల్లల కోసం (5–15) సరదా ఇస్లామిక్ సాహసయాత్ర — కథలు, క్విజ్‌లు & బహుమతులతో, 6 స్థాయిలు." data-en="A fun Islamic adventure for kids (5–15) — with stories, quizzes & rewards, 6 levels.">A fun Islamic adventure for kids (5–15) — with stories, quizzes &amp; rewards, 6 levels.</p>
-        <span style="font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(46,139,87,0.25);color:#7de0a4;border:1px solid rgba(46,139,87,0.40);border-radius:20px;padding:4px 12px" data-te="ఇప్పుడే అందుబాటులో ఉంది" data-en="Available Now">ఇప్పుడే అందుబాటులో ఉంది</span>
+        <span style="font-size: .75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(46,139,87,0.25);color:#7de0a4;border:1px solid rgba(46,139,87,0.40);border-radius:20px;padding:4px 12px" data-te="ఇప్పుడే అందుబాటులో ఉంది" data-en="Available Now">ఇప్పుడే అందుబాటులో ఉంది</span>
       </a>      <a href="knowledge-center/names-of-allah/index.html" style="text-decoration:none;display:block;background:rgba(255,255,255,0.07);border:1px solid rgba(200,146,42,0.40);border-radius:14px;padding:28px 24px;transition:all .25s;position:relative;overflow:hidden" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(200,146,42,0.70)'" onmouseout="this.style.transform='';this.style.borderColor='rgba(200,146,42,0.40)'">
         <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#c8922a,#e8b84b)"></div>
         <div style="display:flex;gap:8px;margin-bottom:12px"><svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="var(--gold-light)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 12h8M12 8v8"/></svg></div>
         <h3 style="font-family:'Playfair Display',serif;font-size:1.25rem;color:var(--white);font-weight:700;margin-bottom:8px" data-te="అల్లాహ్ యొక్క 99 పేర్లు" data-en="99 Names of Allah">అల్లాహ్ యొక్క 99 పేర్లు</h3>
         <p style="font-size:.88rem;color:rgba(245,230,192,.65);line-height:1.75;margin-bottom:14px" data-te="అస్మా అల్-హుస్నా &mdash; 99 కార్డులు, వర్గాలు, కంఠస్థం మోడ్" data-en="Asma ul-Husna &mdash; 99 cards, categories, and memorization mode.">అస్మా అల్-హుస్నా &mdash; 99 కార్డులు, వర్గాలు, కంఠస్థం మోడ్.</p>
-        <span style="font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(46,139,87,0.25);color:#7de0a4;border:1px solid rgba(46,139,87,0.40);border-radius:20px;padding:4px 12px" data-te="ఇప్పుడే అందుబాటులో ఉంది" data-en="Available Now">ఇప్పుడే అందుబాటులో ఉంది</span>
+        <span style="font-size: .75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(46,139,87,0.25);color:#7de0a4;border:1px solid rgba(46,139,87,0.40);border-radius:20px;padding:4px 12px" data-te="ఇప్పుడే అందుబాటులో ఉంది" data-en="Available Now">ఇప్పుడే అందుబాటులో ఉంది</span>
       </a>
       <a href="knowledge-center/islamic-calendar/index.html" style="text-decoration:none;display:block;background:rgba(255,255,255,0.07);border:1px solid rgba(200,146,42,0.40);border-radius:14px;padding:28px 24px;transition:all .25s;position:relative;overflow:hidden" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(200,146,42,0.70)'" onmouseout="this.style.transform='';this.style.borderColor='rgba(200,146,42,0.40)'">
         <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#6366f1,#c8922a)"></div>
         <div style="display:flex;gap:8px;margin-bottom:12px"><svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="var(--gold-light)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
         <h3 style="font-family:'Playfair Display',serif;font-size:1.25rem;color:var(--white);font-weight:700;margin-bottom:8px" data-te="ఇస్లామిక్ కేలండర్" data-en="Islamic Calendar">ఇస్లామిక్ కేలండర్</h3>
         <p style="font-size:.88rem;color:rgba(245,230,192,.65);line-height:1.75;margin-bottom:14px" data-te="హిజ్రీ &harr; గ్రెగోరియన్ మార్పిడి, 12 నెలలు, రమదాన్-ఈద్ కౌంట్‌డౌన్లు." data-en="Hijri &harr; Gregorian conversion, 12 months, Ramadan and Eid countdowns.">హిజ్రీ &harr; గ్రెగోరియన్ మార్పిడి, 12 నెలలు, రమదాన్-ఈద్ కౌంట్‌డౌన్లు.</p>
-        <span style="font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(46,139,87,0.25);color:#7de0a4;border:1px solid rgba(46,139,87,0.40);border-radius:20px;padding:4px 12px" data-te="ఇప్పుడే అందుబాటులో ఉంది" data-en="Available Now">ఇప్పుడే అందుబాటులో ఉంది</span>
+        <span style="font-size: .75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(46,139,87,0.25);color:#7de0a4;border:1px solid rgba(46,139,87,0.40);border-radius:20px;padding:4px 12px" data-te="ఇప్పుడే అందుబాటులో ఉంది" data-en="Available Now">ఇప్పుడే అందుబాటులో ఉంది</span>
       </a>
       <a href="knowledge-center/hajj-umrah/index.html" style="text-decoration:none;display:block;background:rgba(255,255,255,0.07);border:1px solid rgba(200,146,42,0.40);border-radius:14px;padding:28px 24px;transition:all .25s;position:relative;overflow:hidden" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(200,146,42,0.70)'" onmouseout="this.style.transform='';this.style.borderColor='rgba(200,146,42,0.40)'">
         <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#f59e0b,#c8922a)"></div>
         <div style="display:flex;gap:8px;margin-bottom:12px"><svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="var(--gold-light)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M9 21V9l3-6 3 6v12M3 12h4M17 12h4"/></svg></div>
         <h3 style="font-family:'Playfair Display',serif;font-size:1.25rem;color:var(--white);font-weight:700;margin-bottom:8px" data-te="హజ్ &amp; ఉమ్రా గైడ్" data-en="Hajj &amp; Umrah Guide">హజ్ &amp; ఉమ్రా గైడ్</h3>
         <p style="font-size:.88rem;color:rgba(245,230,192,.65);line-height:1.75;margin-bottom:14px" data-te="ఇహ్రామ్ నుండి తహల్లుల్ వరకు &mdash; ప్రతి దశ, దుఆలు, చెక్‌లిస్ట్." data-en="From Ihram to Tahalul &mdash; every step, dua, and checklist.">ఇహ్రామ్ నుండి తహల్లుల్ వరకు &mdash; ప్రతి దశ, దుఆలు, చెక్‌లిస్ట్.</p>
-        <span style="font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(46,139,87,0.25);color:#7de0a4;border:1px solid rgba(46,139,87,0.40);border-radius:20px;padding:4px 12px" data-te="ఇప్పుడే అందుబాటులో ఉంది" data-en="Available Now">ఇప్పుడే అందుబాటులో ఉంది</span>
+        <span style="font-size: .75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(46,139,87,0.25);color:#7de0a4;border:1px solid rgba(46,139,87,0.40);border-radius:20px;padding:4px 12px" data-te="ఇప్పుడే అందుబాటులో ఉంది" data-en="Available Now">ఇప్పుడే అందుబాటులో ఉంది</span>
       </a>
       <a href="knowledge-center/special-prayers/index.html" style="text-decoration:none;display:block;background:rgba(255,255,255,0.07);border:1px solid rgba(200,146,42,0.40);border-radius:14px;padding:28px 24px;transition:all .25s;position:relative;overflow:hidden" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(200,146,42,0.70)'" onmouseout="this.style.transform='';this.style.borderColor='rgba(200,146,42,0.40)'">
         <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#8b5cf6,#c8922a)"></div>
         <div style="display:flex;gap:8px;margin-bottom:12px"><svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="var(--gold-light)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2C8 6 4 10 4 14a8 8 0 0016 0c0-4-4-8-8-12z"/></svg></div>
         <h3 style="font-family:'Playfair Display',serif;font-size:1.25rem;color:var(--white);font-weight:700;margin-bottom:8px" data-te="ప్రత్యేక నమాజులు" data-en="Special Prayers">ప్రత్యేక నమాజులు</h3>
         <p style="font-size:.88rem;color:rgba(245,230,192,.65);line-height:1.75;margin-bottom:14px" data-te="ఈద్, జనాజా, తహజ్జుద్, తరావీహ్, ఇస్తిఖారా సహా 10 నమాజుల గైడ్." data-en="Complete guide to 10 special prayers: Eid, Janazah, Tahajjud, Taraweeh, Istikhara.">ఈద్, జనాజా, తహజ్జుద్, తరావీహ్, ఇస్తిఖారా సహా 10 నమాజుల గైడ్.</p>
-        <span style="font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(46,139,87,0.25);color:#7de0a4;border:1px solid rgba(46,139,87,0.40);border-radius:20px;padding:4px 12px" data-te="ఇప్పుడే అందుబాటులో ఉంది" data-en="Available Now">ఇప్పుడే అందుబాటులో ఉంది</span>
+        <span style="font-size: .75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(46,139,87,0.25);color:#7de0a4;border:1px solid rgba(46,139,87,0.40);border-radius:20px;padding:4px 12px" data-te="ఇప్పుడే అందుబాటులో ఉంది" data-en="Available Now">ఇప్పుడే అందుబాటులో ఉంది</span>
       </a>
       <a href="knowledge-center/womens-guidance/index.html" style="text-decoration:none;display:block;background:rgba(255,255,255,0.07);border:1px solid rgba(200,146,42,0.40);border-radius:14px;padding:28px 24px;transition:all .25s;position:relative;overflow:hidden" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(200,146,42,0.70)'" onmouseout="this.style.transform='';this.style.borderColor='rgba(200,146,42,0.40)'">
         <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#ec4899,#c8922a)"></div>
         <div style="display:flex;gap:8px;margin-bottom:12px"><svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="var(--gold-light)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M12 12v8M9 18h6"/></svg></div>
         <h3 style="font-family:'Playfair Display',serif;font-size:1.25rem;color:var(--white);font-weight:700;margin-bottom:8px" data-te="మహిళల ఇస్లామిక్ మార్గదర్శకత్వం" data-en="Women's Islamic Guidance">మహిళల ఇస్లామిక్ మార్గదర్శకత్వం</h3>
         <p style="font-size:.88rem;color:rgba(245,230,192,.65);line-height:1.75;margin-bottom:14px" data-te="హైద్, నిఫాస్, తహారా, గుస్ల్, రమదాన్ గురించి గౌరవంగా." data-en="Hayd, Nifas, Taharah, Ghusl, and Ramadan guidance presented with dignity.">హైద్, నిఫాస్, తహారా, గుస్ల్, రమదాన్ గురించి గౌరవంగా.</p>
-        <span style="font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(46,139,87,0.25);color:#7de0a4;border:1px solid rgba(46,139,87,0.40);border-radius:20px;padding:4px 12px" data-te="ఇప్పుడే అందుబాటులో ఉంది" data-en="Available Now">ఇప్పుడే అందుబాటులో ఉంది</span>
+        <span style="font-size: .75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(46,139,87,0.25);color:#7de0a4;border:1px solid rgba(46,139,87,0.40);border-radius:20px;padding:4px 12px" data-te="ఇప్పుడే అందుబాటులో ఉంది" data-en="Available Now">ఇప్పుడే అందుబాటులో ఉంది</span>
       </a>
 
     </div>

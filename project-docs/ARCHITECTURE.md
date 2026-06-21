@@ -6,10 +6,10 @@
 
 ## 1. Architectural style
 
-A **static multi-page application (MPA)** of independent, self-contained HTML documents. There is no server, no API of our own, no build pipeline, and no shared asset bundle. Each `.html` file ships its own CSS (`<style>`) and JS (`<script>`).
+A **static multi-page application (MPA)** of HTML documents. There is no server, no API of our own, and no build pipeline. Pages still ship page-local CSS/JS, but the site now also has a shared static layer (`assets/css/if-standard.css`, `assets/css/if-shared.css`, and `assets/js/if-*.js`) for common components, mobile shell behavior, search, profile, quizzes, lessons, and engagement.
 
 ```
-Browser ──loads──▶ one .html (inline CSS + JS)
+Browser ──loads──▶ one .html (inline CSS + JS + shared static assets)
                      │
                      ├─ Google Fonts (CDN, preconnected)
                      ├─ localStorage['if-lang']  (language persistence)
@@ -43,15 +43,19 @@ Details: [PAGES.md](PAGES.md).
 
 ---
 
-## 4. The duplication trade-off (most important architectural fact)
+## 4. The duplication trade-off
 
-Because there is no shared CSS/JS, the following are **copied into every page** and must be kept consistent by hand:
-- the `:root` design tokens ([DESIGN_SYSTEM.md](DESIGN_SYSTEM.md)),
-- the nav + mobile drawer markup, styles, and behaviour ([NAVIGATION.md](NAVIGATION.md)),
-- the localization plumbing ([../LOCALIZATION_RULES.md](../LOCALIZATION_RULES.md)),
-- the polish layer (scrollbar, focus, skip-link, reveal animations).
+Because older pages began as self-contained files, some page-local duplication remains:
+- page-specific hero, section, and card styles,
+- page-specific localization plumbing ([../LOCALIZATION_RULES.md](../LOCALIZATION_RULES.md)),
+- bespoke homepage/KC/Student Guidance interactions.
 
-> When a task is "change X across the site", it is by definition an **N-file edit**. Budget for that and verify cross-page parity ([../PROJECT_RULES.md](../PROJECT_RULES.md) §7).
+Shared behavior should now live in the shared static layer when practical:
+- design-system hardening and mobile polish in `assets/css/if-standard.css`,
+- reusable base styles in `assets/css/if-shared.css`,
+- search, profile, app shell, quizzes, lessons, media, diagrams, and engagement in `assets/js/if-*.js`.
+
+> When a task is "change X across the site", first check whether the shared layer can own it; if not, budget for page-local follow-up edits and verify cross-page parity.
 
 ---
 
