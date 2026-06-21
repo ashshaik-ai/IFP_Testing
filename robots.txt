@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://ashshaik-ai.github.io/IFP_Testing/sitemap.xml

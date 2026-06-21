@@ -6,7 +6,7 @@
 
 ## 1. Architectural style
 
-A **static multi-page application (MPA)** of HTML documents. There is no server, no API of our own, and no build pipeline. Pages still ship page-local CSS/JS, but the site now also has a shared static layer (`assets/css/if-standard.css`, `assets/css/if-shared.css`, and `assets/js/if-*.js`) for common components, mobile shell behavior, search, profile, quizzes, lessons, and engagement.
+A **static multi-page application (MPA)** of HTML documents. There is no server, no API of our own, and no build pipeline. Pages still ship page-local CSS/JS, but the site now also has a shared static layer (`assets/css/if-standard.css`, `assets/css/if-shared.css`, `assets/js/if-*.js`, and `assets/data/site-catalog.js`) for common components, mobile shell behavior, search, profile, quizzes, lessons, engagement, JSON-LD, audits, and generated SEO artifacts.
 
 ```
 Browser ──loads──▶ one .html (inline CSS + JS + shared static assets)
@@ -14,6 +14,8 @@ Browser ──loads──▶ one .html (inline CSS + JS + shared static assets)
                      ├─ Google Fonts (CDN, preconnected)
                      ├─ localStorage['if-lang']  (language persistence)
                      ├─ rates.json               (fetched by Zakat calculator)
+                     ├─ assets/data/site-catalog.js (site graph registry)
+                     ├─ generated sitemap/robots/audit artifacts
                      └─ in-browser computation    (prayer times, countdown, zakat)
 ```
 
@@ -53,9 +55,15 @@ Because older pages began as self-contained files, some page-local duplication r
 Shared behavior should now live in the shared static layer when practical:
 - design-system hardening and mobile polish in `assets/css/if-standard.css`,
 - reusable base styles in `assets/css/if-shared.css`,
-- search, profile, app shell, quizzes, lessons, media, diagrams, and engagement in `assets/js/if-*.js`.
+- pages, portals, tools, lessons, aliases, and share metadata in `assets/data/site-catalog.js`,
+- search, profile, JSON-LD, app shell, quizzes, lessons, media, diagrams, and engagement in `assets/js/if-*.js`.
 
 > When a task is "change X across the site", first check whether the shared layer can own it; if not, budget for page-local follow-up edits and verify cross-page parity.
+
+The catalog also feeds maintenance scripts:
+- `scripts/generate-site-artifacts.mjs` writes `sitemap.xml` and `robots.txt`,
+- `scripts/audit-site.mjs` writes `project-docs/audits/LATEST_STATIC_AUDIT.md/.json`,
+- `scripts/extract-student-guidance-index.mjs` writes a compact generated index for the large Student Guidance card surface.
 
 ---
 

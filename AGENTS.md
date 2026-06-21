@@ -8,7 +8,7 @@ Static multilingual website for **Islamic Front, Mangalagiri** (Muslim community
 
 ## Stack
 
-Pure **HTML + CSS + vanilla JS** — no framework, no build, no deps; open an `.html` to run (`start index.html`). Pages still carry substantial inline CSS/JS, but the platform now also uses shared static assets such as `assets/css/if-standard.css`, `assets/css/if-shared.css`, and `assets/js/if-*.js` for cross-page components, search, profile, and mobile app-shell behavior. Only Node piece: `scripts/update-rates.mjs` (run by a GitHub Action). Static hosting.
+Pure **HTML + CSS + vanilla JS** — no framework, no build, no deps; open an `.html` to run (`start index.html`). Pages still carry substantial inline CSS/JS, but the platform now also uses shared static assets such as `assets/css/if-standard.css`, `assets/css/if-shared.css`, `assets/js/if-*.js`, and the catalog registry `assets/data/site-catalog.js` for cross-page components, search, profile, JSON-LD, audits, and mobile app-shell behavior. Node scripts are maintenance-only (`scripts/update-rates.mjs`, static audit/artifact generators). Static hosting.
 
 ## Repo map
 
@@ -17,6 +17,9 @@ index.html                     # Homepage (community/political) — i18n System 
 islamic-knowledge.html         # Knowledge Center: Zakat, prayer times, guides — System B (data-te/-en)
 student-guidance.html          # Career guidance, 81 cards — System B + CH[]/CB_TE[] arrays
 rates.json                     # Gold/silver INR → Zakat calc (auto-updated; never hand-edit)
+assets/data/site-catalog.js    # Pages/portals/tools/lessons source of truth for search/profile/SEO/audits
+assets/data/student-guidance-index.js # Generated compact authoring index for Student Guidance cards
+sitemap.xml / robots.txt       # Generated from the catalog via scripts/generate-site-artifacts.mjs
 knowledge-center/learn-arabic/ # portal index + 6 lessons (Amiri, RTL)
 knowledge-center/learn-urdu/   # portal index + 6 lessons (Noto Nastaliq Urdu, RTL)
 knowledge-center/learn-quran/  # portal index — Reading→Tajweed→Hifz→Tafseer (Amiri, Arabic nav model)

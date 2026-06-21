@@ -3,11 +3,18 @@
    Same-origin JS/CSS: network-first, cache fallback (keeps app shell fresh after deploys).
    Other same-origin assets: cache-first.
    Cross-origin (fonts, recitation audio CDN): left to the browser. */
-var CACHE = 'if-cache-v2';
+var CACHE = 'if-cache-v3';
 var PRECACHE = [
+  'favicon.ico',
+  'assets/data/site-catalog.js',
+  'assets/data/student-guidance-index.js',
   'assets/css/if-shared.css',
   'assets/css/if-standard.css',
   'assets/js/if-core.js',
+  'assets/js/if-jsonld.js',
+  'assets/js/if-search.js',
+  'assets/js/if-profile.js',
+  'assets/js/if-share.js',
   'assets/js/if-flashcards.js',
   'assets/js/if-quiz.js'
 ];

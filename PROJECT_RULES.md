@@ -8,11 +8,12 @@
 
 1. **No build tools / frameworks / deps.** Pure HTML/CSS/JS; must run by opening an `.html`.
 2. **Shared static layer exists.** Prefer existing shared assets (`assets/css/if-standard.css`, `assets/css/if-shared.css`, `assets/js/if-*.js`) for cross-cutting behavior, then patch page-local inline code only where the page has bespoke UI.
-3. **Telugu is default.** Never ship a page that defaults to English by accident (portals are a known exception — [LOCALIZATION_RULES.md](LOCALIZATION_RULES.md)).
-4. **Never hand-edit `rates.json`** — machine-generated ([project-docs/AUTOMATION_RATES.md](project-docs/AUTOMATION_RATES.md)).
-5. **Facts of record are immutable** — founder, dates, 7/9 seats, manifesto, addresses. Copy exactly from [project-docs/COMMUNITY_SCHEMES.md](project-docs/COMMUNITY_SCHEMES.md).
-6. **UTF-8 always.** Telugu/Arabic/Urdu written literally — don't entity-escape or re-encode.
-7. **Religious content is sourced.** Don't alter Quran/Hadith text, transliteration, translation, or citation numbers without a verified reason.
+3. **Catalog is the source of truth for site structure.** Update `assets/data/site-catalog.js` when adding/removing pages, portals, tools, lessons, aliases, SEO/share metadata, or search destinations.
+4. **Telugu is default.** Never ship a page that defaults to English by accident (portals are a known exception — [LOCALIZATION_RULES.md](LOCALIZATION_RULES.md)).
+5. **Never hand-edit `rates.json`** — machine-generated ([project-docs/AUTOMATION_RATES.md](project-docs/AUTOMATION_RATES.md)).
+6. **Facts of record are immutable** — founder, dates, 7/9 seats, manifesto, addresses. Copy exactly from [project-docs/COMMUNITY_SCHEMES.md](project-docs/COMMUNITY_SCHEMES.md).
+7. **UTF-8 always.** Telugu/Arabic/Urdu written literally — don't entity-escape or re-encode.
+8. **Religious content is sourced.** Don't alter Quran/Hadith text, transliteration, translation, or citation numbers without a verified reason.
 
 ---
 
@@ -42,6 +43,7 @@
 - **External links:** `rel="noopener"`/`noreferrer`.
 - **Assets** in `assets/`; always `alt` (empty `alt=""`+`aria-hidden` for decorative). Beware double-extension files (`logo.png.png`).
 - **Keep `data-te` before `data-en`** for clean diffs.
+- **Generated static artifacts:** after catalog/card edits, run `node scripts/generate-site-artifacts.mjs`, `node scripts/extract-student-guidance-index.mjs` as relevant, then `node scripts/audit-site.mjs`.
 
 ---
 

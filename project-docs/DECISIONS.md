@@ -60,12 +60,12 @@ See [AUTOMATION_RATES.md](AUTOMATION_RATES.md).
 | ID | Issue | Notes |
 |---|---|---|
 | K1 | **Two i18n systems** | Divergent; intentional but a maintenance tax (D2). |
-| K2 | **CSS/JS duplication** | No shared assets; cross-cutting edits are N-file (D1). |
+| K2 | **CSS/JS duplication** | Shared assets now exist (`if-standard.css`, `if-shared.css`, `if-*.js`), but older page-local CSS/JS still creates maintenance tax. Prefer shared layer first. |
 | K3 | **Portal `<html lang="en">` quirk** | Portals render English-first despite `te` default; keep both `data-te`/`data-en`; don't flip `lang` without converting visible defaults. [../LOCALIZATION_RULES.md](../LOCALIZATION_RULES.md) §6. |
-| K4 | **Inconsistent SEO meta** | No canonical/JSON-LD; some pages lack OG/Twitter. Plan in [SEO.md](SEO.md). |
+| K4 | **Inconsistent SEO meta** | Shared JSON-LD and catalog-driven sitemap now exist; some page-local meta/OG polish may still need audit follow-up. |
 | K5 | **Asset double extensions** | `logo.png.png`, `logo_2.jpg.jpg`, `logo-emblem.png.png` coexist with clean names; verify `src` before referencing/renaming. [../PROJECT_RULES.md](../PROJECT_RULES.md) §6. |
 | K6 | **No `prefers-reduced-motion`** | Reveal/counter animations always run. [ACCESSIBILITY.md](ACCESSIBILITY.md) §2. |
-| K7 | **No sitemap/robots.txt** | Consider adding for the 18 pages. [SEO.md](SEO.md) §5. |
+| K7 | **Sitemap/robots generated** | `sitemap.xml` and `robots.txt` are generated from `assets/data/site-catalog.js`; rerun `node scripts/generate-site-artifacts.mjs` after catalog changes. |
 | K8 | **Telugu heading height** | Telugu glyphs are tall; `:lang(te)` line-height overrides exist — preserve them. |
 
 ---
