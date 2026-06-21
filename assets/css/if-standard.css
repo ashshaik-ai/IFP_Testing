@@ -36,6 +36,16 @@
   --ifx-gold: var(--gold, #c8922a);
   --ifx-gold-light: var(--gold-light, #e8b84b);
   --ifx-cream: var(--cream, #faf6ee);
+
+  /* accessible text on dark green surfaces */
+  --ifx-on-green: #f5e6c0;
+  --ifx-on-green-muted: rgba(245,230,192,0.82);
+  --ifx-on-green-soft: rgba(245,230,192,0.74);
+
+  /* type scale floor */
+  --ifx-type-micro: 12px;
+  --ifx-type-small: 13px;
+  --ifx-type-body: 16px;
 }
 
 /* ---- A3. Consistent section anchor offset under the fixed nav ---- */
@@ -47,12 +57,126 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  overflow-x: hidden;
 }
 
 /* ---- A4. Global reading comfort — body text line-height ---- */
 /* Applies across every page. 1.7 for body prose; p, li get a bit more air.  */
 body{ line-height: 1.65; }
 p, li{ line-height: 1.75; }
+body{ overflow-x: hidden; }
+
+/* Forms: prevent iOS/Safari focus zoom and improve repeated data entry. */
+input, select, textarea{
+  font-size: max(16px, 1rem) !important;
+}
+
+/* Reading measure: long prose stays calm on tablets and desktop. */
+.article-body p,
+.ifl-s-b,
+.ifl-s-b p,
+.lesson-body,
+.guide-body p,
+.qa-answer p,
+.sg-shead p,
+.sec-lead,
+.section-lead {
+  max-width: var(--ifx-read);
+}
+
+/* Audit patch: no readable UI text below 12px. Telugu/Arabic/Urdu scripts
+   need the extra pixel floor, while uppercase labels keep their compact feel
+   through weight and letter spacing. */
+.nav-sub,
+.lu-nav-sub,
+.sg-eyebrow,
+.section-tag,
+.sec-tag,
+.al-phase,
+.lu-hero-badge,
+.al-stat-label,
+.lu-hero-stat span,
+.hstat-label,
+.office-type,
+.ev-type,
+.lvl,
+.sg-table thead th,
+.sg-story .soon,
+.cg-flow-cap,
+.cd-label,
+.cd-u,
+.zf-header-sub,
+.zr-label,
+.lp-unit,
+.article-num,
+.quran-ref,
+.key-points-title,
+.qa-cat-title,
+.ws-recite-label,
+.tcard-label,
+.pc-ref,
+.ll-num,
+.ifp-badge-lbl,
+.ifl-tier,
+.ifl-check-lbl,
+.ifm-soon,
+.ifsr-cat,
+.ifpr-stat span,
+.ifpr-badge,
+.ifpr-road-sub,
+.mz-xp,
+.ca-label,
+.ci-label,
+.ss-label,
+.mf-ring-count,
+.leader-title-text {
+  font-size: var(--ifx-type-micro) !important;
+}
+
+:lang(te) .nav-sub,
+:lang(te) .lu-nav-sub,
+:lang(te) .sg-eyebrow,
+:lang(te) .section-tag,
+:lang(te) .sec-tag,
+:lang(te) .al-phase,
+:lang(te) .lu-hero-badge {
+  font-size: var(--ifx-type-small) !important;
+}
+
+/* Dark-surface contrast: reserve low opacity for decoration, not information. */
+.footer-col ul li,
+.footer-col ul li a,
+.footer-bottom p,
+.kcf-copy,
+.al-breadcrumb,
+.al-breadcrumb a,
+.lu-hero-stat span,
+.al-stat-label,
+.rm-dot.soon,
+.rm-mdot.soon,
+.rm-node-tag.soon,
+.rm-minfo em.soon,
+.mem-hidden,
+.article-body-en,
+.contact-strip,
+.contact-strip a,
+.nav-sub,
+.lu-nav-sub {
+  color: var(--ifx-on-green-muted) !important;
+}
+
+.footer-col h4,
+.kc-footer h4,
+.lu-footer h4,
+.site-footer h4,
+.al-footer h4 {
+  color: var(--ifx-on-green) !important;
+}
+
+/* Clean inactive aria state: styling should follow the active class instead. */
+.bottom-nav .bn-item:not(.bn-active) {
+  opacity: .86;
+}
 
 /* ---- A5. Consistent image behaviour ---- */
 img{ max-width: 100%; height: auto; }
@@ -168,6 +292,19 @@ img, video{ max-width:100%; height:auto; }
   .ifx-container, .ifx-crumbs{ padding-inline: 16px; }
   .ifx-hero{ min-height: clamp(300px, 60vh, 420px); }
   .ifx-hero-script{ font-size: clamp(40px, 13vw, 72px); }
+  .hero-title, .hero h1, .kc-hero h1, .sg-hero h1, .al-hero-title, .lu-hero-title{
+    font-size: clamp(28px, 10vw, 42px) !important;
+    line-height: 1.12 !important;
+  }
+  .hero-subtitle, .kc-hero p, .sg-hero p, .al-hero-sub, .lu-hero-sub{
+    font-size: 15px !important;
+    line-height: 1.68 !important;
+  }
+  .hero-stats, .al-hero-stats, .lu-hero-stats, .hstats{
+    grid-template-columns: 1fr !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
   .ifx-card{ padding: 16px; border-radius: 14px; }
   .ifx-ring{ width:64px; height:64px; }
   .ifx-ring::after{ width:48px; height:48px; font-size:13px; }
@@ -176,6 +313,15 @@ img, video{ max-width:100%; height:auto; }
 @media (max-width: 360px){
   .ifx-container, .ifx-crumbs, .ifx-section{ padding-inline: 14px; }
   .ifx-hero-script{ font-size: clamp(36px, 12vw, 60px); }
+  .leader-card{
+    display: none !important;
+  }
+  .kc-jump,
+  .al-sticky-inner,
+  .lu-sticky-inner,
+  .sg-chips{
+    max-width: 100vw !important;
+  }
 }
 
 @media (max-width: 320px){
@@ -669,7 +815,7 @@ span.hmfp-label, .hmfp-li span{ font-size: 12px !important; }
 .sg-sec:not(.sg-hide){ animation: ifx-rise .3s ease both; }
 
 /* Search box: ensure comfortable height */
-.sg-search, #sgSearch{ min-height: 48px !important; font-size: 15px !important; }
+.sg-search, #sgSearch{ min-height: 48px !important; font-size: 16px !important; }
 
 /* Breadcrumb text: don't go below 12px */
 .al-breadcrumb, .ifx-crumbs{ font-size: 13px !important; }

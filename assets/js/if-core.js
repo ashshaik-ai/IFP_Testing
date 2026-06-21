@@ -290,7 +290,21 @@
   }
 
   /* ── boot ── */
-  function boot() { initA11y(); injectRefs(); initPWA(); setTimeout(injectGlossary, 0); }
+  function syncLocalizedAttributes() {
+    var suffix = getLang() === 'te' ? 'te' : 'en';
+    [
+      { attr: 'alt', data: 'data-alt-' },
+      { attr: 'aria-label', data: 'data-aria-' },
+      { attr: 'title', data: 'data-title-' }
+    ].forEach(function (cfg) {
+      document.querySelectorAll('[' + cfg.data + 'te][' + cfg.data + 'en]').forEach(function (el) {
+        var value = el.getAttribute(cfg.data + suffix);
+        if (value) el.setAttribute(cfg.attr, value);
+      });
+    });
+  }
+
+  function boot() { initA11y(); syncLocalizedAttributes(); injectRefs(); initPWA(); setTimeout(injectGlossary, 0); }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
   else boot();
 
@@ -303,6 +317,7 @@
     var gs = document.querySelector('#if-glossary .ifg-sub'); if (gs) gs.textContent = getLang() === 'te' ? 'సాధారణ ఇస్లామిక్ పదాల సరళ వివరణలు. వెతకడానికి టైప్ చేయండి.' : 'Plain explanations of common Islamic terms. Type to search.';
     var sk = document.querySelector('.if-skip');
     if (sk) sk.textContent = getLang() === 'te' ? 'ముఖ్య విషయానికి వెళ్లండి' : 'Skip to content';
+    syncLocalizedAttributes();
   }).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
 
   /* ── Shared scroll-reveal: activates .ifx-reveal → .ifx-visible ── */
@@ -382,7 +397,8 @@
       muts.forEach(function(m) {
         if (m.attributeName === 'class') {
           var isActive = m.target.classList.contains('spy-active');
-          m.target.setAttribute('aria-current', isActive ? 'true' : 'false');
+          if (isActive) m.target.setAttribute('aria-current', 'true');
+          else m.target.removeAttribute('aria-current');
         }
       });
     });
@@ -452,20 +468,20 @@
       nav.id = 'bottom-nav';
       nav.setAttribute('aria-label', 'Page navigation');
       nav.innerHTML = 
-          '<a href="' + base + 'index.html#home" class="bn-item' + (isHome ? ' bn-active' : '') + '" aria-current="' + (isHome ? 'page' : 'false') + '">'
+          '<a href="' + base + 'index.html#home" class="bn-item' + (isHome ? ' bn-active" aria-current="page' : '') + '">'
         + '  <svg class="bn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
         + '    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />'
         + '    <polyline points="9 22 9 12 15 12 15 22" />'
         + '  </svg>'
         + '  <span class="bn-label" data-bn-label="home">' + (te ? 'హోమ్' : 'Home') + '</span>'
         + '</a>'
-        + '<a href="' + base + 'islamic-knowledge.html" class="bn-item' + (isKnowledge ? ' bn-active' : '') + '" aria-current="' + (isKnowledge ? 'page' : 'false') + '">'
+        + '<a href="' + base + 'islamic-knowledge.html" class="bn-item' + (isKnowledge ? ' bn-active" aria-current="page' : '') + '">'
         + '  <svg class="bn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
         + '    <path d="M12 2C9 3 6 5.5 6 9h12c0-3.5-3-6-6-6z"/><rect x="4" y="9" width="16" height="2" rx="1"/><path d="M6 11v8h4v-5h4v5h4v-8"/><path d="M2 21h20"/>'
         + '  </svg>'
         + '  <span class="bn-label" data-bn-label="knowledge">' + (te ? 'నాలెడ్జ్' : 'Knowledge') + '</span>'
         + '</a>'
-        + '<a href="' + base + 'student-guidance.html" class="bn-item' + (isGuidance ? ' bn-active' : '') + '" aria-current="' + (isGuidance ? 'page' : 'false') + '">'
+        + '<a href="' + base + 'student-guidance.html" class="bn-item' + (isGuidance ? ' bn-active" aria-current="page' : '') + '">'
         + '  <svg class="bn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
         + '    <path d="M22 10L12 5 2 10l10 5 10-5z" />'
         + '    <path d="M6 12v5c0 1 2.5 2.5 6 2.5s6-1.5 6-2.5v-5" />'
