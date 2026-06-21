@@ -68,13 +68,19 @@
 
   var ov, input, results, built = false;
 
+  function hasNavbarSearchHost() {
+    return !!document.querySelector('.nav-right');
+  }
+
   function build() {
     if (built) return; built = true;
     var fab = document.createElement('button');
     fab.id = 'ifsr-fab'; fab.type = 'button'; fab.setAttribute('aria-label', 'Search');
     fab.innerHTML = '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg>';
     fab.addEventListener('click', open);
-    document.body.appendChild(fab);
+    if (!hasNavbarSearchHost()) {
+      document.body.appendChild(fab);
+    }
 
     ov = document.createElement('div'); ov.id = 'ifsr-ov'; ov.setAttribute('role', 'dialog'); ov.setAttribute('aria-modal', 'true');
     ov.innerHTML = '<div class="ifsr-modal"><div class="ifsr-bar"><span class="ifsr-ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg></span>'
@@ -121,7 +127,13 @@
   }
 
   function open() { if (!ov) return; ov.classList.add('on'); paintChrome(); setTimeout(function () { input.focus(); }, 30); }
-  function close() { if (ov) ov.classList.remove('on'); var fab = document.getElementById('ifsr-fab'); if (fab) fab.focus(); }
+  function close() {
+    if (ov) ov.classList.remove('on');
+    var navSearch = document.querySelector('.nav-search-btn');
+    var fab = document.getElementById('ifsr-fab');
+    if (navSearch) navSearch.focus();
+    else if (fab) fab.focus();
+  }
 
   document.addEventListener('keydown', function (e) {
     var tag = (e.target && e.target.tagName) || '';
@@ -154,8 +166,8 @@
       navSearch.style.padding = '8px';
       navSearch.style.borderRadius = '50%';
       navSearch.style.transition = 'background 0.2s, color 0.2s';
-      navSearch.style.minHeight = '36px';
-      navSearch.style.minWidth = '36px';
+      navSearch.style.minHeight = '44px';
+      navSearch.style.minWidth = '44px';
       navSearch.style.marginRight = '8px';
       navSearch.style.verticalAlign = 'middle';
       

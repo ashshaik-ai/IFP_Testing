@@ -296,6 +296,8 @@ img, video{ max-width:100%; height:auto; }
    ========================================================================== */
 .ifrc-sec{ padding:28px var(--ifx-space-x) 0; }
 .ifrc-bar{ max-width:var(--ifx-container); margin-inline:auto; display:flex; align-items:center; justify-content:space-between; gap:18px; flex-wrap:wrap; background:rgba(200,146,42,.07); border:1px solid var(--border,rgba(200,146,42,.25)); border-radius:var(--radius); padding:16px 20px; }
+.ifrc-inline{ margin-top:20px; }
+.ifrc-inline .ifrc-bar{ max-width:none; background:#fff; box-shadow:0 10px 28px -24px rgba(13,59,30,.55); }
 .ifrc-left{ display:flex; flex-direction:column; gap:8px; }
 .ifrc-recent{ display:flex; flex-direction:column; gap:6px; }
 @media(max-width:600px){ .ifrc-bar{ flex-direction:column; align-items:stretch; } }
@@ -2075,6 +2077,71 @@ a {
   #ifsr-fab {
     display: none !important;
   }
+}
+
+/* Declutter layer: keep content reachable, reduce repeated entry points. */
+@media (min-width: 769px) {
+  .kc-jump {
+    max-width: 920px !important;
+    max-height: 128px !important;
+    overflow: auto !important;
+    padding-right: 6px !important;
+    scrollbar-width: thin !important;
+  }
+
+  .kc-jump a:nth-of-type(n+9) {
+    display: none !important;
+  }
+
+  .kc-sticky .kc-sticky-home {
+    display: none !important;
+  }
+}
+
+.if-refs,
+.ifg-sec,
+.coming-sec {
+  padding-top: clamp(38px, 5vw, 56px) !important;
+  padding-bottom: clamp(38px, 5vw, 56px) !important;
+}
+
+.if-refs-grid,
+.coming-grid {
+  gap: 12px !important;
+}
+
+.lu-footer-links,
+.site-footer-links,
+.al-footer-links,
+.sg-foot-links {
+  row-gap: 8px !important;
+  margin-bottom: 18px !important;
+}
+
+.lu-footer-links a,
+.site-footer-links a,
+.al-footer-links a,
+.sg-foot-links a {
+  min-height: 44px !important;
+}
+
+.dash-sec + .ch-sec,
+.ch-sec + .lu-sec,
+.ch-sec + .coming-sec {
+  margin-top: 0 !important;
+}
+
+.learning-dashboard {
+  padding-bottom: clamp(52px, 6vw, 70px) !important;
+}
+
+.kc-promo {
+  padding-top: clamp(52px, 6vw, 72px) !important;
+  padding-bottom: clamp(52px, 6vw, 72px) !important;
+}
+
+.kc-promo .kc-promo-lead {
+  max-width: 640px !important;
 }
 
 /* ── Phase 1 Mobile UX Enhancements ── */

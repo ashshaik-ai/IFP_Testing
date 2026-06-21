@@ -1,12 +1,12 @@
 /* ===================================================================
    Islamic Front — Continue Learning + Recently Visited strip (if-recent.js)
    Config-free. For portal index pages that use if-lesson (the model
-   portals). Injects a compact strip above #if-lessons:
+   portals). Injects a compact strip inside the page progress dashboard
+   when one exists, otherwise above #if-lessons:
      • Continue learning  (resume the most recent in-portal lesson, or
        jump to lessons on a first visit)
      • Recently visited   (other in-portal pages, from IFEngage history)
-   Schema-agnostic (uses IFEngage sitewide history) so it never collides
-   with the existing per-portal progress dashboard. Bilingual via <html lang>.
+   Schema-agnostic (uses IFEngage sitewide history). Bilingual via <html lang>.
    =================================================================== */
 (function () {
   'use strict';
@@ -38,12 +38,21 @@
 
   function inject() {
     if (document.getElementById('if-recent')) return;
-    var sec = document.createElement('section');
-    sec.id = 'if-recent'; sec.className = 'ifrc-sec'; sec.setAttribute('aria-label', 'Continue learning');
-    var lessons = document.getElementById('if-lessons');
-    if (lessons && lessons.parentNode) lessons.parentNode.insertBefore(sec, lessons);
-    else { var f = document.querySelector('footer.lu-footer'); if (f && f.parentNode) f.parentNode.insertBefore(sec, f); else return; }
-    root = sec;
+    var progress = document.querySelector('#progress .dash-inner, #progress');
+    if (progress) {
+      root = document.createElement('div');
+      root.id = 'if-recent';
+      root.className = 'ifrc-inline';
+      root.setAttribute('aria-label', 'Continue learning');
+      progress.appendChild(root);
+    } else {
+      var sec = document.createElement('section');
+      sec.id = 'if-recent'; sec.className = 'ifrc-sec'; sec.setAttribute('aria-label', 'Continue learning');
+      var lessons = document.getElementById('if-lessons');
+      if (lessons && lessons.parentNode) lessons.parentNode.insertBefore(sec, lessons);
+      else { var f = document.querySelector('footer.lu-footer'); if (f && f.parentNode) f.parentNode.insertBefore(sec, f); else return; }
+      root = sec;
+    }
     render();
   }
 
