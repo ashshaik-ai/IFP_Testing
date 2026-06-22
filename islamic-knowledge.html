@@ -2,7 +2,7 @@
 <html lang="te" id="html-root">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <link rel="icon" type="image/png" href="assets/logo-emblem.png">
 <link rel="apple-touch-icon" href="assets/logo-emblem.png">
 <link rel="manifest" href="assets/manifest.json">
@@ -140,11 +140,6 @@
   .salah-row .sr-time { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700; color: var(--green-deep); }
   .salah-row.sr-muted .sr-name, .salah-row.sr-muted .sr-time { color: var(--text-muted); font-weight: 500; }
   .next-pill { font-size: 12px; letter-spacing: 1px; text-transform: uppercase; color: var(--gold); border: 1px solid var(--gold); border-radius: 100px; padding: 2px 8px; margin-left: 8px; }
-  .asr-toggle { display: flex; gap: 8px; margin-top: 18px; align-items: center; flex-wrap: wrap; }
-  .asr-toggle .at-label { font-size: 12px; color: var(--text-muted); }
-  .asr-btn { font-size: 12px; font-family: inherit; cursor: pointer; border: 1px solid var(--border); background: var(--white); color: var(--text-mid); padding: 6px 14px; min-height: 44px; display: inline-flex; align-items: center; border-radius: 100px; transition: all 0.2s; }
-  .asr-btn.active { background: var(--green-deep); color: var(--gold-light); border-color: var(--green-deep); }
-
   /* COUNTDOWN */
   .countdown-card { background: var(--green-deep); border-radius: 12px; padding: 32px 30px; position: relative; overflow: hidden; }
   .countdown-card::before { content: ''; position: absolute; right: 18px; bottom: 6px; width: 110px; height: 110px; opacity: 0.06; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpolyline points='12 6 12 12 16 14'/%3E%3C/svg%3E") center/contain no-repeat; }
@@ -540,7 +535,7 @@
     .kc-hero h1 { color: black !important; font-size: 24pt !important; }
     .kc-hero h1 span { color: #c8922a !important; }
     .kc-hero p, .kc-badge { color: #333 !important; }
-    .kc-jump, .asr-toggle, .ws-nav, .ws-dots { display: none !important; }
+    .kc-jump, .ws-nav, .ws-dots { display: none !important; }
     /* Show all wudu/salah steps when printing */
     .ws-step { display: block !important; border-bottom: 1pt solid #eee; padding: 8pt 0; }
     .guide-item.guide-open .guide-body { max-height: none !important; }
@@ -1261,11 +1256,6 @@
             <div class="sr-name"><span class="sr-ic"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/><line x1="17" y1="8" x2="17.01" y2="8"/><line x1="20" y1="11" x2="20.01" y2="11"/><line x1="19" y1="5" x2="19.01" y2="5"/></svg></span><span data-te="ఇషా" data-en="Isha">ఇషా</span></div>
             <div class="sr-time" id="t-isha">—</div>
           </div>
-        </div>
-        <div class="asr-toggle">
-          <span class="at-label" data-te="అస్ర్ లెక్కింపు:" data-en="Asr calculation:">అస్ర్ లెక్కింపు:</span>
-          <button class="asr-btn active" id="asr-hanafi" onclick="setAsr(true)" data-te="హనఫీ" data-en="Hanafi">హనఫీ</button>
-          <button class="asr-btn" id="asr-standard" onclick="setAsr(false)" data-te="స్టాండర్డ్ (షాఫయీ)" data-en="Standard (Shafi'i)">స్టాండర్డ్ (షాఫయీ)</button>
         </div>
       </div>
 
@@ -2187,7 +2177,7 @@ var PrayTimes = (function () {
 
 /* ───────── Salah + countdown ───────── */
 var LAT = 16.4307, LNG = 80.5680, TZ = 5.5;
-var hanafi = (function () { try { return (localStorage.getItem('if-asr') || 'hanafi') === 'hanafi'; } catch (e) { return true; } })();
+var hanafi = true; // Hanafi Asr calculation only
 var PNAME = {
   te: { fajr:'ఫజ్ర్', sunrise:'సూర్యోదయం', dhuhr:'జుహ్ర్', asr:'అస్ర్', maghrib:'మగ్రిబ్', isha:'ఇషా' },
   en: { fajr:'Fajr', sunrise:'Sunrise', dhuhr:'Dhuhr', asr:'Asr', maghrib:'Maghrib', isha:'Isha' }
@@ -2250,13 +2240,6 @@ function tickCountdown() {
   document.getElementById('cd-h').textContent = h < 10 ? '0' + h : h;
   document.getElementById('cd-m').textContent = m < 10 ? '0' + m : m;
   document.getElementById('cd-s').textContent = s < 10 ? '0' + s : s;
-}
-function setAsr(isHanafi) {
-  hanafi = isHanafi;
-  try { localStorage.setItem('if-asr', isHanafi ? 'hanafi' : 'standard'); } catch (e) {}
-  document.getElementById('asr-hanafi').classList.toggle('active', isHanafi);
-  document.getElementById('asr-standard').classList.toggle('active', !isHanafi);
-  renderSalah();
 }
 
 /* ───────── Zakat calculator + India metal prices ─────────
@@ -2803,8 +2786,6 @@ function initStickyNav() {
 
 /* ───────── Boot ───────── */
 document.addEventListener('DOMContentLoaded', function () {
-  document.getElementById('asr-hanafi').classList.toggle('active', hanafi);
-  document.getElementById('asr-standard').classList.toggle('active', !hanafi);
   applyLang(lang);
   initZakatWizard();
   applyLang(lang);

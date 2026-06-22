@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <link rel="icon" type="image/png" href="assets/logo-emblem.png">
 <link rel="apple-touch-icon" href="assets/logo-emblem.png">
 <link rel="manifest" href="assets/manifest.json">
@@ -4879,7 +4879,7 @@
       background: rgba(255, 255, 255, 0.06);
       border: 1px solid rgba(200, 146, 42, 0.25);
       color: rgba(255, 255, 255, 0.88);
-      font-size: 14px;
+      font-size: 16px;
       font-family: inherit;
       outline: none;
       transition: border-color 0.2s, box-shadow 0.2s;
@@ -5195,68 +5195,6 @@
 
     .hero-cta-secondary:active {
       transform: translateY(-1px) scale(0.98);
-    }
-
-    .continue-rail {
-      background: var(--cream);
-      padding: 18px 5vw 0;
-    }
-
-    .continue-inner {
-      max-width: 1080px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-      padding: 18px;
-      border: 1px solid rgba(200,146,42,0.24);
-      border-radius: 12px;
-      background: var(--white);
-      box-shadow: 0 8px 28px rgba(13,59,30,0.08);
-    }
-
-    .continue-tag {
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 4px;
-    }
-
-    .continue-inner h2 {
-      font-size: clamp(18px, 2.4vw, 24px);
-      color: var(--green-deep);
-      font-family: 'Playfair Display', 'Noto Sans Telugu', serif;
-      line-height: 1.2;
-    }
-
-    .continue-actions {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-    }
-
-    .continue-actions a {
-      min-height: 44px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 999px;
-      padding: 11px 18px;
-      text-decoration: none;
-      font-size: 12.5px;
-      font-weight: 700;
-      color: var(--green-deep);
-      background: linear-gradient(135deg, var(--gold), var(--gold-light));
-    }
-
-    .continue-actions a.secondary {
-      color: var(--green-mid);
-      background: rgba(46,139,87,0.08);
-      border: 1px solid rgba(46,139,87,0.18);
     }
 
     /* ── Mobile bottom-right stack (single source of truth) ── */
@@ -5714,8 +5652,8 @@
             </div>
           </div>
           <div class="hero-cta-group">
-            <a href="#achievements" class="hero-cta" data-key="hero_cta">మా సాధనలు →</a>
-            <a href="#community-contact" class="hero-cta-secondary" data-key="hero_cta_contact">సంప్రదించండి</a>
+            <a href="islamic-knowledge.html" class="hero-cta" data-key="hero_cta_learn">ఇస్లాం నేర్చుకోండి →</a>
+            <a href="#achievements" class="hero-cta-secondary" data-key="hero_cta">మా సాధనలు →</a>
           </div>
         </div>
         <div class="leader-card">
@@ -5735,16 +5673,6 @@
             </div>
           </div>
         </div>
-      </div>
-    </section>
-
-    <section class="continue-rail" id="continue-learning" hidden aria-label="Continue learning">
-      <div class="continue-inner">
-        <div>
-          <div class="continue-tag" data-key="continue_tag">మీ అభ్యాసం</div>
-          <h2 data-key="continue_title">మీరు ప్రారంభించిన చోటు నుంచే కొనసాగండి</h2>
-        </div>
-        <div class="continue-actions" id="continue-actions"></div>
       </div>
     </section>
 
@@ -7258,7 +7186,7 @@
                 <div class="ca-action" data-key="ca_call_action">ఇప్పుడు కాల్ చేయండి</div>
               </a>
 
-              <a href="mailto:islamicfront.mangalagiri@gmail.com" class="ca-card ca-mail">
+              <a href="mailto:islamicfrontmangalagiri@gmail.com" class="ca-card ca-mail">
                 <div class="ca-icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor"
                     stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
@@ -7531,8 +7459,8 @@
           </div>
         </section>
 
-        <!-- KNOWLEDGE CENTER PROMO (secondary initiative) -->
-        <section class="kc-promo" id="knowledge">
+        <!-- KNOWLEDGE CENTER PROMO (secondary initiative) — REMOVED, portal list above covers this -->
+        <section class="kc-promo" id="knowledge" style="display:none" aria-hidden="true">
           <div class="inner">
             <div class="kc-promo-left">
               <div class="section-tag" data-key="kc_tag">విజ్ఞాన వనరు</div>
@@ -7822,6 +7750,8 @@
 
         /* Hero secondary CTA */
         hero_cta_contact: "సంప్రదించండి",
+        hero_cta_learn: "ఇస్లాం నేర్చుకోండి →",
+        nav_learn: "నేర్చుకోండి",
 
         /* Nav new */
         nav_stories: "సఫలత కథలు", nav_gallery: "మా కార్యక్రమాలు", nav_events: "కార్యక్రమాలు", nav_volunteer: "స్వచ్ఛంద సేవ",
@@ -7914,10 +7844,6 @@
         ld_tag: "నాలెడ్జ్ సెంటర్", ld_title: "నాలెడ్జ్ సెంటర్‌ను అన్వేషించండి",
         ld_lead: "ఖురాన్, నమాజ్, సీరహ్, చరిత్ర, భాషలు మరియు మరిన్ని — ఉచిత, నిర్మాణాత్మక అభ్యాస పోర్టల్‌లు. ప్రారంభించడానికి ఏదైనా పోర్టల్ తెరవండి.",
         ld_all_portals: "అన్ని పోర్టల్‌లు చూడండి",
-        continue_tag: "మీ అభ్యాసం",
-        continue_title: "మీరు ప్రారంభించిన చోటు నుంచే కొనసాగండి",
-        continue_primary: "కొనసాగించండి",
-        continue_profile: "ప్రొఫైల్ చూడండి",
         ld_arabic: "అరబిక్ నేర్చుకోండి", ld_urdu: "ఉర్దూ నేర్చుకోండి", ld_quran: "ఖురాన్ నేర్చుకోండి", ld_salah: "నమాజ్ నేర్చుకోండి", ld_seerah: "సీరహ్", ld_history: "ఇస్లామిక్ చరిత్ర", ld_kids: "పిల్లల ఇస్లాం",
 
         /* Homepage portal card strings */
@@ -8153,6 +8079,8 @@
 
         /* Hero secondary CTA */
         hero_cta_contact: "Contact Us",
+        hero_cta_learn: "Learn Islam →",
+        nav_learn: "Learn",
 
         /* Nav new */
         nav_stories: "Success Stories", nav_gallery: "Our Work", nav_events: "Events", nav_volunteer: "Volunteer",
@@ -8245,10 +8173,6 @@
         ld_tag: "Knowledge Center", ld_title: "Explore the Knowledge Center",
         ld_lead: "Free, structured learning portals — Quran, Salah, Seerah, history, languages and more. Open any portal to begin.",
         ld_all_portals: "View all portals",
-        continue_tag: "Your learning",
-        continue_title: "Continue where you left off",
-        continue_primary: "Continue",
-        continue_profile: "View profile",
         ld_arabic: "Learn Arabic", ld_urdu: "Learn Urdu", ld_quran: "Learn Quran", ld_salah: "Learn Salah", ld_seerah: "Seerah", ld_history: "Islamic History", ld_kids: "Kids Islam",
 
         /* Homepage portal card strings */
@@ -8319,42 +8243,6 @@
       try { return JSON.parse(localStorage.getItem(key)) || fallback; } catch (e) { return fallback; }
     }
 
-    function renderContinueRail() {
-      var rail = document.getElementById('continue-learning');
-      var actions = document.getElementById('continue-actions');
-      if (!rail || !actions) return;
-      var recent = readJSON('if-recent', []);
-      var portals = [
-        { key: 'quran', url: 'knowledge-center/learn-quran/index.html', te: 'ఖురాన్', en: 'Quran' },
-        { key: 'salah', url: 'knowledge-center/learn-salah/index.html', te: 'నమాజ్', en: 'Salah' },
-        { key: 'seerah', url: 'knowledge-center/seerah/index.html', te: 'సీరహ్', en: 'Seerah' },
-        { key: 'history', url: 'knowledge-center/islamic-history/index.html', te: 'చరిత్ర', en: 'History' },
-        { key: 'arabic', url: 'knowledge-center/learn-arabic/index.html', te: 'అరబిక్', en: 'Arabic' },
-        { key: 'urdu', url: 'knowledge-center/learn-urdu/index.html', te: 'ఉర్దూ', en: 'Urdu' },
-        { key: 'kids', url: 'knowledge-center/kids-islam/index.html', te: 'పిల్లల ఇస్లాం', en: 'Kids Islam' }
-      ];
-      var choice = null;
-      if (Array.isArray(recent) && recent.length && recent[0].url) {
-        choice = { url: recent[0].url, title: (recent[0].title || '').replace(/\s*[–—|].*$/, '').trim() };
-      }
-      if (!choice) {
-        portals.some(function (p) {
-          var prog = readJSON('if-' + p.key + '-progress', {});
-          var done = prog.done || prog.levels || [];
-          if (done.length) {
-            choice = { url: p.url, title: lang === 'en' ? p.en : p.te };
-            return true;
-          }
-          return false;
-        });
-      }
-      if (!choice) { rail.hidden = true; actions.innerHTML = ''; return; }
-      rail.hidden = false;
-      var title = choice.title ? ': ' + choice.title : '';
-      actions.innerHTML = '<a href="' + choice.url + '">' + T[lang].continue_primary + title + '</a>'
-        + '<a href="#" class="secondary" data-open-profile>' + T[lang].continue_profile + '</a>';
-    }
-
     document.addEventListener('click', function (e) {
       var btn = e.target.closest && e.target.closest('[data-open-profile]');
       if (!btn) return;
@@ -8389,7 +8277,6 @@
       langBtn.style.fontFamily = l === 'te' ? "'DM Sans', sans-serif" : "'Noto Sans Telugu', sans-serif";
       langBtn.title = l === 'te' ? 'Currently: Telugu — Click for English' : 'Currently: English — Click for Telugu';
       langBtn.setAttribute('aria-label', l === 'te' ? 'Switch to English (currently Telugu)' : 'Switch to Telugu (currently English)');
-      renderContinueRail();
     }
 
     function filterManifesto(filter, btn) {
@@ -9029,16 +8916,13 @@
       </svg>
       <span class="bn-label" data-key="nav_achievements">సాధనలు</span>
     </a>
-    <a href="#manifesto" class="bn-item" data-section="manifesto">
+    <a href="islamic-knowledge.html" class="bn-item" aria-label="Learn Islam">
       <svg class="bn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
         stroke-linejoin="round" aria-hidden="true">
-        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-        <polyline points="14 2 14 8 20 8" />
-        <line x1="16" y1="13" x2="8" y2="13" />
-        <line x1="16" y1="17" x2="8" y2="17" />
-        <polyline points="10 9 9 9 8 9" />
+        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
       </svg>
-      <span class="bn-label" data-key="nav_manifesto">మేనిఫెస్టో</span>
+      <span class="bn-label" data-key="nav_learn">నేర్చుకోండి</span>
     </a>
     <button type="button" class="bn-item" id="bn-more" aria-haspopup="true" aria-expanded="false"
       aria-controls="nav-drawer">
