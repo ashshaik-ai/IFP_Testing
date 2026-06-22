@@ -56,7 +56,7 @@
 34. ✅ DONE (2026-06) — **Non-blocking fonts**: converted all 27 pages from `<link rel="stylesheet">` to `<link rel="preload" as="style" onload="...">` + `<noscript>` fallback. Fonts now load async; `display=swap` already present on all URLs.
 35. 🟡 M — Lazy-load offscreen images/sections; defer non-critical inline CSS on the 3.7k-line homepage.
 36. 🟡 L — Split very large inline pages (index.html, islamic-knowledge.html) for maintainability.
-37. 🟡 S — Extend `sw.js` precache to enable offline lesson packs.
+37. ✅ DONE (2026-06) — **sw.js precache extended** (v3→v4): adds if-xp/if-lesson/if-portal/if-sublesson/if-engage/if-media.js + all 7 `*-lessons.js` data files + rates.json. Lesson packs now survive offline after one visit.
 
 ## I. Architecture / tech debt
 38. ◐ MOSTLY DONE (2026-06) — Design-token unification: all hardcoded `border-radius:14px` in the 12 sub-lessons replaced with `var(--radius,16px)` (now token-driven). **Remaining:** a few one-off container widths not snapped to 1140 (low impact).
