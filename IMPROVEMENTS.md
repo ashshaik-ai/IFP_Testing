@@ -50,7 +50,7 @@
 ## G. SEO & structured data
 31. ✅ DONE (2026-06) — JSON-LD via `if-jsonld.js`: **Course** per portal, **FAQPage** built from each portal's real lesson FAQs, **BreadcrumbList** on KC pages (relative URLs resolved to absolute at runtime; built with JSON.stringify so always valid). Homepage already had Organization + WebSite.
 32. 🟠 M — `canonical` + per-page Open Graph on all 22 pages (needs production domain) — **ASSET/decision (domain)**.
-33. 🟡 S — `sitemap.xml` + `robots.txt`.
+33. ✅ DONE (2026-06) — `sitemap.xml` + `robots.txt` verified current (generated from 27 catalog records; no drift); `generate-site-artifacts.mjs` is the authoritative generator.
 
 ## H. Performance
 34. ✅ DONE (2026-06) — **Non-blocking fonts**: converted all 27 pages from `<link rel="stylesheet">` to `<link rel="preload" as="style" onload="...">` + `<noscript>` fallback. Fonts now load async; `display=swap` already present on all URLs.
@@ -61,7 +61,7 @@
 ## I. Architecture / tech debt
 38. ◐ MOSTLY DONE (2026-06) — Design-token unification: all hardcoded `border-radius:14px` in the 12 sub-lessons replaced with `var(--radius,16px)` (now token-driven). **Remaining:** a few one-off container widths not snapped to 1140 (low impact).
 39. 🟡 M — Migrate Urdu portal from the older `.lu-*` hero template onto the `.al-*` family (visual parity with the other portals).
-40. 🟡 S — Consolidate the growing fixed-position widget set (search/XP/back-to-top) behind one bottom toolbar to reduce clutter and z-index risk.
+40. ✅ DONE (2026-06) — **Fixed widget z-conflict resolved**: `if-xp.js` now sets `#btt { bottom: 76px }` after injecting the XP HUD, lifting back-to-top clear of the HUD on all portals without touching any portal HTML. Search FAB (left) and XP HUD (right) remain at `bottom: 18px` in opposite corners — no overlap.
 41. ✅ DONE (2026-06) — **CI validation gate**: `audit-site.mjs` enhanced with JS syntax validation (vm sandbox for all 12 data files, catches unescaped apostrophes + brace errors), expanded SW precache check, `.agents/` excluded, dynamic lesson anchors correctly skipped. Wired into `deploy-pages.yml` — CI now blocks deploy on high-severity issues. Runs clean (0 issues) on current codebase.
 
 ---

@@ -60,6 +60,9 @@
     hud.addEventListener('keydown', function (e) { if ((e.key === 'Enter' || e.key === ' ') && window.IFProfile) { e.preventDefault(); IFProfile.open(); } });
     document.body.appendChild(hud);
     render();
+    // Lift the back-to-top button above the XP HUD so they don't overlap at the same corner.
+    var btt = document.getElementById('btt');
+    if (btt) btt.style.bottom = '76px';
   }
 
   // daily visit bonus (once per calendar day)
