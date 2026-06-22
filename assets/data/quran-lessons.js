@@ -192,5 +192,62 @@ window.IF_LESSONS = {
     apply: { en: 'Apply it: before your next recitation, say Bismillah, sit facing the qiblah, read three ayahs slowly, and pause to reflect on one word whose meaning you know.', te: 'ఆచరణ: తదుపరి పఠనానికి ముందు బిస్మిల్లాహ్ చెప్పి, ఖిబ్లా వైపు కూర్చుని, మూడు ఆయతులు నెమ్మదిగా చదివి, మీకు అర్థం తెలిసిన ఒక పదంపై ఆగి ఆలోచించండి.' },
     reading: [{ label: 'Quran.com', url: 'https://quran.com' }, { label: 'SeekersGuidance', url: 'https://seekersguidance.org' }], refs: [{ label: 'Quran.com', url: 'https://quran.com' }, { label: 'Sunnah.com', url: 'https://sunnah.com' }]
   }
+  ,{
+    id: 'words', title_en: 'Level 7 — Understanding Quranic Words', title_te: 'స్థాయి 7 — ఖురానిక్ పదాలు అర్థం చేసుకోవడం',
+    intro: { en: 'The 100 most common words in the Quran make up roughly 50% of its text. Learning them opens a direct connection to the Arabic of the Quran.', te: 'ఖురాన్‌లో అత్యధికంగా వచ్చే 100 పదాలు దాని పాఠంలో సుమారు 50% వాటాను కలిగి ఉంటాయి. వాటిని నేర్చుకోవడం ఖురాన్ అరబిక్‌తో నేరుగా అనుసంధానాన్ని తెరుస్తుంది.' },
+    sections: [
+      { check: { q_en: 'Which language is the Quran in?', q_te: 'ఖురాన్ ఏ భాషలో ఉంది?', opts: [{ en: 'Arabic', te: 'అరబిక్' }, { en: 'Persian', te: 'పర్షియన్' }, { en: 'Aramaic', te: 'అరమిక్' }], ans: 0 }, h_en: 'Why learn Quranic vocabulary?', h_te: 'ఖురానిక్ పదజాలం ఎందుకు నేర్చుకోవాలి?', b_en: 'Even a small vocabulary opens the meaning of whole ayahs. Words like "Allah" (God), "Rabb" (Lord), "Rahman" (Most Merciful), "Rahim" (Especially Merciful) appear hundreds of times. Recognising them changes the experience of listening to recitation.', b_te: '"అల్లాహ్" (ఆరాధ్యుడు), "రబ్బ్" (ప్రభువు), "రహ్మాన్" (అత్యంత దయామయుడు), "రహీమ్" (ప్రత్యేకంగా కరుణామయుడు) వంటి పదాలు వందలసార్లు వస్తాయి. వాటిని గుర్తించడం పఠనం వినే అనుభవాన్ని మారుస్తుంది.' },
+      { h_en: 'High-frequency words to start with', h_te: 'మొదలుపెట్టడానికి అధిక-పౌనఃపున్య పదాలు', b_en: 'Begin with: Allahumma (O Allah), Subhana (Glory be to), Al-hamdulillah (All praise), Inna (Verily), Wa (And), La (No/Not), Qul (Say), Huwa (He), Lahu (For Him). These dozen words alone appear thousands of times.', b_te: '"అల్లాహుమ్మ" (యా అల్లాహ్!), "సుబ్‌హాన" (పవిత్రమైన), "అల్‌హమ్దులిల్లాహ్" (సర్వస్తోత్రాలు), "ఇన్న" (నిశ్చయంగా), "వ" (మరియు), "లా" (కాదు/లేదు), "ఖుల్" (చెప్పు), "హువ" (అతడు), "లహు" (అతనికి) — ఈ పన్నెండు పదాలు వేలసార్లు వస్తాయి.' },
+      { h_en: 'Root-word system', h_te: 'మూలపద వ్యవస్థ', b_en: 'Arabic words grow from 3-letter roots. K-T-B means "write/book": "kitaab" (book), "kaatib" (writer), "maktaba" (library), "maktub" (written). Learning one root gives you many related words. This is the core power of Arabic for Quranic study.', b_te: 'అరబిక్ పదాలు 3-అక్షర మూలాల నుండి పెరుగుతాయి. K-T-B అంటే "రాయడం/పుస్తకం": "కితాబ్" (పుస్తకం), "కాతిబ్" (రాసేవాడు), "మక్తబ" (గ్రంథాలయం), "మక్తూబ్" (రాయబడింది). ఒక మూలపదం నేర్చుకోవడం అనేక సంబంధిత పదాలను ఇస్తుంది.' }
+    ],
+    mindmap: { c_en: 'Quranic Words', c_te: 'ఖురానిక్ పదాలు', branches: [{ en: 'Allah / Rabb', te: 'అల్లాహ్ / రబ్బ్' }, { en: 'Top 100 words', te: 'అగ్ర 100 పదాలు' }, { en: '3-letter roots', te: '3-అక్షర మూలాలు' }, { en: 'Half the text', te: 'సగం పాఠం' }] },
+    didyouknow: [
+      { en: 'The word "Quran" itself comes from the root Q-R-A meaning "to read/recite."', te: '"ఖురాన్" అనే పదమే Q-R-A అనే మూలపదం నుండి వచ్చింది, అంటే "చదవడం/పఠించడం."' },
+      { en: 'The top 10 most common words in the Quran account for about 25% of all words.', te: 'ఖురాన్‌లో అత్యధికంగా వచ్చే 10 పదాలు అన్ని పదాల్లో సుమారు 25% వాటాను కలిగి ఉంటాయి.' }
+    ],
+    takeaways: [
+      { en: 'Even a small Quranic vocabulary transforms listening to recitation.', te: 'చిన్న ఖురానిక్ పదజాలం కూడా పఠనం వినే అనుభవాన్ని మారుస్తుంది.' },
+      { en: 'Arabic roots unlock families of related words efficiently.', te: 'అరబిక్ మూలాలు సంబంధిత పదాల కుటుంబాలను సమర్థంగా తెరుస్తాయి.' }
+    ],
+    reflect: [{ en: 'Which Quranic word do I want to learn the meaning of first?', te: 'నేను మొదట ఏ ఖురానిక్ పదం అర్థం నేర్చుకోవాలనుకుంటున్నాను?' }],
+    quiz: [
+      { q_en: 'What does "Rabb" mean?', q_te: '"రబ్బ్" అంటే ఏమిటి?', opts: [{ en: 'Prophet', te: 'ప్రవక్త' }, { en: 'Lord / Sustainer', te: 'ప్రభువు / పోషకుడు' }, { en: 'Book', te: 'పుస్తకం' }], ans: 1 },
+      { q_en: 'How many letters form an Arabic root word?', q_te: 'అరబిక్ మూలపదం ఎన్ని అక్షరాలతో తయారవుతుంది?', opts: [{ en: '2', te: '2' }, { en: '3', te: '3' }, { en: '4', te: '4' }], ans: 1 }
+    ],
+    mistakes: [{ en: 'Waiting until you are "fluent" to start — begin with a handful of key words today.', te: '"నేర్పరి" అయ్యేంతవరకు వేచి ఉండటం — ఈరోజే కొన్ని కీలక పదాలతో మొదలుపెట్టండి.' }, { en: 'Memorising word lists without hearing them in real recitation.', te: 'నిజమైన పఠనంలో వినకుండా పద జాబితాలు కంఠస్థం చేయడం.' }],
+    faqs: [{ q_en: 'Do I need to learn Arabic to understand the Quran?', q_te: 'ఖురాన్ అర్థం చేసుకోవడానికి అరబిక్ నేర్చుకోవాలా?', a_en: 'A translation helps immediately. But even learning the top 100 Quranic words adds a layer of depth that no translation can fully convey.', a_te: 'అనువాదం వెంటనే సహాయపడుతుంది. కానీ అగ్ర 100 ఖురానిక్ పదాలు నేర్చుకోవడం కూడా ఏ అనువాదమూ పూర్తిగా అందించలేని లోతును జోడిస్తుంది.' }],
+    revision: [{ en: 'Top Quranic words: Allah, Rabb, Rahman, Rahim, Wa, La, Inna, Qul, Huwa.', te: 'అగ్ర ఖురానిక్ పదాలు: అల్లాహ్, రబ్బ్, రహ్మాన్, రహీమ్, వ, లా, ఇన్న, ఖుల్, హువ.' }],
+    summary: { en: 'Learning the top Quranic words — especially via 3-letter roots — unlocks meaning across the entire Quran, turning every recitation into a conversation you can partially follow.', te: 'అగ్ర ఖురానిక్ పదాలను నేర్చుకోవడం — ముఖ్యంగా 3-అక్షర మూలాల ద్వారా — మొత్తం ఖురాన్‌లో అర్థాన్ని తెరుస్తుంది, ప్రతి పఠనాన్ని మీరు కొంత అనుసరించగలిగే సంభాషణగా మారుస్తుంది.' },
+    apply: { en: 'Apply it: pick three of the words from this lesson (Rabb, Inna, Qul). Listen to Surah Al-Ikhlas (112) and try to spot them. Notice how much more connected you feel.', te: 'ఆచరణ: ఈ పాఠం నుండి మూడు పదాలు ఎంచుకోండి (రబ్బ్, ఇన్న, ఖుల్). సూరా అల్-ఇఖ్లాస్ (112) వినండి, వాటిని గుర్తించడానికి ప్రయత్నించండి. మీరు ఎంత ఎక్కువ అనుసంధానితంగా అనుభవిస్తున్నారో గమనించండి.' },
+    reading: [{ label: 'Quran.com word-by-word', url: 'https://quran.com' }], refs: [{ label: 'Quran.com', url: 'https://quran.com' }]
+  },{
+    id: 'daily-quran', title_en: 'Level 8 — Your Daily Quran Practice', title_te: 'స్థాయి 8 — మీ రోజువారీ ఖురాన్ అభ్యాసం',
+    intro: { en: 'Consistency matters more than quantity. A short daily Quran routine, maintained for life, is worth more than occasional marathon sessions.', te: 'మొత్తంకంటే నిరంతరత ముఖ్యం. జీవితాంతం నిర్వహించిన రోజువారీ ఖురాన్ దినచర్య అప్పుడప్పుడు చేసే మారథాన్ సెషన్లకంటే విలువైనది.' },
+    sections: [
+      { check: { q_en: 'What is more valuable in Quran recitation?', q_te: 'ఖురాన్ పఠనంలో ఏది మరింత విలువైనది?', opts: [{ en: 'Daily consistency', te: 'రోజువారీ నిరంతరత' }, { en: 'Long sessions weekly', te: 'వారానికి పొడవైన సెషన్లు' }, { en: 'Fast recitation', te: 'వేగంగా పఠించడం' }], ans: 0 }, h_en: 'Build a sustainable habit', h_te: 'నిలకడైన అలవాటు ఏర్పరచుకోండి', b_en: 'Start with just 10 minutes. Read one page (approximately) after Fajr or before sleep. Link it to a habit you already have — like morning tea. Small and daily beats large and occasional every time.', b_te: 'కేవలం 10 నిమిషాలతో మొదలుపెట్టండి. ఫజ్ర్ తర్వాత లేదా నిద్రకు ముందు ఒక పేజీ (సుమారుగా) చదవండి. మీకు ఇప్పటికే ఉన్న అలవాటుతో — ఉదాహరణకు ఉదయం టీ — అనుసంధానించండి.' },
+      { h_en: 'Recitation + understanding', h_te: 'పఠనం + అర్థం', b_en: 'Pair recitation with translation: read one ayah in Arabic, then read its translation. Even if slow, this dual approach builds both fluency and meaning simultaneously. Apps like Quran.com let you view them side by side.', b_te: 'పఠనాన్ని అనువాదంతో జోడించండి: ఒక ఆయతును అరబిక్‌లో చదివి, తర్వాత దాని అనువాదం చదవండి. నెమ్మదిగా అయినా ఈ ద్వంద్వ విధానం ప్రవాహాన్ని, అర్థాన్ని ఏకకాలంలో నిర్మిస్తుంది.' },
+      { h_en: 'Reflection (tadabbur)', h_te: 'ఆలోచన (తదబ్బుర్)', b_en: 'After reading, pause for 60 seconds and ask: "What does Allah want me to do with this ayah today?" This is tadabbur — the Quran was not just revealed to be recited but to be reflected upon and acted upon.', b_te: 'చదివిన తర్వాత 60 సెకన్లు ఆగి అడగండి: "ఈ ఆయతుతో ఈరోజు అల్లాహ్ నన్ను ఏం చేయమని కోరుతున్నాడు?" ఇదే తదబ్బుర్ — ఖురాన్ కేవలం పఠించడానికి కాకుండా ఆలోచించి ఆచరించడానికి అవతరించింది.' }
+    ],
+    mindmap: { c_en: 'Daily Practice', c_te: 'రోజువారీ అభ్యాసం', branches: [{ en: '10 min daily', te: 'రోజూ 10 నిమిషాలు' }, { en: 'Recite + translate', te: 'పఠించు + అనువాదం' }, { en: 'Tadabbur', te: 'తదబ్బుర్' }, { en: 'Habit-stack', te: 'అలవాటు-జత' }] },
+    didyouknow: [
+      { en: 'The Prophet ﷺ said the best of you are those who learn the Quran and teach it (Bukhari).', te: 'మీలో ఉత్తముడు ఎవడంటే ఖురాన్ నేర్చుకుని నేర్పించేవాడే అని ప్రవక్త ﷺ చెప్పారు (బుఖారీ).' },
+      { en: 'Reading just one letter of the Quran gives ten rewards, according to a hadith of the Prophet ﷺ.', te: 'ఖురాన్‌లో ఒక్క అక్షరం చదివినా పది పుణ్యాలు లభిస్తాయని ప్రవక్త ﷺ హదీస్‌లో ఉంది.' }
+    ],
+    takeaways: [
+      { en: 'A short daily routine maintained consistently surpasses occasional large sessions.', te: 'నిరంతరంగా నిర్వహించిన చిన్న రోజువారీ దినచర్య అప్పుడప్పుడు చేసే పెద్ద సెషన్లను మించిపోతుంది.' },
+      { en: 'Pair Arabic recitation with translation and 60 seconds of reflection.', te: 'అరబిక్ పఠనాన్ని అనువాదంతో, 60 సెకన్ల ఆలోచనతో జోడించండి.' }
+    ],
+    reflect: [{ en: 'When in my day is the best time for my Quran routine?', te: 'నా రోజులో నా ఖురాన్ దినచర్యకు అత్యుత్తమ సమయం ఏది?' }],
+    quiz: [
+      { q_en: 'What is "tadabbur"?', q_te: '"తదబ్బుర్" అంటే ఏమిటి?', opts: [{ en: 'Fast recitation', te: 'వేగంగా పఠించడం' }, { en: 'Deep reflection on the Quran', te: 'ఖురాన్‌పై లోతైన ఆలోచన' }, { en: 'Memorisation', te: 'కంఠస్థం' }], ans: 1 },
+      { q_en: 'What is the recommended starting point for a daily routine?', q_te: 'రోజువారీ దినచర్యకు సిఫారసు చేయబడిన మొదలు ఏమిటి?', opts: [{ en: '1 hour', te: '1 గంట' }, { en: '10 minutes', te: '10 నిమిషాలు' }, { en: '30 minutes', te: '30 నిమిషాలు' }], ans: 1 }
+    ],
+    mistakes: [{ en: 'Waiting for long stretches of free time — start now with 10 minutes.', te: 'పొడవైన విరామ సమయాల కోసం వేచి ఉండటం — ఇప్పుడే 10 నిమిషాలతో మొదలుపెట్టండి.' }, { en: 'Reading without reflection — always pause for tadabbur after each session.', te: 'ఆలోచన లేకుండా చదవడం — ప్రతి సెషన్ తర్వాత తదబ్బుర్ కోసం ఎప్పుడూ ఆగండి.' }],
+    faqs: [{ q_en: 'What if I miss a day?', q_te: 'ఒక రోజు తప్పిపోతే ఏమవుతుంది?', a_en: 'Do not try to double up. Just continue from where you left off the next day. The Prophet ﷺ warned against abandoning good deeds once started.', a_te: 'రెట్టింపు చేయడానికి ప్రయత్నించకండి. మరుసటి రోజు మీరు ఆపిన చోట నుండి కొనసాగించండి. ఒకసారి మొదలైన మంచి పనులను వదిలివేయద్దని ప్రవక్త ﷺ హెచ్చరించారు.' }],
+    revision: [{ en: '10 min daily. Recite + translate one ayah. Ask: what does Allah want from me here?', te: 'రోజూ 10 నిమిషాలు. ఒక ఆయతు పఠించి + అనువదించండి. అడగండి: అల్లాహ్ ఇక్కడ నా నుండి ఏమి కోరుతున్నాడు?' }],
+    summary: { en: 'Your daily Quran practice — however small — is the most powerful tool for a life connected to Allah. Start with 10 minutes, link it to an existing habit, pair recitation with translation, and pause for 60 seconds of tadabbur.', te: 'మీ రోజువారీ ఖురాన్ అభ్యాసం — ఎంత చిన్నదైనా — అల్లాహ్‌తో అనుసంధానమైన జీవితానికి అత్యంత శక్తివంతమైన సాధనం. 10 నిమిషాలతో మొదలుపెట్టి, ఉన్న అలవాటుతో జోడించి, పఠనాన్ని అనువాదంతో జత చేసి, 60 సెకన్ల తదబ్బుర్ కోసం ఆగండి.' },
+    apply: { en: 'Apply it: tonight, set a 10-minute timer after your last prayer. Read and translate one page. Write one reflection sentence about what struck you.', te: 'ఆచరణ: ఈ రాత్రి, మీ చివరి నమాజ్ తర్వాత 10 నిమిషాల టైమర్ పెట్టండి. ఒక పేజీ చదివి అనువదించండి. మిమ్మల్ని ముగ్ధులను చేసిన దాని గురించి ఒక ఆలోచన వాక్యం రాయండి.' },
+    reading: [{ label: 'Quran.com', url: 'https://quran.com' }, { label: 'Tanzil.net', url: 'https://tanzil.net' }], refs: [{ label: 'Quran.com', url: 'https://quran.com' }]
+  }
   ]
 };

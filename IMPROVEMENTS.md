@@ -7,7 +7,7 @@
 ## A. Content depth (highest learning impact, mostly non-asset)
 1. ✅ DONE (2026-06) — **Common Mistakes / FAQ / Revision Notes now on all 46 lessons across all 7 portals** (was Salah-only). Validated: 46/46/46, all files balanced, 0 apostrophes.
 2. ✅ DONE (2026-06) — **Section-level mini-checks**: `if-lesson` renders an optional per-section `check` (inline MCQ, click-to-reveal). Live on **all 7 portals — one per lesson, 46 total** (History/Kids anchored on section body text since their headers are templated). Lessons are now interactive throughout.
-3. 🟠 M — **Lesson backfill to ~8–10 per portal** where thin (Quran 6, Salah 6, Seerah 6, Kids 6).
+3. ✅ DONE (2026-06) — **Lesson backfill to 8 per portal**: added 2 new lessons to each of Quran (Quranic Words + Daily Practice), Salah (Sunnah Prayers + Fixing Mistakes), Seerah (Companions + Applying Seerah Today), and Kids (Ramadan & Eid + Honesty & Courage). All portals now have 8 lessons. Catalog updated (totals 6→8, 8 new lesson entries).
 4. 🟠 L — **Portal-specific deep content:** Quran (surah studies, ayah reflections, word-by-word scaffolding, hifz planner logic), Salah (prayer troubleshooting, daily-implementation guides), Seerah (companion/leadership deep dives), History (scholar profiles, cause-and-effect timelines), Kids (missions, parent prompts, activities), Arabic (root-pattern drills), Urdu (reading/writing exercises).
 5. 🟡 S — Vary reflection prompts (currently somewhat formulaic across lessons).
 6. 🔴 L — **SCHOLAR**: qualified-scholar accuracy pass on all AI-drafted religious content before go-live.
