@@ -660,17 +660,27 @@
         navDrawer.setAttribute('aria-hidden', 'false');
         navOverlay.classList.add('open');
         if (bnMore) bnMore.setAttribute('aria-expanded', 'true');
-        document.body.style.overflow = 'hidden';
+        // iOS-safe scroll lock: position:fixed preserves scroll unlike overflow:hidden
+        var scrollY = window.scrollY;
+        document.body.style.position = 'fixed';
+        document.body.style.top = '-' + scrollY + 'px';
+        document.body.style.width = '100%';
+        document.body.dataset.drawerScrollY = scrollY;
         var firstLink = navDrawer.querySelector('a');
         if (firstLink) setTimeout(function () { firstLink.focus(); }, 360);
       }
-      
+
       function closeDrawer() {
         navDrawer.classList.remove('open');
         navDrawer.setAttribute('aria-hidden', 'true');
         navOverlay.classList.remove('open');
         if (bnMore) bnMore.setAttribute('aria-expanded', 'false');
-        document.body.style.overflow = '';
+        // Restore scroll position after unlocking body
+        var scrollY = parseInt(document.body.dataset.drawerScrollY || '0', 10);
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.width = '';
+        window.scrollTo(0, scrollY);
         setTimeout(function () {
           if (!navDrawer.classList.contains('open')) navDrawer.classList.remove('open-display');
         }, 420);

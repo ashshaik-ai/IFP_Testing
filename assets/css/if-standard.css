@@ -328,7 +328,7 @@ img, video{ max-width:100%; height:auto; }
   .al-sticky-inner,
   .lu-sticky-inner,
   .sg-chips{
-    max-width: 100vw !important;
+    max-width: 100% !important;
   }
 }
 
@@ -3108,6 +3108,8 @@ a {
     border-top: 1.5px solid rgba(200, 146, 42, 0.4) !important;
     box-shadow: 0 -8px 36px rgba(0, 0, 0, 0.3) !important;
     overflow-y: auto !important;
+    overscroll-behavior-y: contain !important;
+    -webkit-overflow-scrolling: touch !important;
     padding-bottom: 24px !important;
     visibility: hidden !important;
     pointer-events: none !important;
