@@ -1,5 +1,5 @@
 # LATEST_STATIC_AUDIT.md
-Generated: 2026-06-22T11:18:16.404Z
+Generated: 2026-06-22T11:33:28.783Z
 
 Catalog records: 76 - Student Guidance indexed cards: 79 - HTML pages scanned: 27 - Issues: 0
 

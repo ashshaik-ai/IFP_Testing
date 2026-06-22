@@ -54,7 +54,7 @@
 
 ## H. Performance
 34. ✅ DONE (2026-06) — **Non-blocking fonts**: converted all 27 pages from `<link rel="stylesheet">` to `<link rel="preload" as="style" onload="...">` + `<noscript>` fallback. Fonts now load async; `display=swap` already present on all URLs.
-35. 🟡 M — Lazy-load offscreen images/sections; defer non-critical inline CSS on the 3.7k-line homepage.
+35. ◐ MOSTLY DONE (2026-06) — **Lazy-loading verified**: all below-fold images confirmed to have `loading="lazy"` (multiline tags caused false grep hits — checked manually). Nav logos above-fold. Hero LCP image has `fetchpriority="high"`. **Remaining**: deferred non-critical inline CSS on homepage (L-size refactor, blocked on splitting the page first).
 36. 🟡 L — Split very large inline pages (index.html, islamic-knowledge.html) for maintainability.
 37. ✅ DONE (2026-06) — **sw.js precache extended** (v3→v4): adds if-xp/if-lesson/if-portal/if-sublesson/if-engage/if-media.js + all 7 `*-lessons.js` data files + rates.json. Lesson packs now survive offline after one visit.
 
