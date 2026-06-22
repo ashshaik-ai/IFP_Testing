@@ -14,10 +14,21 @@ module.exports = defineConfig({
     trace: 'on-first-retry',
   },
   projects: [
+    // WebKit = real Safari rendering engine (catches iOS-only bugs on Windows)
     {
-      name: 'mobile-chrome',
-      use: { ...devices['Pixel 5'] },
+      name: 'safari-iphone14',
+      use: { ...devices['iPhone 14 Pro'] },
     },
+    {
+      name: 'safari-ipad',
+      use: { ...devices['iPad Pro 11'] },
+    },
+    // Android Chrome for comparison
+    {
+      name: 'chrome-pixel7',
+      use: { ...devices['Pixel 7'] },
+    },
+    // Desktop baseline
     {
       name: 'desktop-chrome',
       use: { ...devices['Desktop Chrome'] },
