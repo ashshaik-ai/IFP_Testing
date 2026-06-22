@@ -125,7 +125,12 @@
     var N = CFG.lessons.length, doneCount = 0, firstInc = -1;
     CFG.lessons.forEach(function (L, i) { if (isDone(L.id)) doneCount++; else if (firstInc < 0) firstInc = i; });
     var pct = N ? Math.round(doneCount / N * 100) : 0;
-    var bar = '<div class="ifl-progress"><div class="ifl-progress-top"><span>' + (te ? 'మీ పురోగతి' : 'Your progress') + '</span><b>' + doneCount + ' / ' + N + ' · ' + pct + '%</b></div><div class="ifl-progress-bar"><i style="width:' + pct + '%"></i></div></div>';
+    var contId = firstInc >= 0 ? CFG.lessons[firstInc].id : null;
+    var contLbl = contId ? (te ? CFG.lessons[firstInc].title_te : CFG.lessons[firstInc].title_en) : '';
+    var contBtn = contId
+      ? '<button type="button" class="ifl-cont-btn" data-next="' + contId + '">▶ ' + (te ? 'కొనసాగించండి' : 'Continue') + '</button>'
+      : '<span class="ifl-cont-done">' + (te ? '✓ అన్నీ పూర్తయ్యాయి' : '✓ All complete') + '</span>';
+    var bar = '<div class="ifl-progress"><div class="ifl-progress-top"><span>' + (te ? 'మీ పురోగతి' : 'Your progress') + '</span><b>' + doneCount + ' / ' + N + ' · ' + pct + '%</b>' + contBtn + '</div><div class="ifl-progress-bar"><i style="width:' + pct + '%"></i></div></div>';
     host.innerHTML = bar + CFG.lessons.map(function (L, i) {
       var open = openId === L.id, d = isDone(L.id);
       var state = d ? 'done' : (i === firstInc || firstInc < 0 ? 'current' : (i > firstInc ? 'locked' : 'current'));
@@ -169,13 +174,15 @@
         render();
       });
     });
-    host.querySelectorAll('.ifl-upnext-btn').forEach(function (b) {
+    function openAndScroll(id) {
+      openId = id; render();
+      var el = document.getElementById('lesson-' + openId);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    host.querySelectorAll('.ifl-upnext-btn, .ifl-cont-btn').forEach(function (b) {
       b.addEventListener('click', function (e) {
         e.stopPropagation();
-        openId = b.getAttribute('data-next');
-        render();
-        var el = document.getElementById('lesson-' + openId);
-        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        openAndScroll(b.getAttribute('data-next'));
       });
     });
   }
