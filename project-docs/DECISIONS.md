@@ -45,13 +45,9 @@ See [AUTOMATION_RATES.md](AUTOMATION_RATES.md).
 
 ## Active work
 
-### A1 — Telugu localization of student-guidance card bodies (IN PROGRESS)
-**Context:** In `student-guidance.html`, the 81 expandable card **headers** are translated via the `CH[]` array, but the card **bodies** (`.gx-body-in`: field rows, pros/cons, myths, scholarship details) are still English-only when switched to Telugu.
-**Plan:**
-1. Add `CB_TE[0..80]` — one Telugu HTML string per card body, indexed by DOM order.
-2. In `applyLang()`, after the header swap: on first run save the English body to `data-en-body`, then set `innerHTML` to `CB_TE[i]` for `te` or restore from `data-en-body` for `en`.
-**Constraints:** preserve exact body HTML structure (`.gx-field`/`.gx-pc`/`.gx-myth`, `.lvl` pills); keep proper nouns/exam names/₹ in Latin; keep array indices aligned with DOM order. See [../LOCALIZATION_RULES.md](../LOCALIZATION_RULES.md) §4.
-**Status:** specified and approved; implementation pending.
+### A1 — Telugu localization of student-guidance card bodies ✓ DONE
+**Context:** All 69 card body translations (`CB_TE[0]`–`CB_TE[78]`, indices matching CH[]) are complete. The `applyLang()` function already swaps bodies via `CB_TE[i]` on language toggle (line ~2297). Both CH[] and CB_TE[] are fully wired.
+**Completed:** 2026-06-22.
 
 ---
 

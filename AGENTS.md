@@ -133,7 +133,7 @@ Steps:
 
 ## Active work
 
-Telugu translation of the 81 `student-guidance.html` card bodies (`CB_TE[]`) — see [project-docs/DECISIONS.md](project-docs/DECISIONS.md) A1.
+No active tasks. See [project-docs/DECISIONS.md](project-docs/DECISIONS.md) for completed work and known issues.
 
 ---
 
