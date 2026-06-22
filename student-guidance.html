@@ -1605,12 +1605,24 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
     setQaState(item, !item.classList.contains('checked'));
   }
 
+  /* Wire aria-expanded + aria-controls on all accordion heads at init */
+  document.querySelectorAll('.gx-card').forEach(function(card, i){
+    var head = card.querySelector('.gx-head');
+    var body = card.querySelector('.gx-body');
+    if(!head || !body) return;
+    var id = 'gx-body-' + i;
+    body.id = id;
+    head.setAttribute('aria-expanded', 'false');
+    head.setAttribute('aria-controls', id);
+  });
+
   /* Expand / collapse cards (event delegation) */
   document.addEventListener('click', function(e){
     var head = e.target.closest('.gx-head');
     if(head){
       var card = head.closest('.gx-card');
       card.classList.toggle('open');
+      head.setAttribute('aria-expanded', card.classList.contains('open') ? 'true' : 'false');
       return;
     }
     /* self-assessment checkboxes */

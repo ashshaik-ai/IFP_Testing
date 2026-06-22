@@ -40,7 +40,7 @@
 }
 html{scroll-behavior:smooth}
 body{font-family:'DM Sans','Noto Sans Telugu',sans-serif;background:var(--cream);color:var(--text-dark);overflow-x:hidden;-webkit-font-smoothing:antialiased;line-height:1.6}
-[id]{scroll-margin-top:68px}
+[id]{scroll-margin-top:130px}
 a{color:inherit;text-decoration:none}
 img{max-width:100%;height:auto}
 ::selection{background:rgba(200,146,42,0.28);color:var(--text-dark)}
@@ -307,7 +307,7 @@ body>nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(13,59,3
 <nav>
   <a class="nav-brand" href="../../index.html">
     <img class="nav-logo" src="../../assets/logo-emblem.png" alt="Islamic Front logo" onerror="this.style.display='none';document.getElementById('nav-svg-na').style.display='block'">
-    <svg id="nav-svg-na" style="display:none" width="42" height="42" viewBox="0 0 42 42" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="21" cy="21" r="20" fill="none" stroke="#e8b84b" stroke-width="1.5"/><text x="21" y="26" text-anchor="middle" font-family="serif" font-size="15" fill="#e8b84b" font-weight="700">ﷲ</text></svg>
+    <svg aria-hidden="true" id="nav-svg-na" style="display:none" width="42" height="42" viewBox="0 0 42 42" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="21" cy="21" r="20" fill="none" stroke="#e8b84b" stroke-width="1.5"/><text x="21" y="26" text-anchor="middle" font-family="serif" font-size="15" fill="#e8b84b" font-weight="700">ﷲ</text></svg>
     <div>
       <div class="nav-title" data-te="ఇస్లామిక్ ఫ్రంట్" data-en="Islamic Front">ఇస్లామిక్ ఫ్రంట్</div>
       <div class="nav-sub" data-te="మంగళగిరి · స్థా. 2011" data-en="Mangalagiri · Est. 2011">మంగళగిరి · స్థా. 2011</div>
@@ -336,7 +336,7 @@ body>nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(13,59,3
       <h1 data-te="అల్లాహ్ యొక్క <span>99 సుందర నామాలు</span>" data-en="The 99 <span>Beautiful Names</span> of Allah">అల్లాహ్ యొక్క <span>99 సుందర నామాలు</span></h1>
       <p class="al-hero-lead" data-te="అల్లాహ్ యొక్క 99 సుందర నామాలను అర్థం, వివరణ మరియు ఖురాన్ ఆధారాలతో అన్వేషించండి. వెతకండి, వడపోయండి, కంఠస్థం చేయండి — ప్రతి నామం ఒక ద్వారం." data-en="Explore the 99 beautiful names of Allah with meaning, explanation and Quranic references. Search, filter, memorize — each name a doorway to knowing your Creator.">అల్లాహ్ యొక్క 99 సుందర నామాలను అర్థం, వివరణ మరియు ఖురాన్ ఆధారాలతో అన్వేషించండి. వెతకండి, వడపోయండి, కంఠస్థం చేయండి — ప్రతి నామం ఒక ద్వారం.</p>
       <div class="al-cta-row">
-        <a href="#browse" class="al-cta"><span data-te="నామాలను అన్వేషించండి" data-en="Explore the Names">నామాలను అన్వేషించండి</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <a href="#browse" class="al-cta"><span data-te="నామాలను అన్వేషించండి" data-en="Explore the Names">నామాలను అన్వేషించండి</span><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
         <a href="#memorize" class="al-cta ghost" data-te="కంఠస్థ మోడ్" data-en="Memorization Mode">కంఠస్థ మోడ్</a>
       </div>
       <div class="al-hero-stats">
@@ -388,9 +388,9 @@ body>nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(13,59,3
 
     <div class="nm-toolbar" role="search">
       <div class="nm-search-wrap">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
         <input type="search" id="nm-search" autocomplete="off" aria-label="Search the 99 names" data-te-ph="నామం లేదా అర్థం వెతకండి…" data-en-ph="Search a name or meaning…" placeholder="నామం లేదా అర్థం వెతకండి…">
-        <button class="nm-search-clear" id="nm-clear" type="button" aria-label="Clear search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+        <button class="nm-search-clear" id="nm-clear" type="button" aria-label="Clear search"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
       </div>
       <div class="nm-filters" id="nm-filters" role="group" aria-label="Filter names by category"></div>
     </div>
@@ -437,19 +437,19 @@ body>nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(13,59,3
     </div>
     <div class="why-grid">
       <div class="why-card reveal">
-        <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l2.4 7.4H22l-6 4.6 2.3 7.4L12 17l-6.3 4.4L8 14 2 9.4h7.6z"/></svg></div>
+        <div class="why-icon"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l2.4 7.4H22l-6 4.6 2.3 7.4L12 17l-6.3 4.4L8 14 2 9.4h7.6z"/></svg></div>
         <h3 data-te="స్వర్గానికి మార్గం" data-en="A Path to Paradise">స్వర్గానికి మార్గం</h3>
         <p data-te="ప్రవక్త ﷺ చెప్పారు: అల్లాహ్‌కు తొంభై తొమ్మిది నామాలు ఉన్నాయి; వాటిని ఎవరు కంఠస్థం చేస్తారో వారు స్వర్గంలో ప్రవేశిస్తారు." data-en="The Prophet ﷺ said: Allah has ninety-nine names; whoever commits them to memory will enter Paradise.">ప్రవక్త ﷺ చెప్పారు: అల్లాహ్‌కు తొంభై తొమ్మిది నామాలు ఉన్నాయి; వాటిని ఎవరు కంఠస్థం చేస్తారో వారు స్వర్గంలో ప్రవేశిస్తారు.</p>
         <div class="why-card-ar" lang="ar" dir="rtl">مَنْ أَحْصَاهَا دَخَلَ الْجَنَّةَ</div>
       </div>
       <div class="why-card reveal">
-        <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <div class="why-icon"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
         <h3 data-te="అల్లాహ్‌ను తెలుసుకోవటం" data-en="Knowing Allah">అల్లాహ్‌ను తెలుసుకోవటం</h3>
         <p data-te="ప్రతి నామం అల్లాహ్ యొక్క ఒక గుణాన్ని వెల్లడిస్తుంది — అతని కరుణ, శక్తి, జ్ఞానం. నామాలను తెలుసుకోవటం హృదయాన్ని అతనికి దగ్గర చేస్తుంది." data-en="Each name reveals an attribute of Allah — His mercy, power, wisdom. To know the names is to draw the heart nearer to Him.">ప్రతి నామం అల్లాహ్ యొక్క ఒక గుణాన్ని వెల్లడిస్తుంది — అతని కరుణ, శక్తి, జ్ఞానం. నామాలను తెలుసుకోవటం హృదయాన్ని అతనికి దగ్గర చేస్తుంది.</p>
         <div class="why-card-ar" lang="ar" dir="rtl">وَلِلَّهِ الْأَسْمَاءُ الْحُسْنَىٰ فَادْعُوهُ بِهَا</div>
       </div>
       <div class="why-card reveal">
-        <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8z"/></svg></div>
+        <div class="why-icon"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8z"/></svg></div>
         <h3 data-te="దుఆకు ఉత్తమ మార్గం" data-en="The Best Way to Supplicate">దుఆకు ఉత్తమ మార్గం</h3>
         <p data-te="ఖురాన్ చెబుతుంది: 'అల్లాహ్‌కు సుందర నామాలు ఉన్నాయి, కాబట్టి వాటి ద్వారా అతనిని పిలవండి.' మీ అవసరానికి తగిన నామంతో దుఆ చేయండి." data-en="The Quran says: 'To Allah belong the most beautiful names, so call upon Him by them.' Supplicate with the name that fits your need.">ఖురాన్ చెబుతుంది: 'అల్లాహ్‌కు సుందర నామాలు ఉన్నాయి, కాబట్టి వాటి ద్వారా అతనిని పిలవండి.' మీ అవసరానికి తగిన నామంతో దుఆ చేయండి.</p>
         <div class="why-card-ar" lang="ar" dir="rtl">إِنَّ لِلَّهِ تِسْعَةً وَتِسْعِينَ اسْمًا</div>
@@ -482,14 +482,14 @@ body>nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(13,59,3
 </footer>
 </main>
 
-<button id="btt" onclick="scrollTo({top:0,behavior:'smooth'})" title="Back to top" aria-label="Back to top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="18 15 12 9 6 15"/></svg></button>
+<button id="btt" onclick="scrollTo({top:0,behavior:'smooth'})" title="Back to top" aria-label="Back to top"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="18 15 12 9 6 15"/></svg></button>
 
 <!-- MODAL -->
 <div class="nm-modal" id="nm-modal" role="dialog" aria-modal="true" aria-labelledby="nm-modal-tr">
   <div class="nm-modal-bg" id="nm-modal-bg"></div>
   <div class="nm-modal-card">
     <div class="nm-modal-hd">
-      <button class="nm-modal-close" id="nm-modal-close" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+      <button class="nm-modal-close" id="nm-modal-close" aria-label="Close"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
       <div class="nm-modal-no" id="nm-modal-no"></div>
       <div class="nm-modal-ar" id="nm-modal-ar" lang="ar" dir="rtl"></div>
       <div class="nm-modal-tr" id="nm-modal-tr"></div>
@@ -661,8 +661,8 @@ function renderNod(){
       '<div class="nod-mean">'+nameMean(n)+'</div>'+
       '<p class="nod-desc">'+nameDesc(n)+'</p>'+
       '<div class="nod-actions">'+
-        '<button class="nod-btn" data-open="'+n.no+'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>'+(T?'మరింత తెలుసుకోండి':'Learn more')+'</button>'+
-        '<button class="nod-btn" data-fav="'+n.no+'"><svg viewBox="0 0 24 24" fill="'+(favs.has(n.no)?'currentColor':'none')+'" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 1 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg>'+(favs.has(n.no)?(T?'జోడించబడింది':'Saved'):(T?'ఇష్టమైనదిగా':'Favourite'))+'</button>'+
+        '<button class="nod-btn" data-open="'+n.no+'"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>'+(T?'మరింత తెలుసుకోండి':'Learn more')+'</button>'+
+        '<button class="nod-btn" data-fav="'+n.no+'"><svg aria-hidden="true" viewBox="0 0 24 24" fill="'+(favs.has(n.no)?'currentColor':'none')+'" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 1 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg>'+(favs.has(n.no)?(T?'జోడించబడింది':'Saved'):(T?'ఇష్టమైనదిగా':'Favourite'))+'</button>'+
       '</div>'+
     '</div>';
 }
@@ -690,7 +690,7 @@ function filtered(){
 function cardHtml(n){
   return '<article class="nm-card" data-open="'+n.no+'" role="button" tabindex="0" aria-label="'+n.tr+' — '+nameMean(n).replace(/"/g,'&quot;')+'">'+
     '<div class="nm-card-top"><span class="nm-no">'+n.no+'</span>'+
-    '<button class="nm-fav'+(favs.has(n.no)?' on':'')+'" data-fav="'+n.no+'" aria-label="'+(favs.has(n.no)?'Remove favourite':'Add favourite')+'" aria-pressed="'+favs.has(n.no)+'"><svg viewBox="0 0 24 24" fill="'+(favs.has(n.no)?'currentColor':'none')+'" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 1 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg></button></div>'+
+    '<button class="nm-fav'+(favs.has(n.no)?' on':'')+'" data-fav="'+n.no+'" aria-label="'+(favs.has(n.no)?'Remove favourite':'Add favourite')+'" aria-pressed="'+favs.has(n.no)+'"><svg aria-hidden="true" viewBox="0 0 24 24" fill="'+(favs.has(n.no)?'currentColor':'none')+'" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 1 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg></button></div>'+
     '<div class="nm-ar" lang="ar" dir="rtl">'+n.ar+'</div>'+
     '<div class="nm-tr">'+n.tr+'</div>'+
     '<div class="nm-mean">'+nameMean(n)+'</div>'+
@@ -737,8 +737,8 @@ function openModal(no){
     '<div class="nm-modal-row"><div class="nm-modal-rl">'+(T?'వర్గం':'Category')+'</div><div class="nm-modal-rt">'+(T?catObj.te:catObj.en)+'</div></div>'+
     '<div class="nm-modal-row"><div class="nm-modal-rl">'+(T?'ఆధారం':'Reference')+'</div><div class="nm-modal-ref">'+n.ref+'</div></div>'+
     '<div class="nm-modal-actions">'+
-      '<button class="nm-modal-btn fav'+(favs.has(n.no)?' on':'')+'" data-fav="'+n.no+'"><svg viewBox="0 0 24 24" fill="'+(favs.has(n.no)?'currentColor':'none')+'" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 1 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg>'+(favs.has(n.no)?(T?'జోడించబడింది':'Saved'):(T?'ఇష్టమైనదిగా':'Favourite'))+'</button>'+
-      '<button class="nm-modal-btn" data-audio="'+n.no+'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="3 9 9 9 13 5 13 19 9 15 3 15"/><path d="M16 9a3 3 0 0 1 0 6"/></svg>'+(T?'ఉచ్చారణ':'Pronounce')+'</button>'+
+      '<button class="nm-modal-btn fav'+(favs.has(n.no)?' on':'')+'" data-fav="'+n.no+'"><svg aria-hidden="true" viewBox="0 0 24 24" fill="'+(favs.has(n.no)?'currentColor':'none')+'" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 1 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg>'+(favs.has(n.no)?(T?'జోడించబడింది':'Saved'):(T?'ఇష్టమైనదిగా':'Favourite'))+'</button>'+
+      '<button class="nm-modal-btn" data-audio="'+n.no+'"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="3 9 9 9 13 5 13 19 9 15 3 15"/><path d="M16 9a3 3 0 0 1 0 6"/></svg>'+(T?'ఉచ్చారణ':'Pronounce')+'</button>'+
     '</div>'+
     '<div class="nm-modal-nav"><button data-prev>'+(T?'‹ మునుపటి':'‹ Previous')+'</button><button data-next>'+(T?'తదుపరి ›':'Next ›')+'</button></div>';
   var m=document.getElementById('nm-modal');m.classList.add('open');document.body.style.overflow='hidden';
@@ -783,7 +783,7 @@ function renderModules(){
   var T=te();
   document.getElementById('modules-grid').innerHTML=MODULES.map(function(m){
     var here=!m.href;
-    var inner='<div class="cm-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>'+
+    var inner='<div class="cm-icon"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>'+
       '<div class="cm-body"><h4>'+(T?m.te:m.en)+'</h4><p>'+(T?m.dt:m.de)+'</p><span class="cm-badge '+(here?'here':'avail')+'">'+(here?(T?'మీరు ఇక్కడ':'You are here'):(T?'అందుబాటులో':'Available'))+'</span></div>';
     return here? '<div class="cm-card here">'+inner+'</div>' : '<a class="cm-card" href="'+m.href+'">'+inner+'</a>';
   }).join('');

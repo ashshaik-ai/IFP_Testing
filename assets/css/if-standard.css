@@ -863,6 +863,18 @@ span.hmfp-label, .hmfp-li span{ font-size: 12px !important; }
 /* Student-guidance: chips nav links (career goal, etc.) */
 .sg-chips a{ min-height: 36px !important; }
 
+/* Scroll-shadow on sg-chips: indicates horizontal scrollability on mobile */
+.sg-chips-wrap{ position: relative; }
+.sg-chips-wrap::after{
+  content: '';
+  position: absolute;
+  top: 0; right: 0; bottom: 0;
+  width: 40px;
+  pointer-events: none;
+  background: linear-gradient(to right, transparent, rgba(10,36,16,.6));
+  border-radius: 0 8px 8px 0;
+}
+
 /* Student-guidance: nav home link */
 .sg-nav-links a{ min-height: 36px !important; display: inline-flex !important; align-items: center !important; }
 
@@ -1536,12 +1548,6 @@ nav {
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover { background: rgba(200,146,42,0.6); }
-
-/* ── Text selection brand color ── */
-::selection {
-  background: rgba(200,146,42,0.65);
-  color: #0d3b1e;
-}
 
 /* ── Premium image treatment ── */
 img {

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="te" id="html-root">
 <head>
   <meta charset="UTF-8">
@@ -162,13 +162,13 @@
 <nav class="wg-nav" aria-label="Main navigation">
   <a href="../../index.html" class="wg-nav-brand">
     <img src="../../assets/logo-emblem.png" alt="Islamic Front Mangalagiri">
-    <svg id="nav-svg-wg" width="36" height="36" viewBox="0 0 36 36" aria-hidden="true" style="display:none">
+    <svg aria-hidden="true" id="nav-svg-wg" width="36" height="36" viewBox="0 0 36 36" aria-hidden="true" style="display:none">
       <circle cx="18" cy="18" r="17" fill="#1a5c30" stroke="#c8922a" stroke-width="1.5"/>
     </svg>
     <span data-te="ఇస్లామిక్ ఫ్రంట్" data-en="Islamic Front">ఇస్లామిక్ ఫ్రంట్</span>
   </a>
   <a href="../../islamic-knowledge.html" class="wg-nav-back">
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M10 12L6 8l4-4"/></svg>
+    <svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M10 12L6 8l4-4"/></svg>
     <span data-te="జ్ఞాన కేంద్రం" data-en="Knowledge Center">జ్ఞాన కేంద్రం</span>
   </a>
   <button class="wg-lang-btn" id="lang-btn" onclick="toggleLang()" aria-label="Switch language">EN</button>
@@ -479,7 +479,7 @@
 
 <!-- BTT -->
 <button id="btt" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
-  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M10 15V5M5 10l5-5 5 5"/></svg>
+  <svg aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M10 15V5M5 10l5-5 5 5"/></svg>
 </button>
 
 <script>
@@ -557,7 +557,7 @@ function renderFaqs() {
     return '<div class="accordion-item">'
       +'<button class="accordion-head" aria-expanded="false" onclick="toggleFaq(this)" id="faq-btn-'+i+'">'
         +(L==='te'?faq.q_te:faq.q_en)
-        +'<svg class="acc-chevron" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="4,6 9,12 14,6"/></svg>'
+        +'<svg aria-hidden="true" class="acc-chevron" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="4,6 9,12 14,6"/></svg>'
       +'</button>'
       +'<div class="accordion-body" id="faq-body-'+i+'"><p>'+(L==='te'?faq.a_te:faq.a_en)+'</p></div>'
       +'</div>';
