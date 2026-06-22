@@ -63,6 +63,16 @@
     }
     return '';
   }
+  function dueCardCount(list) {
+    var now = Date.now(), total = 0;
+    for (var i = 0; i < list.length; i++) {
+      var deck = list[i].srsDeck;
+      if (!deck) continue;
+      var s = lsGet('if-srs-' + deck);
+      for (var id in s) { if (s[id] && typeof s[id].due === 'number' && s[id].due <= now) total++; }
+    }
+    return total;
+  }
 
   function achievements(s, list) {
     var portalsTouched = list.filter(function (p) { return doneCount(p) > 0; }).length;
@@ -111,7 +121,9 @@
       ? '<a class="ifpr-rec" href="' + PRE + nextP.u + '"><span>' + (T ? 'తదుపరి సిఫార్సు' : 'Recommended next') + '</span><b>' + (T ? nextP.te : nextP.en) + ' →</b></a>'
       : '<div class="ifpr-rec done"><b>' + (T ? 'అన్ని పోర్టల్‌లు పూర్తయ్యాయి!' : 'All portals complete!') + '</b></div>';
     var due = dueReviewUrl(list);
-    var review = due ? '<a class="ifpr-rec ifpr-review" href="' + PRE + due + '"><span>' + (T ? 'రివ్యూ సిద్ధంగా ఉంది' : 'Review ready') + '</span><b>' + (T ? 'ఫ్లాష్‌కార్డులు చూడండి →' : 'Review flashcards →') + '</b></a>' : '';
+    var dueN = due ? dueCardCount(list) : 0;
+    var dueLabel = dueN > 0 ? (T ? dueN + ' కార్డులు సిద్ధంగా ఉన్నాయి' : dueN + ' card' + (dueN === 1 ? '' : 's') + ' due') : (T ? 'రివ్యూ సిద్ధంగా ఉంది' : 'Review ready');
+    var review = due ? '<a class="ifpr-rec ifpr-review" href="' + PRE + due + '"><span>' + dueLabel + '</span><b>' + (T ? 'ఫ్లాష్‌కార్డులు చూడండి →' : 'Review flashcards →') + '</b></a>' : '';
 
     ov.querySelector('.ifpr-modal').innerHTML =
       '<div class="ifpr-head"><div><div class="ifpr-eyebrow">' + (T ? 'నా ప్రొఫైల్' : 'My Profile') + '</div>'

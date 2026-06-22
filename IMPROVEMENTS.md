@@ -30,7 +30,7 @@
 16. ✅ DONE (2026-06) — **Global XP chip in portal dashboards**: `if-xp.js` now auto-injects a compact "Lvl N · X XP" pill button into any page that has `#dash-body` (all 5 inline portals). Clicking opens the profile. CSS in `if-standard.css` (`.ifxp-dash-chip`). No portal files touched.
 17. ✅ DONE (2026-06) — **Badge unlock toast**: `IFXP.checkBadges(badges, counts, pkey)` added to if-xp.js; if-lesson.js calls it on lesson completion using `window.BADGES` (portal-defined array). First-unlock toast fires at 600ms after the celebrate animation settles.
 18. ✅ DONE (2026-06) — **"Up next" card** after marking a lesson complete: shows next lesson title with one-click open + smooth scroll; "All complete!" banner after the last lesson. In `if-lesson.js` + `if-standard.css`.
-19. 🟡 M — Spaced-repetition surfacing ("X cards due") from the existing `if-srs-*` flashcard data.
+19. ✅ DONE (2026-06) — **SRS due-count surfaced in profile**: `if-profile.js` now computes total due cards across all SRS decks (`dueCardCount()`) and displays "N cards due" (or "N కార్డులు సిద్ధంగా ఉన్నాయి") instead of the generic "Review ready" label. Both bilingual.
 
 ## E. Navigation & UX
 20. 🟠 RENDER — **Device pass at 320/360/390/430px** on: hero, KC grouped nav, search modal, XP HUD, profile modal, dense lesson blocks, Seerah interactive visuals. (Only item that strictly needs a browser.)
