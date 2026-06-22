@@ -38,7 +38,7 @@
 22. 🟠 M — **Knowledge Center nav full redesign** to a true mega-menu/launchpad (this pass grouped it into labeled categories; a richer card-based redesign is the next step) — RENDER-assisted.
 23. ✅ DONE (2026-06) — **Search index expanded**: catalog now has 68 entries (was ~44) including all 46 inline lessons across 5 portals with desc_en/te, anchored fragment URLs, and `id="lesson-X"` in if-lesson.js.
 24. ✅ DONE (2026-06) — **Continue CTA in progress bar**: `if-lesson.js` now renders a "Continue →" button inline in the progress bar header pointing to the first incomplete lesson; shows "✓ All complete" when done. All 5 inline portals gain this automatically.
-25. 🟡 S — KC footer link-row: apply canonical portal order (kept Home-first; needs Home special-cased).
+25. ✅ DONE (2026-06) — **Portal footer canonical order**: History/Kids/Seerah portal footers reordered to Quran→Salah→Seerah (canonical portal order). All 7 portal footers now follow Home→KC→[portals in canonical order].
 26. 🟡 M — Student Guidance: integrate into the canonical order (#8) and the learning roadmap/profile.
 
 ## F. Accessibility
