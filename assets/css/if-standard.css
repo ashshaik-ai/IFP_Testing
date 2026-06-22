@@ -593,6 +593,13 @@ html { scrollbar-color: rgba(13,59,30,.35) transparent; }
   transition: opacity .2s, transform .2s;
 }
 .ifxp-toast.on{ opacity:1; transform:none; }
+/* XP chip injected by if-xp.js into portal #dash-body */
+#ifxp-dash-chip{ margin-top:16px; text-align:center; }
+.ifxp-dash-btn{ display:inline-flex; align-items:center; gap:10px; padding:9px 20px; border:1.5px solid var(--ifx-gold,#c8922a); border-radius:100px; background:rgba(200,146,42,.06); color:var(--green-deep,#0d3b1e); font:inherit; font-size:.85rem; font-weight:700; cursor:pointer; transition:background .2s,color .2s; }
+.ifxp-dash-btn:hover{ background:var(--ifx-gold,#c8922a); color:#fff; }
+.ifxp-dash-btn:focus-visible{ outline:2px solid var(--ifx-gold,#c8922a); outline-offset:2px; }
+.ifxp-dash-bar{ display:inline-block; width:48px; height:5px; background:rgba(0,0,0,.1); border-radius:100px; vertical-align:middle; }
+.ifxp-dash-bar > i{ display:block; height:100%; border-radius:inherit; background:linear-gradient(90deg,#c8922a,#e8b84b); }
 .ifshare-toast{
   position: fixed;
   left: 50%;

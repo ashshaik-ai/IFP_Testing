@@ -27,7 +27,7 @@
 
 ## D. Engagement & gamification (build on if-xp / if-profile)
 15. ✅ DONE (2026-06) — **Learning paths with progression** in `if-lesson`: per-lesson **tier** (Beginner→Intermediate→Advanced→Expert), **state** (done ✓ / current ▶ / upcoming 🔒, soft — still openable for good UX), and a **progress bar** atop the lesson list. Applies to all 7 portals automatically.
-16. 🟡 M — Streaks/XP surfaced inside each portal dashboard (model portals have bespoke dashboards; unify with the shared XP).
+16. ✅ DONE (2026-06) — **Global XP chip in portal dashboards**: `if-xp.js` now auto-injects a compact "Lvl N · X XP" pill button into any page that has `#dash-body` (all 5 inline portals). Clicking opens the profile. CSS in `if-standard.css` (`.ifxp-dash-chip`). No portal files touched.
 17. ✅ DONE (2026-06) — **Badge unlock toast**: `IFXP.checkBadges(badges, counts, pkey)` added to if-xp.js; if-lesson.js calls it on lesson completion using `window.BADGES` (portal-defined array). First-unlock toast fires at 600ms after the celebrate animation settles.
 18. ✅ DONE (2026-06) — **"Up next" card** after marking a lesson complete: shows next lesson title with one-click open + smooth scroll; "All complete!" banner after the last lesson. In `if-lesson.js` + `if-standard.css`.
 19. 🟡 M — Spaced-repetition surfacing ("X cards due") from the existing `if-srs-*` flashcard data.
@@ -45,7 +45,7 @@
 27. ◐ MOSTLY DONE (2026-06) — Accessibility: ✓/✗ on quiz answers (no colour-only), `aria-live` feedback, focus-visible outlines, modal focus-return + focus-in, **and a full Tab focus-trap inside the search & profile modals**. **Remaining (needs rendering):** complete ARIA labelling sweep + colour-contrast audit at WCAG AA.
 28. 🟡 S — Focus-trap + `Esc` already on modals; verify focus return to trigger on close.
 29. 🟡 S — Colour-contrast audit of muted text on cream/green backgrounds.
-30. 🟡 S — Respect `prefers-reduced-motion` everywhere (mostly done; verify SMIL caravan + confetti).
+30. ✅ DONE (2026-06) — **prefers-reduced-motion verified**: confetti guarded by `RM` flag in `if-engage.js`; kidBob/kidTwinkle CSS animations have `@media(prefers-reduced-motion:reduce){animation:none}` guard; no SMIL `<animate>` elements exist in the codebase — all CSS @keyframes animations have guards.
 
 ## G. SEO & structured data
 31. ✅ DONE (2026-06) — JSON-LD via `if-jsonld.js`: **Course** per portal, **FAQPage** built from each portal's real lesson FAQs, **BreadcrumbList** on KC pages (relative URLs resolved to absolute at runtime; built with JSON.stringify so always valid). Homepage already had Organization + WebSite.

@@ -96,6 +96,23 @@
 
   window.IFXP = { award: award, awardOnce: awardOnce, checkBadges: checkBadges, level: function () { return levelOf(s.xp); }, xp: function () { return s.xp; } };
 
+  // Inject a compact XP chip into bespoke portal dashboards (those with #dash-body)
+  // so inline portals (Quran/Salah/Seerah/Kids/History) surface the global XP level.
+  function injectDashChip() {
+    var db = document.getElementById('dash-body');
+    if (!db || document.getElementById('ifxp-dash-chip')) return;
+    var chip = document.createElement('div'); chip.id = 'ifxp-dash-chip';
+    var lvl = levelOf(s.xp), inLvl = s.xp % PER;
+    var label = te() ? ('✦ స్థాయి ' + lvl + ' · ' + s.xp + ' XP') : ('✦ Lvl ' + lvl + ' · ' + s.xp + ' XP');
+    chip.innerHTML = '<button type="button" class="ifxp-dash-btn" aria-label="Open learner profile">'
+      + label + '<span class="ifxp-dash-bar"><i style="width:' + inLvl + '%"></i></span></button>';
+    chip.querySelector('.ifxp-dash-btn').addEventListener('click', function () { if (window.IFProfile) IFProfile.open(); });
+    db.appendChild(chip);
+  }
+
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', inject); else inject();
+  // Also run injectDashChip after DOM is ready (portal dashboards render after DOMContentLoaded).
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function () { setTimeout(injectDashChip, 200); });
+  else setTimeout(injectDashChip, 200);
   new MutationObserver(render).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
 })();
