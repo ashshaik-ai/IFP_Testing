@@ -158,7 +158,14 @@
         e.stopPropagation();
         var id = b.getAttribute('data-id'), was = isDone(id);
         setDone(id, !was);
-        if (!was) { if (window.IFXP) IFXP.awardOnce('L:' + PKEY + ':' + id, 20); if (window.IFEngage) IFEngage.celebrate({ count: 90 }); }
+        if (!was) {
+          if (window.IFXP) IFXP.awardOnce('L:' + PKEY + ':' + id, 20);
+          if (window.IFEngage) IFEngage.celebrate({ count: 90 });
+          if (window.IFXP && IFXP.checkBadges && window.BADGES) {
+            var prog = pLoad(); var doneCount = (prog.done || []).length;
+            IFXP.checkBadges(window.BADGES, { lessons: doneCount }, PKEY);
+          }
+        }
         render();
       });
     });

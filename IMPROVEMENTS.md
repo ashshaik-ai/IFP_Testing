@@ -28,7 +28,7 @@
 ## D. Engagement & gamification (build on if-xp / if-profile)
 15. ✅ DONE (2026-06) — **Learning paths with progression** in `if-lesson`: per-lesson **tier** (Beginner→Intermediate→Advanced→Expert), **state** (done ✓ / current ▶ / upcoming 🔒, soft — still openable for good UX), and a **progress bar** atop the lesson list. Applies to all 7 portals automatically.
 16. 🟡 M — Streaks/XP surfaced inside each portal dashboard (model portals have bespoke dashboards; unify with the shared XP).
-17. 🟡 M — Badge/achievement **unlock animation + toast** when newly earned (gallery exists; the moment-of-earning is quiet).
+17. ✅ DONE (2026-06) — **Badge unlock toast**: `IFXP.checkBadges(badges, counts, pkey)` added to if-xp.js; if-lesson.js calls it on lesson completion using `window.BADGES` (portal-defined array). First-unlock toast fires at 600ms after the celebrate animation settles.
 18. ✅ DONE (2026-06) — **"Up next" card** after marking a lesson complete: shows next lesson title with one-click open + smooth scroll; "All complete!" banner after the last lesson. In `if-lesson.js` + `if-standard.css`.
 19. 🟡 M — Spaced-repetition surfacing ("X cards due") from the existing `if-srs-*` flashcard data.
 
@@ -53,7 +53,7 @@
 33. 🟡 S — `sitemap.xml` + `robots.txt`.
 
 ## H. Performance
-34. 🟡 M — Subset/preload fonts; the large multi-family Google Fonts load is render-blocking.
+34. ✅ DONE (2026-06) — **Non-blocking fonts**: converted all 27 pages from `<link rel="stylesheet">` to `<link rel="preload" as="style" onload="...">` + `<noscript>` fallback. Fonts now load async; `display=swap` already present on all URLs.
 35. 🟡 M — Lazy-load offscreen images/sections; defer non-critical inline CSS on the 3.7k-line homepage.
 36. 🟡 L — Split very large inline pages (index.html, islamic-knowledge.html) for maintainability.
 37. 🟡 S — Extend `sw.js` precache to enable offline lesson packs.

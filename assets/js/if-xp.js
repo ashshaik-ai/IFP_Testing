@@ -75,7 +75,26 @@
     award(points);
     return true;
   }
-  window.IFXP = { award: award, awardOnce: awardOnce, level: function () { return levelOf(s.xp); }, xp: function () { return s.xp; } };
+  // Check portal badge array against current counts; toast each newly-unlocked badge once.
+  // badges: [{type:'lessons'|'streak', n, en, te}]  counts: {lessons, streak}
+  function checkBadges(badges, counts, pkey) {
+    if (!badges || !badges.length) return;
+    var nkey = 'ifxp-badges-' + (pkey || 'x');
+    var noted; try { noted = JSON.parse(localStorage.getItem(nkey)) || {}; } catch (e) { noted = {}; }
+    var changed = false;
+    badges.forEach(function (b) {
+      var count = counts[b.type] || 0;
+      var k = b.type + ':' + b.n;
+      if (count >= b.n && !noted[k]) {
+        noted[k] = 1; changed = true;
+        var label = te() ? b.te : b.en;
+        setTimeout(function () { toast('🏅 ' + (te() ? 'బ్యాడ్జ్ అన్‌లాక్: ' : 'Badge unlocked: ') + label); }, 600);
+      }
+    });
+    if (changed) try { localStorage.setItem(nkey, JSON.stringify(noted)); } catch (e) { }
+  }
+
+  window.IFXP = { award: award, awardOnce: awardOnce, checkBadges: checkBadges, level: function () { return levelOf(s.xp); }, xp: function () { return s.xp; } };
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', inject); else inject();
   new MutationObserver(render).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
