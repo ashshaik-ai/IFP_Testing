@@ -1092,9 +1092,23 @@ span.hmfp-label, .hmfp-li span{ font-size: 12px !important; }
 /* Learn-salah: prayer schedule card rakaat/time info spans */
 .surah-meta span{ font-size: 12px !important; }
 
-/* Skip-to-content link: raise from 39px to full 44px */
-.if-skip{ min-height: 44px !important; display: inline-flex !important; align-items: center !important; }
+/* Skip-to-content link: hidden off-screen until focused */
+.if-skip{ position: absolute !important; top: -100% !important; left: 0 !important; z-index: 10000 !important; min-height: 44px !important; padding: 10px 20px !important; display: inline-flex !important; align-items: center !important; background: var(--ifx-gold, #c8922a) !important; color: #0a2410 !important; font-weight: 700 !important; border-radius: 0 0 8px 8px !important; text-decoration: none !important; transition: top .2s !important; white-space: nowrap !important; }
+.if-skip:focus{ top: 0 !important; outline: 3px solid #0a2410 !important; outline-offset: 2px !important; }
 .skip-link{ min-height: 44px !important; display: inline-flex !important; align-items: center !important; }
+
+/* Sitewide nav-overlay and nav-drawer base styles (injected by if-core.js on all non-homepage pages) */
+.nav-overlay{ position: fixed !important; inset: 0 !important; background: rgba(0,0,0,.55) !important; z-index: 1199 !important; opacity: 0 !important; visibility: hidden !important; transition: opacity .3s, visibility .3s !important; pointer-events: none !important; }
+.nav-overlay.open{ opacity: 1 !important; visibility: visible !important; pointer-events: auto !important; }
+.nav-drawer{ background: linear-gradient(180deg, var(--green-deep, #0d3b1e) 0%, #0a2e17 100%) !important; z-index: 1201 !important; }
+.nav-drawer-header{ display: flex !important; align-items: center !important; justify-content: space-between !important; padding: 20px 24px !important; border-bottom: 1px solid rgba(200,146,42,.18) !important; }
+.nav-drawer-brand{ font-family: 'Playfair Display', serif !important; font-size: 16px !important; font-weight: 700 !important; color: var(--gold-light, #f5e6c0) !important; }
+.nav-drawer-close{ background: transparent !important; border: none !important; color: rgba(200,146,42,.7) !important; font-size: 18px !important; cursor: pointer !important; padding: 4px 8px !important; border-radius: 4px !important; transition: color .2s !important; line-height: 1 !important; }
+.nav-drawer-close:hover{ color: var(--gold-light, #f5e6c0) !important; }
+.nav-drawer-links{ list-style: none !important; padding: 12px 0 !important; margin: 0 !important; overflow-y: auto !important; }
+.nav-drawer-links li{ border-bottom: 1px solid rgba(200,146,42,.07) !important; }
+.nav-drawer-links a{ display: flex !important; align-items: center !important; padding: 16px 24px !important; color: rgba(255,255,255,.8) !important; text-decoration: none !important; font-size: 15px !important; font-weight: 400 !important; transition: color .2s, background .2s, padding-left .2s !important; }
+.nav-drawer-links a:hover{ color: var(--gold-light, #f5e6c0) !important; background: rgba(200,146,42,.06) !important; padding-left: 30px !important; }
 
 /* Learn-arabic: word navigator prev/next buttons — 42px → 44px */
 .word-btn{ width: 44px !important; height: 44px !important; }

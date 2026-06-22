@@ -480,8 +480,11 @@
     .pillars-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
     .pillar-card { padding: 24px 14px 22px; }
     .pc-ic { width: 56px; height: 56px; font-size: 26px; }
-    .live-prices { grid-template-columns: 1fr; }
-    .lp-val { font-size: 22px; }
+    .live-prices { grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 16px; }
+    .lp-card { padding: 10px 10px; }
+    .lp-val { font-size: 15px; }
+    .lp-top { font-size: 10px; margin-bottom: 4px; }
+    .lp-unit { font-size: 10px; margin-top: 2px; }
     .tip-pop { width: 180px; }
     .wudu-stepper { padding: 24px 18px 26px; border-radius: 16px; }
     .wudu-dua { padding: 26px 20px 28px; }
@@ -639,6 +642,10 @@
       <a href="#guides" data-te="మరిన్ని మార్గదర్శిని" data-en="More Guides">మరిన్ని మార్గదర్శిని</a>
     </nav>
     <div class="if-kc-dashboard" aria-label="నాలెడ్జ్ సెంటర్ త్వరిత చర్యలు" data-aria-te="నాలెడ్జ్ సెంటర్ త్వరిత చర్యలు" data-aria-en="Knowledge Center quick actions">
+      <a class="if-kc-action" href="#lang-portals">
+        <strong data-te="అభ్యాస పోర్టల్స్" data-en="Learning Portals">అభ్యాస పోర్టల్స్</strong>
+        <span data-te="ఖురాన్, నమాజ్, సీరా" data-en="Quran, Salah, Seerah">ఖురాన్, నమాజ్, సీరా</span>
+      </a>
       <a class="if-kc-action" href="#salah">
         <strong data-te="నమాజ్ వేళలు" data-en="Prayer Times">నమాజ్ వేళలు</strong>
         <span data-te="ఈరోజు సమయాలు" data-en="Today’s timings">ఈరోజు సమయాలు</span>
@@ -646,10 +653,6 @@
       <a class="if-kc-action" href="#zakat">
         <strong data-te="జకాత్ కాలిక్యులేటర్" data-en="Zakat Calculator">జకాత్ కాలిక్యులేటర్</strong>
         <span data-te="2.5% వెంటనే లెక్కించండి" data-en="Calculate 2.5% instantly">2.5% వెంటనే లెక్కించండి</span>
-      </a>
-      <a class="if-kc-action" href="#lang-portals">
-        <strong data-te="అభ్యాస పోర్టల్స్" data-en="Learning Portals">అభ్యాస పోర్టల్స్</strong>
-        <span data-te="ఖురాన్, నమాజ్, సీరా" data-en="Quran, Salah, Seerah">ఖురాన్, నమాజ్, సీరా</span>
       </a>
       <a class="if-kc-action" href="#salah-guide">
         <strong data-te="వుజూ &amp; నమాజ్" data-en="Wudu &amp; Salah">వుజూ &amp; నమాజ్</strong>
@@ -669,6 +672,7 @@
 <nav class="kc-sticky" id="kc-sticky" aria-label="Knowledge Center sections">
   <div class="kc-sticky-inner">
     <a href="index.html" class="kc-sticky-home" data-te="← హోమ్" data-en="← Home">← హోమ్</a>
+    <a href="#lang-portals" data-spy="lang-portals" data-te="అభ్యాస పోర్టల్స్" data-en="Learning Portals">అభ్యాస పోర్టల్స్</a>
     <a href="#basics"      data-spy="basics"      data-te="ఇక్కడ మొదలుపెట్టండి" data-en="Start Here">ఇక్కడ మొదలుపెట్టండి</a>
     <a href="#pillars"     data-spy="pillars"     data-te="ఐదు మూలస్తంభాలు" data-en="Five Pillars">ఐదు మూలస్తంభాలు</a>
     <a href="#wudu"        data-spy="wudu"        data-te="వుజూ మార్గదర్శి" data-en="Wudu Guide">వుజూ మార్గదర్శి</a>
@@ -1271,7 +1275,6 @@
       </div>
     </div>
 
-    <div class="ref-note" data-te="<strong>లెక్కింపు పద్ధతి:</strong> University of Islamic Sciences, Karachi (ఫజ్ర్ 18°, ఇషా 18°). వేళలు మంగళగిరి కోఆర్డినేట్‌ల ఆధారంగా బ్రౌజర్‌లోనే లెక్కించబడతాయి మరియు సుమారు అంచనాలు — స్థానిక మసీదు ప్రకటనను ఎల్లప్పుడూ ప్రామాణికంగా తీసుకోండి. నమాజ్‌ను సమయానికి నిర్వహించడం విధి (ఖురాన్ · సూరా అన్-నిసా 4:103)." data-en="<strong>Calculation method:</strong> University of Islamic Sciences, Karachi (Fajr 18°, Isha 18°). Times are computed in your browser from Mangalagiri's coordinates and are approximate — always treat your local masjid's announcement as authoritative. Establishing prayer at its appointed time is an obligation (Quran · Surah An-Nisa 4:103)."><strong>లెక్కింపు పద్ధతి:</strong> University of Islamic Sciences, Karachi (ఫజ్ర్ 18°, ఇషా 18°). వేళలు మంగళగిరి కోఆర్డినేట్‌ల ఆధారంగా బ్రౌజర్‌లోనే లెక్కించబడతాయి మరియు సుమారు అంచనాలు — స్థానిక మసీదు ప్రకటనను ఎల్లప్పుడూ ప్రామాణికంగా తీసుకోండి. నమాజ్‌ను సమయానికి నిర్వహించడం విధి (ఖురాన్ · సూరా అన్-నిసా 4:103).</div>
   </div>
 </section>
 

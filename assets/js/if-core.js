@@ -598,12 +598,12 @@
         + '  </svg>'
         + '  <span class="bn-label" data-bn-label="learn">' + (te ? 'అభ్యాసం' : 'Learn') + '</span>'
         + '</a>'
-        + '<a href="' + base + 'index.html#community-contact" class="bn-item' + (isContactHash ? ' bn-active" aria-current="page' : '') + '">'
+        + '<button type="button" class="bn-item lang-btn" id="bn-lang" aria-label="Switch language">'
         + '  <svg class="bn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
-        + '    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.37 2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.12.9.35 1.77.7 2.61a2 2 0 0 1-.45 2.11L6.91 9.09a16 16 0 0 0 6 6l1.47-1.47a2 2 0 0 1 2.11-.45c.84.35 1.71.58 2.61.7A2 2 0 0 1 22 16.92z" />'
+        + '    <circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>'
         + '  </svg>'
-        + '  <span class="bn-label" data-bn-label="contact">' + (te ? 'సంప్రదించండి' : 'Contact') + '</span>'
-        + '</a>'
+        + '  <span class="bn-label">' + (te ? 'English' : 'తెలుగు') + '</span>'
+        + '</button>'
         + '<button type="button" class="bn-item" id="bn-more" aria-haspopup="true" aria-expanded="false" aria-controls="nav-drawer">'
         + '  <svg class="bn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
         + '    <circle cx="12" cy="12" r="1" />'
@@ -680,9 +680,32 @@
       if (navDrClose) navDrClose.addEventListener('click', closeDrawer);
       if (navOverlay) navOverlay.addEventListener('click', closeDrawer);
 
+      // Language toggle in bottom nav
+      var bnLang = document.getElementById('bn-lang');
+      if (bnLang) {
+        bnLang.addEventListener('click', function () {
+          var cur = getLang();
+          var next = cur === 'te' ? 'en' : 'te';
+          if (typeof setLang === 'function') {
+            setLang(next);
+          } else if (typeof applyLang === 'function') {
+            applyLang(next);
+          } else {
+            localStorage.setItem('if-lang', next);
+            document.documentElement.lang = next === 'te' ? 'te-IN' : 'en';
+            document.querySelectorAll('[data-te],[data-en]').forEach(function (el) {
+              var txt = el.getAttribute('data-' + next);
+              if (txt !== null) el.innerHTML = txt;
+            });
+          }
+          var lbl = bnLang.querySelector('.bn-label');
+          if (lbl) lbl.textContent = next === 'te' ? 'English' : 'తెలుగు';
+        });
+      }
+
       // Dismiss drawer on escape key
       document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && navDrawer.classList.contains('open')) closeDrawer(); });
-      
+
       // Auto-update bottom nav texts when language changes
       new MutationObserver(function () {
         var isTe = getLang() === 'te';
@@ -690,13 +713,13 @@
           home: { te: 'హోమ్', en: 'Home' },
           schemes: { te: 'పథకాలు', en: 'Schemes' },
           learn: { te: 'అభ్యాసం', en: 'Learn' },
-          contact: { te: 'సంప్రదించండి', en: 'Contact' },
           more: { te: 'మరిన్ని', en: 'More' }
         };
         document.querySelectorAll('.bottom-nav .bn-label[data-bn-label]').forEach(function (label) {
           var key = label.getAttribute('data-bn-label');
           if (copy[key]) label.textContent = isTe ? copy[key].te : copy[key].en;
         });
+        if (bnLang) { var lbl2 = bnLang.querySelector('.bn-label'); if (lbl2) lbl2.textContent = isTe ? 'English' : 'తెలుగు'; }
         var db = document.querySelector('.nav-drawer-brand');
         if (db) db.textContent = isTe ? 'ఇస్లామిక్ ఫ్రంట్' : 'Islamic Front';
       }).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
