@@ -1,7 +1,7 @@
 # LATEST_STATIC_AUDIT.md
-Generated: 2026-06-21T19:34:39.653Z
+Generated: 2026-06-22T11:18:16.404Z
 
-Catalog records: 34 - Student Guidance indexed cards: 79 - HTML pages scanned: 27 - Issues: 0
+Catalog records: 76 - Student Guidance indexed cards: 79 - HTML pages scanned: 27 - Issues: 0
 
 Severity counts: high 0 - medium 0 - low 0
 

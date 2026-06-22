@@ -62,7 +62,7 @@
 38. ◐ MOSTLY DONE (2026-06) — Design-token unification: all hardcoded `border-radius:14px` in the 12 sub-lessons replaced with `var(--radius,16px)` (now token-driven). **Remaining:** a few one-off container widths not snapped to 1140 (low impact).
 39. 🟡 M — Migrate Urdu portal from the older `.lu-*` hero template onto the `.al-*` family (visual parity with the other portals).
 40. 🟡 S — Consolidate the growing fixed-position widget set (search/XP/back-to-top) behind one bottom toolbar to reduce clutter and z-index risk.
-41. 🟡 S — Add a tiny build/validation script in CI (brace/apostrophe/dup-id/link checks) so this bug sweep runs automatically.
+41. ✅ DONE (2026-06) — **CI validation gate**: `audit-site.mjs` enhanced with JS syntax validation (vm sandbox for all 12 data files, catches unescaped apostrophes + brace errors), expanded SW precache check, `.agents/` excluded, dynamic lesson anchors correctly skipped. Wired into `deploy-pages.yml` — CI now blocks deploy on high-severity issues. Runs clean (0 issues) on current codebase.
 
 ---
 

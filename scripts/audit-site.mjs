@@ -6,7 +6,7 @@ import { fileURLToPath } from 'node:url';
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const OUT_MD = path.join(ROOT, 'project-docs/audits/LATEST_STATIC_AUDIT.md');
 const OUT_JSON = path.join(ROOT, 'project-docs/audits/LATEST_STATIC_AUDIT.json');
-const IGNORE_DIRS = new Set(['.git', 'node_modules', 'playwright-report', 'test-results']);
+const IGNORE_DIRS = new Set(['.git', 'node_modules', 'playwright-report', 'test-results', '.agents']);
 
 function read(rel) {
   return fs.readFileSync(path.join(ROOT, rel), 'utf8');
@@ -104,7 +104,10 @@ for (const url of catalogUrls) {
     const id = url.split('#')[1];
     if (fs.existsSync(full) && fs.statSync(full).isFile()) {
       const html = fs.readFileSync(full, 'utf8');
-      if (!new RegExp(`\\bid=["']${id.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}["']`).test(html)) {
+      // Inline portals (if-lesson.js) inject lesson anchors dynamically at runtime;
+      // skip static anchor check for those entries to avoid false positives.
+      const isDynLesson = id.startsWith('lesson-') && html.includes('if-lesson.js');
+      if (!isDynLesson && !new RegExp(`\\bid=["']${id.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}["']`).test(html)) {
         add('high', 'catalog-anchor-missing', clean, `Missing #${id}`);
       }
     }
@@ -118,8 +121,42 @@ for (const file of htmlFiles) {
   if (!catalogSet.has(r) && !/project-docs\//.test(r)) add('medium', 'html-not-in-catalog', r, 'HTML page is not represented in site catalog');
 }
 
+// JS syntax validation: try executing each data file in a sandbox; catch parse errors early.
+const JS_DATA_FILES = [
+  'assets/data/site-catalog.js',
+  'assets/data/student-guidance-index.js',
+  'assets/data/quran-lessons.js',
+  'assets/data/salah-lessons.js',
+  'assets/data/seerah-lessons.js',
+  'assets/data/history-lessons.js',
+  'assets/data/kids-lessons.js',
+  'assets/data/arabic-lessons.js',
+  'assets/data/urdu-lessons.js',
+  'assets/data/visuals-data.js',
+  'assets/data/diagrams-data.js',
+  'assets/data/sublesson-data.js',
+];
+for (const f of JS_DATA_FILES) {
+  if (!fs.existsSync(path.join(ROOT, f))) continue;
+  try {
+    const code = read(f);
+    const sb = { window: {}, location: { pathname: '/' }, document: { readyState: 'complete' } };
+    sb.window.window = sb.window;
+    vm.runInNewContext(code, sb, { filename: f, timeout: 5000 });
+  } catch (e) {
+    add('high', 'js-syntax-error', f, String(e.message || e).slice(0, 200));
+  }
+}
+
 const sw = read('sw.js');
-for (const critical of ['assets/data/site-catalog.js', 'assets/data/student-guidance-index.js', 'assets/js/if-search.js', 'assets/js/if-profile.js', 'assets/js/if-share.js']) {
+const SW_CRITICAL = [
+  'assets/data/site-catalog.js', 'assets/data/student-guidance-index.js',
+  'assets/js/if-search.js', 'assets/js/if-profile.js', 'assets/js/if-share.js',
+  'assets/js/if-lesson.js', 'assets/js/if-xp.js',
+  'assets/data/quran-lessons.js', 'assets/data/salah-lessons.js',
+  'assets/data/seerah-lessons.js', 'assets/data/kids-lessons.js', 'assets/data/history-lessons.js',
+];
+for (const critical of SW_CRITICAL) {
   if (!sw.includes(critical)) add('medium', 'service-worker-precache-gap', 'sw.js', `${critical} is not precached`);
 }
 
