@@ -169,45 +169,153 @@
     paintRefs();
   }
 
-  /* ── Certificate (client-side, print/save as PDF; offline-safe) ── */
+  /* ── Certificate — in-page modal, no popups, Canvas download ── */
   function certificate(o) {
     o = o || {}; var te = getLang() === 'te';
-    var name = '';
-    try { name = window.prompt(te ? 'మీ పేరు (ఐచ్ఛికం):' : 'Your name (optional):', '') || ''; } catch (e) {}
-    name = (name || (te ? 'ఒక అంకిత విద్యార్థి' : 'A dedicated learner')).replace(/[<>]/g, '');
-    var date = '';
-    try { date = new Date().toLocaleDateString(te ? 'te-IN' : 'en-US', { year: 'numeric', month: 'long', day: 'numeric' }); } catch (e) { date = new Date().toDateString(); }
-    var title = (o.title || (te ? 'ఇస్లామిక్ అభ్యాసం' : 'Islamic Learning'));
     var L = te
-      ? { cert: 'పూర్తి ధృవీకరణ పత్రం', awarded: 'ఇది ఇచ్చబడింది', completed: 'విజయవంతంగా పూర్తి చేసినందుకు', score: 'స్కోరు', org: 'ఇస్లామిక్ ఫ్రంట్ · జ్ఞాన కేంద్రం', date: 'తేదీ', print: 'ముద్రించండి / PDF సేవ్ చేయండి' }
-      : { cert: 'Certificate of Completion', awarded: 'This is awarded to', completed: 'for successfully completing', score: 'Score', org: 'Islamic Front · Knowledge Center', date: 'Date', print: 'Print / Save as PDF' };
-    var w = window.open('', '_blank', 'width=900,height=650');
-    if (!w) { toast(te ? 'పాప్‌అప్‌ను అనుమతించండి' : 'Please allow pop-ups for the certificate'); return; }
-    var html = '<!doctype html><html lang="' + (te ? 'te' : 'en') + '"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
-      + '<title>' + L.cert + '</title>'
-      + '<style>'
-      + 'body{margin:0;font-family:"Segoe UI",system-ui,sans-serif;background:#0d3b1e;display:flex;align-items:center;justify-content:center;min-height:100vh;padding:24px}'
-      + '.c{background:#faf6ee;width:100%;max-width:760px;border:3px solid #c8922a;border-radius:14px;padding:48px 44px;text-align:center;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.4)}'
-      + '.c::after{content:"";position:absolute;inset:10px;border:1px solid rgba(200,146,42,.45);border-radius:8px;pointer-events:none}'
-      + '.seal{width:56px;height:56px;margin:0 auto 4px;display:flex;align-items:center;justify-content:center}'
-      + '.org{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#c8922a;margin:10px 0 18px;font-weight:700}'
-      + '.t{font-family:Georgia,serif;font-size:30px;color:#0d3b1e;font-weight:700;margin-bottom:18px}'
-      + '.lbl{font-size:13px;color:#7a6840;margin:14px 0 4px}'
-      + '.nm{font-family:Georgia,serif;font-size:26px;color:#1a1208;font-weight:700;border-bottom:2px solid rgba(200,146,42,.4);display:inline-block;padding:0 24px 6px;margin-bottom:8px}'
-      + '.crs{font-size:18px;color:#1a5c30;font-weight:600;margin:8px 0}'
-      + '.meta{display:flex;justify-content:space-between;margin-top:34px;font-size:13px;color:#3d3018}'
-      + '.btn{margin:22px auto 0;display:inline-block;background:#c8922a;color:#0d3b1e;font-weight:700;border:none;padding:12px 26px;border-radius:100px;font-size:14px;cursor:pointer}'
-      + '@media print{body{background:#fff;padding:0}.btn{display:none}.c{box-shadow:none;border-color:#c8922a}}'
-      + '</style></head><body><div class="c">'
-      + '<div class="seal"><svg viewBox="0 0 60 60" width="56" height="56" xmlns="http://www.w3.org/2000/svg"><circle cx="30" cy="30" r="28" fill="none" stroke="#c8922a" stroke-width="1.5"/><path d="M38 16a13 13 0 1 0 0 26 10 10 0 1 1 0-26z" fill="#c8922a" opacity="0.8"/><circle cx="44" cy="22" r="4" fill="#c8922a" opacity="0.6"/></svg></div><div class="org">' + L.org + '</div>'
-      + '<div class="t">' + L.cert + '</div>'
-      + '<div class="lbl">' + L.awarded + '</div><div class="nm">' + name + '</div>'
-      + '<div class="lbl">' + L.completed + '</div><div class="crs">' + title + '</div>'
-      + (o.score ? '<div class="lbl">' + L.score + ': <b>' + o.score + '</b></div>' : '')
-      + '<div class="meta"><span>' + L.date + ': ' + date + '</span><span>' + L.org + '</span></div>'
-      + '<button class="btn" onclick="window.print()">' + L.print + '</button>'
-      + '</div></body></html>';
-    w.document.open(); w.document.write(html); w.document.close();
+      ? { cert: 'పూర్తి ధృవీకరణ పత్రం', awarded: 'ఇది ఇచ్చబడింది', completed: 'విజయవంతంగా పూర్తి చేసినందుకు', score: 'స్కోరు', org: 'ఇస్లామిక్ ఫ్రంట్ · జ్ఞాన కేంద్రం', date: 'తేదీ', name_lbl: 'మీ పేరు', name_ph: 'మీ పేరు నమోదు చేయండి', download: 'డౌన్‌లోడ్ చేయండి (PNG)', print: 'ముద్రించండి', close: 'మూసివేయండి', default_name: 'ఒక అంకిత విద్యార్థి' }
+      : { cert: 'Certificate of Completion', awarded: 'This is awarded to', completed: 'for successfully completing', score: 'Score', org: 'Islamic Front · Knowledge Center', date: 'Date', name_lbl: 'Your Name', name_ph: 'Enter your name', download: 'Download (PNG)', print: 'Print', close: 'Close', default_name: 'A dedicated learner' };
+    var courseTitle = o.title || (te ? 'ఇస్లామిక్ అభ్యాసం' : 'Islamic Learning');
+    var dateStr = '';
+    try { dateStr = new Date().toLocaleDateString(te ? 'te-IN' : 'en-US', { year: 'numeric', month: 'long', day: 'numeric' }); } catch(e) { dateStr = new Date().toDateString(); }
+
+    /* remove any existing modal */
+    var old = document.getElementById('if-cert-modal');
+    if (old) old.remove();
+
+    /* inject modal styles once */
+    if (!document.getElementById('if-cert-style')) {
+      var s = document.createElement('style'); s.id = 'if-cert-style';
+      s.textContent = '#if-cert-overlay{position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:9999;display:flex;align-items:center;justify-content:center;padding:16px;animation:certFadeIn .2s ease}'
+        + '@keyframes certFadeIn{from{opacity:0}to{opacity:1}}'
+        + '#if-cert-modal{background:#faf6ee;border-radius:16px;width:100%;max-width:680px;max-height:90vh;overflow-y:auto;box-shadow:0 24px 80px rgba(0,0,0,.5);position:relative}'
+        + '#if-cert-close{position:absolute;top:14px;right:16px;background:none;border:none;font-size:22px;cursor:pointer;color:#7a6840;line-height:1;padding:4px 8px;border-radius:6px}'
+        + '#if-cert-close:hover{background:rgba(200,146,42,.12)}'
+        + '.cert-form{padding:24px 28px 0;border-bottom:1px solid rgba(200,146,42,.2)}'
+        + '.cert-form label{font-size:13px;font-weight:600;color:#3d3018;display:block;margin-bottom:6px}'
+        + '.cert-form input{width:100%;box-sizing:border-box;padding:10px 14px;border:1.5px solid rgba(200,146,42,.4);border-radius:8px;font-size:16px;color:#1a1208;background:#fffdf7;outline:none}'
+        + '.cert-form input:focus{border-color:#c8922a}'
+        + '.cert-preview{padding:32px 36px;text-align:center;position:relative}'
+        + '.cert-preview::after{content:"";position:absolute;inset:14px;border:1px solid rgba(200,146,42,.3);border-radius:8px;pointer-events:none}'
+        + '.cert-seal{width:52px;height:52px;margin:0 auto 6px}'
+        + '.cert-org{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#c8922a;font-weight:700;margin-bottom:14px}'
+        + '.cert-title{font-family:Georgia,serif;font-size:26px;color:#0d3b1e;font-weight:700;margin-bottom:16px}'
+        + '.cert-lbl{font-size:12px;color:#7a6840;margin:12px 0 3px}'
+        + '.cert-name{font-family:Georgia,serif;font-size:24px;color:#1a1208;font-weight:700;border-bottom:2px solid rgba(200,146,42,.35);display:inline-block;padding:0 20px 5px}'
+        + '.cert-course{font-size:16px;color:#1a5c30;font-weight:600;margin:8px 0}'
+        + '.cert-meta{display:flex;justify-content:space-between;margin-top:28px;font-size:12px;color:#3d3018;flex-wrap:wrap;gap:4px}'
+        + '.cert-actions{display:flex;gap:10px;padding:16px 28px 24px;justify-content:flex-end;flex-wrap:wrap}'
+        + '.cert-btn{padding:10px 22px;border-radius:100px;font-size:14px;font-weight:700;cursor:pointer;border:none}'
+        + '.cert-btn-primary{background:#c8922a;color:#0d3b1e}'
+        + '.cert-btn-secondary{background:rgba(200,146,42,.12);color:#3d3018}'
+        + '@media(max-width:500px){.cert-preview{padding:24px 20px}.cert-actions{justify-content:center}}';
+      document.head.appendChild(s);
+    }
+
+    /* build modal */
+    var overlay = document.createElement('div'); overlay.id = 'if-cert-overlay';
+    overlay.innerHTML = '<div id="if-cert-modal" role="dialog" aria-modal="true" aria-label="' + L.cert + '">'
+      + '<button id="if-cert-close" aria-label="' + L.close + '">✕</button>'
+      + '<div class="cert-form"><label for="if-cert-name">' + L.name_lbl + '</label>'
+      + '<input id="if-cert-name" type="text" placeholder="' + L.name_ph + '" maxlength="80" autocomplete="name"></div>'
+      + '<div class="cert-preview" id="if-cert-preview">'
+      + '<div class="cert-seal"><svg viewBox="0 0 60 60" width="52" height="52" aria-hidden="true"><circle cx="30" cy="30" r="28" fill="none" stroke="#c8922a" stroke-width="1.5"/><path d="M38 16a13 13 0 1 0 0 26 10 10 0 1 1 0-26z" fill="#c8922a" opacity="0.8"/><circle cx="44" cy="22" r="4" fill="#c8922a" opacity="0.6"/></svg></div>'
+      + '<div class="cert-org">' + L.org + '</div>'
+      + '<div class="cert-title">' + L.cert + '</div>'
+      + '<div class="cert-lbl">' + L.awarded + '</div>'
+      + '<div class="cert-name" id="if-cert-nm">' + L.default_name + '</div>'
+      + '<div class="cert-lbl">' + L.completed + '</div>'
+      + '<div class="cert-course">' + courseTitle + '</div>'
+      + (o.score ? '<div class="cert-lbl">' + L.score + ': <b>' + o.score + '</b></div>' : '')
+      + '<div class="cert-meta"><span>' + L.date + ': ' + dateStr + '</span><span>' + L.org + '</span></div>'
+      + '</div>'
+      + '<div class="cert-actions">'
+      + '<button class="cert-btn cert-btn-secondary" id="if-cert-print">' + L.print + '</button>'
+      + '<button class="cert-btn cert-btn-primary" id="if-cert-dl">' + L.download + '</button>'
+      + '</div></div>';
+    document.body.appendChild(overlay);
+
+    var nameInput = document.getElementById('if-cert-name');
+    var nameDisplay = document.getElementById('if-cert-nm');
+
+    /* live name preview */
+    nameInput.addEventListener('input', function() {
+      var v = nameInput.value.replace(/[<>]/g, '').trim();
+      nameDisplay.textContent = v || L.default_name;
+    });
+
+    /* close handlers */
+    function closeCert() { overlay.remove(); }
+    document.getElementById('if-cert-close').addEventListener('click', closeCert);
+    overlay.addEventListener('click', function(e) { if (e.target === overlay) closeCert(); });
+    document.addEventListener('keydown', function esc(e) { if (e.key === 'Escape') { closeCert(); document.removeEventListener('keydown', esc); } });
+
+    /* print */
+    document.getElementById('if-cert-print').addEventListener('click', function() {
+      var preview = document.getElementById('if-cert-preview');
+      var printWin = window.open('', '_blank');
+      if (!printWin) { toast(te ? 'ముద్రణ కోసం పాప్‌అప్‌ను అనుమతించండి' : 'Allow pop-ups to print'); return; }
+      printWin.document.write('<!doctype html><html><head><meta charset="utf-8"><style>'
+        + document.getElementById('if-cert-style').textContent
+        + 'body{background:#fff;padding:24px;font-family:Georgia,serif}.cert-preview{border:3px solid #c8922a;border-radius:14px;max-width:680px;margin:auto}#if-cert-close,.cert-form,.cert-actions{display:none}'
+        + '</style></head><body>' + preview.outerHTML + '</body></html>');
+      printWin.document.close();
+      printWin.focus(); printWin.print();
+    });
+
+    /* PNG download via Canvas */
+    document.getElementById('if-cert-dl').addEventListener('click', function() {
+      var nm = (nameInput.value.replace(/[<>]/g, '').trim()) || L.default_name;
+      var W = 900, H = 620;
+      var canvas = document.createElement('canvas');
+      canvas.width = W; canvas.height = H;
+      var ctx = canvas.getContext('2d');
+      /* background */
+      ctx.fillStyle = '#faf6ee'; ctx.fillRect(0, 0, W, H);
+      /* outer border */
+      ctx.strokeStyle = '#c8922a'; ctx.lineWidth = 4;
+      ctx.strokeRect(8, 8, W - 16, H - 16);
+      /* inner border */
+      ctx.strokeStyle = 'rgba(200,146,42,0.4)'; ctx.lineWidth = 1;
+      ctx.strokeRect(22, 22, W - 44, H - 44);
+      /* org */
+      ctx.fillStyle = '#c8922a'; ctx.font = 'bold 13px sans-serif';
+      ctx.textAlign = 'center'; ctx.letterSpacing = '3px';
+      ctx.fillText(L.org.toUpperCase(), W / 2, 90);
+      /* cert title */
+      ctx.fillStyle = '#0d3b1e'; ctx.font = 'bold 34px Georgia, serif'; ctx.letterSpacing = '0px';
+      ctx.fillText(L.cert, W / 2, 148);
+      /* awarded */
+      ctx.fillStyle = '#7a6840'; ctx.font = '14px sans-serif';
+      ctx.fillText(L.awarded, W / 2, 200);
+      /* name */
+      ctx.fillStyle = '#1a1208'; ctx.font = 'bold 32px Georgia, serif';
+      ctx.fillText(nm, W / 2, 250);
+      /* underline */
+      var nw = ctx.measureText(nm).width;
+      ctx.strokeStyle = 'rgba(200,146,42,0.5)'; ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.moveTo(W/2 - nw/2 - 20, 260); ctx.lineTo(W/2 + nw/2 + 20, 260); ctx.stroke();
+      /* completed */
+      ctx.fillStyle = '#7a6840'; ctx.font = '14px sans-serif';
+      ctx.fillText(L.completed, W / 2, 298);
+      /* course */
+      ctx.fillStyle = '#1a5c30'; ctx.font = 'bold 22px Georgia, serif';
+      ctx.fillText(courseTitle, W / 2, 336);
+      /* score */
+      if (o.score) { ctx.fillStyle = '#7a6840'; ctx.font = '14px sans-serif'; ctx.fillText(L.score + ': ' + o.score, W / 2, 372); }
+      /* meta */
+      ctx.fillStyle = '#3d3018'; ctx.font = '13px sans-serif';
+      ctx.textAlign = 'left'; ctx.fillText(L.date + ': ' + dateStr, 60, H - 55);
+      ctx.textAlign = 'right'; ctx.fillText(L.org, W - 60, H - 55);
+      /* download */
+      var link = document.createElement('a');
+      link.download = 'islamic-front-certificate.png';
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    });
+
+    /* focus name input */
+    setTimeout(function() { nameInput.focus(); }, 50);
   }
 
   /* ── PWA: manifest + conservative service worker (skips file://) ── */

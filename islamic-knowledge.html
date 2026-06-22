@@ -2658,9 +2658,14 @@ function initGuides() {
   if (!accordions.length) return;
   accordions.forEach(function (acc) {
     var items = acc.querySelectorAll('.guide-item');
-    items.forEach(function (item) {
+    items.forEach(function (item, idx) {
       var head = item.querySelector('.guide-head');
       if (!head) return;
+      var body = item.querySelector('.guide-body');
+      if (body && !body.id) {
+        body.id = 'guide-body-' + idx + '-' + Date.now();
+        head.setAttribute('aria-controls', body.id);
+      }
       head.addEventListener('click', function () {
         var isOpen = item.classList.contains('guide-open');
         items.forEach(function (other) {

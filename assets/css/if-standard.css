@@ -49,7 +49,7 @@
 }
 
 /* ---- A3. Consistent section anchor offset under the fixed nav ---- */
-section[id], [id].ifx-anchor{ scroll-margin-top: var(--ifx-nav-h); }
+section[id], [id].ifx-anchor{ scroll-margin-top: 130px; }
 html{ scroll-behavior: smooth; }
 
 /* Reveal effects are progressive enhancement: content stays visible without JS. */
@@ -1507,8 +1507,8 @@ nav {
 
 /* ── Text selection brand color ── */
 ::selection {
-  background: rgba(200,146,42,0.25);
-  color: #1a1208;
+  background: rgba(200,146,42,0.65);
+  color: #0d3b1e;
 }
 
 /* ── Premium image treatment ── */
@@ -1837,9 +1837,12 @@ body { opacity: 1; }
 
 /* Premium text selection across all pages */
 ::selection {
-  background: rgba(200,146,42,0.22) !important;
-  color: #1a1208 !important;
+  background: rgba(200,146,42,0.65) !important;
+  color: #0d3b1e !important;
 }
+
+/* Telugu script: zero letter-spacing to prevent ligature breaks */
+:lang(te), [lang="te"] { letter-spacing: 0 !important; }
 
 /* Smoother image rendering globally */
 img {

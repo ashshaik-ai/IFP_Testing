@@ -76,3 +76,68 @@ Also available: `/new-portal` · `/i18n-check` · `/a11y-audit` · `/deploy` · 
 ## Active work
 
 Telugu translation of the 81 `student-guidance.html` card bodies (`CB_TE[]`) — see [project-docs/DECISIONS.md](project-docs/DECISIONS.md) A1.
+
+---
+
+## Quality Standards (always active — no invocation needed)
+
+These rules apply automatically on every task. Do not wait to be asked.
+
+### Accessibility (WCAG 2.2 AA)
+- Every `<img>` must have `alt=""` (empty for decorative) or a descriptive alt text
+- Every icon-only button must have `aria-label="..."` and `aria-hidden="true"` on the SVG/icon inside
+- Interactive elements (buttons, links) must be ≥ 44×44px touch target
+- Never remove focus outlines; if restyling, use `outline` or `box-shadow` replacement
+- Use semantic HTML: `<main>`, `<nav>`, `<header>`, `<footer>`, `<h1>`–`<h6>` in order, `<button>` not `<div onclick>`
+- Color contrast: text on background must pass AA (4.5:1 normal text, 3:1 large text)
+- Add `aria-expanded`, `aria-controls`, `aria-current` on interactive disclosure/nav patterns
+
+### Performance (Core Web Vitals)
+- All `<script src>` must have `defer` — never block the parser
+- Inline only above-the-fold critical CSS; load rest via `<link rel="stylesheet">`
+- Images: always include `width` + `height` attributes to prevent layout shift (CLS)
+- Add `loading="lazy"` to all below-fold images
+- Add `fetchpriority="high"` to the hero/LCP image only
+- Preconnect to external font origins: `<link rel="preconnect" href="https://fonts.googleapis.com">`
+- Never add render-blocking third-party scripts
+
+### SEO & Metadata
+- Every page must have: `<title>`, `<meta name="description">`, `<link rel="canonical">`, `og:title`, `og:description`, `og:url`
+- `<title>` format: `Page Name | Islamic Front Mangalagiri` — max 60 chars
+- Meta description: plain text, 120–155 chars, no markdown
+- One `<h1>` per page only; heading hierarchy must be sequential (no skipping h2→h4)
+- JSON-LD structured data must match the page's actual content (no stale copy-paste)
+- Never duplicate `<title>`, `<meta name="description">`, or `<link rel="canonical">` tags on the same page
+
+### UI & Design
+- Mobile-first: design for 375px width first, then expand
+- Spacing must be consistent — use the existing CSS custom properties, do not introduce arbitrary `px` values
+- Never break the 68px fixed nav — `scroll-margin-top` ≥ 110px on all anchor targets, hero `padding-top` ≥ 110px, sticky sub-nav `top: 68px`
+- RTL support: Arabic/Urdu text must use `dir="rtl"` and Amiri / Noto Nastaliq Urdu fonts
+- Do not introduce new color values not in the existing palette — use `var(--gold)`, `var(--green-deep)`, etc.
+- Buttons must have a visible hover + focus state
+
+### Debugging — find root cause first
+- Never patch a symptom without identifying the root cause
+- Read the full error message and stack trace before proposing a fix
+- Reproduce the issue consistently before touching code
+- One fix at a time — verify it works before the next change
+
+### Verification before claiming done
+- Run the relevant check (open in browser, grep, node script) before saying "done" or "fixed"
+- Evidence before assertions: state what you ran and what the output was
+- Never claim tests pass, styles look correct, or a bug is fixed without a fresh verification in the same response
+
+### Communication — always concise
+- Respond in the fewest words that fully answer the question
+- No preamble ("Great question!", "Sure!", "I'll now...") — start with the answer
+- No trailing summaries of what you just did — the diff speaks for itself
+- Use a table or bullet list instead of paragraphs when listing multiple items
+- If explaining a change, one sentence max per change — not a paragraph
+- Never repeat information already stated earlier in the same response
+
+### Token efficiency (agent self-discipline)
+- Read only the files needed for the task — do not load all HTML files when only one is being changed
+- Use `grep` / `glob` to locate the exact lines before reading entire files
+- When continuing a multi-step task, read `TASK.md` + the `LAST_FILE_CHANGED` only — not the whole repo
+- Prefer `Edit` (diff) over `Write` (full rewrite) whenever less than 40% of a file changes
