@@ -58,7 +58,7 @@
 
   function block(label, inner) { return '<div class="ifl-s"><div class="ifl-s-h">' + label + '</div>' + inner + '</div>'; }
 
-  function lessonInner(L, te) {
+  function lessonInner(L, te, idx) {
     var T = te
       ? { tl: IC.tl + 'కాలక్రమం', mind: IC.mind + 'మైండ్ మ్యాప్', people: IC.people + 'ముఖ్య వ్యక్తులు', dyk: IC.dyk + 'మీకు తెలుసా?', learned: IC.learned + 'నేర్చుకున్న పాఠాలు', reflect: IC.reflect + 'ఆలోచనా ప్రశ్నలు', quiz: IC.quiz + 'చిన్న పరీక్ష', summary: IC.summary + 'స్థాయి సారాంశం', reading: IC.reading + 'మరింత చదవడానికి', refs: IC.refs + 'ఆధారాలు', apply: IC.apply + 'ఆచరణలో పెట్టండి', mistakes: IC.mistakes + 'సాధారణ తప్పులు', faqs: IC.quiz + 'తరచూ అడిగే ప్రశ్నలు', revision: IC.revision + 'మననం నోట్స్' }
       : { tl: IC.tl + 'Timeline', mind: IC.mind + 'Mind Map', people: IC.people + 'Key People', dyk: IC.dyk + 'Did You Know?', learned: IC.learned + 'Lessons Learned', reflect: IC.reflect + 'Reflection Questions', quiz: IC.quiz + 'Quick Check', summary: IC.summary + 'Level Summary', reading: IC.reading + 'Further Reading', refs: IC.refs + 'Authentic References', apply: IC.apply + 'Apply It', mistakes: IC.mistakes + 'Common Mistakes', faqs: IC.quiz + 'FAQ', revision: IC.revision + 'Revision Notes' };
@@ -106,6 +106,15 @@
     if (refs.length) html += block(T.refs, '<div class="ifl-links">' + refs.map(function (r) { return '<a href="' + r.url + '" target="_blank" rel="noopener noreferrer">' + r.label + ' ↗</a>'; }).join('') + '</div>');
     var dn = isDone(L.id);
     html += '<div class="ifl-complete"><button type="button" class="ifl-done-btn' + (dn ? ' done' : '') + '" data-id="' + L.id + '">' + (dn ? (te ? 'పూర్తయింది ✓' : 'Completed ✓') : (te ? 'పాఠం పూర్తి చేయి ✓' : 'Mark lesson complete ✓')) + '</button></div>';
+    if (dn && idx !== undefined) {
+      var next = CFG.lessons[idx + 1];
+      if (next) {
+        html += '<div class="ifl-upnext"><span class="ifl-upnext-lbl">' + (te ? 'తదుపరి పాఠం' : 'Up next') + '</span>'
+          + '<button type="button" class="ifl-upnext-btn" data-next="' + next.id + '">▶ ' + (te ? next.title_te : next.title_en) + '</button></div>';
+      } else {
+        html += '<div class="ifl-upnext ifl-all-done">' + (te ? '🎉 మీరు అన్ని పాఠాలు పూర్తి చేశారు!' : '🎉 All lessons complete!') + '</div>';
+      }
+    }
     return html;
   }
 
@@ -126,7 +135,7 @@
         + '<div class="ifl-head" role="button" tabindex="0" aria-expanded="' + open + '"><span class="ifl-num">' + badge + '</span>'
         + '<span class="ifl-h">' + (te ? L.title_te : L.title_en) + '<span class="ifl-tier">' + tier + '</span></span>'
         + '<svg class="ifl-chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>'
-        + '<div class="ifl-body"><div class="ifl-inner-body">' + lessonInner(L, te) + '</div></div></div>';
+        + '<div class="ifl-body"><div class="ifl-inner-body">' + lessonInner(L, te, i) + '</div></div></div>';
     }).join('');
     host.querySelectorAll('.ifl-item .ifl-head').forEach(function (h) {
       function tog() { var id = h.parentNode.getAttribute('data-id'); openId = (openId === id) ? null : id; render(); }
@@ -151,6 +160,15 @@
         setDone(id, !was);
         if (!was) { if (window.IFXP) IFXP.awardOnce('L:' + PKEY + ':' + id, 20); if (window.IFEngage) IFEngage.celebrate({ count: 90 }); }
         render();
+      });
+    });
+    host.querySelectorAll('.ifl-upnext-btn').forEach(function (b) {
+      b.addEventListener('click', function (e) {
+        e.stopPropagation();
+        openId = b.getAttribute('data-next');
+        render();
+        var el = document.getElementById('lesson-' + openId);
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
     });
   }

@@ -531,7 +531,12 @@ html { scrollbar-color: rgba(13,59,30,.35) transparent; }
 .ifl-done-btn{ min-height:44px; padding:10px 24px; border-radius:100px; border:1px solid var(--ifx-gold); background:transparent; color:var(--green-deep,#0d3b1e); font:inherit; font-weight:700; cursor:pointer; transition:background .2s,color .2s; }
 .ifl-done-btn:hover{ background:var(--ifx-gold); }
 .ifl-done-btn.done{ background:#2e8b57; border-color:#2e8b57; color:#fff; }
-
+.ifl-upnext{ margin-top:18px; padding:14px 18px; border-radius:12px; background:var(--cream-light,#fdf9f3); border:1px solid rgba(200,146,42,.25); display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+.ifl-upnext-lbl{ font-size:.78rem; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--ifx-gold,#c8922a); white-space:nowrap; }
+.ifl-upnext-btn{ min-height:40px; padding:7px 18px; border-radius:100px; border:1.5px solid var(--green-deep,#0d3b1e); background:transparent; color:var(--green-deep,#0d3b1e); font:inherit; font-weight:600; cursor:pointer; transition:background .2s,color .2s; text-align:left; }
+.ifl-upnext-btn:hover{ background:var(--green-deep,#0d3b1e); color:#fff; }
+.ifl-upnext-btn:focus-visible{ outline:2px solid var(--ifx-gold,#c8922a); outline-offset:2px; }
+.ifl-all-done{ font-weight:700; color:var(--green-deep,#0d3b1e); font-size:1rem; padding:14px 18px; border-radius:12px; background:rgba(46,139,87,.1); border:1px solid rgba(46,139,87,.3); }
 
 /* Learner Profile / Achievements / Roadmap modal (if-profile.js) */
 #ifxp{
