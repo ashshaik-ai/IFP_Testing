@@ -122,7 +122,7 @@
       var state = d ? 'done' : (i === firstInc || firstInc < 0 ? 'current' : (i > firstInc ? 'locked' : 'current'));
       var badge = d ? '✓' : (state === 'current' ? '▶' : '🔒');
       var tier = TIERS[Math.min(3, Math.floor(i * 4 / N))];
-      return '<div class="ifl-item ifl-' + state + (open ? ' open' : '') + '" data-id="' + L.id + '">'
+      return '<div class="ifl-item ifl-' + state + (open ? ' open' : '') + '" id="lesson-' + L.id + '" data-id="' + L.id + '">'
         + '<div class="ifl-head" role="button" tabindex="0" aria-expanded="' + open + '"><span class="ifl-num">' + badge + '</span>'
         + '<span class="ifl-h">' + (te ? L.title_te : L.title_en) + '<span class="ifl-tier">' + tier + '</span></span>'
         + '<svg class="ifl-chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>'
