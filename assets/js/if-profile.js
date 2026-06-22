@@ -143,8 +143,9 @@
     });
     document.body.appendChild(ov);
   }
-  function open() { build(); render(); ov.classList.add('on'); var x = ov.querySelector('.ifpr-x'); if (x) setTimeout(function () { x.focus(); }, 30); }
-  function close() { if (ov) ov.classList.remove('on'); var hud = document.getElementById('ifxp'); if (hud) hud.focus(); }
+  var _trigger = null;
+  function open() { _trigger = document.activeElement; build(); render(); ov.classList.add('on'); var x = ov.querySelector('.ifpr-x'); if (x) setTimeout(function () { x.focus(); }, 30); }
+  function close() { if (ov) ov.classList.remove('on'); var t = _trigger; _trigger = null; if (t && t.focus) { t.focus(); } else { var hud = document.getElementById('ifxp'); if (hud) hud.focus(); } }
 
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
   window.IFProfile = { open: open, close: close };

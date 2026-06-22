@@ -43,7 +43,7 @@
 
 ## F. Accessibility
 27. ◐ MOSTLY DONE (2026-06) — Accessibility: ✓/✗ on quiz answers (no colour-only), `aria-live` feedback, focus-visible outlines, modal focus-return + focus-in, **and a full Tab focus-trap inside the search & profile modals**. **Remaining (needs rendering):** complete ARIA labelling sweep + colour-contrast audit at WCAG AA.
-28. 🟡 S — Focus-trap + `Esc` already on modals; verify focus return to trigger on close.
+28. ✅ DONE (2026-06) — **Focus return to trigger on modal close**: both `if-profile.js` and `if-search.js` now save `document.activeElement` at open time and restore it on close (`_trigger` pattern). Profile previously always focused the XP HUD; search previously hardcoded nav button or FAB. Both now return to whatever opened them.
 29. 🟡 S — Colour-contrast audit of muted text on cream/green backgrounds.
 30. ✅ DONE (2026-06) — **prefers-reduced-motion verified**: confetti guarded by `RM` flag in `if-engage.js`; kidBob/kidTwinkle CSS animations have `@media(prefers-reduced-motion:reduce){animation:none}` guard; no SMIL `<animate>` elements exist in the codebase — all CSS @keyframes animations have guards.
 

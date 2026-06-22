@@ -194,7 +194,8 @@
     if (action === 'share') { e.preventDefault(); close(); if (window.IFShare) IFShare.sharePage(); }
   }
 
-  function open() { if (!ov) return; ov.classList.add('on'); paintChrome(); setTimeout(function () { if (input) input.focus(); }, 30); }
+  var _trigger = null;
+  function open() { if (!ov) return; _trigger = document.activeElement; ov.classList.add('on'); paintChrome(); setTimeout(function () { if (input) input.focus(); }, 30); }
   function openWithQuery(q, type) {
     open();
     if (type) activeType = type;
@@ -205,6 +206,8 @@
   }
   function close() {
     if (ov) ov.classList.remove('on');
+    var t = _trigger; _trigger = null;
+    if (t && t.focus && t !== input) { t.focus(); return; }
     var navSearch = document.querySelector('.nav-search-btn');
     var fab = document.getElementById('ifsr-fab');
     if (navSearch) navSearch.focus();
