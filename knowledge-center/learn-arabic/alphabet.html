@@ -63,34 +63,44 @@ body>nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,59,3
 /* LETTER GRID */
 .ls-white{background:var(--white)}
 .letter-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:12px;margin-top:36px;direction:rtl}
-.letter-card{background:var(--cream);border:1px solid var(--border);border-radius:var(--radius,16px);padding:18px 10px 14px;text-align:center;cursor:pointer;transition:transform .22s cubic-bezier(.16,1,.3,1),box-shadow .22s,border-color .22s;position:relative;overflow:hidden;direction:ltr}
+.letter-card{background:var(--cream);border:1px solid var(--border);border-radius:var(--radius,16px);padding:20px 10px 18px;text-align:center;cursor:pointer;transition:transform .22s cubic-bezier(.16,1,.3,1),box-shadow .22s,border-color .22s;position:relative;overflow:hidden;direction:ltr}
 .letter-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--gold-light));transform:scaleX(0);transition:transform .28s}
-.letter-card:hover{transform:translateY(-5px);box-shadow:0 12px 28px rgba(13,59,30,0.12);border-color:rgba(200,146,42,0.45)}
-.letter-card:hover::before{transform:scaleX(1)}
+.letter-card:hover,.letter-card.active{transform:translateY(-5px);box-shadow:0 12px 28px rgba(13,59,30,0.12);border-color:rgba(200,146,42,0.55)}
+.letter-card.active{background:rgba(200,146,42,0.06)}
+.letter-card:hover::before,.letter-card.active::before{transform:scaleX(1)}
 .lc-letter{font-family:'Amiri',serif;font-size:38px;color:var(--green-deep);line-height:1.1;display:block;direction:rtl;font-weight:700}
-.lc-name{font-family:'DM Sans',sans-serif;font-size: 12px;color:var(--text-muted);margin-top:5px;display:block;font-weight:500;line-height:1.4;word-break:break-word}
-.lc-tr{font-family:serif;font-style:italic;font-size: 12px;color:var(--gold);display:block;margin-top:2px;line-height:1.3;overflow-wrap:break-word;word-break:break-word}
-.lc-play{display:inline-flex;align-items:center;justify-content:center;margin-top:8px;width:32px;height:32px;border-radius:50%;background:rgba(200,146,42,0.12);border:1px solid rgba(200,146,42,0.35);color:var(--gold);cursor:pointer;transition:background .18s,transform .18s;font-size:13px}
-.lc-play:hover{background:rgba(200,146,42,0.28);transform:scale(1.1)}
-.lc-play.playing{background:rgba(200,146,42,0.35);animation:pulse-gold .6s ease infinite alternate}
-@keyframes pulse-gold{from{box-shadow:0 0 0 0 rgba(200,146,42,0.4)}to{box-shadow:0 0 0 6px rgba(200,146,42,0)}}
-/* Audio play button inside detail panel */
-.ld-play{display:inline-flex;align-items:center;gap:8px;margin-top:12px;padding:9px 18px;border-radius:8px;background:rgba(200,146,42,0.15);border:1px solid rgba(200,146,42,0.4);color:var(--gold-light);font-size:13px;font-weight:600;cursor:pointer;transition:background .18s}
-.ld-play:hover{background:rgba(200,146,42,0.28)}
+.lc-name{font-family:'DM Sans',sans-serif;font-size:11px;color:var(--text-muted);margin-top:5px;display:block;font-weight:600;line-height:1.4;word-break:break-word;letter-spacing:.01em}
+.lc-tr{font-family:serif;font-style:italic;font-size:11px;color:var(--gold);display:block;margin-top:2px;line-height:1.3}
 
-/* LETTER DETAIL PANEL */
-.letter-detail{background:var(--green-deep);border-radius:16px;padding:28px 32px;margin-top:24px;display:none;border:1px solid rgba(200,146,42,0.25)}
-.letter-detail.ld-open{display:block}
-.ld-top{display:flex;align-items:center;gap:24px;flex-wrap:wrap;margin-bottom:20px}
-.ld-big{font-family:'Amiri',serif;font-size:72px;color:var(--gold-light);direction:rtl;line-height:1;flex-shrink:0}
-.ld-info h3{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--white);margin-bottom:4px}
-.ld-info p{font-size:13.5px;color:rgba(245,230,192,0.65);line-height:1.7}
-.ld-forms{display:flex;gap:16px;flex-wrap:wrap}
-.ld-form{text-align:center;background:rgba(255,255,255,0.05);border:1px solid rgba(200,146,42,0.18);border-radius:10px;padding:12px 16px;min-width:70px}
-.ld-form-ar{font-family:'Amiri',serif;font-size:26px;color:var(--gold-light);direction:rtl;display:block;line-height:1.2}
-.ld-form-label{font-size: 12px;color:rgba(245,230,192,0.82);letter-spacing:1px;text-transform:uppercase;display:block;margin-top:4px}
-.ld-close{display:flex;align-items:center;justify-content:center;gap:6px;min-height:44px;background:transparent;border:1px solid rgba(200,146,42,0.3);color:rgba(245,230,192,0.65);font-size:12px;font-family:'DM Sans',sans-serif;padding:7px 18px;border-radius:100px;cursor:pointer;transition:color .18s,border-color .18s;margin-top:16px}
-.ld-close:hover{color:var(--gold-light);border-color:var(--gold-light)}
+/* LETTER POPOVER */
+#lp-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.52);z-index:190;opacity:0;pointer-events:none;transition:opacity .22s}
+#lp-backdrop.open{opacity:1;pointer-events:auto}
+#lp-pop{position:fixed;z-index:195;background:var(--green-deep);border:1px solid rgba(200,146,42,0.38);border-radius:18px;padding:22px 24px 20px;max-width:390px;width:calc(100vw - 32px);box-shadow:0 22px 60px rgba(0,0,0,0.55),0 0 0 1px rgba(200,146,42,0.12);transform:scale(0.94) translateY(10px);opacity:0;pointer-events:none;transition:transform .26s cubic-bezier(.16,1,.3,1),opacity .2s}
+#lp-pop.open{transform:none;opacity:1;pointer-events:auto}
+.lp-close{position:absolute;top:10px;right:12px;background:none;border:none;color:rgba(245,230,192,0.5);font-size:19px;cursor:pointer;padding:6px 10px;line-height:1;border-radius:6px;transition:color .18s}
+.lp-close:hover{color:var(--gold-light)}
+.lp-head{display:flex;align-items:flex-start;gap:18px;margin-bottom:16px}
+.lp-arabic{font-family:'Amiri',serif;font-size:76px;color:var(--gold-light);direction:rtl;line-height:1;flex-shrink:0;text-shadow:0 2px 16px rgba(200,146,42,0.3)}
+.lp-meta{flex:1;min-width:0}
+.lp-meta-name{font-family:'Playfair Display',serif;font-size:21px;font-weight:700;color:var(--white);line-height:1.2;margin-bottom:3px}
+.lp-meta-tr{font-size:12.5px;color:var(--gold);font-style:italic;margin-bottom:8px}
+.lp-meta-note{font-size:12.5px;color:rgba(245,230,192,0.7);line-height:1.68}
+.lp-divider{height:1px;background:rgba(200,146,42,0.18);margin:14px 0}
+.lp-forms-label{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(245,230,192,0.45);margin-bottom:8px}
+.lp-forms{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px}
+.lp-form{background:rgba(255,255,255,0.05);border:1px solid rgba(200,146,42,0.15);border-radius:9px;padding:10px 6px;text-align:center}
+.lp-form-ar{font-family:'Amiri',serif;font-size:24px;color:var(--gold-light);display:block;direction:rtl;line-height:1.35}
+.lp-form-lbl{font-size:9px;color:rgba(245,230,192,0.48);text-transform:uppercase;letter-spacing:.07em;display:block;margin-top:3px}
+.lp-play{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;padding:11px 16px;border-radius:10px;background:rgba(200,146,42,0.13);border:1px solid rgba(200,146,42,0.4);color:var(--gold-light);font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:background .18s}
+.lp-play:hover{background:rgba(200,146,42,0.26)}
+.lp-play.playing{background:rgba(200,146,42,0.26);animation:lp-pulse .6s ease infinite alternate}
+@keyframes lp-pulse{from{box-shadow:0 0 0 0 rgba(200,146,42,0.35)}to{box-shadow:0 0 0 6px rgba(200,146,42,0)}}
+@media(max-width:600px){
+  #lp-pop{position:fixed;bottom:0;left:0!important;right:0;top:auto!important;max-width:100%;width:100%;border-radius:22px 22px 0 0;transform:translateY(24px);max-height:82vh;overflow-y:auto;padding:24px 20px 32px}
+  #lp-pop.open{transform:none}
+  .lp-arabic{font-size:60px}
+  .lp-meta-name{font-size:18px}
+}
 
 /* FORMS TABLE */
 .forms-section{background:var(--cream)}
@@ -199,19 +209,29 @@ body>nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,59,3
       <p class="sec-lead" data-te="అక్షరం పై నొక్కండి — పూర్తి వివరాలు చూడండి." data-en="Tap any letter to see its name, forms, and pronunciation details.">అక్షరం పై నొక్కండి — పూర్తి వివరాలు చూడండి.</p>
     </div>
     <div class="letter-grid reveal" style="transition-delay:.1s" id="letter-grid" role="list"></div>
-    <div class="letter-detail" id="letter-detail">
-      <div class="ld-top">
-        <div class="ld-big" id="ld-big" dir="rtl" lang="ar">أ</div>
-        <div class="ld-info">
-          <h3 id="ld-name-en" data-te="అలిఫ్" data-en="Alif">అలిఫ్</h3>
-          <p id="ld-note" data-te="అరబిక్ అక్షరమాలలో మొదటి అక్షరం." data-en="The first letter of the Arabic alphabet.">అరబిక్ అక్షరమాలలో మొదటి అక్షరం.</p>
-        </div>
-      </div>
-      <div class="ld-forms" id="ld-forms"></div>
-      <button type="button" class="ld-close" id="ld-close" data-te="మూసుకోండి" data-en="Close">✕ Close</button>
-    </div>
   </div>
 </section>
+
+<!-- LETTER POPOVER (floats near clicked card) -->
+<div id="lp-backdrop" aria-hidden="true"></div>
+<div id="lp-pop" role="dialog" aria-modal="true" aria-labelledby="lp-name" aria-hidden="true">
+  <button type="button" class="lp-close" id="lp-close" aria-label="Close letter detail">✕</button>
+  <div class="lp-head">
+    <div class="lp-arabic" id="lp-arabic" dir="rtl" lang="ar">أ</div>
+    <div class="lp-meta">
+      <div class="lp-meta-name" id="lp-name">Alif</div>
+      <div class="lp-meta-tr" id="lp-tr">ā / ʾ</div>
+      <div class="lp-meta-note" id="lp-note"></div>
+    </div>
+  </div>
+  <div class="lp-divider"></div>
+  <div class="lp-forms-label" id="lp-forms-label">Letter Forms</div>
+  <div class="lp-forms" id="lp-forms"></div>
+  <button type="button" class="lp-play" id="lp-play">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+    <span id="lp-play-label">Hear Pronunciation</span>
+  </button>
+</div>
 
 <!-- LETTER FORMS -->
 <section class="ls forms-section" id="forms">
@@ -302,33 +322,33 @@ body>nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,59,3
 /* ── LETTER DATA ── */
 var LETTERS=[
   {ar:'أ',name:'Alif',name_te:'అలిఫ్',tr:'ā / ʾ',iso:'أ',ini:'أـ',med:'ـأـ',fin:'ـأ',audio:'alif',note:'The first letter. Can represent a long "aa" vowel or a glottal stop (ʾ).',note_te:'మొదటి అక్షరం. దీర్ఘ "ఆ" స్వరం లేదా గొంతులో కొద్ది క్షణం ఆగే హంజా శబ్దంగా పనిచేస్తుంది.'},
-  {ar:'ب',name:'Ba',name_te:'బా',tr:'b',iso:'ب',ini:'بـ',med:'ـبـ',fin:'ـب',audio:'ba',note:'Pronounced like "b" in "book". One dot below.',note_te:'తెలుగు "బ" వలె పలుకుతారు. కింద ఒక చుక్క.'},
-  {ar:'ت',name:'Ta',name_te:'తా',tr:'t',iso:'ت',ini:'تـ',med:'ـتـ',fin:'ـت',audio:'ta',note:'Pronounced like "t" in "top". Two dots above.',note_te:'తెలుగు "త" వలె పలుకుతారు. పైన రెండు చుక్కలు.'},
-  {ar:'ث',name:'Tha',name_te:'థా',tr:'th',iso:'ث',ini:'ثـ',med:'ـثـ',fin:'ـث',audio:'tha',note:'Like "th" in "think". Three dots above.',note_te:'తెలుగు "థ" వలె పలుకుతారు. పైన మూడు చుక్కలు.'},
-  {ar:'ج',name:'Jim',name_te:'జీమ్',tr:'j',iso:'ج',ini:'جـ',med:'ـجـ',fin:'ـج',audio:'jiim',note:'Like "j" in "just". One dot inside the curve.',note_te:'తెలుగు "జ" వలె పలుకుతారు. వక్రం లోపల ఒక చుక్క.'},
-  {ar:'ح',name:'Deep Ha',name_te:'డీప్ హా',tr:'h',iso:'ح',ini:'حـ',med:'ـحـ',fin:'ـح',audio:'ha_deep',note:'A breathy "h" from the throat — no dot.',note_te:'గొంతు లోతు నుండి వచ్చే "హ" శ్వాస శబ్దం — చుక్క లేదు.'},
-  {ar:'خ',name:'Kha',name_te:'ఖా',tr:'kh',iso:'خ',ini:'خـ',med:'ـخـ',fin:'ـخ',audio:'kha',note:'Like the "ch" in Scottish "loch". One dot above.',note_te:'గొంతు వెనుక నుండి వచ్చే "ఖ" శబ్దం. పైన ఒక చుక్క.'},
-  {ar:'د',name:'Dal',name_te:'దాల్',tr:'d',iso:'د',ini:'دـ',med:'ـدـ',fin:'ـد',audio:'dal',note:'Like "d" in "door". Does not connect to the next letter.',note_te:'తెలుగు "డ" వలె పలుకుతారు. తదుపరి అక్షరంతో కలవదు.'},
-  {ar:'ذ',name:'Dhal',name_te:'ధాల్',tr:'dh',iso:'ذ',ini:'ذـ',med:'ـذـ',fin:'ـذ',audio:'dhal',note:'Like "th" in "the". One dot above. Does not connect forward.',note_te:'జ మరియు ద మధ్య శబ్దం. పైన ఒక చుక్క. ముందుకు కలవదు.'},
-  {ar:'ر',name:'Ra',name_te:'రా',tr:'r',iso:'ر',ini:'رـ',med:'ـرـ',fin:'ـر',audio:'ra',note:'A rolled "r" sound. Does not connect to the next letter.',note_te:'నాలుక వంచే "ర" శబ్దం. తదుపరి అక్షరంతో కలవదు.'},
-  {ar:'ز',name:'Zay',name_te:'జే',tr:'z',iso:'ز',ini:'زـ',med:'ـزـ',fin:'ـز',audio:'zay',note:'Like "z" in "zebra". One dot above rā. Does not connect forward.',note_te:'తెలుగు "జ" వలె పలుకుతారు. రా పైన ఒక చుక్క. ముందుకు కలవదు.'},
-  {ar:'س',name:'Sin',name_te:'సీన్',tr:'s',iso:'س',ini:'سـ',med:'ـسـ',fin:'ـس',audio:'siin',note:'Like "s" in "sun". Three "teeth" with no dots.',note_te:'తెలుగు "స" వలె పలుకుతారు. మూడు "పళ్ళు" ఉంటాయి, చుక్కలు లేవు.'},
-  {ar:'ش',name:'Shin',name_te:'శీన్',tr:'sh',iso:'ش',ini:'شـ',med:'ـشـ',fin:'ـش',audio:'shiin',note:'Like "sh" in "ship". Three dots above sīn.',note_te:'తెలుగు "శ" వలె పలుకుతారు. సీన్ పైన మూడు చుక్కలు.'},
-  {ar:'ص',name:'Saad',name_te:'స్వాద్',tr:'s',iso:'ص',ini:'صـ',med:'ـصـ',fin:'ـص',audio:'saad',note:'Emphatic "s" — tongue presses back. Heavier than sīn.',note_te:'నొక్కుకున్న "స" శబ్దం — నాలుక వెనుకకు వెళ్ళి పలుకుతారు. సీన్ కంటే బరువుగా.'},
-  {ar:'ض',name:'Dad',name_te:'జ్వాద్',tr:'d',iso:'ض',ini:'ضـ',med:'ـضـ',fin:'ـض',audio:'daad',note:'Emphatic "d". One dot above. The most unique Arabic sound.',note_te:'నొక్కుకున్న "డ" శబ్దం. పైన ఒక చుక్క. అరబిక్‌లో అత్యంత ప్రత్యేకమైన శబ్దం.'},
-  {ar:'ط',name:'Heavy Ta',name_te:'హెవీ తా',tr:'t',iso:'ط',ini:'طـ',med:'ـطـ',fin:'ـط',audio:'ta_heavy',note:'Emphatic "t". Pronounced from farther back in the mouth.',note_te:'నొక్కుకున్న "ట" శబ్దం. నోటి లోపల భాగం నుండి పలుకుతారు.'},
-  {ar:'ظ',name:'Heavy Zha',name_te:'హెవీ ఝా',tr:'z',iso:'ظ',ini:'ظـ',med:'ـظـ',fin:'ـظ',audio:'zha_heavy',note:'Emphatic "dh". One dot above ṭā. Deep throat sound.',note_te:'నొక్కుకున్న "ధ" శబ్దం. తా పైన ఒక చుక్క. గొంతు లోతు శబ్దం.'},
-  {ar:'ع',name:'Ayn',name_te:'ఐన్',tr:'a',iso:'ع',ini:'عـ',med:'ـعـ',fin:'ـع',audio:'ayn',note:"Unique Arabic sound — a voiced constriction of the throat. No equivalent in English.",note_te:'అరబిక్‌కు ప్రత్యేకమైన శబ్దం — గొంతు సంకోచంతో వచ్చే స్వర శబ్దం. తెలుగులో సమానమైనది లేదు.'},
+  {ar:'ب',name:'Bāʾ',name_te:'బా',tr:'b',iso:'ب',ini:'بـ',med:'ـبـ',fin:'ـب',audio:'ba',note:'Pronounced like "b" in "book". One dot below.',note_te:'తెలుగు "బ" వలె పలుకుతారు. కింద ఒక చుక్క.'},
+  {ar:'ت',name:'Tāʾ',name_te:'తా',tr:'t',iso:'ت',ini:'تـ',med:'ـتـ',fin:'ـت',audio:'ta',note:'Pronounced like "t" in "top". Two dots above.',note_te:'తెలుగు "త" వలె పలుకుతారు. పైన రెండు చుక్కలు.'},
+  {ar:'ث',name:'Thāʾ',name_te:'థా',tr:'th',iso:'ث',ini:'ثـ',med:'ـثـ',fin:'ـث',audio:'tha',note:'Like "th" in "think". Three dots above.',note_te:'తెలుగు "థ" వలె పలుకుతారు. పైన మూడు చుక్కలు.'},
+  {ar:'ج',name:'Jīm',name_te:'జీమ్',tr:'j',iso:'ج',ini:'جـ',med:'ـجـ',fin:'ـج',audio:'jiim',note:'Like "j" in "just". One dot inside the curve.',note_te:'తెలుగు "జ" వలె పలుకుతారు. వక్రం లోపల ఒక చుక్క.'},
+  {ar:'ح',name:'Ḥāʾ',name_te:'హా',tr:'ḥ',iso:'ح',ini:'حـ',med:'ـحـ',fin:'ـح',audio:'ha_deep',note:'Pharyngeal H — articulated deep in the throat, distinct from the lighter هـ. No dot.',note_te:'ఫారింజియల్ హా — గొంతు లోపల నుండి వచ్చే "హ". తేలికపాటి هـ కంటే భిన్నం. చుక్క లేదు.'},
+  {ar:'خ',name:'Khāʾ',name_te:'ఖా',tr:'kh',iso:'خ',ini:'خـ',med:'ـخـ',fin:'ـخ',audio:'kha',note:'Like the "ch" in Scottish "loch". One dot above.',note_te:'గొంతు వెనుక నుండి వచ్చే "ఖ" శబ్దం. పైన ఒక చుక్క.'},
+  {ar:'د',name:'Dāl',name_te:'దాల్',tr:'d',iso:'د',ini:'دـ',med:'ـدـ',fin:'ـد',audio:'dal',note:'Like "d" in "door". Does not connect to the next letter.',note_te:'తెలుగు "డ" వలె పలుకుతారు. తదుపరి అక్షరంతో కలవదు.'},
+  {ar:'ذ',name:'Dhāl',name_te:'ధాల్',tr:'dh',iso:'ذ',ini:'ذـ',med:'ـذـ',fin:'ـذ',audio:'dhal',note:'Like "th" in "the". One dot above. Does not connect forward.',note_te:'జ మరియు ద మధ్య శబ్దం. పైన ఒక చుక్క. ముందుకు కలవదు.'},
+  {ar:'ر',name:'Rāʾ',name_te:'రా',tr:'r',iso:'ر',ini:'رـ',med:'ـرـ',fin:'ـر',audio:'ra',note:'A rolled "r" sound. Does not connect to the next letter.',note_te:'నాలుక వంచే "ర" శబ్దం. తదుపరి అక్షరంతో కలవదు.'},
+  {ar:'ز',name:'Zayn',name_te:'జే',tr:'z',iso:'ز',ini:'زـ',med:'ـزـ',fin:'ـز',audio:'zay',note:'Like "z" in "zebra". One dot above rā. Does not connect forward.',note_te:'తెలుగు "జ" వలె పలుకుతారు. రా పైన ఒక చుక్క. ముందుకు కలవదు.'},
+  {ar:'س',name:'Sīn',name_te:'సీన్',tr:'s',iso:'س',ini:'سـ',med:'ـسـ',fin:'ـس',audio:'siin',note:'Like "s" in "sun". Three "teeth" with no dots.',note_te:'తెలుగు "స" వలె పలుకుతారు. మూడు "పళ్ళు" ఉంటాయి, చుక్కలు లేవు.'},
+  {ar:'ش',name:'Shīn',name_te:'శీన్',tr:'sh',iso:'ش',ini:'شـ',med:'ـشـ',fin:'ـش',audio:'shiin',note:'Like "sh" in "ship". Three dots above sīn.',note_te:'తెలుగు "శ" వలె పలుకుతారు. సీన్ పైన మూడు చుక్కలు.'},
+  {ar:'ص',name:'Ṣād',name_te:'స్వాద్',tr:'s',iso:'ص',ini:'صـ',med:'ـصـ',fin:'ـص',audio:'saad',note:'Emphatic "s" — tongue presses back. Heavier than sīn.',note_te:'నొక్కుకున్న "స" శబ్దం — నాలుక వెనుకకు వెళ్ళి పలుకుతారు. సీన్ కంటే బరువుగా.'},
+  {ar:'ض',name:'Ḍād',name_te:'ద్వాద్',tr:'ḍ',iso:'ض',ini:'ضـ',med:'ـضـ',fin:'ـض',audio:'daad',note:'Emphatic D — the letter that names the Arabic language, often called "the language of Ḍād." Tongue presses the side teeth firmly.',note_te:'ఎంఫాటిక్ "డ" — అరబిక్ భాషను "ద్వాద్ భాష" అంటారు. నాలుక పక్క పళ్ళకు గట్టిగా నొక్కబడుతుంది.'},
+  {ar:'ط',name:'Ṭāʾ',name_te:'తా',tr:'ṭ',iso:'ط',ini:'طـ',med:'ـطـ',fin:'ـط',audio:'ta_heavy',note:'Emphatic T — tongue pressed against the roof of the mouth with the back of the mouth raised.',note_te:'ఎంఫాటిక్ "ట" — నాలుక అంగిలికి నొక్కి, నోటి వెనుక భాగాన్ని పైకెత్తి పలుకుతారు.'},
+  {ar:'ظ',name:'Ẓāʾ',name_te:'ఝా',tr:'ẓ',iso:'ظ',ini:'ظـ',med:'ـظـ',fin:'ـظ',audio:'zha_heavy',note:'Emphatic Dh — the emphatic counterpart of Dhāl (ذ). One dot above Ṭāʾ.',note_te:'ఎంఫాటిక్ "ధ" — ధాల్ (ذ) కు ఎంఫాటిక్ ప్రతిరూపం. తాహ్ పైన ఒక చుక్క.'},
+  {ar:'ع',name:'ʿAyn',name_te:'ఐన్',tr:'a',iso:'ع',ini:'عـ',med:'ـعـ',fin:'ـع',audio:'ayn',note:"Unique Arabic sound — a voiced constriction of the throat. No equivalent in English.",note_te:'అరబిక్‌కు ప్రత్యేకమైన శబ్దం — గొంతు సంకోచంతో వచ్చే స్వర శబ్దం. తెలుగులో సమానమైనది లేదు.'},
   {ar:'غ',name:'Ghayn',name_te:'గైన్',tr:'gh',iso:'غ',ini:'غـ',med:'ـغـ',fin:'ـغ',audio:'ghayn',note:'Like a gargled "r" (French "r"). One dot above ʿayn.',note_te:'గొంతు లోతు నుండి గురగురమనే "ఘ" శబ్దం. ఐన్ పైన ఒక చుక్క.'},
-  {ar:'ف',name:'Fa',name_te:'ఫే',tr:'f',iso:'ف',ini:'فـ',med:'ـفـ',fin:'ـف',audio:'fa',note:'Like "f" in "fan". One dot above the circle.',note_te:'తెలుగు "ఫ" వలె పలుకుతారు. వృత్తం పైన ఒక చుక్క.'},
-  {ar:'ق',name:'Qaf',name_te:'కాఫ్',tr:'q',iso:'ق',ini:'قـ',med:'ـقـ',fin:'ـق',audio:'qaaf',note:'Deep "k" sound from the back of the throat. Two dots above.',note_te:'గొంతు వెనుక భాగం నుండి వచ్చే "క" శబ్దం. పైన రెండు చుక్కలు.'},
-  {ar:'ك',name:'Kaf',name_te:'కాఫ్',tr:'k',iso:'ك',ini:'كـ',med:'ـكـ',fin:'ـك',audio:'kaaf',note:'Like "k" in "king". Lighter than qāf.',note_te:'తెలుగు "క" వలె పలుకుతారు. కాఫ్ కంటే తేలికగా ఉంటుంది.'},
-  {ar:'ل',name:'Lam',name_te:'లామ్',tr:'l',iso:'ل',ini:'لـ',med:'ـلـ',fin:'ـل',audio:'laam',note:'Like "l" in "lamp".',note_te:'తెలుగు "ల" వలె పలుకుతారు.'},
-  {ar:'م',name:'Mim',name_te:'మీమ్',tr:'m',iso:'م',ini:'مـ',med:'ـمـ',fin:'ـم',audio:'miim',note:'Like "m" in "moon".',note_te:'తెలుగు "మ" వలె పలుకుతారు.'},
-  {ar:'ن',name:'Nun',name_te:'నూన్',tr:'n',iso:'ن',ini:'نـ',med:'ـنـ',fin:'ـن',audio:'nuun',note:'Like "n" in "noon". One dot below the curve.',note_te:'తెలుగు "న" వలె పలుకుతారు. వక్రం కింద ఒక చుక్క.'},
-  {ar:'ه',name:'Ha',name_te:'హే',tr:'h',iso:'ه',ini:'هـ',med:'ـهـ',fin:'ـه',audio:'ha',note:'Like "h" in "house". A light breathy sound.',note_te:'తెలుగు "హ" వలె పలుకుతారు. తేలికపాటి శ్వాస శబ్దం.'},
-  {ar:'و',name:'Waw',name_te:'వావ్',tr:'w / oo',iso:'و',ini:'وـ',med:'ـوـ',fin:'ـو',audio:'waw',note:'Like "w" in "water" or long "oo". Does not connect forward.',note_te:'తెలుగు "వ" వలె లేదా దీర్ఘ "ఊ". ముందుకు కలవదు.'},
-  {ar:'ي',name:'Ya',name_te:'యే',tr:'y / ee',iso:'ي',ini:'يـ',med:'ـيـ',fin:'ـي',audio:'ya',note:'Like "y" in "yes" or long "ee". Two dots below.',note_te:'తెలుగు "య" వలె లేదా దీర్ఘ "ఈ". కింద రెండు చుక్కలు.'}
+  {ar:'ف',name:'Fāʾ',name_te:'ఫే',tr:'f',iso:'ف',ini:'فـ',med:'ـفـ',fin:'ـف',audio:'fa',note:'Like "f" in "fan". One dot above the circle.',note_te:'తెలుగు "ఫ" వలె పలుకుతారు. వృత్తం పైన ఒక చుక్క.'},
+  {ar:'ق',name:'Qāf',name_te:'కాఫ్',tr:'q',iso:'ق',ini:'قـ',med:'ـقـ',fin:'ـق',audio:'qaaf',note:'Deep "k" sound from the back of the throat. Two dots above.',note_te:'గొంతు వెనుక భాగం నుండి వచ్చే "క" శబ్దం. పైన రెండు చుక్కలు.'},
+  {ar:'ك',name:'Kāf',name_te:'కాఫ్',tr:'k',iso:'ك',ini:'كـ',med:'ـكـ',fin:'ـك',audio:'kaaf',note:'Like "k" in "king". Lighter than qāf.',note_te:'తెలుగు "క" వలె పలుకుతారు. కాఫ్ కంటే తేలికగా ఉంటుంది.'},
+  {ar:'ل',name:'Lām',name_te:'లామ్',tr:'l',iso:'ل',ini:'لـ',med:'ـلـ',fin:'ـل',audio:'laam',note:'Like "l" in "lamp".',note_te:'తెలుగు "ల" వలె పలుకుతారు.'},
+  {ar:'م',name:'Mīm',name_te:'మీమ్',tr:'m',iso:'م',ini:'مـ',med:'ـمـ',fin:'ـم',audio:'miim',note:'Like "m" in "moon".',note_te:'తెలుగు "మ" వలె పలుకుతారు.'},
+  {ar:'ن',name:'Nūn',name_te:'నూన్',tr:'n',iso:'ن',ini:'نـ',med:'ـنـ',fin:'ـن',audio:'nuun',note:'Like "n" in "noon". One dot below the curve.',note_te:'తెలుగు "న" వలె పలుకుతారు. వక్రం కింద ఒక చుక్క.'},
+  {ar:'ه',name:'Hāʾ',name_te:'హే',tr:'h',iso:'ه',ini:'هـ',med:'ـهـ',fin:'ـه',audio:'ha',note:'Like "h" in "house". A light breathy sound.',note_te:'తెలుగు "హ" వలె పలుకుతారు. తేలికపాటి శ్వాస శబ్దం.'},
+  {ar:'و',name:'Wāw',name_te:'వావ్',tr:'w / oo',iso:'و',ini:'وـ',med:'ـوـ',fin:'ـو',audio:'waw',note:'Like "w" in "water" or long "oo". Does not connect forward.',note_te:'తెలుగు "వ" వలె లేదా దీర్ఘ "ఊ". ముందుకు కలవదు.'},
+  {ar:'ي',name:'Yāʾ',name_te:'యే',tr:'y / ee',iso:'ي',ini:'يـ',med:'ـيـ',fin:'ـي',audio:'ya',note:'Like "y" in "yes" or long "ee". Two dots below.',note_te:'తెలుగు "య" వలె లేదా దీర్ఘ "ఈ". కింద రెండు చుక్కలు.'}
 ];
 
 /* ── LANG ── */
@@ -346,32 +366,29 @@ function applyLang(l){
   localStorage.setItem('if-lang',l);
   if(openIdx>=0){
     var lt=LETTERS[openIdx];
-    var nameEnEl=document.getElementById('ld-name-en');
-    if(nameEnEl)nameEnEl.textContent=(l==='te'?lt.name_te:lt.name)+' — '+lt.tr;
-    var noteEl=document.getElementById('ld-note');
-    if(noteEl)noteEl.textContent=l==='te'?lt.note_te:lt.note;
-    var formsEl=document.getElementById('ld-forms');
-    if(formsEl){
-      var FL={te:['ఒంటరి','ప్రారంభం','మధ్య','చివర'],en:['Isolated','Initial','Medial','Final']};
-      formsEl.querySelectorAll('.ld-form-label').forEach(function(el,j){el.textContent=FL[l][j];});
-    }
+    document.getElementById('lp-name').textContent=l==='te'?lt.name_te:lt.name;
+    document.getElementById('lp-tr').textContent=lt.tr;
+    document.getElementById('lp-note').textContent=l==='te'?lt.note_te:lt.note;
+    document.getElementById('lp-forms-label').textContent=l==='te'?'అక్షర రూపాలు':'Letter Forms';
+    document.getElementById('lp-play-label').textContent=l==='te'?'ఉచ్చారణ వినండి':'Hear Pronunciation';
+    rebuildForms(lt,l);
   }
 }
-function toggleLang(){applyLang(lang==='te'?'en':'te')}
+function toggleLang(){applyLang(lang==='te'?'en':'te');}
 window.toggleLang=toggleLang;
 
 /* ── AUDIO ── */
 var _audioEl=null;
 function playLetterAudio(fname,btn){
   if(_audioEl){_audioEl.pause();_audioEl.currentTime=0;}
-  document.querySelectorAll('.lc-play.playing,.ld-play.playing').forEach(function(b){b.classList.remove('playing');});
+  var pb=document.getElementById('lp-play');
+  if(pb)pb.classList.remove('playing');
   var src='../../assets/audio/arabic/'+fname+'.mp3';
   _audioEl=new Audio(src);
   if(btn){btn.classList.add('playing');}
   _audioEl.play().catch(function(){});
   _audioEl.addEventListener('ended',function(){if(btn)btn.classList.remove('playing');});
 }
-window.playLetterAudio=playLetterAudio;
 
 /* ── BUILD GRID ── */
 function buildGrid(){
@@ -382,77 +399,104 @@ function buildGrid(){
     card.className='letter-card';
     card.setAttribute('role','listitem');
     card.setAttribute('tabindex','0');
-    card.setAttribute('aria-label','Letter '+l.name+', tap to expand');
+    card.setAttribute('aria-label',(lang==='te'?l.name_te:l.name)+' — '+l.tr+' — tap for details');
     card.innerHTML='<span class="lc-letter" dir="rtl" lang="ar">'+l.ar+'</span>'
-      +'<span class="lc-name" data-te="'+l.name_te+'" data-en="'+l.name+'">'+l.name_te+'</span>'
-      +'<span class="lc-tr">'+l.tr+'</span>'
-      +'<button type="button" class="lc-play" aria-label="Play pronunciation of '+l.name+'" title="Play pronunciation">▶</button>';
-    var playBtn=card.querySelector('.lc-play');
-    playBtn.addEventListener('click',function(e){
-      e.stopPropagation();
-      playLetterAudio(l.audio,playBtn);
-    });
+      +'<span class="lc-name" data-te="'+l.name_te+'" data-en="'+l.name+'">'+(lang==='te'?l.name_te:l.name)+'</span>'
+      +'<span class="lc-tr">'+l.tr+'</span>';
     function open(){showDetail(i);}
     card.addEventListener('click',open);
-    card.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' ')open()});
+    card.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' ')open();});
     grid.appendChild(card);
   });
 }
 
-/* ── DETAIL PANEL ── */
+/* ── POPOVER ── */
 var openIdx=-1;
-function showDetail(i){
-  var l=LETTERS[i];
-  var panel=document.getElementById('letter-detail');
-  var big=document.getElementById('ld-big');
-  var nameEn=document.getElementById('ld-name-en');
-  var note=document.getElementById('ld-note');
-  var forms=document.getElementById('ld-forms');
-  if(!panel||!big||!nameEn||!note||!forms)return;
-  if(openIdx===i){hideDetail();return;}
-  openIdx=i;
-  big.textContent=l.ar;
-  nameEn.textContent=(lang==='te'?l.name_te:l.name)+' — '+l.tr;
-  note.textContent=lang==='te'?l.note_te:l.note;
-  var FORM_LABELS={te:['ఒంటరి','ప్రారంభం','మధ్య','చివర'],en:['Isolated','Initial','Medial','Final']};
-  var labels=FORM_LABELS[lang]||FORM_LABELS.en;
+var _popEl,_bdEl;
+
+function rebuildForms(l,lng){
+  var forms=document.getElementById('lp-forms');
+  if(!forms)return;
+  var FL={te:['ఒంటరి','ప్రారంభం','మధ్య','చివర'],en:['Isolated','Initial','Medial','Final']};
+  var labels=FL[lng||lang]||FL.en;
   var vals=[l.iso,l.ini,l.med,l.fin];
   forms.innerHTML='';
   labels.forEach(function(lab,j){
-    var d=document.createElement('div');d.className='ld-form';
-    d.innerHTML='<span class="ld-form-ar" dir="rtl" lang="ar">'+vals[j]+'</span><span class="ld-form-label">'+lab+'</span>';
+    var d=document.createElement('div');d.className='lp-form';
+    d.innerHTML='<span class="lp-form-ar" dir="rtl" lang="ar">'+vals[j]+'</span><span class="lp-form-lbl">'+lab+'</span>';
     forms.appendChild(d);
   });
-  // Remove old play button if any, add fresh one
-  var oldPlay=panel.querySelector('.ld-play');if(oldPlay)oldPlay.remove();
-  if(l.audio){
-    var playBtn=document.createElement('button');
-    playBtn.type='button';playBtn.className='ld-play';
-    playBtn.setAttribute('aria-label','Play pronunciation of '+(lang==='te'?l.name_te:l.name));
-    playBtn.innerHTML='<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>'+(lang==='te'?'ఉచ్చారణ వినండి':'Hear Pronunciation');
-    playBtn.addEventListener('click',function(){playLetterAudio(l.audio,playBtn);});
-    forms.after(playBtn);
-  }
-  panel.classList.add('ld-open');
-  panel.scrollIntoView({behavior:'smooth',block:'nearest'});
 }
-function hideDetail(){
-  var panel=document.getElementById('letter-detail');
-  if(panel)panel.classList.remove('ld-open');
+
+function showDetail(i){
+  var l=LETTERS[i];
+  if(openIdx===i){closePopover();return;}
+  openIdx=i;
+
+  // Mark active card
+  document.querySelectorAll('.letter-card').forEach(function(c){c.classList.remove('active');});
+  var cards=document.getElementById('letter-grid').children;
+  if(cards[i])cards[i].classList.add('active');
+
+  // Fill popover
+  document.getElementById('lp-arabic').textContent=l.ar;
+  document.getElementById('lp-name').textContent=lang==='te'?l.name_te:l.name;
+  document.getElementById('lp-tr').textContent=l.tr;
+  document.getElementById('lp-note').textContent=lang==='te'?l.note_te:l.note;
+  document.getElementById('lp-forms-label').textContent=lang==='te'?'అక్షర రూపాలు':'Letter Forms';
+  document.getElementById('lp-play-label').textContent=lang==='te'?'ఉచ్చారణ వినండి':'Hear Pronunciation';
+  rebuildForms(l,lang);
+
+  var pb=document.getElementById('lp-play');
+  if(pb){pb.onclick=function(){playLetterAudio(l.audio,pb);};}
+
+  // Open
+  _popEl.setAttribute('aria-hidden','false');
+  _popEl.classList.add('open');
+  _bdEl.classList.add('open');
+
+  // Position (desktop: near the clicked card; mobile: CSS bottom-sheet)
+  if(window.innerWidth>600){
+    var card=cards[i];
+    var rect=card?card.getBoundingClientRect():{left:window.innerWidth/2-195,bottom:120,top:120,width:0};
+    var popW=Math.min(390,window.innerWidth-32);
+    var left=rect.left+rect.width/2-popW/2;
+    var top=rect.bottom+10;
+    left=Math.max(16,Math.min(left,window.innerWidth-popW-16));
+    if(top+420>window.innerHeight){top=Math.max(80,rect.top-430);}
+    _popEl.style.left=left+'px';
+    _popEl.style.top=top+'px';
+    _popEl.style.bottom='';
+  } else {
+    _popEl.style.left='';
+    _popEl.style.top='';
+    _popEl.style.bottom='0';
+  }
+  _popEl.focus();
+}
+
+function closePopover(){
+  if(_popEl){_popEl.classList.remove('open');_popEl.setAttribute('aria-hidden','true');}
+  if(_bdEl)_bdEl.classList.remove('open');
+  document.querySelectorAll('.letter-card').forEach(function(c){c.classList.remove('active');});
+  if(_audioEl){_audioEl.pause();}
   openIdx=-1;
 }
 
 /* ── SCROLL REVEAL ── */
 function initReveal(){
   if(!window.IntersectionObserver)return;
-  var io=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('reveal-in');io.unobserve(e.target)}})},{threshold:.08});
-  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+  var io=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('reveal-in');io.unobserve(e.target);}});},{threshold:.08});
+  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
 }
 
 document.addEventListener('DOMContentLoaded',function(){
+  _popEl=document.getElementById('lp-pop');
+  _bdEl=document.getElementById('lp-backdrop');
   buildGrid();
-  var closeBtn=document.getElementById('ld-close');
-  if(closeBtn)closeBtn.addEventListener('click',hideDetail);
+  document.getElementById('lp-close').addEventListener('click',closePopover);
+  _bdEl.addEventListener('click',closePopover);
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closePopover();});
   initReveal();
   applyLang(lang);
 });
