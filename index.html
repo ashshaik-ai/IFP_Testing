@@ -419,6 +419,16 @@
       border-bottom: 1px solid rgba(200, 146, 42, .07);
     }
 
+    .nav-drawer-section-label {
+      border-bottom: none !important;
+      padding: 14px 24px 6px;
+      font-size: 10px;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      color: rgba(200, 146, 42, .5);
+      font-weight: 600;
+    }
+
     .nav-drawer-links a {
       display: flex;
       align-items: center;
@@ -776,11 +786,11 @@
     .leader-photo-frame {
       width: 364px;
       height: 458px;
-      border-radius: 18px;
+      border-radius: 50% 50% 18px 18px / 26% 26% 18px 18px;
       position: relative;
       overflow: hidden;
       background: linear-gradient(145deg, rgba(200, 146, 42, 0.12), rgba(200, 146, 42, 0.02));
-      box-shadow: 0 28px 64px -22px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(200, 146, 42, 0.45), 0 0 0 7px rgba(200, 146, 42, 0.06);
+      box-shadow: 0 28px 64px -22px rgba(0, 0, 0, 0.7), 0 0 0 2px rgba(200, 146, 42, 0.55), 0 0 0 6px rgba(200, 146, 42, 0.10);
     }
 
     .leader-photo-placeholder {
@@ -3767,12 +3777,13 @@
         z-index: 2;
       }
 
-      /* 6. Photo frame — diagonal clip + luminous gold ring */
+      /* 6. Photo frame — mosque arch top + luminous gold ring */
       .hfm-frame {
-        clip-path: polygon(6% 0, 100% 0, 94% 100%, 0 100%);
-        border-radius: 0 !important;
+        clip-path: none !important;
+        border-radius: 50% 50% 16px 16px / 38% 38% 16px 16px !important;
         box-shadow:
-          0 0 0 1.5px rgba(200,146,42,.5),
+          0 0 0 2px rgba(200,146,42,.55),
+          0 0 0 5px rgba(200,146,42,.10),
           0 18px 40px -12px rgba(0,0,0,.75) !important;
       }
 
@@ -5790,13 +5801,19 @@
       <button type="button" class="nav-drawer-close" id="nav-drawer-close" aria-label="Close menu">&#x2715;</button>
     </div>
     <ul class="nav-drawer-links">
+      <li class="nav-drawer-section-label">— హోమ్ పేజీ —</li>
       <li><a href="#victory" data-key="nav_victory">మా విజయం</a></li>
       <li><a href="#achievements" data-key="nav_achievements">సాధనలు</a></li>
       <li><a href="#manifesto" data-key="nav_manifesto">మేనిఫెస్టో</a></li>
+      <li><a href="#scheme" data-key="tab_schemes">పథకాలు</a></li>
       <li><a href="#stories" data-key="nav_stories">సఫలత కథలు</a></li>
       <li><a href="#gallery" data-key="nav_gallery">మా కార్యక్రమాలు</a></li>
       <li><a href="#events" data-key="nav_events">కార్యక్రమాలు</a></li>
       <li><a href="#volunteer" data-key="nav_volunteer">స్వచ్ఛంద సేవ</a></li>
+      <li><a href="#community-contact" data-key="nav_contact">సంప్రదించండి</a></li>
+      <li class="nav-drawer-section-label">— ఇతర పేజీలు —</li>
+      <li><a href="islamic-knowledge.html" data-key="nav_knowledge">నాలెడ్జ్ సెంటర్</a></li>
+      <li><a href="student-guidance.html" data-key="nav_guidance">విద్యార్థి మార్గదర్శనం</a></li>
     </ul>
   </div>
 
@@ -9173,14 +9190,6 @@
         <polyline points="9 22 9 12 15 12 15 22" />
       </svg>
       <span class="bn-label" data-key="nav_home">హోమ్</span>
-    </a>
-    <a href="student-guidance.html" class="bn-item" aria-label="Student Guidance Center">
-      <svg class="bn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-        stroke-linejoin="round" aria-hidden="true">
-        <path d="M22 10L12 5 2 10l10 5 10-5z" />
-        <path d="M6 12v5c0 1 2.5 2.5 6 2.5s6-1.5 6-2.5v-5" />
-      </svg>
-      <span class="bn-label" data-key="nav_guidance_short">మార్గదర్శనం</span>
     </a>
     <a href="#achievements" class="bn-item" data-section="achievements">
       <svg class="bn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
