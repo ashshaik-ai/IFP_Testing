@@ -17,18 +17,22 @@ module.exports = defineConfig({
     {
       name: 'safari-iphone14',
       use: { ...devices['iPhone 14 Pro'] },
+      testIgnore: '**/android-real.spec.js',
     },
     {
       name: 'safari-ipad',
       use: { ...devices['iPad Pro 11'] },
+      testIgnore: '**/android-real.spec.js',
     },
     {
       name: 'chrome-pixel7',
       use: { ...devices['Pixel 7'] },
+      testIgnore: '**/android-real.spec.js',
     },
     {
       name: 'desktop-chrome',
       use: { ...devices['Desktop Chrome'] },
+      testIgnore: '**/android-real.spec.js',
     },
     /* Real Android device via ADB (NOT Appium — Playwright uses ADB directly).
        Setup:
@@ -39,18 +43,11 @@ module.exports = defineConfig({
          5. Run: adb reverse tcp:9090 tcp:9090   (so the phone can reach localhost)
          6. Run: npx playwright test --project=android-real
     */
+    /* Real Android device via ADB + Chrome DevTools Protocol.
+       No Appium. Just: USB Debugging ON + USB cable + run this project. */
     {
       name: 'android-real',
-      use: {
-        browserName: 'chromium',
-        /* Playwright launches Chrome on the connected Android device via ADB.
-           The _android API is used in tests — this project flag signals which
-           tests should target the real device. */
-        channel: 'chrome',
-      },
-      /* Tests that should run on real Android must opt-in with:
-           test.use({ ...}) or by tagging. The test file
-           tests/android-real.spec.js (below) handles device launch. */
+      use: { browserName: 'chromium' },
       testMatch: '**/android-real.spec.js',
     },
   ],
