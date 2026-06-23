@@ -2942,13 +2942,17 @@ a {
     display: flex !important;
     gap: 8px !important;
     overflow-x: auto !important;
-    padding: 10px 5vw !important;
+    padding: 10px 16px 10px 16px !important;
+    padding-right: 48px !important; /* room for fade */
     background: rgba(250,246,238,0.96) !important;
     border-bottom: 1px solid rgba(200,146,42,0.20) !important;
     -webkit-backdrop-filter: blur(12px) !important;
     backdrop-filter: blur(12px) !important;
     scrollbar-width: none !important;
     scroll-snap-type: x mandatory !important;
+    /* right-fade to signal more tabs are scrollable */
+    -webkit-mask-image: linear-gradient(to right, black calc(100% - 48px), transparent 100%) !important;
+    mask-image: linear-gradient(to right, black calc(100% - 48px), transparent 100%) !important;
   }
 
   .if-app-tabs::-webkit-scrollbar { display: none !important; }

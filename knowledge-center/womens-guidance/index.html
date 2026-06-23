@@ -37,7 +37,7 @@
     .wg-nav-brand span{color:#fff;font-weight:600;font-size:.95rem;font-family:'Playfair Display',serif}
     .wg-nav-back{margin-left:auto;color:rgba(255,255,255,.85);text-decoration:none;font-size:.85rem;display:flex;align-items:center;gap:6px;padding:6px 12px;border-radius:8px;transition:background var(--transition)}
     .wg-nav-back:hover{background:rgba(255,255,255,.12)}
-    .wg-lang-btn{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#fff;padding:6px 14px;border-radius:20px;font-size:.8rem;cursor:pointer;transition:background var(--transition);font-family:inherit}
+    .wg-lang-btn{background:rgba(200,146,42,.18);border:1.5px solid rgba(200,146,42,.5);color:var(--gold-light);padding:6px 14px;min-height:44px;border-radius:100px;font-size:.8rem;font-weight:600;cursor:pointer;transition:background var(--transition);font-family:inherit;white-space:nowrap}
 
     /* STICKY */
     .al-sticky{position:sticky;top:68px;z-index:900;background:rgba(13,59,30,.96);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid rgba(200,146,42,.25);overflow-x:auto;scrollbar-width:none}
@@ -171,7 +171,7 @@
     <svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M10 12L6 8l4-4"/></svg>
     <span data-te="జ్ఞాన కేంద్రం" data-en="Knowledge Center">జ్ఞాన కేంద్రం</span>
   </a>
-  <button type="button" class="wg-lang-btn" id="lang-btn" onclick="toggleLang()" aria-label="Switch language">EN</button>
+  <button type="button" class="wg-lang-btn" id="lang-btn" onclick="toggleLang()" aria-label="Switch language">English</button>
 </nav>
 
 <!-- STICKY SUB-NAV -->
@@ -525,7 +525,7 @@ var currentLang = 'te';
 function applyLang(l) {
   currentLang = l;
   document.getElementById('html-root').lang = l;
-  document.getElementById('lang-btn').textContent = l==='te'?'EN':'TE';
+  document.getElementById('lang-btn').textContent = l==='te'?'English':'తెలుగు';
   document.querySelectorAll('[data-te]').forEach(function(el){
     el.innerHTML = l==='te'?el.getAttribute('data-te'):el.getAttribute('data-en');
   });
