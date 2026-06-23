@@ -590,7 +590,7 @@ body>nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(13,59,3
     <a href="../../islamic-knowledge.html" class="nav-back">
       <span data-te="విజ్ఞాన వనరు" data-en="Knowledge Center">విజ్ఞాన వనరు</span>
     </a>
-    <button class="lang-btn" id="lang-btn" onclick="toggleLang()" aria-label="Englishకి మార్చండి" data-aria-te="Englishకి మార్చండి" data-aria-en="Switch to Telugu">English</button>
+    <button type="button" class="lang-btn" id="lang-btn" onclick="toggleLang()" aria-label="Englishకి మార్చండి" data-aria-te="Englishకి మార్చండి" data-aria-en="Switch to Telugu">English</button>
   </div>
 </nav>
 
@@ -1251,7 +1251,7 @@ body>nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(13,59,3
 </footer>
 </main>
 
-<button id="btt" onclick="scrollTo({top:0,behavior:'smooth'})" title="Back to top" aria-label="Back to top">
+<button type="button" id="btt" onclick="scrollTo({top:0,behavior:'smooth'})" title="Back to top" aria-label="Back to top">
   <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
 </button>
 
@@ -1558,8 +1558,8 @@ function renderExplorer(){
       +'</div>'
     +'</div>'
     +'<div class="se-nav">'
-      +'<button class="se-btn" id="se-prev"'+(SE_I===0?' disabled':'')+'>← '+L.prev+'</button>'
-      +'<button class="se-btn primary" id="se-next">'+(last?'✓ '+L.finish:L.next+' →')+'</button>'
+      +'<button type="button" class="se-btn" id="se-prev"'+(SE_I===0?' disabled':'')+'>← '+L.prev+'</button>'
+      +'<button type="button" class="se-btn primary" id="se-next">'+(last?'✓ '+L.finish:L.next+' →')+'</button>'
     +'</div>';
   /* record exploration progress */
   var p=loadProg(); var reached=Math.max(p.explored||0,SE_I+1);

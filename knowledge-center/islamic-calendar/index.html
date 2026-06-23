@@ -228,7 +228,7 @@
     <svg aria-hidden="true" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M10 12L6 8l4-4"/></svg>
     <span data-te="జ్ఞాన కేంద్రం" data-en="Knowledge Center">జ్ఞాన కేంద్రం</span>
   </a>
-  <button class="ic-lang-btn" id="lang-btn" onclick="toggleLang()" aria-label="Switch language">EN</button>
+  <button type="button" class="ic-lang-btn" id="lang-btn" onclick="toggleLang()" aria-label="Switch language">EN</button>
 </nav>
 
 <!-- STICKY SUB-NAV -->
@@ -299,11 +299,11 @@
     <p class="section-sub" data-te="ప్రతి రోజు గ్రెగోరియన్ మరియు హిజ్రీ తేదీలు చూడండి." data-en="View both Gregorian and Hijri dates for every day of the month.">ప్రతి రోజు గ్రెగోరియన్ మరియు హిజ్రీ తేదీలు చూడండి.</p>
     <div class="gold-line"></div>
     <div class="cal-controls">
-      <button class="cal-nav-btn" id="cal-prev" onclick="changeMonth(-1)" aria-label="Previous month">
+      <button type="button" class="cal-nav-btn" id="cal-prev" onclick="changeMonth(-1)" aria-label="Previous month">
         <svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M10 12L6 8l4-4"/></svg>
       </button>
       <div class="cal-month-label" id="cal-month-label" aria-live="polite"></div>
-      <button class="cal-nav-btn" id="cal-next" onclick="changeMonth(1)" aria-label="Next month">
+      <button type="button" class="cal-nav-btn" id="cal-next" onclick="changeMonth(1)" aria-label="Next month">
         <svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 4l4 4-4 4"/></svg>
       </button>
     </div>
@@ -340,7 +340,7 @@
             </select>
             <input type="number" id="g2h-year" min="622" max="2200" placeholder="YYYY" aria-label="Year">
           </div>
-          <button class="conv-btn" onclick="convertG2H()" data-te="మార్చండి" data-en="Convert">మార్చండి</button>
+          <button type="button" class="conv-btn" onclick="convertG2H()" data-te="మార్చండి" data-en="Convert">మార్చండి</button>
         </div>
         <div class="conv-arrow" aria-hidden="true">→</div>
         <div class="conv-box">
@@ -369,7 +369,7 @@
             </select>
             <input type="number" id="h2g-year" min="1" max="1600" placeholder="AH" aria-label="Hijri Year">
           </div>
-          <button class="conv-btn" onclick="convertH2G()" data-te="మార్చండి" data-en="Convert">మార్చండి</button>
+          <button type="button" class="conv-btn" onclick="convertH2G()" data-te="మార్చండి" data-en="Convert">మార్చండి</button>
         </div>
         <div class="conv-arrow" aria-hidden="true">→</div>
         <div class="conv-box">
@@ -467,7 +467,7 @@
 </main>
 
 <!-- BTT -->
-<button id="btt" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+<button type="button" id="btt" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
   <svg aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M10 15V5M5 10l5-5 5 5"/></svg>
 </button>
 

@@ -315,7 +315,7 @@ body>nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(13,59,3
   </a>
   <div class="nav-right">
     <a class="nav-back" href="../../islamic-knowledge.html"><span data-te="విజ్ఞాన వనరు" data-en="Knowledge Center">విజ్ఞాన వనరు</span></a>
-    <button class="lang-btn" id="lang-btn" onclick="toggleLang()" aria-label="Englishకి మార్చండి" data-aria-te="Englishకి మార్చండి" data-aria-en="Switch to Telugu">English</button>
+    <button type="button" class="lang-btn" id="lang-btn" onclick="toggleLang()" aria-label="Englishకి మార్చండి" data-aria-te="Englishకి మార్చండి" data-aria-en="Switch to Telugu">English</button>
   </div>
 </nav>
 
@@ -482,14 +482,14 @@ body>nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(13,59,3
 </footer>
 </main>
 
-<button id="btt" onclick="scrollTo({top:0,behavior:'smooth'})" title="Back to top" aria-label="Back to top"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="18 15 12 9 6 15"/></svg></button>
+<button type="button" id="btt" onclick="scrollTo({top:0,behavior:'smooth'})" title="Back to top" aria-label="Back to top"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="18 15 12 9 6 15"/></svg></button>
 
 <!-- MODAL -->
 <div class="nm-modal" id="nm-modal" role="dialog" aria-modal="true" aria-labelledby="nm-modal-tr">
   <div class="nm-modal-bg" id="nm-modal-bg"></div>
   <div class="nm-modal-card">
     <div class="nm-modal-hd">
-      <button class="nm-modal-close" id="nm-modal-close" aria-label="Close"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+      <button type="button" class="nm-modal-close" id="nm-modal-close" aria-label="Close"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
       <div class="nm-modal-no" id="nm-modal-no"></div>
       <div class="nm-modal-ar" id="nm-modal-ar" lang="ar" dir="rtl"></div>
       <div class="nm-modal-tr" id="nm-modal-tr"></div>
@@ -661,8 +661,8 @@ function renderNod(){
       '<div class="nod-mean">'+nameMean(n)+'</div>'+
       '<p class="nod-desc">'+nameDesc(n)+'</p>'+
       '<div class="nod-actions">'+
-        '<button class="nod-btn" data-open="'+n.no+'"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>'+(T?'మరింత తెలుసుకోండి':'Learn more')+'</button>'+
-        '<button class="nod-btn" data-fav="'+n.no+'"><svg aria-hidden="true" viewBox="0 0 24 24" fill="'+(favs.has(n.no)?'currentColor':'none')+'" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 1 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg>'+(favs.has(n.no)?(T?'జోడించబడింది':'Saved'):(T?'ఇష్టమైనదిగా':'Favourite'))+'</button>'+
+        '<button type="button" class="nod-btn" data-open="'+n.no+'"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>'+(T?'మరింత తెలుసుకోండి':'Learn more')+'</button>'+
+        '<button type="button" class="nod-btn" data-fav="'+n.no+'"><svg aria-hidden="true" viewBox="0 0 24 24" fill="'+(favs.has(n.no)?'currentColor':'none')+'" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 1 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg>'+(favs.has(n.no)?(T?'జోడించబడింది':'Saved'):(T?'ఇష్టమైనదిగా':'Favourite'))+'</button>'+
       '</div>'+
     '</div>';
 }
@@ -671,7 +671,7 @@ function renderNod(){
 function renderFilters(){
   var T=te();
   document.getElementById('nm-filters').innerHTML=CATS.map(function(c){
-    return '<button class="nm-fbtn'+(c.k===curFilter?' active':'')+'" data-cat="'+c.k+'" aria-pressed="'+(c.k===curFilter)+'">'+(T?c.te:c.en)+'</button>';
+    return '<button type="button" class="nm-fbtn'+(c.k===curFilter?' active':'')+'" data-cat="'+c.k+'" aria-pressed="'+(c.k===curFilter)+'">'+(T?c.te:c.en)+'</button>';
   }).join('');
 }
 
@@ -690,7 +690,7 @@ function filtered(){
 function cardHtml(n){
   return '<article class="nm-card" data-open="'+n.no+'" role="button" tabindex="0" aria-label="'+n.tr+' — '+nameMean(n).replace(/"/g,'&quot;')+'">'+
     '<div class="nm-card-top"><span class="nm-no">'+n.no+'</span>'+
-    '<button class="nm-fav'+(favs.has(n.no)?' on':'')+'" data-fav="'+n.no+'" aria-label="'+(favs.has(n.no)?'Remove favourite':'Add favourite')+'" aria-pressed="'+favs.has(n.no)+'"><svg aria-hidden="true" viewBox="0 0 24 24" fill="'+(favs.has(n.no)?'currentColor':'none')+'" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 1 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg></button></div>'+
+    '<button type="button" class="nm-fav'+(favs.has(n.no)?' on':'')+'" data-fav="'+n.no+'" aria-label="'+(favs.has(n.no)?'Remove favourite':'Add favourite')+'" aria-pressed="'+favs.has(n.no)+'"><svg aria-hidden="true" viewBox="0 0 24 24" fill="'+(favs.has(n.no)?'currentColor':'none')+'" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 1 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg></button></div>'+
     '<div class="nm-ar" lang="ar" dir="rtl">'+n.ar+'</div>'+
     '<div class="nm-tr">'+n.tr+'</div>'+
     '<div class="nm-mean">'+nameMean(n)+'</div>'+
@@ -737,10 +737,10 @@ function openModal(no){
     '<div class="nm-modal-row"><div class="nm-modal-rl">'+(T?'వర్గం':'Category')+'</div><div class="nm-modal-rt">'+(T?catObj.te:catObj.en)+'</div></div>'+
     '<div class="nm-modal-row"><div class="nm-modal-rl">'+(T?'ఆధారం':'Reference')+'</div><div class="nm-modal-ref">'+n.ref+'</div></div>'+
     '<div class="nm-modal-actions">'+
-      '<button class="nm-modal-btn fav'+(favs.has(n.no)?' on':'')+'" data-fav="'+n.no+'"><svg aria-hidden="true" viewBox="0 0 24 24" fill="'+(favs.has(n.no)?'currentColor':'none')+'" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 1 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg>'+(favs.has(n.no)?(T?'జోడించబడింది':'Saved'):(T?'ఇష్టమైనదిగా':'Favourite'))+'</button>'+
-      '<button class="nm-modal-btn" data-audio="'+n.no+'"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="3 9 9 9 13 5 13 19 9 15 3 15"/><path d="M16 9a3 3 0 0 1 0 6"/></svg>'+(T?'ఉచ్చారణ':'Pronounce')+'</button>'+
+      '<button type="button" class="nm-modal-btn fav'+(favs.has(n.no)?' on':'')+'" data-fav="'+n.no+'"><svg aria-hidden="true" viewBox="0 0 24 24" fill="'+(favs.has(n.no)?'currentColor':'none')+'" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 1 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg>'+(favs.has(n.no)?(T?'జోడించబడింది':'Saved'):(T?'ఇష్టమైనదిగా':'Favourite'))+'</button>'+
+      '<button type="button" class="nm-modal-btn" data-audio="'+n.no+'"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="3 9 9 9 13 5 13 19 9 15 3 15"/><path d="M16 9a3 3 0 0 1 0 6"/></svg>'+(T?'ఉచ్చారణ':'Pronounce')+'</button>'+
     '</div>'+
-    '<div class="nm-modal-nav"><button data-prev>'+(T?'‹ మునుపటి':'‹ Previous')+'</button><button data-next>'+(T?'తదుపరి ›':'Next ›')+'</button></div>';
+    '<div class="nm-modal-nav"><button type="button" data-prev>'+(T?'‹ మునుపటి':'‹ Previous')+'</button><button type="button" data-next>'+(T?'తదుపరి ›':'Next ›')+'</button></div>';
   var m=document.getElementById('nm-modal');m.classList.add('open');document.body.style.overflow='hidden';
   document.getElementById('nm-modal-close').focus();
 }
@@ -762,8 +762,8 @@ function renderMem(){
     '</div>'+
     '<div class="mem-controls">'+
       (memRevealed
-        ? '<button class="mem-btn primary" data-mem="know">'+(known.has(n.no)?(T?'✓ తెలుసు':'✓ I know it'):(T?'నాకు తెలుసు':'I know it'))+'</button><button class="mem-btn ghost" data-mem="next">'+(T?'తదుపరి →':'Next →')+'</button>'
-        : '<button class="mem-btn primary" data-mem="reveal">'+(T?'అర్థం చూపించు':'Reveal meaning')+'</button><button class="mem-btn ghost" data-mem="next">'+(T?'దాటవేయి →':'Skip →')+'</button>')+
+        ? '<button type="button" class="mem-btn primary" data-mem="know">'+(known.has(n.no)?(T?'✓ తెలుసు':'✓ I know it'):(T?'నాకు తెలుసు':'I know it'))+'</button><button type="button" class="mem-btn ghost" data-mem="next">'+(T?'తదుపరి →':'Next →')+'</button>'
+        : '<button type="button" class="mem-btn primary" data-mem="reveal">'+(T?'అర్థం చూపించు':'Reveal meaning')+'</button><button type="button" class="mem-btn ghost" data-mem="next">'+(T?'దాటవేయి →':'Skip →')+'</button>')+
     '</div>'+
     '<div class="mem-meta">'+
       '<div class="mem-meta-item"><span class="mem-meta-num">'+known.size+'</span><span class="mem-meta-lbl">'+(T?'తెలిసినవి':'Known')+'</span></div>'+

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="te" id="html-root">
 
 <head>
@@ -187,8 +187,8 @@
       right: 0;
       z-index: 1000;
       background: rgba(13, 59, 30, 0.92);
-      backdrop-filter: blur(14px) saturate(1.2);
       -webkit-backdrop-filter: blur(14px) saturate(1.2);
+      backdrop-filter: blur(14px) saturate(1.2);
       border-bottom: 1px solid rgba(200, 146, 42, 0.3);
       padding: 0 5vw;
       display: flex;
@@ -712,6 +712,7 @@
       border-radius: 14px;
       padding: 16px 24px;
       min-width: 132px;
+      -webkit-backdrop-filter: blur(4px);
       backdrop-filter: blur(4px);
       transition: border-color .2s ease, transform .2s ease-out, box-shadow .2s ease;
     }
@@ -903,8 +904,8 @@
       top: 68px;
       z-index: 900;
       background: rgba(13, 59, 30, 0.95);
-      backdrop-filter: blur(12px) saturate(1.2);
       -webkit-backdrop-filter: blur(12px) saturate(1.2);
+      backdrop-filter: blur(12px) saturate(1.2);
       border-bottom: 1px solid rgba(200, 146, 42, 0.25);
       display: flex;
       justify-content: center;
@@ -2901,8 +2902,8 @@
 
     /* ── Hero: glass stat cards ── */
     .hstat {
-      backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
+      backdrop-filter: blur(14px);
       background: rgba(6, 30, 14, 0.46);
       border: 1px solid rgba(232, 184, 75, 0.36);
       box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
@@ -4472,6 +4473,7 @@
       background: rgba(0, 0, 0, 0.92);
       align-items: center;
       justify-content: center;
+      -webkit-backdrop-filter: blur(8px);
       backdrop-filter: blur(8px);
     }
 
@@ -5494,8 +5496,8 @@
       }
 
       .hstat {
-        backdrop-filter: none !important;
         -webkit-backdrop-filter: none !important;
+        backdrop-filter: none !important;
         background: white !important;
         box-shadow: none !important;
       }
@@ -5542,6 +5544,7 @@
       color: transparent !important;
       background: rgba(200,146,42,0.10);
       border-radius: 4px;
+      -webkit-user-select: none;
       user-select: none;
     }
     .ca-mail .ca-title::after {
@@ -5597,10 +5600,10 @@
         <li><a href="#about" data-key="nav_about">మా గురించి</a></li>
         <li><a href="#community-contact" data-key="nav_contact">సంప్రదించండి</a></li>
       </ul>
-      <button class="lang-btn" id="lang-btn" onclick="toggleLang()"
+      <button type="button" class="lang-btn" id="lang-btn" onclick="toggleLang()"
         title="ప్రస్తుతం: తెలుగు — ఆంగ్లంలోకి మారడానికి నొక్కండి"
         aria-label="Switch to English (currently viewing in Telugu)">English</button>
-      <button class="nav-burger" id="nav-burger" aria-label="Menu" aria-expanded="false">
+      <button type="button" class="nav-burger" id="nav-burger" aria-label="Menu" aria-expanded="false">
         <span class="nav-burger-bar"></span>
         <span class="nav-burger-bar"></span>
         <span class="nav-burger-bar"></span>
@@ -5613,7 +5616,7 @@
     aria-hidden="true">
     <div class="nav-drawer-header">
       <span class="nav-drawer-brand" data-key="nav_title">ఇస్లామిక్ ఫ్రంట్</span>
-      <button class="nav-drawer-close" id="nav-drawer-close" aria-label="Close menu">&#x2715;</button>
+      <button type="button" class="nav-drawer-close" id="nav-drawer-close" aria-label="Close menu">&#x2715;</button>
     </div>
     <ul class="nav-drawer-links">
       <li><a href="#victory" data-key="nav_victory">మా విజయం</a></li>
@@ -5718,15 +5721,15 @@
     <!-- HUB TABS -->
     <nav class="hub-tabs" id="hub-tabs" aria-label="Page sections">
       <div class="hub-tabs-track" role="tablist" aria-label="Page sections">
-        <button class="hub-tab active" data-tab="overview" onclick="switchHubTab('overview',this)"
+        <button type="button" class="hub-tab active" data-tab="overview" onclick="switchHubTab('overview',this)"
           data-key="tab_overview" role="tab" aria-selected="true" aria-controls="pane-overview">అవలోకనం</button>
-        <button class="hub-tab" data-tab="schemes" onclick="switchHubTab('schemes',this)" data-key="tab_schemes"
+        <button type="button" class="hub-tab" data-tab="schemes" onclick="switchHubTab('schemes',this)" data-key="tab_schemes"
           role="tab" aria-selected="false" aria-controls="pane-schemes">పథకాలు &amp; మౌలిక సదుపాయాలు</button>
-        <button class="hub-tab" data-tab="community" onclick="switchHubTab('community',this)" data-key="tab_community"
+        <button type="button" class="hub-tab" data-tab="community" onclick="switchHubTab('community',this)" data-key="tab_community"
           role="tab" aria-selected="false" aria-controls="pane-community">సమాజం</button>
-        <button class="hub-tab" data-tab="about" onclick="switchHubTab('about',this)" data-key="tab_about" role="tab"
+        <button type="button" class="hub-tab" data-tab="about" onclick="switchHubTab('about',this)" data-key="tab_about" role="tab"
           aria-selected="false" aria-controls="pane-about">గురించి &amp; సంప్రదించండి</button>
-        <button class="hub-tab" data-tab="knowledge" onclick="switchHubTab('knowledge',this)" data-key="tab_knowledge"
+        <button type="button" class="hub-tab" data-tab="knowledge" onclick="switchHubTab('knowledge',this)" data-key="tab_knowledge"
           role="tab" aria-selected="false" aria-controls="pane-knowledge">విజ్ఞాన కేంద్రం</button>
       </div>
     </nav>
@@ -6110,13 +6113,13 @@
               </div>
             </div>
             <div class="mf-filter-bar" id="mf-filter-bar" role="group" aria-label="Filter promises by status">
-              <button class="mf-filter-btn active" data-filter="all" onclick="filterManifesto('all',this)"
+              <button type="button" class="mf-filter-btn active" data-filter="all" onclick="filterManifesto('all',this)"
                 aria-pressed="true" data-key="mf_f_all">అన్నీ</button>
-              <button class="mf-filter-btn" data-filter="mf-done" onclick="filterManifesto('mf-done',this)"
+              <button type="button" class="mf-filter-btn" data-filter="mf-done" onclick="filterManifesto('mf-done',this)"
                 aria-pressed="false" data-key="mf_f_done">పూర్తయింది</button>
-              <button class="mf-filter-btn" data-filter="mf-progress" onclick="filterManifesto('mf-progress',this)"
+              <button type="button" class="mf-filter-btn" data-filter="mf-progress" onclick="filterManifesto('mf-progress',this)"
                 aria-pressed="false" data-key="mf_f_prog">పురోగతిలో</button>
-              <button class="mf-filter-btn" data-filter="mf-pending" onclick="filterManifesto('mf-pending',this)"
+              <button type="button" class="mf-filter-btn" data-filter="mf-pending" onclick="filterManifesto('mf-pending',this)"
                 aria-pressed="false" data-key="mf_f_pend">రాబోతున్నది</button>
             </div>
             <div class="manifesto-grid" id="manifesto-grid">
@@ -6554,15 +6557,15 @@
               కార్యక్రమాల ద్వారా జీవితాలు ఎలా మారాయో.</p>
 
             <div class="stories-tabs" role="group" aria-label="Filter stories by category">
-              <button class="story-tab active" onclick="filterStories('all', this)" aria-pressed="true"
+              <button type="button" class="story-tab active" onclick="filterStories('all', this)" aria-pressed="true"
                 data-key="stories_all">అన్నీ</button>
-              <button class="story-tab" onclick="filterStories('welfare', this)" aria-pressed="false"
+              <button type="button" class="story-tab" onclick="filterStories('welfare', this)" aria-pressed="false"
                 data-key="stories_welfare">సంక్షేమం</button>
-              <button class="story-tab" onclick="filterStories('women', this)" aria-pressed="false"
+              <button type="button" class="story-tab" onclick="filterStories('women', this)" aria-pressed="false"
                 data-key="stories_women">మహిళా సాధికారత</button>
-              <button class="story-tab" onclick="filterStories('education', this)" aria-pressed="false"
+              <button type="button" class="story-tab" onclick="filterStories('education', this)" aria-pressed="false"
                 data-key="stories_education">విద్య</button>
-              <button class="story-tab" onclick="filterStories('student', this)" aria-pressed="false"
+              <button type="button" class="story-tab" onclick="filterStories('student', this)" aria-pressed="false"
                 data-key="stories_student">విద్యార్థులు</button>
             </div>
 
@@ -6689,17 +6692,17 @@
             <div class="gallery-archive-note" data-key="gallery_archive_note">పూర్తి ఫోటో ఆర్కైవ్ సిద్ధం చేస్తున్నారు. ప్రస్తుతం ముఖ్య కార్యక్రమాల విభాగాలను సంక్షిప్తంగా చూపిస్తున్నాము.</div>
 
             <div class="gallery-cats" role="group" aria-label="Filter gallery by category">
-              <button class="gcat-btn active" onclick="filterGallery('all', this)" aria-pressed="true"
+              <button type="button" class="gcat-btn active" onclick="filterGallery('all', this)" aria-pressed="true"
                 data-key="gcat_all">అన్నీ</button>
-              <button class="gcat-btn" onclick="filterGallery('welfare', this)" aria-pressed="false"
+              <button type="button" class="gcat-btn" onclick="filterGallery('welfare', this)" aria-pressed="false"
                 data-key="gcat_welfare">సంక్షేమ కార్యక్రమాలు</button>
-              <button class="gcat-btn" onclick="filterGallery('events', this)" aria-pressed="false"
+              <button type="button" class="gcat-btn" onclick="filterGallery('events', this)" aria-pressed="false"
                 data-key="gcat_events">సమాజ ఉత్సవాలు</button>
-              <button class="gcat-btn" onclick="filterGallery('mosque', this)" aria-pressed="false"
+              <button type="button" class="gcat-btn" onclick="filterGallery('mosque', this)" aria-pressed="false"
                 data-key="gcat_mosque">మసీదు కార్యకలాపాలు</button>
-              <button class="gcat-btn" onclick="filterGallery('education', this)" aria-pressed="false"
+              <button type="button" class="gcat-btn" onclick="filterGallery('education', this)" aria-pressed="false"
                 data-key="gcat_education">విద్యా కార్యక్రమాలు</button>
-              <button class="gcat-btn" onclick="filterGallery('women', this)" aria-pressed="false"
+              <button type="button" class="gcat-btn" onclick="filterGallery('women', this)" aria-pressed="false"
                 data-key="gcat_women">మహిళా కార్యక్రమాలు</button>
             </div>
 
@@ -6849,7 +6852,7 @@
         <!-- Lightbox -->
         <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Gallery photo">
           <div class="lb-content">
-            <button class="lb-close" onclick="closeLightbox()" aria-label="Close">&#x2715;</button>
+            <button type="button" class="lb-close" onclick="closeLightbox()" aria-label="Close">&#x2715;</button>
             <div class="lb-img-box">
               <picture id="lb-picture" hidden>
                 <source id="lb-source" srcset="" type="image/webp">
@@ -6885,12 +6888,12 @@
               <!-- Events column -->
               <div>
                 <div class="events-tabs" role="tablist" aria-label="Event categories">
-                  <button id="ev-tab-upcoming" class="ev-tab active" role="tab" aria-selected="true"
+                  <button type="button" id="ev-tab-upcoming" class="ev-tab active" role="tab" aria-selected="true"
                     aria-controls="ev-upcoming" onclick="switchEventTab('upcoming', this)"
                     data-key="ev_upcoming">రాబోయేవి</button>
-                  <button id="ev-tab-recent" class="ev-tab" role="tab" aria-selected="false" aria-controls="ev-recent"
+                  <button type="button" id="ev-tab-recent" class="ev-tab" role="tab" aria-selected="false" aria-controls="ev-recent"
                     onclick="switchEventTab('recent', this)" data-key="ev_recent">ఇటీవలి</button>
-                  <button id="ev-tab-friday" class="ev-tab" role="tab" aria-selected="false" aria-controls="ev-friday"
+                  <button type="button" id="ev-tab-friday" class="ev-tab" role="tab" aria-selected="false" aria-controls="ev-friday"
                     onclick="switchEventTab('friday', this)" data-key="ev_friday">శుక్రవారం</button>
                 </div>
 
@@ -7608,7 +7611,7 @@
     </footer>
   </main>
   <!-- BACK TO TOP -->
-  <button class="back-to-top" id="back-to-top" aria-label="పైకి వెళ్లండి" title="పైకి వెళ్లండి" data-aria-te="పైకి వెళ్లండి" data-aria-en="Back to top" data-title-te="పైకి వెళ్లండి" data-title-en="Back to top"><svg viewBox="0 0 24 24"
+  <button type="button" class="back-to-top" id="back-to-top" aria-label="పైకి వెళ్లండి" title="పైకి వెళ్లండి" data-aria-te="పైకి వెళ్లండి" data-aria-en="Back to top" data-title-te="పైకి వెళ్లండి" data-title-en="Back to top"><svg viewBox="0 0 24 24"
       width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
       stroke-linejoin="round" aria-hidden="true">
       <polyline points="18 15 12 9 6 15" />
