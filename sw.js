@@ -1,9 +1,10 @@
 /* Islamic Front — service worker (conservative).
    HTML: network-first (pages never go stale), cache fallback when offline.
    Same-origin JS/CSS: network-first, cache fallback (keeps app shell fresh after deploys).
-   Other same-origin assets: cache-first.
+   Other same-origin assets: cache-first (complete responses only — 206 Partial skipped).
+   Audio/video: never intercepted — range requests need to pass through unmodified.
    Cross-origin (fonts, recitation audio CDN): left to the browser. */
-var CACHE = 'if-cache-v4';
+var CACHE = 'if-cache-v5';
 var PRECACHE = [
   'favicon.ico',
   'rates.json',
@@ -57,12 +58,23 @@ self.addEventListener('fetch', function (e) {
   try { url = new URL(req.url); } catch (err) { return; }
   if (url.origin !== self.location.origin) return; /* never intercept cross-origin */
 
+  /* Audio/video: let range requests pass through unmodified — the Cache API
+     rejects 206 Partial Content, and seeking breaks if the SW intercepts. */
+  if (/\.(?:mp3|mp4|ogg|webm|wav|aac|m4a)$/i.test(url.pathname)) return;
+
   var isHTML = req.mode === 'navigate' || (req.headers.get('accept') || '').indexOf('text/html') >= 0;
   var isAppAsset = /\.(?:js|css)$/i.test(url.pathname);
+
+  function safeCache(c, request, response) {
+    /* Only cache complete responses — never 206 Partial or error responses. */
+    if (response.status === 200) c.put(request, response);
+  }
+
   if (isHTML || isAppAsset) {
     e.respondWith(
       fetch(req).then(function (r) {
-        var copy = r.clone(); caches.open(CACHE).then(function (c) { c.put(req, copy); });
+        var copy = r.clone();
+        caches.open(CACHE).then(function (c) { safeCache(c, req, copy); });
         return r;
       }).catch(function () { return caches.match(req); })
     );
@@ -70,7 +82,8 @@ self.addEventListener('fetch', function (e) {
     e.respondWith(
       caches.match(req).then(function (cached) {
         return cached || fetch(req).then(function (r) {
-          var copy = r.clone(); caches.open(CACHE).then(function (c) { c.put(req, copy); });
+          var copy = r.clone();
+          caches.open(CACHE).then(function (c) { safeCache(c, req, copy); });
           return r;
         });
       })
