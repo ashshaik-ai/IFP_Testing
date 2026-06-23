@@ -73,9 +73,9 @@ body>nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,59,3
 .lc-tr{font-family:serif;font-style:italic;font-size:11px;color:var(--gold);display:block;margin-top:2px;line-height:1.3}
 
 /* LETTER POPOVER */
-#lp-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.52);z-index:190;opacity:0;pointer-events:none;transition:opacity .22s}
+#lp-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.52);z-index:895;opacity:0;pointer-events:none;transition:opacity .22s}
 #lp-backdrop.open{opacity:1;pointer-events:auto}
-#lp-pop{position:fixed;z-index:195;background:var(--green-deep);border:1px solid rgba(200,146,42,0.38);border-radius:18px;padding:22px 24px 20px;max-width:390px;width:calc(100vw - 32px);box-shadow:0 22px 60px rgba(0,0,0,0.55),0 0 0 1px rgba(200,146,42,0.12);transform:scale(0.94) translateY(10px);opacity:0;pointer-events:none;transition:transform .26s cubic-bezier(.16,1,.3,1),opacity .2s}
+#lp-pop{position:fixed;z-index:900;background:var(--green-deep);border:1px solid rgba(200,146,42,0.38);border-radius:18px;padding:22px 24px 20px;max-width:390px;width:calc(100vw - 32px);box-shadow:0 22px 60px rgba(0,0,0,0.55),0 0 0 1px rgba(200,146,42,0.12);transform:scale(0.94) translateY(10px);opacity:0;pointer-events:none;transition:transform .26s cubic-bezier(.16,1,.3,1),opacity .2s}
 #lp-pop.open{transform:none;opacity:1;pointer-events:auto}
 .lp-close{position:absolute;top:10px;right:12px;background:none;border:none;color:rgba(245,230,192,0.5);font-size:19px;cursor:pointer;padding:6px 10px;line-height:1;border-radius:6px;transition:color .18s}
 .lp-close:hover{color:var(--gold-light)}
@@ -214,7 +214,7 @@ body>nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,59,3
 
 <!-- LETTER POPOVER (floats near clicked card) -->
 <div id="lp-backdrop" aria-hidden="true"></div>
-<div id="lp-pop" role="dialog" aria-modal="true" aria-labelledby="lp-name" aria-hidden="true">
+<div id="lp-pop" role="dialog" aria-modal="true" aria-labelledby="lp-name" aria-hidden="true" tabindex="-1">
   <button type="button" class="lp-close" id="lp-close" aria-label="Close letter detail">✕</button>
   <div class="lp-head">
     <div class="lp-arabic" id="lp-arabic" dir="rtl" lang="ar">أ</div>
