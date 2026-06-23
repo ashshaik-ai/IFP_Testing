@@ -3535,19 +3535,19 @@
         flex-wrap: wrap;
       }
 
-      /* Founder photo — fills the full left-column height (badge → manifesto) */
+      /* Founder photo — aligns to top of topband (badge → stats only, no manifesto) */
       .hero-founder-mobile {
         display: flex;
         flex: 0 0 auto;
         width: clamp(140px, 40%, 230px);
-        align-self: stretch;
+        align-self: flex-start;
       }
 
       .hfm-frame {
         position: relative;
         width: 100%;
-        height: 100%;
-        min-height: 170px;
+        height: auto;
+        aspect-ratio: 2 / 3;
         border-radius: 18px;
         overflow: hidden;
         border: 2px solid rgba(200, 146, 42, 0.85);
@@ -5897,30 +5897,6 @@
                   <div class="hstat-label" data-key="stat3_label">సంవత్సరాల సేవ</div>
                 </div>
               </div>
-              <div class="hero-mf-progress">
-                <div class="hmfp-top">
-                  <span class="hmfp-label" data-key="hmfp_label">మేనిఫెస్టో పురోగతి</span>
-                </div>
-                <div class="hmfp-bar">
-                  <div class="hmfp-seg s-done" data-w="40%"></div>
-                  <div class="hmfp-seg s-progress" data-w="40%"></div>
-                  <div class="hmfp-seg s-pending" data-w="20%"></div>
-                </div>
-                <div class="hmfp-legend">
-                  <div class="hmfp-li">
-                    <div class="hmfp-dot" style="background:#22c55e;"></div><span data-key="hmfp_done">4
-                      పూర్తయింది</span>
-                  </div>
-                  <div class="hmfp-li">
-                    <div class="hmfp-dot" style="background:#f59e0b;"></div><span data-key="hmfp_prog">4
-                      పురోగతిలో</span>
-                  </div>
-                  <div class="hmfp-li">
-                    <div class="hmfp-dot" style="background:rgba(255,255,255,0.25);"></div><span data-key="hmfp_pend">2
-                      రాబోతున్నవి</span>
-                  </div>
-                </div>
-              </div>
             </div>
             <!-- Mobile-only prominent founder photo (desktop shows the full leader-card at right) -->
             <div class="hero-founder-mobile">
@@ -5932,6 +5908,28 @@
                   <div class="hfm-name" data-key="leader_name">జనాబ్ షేక్ అక్రమ్</div>
                   <div class="hfm-role" data-key="leader_title_short">సంస్థాపకుడు, ఇస్లామిక్ ఫ్రంట్</div>
                 </div>
+              </div>
+            </div>
+          </div>
+          <!-- Manifesto progress — sits below the photo+text band so photo is unobstructed -->
+          <div class="hero-mf-progress">
+            <div class="hmfp-top">
+              <span class="hmfp-label" data-key="hmfp_label">మేనిఫెస్టో పురోగతి</span>
+            </div>
+            <div class="hmfp-bar">
+              <div class="hmfp-seg s-done" data-w="40%"></div>
+              <div class="hmfp-seg s-progress" data-w="40%"></div>
+              <div class="hmfp-seg s-pending" data-w="20%"></div>
+            </div>
+            <div class="hmfp-legend">
+              <div class="hmfp-li">
+                <div class="hmfp-dot" style="background:#22c55e;"></div><span data-key="hmfp_done">4 పూర్తయింది</span>
+              </div>
+              <div class="hmfp-li">
+                <div class="hmfp-dot" style="background:#f59e0b;"></div><span data-key="hmfp_prog">4 పురోగతిలో</span>
+              </div>
+              <div class="hmfp-li">
+                <div class="hmfp-dot" style="background:rgba(255,255,255,0.25);"></div><span data-key="hmfp_pend">2 రాబోతున్నవి</span>
               </div>
             </div>
           </div>
