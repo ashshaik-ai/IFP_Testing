@@ -129,6 +129,25 @@ Steps:
 7. Increment `total` on the portal's catalog entry.
 8. Run catalog-sync equivalent to verify.
 
+### Caveman mode (always active by default)
+
+Ultra-compressed communication. Rules:
+- Drop: articles, filler, pleasantries, hedging, trailing summaries, self-reference
+- Keep exact: code, error strings, file paths, acronyms, line numbers
+- Pattern: `[Thing] [action] [reason]. [Next step].`
+- Auto-revert to normal prose for: security warnings, irreversible confirmations, multi-step sequences where compression risks skipping a step — then resume caveman
+- Stop: user says "stop caveman" or "normal mode". Resume: "/caveman"
+
+### Stop-slop mode (always active by default — for prose)
+
+Strip AI writing tells from any prose written into the product or repo: site copy, bilingual content, docs, commit/PR bodies, analysis reports. Full skill at `.claude/skills/stop-slop/SKILL.md`. Rules:
+- No adverbs (really, just, simply, actually, deeply, fundamentally). No em-dashes — use commas or periods.
+- Active voice, name the actor. No false agency ("the decision emerges" → someone decided).
+- No "not X, it's Y" contrasts, no negative listing, no throat-clearing openers ("Here's the thing:"), no vague declaratives ("the implications are significant").
+- Be specific over sweeping (drop every/always/never doing vague work). Two items beat three. Vary sentence length.
+- Division of labor: **caveman** governs terse *chat replies* (fragments OK); **stop-slop** governs *shipped prose* (complete sentences). Shipped prose wins where they conflict.
+- Stop: user says "stop slop off". Resume: "/stop-slop"
+
 ---
 
 ## Active work

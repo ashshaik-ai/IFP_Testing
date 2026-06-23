@@ -66,7 +66,25 @@ for (const pg of PAGES) {
 
       const device = testInfo.project.name;
       const file = path.join(OUT_DIR, `${device}--${pg.name}--full.png`);
-      await page.screenshot({ path: file, fullPage: true });
+
+      // Browser engines reject any screenshot dimension > 32767 device px.
+      // On 2× retina profiles (e.g. iPad Pro) a tall page exceeds this, so cap
+      // the capture height to the safe limit instead of crashing on fullPage.
+      const { dsf, scrollH, scrollW } = await page.evaluate(() => ({
+        dsf: window.devicePixelRatio || 1,
+        scrollH: document.documentElement.scrollHeight,
+        scrollW: document.documentElement.scrollWidth,
+      }));
+      const maxCssHeight = Math.floor(32767 / dsf) - 4;
+      if (scrollH <= maxCssHeight) {
+        await page.screenshot({ path: file, fullPage: true });
+      } else {
+        const vw = page.viewportSize().width;
+        await page.screenshot({
+          path: file,
+          clip: { x: 0, y: 0, width: Math.min(scrollW, vw), height: maxCssHeight },
+        });
+      }
     });
 
   });

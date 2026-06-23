@@ -583,32 +583,24 @@
         + '  </svg>'
         + '  <span class="bn-label" data-bn-label="home">' + (te ? 'హోమ్' : 'Home') + '</span>'
         + '</a>'
-        + '<a href="' + base + 'index.html#achievements" class="bn-item' + (!isHome && !isKnowledge ? '' : (isHome && !isSchemeHash && !isContactHash ? '' : '')) + '">'
+        + '<a href="' + base + 'student-guidance.html" class="bn-item">'
+        + '  <svg class="bn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
+        + '    <path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/>'
+        + '  </svg>'
+        + '  <span class="bn-label" data-bn-label="guidance">' + (te ? 'మార్గదర్శనం' : 'Guidance') + '</span>'
+        + '</a>'
+        + '<a href="' + base + 'index.html#achievements" class="bn-item">'
         + '  <svg class="bn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
         + '    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>'
         + '  </svg>'
         + '  <span class="bn-label" data-bn-label="achievements">' + (te ? 'సాధనలు' : 'Achievements') + '</span>'
         + '</a>'
-        + '<a href="' + base + 'islamic-knowledge.html" class="bn-item' + (isKnowledge ? ' bn-active" aria-current="page' : '') + '">'
+        + '<a href="' + base + 'index.html#manifesto" class="bn-item">'
         + '  <svg class="bn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
-        + '    <path d="M12 2C9 3 6 5.5 6 9h12c0-3.5-3-6-6-6z"/><rect x="4" y="9" width="16" height="2" rx="1"/><path d="M6 11v8h4v-5h4v5h4v-8"/><path d="M2 21h20"/>'
+        + '    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/>'
         + '  </svg>'
-        + '  <span class="bn-label" data-bn-label="learn">' + (te ? 'అభ్యాసం' : 'Learn') + '</span>'
+        + '  <span class="bn-label" data-bn-label="manifesto">' + (te ? 'మేనిఫెస్టో' : 'Manifesto') + '</span>'
         + '</a>'
-        + (isPortalPage
-          ? '<a href="' + base + 'student-guidance.html" class="bn-item">'
-            + '  <svg class="bn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
-            + '    <path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/>'
-            + '  </svg>'
-            + '  <span class="bn-label" data-bn-label="guidance">' + (te ? 'మార్గదర్శనం' : 'Guidance') + '</span>'
-            + '</a>'
-          : '<button type="button" class="bn-item lang-btn" id="bn-lang" aria-label="Switch language">'
-            + '  <svg class="bn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
-            + '    <circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>'
-            + '  </svg>'
-            + '  <span class="bn-label">' + (te ? 'English' : 'తెలుగు') + '</span>'
-            + '</button>'
-        )
         + '<button type="button" class="bn-item" id="bn-more" aria-haspopup="true" aria-expanded="false" aria-controls="nav-drawer">'
         + '  <svg class="bn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
         + '    <circle cx="12" cy="12" r="1" />'
@@ -726,9 +718,9 @@
         var isTe = getLang() === 'te';
         var copy = {
           home: { te: 'హోమ్', en: 'Home' },
-          achievements: { te: 'సాధనలు', en: 'Achievements' },
-          learn: { te: 'అభ్యాసం', en: 'Learn' },
           guidance: { te: 'మార్గదర్శనం', en: 'Guidance' },
+          achievements: { te: 'సాధనలు', en: 'Achievements' },
+          manifesto: { te: 'మేనిఫెస్టో', en: 'Manifesto' },
           more: { te: 'మరిన్ని', en: 'More' }
         };
         document.querySelectorAll('.bottom-nav .bn-label[data-bn-label]').forEach(function (label) {

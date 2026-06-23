@@ -70,6 +70,8 @@ Reusable skills in `.claude/skills/` — invoke with `/skill-name`:
 | `/portal-audit` | After new portal; after cross-cutting change | Checks all 7 portal index pages across 12 structural dimensions (nav, i18n, a11y, scripts, SEO) |
 | `/translate-cards` | Continuing CB_TE[] Telugu translation work | Batches student-guidance card translations with house-style enforcement and index alignment |
 | `/lesson-scaffold` | Adding a new lesson to any portal | Generates lesson HTML, updates catalog, updates portal IF_PORTAL.lessons[], wires prev/next |
+| `/caveman` | **Always active by default** | Ultra-compressed responses — drops filler/pleasantries, keeps all technical content. Stop: "normal mode". |
+| `/stop-slop` | **Always active by default** (for prose) | Strips AI writing tells from shipped prose — site copy, docs, commit/PR bodies, reports. No adverbs, no em-dashes, no "not X but Y", active voice, name the actor. Governs prose; caveman governs chat. Stop: "stop slop off". |
 
 Also available: `/new-portal` · `/i18n-check` · `/a11y-audit` · `/deploy` · `/verify` · `/code-review`
 
