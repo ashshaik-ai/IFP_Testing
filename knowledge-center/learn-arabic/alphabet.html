@@ -63,13 +63,20 @@ body>nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,59,3
 /* LETTER GRID */
 .ls-white{background:var(--white)}
 .letter-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:12px;margin-top:36px;direction:rtl}
-.letter-card{background:var(--cream);border:1px solid var(--border);border-radius:var(--radius,16px);padding:18px 10px 18px;text-align:center;cursor:pointer;transition:transform .22s cubic-bezier(.16,1,.3,1),box-shadow .22s,border-color .22s;position:relative;overflow:hidden;direction:ltr}
+.letter-card{background:var(--cream);border:1px solid var(--border);border-radius:var(--radius,16px);padding:18px 10px 14px;text-align:center;cursor:pointer;transition:transform .22s cubic-bezier(.16,1,.3,1),box-shadow .22s,border-color .22s;position:relative;overflow:hidden;direction:ltr}
 .letter-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--gold-light));transform:scaleX(0);transition:transform .28s}
 .letter-card:hover{transform:translateY(-5px);box-shadow:0 12px 28px rgba(13,59,30,0.12);border-color:rgba(200,146,42,0.45)}
 .letter-card:hover::before{transform:scaleX(1)}
 .lc-letter{font-family:'Amiri',serif;font-size:38px;color:var(--green-deep);line-height:1.1;display:block;direction:rtl;font-weight:700}
 .lc-name{font-family:'DM Sans',sans-serif;font-size: 12px;color:var(--text-muted);margin-top:5px;display:block;font-weight:500;line-height:1.4;word-break:break-word}
 .lc-tr{font-family:serif;font-style:italic;font-size: 12px;color:var(--gold);display:block;margin-top:2px;line-height:1.3;overflow-wrap:break-word;word-break:break-word}
+.lc-play{display:inline-flex;align-items:center;justify-content:center;margin-top:8px;width:32px;height:32px;border-radius:50%;background:rgba(200,146,42,0.12);border:1px solid rgba(200,146,42,0.35);color:var(--gold);cursor:pointer;transition:background .18s,transform .18s;font-size:13px}
+.lc-play:hover{background:rgba(200,146,42,0.28);transform:scale(1.1)}
+.lc-play.playing{background:rgba(200,146,42,0.35);animation:pulse-gold .6s ease infinite alternate}
+@keyframes pulse-gold{from{box-shadow:0 0 0 0 rgba(200,146,42,0.4)}to{box-shadow:0 0 0 6px rgba(200,146,42,0)}}
+/* Audio play button inside detail panel */
+.ld-play{display:inline-flex;align-items:center;gap:8px;margin-top:12px;padding:9px 18px;border-radius:8px;background:rgba(200,146,42,0.15);border:1px solid rgba(200,146,42,0.4);color:var(--gold-light);font-size:13px;font-weight:600;cursor:pointer;transition:background .18s}
+.ld-play:hover{background:rgba(200,146,42,0.28)}
 
 /* LETTER DETAIL PANEL */
 .letter-detail{background:var(--green-deep);border-radius:16px;padding:28px 32px;margin-top:24px;display:none;border:1px solid rgba(200,146,42,0.25)}
@@ -294,34 +301,34 @@ body>nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,59,3
 
 /* ── LETTER DATA ── */
 var LETTERS=[
-  {ar:'أ',name:'Alif',name_te:'అలిఫ్',tr:'ā / ʾ',iso:'أ',ini:'أـ',med:'ـأـ',fin:'ـأ',note:'The first letter. Can represent a long "aa" vowel or a glottal stop (ʾ).',note_te:'మొదటి అక్షరం. దీర్ఘ "ఆ" స్వరం లేదా గొంతులో కొద్ది క్షణం ఆగే హంజా శబ్దంగా పనిచేస్తుంది.'},
-  {ar:'ب',name:'Ba',name_te:'బా',tr:'b',iso:'ب',ini:'بـ',med:'ـبـ',fin:'ـب',note:'Pronounced like "b" in "book". One dot below.',note_te:'తెలుగు "బ" వలె పలుకుతారు. కింద ఒక చుక్క.'},
-  {ar:'ت',name:'Ta',name_te:'తా',tr:'t',iso:'ت',ini:'تـ',med:'ـتـ',fin:'ـت',note:'Pronounced like "t" in "top". Two dots above.',note_te:'తెలుగు "త" వలె పలుకుతారు. పైన రెండు చుక్కలు.'},
-  {ar:'ث',name:'Tha',name_te:'థా',tr:'th',iso:'ث',ini:'ثـ',med:'ـثـ',fin:'ـث',note:'Like "th" in "think". Three dots above.',note_te:'తెలుగు "థ" వలె పలుకుతారు. పైన మూడు చుక్కలు.'},
-  {ar:'ج',name:'Jim',name_te:'జీమ్',tr:'j',iso:'ج',ini:'جـ',med:'ـجـ',fin:'ـج',note:'Like "j" in "just". One dot inside the curve.',note_te:'తెలుగు "జ" వలె పలుకుతారు. వక్రం లోపల ఒక చుక్క.'},
-  {ar:'ح',name:'Deep Ha',name_te:'డీప్ హా',tr:'h',iso:'ح',ini:'حـ',med:'ـحـ',fin:'ـح',note:'A breathy "h" from the throat — no dot.',note_te:'గొంతు లోతు నుండి వచ్చే "హ" శ్వాస శబ్దం — చుక్క లేదు.'},
-  {ar:'خ',name:'Kha',name_te:'ఖా',tr:'kh',iso:'خ',ini:'خـ',med:'ـخـ',fin:'ـخ',note:'Like the "ch" in Scottish "loch". One dot above.',note_te:'గొంతు వెనుక నుండి వచ్చే "ఖ" శబ్దం. పైన ఒక చుక్క.'},
-  {ar:'د',name:'Dal',name_te:'దాల్',tr:'d',iso:'د',ini:'دـ',med:'ـدـ',fin:'ـد',note:'Like "d" in "door". Does not connect to the next letter.',note_te:'తెలుగు "డ" వలె పలుకుతారు. తదుపరి అక్షరంతో కలవదు.'},
-  {ar:'ذ',name:'Dhal',name_te:'ధాల్',tr:'dh',iso:'ذ',ini:'ذـ',med:'ـذـ',fin:'ـذ',note:'Like "th" in "the". One dot above. Does not connect forward.',note_te:'జ మరియు ద మధ్య శబ్దం. పైన ఒక చుక్క. ముందుకు కలవదు.'},
-  {ar:'ر',name:'Ra',name_te:'రా',tr:'r',iso:'ر',ini:'رـ',med:'ـرـ',fin:'ـر',note:'A rolled "r" sound. Does not connect to the next letter.',note_te:'నాలుక వంచే "ర" శబ్దం. తదుపరి అక్షరంతో కలవదు.'},
-  {ar:'ز',name:'Zay',name_te:'జే',tr:'z',iso:'ز',ini:'زـ',med:'ـزـ',fin:'ـز',note:'Like "z" in "zebra". One dot above rā. Does not connect forward.',note_te:'తెలుగు "జ" వలె పలుకుతారు. రా పైన ఒక చుక్క. ముందుకు కలవదు.'},
-  {ar:'س',name:'Sin',name_te:'సీన్',tr:'s',iso:'س',ini:'سـ',med:'ـسـ',fin:'ـس',note:'Like "s" in "sun". Three "teeth" with no dots.',note_te:'తెలుగు "స" వలె పలుకుతారు. మూడు "పళ్ళు" ఉంటాయి, చుక్కలు లేవు.'},
-  {ar:'ش',name:'Shin',name_te:'శీన్',tr:'sh',iso:'ش',ini:'شـ',med:'ـشـ',fin:'ـش',note:'Like "sh" in "ship". Three dots above sīn.',note_te:'తెలుగు "శ" వలె పలుకుతారు. సీన్ పైన మూడు చుక్కలు.'},
-  {ar:'ص',name:'Saad',name_te:'స్వాద్',tr:'s',iso:'ص',ini:'صـ',med:'ـصـ',fin:'ـص',note:'Emphatic "s" — tongue presses back. Heavier than sīn.',note_te:'నొక్కుకున్న "స" శబ్దం — నాలుక వెనుకకు వెళ్ళి పలుకుతారు. సీన్ కంటే బరువుగా.'},
-  {ar:'ض',name:'Dad',name_te:'జ్వాద్',tr:'d',iso:'ض',ini:'ضـ',med:'ـضـ',fin:'ـض',note:'Emphatic "d". One dot above. The most unique Arabic sound.',note_te:'నొక్కుకున్న "డ" శబ్దం. పైన ఒక చుక్క. అరబిక్‌లో అత్యంత ప్రత్యేకమైన శబ్దం.'},
-  {ar:'ط',name:'Heavy Ta',name_te:'హెవీ తా',tr:'t',iso:'ط',ini:'طـ',med:'ـطـ',fin:'ـط',note:'Emphatic "t". Pronounced from farther back in the mouth.',note_te:'నొక్కుకున్న "ట" శబ్దం. నోటి లోపల భాగం నుండి పలుకుతారు.'},
-  {ar:'ظ',name:'Heavy Zha',name_te:'హెవీ ఝా',tr:'z',iso:'ظ',ini:'ظـ',med:'ـظـ',fin:'ـظ',note:'Emphatic "dh". One dot above ṭā. Deep throat sound.',note_te:'నొక్కుకున్న "ధ" శబ్దం. తా పైన ఒక చుక్క. గొంతు లోతు శబ్దం.'},
-  {ar:'ع',name:'Ayn',name_te:'ఐన్',tr:'a',iso:'ع',ini:'عـ',med:'ـعـ',fin:'ـع',note:"Unique Arabic sound — a voiced constriction of the throat. No equivalent in English.",note_te:'అరబిక్‌కు ప్రత్యేకమైన శబ్దం — గొంతు సంకోచంతో వచ్చే స్వర శబ్దం. తెలుగులో సమానమైనది లేదు.'},
-  {ar:'غ',name:'Ghayn',name_te:'గైన్',tr:'gh',iso:'غ',ini:'غـ',med:'ـغـ',fin:'ـغ',note:'Like a gargled "r" (French "r"). One dot above ʿayn.',note_te:'గొంతు లోతు నుండి గురగురమనే "ఘ" శబ్దం. ఐన్ పైన ఒక చుక్క.'},
-  {ar:'ف',name:'Fa',name_te:'ఫే',tr:'f',iso:'ف',ini:'فـ',med:'ـفـ',fin:'ـف',note:'Like "f" in "fan". One dot above the circle.',note_te:'తెలుగు "ఫ" వలె పలుకుతారు. వృత్తం పైన ఒక చుక్క.'},
-  {ar:'ق',name:'Qaf',name_te:'కాఫ్',tr:'q',iso:'ق',ini:'قـ',med:'ـقـ',fin:'ـق',note:'Deep "k" sound from the back of the throat. Two dots above.',note_te:'గొంతు వెనుక భాగం నుండి వచ్చే "క" శబ్దం. పైన రెండు చుక్కలు.'},
-  {ar:'ك',name:'Kaf',name_te:'కాఫ్',tr:'k',iso:'ك',ini:'كـ',med:'ـكـ',fin:'ـك',note:'Like "k" in "king". Lighter than qāf.',note_te:'తెలుగు "క" వలె పలుకుతారు. కాఫ్ కంటే తేలికగా ఉంటుంది.'},
-  {ar:'ل',name:'Lam',name_te:'లామ్',tr:'l',iso:'ل',ini:'لـ',med:'ـلـ',fin:'ـل',note:'Like "l" in "lamp".',note_te:'తెలుగు "ల" వలె పలుకుతారు.'},
-  {ar:'م',name:'Mim',name_te:'మీమ్',tr:'m',iso:'م',ini:'مـ',med:'ـمـ',fin:'ـم',note:'Like "m" in "moon".',note_te:'తెలుగు "మ" వలె పలుకుతారు.'},
-  {ar:'ن',name:'Nun',name_te:'నూన్',tr:'n',iso:'ن',ini:'نـ',med:'ـنـ',fin:'ـن',note:'Like "n" in "noon". One dot below the curve.',note_te:'తెలుగు "న" వలె పలుకుతారు. వక్రం కింద ఒక చుక్క.'},
-  {ar:'ه',name:'Ha',name_te:'హే',tr:'h',iso:'ه',ini:'هـ',med:'ـهـ',fin:'ـه',note:'Like "h" in "house". A light breathy sound.',note_te:'తెలుగు "హ" వలె పలుకుతారు. తేలికపాటి శ్వాస శబ్దం.'},
-  {ar:'و',name:'Waw',name_te:'వావ్',tr:'w / oo',iso:'و',ini:'وـ',med:'ـوـ',fin:'ـو',note:'Like "w" in "water" or long "oo". Does not connect forward.',note_te:'తెలుగు "వ" వలె లేదా దీర్ఘ "ఊ". ముందుకు కలవదు.'},
-  {ar:'ي',name:'Ya',name_te:'యే',tr:'y / ee',iso:'ي',ini:'يـ',med:'ـيـ',fin:'ـي',note:'Like "y" in "yes" or long "ee". Two dots below.',note_te:'తెలుగు "య" వలె లేదా దీర్ఘ "ఈ". కింద రెండు చుక్కలు.'}
+  {ar:'أ',name:'Alif',name_te:'అలిఫ్',tr:'ā / ʾ',iso:'أ',ini:'أـ',med:'ـأـ',fin:'ـأ',audio:'alif',note:'The first letter. Can represent a long "aa" vowel or a glottal stop (ʾ).',note_te:'మొదటి అక్షరం. దీర్ఘ "ఆ" స్వరం లేదా గొంతులో కొద్ది క్షణం ఆగే హంజా శబ్దంగా పనిచేస్తుంది.'},
+  {ar:'ب',name:'Ba',name_te:'బా',tr:'b',iso:'ب',ini:'بـ',med:'ـبـ',fin:'ـب',audio:'ba',note:'Pronounced like "b" in "book". One dot below.',note_te:'తెలుగు "బ" వలె పలుకుతారు. కింద ఒక చుక్క.'},
+  {ar:'ت',name:'Ta',name_te:'తా',tr:'t',iso:'ت',ini:'تـ',med:'ـتـ',fin:'ـت',audio:'ta',note:'Pronounced like "t" in "top". Two dots above.',note_te:'తెలుగు "త" వలె పలుకుతారు. పైన రెండు చుక్కలు.'},
+  {ar:'ث',name:'Tha',name_te:'థా',tr:'th',iso:'ث',ini:'ثـ',med:'ـثـ',fin:'ـث',audio:'tha',note:'Like "th" in "think". Three dots above.',note_te:'తెలుగు "థ" వలె పలుకుతారు. పైన మూడు చుక్కలు.'},
+  {ar:'ج',name:'Jim',name_te:'జీమ్',tr:'j',iso:'ج',ini:'جـ',med:'ـجـ',fin:'ـج',audio:'jiim',note:'Like "j" in "just". One dot inside the curve.',note_te:'తెలుగు "జ" వలె పలుకుతారు. వక్రం లోపల ఒక చుక్క.'},
+  {ar:'ح',name:'Deep Ha',name_te:'డీప్ హా',tr:'h',iso:'ح',ini:'حـ',med:'ـحـ',fin:'ـح',audio:'ha_deep',note:'A breathy "h" from the throat — no dot.',note_te:'గొంతు లోతు నుండి వచ్చే "హ" శ్వాస శబ్దం — చుక్క లేదు.'},
+  {ar:'خ',name:'Kha',name_te:'ఖా',tr:'kh',iso:'خ',ini:'خـ',med:'ـخـ',fin:'ـخ',audio:'kha',note:'Like the "ch" in Scottish "loch". One dot above.',note_te:'గొంతు వెనుక నుండి వచ్చే "ఖ" శబ్దం. పైన ఒక చుక్క.'},
+  {ar:'د',name:'Dal',name_te:'దాల్',tr:'d',iso:'د',ini:'دـ',med:'ـدـ',fin:'ـد',audio:'dal',note:'Like "d" in "door". Does not connect to the next letter.',note_te:'తెలుగు "డ" వలె పలుకుతారు. తదుపరి అక్షరంతో కలవదు.'},
+  {ar:'ذ',name:'Dhal',name_te:'ధాల్',tr:'dh',iso:'ذ',ini:'ذـ',med:'ـذـ',fin:'ـذ',audio:'dhal',note:'Like "th" in "the". One dot above. Does not connect forward.',note_te:'జ మరియు ద మధ్య శబ్దం. పైన ఒక చుక్క. ముందుకు కలవదు.'},
+  {ar:'ر',name:'Ra',name_te:'రా',tr:'r',iso:'ر',ini:'رـ',med:'ـرـ',fin:'ـر',audio:'ra',note:'A rolled "r" sound. Does not connect to the next letter.',note_te:'నాలుక వంచే "ర" శబ్దం. తదుపరి అక్షరంతో కలవదు.'},
+  {ar:'ز',name:'Zay',name_te:'జే',tr:'z',iso:'ز',ini:'زـ',med:'ـزـ',fin:'ـز',audio:'zay',note:'Like "z" in "zebra". One dot above rā. Does not connect forward.',note_te:'తెలుగు "జ" వలె పలుకుతారు. రా పైన ఒక చుక్క. ముందుకు కలవదు.'},
+  {ar:'س',name:'Sin',name_te:'సీన్',tr:'s',iso:'س',ini:'سـ',med:'ـسـ',fin:'ـس',audio:'siin',note:'Like "s" in "sun". Three "teeth" with no dots.',note_te:'తెలుగు "స" వలె పలుకుతారు. మూడు "పళ్ళు" ఉంటాయి, చుక్కలు లేవు.'},
+  {ar:'ش',name:'Shin',name_te:'శీన్',tr:'sh',iso:'ش',ini:'شـ',med:'ـشـ',fin:'ـش',audio:'shiin',note:'Like "sh" in "ship". Three dots above sīn.',note_te:'తెలుగు "శ" వలె పలుకుతారు. సీన్ పైన మూడు చుక్కలు.'},
+  {ar:'ص',name:'Saad',name_te:'స్వాద్',tr:'s',iso:'ص',ini:'صـ',med:'ـصـ',fin:'ـص',audio:'saad',note:'Emphatic "s" — tongue presses back. Heavier than sīn.',note_te:'నొక్కుకున్న "స" శబ్దం — నాలుక వెనుకకు వెళ్ళి పలుకుతారు. సీన్ కంటే బరువుగా.'},
+  {ar:'ض',name:'Dad',name_te:'జ్వాద్',tr:'d',iso:'ض',ini:'ضـ',med:'ـضـ',fin:'ـض',audio:'daad',note:'Emphatic "d". One dot above. The most unique Arabic sound.',note_te:'నొక్కుకున్న "డ" శబ్దం. పైన ఒక చుక్క. అరబిక్‌లో అత్యంత ప్రత్యేకమైన శబ్దం.'},
+  {ar:'ط',name:'Heavy Ta',name_te:'హెవీ తా',tr:'t',iso:'ط',ini:'طـ',med:'ـطـ',fin:'ـط',audio:'ta_heavy',note:'Emphatic "t". Pronounced from farther back in the mouth.',note_te:'నొక్కుకున్న "ట" శబ్దం. నోటి లోపల భాగం నుండి పలుకుతారు.'},
+  {ar:'ظ',name:'Heavy Zha',name_te:'హెవీ ఝా',tr:'z',iso:'ظ',ini:'ظـ',med:'ـظـ',fin:'ـظ',audio:'zha_heavy',note:'Emphatic "dh". One dot above ṭā. Deep throat sound.',note_te:'నొక్కుకున్న "ధ" శబ్దం. తా పైన ఒక చుక్క. గొంతు లోతు శబ్దం.'},
+  {ar:'ع',name:'Ayn',name_te:'ఐన్',tr:'a',iso:'ع',ini:'عـ',med:'ـعـ',fin:'ـع',audio:'ayn',note:"Unique Arabic sound — a voiced constriction of the throat. No equivalent in English.",note_te:'అరబిక్‌కు ప్రత్యేకమైన శబ్దం — గొంతు సంకోచంతో వచ్చే స్వర శబ్దం. తెలుగులో సమానమైనది లేదు.'},
+  {ar:'غ',name:'Ghayn',name_te:'గైన్',tr:'gh',iso:'غ',ini:'غـ',med:'ـغـ',fin:'ـغ',audio:'ghayn',note:'Like a gargled "r" (French "r"). One dot above ʿayn.',note_te:'గొంతు లోతు నుండి గురగురమనే "ఘ" శబ్దం. ఐన్ పైన ఒక చుక్క.'},
+  {ar:'ف',name:'Fa',name_te:'ఫే',tr:'f',iso:'ف',ini:'فـ',med:'ـفـ',fin:'ـف',audio:'fa',note:'Like "f" in "fan". One dot above the circle.',note_te:'తెలుగు "ఫ" వలె పలుకుతారు. వృత్తం పైన ఒక చుక్క.'},
+  {ar:'ق',name:'Qaf',name_te:'కాఫ్',tr:'q',iso:'ق',ini:'قـ',med:'ـقـ',fin:'ـق',audio:'qaaf',note:'Deep "k" sound from the back of the throat. Two dots above.',note_te:'గొంతు వెనుక భాగం నుండి వచ్చే "క" శబ్దం. పైన రెండు చుక్కలు.'},
+  {ar:'ك',name:'Kaf',name_te:'కాఫ్',tr:'k',iso:'ك',ini:'كـ',med:'ـكـ',fin:'ـك',audio:'kaaf',note:'Like "k" in "king". Lighter than qāf.',note_te:'తెలుగు "క" వలె పలుకుతారు. కాఫ్ కంటే తేలికగా ఉంటుంది.'},
+  {ar:'ل',name:'Lam',name_te:'లామ్',tr:'l',iso:'ل',ini:'لـ',med:'ـلـ',fin:'ـل',audio:'laam',note:'Like "l" in "lamp".',note_te:'తెలుగు "ల" వలె పలుకుతారు.'},
+  {ar:'م',name:'Mim',name_te:'మీమ్',tr:'m',iso:'م',ini:'مـ',med:'ـمـ',fin:'ـم',audio:'miim',note:'Like "m" in "moon".',note_te:'తెలుగు "మ" వలె పలుకుతారు.'},
+  {ar:'ن',name:'Nun',name_te:'నూన్',tr:'n',iso:'ن',ini:'نـ',med:'ـنـ',fin:'ـن',audio:'nuun',note:'Like "n" in "noon". One dot below the curve.',note_te:'తెలుగు "న" వలె పలుకుతారు. వక్రం కింద ఒక చుక్క.'},
+  {ar:'ه',name:'Ha',name_te:'హే',tr:'h',iso:'ه',ini:'هـ',med:'ـهـ',fin:'ـه',audio:'ha',note:'Like "h" in "house". A light breathy sound.',note_te:'తెలుగు "హ" వలె పలుకుతారు. తేలికపాటి శ్వాస శబ్దం.'},
+  {ar:'و',name:'Waw',name_te:'వావ్',tr:'w / oo',iso:'و',ini:'وـ',med:'ـوـ',fin:'ـو',audio:'waw',note:'Like "w" in "water" or long "oo". Does not connect forward.',note_te:'తెలుగు "వ" వలె లేదా దీర్ఘ "ఊ". ముందుకు కలవదు.'},
+  {ar:'ي',name:'Ya',name_te:'యే',tr:'y / ee',iso:'ي',ini:'يـ',med:'ـيـ',fin:'ـي',audio:'ya',note:'Like "y" in "yes" or long "ee". Two dots below.',note_te:'తెలుగు "య" వలె లేదా దీర్ఘ "ఈ". కింద రెండు చుక్కలు.'}
 ];
 
 /* ── LANG ── */
@@ -353,6 +360,19 @@ function applyLang(l){
 function toggleLang(){applyLang(lang==='te'?'en':'te')}
 window.toggleLang=toggleLang;
 
+/* ── AUDIO ── */
+var _audioEl=null;
+function playLetterAudio(fname,btn){
+  if(_audioEl){_audioEl.pause();_audioEl.currentTime=0;}
+  document.querySelectorAll('.lc-play.playing,.ld-play.playing').forEach(function(b){b.classList.remove('playing');});
+  var src='../../assets/audio/arabic/'+fname+'.mp3';
+  _audioEl=new Audio(src);
+  if(btn){btn.classList.add('playing');}
+  _audioEl.play().catch(function(){});
+  _audioEl.addEventListener('ended',function(){if(btn)btn.classList.remove('playing');});
+}
+window.playLetterAudio=playLetterAudio;
+
 /* ── BUILD GRID ── */
 function buildGrid(){
   var grid=document.getElementById('letter-grid');
@@ -362,10 +382,16 @@ function buildGrid(){
     card.className='letter-card';
     card.setAttribute('role','listitem');
     card.setAttribute('tabindex','0');
-    card.setAttribute('aria-label','Letter '+l.name);
+    card.setAttribute('aria-label','Letter '+l.name+', tap to expand');
     card.innerHTML='<span class="lc-letter" dir="rtl" lang="ar">'+l.ar+'</span>'
       +'<span class="lc-name" data-te="'+l.name_te+'" data-en="'+l.name+'">'+l.name_te+'</span>'
-      +'<span class="lc-tr">'+l.tr+'</span>';
+      +'<span class="lc-tr">'+l.tr+'</span>'
+      +'<button type="button" class="lc-play" aria-label="Play pronunciation of '+l.name+'" title="Play pronunciation">▶</button>';
+    var playBtn=card.querySelector('.lc-play');
+    playBtn.addEventListener('click',function(e){
+      e.stopPropagation();
+      playLetterAudio(l.audio,playBtn);
+    });
     function open(){showDetail(i);}
     card.addEventListener('click',open);
     card.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' ')open()});
@@ -397,6 +423,16 @@ function showDetail(i){
     d.innerHTML='<span class="ld-form-ar" dir="rtl" lang="ar">'+vals[j]+'</span><span class="ld-form-label">'+lab+'</span>';
     forms.appendChild(d);
   });
+  // Remove old play button if any, add fresh one
+  var oldPlay=panel.querySelector('.ld-play');if(oldPlay)oldPlay.remove();
+  if(l.audio){
+    var playBtn=document.createElement('button');
+    playBtn.type='button';playBtn.className='ld-play';
+    playBtn.setAttribute('aria-label','Play pronunciation of '+(lang==='te'?l.name_te:l.name));
+    playBtn.innerHTML='<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>'+(lang==='te'?'ఉచ్చారణ వినండి':'Hear Pronunciation');
+    playBtn.addEventListener('click',function(){playLetterAudio(l.audio,playBtn);});
+    forms.after(playBtn);
+  }
   panel.classList.add('ld-open');
   panel.scrollIntoView({behavior:'smooth',block:'nearest'});
 }

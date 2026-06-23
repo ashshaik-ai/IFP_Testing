@@ -23,6 +23,10 @@ const PAGES = [
   { name: 'seerah',            path: './knowledge-center/seerah/',            waitFor: '.al-hero',   scroll: false },
   { name: 'islamic-history',   path: './knowledge-center/islamic-history/',   waitFor: '.al-hero',   scroll: false },
   { name: 'kids-islam',        path: './knowledge-center/kids-islam/',        waitFor: '.al-hero',   scroll: false },
+  { name: 'womens-guidance',   path: './knowledge-center/womens-guidance/',   waitFor: 'main',       scroll: false },
+  { name: 'hajj-umrah',        path: './knowledge-center/hajj-umrah/',        waitFor: 'main',       scroll: false },
+  { name: 'islamic-calendar',  path: './knowledge-center/islamic-calendar/',  waitFor: 'main',       scroll: false },
+  { name: 'special-prayers',   path: './knowledge-center/special-prayers/',   waitFor: 'main',       scroll: false },
 ];
 
 test.beforeAll(() => {

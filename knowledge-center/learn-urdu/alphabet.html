@@ -85,6 +85,12 @@ a{color:inherit;text-decoration:none}
 .lt-name{font-size: .75rem;font-weight:600;color:var(--text-mid);margin-bottom:2px;line-height:1.4;word-break:break-word}
 .lt-tr{font-size:.66rem;color:var(--text-muted);line-height:1.3;overflow-wrap:break-word;word-break:break-word}
 .lt-unique{position:absolute;top:6px;right:6px;width:6px;height:6px;border-radius:50%;background:var(--gold)}
+.lt-play{display:inline-flex;align-items:center;justify-content:center;margin-top:8px;width:32px;height:32px;border-radius:50%;background:rgba(200,146,42,0.12);border:1px solid rgba(200,146,42,0.35);color:var(--gold);cursor:pointer;transition:background .18s,transform .18s;font-size:13px}
+.lt-play:hover{background:rgba(200,146,42,0.28);transform:scale(1.1)}
+.lt-play.playing{background:rgba(200,146,42,0.35);animation:pulse-gold .6s ease infinite alternate}
+@keyframes pulse-gold{from{box-shadow:0 0 0 0 rgba(200,146,42,0.4)}to{box-shadow:0 0 0 6px rgba(200,146,42,0)}}
+.dp-play{display:inline-flex;align-items:center;gap:8px;margin-top:12px;padding:9px 18px;border-radius:8px;background:rgba(200,146,42,0.10);border:1px solid rgba(200,146,42,0.35);color:var(--green-mid);font-size:13px;font-weight:600;cursor:pointer;transition:background .18s}
+.dp-play:hover{background:rgba(200,146,42,0.22)}
 
 /* DETAIL PANEL */
 #detail-panel{background:var(--white);border:2px solid rgba(200,146,42,0.35);border-radius:16px;padding:28px 24px;margin-top:24px;display:none}
@@ -393,45 +399,45 @@ function toggleLang(){ applyLang(LANG==='te'?'en':'te'); }
 
 /* URDU LETTERS DATA */
 var LETTERS = [
-  {ur:'ا',name:'Alif',name_te:'అలిఫ్',tr:'a / ā',ini:'ا',med:'ـا',fin:'ـا',iso:'ا',note:'The first letter. Represents a long "aa" sound or a glottal stop when carrying hamza.',note_te:'మొదటి అక్షరం. దీర్ఘ "ఆ" స్వరం లేదా గొంతులో కొద్ది క్షణం ఆగే హంజా శబ్దం రెండు పాత్రలు పోషిస్తుంది.',unique:false,ex:'اللہ (Allah)',ex_te:'اللہ (అల్లాహ్)'},
-  {ur:'ب',name:'Be',name_te:'బే',tr:'b',ini:'بـ',med:'ـبـ',fin:'ـب',iso:'ب',note:'Like "b" in "book". Has one dot below.',note_te:'తెలుగు "బ" వలె పలుకుతారు. కింద ఒక చుక్క ఉంటుంది.',unique:false,ex:'بسم (Bismi — name)',ex_te:'بسم (Bismi — పేరు)'},
-  {ur:'پ',name:'Pe',name_te:'పే',tr:'p',ini:'پـ',med:'ـپـ',fin:'ـپ',iso:'پ',note:'Like "p" in "pen". Three dots below. Unique to Urdu and Persian.',note_te:'తెలుగు "ప" వలె పలుకుతారు. కింద మూడు చుక్కలు. ఉర్దూ మరియు పర్షియన్‌కు ప్రత్యేకం.',unique:true,ex:'پانی (Paani — water)',ex_te:'پانی (Paani — నీళ్ళు)'},
-  {ur:'ت',name:'Te',name_te:'తే',tr:'t',ini:'تـ',med:'ـتـ',fin:'ـت',iso:'ت',note:'Like "t" in "top". Two dots above.',note_te:'తెలుగు "త" వలె పలుకుతారు. పైన రెండు చుక్కలు.',unique:false,ex:'تم (Tum — you)',ex_te:'تم (Tum — నీవు)'},
-  {ur:'ٹ',name:'Heavy Te',name_te:'హెవీ టే',tr:'t',ini:'ٹـ',med:'ـٹـ',fin:'ـٹ',iso:'ٹ',note:'A heavy "t" — tongue curls back to the roof of the mouth. Unique to South Asian languages.',note_te:'నాలుక వెనుకకు వంచే "ట" శబ్దం. దక్షిణాసియా భాషలకు ప్రత్యేకం.',unique:true,ex:'ٹوپی (Topi — cap)',ex_te:'ٹوپی (Topi — టోపీ)'},
-  {ur:'ث',name:'Se',name_te:'సే',tr:'s',ini:'ثـ',med:'ـثـ',fin:'ـث',iso:'ث',note:'Pronounced as "s" in Urdu. Three dots above. Same sound as س in Urdu.',note_te:'ఉర్దూలో "స" అని పలుకుతారు. పైన మూడు చుక్కలు. "س" తో ఒకే శబ్దం.',unique:false,ex:'ثواب (Sawaab — reward)',ex_te:'ثواب (Sawaab — పుణ్యం)'},
-  {ur:'ج',name:'Jeem',name_te:'జీమ్',tr:'j',ini:'جـ',med:'ـجـ',fin:'ـج',iso:'ج',note:'Like "j" in "jump". One dot inside the curve.',note_te:'తెలుగు "జ" వలె పలుకుతారు. వక్రం లోపల ఒక చుక్క.',unique:false,ex:'جان (Jaan — life)',ex_te:'جان (Jaan — జీవితం)'},
-  {ur:'چ',name:'Che',name_te:'చే',tr:'ch',ini:'چـ',med:'ـچـ',fin:'ـچ',iso:'چ',note:'Like "ch" in "chair". Three dots inside. Unique to Urdu and Persian.',note_te:'తెలుగు "చ" వలె పలుకుతారు. లోపల మూడు చుక్కలు. ఉర్దూ మరియు పర్షియన్‌కు ప్రత్యేకం.',unique:true,ex:'چاند (Chaand — moon)',ex_te:'چاند (Chaand — చంద్రుడు)'},
-  {ur:'ح',name:'Deep He',name_te:'డీప్ హే',tr:'h',ini:'حـ',med:'ـحـ',fin:'ـح',iso:'ح',note:'A breathy "h" from deep in the throat — heavier than ہ. No dot. Same as Arabic ح.',note_te:'గొంతు లోతు నుండి వచ్చే "హ" శ్వాస శబ్దం. ہ కంటే బరువుగా. చుక్క లేదు.',unique:false,ex:'حق (Haq — truth/right)',ex_te:'حق (Haq — సత్యం)'},
-  {ur:'خ',name:'Khe',name_te:'ఖే',tr:'kh',ini:'خـ',med:'ـخـ',fin:'ـخ',iso:'خ',note:'Like "ch" in Scottish "loch". A guttural sound. One dot above ح.',note_te:'గొంతు వెనుక నుండి వచ్చే "ఖ" శబ్దం. "ح" పైన ఒక చుక్క.',unique:false,ex:'خدا (Khuda — God)',ex_te:'خدا (Khuda — దేవుడు)'},
-  {ur:'د',name:'Dal',name_te:'దాల్',tr:'d',ini:'د',med:'ـد',fin:'ـد',iso:'د',note:'Like "d" in "door". Does not connect to the following letter.',note_te:'తెలుగు "డ" వలె పలుకుతారు. తదుపరి అక్షరంతో కలవదు.',unique:false,ex:'دل (Dil — heart)',ex_te:'دل (Dil — హృదయం)'},
-  {ur:'ڈ',name:'Heavy Dal',name_te:'హెవీ డాల్',tr:'d',ini:'ڈ',med:'ـڈ',fin:'ـڈ',iso:'ڈ',note:'A heavy "d" — tongue curls back. Unique to Urdu and South Asian languages.',note_te:'నాలుక వెనుకకు వంచే "డ" శబ్దం. ఉర్దూకు ప్రత్యేకం.',unique:true,ex:'ڈر (Dar — fear)',ex_te:'ڈر (Dar — భయం)'},
-  {ur:'ذ',name:'Zal',name_te:'జాల్',tr:'z',ini:'ذ',med:'ـذ',fin:'ـذ',iso:'ذ',note:'Pronounced as "z" in Urdu. One dot above. Does not connect forward.',note_te:'ఉర్దూలో "జ" అని పలుకుతారు. పైన ఒక చుక్క. ముందుకు కలవదు.',unique:false,ex:'ذکر (Zikr — remembrance)',ex_te:'ذکر (Zikr — స్మరణ)'},
-  {ur:'ر',name:'Re',name_te:'రే',tr:'r',ini:'ر',med:'ـر',fin:'ـر',iso:'ر',note:'A rolled/flapped "r". Does not connect to the following letter.',note_te:'నాలుక వంచే "ర" శబ్దం. తదుపరి అక్షరంతో కలవదు.',unique:false,ex:'رحمت (Rahmat — mercy)',ex_te:'رحمت (Rahmat — కరుణ)'},
-  {ur:'ڑ',name:'Heavy Re',name_te:'హెవీ రే',tr:'r',ini:'ڑ',med:'ـڑ',fin:'ـڑ',iso:'ڑ',note:'A flapped "r" with tongue curling back. Unique to South Asian languages. Looks like ر with a mark.',note_te:'నాలుక వెనుకకు వంచే "ఱ" శబ్దం. దక్షిణాసియా భాషలకు ప్రత్యేకమైన శబ్దం.',unique:true,ex:'بڑا (Bara — big)',ex_te:'بڑا (Bara — పెద్ద)'},
-  {ur:'ز',name:'Ze',name_te:'జే',tr:'z',ini:'ز',med:'ـز',fin:'ـز',iso:'ز',note:'Like "z" in "zebra". One dot above. Does not connect forward.',note_te:'తెలుగు "జ" వలె పలుకుతారు. పైన ఒక చుక్క. ముందుకు కలవదు.',unique:false,ex:'زندگی (Zindagi — life)',ex_te:'زندگی (Zindagi — జీవితం)'},
-  {ur:'ژ',name:'Zhe',name_te:'జే (అరుదు)',tr:'zh',ini:'ژ',med:'ـژ',fin:'ـژ',iso:'ژ',note:'Like "s" in "measure". Three dots above ز. Rare in Urdu, used in loanwords.',note_te:'జ మరియు శ మధ్య మృదువైన శబ్దం (zh). "ز" పైన మూడు చుక్కలు. ఉర్దూలో అరుదు — అప్పుచేసిన పదాలలో వాడతారు.',unique:false,ex:'ژالہ (Zhaalah — hail)',ex_te:'ژالہ (Zhaalah — వడగళ్ళు)'},
-  {ur:'س',name:'Sin',name_te:'సీన్',tr:'s',ini:'سـ',med:'ـسـ',fin:'ـس',iso:'س',note:'Like "s" in "sun". The three teeth distinguish it. Most common "s" letter in Urdu.',note_te:'తెలుగు "స" వలె పలుకుతారు. మూడు "పళ్ళు" ఉంటాయి. ఉర్దూలో చాలా సాధారణ "స" అక్షరం.',unique:false,ex:'سلام (Salaam — peace)',ex_te:'سلام (Salaam — శాంతి)'},
-  {ur:'ش',name:'Shin',name_te:'శీన్',tr:'sh',ini:'شـ',med:'ـشـ',fin:'ـش',iso:'ش',note:'Like "sh" in "ship". Three dots above سـ.',note_te:'తెలుగు "శ" వలె పలుకుతారు. "سـ" పైన మూడు చుక్కలు.',unique:false,ex:'شکر (Shukar — gratitude)',ex_te:'شکر (Shukar — కృతజ్ఞత)'},
-  {ur:'ص',name:'Suad',name_te:'స్వాద్',tr:'s',ini:'صـ',med:'ـصـ',fin:'ـص',iso:'ص',note:'An emphatic "s". The sound comes from the back of the mouth. Heavier than س.',note_te:'నొక్కుకున్న "స" శబ్దం — నోటి వెనుక భాగం నుండి పలుకుతారు. "స" కంటే బరువుగా.',unique:false,ex:'صبر (Sabr — patience)',ex_te:'صبر (Sabr — సహనం)'},
-  {ur:'ض',name:'Zuad',name_te:'జ్వాద్',tr:'z',ini:'ضـ',med:'ـضـ',fin:'ـض',iso:'ض',note:'An emphatic "z". In Urdu spoken as a heavy "z". One dot above ص.',note_te:'నొక్కుకున్న "జ" శబ్దం. ఉర్దూలో బరువైన "జ" అని పలుకుతారు. "ص" పైన ఒక చుక్క.',unique:false,ex:'ضرور (Zaroor — definitely)',ex_te:'ضرور (Zaroor — తప్పకుండా)'},
-  {ur:'ط',name:'Toe',name_te:'తో',tr:'t',ini:'طـ',med:'ـطـ',fin:'ـط',iso:'ط',note:'Emphatic "t". Heavier and more full-mouthed than ت.',note_te:'నొక్కుకున్న "ట" శబ్దం. "ت" కంటే నోటి లోపల నుండి పలుకుతారు.',unique:false,ex:'طاقت (Taaqat — power)',ex_te:'طاقت (Taaqat — శక్తి)'},
-  {ur:'ظ',name:'Zoe',name_te:'జో',tr:'z',ini:'ظـ',med:'ـظـ',fin:'ـظ',iso:'ظ',note:'Emphatic "z". In Urdu, pronounced as heavy "z". One dot above ط.',note_te:'నొక్కుకున్న "జ" శబ్దం. ఉర్దూలో బరువైన "జ". "ط" పైన ఒక చుక్క.',unique:false,ex:'ظالم (Zaalim — oppressor)',ex_te:'ظالم (Zaalim — అన్యాయపరుడు)'},
-  {ur:'ع',name:'Ain',name_te:'ఐన్',tr:'aa/oo/ee',ini:'عـ',med:'ـعـ',fin:'ـع',iso:'ع',note:'A unique throat constriction sound. Changes with the following vowel — ع = aa, عو = oo, عی = ee.',note_te:'ప్రత్యేక గొంతు సంకోచ శబ్దం. తర్వాత వచ్చే స్వరానుసారం మారుతుంది — ع=ఆ, عو=ఊ, عی=ఈ.',unique:false,ex:'علم (Ilm — knowledge)',ex_te:'علم (Ilm — జ్ఞానం)'},
-  {ur:'غ',name:'Ghain',name_te:'గైన్',tr:'gh',ini:'غـ',med:'ـغـ',fin:'ـغ',iso:'غ',note:'A gargling sound, like a French "r". One dot above ع.',note_te:'గొంతు లోతు నుండి గురగురమనే "ఘ" శబ్దం. "ع" పైన ఒక చుక్క.',unique:false,ex:'غرور (Gharoor — pride)',ex_te:'غرور (Gharoor — గర్వం)'},
-  {ur:'ف',name:'Fe',name_te:'ఫే',tr:'f',ini:'فـ',med:'ـفـ',fin:'ـف',iso:'ف',note:'Like "f" in "fan". One dot above the form.',note_te:'తెలుగు "ఫ" వలె పలుకుతారు. రూపం పైన ఒక చుక్క.',unique:false,ex:'فضل (Fazl — grace/favour)',ex_te:'فضل (Fazl — అనుగ్రహం)'},
-  {ur:'ق',name:'Qaf',name_te:'కాఫ్',tr:'q',ini:'قـ',med:'ـقـ',fin:'ـق',iso:'ق',note:'A deep "k" from the very back of the throat. Two dots above. Deeper than ک.',note_te:'గొంతు వెనుక నుండి వచ్చే లోతైన "క" శబ్దం. పైన రెండు చుక్కలు. "ک" కంటే లోతుగా.',unique:false,ex:'قرآن (Quran)',ex_te:'قرآن (ఖురాన్)'},
-  {ur:'ک',name:'Kaf',name_te:'కాఫ్',tr:'k',ini:'کـ',med:'ـکـ',fin:'ـک',iso:'ک',note:'Like "k" in "king". Lighter than ق. Common in Urdu words.',note_te:'తెలుగు "క" వలె పలుకుతారు. "ق" కంటే తేలికగా. ఉర్దూ పదాలలో సాధారణం.',unique:false,ex:'کتاب (Kitaab — book)',ex_te:'کتاب (Kitaab — పుస్తకం)'},
-  {ur:'گ',name:'Gaf',name_te:'గాఫ్',tr:'g',ini:'گـ',med:'ـگـ',fin:'ـگ',iso:'گ',note:'Like "g" in "go". Unique to Urdu/Persian. Has a small mark on top of ک.',note_te:'తెలుగు "గ" వలె పలుకుతారు. ఉర్దూ/పర్షియన్‌కు ప్రత్యేకం. "ک" పైన ఒక చిన్న గుర్తు.',unique:true,ex:'گھر (Ghar — home)',ex_te:'گھر (Ghar — ఇల్లు)'},
-  {ur:'ل',name:'Lam',name_te:'లామ్',tr:'l',ini:'لـ',med:'ـلـ',fin:'ـل',iso:'ل',note:'Like "l" in "lamp". Common letter, appears in اللہ (Allah).',note_te:'తెలుగు "ల" వలె పలుకుతారు. اللہ (అల్లాహ్) లో కనిపించే సాధారణ అక్షరం.',unique:false,ex:'لمحہ (Lamha — moment)',ex_te:'لمحہ (Lamha — క్షణం)'},
-  {ur:'م',name:'Mim',name_te:'మీమ్',tr:'m',ini:'مـ',med:'ـمـ',fin:'ـم',iso:'م',note:'Like "m" in "moon". Very common letter in Urdu.',note_te:'తెలుగు "మ" వలె పలుకుతారు. ఉర్దూలో చాలా సాధారణ అక్షరం.',unique:false,ex:'محبت (Muhabbat — love)',ex_te:'محبت (Muhabbat — ప్రేమ)'},
-  {ur:'ن',name:'Nun',name_te:'నూన్',tr:'n',ini:'نـ',med:'ـنـ',fin:'ـن',iso:'ن',note:'Like "n" in "noon". One dot above in isolated and initial forms.',note_te:'తెలుగు "న" వలె పలుకుతారు. ఒంటరి మరియు ప్రారంభ రూపాల్లో పైన ఒక చుక్క.',unique:false,ex:'نیت (Niyyat — intention)',ex_te:'نیت (Niyyat — ఉద్దేశ్యం)'},
-  {ur:'ں',name:'Nasal Nun',name_te:'నేసల్ నూన్',tr:'ṅ',ini:'ں',med:'ـں',fin:'ـں',iso:'ں',note:'A nasalized sound unique to Urdu — like a French nasal vowel. Only occurs at the end of words.',note_te:'ఉర్దూకు ప్రత్యేకమైన నాసిక శబ్దం — నాసిక స్వరం పలికేటప్పుడు "న" అంటారు. పదాల చివర మాత్రమే వస్తుంది.',unique:true,ex:'میں (Main — I/me)',ex_te:'میں (Main — నేను)'},
-  {ur:'و',name:'Wao',name_te:'వావ్',tr:'w / oo / o',ini:'و',med:'ـو',fin:'ـو',iso:'و',note:'Acts as "w", long "oo" or "o" depending on context. Does not connect forward.',note_te:'తెలుగు "వ" లేదా దీర్ఘ "ఊ"/"ఓ" శబ్దంగా వస్తుంది. ముందుకు కలవదు.',unique:false,ex:'وفا (Wafa — loyalty)',ex_te:'وفا (Wafa — విశ్వాసం)'},
-  {ur:'ہ',name:'Light He',name_te:'లైట్ హే',tr:'h',ini:'ہـ',med:'ـہـ',fin:'ـہ',iso:'ہ',note:'A light "h" — softer than ح. Its form changes significantly by position, very distinctive in Nastaliq.',note_te:'తేలికపాటి "హ" శబ్దం — ح కంటే మృదువుగా. వివిధ స్థానాల్లో రూపం చాలా మారుతుంది.',unique:false,ex:'ہدایت (Hidayat — guidance)',ex_te:'ہدایت (Hidayat — మార్గదర్శనం)'},
-  {ur:'ھ',name:'Aspiration He',name_te:'ఆస్పిరేషన్ హే',tr:'h',ini:'ھ',med:'ـھـ',fin:'ـھ',iso:'ھ',note:'Creates aspirated consonants: بھ=bh, پھ=ph, تھ=th, کھ=kh, گھ=gh. Essential for Urdu pronunciation.',note_te:'ప్రాసంగిక వ్యంజనాలను సృష్టిస్తుంది: بھ=భ, پھ=ఫ, تھ=థ, کھ=ఖ, گھ=ఘ. ఉర్దూ ఉచ్చారణకు అవసరం.',unique:true,ex:'گھر (Ghar — home)',ex_te:'گھر (Ghar — ఇల్లు)'},
+  {ur:'ا',name:'Alif',name_te:'అలిఫ్',tr:'a / ā',audio:'alif',ini:'ا',med:'ـا',fin:'ـا',iso:'ا',note:'The first letter. Represents a long "aa" sound or a glottal stop when carrying hamza.',note_te:'మొదటి అక్షరం. దీర్ఘ "ఆ" స్వరం లేదా గొంతులో కొద్ది క్షణం ఆగే హంజా శబ్దం రెండు పాత్రలు పోషిస్తుంది.',unique:false,ex:'اللہ (Allah)',ex_te:'اللہ (అల్లాహ్)'},
+  {ur:'ب',name:'Be',name_te:'బే',tr:'b',audio:'ba',ini:'بـ',med:'ـبـ',fin:'ـب',iso:'ب',note:'Like "b" in "book". Has one dot below.',note_te:'తెలుగు "బ" వలె పలుకుతారు. కింద ఒక చుక్క ఉంటుంది.',unique:false,ex:'بسم (Bismi — name)',ex_te:'بسم (Bismi — పేరు)'},
+  {ur:'پ',name:'Pe',name_te:'పే',tr:'p',audio:'pe',ini:'پـ',med:'ـپـ',fin:'ـپ',iso:'پ',note:'Like "p" in "pen". Three dots below. Unique to Urdu and Persian.',note_te:'తెలుగు "ప" వలె పలుకుతారు. కింద మూడు చుక్కలు. ఉర్దూ మరియు పర్షియన్‌కు ప్రత్యేకం.',unique:true,ex:'پانی (Paani — water)',ex_te:'پانی (Paani — నీళ్ళు)'},
+  {ur:'ت',name:'Te',name_te:'తే',tr:'t',audio:'ta',ini:'تـ',med:'ـتـ',fin:'ـت',iso:'ت',note:'Like "t" in "top". Two dots above.',note_te:'తెలుగు "త" వలె పలుకుతారు. పైన రెండు చుక్కలు.',unique:false,ex:'تم (Tum — you)',ex_te:'تم (Tum — నీవు)'},
+  {ur:'ٹ',name:'Heavy Te',name_te:'హెవీ టే',tr:'t',audio:'ta_hard',ini:'ٹـ',med:'ـٹـ',fin:'ـٹ',iso:'ٹ',note:'A heavy "t" — tongue curls back to the roof of the mouth. Unique to South Asian languages.',note_te:'నాలుక వెనుకకు వంచే "ట" శబ్దం. దక్షిణాసియా భాషలకు ప్రత్యేకం.',unique:true,ex:'ٹوپی (Topi — cap)',ex_te:'ٹوپی (Topi — టోపీ)'},
+  {ur:'ث',name:'Se',name_te:'సే',tr:'s',audio:'tha',ini:'ثـ',med:'ـثـ',fin:'ـث',iso:'ث',note:'Pronounced as "s" in Urdu. Three dots above. Same sound as س in Urdu.',note_te:'ఉర్దూలో "స" అని పలుకుతారు. పైన మూడు చుక్కలు. "س" తో ఒకే శబ్దం.',unique:false,ex:'ثواب (Sawaab — reward)',ex_te:'ثواب (Sawaab — పుణ్యం)'},
+  {ur:'ج',name:'Jeem',name_te:'జీమ్',tr:'j',audio:'jiim',ini:'جـ',med:'ـجـ',fin:'ـج',iso:'ج',note:'Like "j" in "jump". One dot inside the curve.',note_te:'తెలుగు "జ" వలె పలుకుతారు. వక్రం లోపల ఒక చుక్క.',unique:false,ex:'جان (Jaan — life)',ex_te:'جان (Jaan — జీవితం)'},
+  {ur:'چ',name:'Che',name_te:'చే',tr:'ch',audio:'che',ini:'چـ',med:'ـچـ',fin:'ـچ',iso:'چ',note:'Like "ch" in "chair". Three dots inside. Unique to Urdu and Persian.',note_te:'తెలుగు "చ" వలె పలుకుతారు. లోపల మూడు చుక్కలు. ఉర్దూ మరియు పర్షియన్‌కు ప్రత్యేకం.',unique:true,ex:'چاند (Chaand — moon)',ex_te:'چاند (Chaand — చంద్రుడు)'},
+  {ur:'ح',name:'Deep He',name_te:'డీప్ హే',tr:'h',audio:'ha_deep',ini:'حـ',med:'ـحـ',fin:'ـح',iso:'ح',note:'A breathy "h" from deep in the throat — heavier than ہ. No dot. Same as Arabic ح.',note_te:'గొంతు లోతు నుండి వచ్చే "హ" శ్వాస శబ్దం. ہ కంటే బరువుగా. చుక్క లేదు.',unique:false,ex:'حق (Haq — truth/right)',ex_te:'حق (Haq — సత్యం)'},
+  {ur:'خ',name:'Khe',name_te:'ఖే',tr:'kh',audio:'kha',ini:'خـ',med:'ـخـ',fin:'ـخ',iso:'خ',note:'Like "ch" in Scottish "loch". A guttural sound. One dot above ح.',note_te:'గొంతు వెనుక నుండి వచ్చే "ఖ" శబ్దం. "ح" పైన ఒక చుక్క.',unique:false,ex:'خدا (Khuda — God)',ex_te:'خدا (Khuda — దేవుడు)'},
+  {ur:'د',name:'Dal',name_te:'దాల్',tr:'d',audio:'dal',ini:'د',med:'ـد',fin:'ـد',iso:'د',note:'Like "d" in "door". Does not connect to the following letter.',note_te:'తెలుగు "డ" వలె పలుకుతారు. తదుపరి అక్షరంతో కలవదు.',unique:false,ex:'دل (Dil — heart)',ex_te:'دل (Dil — హృదయం)'},
+  {ur:'ڈ',name:'Heavy Dal',name_te:'హెవీ డాల్',tr:'d',audio:'dal_hard',ini:'ڈ',med:'ـڈ',fin:'ـڈ',iso:'ڈ',note:'A heavy "d" — tongue curls back. Unique to Urdu and South Asian languages.',note_te:'నాలుక వెనుకకు వంచే "డ" శబ్దం. ఉర్దూకు ప్రత్యేకం.',unique:true,ex:'ڈر (Dar — fear)',ex_te:'ڈر (Dar — భయం)'},
+  {ur:'ذ',name:'Zal',name_te:'జాల్',tr:'z',audio:'zal',ini:'ذ',med:'ـذ',fin:'ـذ',iso:'ذ',note:'Pronounced as "z" in Urdu. One dot above. Does not connect forward.',note_te:'ఉర్దూలో "జ" అని పలుకుతారు. పైన ఒక చుక్క. ముందుకు కలవదు.',unique:false,ex:'ذکر (Zikr — remembrance)',ex_te:'ذکر (Zikr — స్మరణ)'},
+  {ur:'ر',name:'Re',name_te:'రే',tr:'r',audio:'ra',ini:'ر',med:'ـر',fin:'ـر',iso:'ر',note:'A rolled/flapped "r". Does not connect to the following letter.',note_te:'నాలుక వంచే "ర" శబ్దం. తదుపరి అక్షరంతో కలవదు.',unique:false,ex:'رحمت (Rahmat — mercy)',ex_te:'رحمت (Rahmat — కరుణ)'},
+  {ur:'ڑ',name:'Heavy Re',name_te:'హెవీ రే',tr:'r',audio:'ra_hard',ini:'ڑ',med:'ـڑ',fin:'ـڑ',iso:'ڑ',note:'A flapped "r" with tongue curling back. Unique to South Asian languages. Looks like ر with a mark.',note_te:'నాలుక వెనుకకు వంచే "ఱ" శబ్దం. దక్షిణాసియా భాషలకు ప్రత్యేకమైన శబ్దం.',unique:true,ex:'بڑا (Bara — big)',ex_te:'بڑا (Bara — పెద్ద)'},
+  {ur:'ز',name:'Ze',name_te:'జే',tr:'z',audio:'ze',ini:'ز',med:'ـز',fin:'ـز',iso:'ز',note:'Like "z" in "zebra". One dot above. Does not connect forward.',note_te:'తెలుగు "జ" వలె పలుకుతారు. పైన ఒక చుక్క. ముందుకు కలవదు.',unique:false,ex:'زندگی (Zindagi — life)',ex_te:'زندگی (Zindagi — జీవితం)'},
+  {ur:'ژ',name:'Zhe',name_te:'జే (అరుదు)',tr:'zh',audio:'zhe',ini:'ژ',med:'ـژ',fin:'ـژ',iso:'ژ',note:'Like "s" in "measure". Three dots above ز. Rare in Urdu, used in loanwords.',note_te:'జ మరియు శ మధ్య మృదువైన శబ్దం (zh). "ز" పైన మూడు చుక్కలు. ఉర్దూలో అరుదు — అప్పుచేసిన పదాలలో వాడతారు.',unique:false,ex:'ژالہ (Zhaalah — hail)',ex_te:'ژالہ (Zhaalah — వడగళ్ళు)'},
+  {ur:'س',name:'Sin',name_te:'సీన్',tr:'s',audio:'siin',ini:'سـ',med:'ـسـ',fin:'ـس',iso:'س',note:'Like "s" in "sun". The three teeth distinguish it. Most common "s" letter in Urdu.',note_te:'తెలుగు "స" వలె పలుకుతారు. మూడు "పళ్ళు" ఉంటాయి. ఉర్దూలో చాలా సాధారణ "స" అక్షరం.',unique:false,ex:'سلام (Salaam — peace)',ex_te:'سلام (Salaam — శాంతి)'},
+  {ur:'ش',name:'Shin',name_te:'శీన్',tr:'sh',audio:'shiin',ini:'شـ',med:'ـشـ',fin:'ـش',iso:'ش',note:'Like "sh" in "ship". Three dots above سـ.',note_te:'తెలుగు "శ" వలె పలుకుతారు. "سـ" పైన మూడు చుక్కలు.',unique:false,ex:'شکر (Shukar — gratitude)',ex_te:'شکر (Shukar — కృతజ్ఞత)'},
+  {ur:'ص',name:'Suad',name_te:'స్వాద్',tr:'s',audio:'saad',ini:'صـ',med:'ـصـ',fin:'ـص',iso:'ص',note:'An emphatic "s". The sound comes from the back of the mouth. Heavier than س.',note_te:'నొక్కుకున్న "స" శబ్దం — నోటి వెనుక భాగం నుండి పలుకుతారు. "స" కంటే బరువుగా.',unique:false,ex:'صبر (Sabr — patience)',ex_te:'صبر (Sabr — సహనం)'},
+  {ur:'ض',name:'Zuad',name_te:'జ్వాద్',tr:'z',audio:'zwad',ini:'ضـ',med:'ـضـ',fin:'ـض',iso:'ض',note:'An emphatic "z". In Urdu spoken as a heavy "z". One dot above ص.',note_te:'నొక్కుకున్న "జ" శబ్దం. ఉర్దూలో బరువైన "జ" అని పలుకుతారు. "ص" పైన ఒక చుక్క.',unique:false,ex:'ضرور (Zaroor — definitely)',ex_te:'ضرور (Zaroor — తప్పకుండా)'},
+  {ur:'ط',name:'Toe',name_te:'తో',tr:'t',audio:'to_e',ini:'طـ',med:'ـطـ',fin:'ـط',iso:'ط',note:'Emphatic "t". Heavier and more full-mouthed than ت.',note_te:'నొక్కుకున్న "ట" శబ్దం. "ت" కంటే నోటి లోపల నుండి పలుకుతారు.',unique:false,ex:'طاقت (Taaqat — power)',ex_te:'طاقت (Taaqat — శక్తి)'},
+  {ur:'ظ',name:'Zoe',name_te:'జో',tr:'z',audio:'zo_e',ini:'ظـ',med:'ـظـ',fin:'ـظ',iso:'ظ',note:'Emphatic "z". In Urdu, pronounced as heavy "z". One dot above ط.',note_te:'నొక్కుకున్న "జ" శబ్దం. ఉర్దూలో బరువైన "జ". "ط" పైన ఒక చుక్క.',unique:false,ex:'ظالم (Zaalim — oppressor)',ex_te:'ظالم (Zaalim — అన్యాయపరుడు)'},
+  {ur:'ع',name:'Ain',name_te:'ఐన్',tr:'aa/oo/ee',audio:'ayn',ini:'عـ',med:'ـعـ',fin:'ـع',iso:'ع',note:'A unique throat constriction sound. Changes with the following vowel — ع = aa, عو = oo, عی = ee.',note_te:'ప్రత్యేక గొంతు సంకోచ శబ్దం. తర్వాత వచ్చే స్వరానుసారం మారుతుంది — ع=ఆ, عو=ఊ, عی=ఈ.',unique:false,ex:'علم (Ilm — knowledge)',ex_te:'علم (Ilm — జ్ఞానం)'},
+  {ur:'غ',name:'Ghain',name_te:'గైన్',tr:'gh',audio:'ghayn',ini:'غـ',med:'ـغـ',fin:'ـغ',iso:'غ',note:'A gargling sound, like a French "r". One dot above ع.',note_te:'గొంతు లోతు నుండి గురగురమనే "ఘ" శబ్దం. "ع" పైన ఒక చుక్క.',unique:false,ex:'غرور (Gharoor — pride)',ex_te:'غرور (Gharoor — గర్వం)'},
+  {ur:'ف',name:'Fe',name_te:'ఫే',tr:'f',audio:'fa',ini:'فـ',med:'ـفـ',fin:'ـف',iso:'ف',note:'Like "f" in "fan". One dot above the form.',note_te:'తెలుగు "ఫ" వలె పలుకుతారు. రూపం పైన ఒక చుక్క.',unique:false,ex:'فضل (Fazl — grace/favour)',ex_te:'فضل (Fazl — అనుగ్రహం)'},
+  {ur:'ق',name:'Qaf',name_te:'కాఫ్',tr:'q',audio:'qaaf',ini:'قـ',med:'ـقـ',fin:'ـق',iso:'ق',note:'A deep "k" from the very back of the throat. Two dots above. Deeper than ک.',note_te:'గొంతు వెనుక నుండి వచ్చే లోతైన "క" శబ్దం. పైన రెండు చుక్కలు. "ک" కంటే లోతుగా.',unique:false,ex:'قرآن (Quran)',ex_te:'قرآن (ఖురాన్)'},
+  {ur:'ک',name:'Kaf',name_te:'కాఫ్',tr:'k',audio:'kaaf',ini:'کـ',med:'ـکـ',fin:'ـک',iso:'ک',note:'Like "k" in "king". Lighter than ق. Common in Urdu words.',note_te:'తెలుగు "క" వలె పలుకుతారు. "ق" కంటే తేలికగా. ఉర్దూ పదాలలో సాధారణం.',unique:false,ex:'کتاب (Kitaab — book)',ex_te:'کتاب (Kitaab — పుస్తకం)'},
+  {ur:'گ',name:'Gaf',name_te:'గాఫ్',tr:'g',audio:'gaaf',ini:'گـ',med:'ـگـ',fin:'ـگ',iso:'گ',note:'Like "g" in "go". Unique to Urdu/Persian. Has a small mark on top of ک.',note_te:'తెలుగు "గ" వలె పలుకుతారు. ఉర్దూ/పర్షియన్‌కు ప్రత్యేకం. "ک" పైన ఒక చిన్న గుర్తు.',unique:true,ex:'گھر (Ghar — home)',ex_te:'گھر (Ghar — ఇల్లు)'},
+  {ur:'ل',name:'Lam',name_te:'లామ్',tr:'l',audio:'laam',ini:'لـ',med:'ـلـ',fin:'ـل',iso:'ل',note:'Like "l" in "lamp". Common letter, appears in اللہ (Allah).',note_te:'తెలుగు "ల" వలె పలుకుతారు. اللہ (అల్లాహ్) లో కనిపించే సాధారణ అక్షరం.',unique:false,ex:'لمحہ (Lamha — moment)',ex_te:'لمحہ (Lamha — క్షణం)'},
+  {ur:'م',name:'Mim',name_te:'మీమ్',tr:'m',audio:'miim',ini:'مـ',med:'ـمـ',fin:'ـم',iso:'م',note:'Like "m" in "moon". Very common letter in Urdu.',note_te:'తెలుగు "మ" వలె పలుకుతారు. ఉర్దూలో చాలా సాధారణ అక్షరం.',unique:false,ex:'محبت (Muhabbat — love)',ex_te:'محبت (Muhabbat — ప్రేమ)'},
+  {ur:'ن',name:'Nun',name_te:'నూన్',tr:'n',audio:'nuun',ini:'نـ',med:'ـنـ',fin:'ـن',iso:'ن',note:'Like "n" in "noon". One dot above in isolated and initial forms.',note_te:'తెలుగు "న" వలె పలుకుతారు. ఒంటరి మరియు ప్రారంభ రూపాల్లో పైన ఒక చుక్క.',unique:false,ex:'نیت (Niyyat — intention)',ex_te:'نیت (Niyyat — ఉద్దేశ్యం)'},
+  {ur:'ں',name:'Nasal Nun',name_te:'నేసల్ నూన్',tr:'ṅ',audio:'nuun_g',ini:'ں',med:'ـں',fin:'ـں',iso:'ں',note:'A nasalized sound unique to Urdu — like a French nasal vowel. Only occurs at the end of words.',note_te:'ఉర్దూకు ప్రత్యేకమైన నాసిక శబ్దం — నాసిక స్వరం పలికేటప్పుడు "న" అంటారు. పదాల చివర మాత్రమే వస్తుంది.',unique:true,ex:'میں (Main — I/me)',ex_te:'میں (Main — నేను)'},
+  {ur:'و',name:'Wao',name_te:'వావ్',tr:'w / oo / o',audio:'wao',ini:'و',med:'ـو',fin:'ـو',iso:'و',note:'Acts as "w", long "oo" or "o" depending on context. Does not connect forward.',note_te:'తెలుగు "వ" లేదా దీర్ఘ "ఊ"/"ఓ" శబ్దంగా వస్తుంది. ముందుకు కలవదు.',unique:false,ex:'وفا (Wafa — loyalty)',ex_te:'وفا (Wafa — విశ్వాసం)'},
+  {ur:'ہ',name:'Light He',name_te:'లైట్ హే',tr:'h',audio:'ha',ini:'ہـ',med:'ـہـ',fin:'ـہ',iso:'ہ',note:'A light "h" — softer than ح. Its form changes significantly by position, very distinctive in Nastaliq.',note_te:'తేలికపాటి "హ" శబ్దం — ح కంటే మృదువుగా. వివిధ స్థానాల్లో రూపం చాలా మారుతుంది.',unique:false,ex:'ہدایت (Hidayat — guidance)',ex_te:'ہدایت (Hidayat — మార్గదర్శనం)'},
+  {ur:'ھ',name:'Aspiration He',name_te:'ఆస్పిరేషన్ హే',tr:'h',audio:'do_chashmi_he',ini:'ھ',med:'ـھـ',fin:'ـھ',iso:'ھ',note:'Creates aspirated consonants: بھ=bh, پھ=ph, تھ=th, کھ=kh, گھ=gh. Essential for Urdu pronunciation.',note_te:'ప్రాసంగిక వ్యంజనాలను సృష్టిస్తుంది: بھ=భ, پھ=ఫ, تھ=థ, کھ=ఖ, گھ=ఘ. ఉర్దూ ఉచ్చారణకు అవసరం.',unique:true,ex:'گھر (Ghar — home)',ex_te:'گھر (Ghar — ఇల్లు)'},
   {ur:'ء',name:'Hamza',name_te:'హంజా',tr:"'",ini:'ء',med:'ء',fin:'ء',iso:'ء',note:'A glottal stop — a brief pause in speech. Can appear alone or combined with a letter.',note_te:'గొంతులో కొద్ది క్షణం ఆగడం — "అ...ఆ" పలికేటప్పుడు మధ్యలో ఆగినట్లు. ఒంటరిగా లేదా అక్షరంతో కలిపి వస్తుంది.',unique:false,ex:'آء (Aao — come)',ex_te:'آء (Aao — రండి)'},
-  {ur:'ی',name:'Ye',name_te:'యే',tr:'y / ee',ini:'یـ',med:'ـیـ',fin:'ـی',iso:'ی',note:'Like "y" or long "ee". Two dots below in initial/medial forms.',note_te:'తెలుగు "య" లేదా దీర్ఘ "ఈ" శబ్దంగా. ప్రారంభ/మధ్య రూపాల్లో కింద రెండు చుక్కలు.',unique:false,ex:'یاد (Yaad — memory)',ex_te:'یاد (Yaad — జ్ఞాపకం)'},
-  {ur:'ے',name:'Long Ay',name_te:'లాంగ్ ఏ',tr:'ay',ini:'—',med:'—',fin:'ـے',iso:'ے',note:'The "ay" vowel sound at word endings. Only used at the end of words. Unique to Urdu.',note_te:'పదాల చివర వచ్చే "ఎ/యే" స్వర శబ్దం. పదాల చివర మాత్రమే వాడతారు. ఉర్దూకు ప్రత్యేకం.',unique:true,ex:'گئے (Gaye — went)',ex_te:'گئے (Gaye — వెళ్ళారు)'}
+  {ur:'ی',name:'Ye',name_te:'యే',tr:'y / ee',audio:'ya',ini:'یـ',med:'ـیـ',fin:'ـی',iso:'ی',note:'Like "y" or long "ee". Two dots below in initial/medial forms.',note_te:'తెలుగు "య" లేదా దీర్ఘ "ఈ" శబ్దంగా. ప్రారంభ/మధ్య రూపాల్లో కింద రెండు చుక్కలు.',unique:false,ex:'یاد (Yaad — memory)',ex_te:'یاد (Yaad — జ్ఞాపకం)'},
+  {ur:'ے',name:'Long Ay',name_te:'లాంగ్ ఏ',tr:'ay',audio:'ya_big',ini:'—',med:'—',fin:'ـے',iso:'ے',note:'The "ay" vowel sound at word endings. Only used at the end of words. Unique to Urdu.',note_te:'పదాల చివర వచ్చే "ఎ/యే" స్వర శబ్దం. పదాల చివర మాత్రమే వాడతారు. ఉర్దూకు ప్రత్యేకం.',unique:true,ex:'گئے (Gaye — went)',ex_te:'گئے (Gaye — వెళ్ళారు)'}
 ];
 
 var UNIQUE = LETTERS.filter(function(l){ return l.unique; });
@@ -452,6 +458,18 @@ var PRON_DATA = [
   {ur:'ھ',name:'Aspiration He',name_te:'ఆస్పిరేషన్ హే',sound:'h (breath)',sound_te:'హ (శ్వాస పఫ్)',ex_ur:'گھر',ex_en:'Adds a breathed puff to the previous letter',ex_te:'ముందు అక్షరానికి శ్వాస జోడిస్తుంది'}
 ];
 
+/* ── AUDIO ── */
+var _urduAudio = null;
+function playUrduLetter(fname, btn){
+  if(_urduAudio){_urduAudio.pause();_urduAudio.currentTime=0;}
+  document.querySelectorAll('.lt-play.playing,.dp-play.playing').forEach(function(b){b.classList.remove('playing');});
+  _urduAudio = new Audio('../../assets/audio/urdu/' + fname + '.mp3');
+  if(btn) btn.classList.add('playing');
+  _urduAudio.play().catch(function(){});
+  _urduAudio.addEventListener('ended', function(){ if(btn) btn.classList.remove('playing'); });
+}
+window.playUrduLetter = playUrduLetter;
+
 /* BUILD ALPHABET GRID */
 function buildGrid(){
   var grid = document.getElementById('alpha-grid');
@@ -460,9 +478,21 @@ function buildGrid(){
     card.className = 'lt-card';
     card.setAttribute('role','button');
     card.setAttribute('tabindex','0');
-    card.setAttribute('aria-label', l.name + ' — ' + l.tr);
+    card.setAttribute('aria-label', l.name + ' — ' + l.tr + ', tap to expand');
     if(l.unique) card.innerHTML += '<div class="lt-unique" title="Unique to Urdu"></div>';
     card.innerHTML += '<div class="lt-letter" lang="ur" dir="rtl">'+l.ur+'</div><div class="lt-name" data-te="'+l.name_te+'" data-en="'+l.name+'">'+l.name_te+'</div><div class="lt-tr">'+l.tr+'</div>';
+    if(l.audio){
+      var playBtn = document.createElement('button');
+      playBtn.type = 'button';
+      playBtn.className = 'lt-play';
+      playBtn.setAttribute('aria-label', 'Play pronunciation of ' + l.name);
+      playBtn.textContent = '▶';
+      playBtn.addEventListener('click', function(e){
+        e.stopPropagation();
+        playUrduLetter(l.audio, playBtn);
+      });
+      card.appendChild(playBtn);
+    }
     card.addEventListener('click', function(){ showDetail(i); });
     card.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' ') showDetail(i); });
     grid.appendChild(card);
@@ -502,6 +532,7 @@ function showDetail(i){
       '<div class="dp-form"><span class="dp-form-letter" lang="ur" dir="rtl">'+l.fin+'</span><div class="dp-form-label">'+FL[2]+'</div></div>' +
       '<div class="dp-form"><span class="dp-form-letter" lang="ur" dir="rtl">'+l.iso+'</span><div class="dp-form-label">'+FL[3]+'</div></div>' +
     '</div>' +
+    (l.audio ? '<button type="button" class="dp-play" onclick="playUrduLetter(\''+l.audio+'\',this)"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>'+(te?'ఉచ్చారణ వినండి':'Hear Pronunciation')+'</button>' : '') +
     '<button type="button" class="dp-close" onclick="closeDetail()">'+closeTxt+'</button>';
   panel.scrollIntoView({behavior:'smooth', block:'nearest'});
 }
