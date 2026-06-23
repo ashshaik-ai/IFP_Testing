@@ -8,6 +8,7 @@
 <link rel="apple-touch-icon" href="assets/logo-emblem.png">
 <link rel="manifest" href="assets/manifest.json">
   <meta name="theme-color" content="#0d3b1e">
+  <meta name="color-scheme" content="dark light">
   <meta name="description"
     content="Islamic Front, Mangalagiri — a Muslim community-welfare and political organisation. Community schemes, infrastructure, and a free multilingual Knowledge Center: Zakat tools, prayer guides, and learning portals for Arabic, Urdu, Quran, Salah, Seerah, Islamic History, and Kids. Telugu and English.">
   <link rel="canonical" href="https://ashshaik-ai.github.io/IFP_Testing/">
@@ -2368,7 +2369,9 @@
     @media (prefers-reduced-motion: reduce) {
 
       .hero::before,
-      .hero-bg-emblem {
+      .hero-bg-emblem,
+      .leader-card,
+      .hfm-frame {
         animation: none !important;
       }
     }
@@ -5232,7 +5235,7 @@
     /* ── Mobile bottom-right stack (single source of truth) ── */
     @media (max-width: 768px) {
       body {
-        padding-bottom: calc(62px + env(safe-area-inset-bottom, 0px));
+        padding-bottom: calc(74px + env(safe-area-inset-bottom, 0px));
       }
 
       .wa-fab {
@@ -5569,6 +5572,7 @@
   <nav aria-label="Main navigation">
     <a href="index.html#home" class="nav-brand">
       <img src="assets/logo-emblem.png" class="nav-logo" alt="ఇస్లామిక్ ఫ్రంట్ లోగో" data-alt-te="ఇస్లామిక్ ఫ్రంట్ లోగో" data-alt-en="Islamic Front Logo"
+        width="42" height="42"
         onerror="this.style.display='none';document.getElementById('nav-svg').style.display='block'">
       <svg id="nav-svg" style="display:none;width:42px;height:42px;" viewBox="0 0 42 42"
         xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -5677,6 +5681,7 @@
             <div class="hero-founder-mobile">
               <div class="hfm-frame">
                 <img src="assets/founder/shaik-akram-2.jpg" class="hfm-photo" alt="జనాబ్ షేక్ అక్రమ్"
+                  width="729" height="1079"
                   onerror="this.closest('.hero-founder-mobile').style.display='none'">
                 <div class="hfm-info">
                   <div class="hfm-name" data-key="leader_name">జనాబ్ షేక్ అక్రమ్</div>
@@ -5777,6 +5782,7 @@
               <div class="members-grid">
                 <div class="member-card reveal">
                   <img src="assets/candidates/2.candidate.jpg" alt="Abdul Aleem" class="member-photo" loading="lazy"
+                    width="1179" height="1179"
                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
                   <div class="member-fallback" style="display:none">2</div>
                   <div class="member-name" data-key="cand2_name">అబ్దుల్ అలీమ్</div>
@@ -5784,6 +5790,7 @@
                 </div>
                 <div class="member-card reveal">
                   <img src="assets/candidates/5.candidate.jpg" alt="Abdul Saleem" class="member-photo" loading="lazy"
+                    width="1179" height="1156"
                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
                   <div class="member-fallback" style="display:none">5</div>
                   <div class="member-name" data-key="cand5_name">అబ్దుల్ సలీమ్</div>
@@ -5791,13 +5798,15 @@
                 </div>
                 <div class="member-card reveal">
                   <img src="assets/candidates/3.candidate.jpg" alt="Akbar Basha Shaik" class="member-photo"
-                    loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    loading="lazy" width="1179" height="1088"
+                    onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
                   <div class="member-fallback" style="display:none">3</div>
                   <div class="member-name" data-key="cand3_name">అక్బర్ బాషా షేక్</div>
                   <div class="member-role" data-key="member_role">ఎన్నికైన సభ్యుడు</div>
                 </div>
                 <div class="member-card reveal">
                   <img src="assets/candidates/7.candidate.jpg" alt="Hafeez Shaik" class="member-photo" loading="lazy"
+                    width="1071" height="1115"
                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
                   <div class="member-fallback" style="display:none">7</div>
                   <div class="member-name" data-key="cand7_name">హఫీజ్ షేక్</div>
@@ -5805,6 +5814,7 @@
                 </div>
                 <div class="member-card reveal">
                   <img src="assets/candidates/6.candidate.jpg" alt="Hanifsha Shaik" class="member-photo" loading="lazy"
+                    width="995" height="1108"
                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
                   <div class="member-fallback" style="display:none">6</div>
                   <div class="member-name" data-key="cand6_name">హనీఫ్షా షేక్</div>
@@ -5812,13 +5822,15 @@
                 </div>
                 <div class="member-card reveal">
                   <img src="assets/candidates/4.candidate.jpg" alt="Hazrat Ali Shaik" class="member-photo"
-                    loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    loading="lazy" width="1179" height="1072"
+                    onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
                   <div class="member-fallback" style="display:none">4</div>
                   <div class="member-name" data-key="cand4_name">హజ్రత్ అలీ షేక్</div>
                   <div class="member-role" data-key="member_role">ఎన్నికైన సభ్యుడు</div>
                 </div>
                 <div class="member-card reveal">
                   <img src="assets/candidates/1.candidate.jpg" alt="Yaseen Shaik" class="member-photo" loading="lazy"
+                    width="1179" height="1053"
                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
                   <div class="member-fallback" style="display:none">1</div>
                   <div class="member-name" data-key="cand1_name">యాసీన్ షేక్</div>
