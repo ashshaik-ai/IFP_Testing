@@ -384,7 +384,7 @@
       + '<div class="ifg-label">' + (te ? 'పదకోశం' : 'Glossary') + '</div>'
       + '<h2 class="ifg-title">' + (te ? 'పదాల అర్థాలు' : 'Glossary of Terms') + '</h2>'
       + '<p class="ifg-sub">' + (te ? 'సాధారణ ఇస్లామిక్ పదాల సరళ వివరణలు. వెతకడానికి టైప్ చేయండి.' : 'Plain explanations of common Islamic terms. Type to search.') + '</p>'
-      + '<input type="search" class="ifg-search" id="ifg-search" placeholder="' + (te ? 'పదం వెతకండి…' : 'Search a term…') + '" aria-label="' + (te ? 'పదం వెతకండి' : 'Search a term') + '">'
+      + '<input type="search" class="ifg-search" id="ifg-search" placeholder="' + (te ? 'ఇస్లామిక్ పదాలు వెతకండి…' : 'Search Islamic terms…') + '" aria-label="' + (te ? 'ఇస్లామిక్ పదాలు వెతకండి' : 'Search Islamic terms') + '">'
       + '<div class="ifg-list" id="ifg-list"></div>'
       + '</div>';
     var refs = document.getElementById('if-refs');
@@ -412,17 +412,13 @@
     });
   }
 
-  function boot() { initA11y(); syncLocalizedAttributes(); injectRefs(); initPWA(); setTimeout(injectGlossary, 0); }
+  function boot() { initA11y(); syncLocalizedAttributes(); injectRefs(); initPWA(); }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
   else boot();
 
   /* re-paint language-dependent components when the portal toggles <html lang> */
   new MutationObserver(function () {
     paintRefs();
-    var gi = document.getElementById('ifg-search'); paintGlossary(gi ? gi.value : '');
-    var gt = document.querySelector('#if-glossary .ifg-title'); if (gt) gt.textContent = getLang() === 'te' ? 'పదాల అర్థాలు' : 'Glossary of Terms';
-    var gl = document.querySelector('#if-glossary .ifg-label'); if (gl) gl.textContent = getLang() === 'te' ? 'పదకోశం' : 'Glossary';
-    var gs = document.querySelector('#if-glossary .ifg-sub'); if (gs) gs.textContent = getLang() === 'te' ? 'సాధారణ ఇస్లామిక్ పదాల సరళ వివరణలు. వెతకడానికి టైప్ చేయండి.' : 'Plain explanations of common Islamic terms. Type to search.';
     var sk = document.querySelector('.if-skip');
     if (sk) sk.textContent = getLang() === 'te' ? 'ముఖ్య విషయానికి వెళ్లండి' : 'Skip to content';
     syncLocalizedAttributes();
@@ -566,6 +562,7 @@
       if (!isMobileShell()) return;
       if (document.getElementById('bottom-nav')) return;
       var isKnowledge = (p.indexOf('islamic-knowledge.html') >= 0 || p.indexOf('knowledge-center/') >= 0) && !isHome;
+      var isPortalPage = p.indexOf('knowledge-center/') >= 0 && !isHome;
       var base = (p.indexOf('knowledge-center/') >= 0) ? '../../' : '';
       var te = getLang() === 'te';
       var hash = window.location.hash || '';
@@ -586,11 +583,11 @@
         + '  </svg>'
         + '  <span class="bn-label" data-bn-label="home">' + (te ? 'హోమ్' : 'Home') + '</span>'
         + '</a>'
-        + '<a href="' + base + 'index.html#scheme" class="bn-item' + (isSchemeHash ? ' bn-active" aria-current="page' : '') + '">'
+        + '<a href="' + base + 'index.html#achievements" class="bn-item' + (!isHome && !isKnowledge ? '' : (isHome && !isSchemeHash && !isContactHash ? '' : '')) + '">'
         + '  <svg class="bn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
-        + '    <path d="M4 19V8l8-4 8 4v11" /><path d="M4 19h16" /><path d="M8 19v-6h8v6" />'
+        + '    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>'
         + '  </svg>'
-        + '  <span class="bn-label" data-bn-label="schemes">' + (te ? 'పథకాలు' : 'Schemes') + '</span>'
+        + '  <span class="bn-label" data-bn-label="achievements">' + (te ? 'సాధనలు' : 'Achievements') + '</span>'
         + '</a>'
         + '<a href="' + base + 'islamic-knowledge.html" class="bn-item' + (isKnowledge ? ' bn-active" aria-current="page' : '') + '">'
         + '  <svg class="bn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
@@ -598,12 +595,20 @@
         + '  </svg>'
         + '  <span class="bn-label" data-bn-label="learn">' + (te ? 'అభ్యాసం' : 'Learn') + '</span>'
         + '</a>'
-        + '<button type="button" class="bn-item lang-btn" id="bn-lang" aria-label="Switch language">'
-        + '  <svg class="bn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
-        + '    <circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>'
-        + '  </svg>'
-        + '  <span class="bn-label">' + (te ? 'English' : 'తెలుగు') + '</span>'
-        + '</button>'
+        + (isPortalPage
+          ? '<a href="' + base + 'student-guidance.html" class="bn-item">'
+            + '  <svg class="bn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
+            + '    <path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/>'
+            + '  </svg>'
+            + '  <span class="bn-label" data-bn-label="guidance">' + (te ? 'మార్గదర్శనం' : 'Guidance') + '</span>'
+            + '</a>'
+          : '<button type="button" class="bn-item lang-btn" id="bn-lang" aria-label="Switch language">'
+            + '  <svg class="bn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
+            + '    <circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>'
+            + '  </svg>'
+            + '  <span class="bn-label">' + (te ? 'English' : 'తెలుగు') + '</span>'
+            + '</button>'
+        )
         + '<button type="button" class="bn-item" id="bn-more" aria-haspopup="true" aria-expanded="false" aria-controls="nav-drawer">'
         + '  <svg class="bn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
         + '    <circle cx="12" cy="12" r="1" />'
@@ -628,21 +633,21 @@
         drawer.setAttribute('aria-modal', 'true');
         drawer.setAttribute('aria-label', 'Navigation menu');
         drawer.setAttribute('aria-hidden', 'true');
-        drawer.innerHTML = 
+        drawer.innerHTML =
             '<div class="nav-drawer-header">'
           + '  <div class="nav-drawer-handle"></div>'
           + '  <span class="nav-drawer-brand">' + (te ? 'ఇస్లామిక్ ఫ్రంట్' : 'Islamic Front') + '</span>'
           + '  <button class="nav-drawer-close" id="nav-drawer-close" aria-label="Close menu">&#x2715;</button>'
           + '</div>'
           + '<ul class="nav-drawer-links">'
-          + '  <li><a href="' + base + 'student-guidance.html">' + (te ? 'విద్యార్థి మార్గదర్శనం' : 'Student Guidance') + '</a></li>'
-          + '  <li><a href="' + base + 'index.html#victory">' + (te ? 'మా విజయం' : 'Our Victory') + '</a></li>'
-          + '  <li><a href="' + base + 'index.html#achievements">' + (te ? 'సాధనలు' : 'Achievements') + '</a></li>'
-          + '  <li><a href="' + base + 'index.html#manifesto">' + (te ? 'మేనిఫెస్టో' : 'Manifesto') + '</a></li>'
-          + '  <li><a href="' + base + 'index.html#stories">' + (te ? 'సఫలత కథలు' : 'Success Stories') + '</a></li>'
-          + '  <li><a href="' + base + 'index.html#events">' + (te ? 'కార్యక్రమాలు' : 'Events') + '</a></li>'
-          + '  <li><a href="' + base + 'index.html#volunteer">' + (te ? 'స్వచ్ఛంద సేవ' : 'Volunteer') + '</a></li>'
-          + '  <li><a href="' + base + 'index.html#about">' + (te ? 'మా గురించి' : 'About Us') + '</a></li>'
+          + '  <li><a href="' + base + 'student-guidance.html" data-drawer-key="guidance">' + (te ? 'విద్యార్థి మార్గదర్శనం' : 'Student Guidance') + '</a></li>'
+          + '  <li><a href="' + base + 'index.html#victory" data-drawer-key="victory">' + (te ? 'మా విజయం' : 'Our Victory') + '</a></li>'
+          + '  <li><a href="' + base + 'index.html#achievements" data-drawer-key="ach">' + (te ? 'సాధనలు' : 'Achievements') + '</a></li>'
+          + '  <li><a href="' + base + 'index.html#manifesto" data-drawer-key="manifesto">' + (te ? 'మేనిఫెస్టో' : 'Manifesto') + '</a></li>'
+          + '  <li><a href="' + base + 'index.html#stories" data-drawer-key="stories">' + (te ? 'సఫలత కథలు' : 'Success Stories') + '</a></li>'
+          + '  <li><a href="' + base + 'index.html#events" data-drawer-key="events">' + (te ? 'కార్యక్రమాలు' : 'Events') + '</a></li>'
+          + '  <li><a href="' + base + 'index.html#volunteer" data-drawer-key="volunteer">' + (te ? 'స్వచ్ఛంద సేవ' : 'Volunteer') + '</a></li>'
+          + '  <li><a href="' + base + 'index.html#about" data-drawer-key="about">' + (te ? 'మా గురించి' : 'About Us') + '</a></li>'
           + '</ul>';
         document.body.appendChild(drawer);
       }
@@ -716,13 +721,14 @@
       // Dismiss drawer on escape key
       document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && navDrawer.classList.contains('open')) closeDrawer(); });
 
-      // Auto-update bottom nav texts when language changes
+      // Auto-update bottom nav texts and drawer links when language changes
       new MutationObserver(function () {
         var isTe = getLang() === 'te';
         var copy = {
           home: { te: 'హోమ్', en: 'Home' },
-          schemes: { te: 'పథకాలు', en: 'Schemes' },
+          achievements: { te: 'సాధనలు', en: 'Achievements' },
           learn: { te: 'అభ్యాసం', en: 'Learn' },
+          guidance: { te: 'మార్గదర్శనం', en: 'Guidance' },
           more: { te: 'మరిన్ని', en: 'More' }
         };
         document.querySelectorAll('.bottom-nav .bn-label[data-bn-label]').forEach(function (label) {
@@ -732,6 +738,22 @@
         if (bnLang) { var lbl2 = bnLang.querySelector('.bn-label'); if (lbl2) lbl2.textContent = isTe ? 'English' : 'తెలుగు'; }
         var db = document.querySelector('.nav-drawer-brand');
         if (db) db.textContent = isTe ? 'ఇస్లామిక్ ఫ్రంట్' : 'Islamic Front';
+        // Update drawer link labels when language switches
+        var drawerLinks = document.querySelectorAll('.nav-drawer-links [data-drawer-key]');
+        var drawerCopy = {
+          guidance:  { te: 'విద్యార్థి మార్గదర్శనం', en: 'Student Guidance' },
+          victory:   { te: 'మా విజయం', en: 'Our Victory' },
+          ach:       { te: 'సాధనలు', en: 'Achievements' },
+          manifesto: { te: 'మేనిఫెస్టో', en: 'Manifesto' },
+          stories:   { te: 'సఫలత కథలు', en: 'Success Stories' },
+          events:    { te: 'కార్యక్రమాలు', en: 'Events' },
+          volunteer: { te: 'స్వచ్ఛంద సేవ', en: 'Volunteer' },
+          about:     { te: 'మా గురించి', en: 'About Us' }
+        };
+        drawerLinks.forEach(function (el) {
+          var key = el.getAttribute('data-drawer-key');
+          if (drawerCopy[key]) el.textContent = isTe ? drawerCopy[key].te : drawerCopy[key].en;
+        });
       }).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
     }
 

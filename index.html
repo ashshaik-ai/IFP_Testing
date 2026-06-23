@@ -2640,17 +2640,41 @@
         scroll-snap-type: x mandatory;
         -webkit-overflow-scrolling: touch;
         gap: 14px;
-        padding-bottom: 4px;
-        scrollbar-width: none;
+        padding-bottom: 8px;
+        scrollbar-width: thin;
+        scrollbar-color: rgba(200,146,42,0.5) rgba(255,255,255,0.06);
+        position: relative;
       }
 
       .members-grid::-webkit-scrollbar {
-        display: none;
+        height: 4px;
+      }
+
+      .members-grid::-webkit-scrollbar-track {
+        background: rgba(255,255,255,0.06);
+        border-radius: 2px;
+      }
+
+      .members-grid::-webkit-scrollbar-thumb {
+        background: rgba(200,146,42,0.5);
+        border-radius: 2px;
       }
 
       .member-card {
-        flex: 0 0 78%;
+        flex: 0 0 80%;
         scroll-snap-align: start;
+      }
+
+      .members-grid::after {
+        content: '';
+        position: sticky;
+        right: 0;
+        width: 52px;
+        min-width: 52px;
+        align-self: stretch;
+        background: linear-gradient(to right, transparent, rgba(13,36,16,0.82));
+        pointer-events: none;
+        flex-shrink: 0;
       }
 
       .mandate-stats {
@@ -5876,8 +5900,8 @@
                       </svg></span></button>
                   <div class="ach-evidence">
                     <div class="ach-evidence-row">
-                      <span class="ev-tag ev-done">పూర్తి AC వ్యవస్థాపన</span>
-                      <span class="ev-tag ev-done">పూర్తి రీమోడలింగ్</span>
+                      <span class="ev-tag ev-done" data-key="ev1_t1">పూర్తి AC వ్యవస్థాపన</span>
+                      <span class="ev-tag ev-done" data-key="ev1_t2">పూర్తి రీమోడలింగ్</span>
                       <span class="ev-tag ev-date">2023–2024</span>
                     </div>
                     <div class="ach-evidence-row">
@@ -5885,8 +5909,8 @@
                           stroke="none" aria-hidden="true">
                           <path
                             d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
-                        </svg> 2 హాళ్ళు అప్‌గ్రేడ్</span>
-                      <span class="ev-tag ev-impact">1,000+ కుటుంబాలు లాభపడ్డాయి</span>
+                        </svg><span data-key="ev1_t4"> 2 హాళ్ళు అప్‌గ్రేడ్</span></span>
+                      <span class="ev-tag ev-impact" data-key="ev1_t5">1,000+ కుటుంబాలు లాభపడ్డాయి</span>
                     </div>
                   </div>
                 </div>
@@ -5911,12 +5935,12 @@
                       </svg></span></button>
                   <div class="ach-evidence">
                     <div class="ach-evidence-row">
-                      <span class="ev-tag ev-done">క్రమబద్ధ వసూలు వ్యవస్థ</span>
-                      <span class="ev-tag ev-date">2023 నుండి</span>
+                      <span class="ev-tag ev-done" data-key="ev2_t1">క్రమబద్ధ వసూలు వ్యవస్థ</span>
+                      <span class="ev-tag ev-date" data-key="ev2_t2">2023 నుండి</span>
                     </div>
                     <div class="ach-evidence-row">
-                      <span class="ev-tag ev-impact">120+ దుకాణాల నుండి ఆదాయం</span>
-                      <span class="ev-tag ev-impact">గణనీయ మెరుగుదల</span>
+                      <span class="ev-tag ev-impact" data-key="ev2_t3">120+ దుకాణాల నుండి ఆదాయం</span>
+                      <span class="ev-tag ev-impact" data-key="ev2_t4">గణనీయ మెరుగుదల</span>
                     </div>
                   </div>
                 </div>
@@ -5940,11 +5964,11 @@
                       </svg></span></button>
                   <div class="ach-evidence">
                     <div class="ach-evidence-row">
-                      <span class="ev-tag ev-done">120+ దుకాణాల తనిఖీ</span>
-                      <span class="ev-tag ev-done">సబ్‌లీజ్ పూర్తిగా రద్దు</span>
+                      <span class="ev-tag ev-done" data-key="ev3_t1">120+ దుకాణాల తనిఖీ</span>
+                      <span class="ev-tag ev-done" data-key="ev3_t2">సబ్‌లీజ్ పూర్తిగా రద్దు</span>
                     </div>
                     <div class="ach-evidence-row">
-                      <span class="ev-tag ev-impact">₹27 లక్షలు అదనపు లాభం</span>
+                      <span class="ev-tag ev-impact" data-key="ev3_t3">₹27 లక్షలు అదనపు లాభం</span>
                       <span class="ev-tag ev-date">2023–2024</span>
                     </div>
                   </div>
@@ -5969,12 +5993,12 @@
                       </svg></span></button>
                   <div class="ach-evidence">
                     <div class="ach-evidence-row">
-                      <span class="ev-tag ev-done">క్రియాశీల పథకం</span>
-                      <span class="ev-tag ev-impact">250+ కుటుంబాలు సేవ పొందాయి</span>
+                      <span class="ev-tag ev-done" data-key="ev4_t1">క్రియాశీల పథకం</span>
+                      <span class="ev-tag ev-impact" data-key="ev4_t2">250+ కుటుంబాలు సేవ పొందాయి</span>
                     </div>
                     <div class="ach-evidence-row">
-                      <span class="ev-tag ev-impact">₹10,000 ప్రతి కుటుంబానికి</span>
-                      <span class="ev-tag ev-date">2023 నుండి</span>
+                      <span class="ev-tag ev-impact" data-key="ev4_t3">₹10,000 ప్రతి కుటుంబానికి</span>
+                      <span class="ev-tag ev-date" data-key="ev4_t4">2023 నుండి</span>
                     </div>
                   </div>
                 </div>
@@ -5998,12 +6022,12 @@
                       </svg></span></button>
                   <div class="ach-evidence">
                     <div class="ach-evidence-row">
-                      <span class="ev-tag ev-done">18 మసీదులు క్రియాశీలంగా</span>
-                      <span class="ev-tag ev-done">5 మదర్సాలు</span>
+                      <span class="ev-tag ev-done" data-key="ev5_t1">18 మసీదులు క్రియాశీలంగా</span>
+                      <span class="ev-tag ev-done" data-key="ev5_t2">5 మదర్సాలు</span>
                     </div>
                     <div class="ach-evidence-row">
-                      <span class="ev-tag ev-impact">3,000+ ఓటర్ల విశ్వాసం</span>
-                      <span class="ev-tag ev-date">కొనసాగుతున్నది</span>
+                      <span class="ev-tag ev-impact" data-key="ev5_t3">3,000+ ఓటర్ల విశ్వాసం</span>
+                      <span class="ev-tag ev-date" data-key="ev5_t4">కొనసాగుతున్నది</span>
                     </div>
                   </div>
                 </div>
@@ -6036,12 +6060,12 @@
                       </svg></span></button>
                   <div class="ach-evidence">
                     <div class="ach-evidence-row">
-                      <span class="ev-tag ev-done">కేంద్రం నెలకొల్పబడింది</span>
-                      <span class="ev-tag ev-done">శిక్షణ కొనసాగుతున్నది</span>
+                      <span class="ev-tag ev-done" data-key="ev6_t1">కేంద్రం నెలకొల్పబడింది</span>
+                      <span class="ev-tag ev-done" data-key="ev6_t2">శిక్షణ కొనసాగుతున్నది</span>
                     </div>
                     <div class="ach-evidence-row">
-                      <span class="ev-tag ev-impact">మహిళా ఆర్థిక స్వాతంత్ర్యం</span>
-                      <span class="ev-tag ev-date">2023 నుండి</span>
+                      <span class="ev-tag ev-impact" data-key="ev6_t3">మహిళా ఆర్థిక స్వాతంత్ర్యం</span>
+                      <span class="ev-tag ev-date" data-key="ev6_t4">2023 నుండి</span>
                     </div>
                   </div>
                 </div>
@@ -7592,6 +7616,8 @@
             <li><a href="#volunteer" data-key="footer_l_volunteer">స్వచ్ఛంద సేవ</a></li>
             <li><a href="#scheme" data-key="footer_l4">అంత్యక్రియల సహాయ పథకం</a></li>
             <li><a href="#about" data-key="footer_l5">స్థాపకుని గురించి</a></li>
+            <li><a href="student-guidance.html" data-key="footer_l_guidance">విద్యార్థి మార్గదర్శనం</a></li>
+            <li><a href="islamic-knowledge.html" data-key="footer_l_kc">విజ్ఞాన కేంద్రం</a></li>
           </ul>
         </div>
         <div class="footer-col">
@@ -7599,6 +7625,7 @@
           <ul>
             <li data-key="footer_addr1">మంగళగిరి, గుంటూరు జిల్లా</li>
             <li data-key="footer_addr2">ఆంధ్రప్రదేశ్ – 522503</li>
+            <li><a href="tel:+919032906677" style="color:inherit;text-decoration:none;" data-key="footer_phone">+91 90329 06677</a></li>
             <li data-key="footer_founded_li">స్థాపించబడింది: 2011</li>
             <li data-key="footer_addr3">అంజుమన్‌- యి- హిమాయతుల్‌ ఇస్లాం</li>
           </ul>
@@ -7606,7 +7633,7 @@
       </div>
       <div class="footer-bottom">
         <p data-key="footer_copy">© 2024 ఇస్లామిక్ ఫ్రంట్, మంగళగిరి. అన్ని హక్కులు పరిరక్షించబడ్డాయి.</p>
-        <p style="color:rgba(200,146,42,0.4);" data-key="footer_founded">జనాబ్ షేక్ అక్రమ్ స్థాపించారు · స్థా. 2011</p>
+        <p style="color:rgba(200,146,42,0.4);margin-top:6px;" data-key="footer_founded">జనాబ్ షేక్ అక్రమ్ స్థాపించారు · స్థా. 2011</p>
       </div>
     </footer>
   </main>
@@ -7792,8 +7819,10 @@
         footer_contact_h: "సంప్రదించండి",
         footer_addr1: "మంగళగిరి, గుంటూరు జిల్లా",
         footer_addr2: "ఆంధ్రప్రదేశ్ – 522503",
+        footer_phone: "+91 90329 06677",
         footer_addr3: "అంజుమన్‌- యి- హిమాయతుల్‌ ఇస్లాం",
         footer_founded_li: "స్థాపించబడింది: 2011",
+        footer_l_guidance: "విద్యార్థి మార్గదర్శనం", footer_l_kc: "విజ్ఞాన కేంద్రం",
         footer_copy: "© 2024 ఇస్లామిక్ ఫ్రంట్, మంగళగిరి. అన్ని హక్కులు పరిరక్షించబడ్డాయి.",
         footer_founded: "జనాబ్ షేక్ అక్రమ్ స్థాపించారు · స్థా. 2011",
 
@@ -7807,6 +7836,12 @@
 
         /* Achievement evidence */
         ach_view_evidence: "సాక్ష్యాలు చూడండి",
+        ev1_t1: "పూర్తి AC వ్యవస్థాపన", ev1_t2: "పూర్తి రీమోడలింగ్", ev1_t4: " 2 హాళ్ళు అప్‌గ్రేడ్", ev1_t5: "1,000+ కుటుంబాలు లాభపడ్డాయి",
+        ev2_t1: "క్రమబద్ధ వసూలు వ్యవస్థ", ev2_t2: "2023 నుండి", ev2_t3: "120+ దుకాణాల నుండి ఆదాయం", ev2_t4: "గణనీయ మెరుగుదల",
+        ev3_t1: "120+ దుకాణాల తనిఖీ", ev3_t2: "సబ్‌లీజ్ పూర్తిగా రద్దు", ev3_t3: "₹27 లక్షలు అదనపు లాభం",
+        ev4_t1: "క్రియాశీల పథకం", ev4_t2: "250+ కుటుంబాలు సేవ పొందాయి", ev4_t3: "₹10,000 ప్రతి కుటుంబానికి", ev4_t4: "2023 నుండి",
+        ev5_t1: "18 మసీదులు క్రియాశీలంగా", ev5_t2: "5 మదర్సాలు", ev5_t3: "3,000+ ఓటర్ల విశ్వాసం", ev5_t4: "కొనసాగుతున్నది",
+        ev6_t1: "కేంద్రం నెలకొల్పబడింది", ev6_t2: "శిక్షణ కొనసాగుతున్నది", ev6_t3: "మహిళా ఆర్థిక స్వాతంత్ర్యం", ev6_t4: "2023 నుండి",
 
         /* Stories */
         stories_tag: "సమాజ ప్రభావం", stories_title: "సఫలత కథలు",
@@ -8121,8 +8156,10 @@
         footer_contact_h: "Contact",
         footer_addr1: "Mangalagiri, Guntur District",
         footer_addr2: "Andhra Pradesh – 522503",
+        footer_phone: "+91 90329 06677",
         footer_addr3: "Anjuman-e-Himayatul Islam",
         footer_founded_li: "Founded: 2011",
+        footer_l_guidance: "Student Guidance", footer_l_kc: "Knowledge Center",
         footer_copy: "© 2024 Islamic Front, Mangalagiri. All rights reserved.",
         footer_founded: "Founded by Janab Shaik Akram · Est. 2011",
 
@@ -8136,6 +8173,12 @@
 
         /* Achievement evidence */
         ach_view_evidence: "View Evidence",
+        ev1_t1: "Full AC Installation", ev1_t2: "Complete Remodeling", ev1_t4: " 2 Halls Upgraded", ev1_t5: "1,000+ Families Benefited",
+        ev2_t1: "Disciplined Collection System", ev2_t2: "Since 2023", ev2_t3: "Revenue from 120+ Shops", ev2_t4: "Significant Improvement",
+        ev3_t1: "120+ Shops Audited", ev3_t2: "Sublease Fully Eliminated", ev3_t3: "₹27L Additional Revenue",
+        ev4_t1: "Active Scheme", ev4_t2: "250+ Families Served", ev4_t3: "₹10,000 per Family", ev4_t4: "Since 2023",
+        ev5_t1: "18 Active Mosques", ev5_t2: "5 Madrasas", ev5_t3: "3,000+ Voters' Trust", ev5_t4: "Ongoing",
+        ev6_t1: "Centre Established", ev6_t2: "Training Ongoing", ev6_t3: "Women's Financial Independence", ev6_t4: "Since 2023",
 
         /* Stories */
         stories_tag: "Community Impact", stories_title: "Success Stories",
@@ -8307,6 +8350,14 @@
         const key = el.dataset.key;
         const val = T[l][key];
         if (val === undefined) return;
+        // Skip toggle-label spans inside expanded cards (state managed by toggleAchEvidence)
+        if (key === 'ach_view_evidence') {
+          const card = el.closest('.ach-card');
+          if (card && card.classList.contains('expanded')) {
+            el.textContent = l === 'te' ? 'సాక్ష్యాలు దాచండి' : 'Hide Evidence';
+            return;
+          }
+        }
         if (el.dataset.html === 'true') { el.innerHTML = val; }
         else { el.textContent = val; }
       });
