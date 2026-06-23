@@ -65,6 +65,12 @@
   .lang-btn:hover { background: rgba(200,146,42,0.22); transform: translateY(-1px); }
   .lang-btn::before { content: ''; display: inline-block; width: 14px; height: 14px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23e8b84b' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20'/%3E%3C/svg%3E") center/contain no-repeat; vertical-align: middle; }
 
+  /* HERO BREADCRUMB — visible on dark green */
+  .kc-hero-crumb { display:flex; align-items:center; gap:6px; flex-wrap:wrap; font-size:12px; color:rgba(245,230,192,.60); margin-bottom:16px; }
+  .kc-hero-crumb a { color:rgba(245,230,192,.80); text-decoration:none; transition:color .2s; }
+  .kc-hero-crumb a:hover { color:var(--gold-light); }
+  .kc-hero-crumb [aria-current] { color:var(--gold-light); font-weight:600; }
+
   /* HERO */
   .kc-hero { padding: 130px 5vw 70px; background: linear-gradient(160deg, var(--green-deep) 0%, #0a2e17 55%, #122b0f 100%); position: relative; overflow: hidden; isolation: isolate; }
   /* Static premium glow */
@@ -531,6 +537,9 @@
     .kc-hero h1 { font-size: clamp(20px,6.5vw,28px) !important; margin-bottom: 14px !important; }
     .kc-logo-bg { display: none !important; }
     .kc-badge { margin-bottom: 10px !important; }
+    /* Zakat form: reduce side padding so input fields aren't cramped on narrow screens */
+    .zf-body { padding: 18px 16px 20px !important; }
+    .zf-header { padding: 16px 18px !important; }
   }
 
   /* Tool shortcut pills — replaces if-kc-dashboard on mobile */
@@ -688,13 +697,6 @@ body.if-kc-app .kc-tool-pills  { display: flex !important; }
   </div>
 </nav>
 
-<nav class="ifx-crumbs" aria-label="బ్రెడ్‌క్రంబ్" data-aria-te="బ్రెడ్‌క్రంబ్" data-aria-en="Breadcrumb">
-  <ol>
-    <li><a href="index.html" data-te="హోమ్" data-en="Home">హోమ్</a></li>
-    <li aria-current="page" data-te="నాలెడ్జ్ సెంటర్" data-en="Knowledge Center">నాలెడ్జ్ సెంటర్</li>
-  </ol>
-</nav>
-
 <main id="main-content">
 <!-- HERO -->
 <header class="kc-hero">
@@ -704,6 +706,11 @@ body.if-kc-app .kc-tool-pills  { display: flex !important; }
     </div>
   </div>
   <div class="kc-hero-inner">
+    <nav class="kc-hero-crumb" aria-label="Breadcrumb">
+      <a href="index.html" data-te="హోమ్" data-en="Home">హోమ్</a>
+      <span aria-hidden="true">›</span>
+      <span aria-current="page" data-te="నాలెడ్జ్ సెంటర్" data-en="Knowledge Center">నాలెడ్జ్ సెంటర్</span>
+    </nav>
     <div class="kc-badge" data-te="విజ్ఞాన వనరు" data-en="Knowledge Resource">విజ్ఞాన వనరు</div>
     <h1 data-te="ఇస్లామిక్ <span>నాలెడ్జ్ సెంటర్</span>" data-en="Islamic <span>Knowledge Center</span>">ఇస్లామిక్ <span>నాలెడ్జ్ సెంటర్</span></h1>
     <p data-te="ప్రతి ముస్లిం కుటుంబానికి ఉపయోగపడే ఇస్లామిక్ సాధనాలు మరియు విశ్వసనీయ వనరులు — జకాత్ లెక్కింపు, నమాజ్ వేళలు, తదుపరి నమాజ్ కౌంట్‌డౌన్, ఖురాన్ మరియు హదీస్ వనరులు ఒకే చోట." data-en="Practical Islamic tools and trusted resources for every Muslim family — Zakat calculation, daily Salah timings, a next-prayer countdown, and authentic Quran &amp; Hadith resources, all in one place.">ప్రతి ముస్లిం కుటుంబానికి ఉపయోగపడే ఇస్లామిక్ సాధనాలు మరియు విశ్వసనీయ వనరులు — జకాత్ లెక్కింపు, నమాజ్ వేళలు, తదుపరి నమాజ్ కౌంట్‌డౌన్, ఖురాన్ మరియు హదీస్ వనరులు ఒకే చోట.</p>
@@ -750,13 +757,6 @@ body.if-kc-app .kc-tool-pills  { display: flex !important; }
     </div>
   </div>
 </header>
-<nav class="ifx-crumbs" aria-label="Breadcrumb">
-  <ol>
-    <li><a href="index.html" data-te="హోమ్" data-en="Home">హోమ్</a></li>
-    <li aria-current="page" data-te="నాలెడ్జ్ సెంటర్" data-en="Knowledge Center">నాలెడ్జ్ సెంటర్</li>
-  </ol>
-</nav>
-
 <!-- STICKY QUICK-JUMP NAV (appears after hero scrolls away) -->
 <nav class="kc-sticky" id="kc-sticky" aria-label="Knowledge Center sections">
   <div class="kc-sticky-inner">
