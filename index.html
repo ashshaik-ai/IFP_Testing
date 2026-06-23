@@ -3559,8 +3559,8 @@
       .hfm-photo {
         width: 100%;
         height: 100%;
-        object-fit: cover;
-        object-position: center 8%;
+        object-fit: contain;
+        object-position: center top;
         display: block;
         filter: brightness(1.04) contrast(1.03);
       }
@@ -5740,6 +5740,60 @@
       letter-spacing: 1px;
       text-transform: uppercase;
     }
+    /* ══════════════════════════════════════════
+       ENGLISH — FITTED TEXT SIZES
+       Inspired by Telugu's dense, premium feel.
+       Targets #html-root[lang="en"] set by applyLang().
+    ══════════════════════════════════════════ */
+    #html-root[lang="en"] .hero-badge {
+      font-size: 11px;
+      letter-spacing: 1.2px;
+      padding: 4px 13px;
+    }
+    #html-root[lang="en"] .hero-title {
+      font-size: clamp(38px, 5.5vw, 74px);
+      line-height: 1.05;
+    }
+    #html-root[lang="en"] .hero-subtitle {
+      font-size: 13.5px;
+      line-height: 1.5;
+      margin-bottom: 0;
+    }
+    #html-root[lang="en"] .hstat-num {
+      font-size: clamp(28px, 4.5vw, 38px) !important;
+    }
+    #html-root[lang="en"] .hstat-label {
+      font-size: 10px;
+      line-height: 1.3;
+    }
+    #html-root[lang="en"] .hmfp-label {
+      font-size: 10px;
+      letter-spacing: 1.4px;
+    }
+    #html-root[lang="en"] .hero-cta {
+      font-size: 12.5px;
+      padding: 12px 26px;
+      letter-spacing: 0.5px;
+    }
+    #html-root[lang="en"] .hero-cta-secondary {
+      font-size: 12.5px;
+      padding: 12px 26px;
+    }
+    /* Section titles tighter in English */
+    #html-root[lang="en"] .section-title {
+      font-size: clamp(22px, 3.8vw, 38px);
+      letter-spacing: -0.3px;
+    }
+    #html-root[lang="en"] .section-subtitle {
+      font-size: 13.5px;
+      line-height: 1.55;
+    }
+    /* Hub tab labels — tighter */
+    #html-root[lang="en"] .hub-tab {
+      font-size: 12px;
+      letter-spacing: 0.1px;
+      padding: 8px 14px;
+    }
   </style>
   <link rel="stylesheet" href="assets/css/if-standard.css">
   <script defer src="assets/data/site-catalog.js"></script>
@@ -5890,7 +5944,7 @@
           <div class="leader-photo-frame">
             <!-- Founder portrait uses the optimized local asset. -->
             <img src="assets/founder/shaik-akram-2.jpg" alt="జనాబ్ షేక్ అక్రమ్"
-              style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;" fetchpriority="high"
+              style="width:100%;height:100%;object-fit:contain;object-position:center top;display:block;" fetchpriority="high"
               onerror="this.style.display='none';document.getElementById('hero-ph').style.display='flex'">
             <div id="hero-ph" class="leader-photo-placeholder" style="display:none">
               <div class="avatar-circle">SA</div>
@@ -7834,6 +7888,7 @@
         nav_sub: "మంగళగిరి · స్థా. 2011",
         nav_victory: "మా విజయం",
         nav_achievements: "సాధనలు",
+        nav_ach_short: "సాధనలు",
         nav_manifesto: "మేనిఫెస్టో",
         nav_scheme: "సహాయ పథకం",
         nav_about: "మా గురించి",
@@ -8172,6 +8227,7 @@
         nav_sub: "Mangalagiri · Est. 2011",
         nav_victory: "Our Victory",
         nav_achievements: "Achievements",
+        nav_ach_short: "Wins",
         nav_manifesto: "Manifesto",
         nav_scheme: "Aid Scheme",
         nav_about: "About",
@@ -8181,7 +8237,7 @@
         nav_guidance_short: "Guidance",
         nav_manifesto: "Manifesto",
         nav_more: "More",
-        hero_badge: "Mangalagiri, Andhra Pradesh",
+        hero_badge: "Mangalgiri, A.P.",
         hero_title: "Islamic<br><span>Front</span>",
         hero_subtitle: "Serving the Muslim community of Mangalagiri since 2011.",
         stat1_num: "7/9", stat1_label: "Seats Won 2023",
@@ -9197,7 +9253,7 @@
         <polygon
           points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
       </svg>
-      <span class="bn-label" data-key="nav_achievements">సాధనలు</span>
+      <span class="bn-label" data-key="nav_ach_short">సాధనలు</span>
     </a>
     <a href="#manifesto" class="bn-item" data-section="manifesto" aria-label="Manifesto">
       <svg class="bn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
