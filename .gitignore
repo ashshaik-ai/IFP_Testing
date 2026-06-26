@@ -1,7 +1,9 @@
 # Claude Code tooling — never deploy
 .claude/
 .codex/
+.agents/
 .playwright-mcp/
+skills-lock.json
 
 # Temp image-processing scripts (generated during development)
 _logo_*.py
@@ -29,3 +31,10 @@ package-lock.json
 playwright-report/
 test-results/
 tests/
+
+# Generated brochure / QA outputs
+canva-export/
+_verify/
+playwright-screenshots/
+_*.png
+_pos_*.json

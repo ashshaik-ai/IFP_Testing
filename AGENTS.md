@@ -148,6 +148,30 @@ Strip AI writing tells from any prose written into the product or repo: site cop
 - Division of labor: **caveman** governs terse *chat replies* (fragments OK); **stop-slop** governs *shipped prose* (complete sentences). Shipped prose wins where they conflict.
 - Stop: user says "stop slop off". Resume: "/stop-slop"
 
+### Telugu brochure PDF pipeline
+
+**Trigger:** user asks to create, update, or rebuild an Islamic Front Telugu brochure PDF.
+
+Full runbook: [project-docs/BROCHURE_PIPELINE.md](project-docs/BROCHURE_PIPELINE.md).
+
+Key rules:
+
+1. **Source HTML** → [sir-brochure-ap-2026.html](sir-brochure-ap-2026.html) (8-page) and [sir-summary-ap-2026.html](sir-summary-ap-2026.html) (2-page).
+2. **Overflow check first:** `node tests/overflow.js` — all pages must be ≤ 1123px.
+3. **Export PNGs:** `node tests/sir-export.js` → `canva-export/brochure-p1..p8.png`.
+4. **HQ PDF** (image-only): inline PyMuPDF script — see BROCHURE_PIPELINE.md § Build steps.
+5. **Extract word positions:** `node tests/extract-textpos.js "../sir-brochure-ap-2026.html" "../_pos_brochure.json"`.
+6. **Copyable PDF:** `python tests/make-copyable.py` — must print `fitz_words_p1=86` (brochure) or `fitz_words_p1=132` (summary). If `fitz_words_p1=0` → coordinate mapping is broken.
+7. **Verify:** `python tests/verify-all.py` — must end with `ISSUES: 0`.
+
+**CRITICAL — never hardcode `PX2PT = 595.28/794.0` (A4 scale).** PNG exports at 300 DPI make PDF pages 1861 × 2631 pt. Always read from MediaBox: `px2pt = page.rect.width / 794.0` (PyMuPDF) or `(mb[2]-mb[0]) / 794.0` (pikepdf).
+
+**Two-layer approach:** Layer 1 = PyMuPDF NotoSansTelugu glyphs (render_mode=3, hit-testable). Layer 2 = pikepdf ActualText per word (UTF-16-BE hex, correct paste). Both layers live in `tests/make-copyable.py`.
+
+**Mobile testing:** use Adobe Acrobat Mobile or Google Drive — NOT WhatsApp's built-in viewer.
+
+**Translation standards:** SIR = ప్రత్యేక సమగ్ర సవరణ (NOT సాంద్ర). Claims & Objections = క్లెయింలు & అభ్యంతరాలు (same order as English). Full table in BROCHURE_PIPELINE.md.
+
 ---
 
 ## Active work

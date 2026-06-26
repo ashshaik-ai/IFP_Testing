@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+<meta charset="UTF-8">
+<title>SIR 2026 — ఆంధ్రప్రదేశ్ · 2-నిమిషాల సారాంశం | ఇస్లామిక్ ఫ్రంట్</title>
+<style>
+  @font-face {
+    font-family: 'Noto Sans Telugu';
+    font-style: normal; font-weight: 100 900;
+    src: url('assets/fonts/NotoSansTelugu.ttf') format('truetype');
+    font-display: swap;
+  }
+  @page { size: A4; margin: 0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --green-deep: #0d3b1e; --green-mid: #1a5c30; --green-light: #2e8b57;
+    --gold: #c8922a; --gold-light: #e8b84b; --gold-pale: #f5e6c0;
+    --cream: #faf6ee; --white: #fff; --ink: #1a1208; --ink-mid: #3d3018; --muted: #6f5f3e;
+    --line: rgba(200,146,42,0.28);
+  }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body {
+    font-family: 'Noto Sans Telugu', 'Nirmala UI', sans-serif; color: var(--ink);
+    background: #d8d2c4; line-height: 1.6;
+    font-feature-settings: "kern" 1, "liga" 1, "calt" 1; text-rendering: optimizeLegibility;
+  }
+  .page {
+    position: relative; width: 210mm; height: 297mm; margin: 0 auto;
+    background: var(--cream); overflow: hidden; page-break-after: always;
+    padding: 0 0 8mm;
+    display: flex; flex-direction: column;
+  }
+  .page:last-child { page-break-after: auto; }
+  .page::after { content:''; position:absolute; bottom:0; left:0; right:0; height:4mm; background: linear-gradient(90deg,var(--gold),var(--gold-light)); z-index:2; }
+  .wm {
+    position: absolute; left: 50%; top: 50%; width: 175mm; height: 175mm;
+    transform: translate(-50%,-50%);
+    background: url('assets/if-emblem-trans.png') center/contain no-repeat;
+    opacity: 0.13; pointer-events: none; z-index: 0;
+  }
+  .page > *:not(.wm) { position: relative; z-index: 1; }
+
+  /* Header */
+  .head {
+    background: var(--white); border-bottom: 2px solid var(--gold);
+    padding: 9mm 14mm 7mm; display: flex; align-items: center; gap: 6mm;
+  }
+  .head img { width: 26mm; flex: 0 0 26mm; }
+  .head .ht-badge { display:inline-block; font-size:8.5pt; font-weight:700; letter-spacing:1px; color:var(--gold-light); background:var(--green-deep); padding:1.5mm 5mm; border-radius:20px; margin-bottom:2mm; }
+  .head h1 { font-size: 21pt; font-weight: 800; color: var(--green-deep); line-height: 1.15; }
+  .head h1 span { color: var(--gold); }
+  .head .ht-sub { font-size: 10pt; color: var(--muted); margin-top: 1mm; }
+
+  .body { padding: 7mm 14mm 0; flex: 1 1 auto; min-height: 0; }
+
+  .sec-h { font-size: 14pt; font-weight: 800; color: var(--green-deep); margin: 6mm 0 3mm; padding-left: 5mm; border-left: 4px solid var(--gold); }
+  .sec-h:first-child { margin-top: 2mm; }
+  .lead { font-size: 11.5pt; color: var(--ink-mid); line-height: 1.6; }
+
+  /* Dates list */
+  .dates { display: flex; flex-direction: column; gap: 2.5mm; margin-top: 2mm; }
+  .drow { display: flex; align-items: center; gap: 5mm; background: rgba(255,255,255,0.72); border:1px solid var(--line); border-left:4px solid var(--green-light); border-radius:2.5mm; padding: 3mm 5mm; }
+  .drow .dd { flex: 0 0 52mm; font-size: 11pt; font-weight: 800; color: var(--gold); }
+  .drow .dl { font-size: 10.5pt; color: var(--ink-mid); }
+
+  /* Steps */
+  .steps { display: flex; gap: 4mm; margin-top: 2mm; }
+  .step { flex:1; background: rgba(255,255,255,0.72); border:1px solid var(--line); border-radius:3mm; padding: 5mm 4mm; text-align:center; }
+  .step .sn { width:10mm; height:10mm; margin:0 auto 3mm; border-radius:50%; background:var(--green-deep); color:var(--gold-light); font-weight:800; font-size:13pt; line-height:10mm; }
+  .step p { font-size: 10pt; color: var(--ink-mid); line-height:1.45; }
+  .step b { color: var(--green-deep); }
+
+  .note { background: rgba(247,239,221,0.86); border:1px solid rgba(163,116,31,0.3); border-left:4px solid #a3741f; border-radius:3mm; padding:4mm 5mm; margin-top:5mm; font-size:10pt; color:#5c4a22; line-height:1.55; }
+  .note b { color:#7a5e1a; }
+
+  .bul { list-style:none; margin:2mm 0; }
+  .bul li { position:relative; padding:1.5mm 0 1.5mm 7mm; font-size:11pt; color:var(--ink-mid); line-height:1.5; }
+  .bul li::before { content:'✓'; position:absolute; left:0; top:1.5mm; color:#fff; background:var(--green-light); width:5mm; height:5mm; border-radius:50%; font-size:7pt; font-weight:700; text-align:center; line-height:5mm; }
+
+  /* Help + QR */
+  .help2 { display:flex; gap:5mm; margin-top:3mm; }
+  .h2call { flex:1; background:var(--green-deep); color:var(--gold-pale); border-radius:3mm; padding:5mm; text-align:center; }
+  .h2call .big { font-size:24pt; font-weight:800; color:var(--gold-light); line-height:1; }
+  .h2call p { font-size:9.5pt; margin-top:2mm; color:rgba(245,230,192,0.85); }
+  .qr2 { flex:1; display:flex; gap:4mm; }
+  .qrc { flex:1; text-align:center; background:rgba(255,255,255,0.72); border:1px solid var(--line); border-radius:3mm; padding:3mm; }
+  .qrc img { width:24mm; height:24mm; }
+  .qrc .u { font-size:8.5pt; font-weight:700; color:var(--gold); word-break:break-all; margin-top:1mm; }
+
+  .disc { background: var(--green-deep); color: var(--gold-pale); border-radius:3mm; padding:5mm 6mm; margin-top:5mm; font-size:10.5pt; line-height:1.55; text-align:center; }
+  .disc b { color: var(--gold-light); }
+
+  .credit { display:flex; align-items:center; justify-content:center; gap:4mm; margin-top:5mm; padding:3.5mm 6mm; font-size:9.5pt; color:var(--muted); background:rgba(255,255,255,0.72); border:1px solid var(--line); border-radius:3mm; max-width:120mm; margin-left:auto; margin-right:auto; }
+  .credit img { width:13mm; height:16mm; object-fit:cover; object-position:center 22%; border-radius:2mm; border:1.5px solid var(--gold); flex:0 0 13mm; }
+  .credit span { line-height:1.4; }
+  .credit b { color: var(--green-deep); }
+
+  .pfoot { flex-shrink:0; margin:5mm 14mm 0; display:flex; justify-content:space-between; font-size:8.5pt; color:var(--muted); border-top:1px solid var(--line); padding-top:2.5mm; }
+  .pfoot b { color: var(--green-deep); }
+</style>
+</head>
+<body>
+
+<!-- PAGE 1 -->
+<section class="page">
+  <div class="wm"></div>
+  <div class="head">
+    <img src="assets/if-logo-full.png" alt="ఇస్లామిక్ ఫ్రంట్">
+    <div>
+      <div class="ht-badge">ఆంధ్రప్రదేశ్ · 2026 · 2-నిమిషాల సారాంశం</div>
+      <h1>ప్రత్యేక సమగ్ర సవరణ <span>(SIR) 2026</span></h1>
+      <div class="ht-sub">ఓటర్ల జాబితా సవరణ — ప్రతి ఓటరు తెలుసుకోవలసినది</div>
+    </div>
+  </div>
+
+  <div class="body">
+    <div class="sec-h">SIR అంటే ఏమిటి?</div>
+    <p class="lead">ఓటర్ల జాబితాను ఇంటింటికీ వెళ్లి తనిఖీ చేసి సరిదిద్దే ప్రక్రియ. భారత ఎన్నికల సంఘం (ECI) దీన్ని నిర్వహిస్తుంది. <b>ఇది NRC కాదు — పౌరసత్వంతో సంబంధం లేదు.</b></p>
+
+    <div class="sec-h">ముఖ్య తేదీలు</div>
+    <div class="dates">
+      <div class="drow"><div class="dd">జూన్ 15 – జూలై 14</div><div class="dl">ఇంటింటి తనిఖీ &amp; ఫారం పంపిణీ (BLO వస్తారు)</div></div>
+      <div class="drow"><div class="dd">జూలై 14</div><div class="dl">ఫారం సమర్పణకు చివరి తేదీ</div></div>
+      <div class="drow"><div class="dd">జూలై 21</div><div class="dl">ముసాయిదా జాబితా — పేరు చూసుకోండి</div></div>
+      <div class="drow"><div class="dd">జూలై 21 – ఆగస్టు 20</div><div class="dl">అభ్యంతరాలు &amp; దరఖాస్తులు</div></div>
+      <div class="drow"><div class="dd">సెప్టెంబర్ 22</div><div class="dl">తుది ఓటర్ల జాబితా</div></div>
+    </div>
+
+    <div class="sec-h">ఏం చేయాలి?</div>
+    <div class="steps">
+      <div class="step"><div class="sn">1</div><p>BLO ఇచ్చే <b>ఎన్యుమరేషన్ ఫారం</b> పూరించి, రసీదు తీసుకోండి</p></div>
+      <div class="step"><div class="sn">2</div><p>ముసాయిదా జాబితాలో మీ <b>పేరు ఉందో</b> నిర్ధారించుకోండి</p></div>
+      <div class="step"><div class="sn">3</div><p>పేరు లేకపోతే <b>ఆగస్టు 20లోపు</b> దరఖాస్తు చేసుకోండి</p></div>
+    </div>
+
+    <div class="note"><b>గమనిక:</b> తేదీలు అధికారిక ప్రకటనల ప్రకారం మారవచ్చు. తాజా సమాచారం కోసం <b>voters.eci.gov.in</b> లేదా <b>1950</b> చూడండి.</div>
+  </div>
+
+  <div class="pfoot"><span>SIR 2026 · ఆంధ్రప్రదేశ్ — సారాంశం</span><span><b>ఇస్లామిక్ ఫ్రంట్</b> · పేజీ 1 / 2</span></div>
+</section>
+
+<!-- PAGE 2 -->
+<section class="page">
+  <div class="wm"></div>
+  <div class="body" style="padding-top:14mm">
+    <div class="sec-h" style="margin-top:0">ఏ పత్రాలు అవసరం?</div>
+    <p class="lead"><b>ఇప్పటికే ఓటర్ జాబితాలో ఉన్నవారికి సాధారణంగా అదనపు పత్రాలు అక్కర్లేదు</b> — ఫారం సమర్పిస్తే సరిపోతుంది. కొత్తగా చేర్చాలంటే లేదా వివరాలు సరిపోలకపోతే మాత్రమే పత్రాలు అవసరం (జనన ధ్రువీకరణ, పాస్‌పోర్ట్, విద్యా ధ్రువీకరణ, PRC వంటివి).</p>
+    <div class="note"><b>ముఖ్యం:</b> అవసరమైన పత్రాల జాబితా అధికారిక ECI మార్గదర్శకాల ప్రకారం మారవచ్చు. ఖచ్చితమైన వివరాల కోసం <b>voters.eci.gov.in</b> లేదా మీ <b>BLO</b>ను సంప్రదించండి.</p>
+
+    <div class="sec-h">గుర్తుంచుకోండి</div>
+    <ul class="bul">
+      <li>ఫారం పూరించడం, సమర్పించడం పూర్తిగా <b>ఉచితం</b> — ఎవరికీ డబ్బు ఇవ్వవద్దు.</li>
+      <li>ఎన్యుమరేషన్ సమయంలో <b>అసలు పత్రాలు ఎవరికీ ఇవ్వవద్దు</b> — ఫారం మాత్రమే ఇవ్వండి.</li>
+      <li>పుకార్లను నమ్మవద్దు — అధికారిక సమాచారం కోసం <b>1950</b> లేదా <b>voters.eci.gov.in</b> మాత్రమే.</li>
+    </ul>
+
+    <div class="sec-h">సహాయం</div>
+    <div class="help2">
+      <div class="h2call"><div class="big">1950</div><p>ఓటర్ హెల్ప్‌లైన్<br>(టోల్-ఫ్రీ)</p></div>
+      <div class="qr2">
+        <div class="qrc"><img src="assets/qr-voters.png" alt="QR"><div class="u">voters.eci.gov.in</div></div>
+        <div class="qrc"><img src="assets/qr-ceoap.png" alt="QR"><div class="u">ceoandhra.nic.in</div></div>
+      </div>
+    </div>
+
+    <div class="disc">ఈ పత్రం <b>అవగాహన కోసం మాత్రమే</b>. అధికారిక సమాచారం కోసం ఎల్లప్పుడూ ఎన్నికల సంఘం వెబ్‌సైట్ (<b>voters.eci.gov.in</b>) లేదా <b>1950</b> హెల్ప్‌లైన్‌ను సంప్రదించండి.</div>
+
+    <div class="credit">
+      <img src="assets/founder/shaik-akram-2.jpg" alt="జనాబ్ షేక్ అక్రమ్">
+      <span>సమాజ అవగాహన కార్యక్రమం — <b>ఇస్లామిక్ ఫ్రంట్, మంగళగిరి</b><br>సంస్థాపకుడు: జనాబ్ షేక్ అక్రమ్</span>
+    </div>
+  </div>
+
+  <div class="pfoot"><span>SIR 2026 · ఆంధ్రప్రదేశ్ — సారాంశం</span><span><b>ఇస్లామిక్ ఫ్రంట్</b> · పేజీ 2 / 2</span></div>
+</section>
+
+</body>
+</html>

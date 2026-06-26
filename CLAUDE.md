@@ -72,6 +72,7 @@ Reusable skills in `.claude/skills/` — invoke with `/skill-name`:
 | `/lesson-scaffold` | Adding a new lesson to any portal | Generates lesson HTML, updates catalog, updates portal IF_PORTAL.lessons[], wires prev/next |
 | `/caveman` | **Always active by default** | Ultra-compressed responses — drops filler/pleasantries, keeps all technical content. Stop: "normal mode". |
 | `/stop-slop` | **Always active by default** (for prose) | Strips AI writing tells from shipped prose — site copy, docs, commit/PR bodies, reports. No adverbs, no em-dashes, no "not X but Y", active voice, name the actor. Governs prose; caveman governs chat. Stop: "stop slop off". |
+| `/brochure-telugu-pdf` | Creating or rebuilding a Telugu community brochure PDF | Design system, translation standards, build pipeline, coordinate mapping rule, two-layer copyable PDF, testing checklist. Full runbook: `project-docs/BROCHURE_PIPELINE.md` |
 
 Also available: `/new-portal` · `/i18n-check` · `/a11y-audit` · `/deploy` · `/verify` · `/code-review`
 

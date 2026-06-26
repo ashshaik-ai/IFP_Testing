@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+<meta charset="UTF-8">
+<title>SIR 2026 — ఆంధ్రప్రదేశ్ ఓటర్ల జాబితా సవరణ | ఇస్లామిక్ ఫ్రంట్</title>
+<style>
+  /* Embed Noto Sans Telugu locally so Telugu conjuncts shape correctly in the
+     PDF on every device/viewer (no reliance on system fonts). */
+  @font-face {
+    font-family: 'Noto Sans Telugu';
+    font-style: normal;
+    font-weight: 100 900;
+    src: url('assets/fonts/NotoSansTelugu.ttf') format('truetype');
+    font-display: swap;
+  }
+  @page { size: A4; margin: 0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --green-deep: #0d3b1e;
+    --green-mid: #1a5c30;
+    --green-light: #2e8b57;
+    --gold: #c8922a;
+    --gold-light: #e8b84b;
+    --gold-pale: #f5e6c0;
+    --cream: #faf6ee;
+    --white: #ffffff;
+    --ink: #1a1208;
+    --ink-mid: #3d3018;
+    --muted: #6f5f3e;
+    --line: rgba(200,146,42,0.28);
+  }
+
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body {
+    font-family: 'Noto Sans Telugu', 'Nirmala UI', 'Gautami', sans-serif;
+    color: var(--ink);
+    background: #d8d2c4;
+    line-height: 1.7;
+    font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* ── PAGE FRAME ── */
+  .page {
+    position: relative;
+    width: 210mm;
+    height: 297mm;
+    margin: 0 auto;
+    background: var(--cream);
+    overflow: hidden;
+    page-break-after: always;
+    padding: 15mm 15mm 11mm;
+  }
+  .page:last-child { page-break-after: auto; }
+  /* 3-zone flex column: body (grows + centers) and footer (in-flow) are siblings,
+     so content can NEVER overlap the footer, on any page, at any content height. */
+  .page:not(.cover) {
+    display: flex;
+    flex-direction: column;
+  }
+  .pbody {
+    flex: 1 1 auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  /* watermark emblem — faded, on every page except the cover */
+  .wm {
+    position: absolute;
+    left: 50%; top: 50%;
+    width: 184mm; height: 184mm;
+    transform: translate(-50%,-50%);
+    background: url('assets/if-emblem-trans.png') center/contain no-repeat;
+    opacity: 0.13;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .page > *:not(.wm):not(.pbg) { position: relative; z-index: 1; }
+
+  /* top + bottom decorative bands */
+  .page::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 7mm;
+    background: linear-gradient(90deg, var(--green-deep), var(--green-mid) 60%, var(--gold));
+    z-index: 2;
+  }
+  .cover::before { display: none; }
+  .page::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0; height: 4mm;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    z-index: 2;
+  }
+
+  .pfoot {
+    flex-shrink: 0;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 8.5pt; color: var(--muted);
+    border-top: 1px solid var(--line); padding-top: 3mm; margin-top: 5mm;
+    z-index: 1;
+  }
+  .pfoot b { color: var(--green-deep); }
+
+  /* ── TYPOGRAPHY ── */
+  h1 { font-size: 27pt; line-height: 1.25; color: var(--green-deep); font-weight: 800; }
+  h2 {
+    font-size: 17pt; color: var(--green-deep); font-weight: 800;
+    margin-bottom: 5mm; padding-bottom: 2.5mm;
+    border-bottom: 2px solid var(--gold);
+    display: inline-block;
+  }
+  h3 { font-size: 12.5pt; color: var(--green-mid); font-weight: 700; }
+  p { font-size: 10.5pt; color: var(--ink-mid); }
+
+  .eyebrow {
+    display: inline-block; font-size: 8.5pt; font-weight: 700; letter-spacing: 1.5px;
+    text-transform: uppercase; color: var(--gold);
+    background: rgba(200,146,42,0.10); border: 1px solid var(--line);
+    padding: 2mm 4mm; border-radius: 30px; margin-bottom: 4mm;
+  }
+
+  .lead { font-size: 11pt; color: var(--ink-mid); margin-bottom: 5mm; }
+
+  .bul { list-style: none; margin: 3mm 0; }
+  .bul li {
+    position: relative; padding: 1.6mm 0 1.6mm 7mm; font-size: 10.5pt; color: var(--ink-mid);
+  }
+  .bul li::before {
+    content: '✓'; position: absolute; left: 0; top: 1.6mm;
+    color: var(--white); background: var(--green-light);
+    width: 5mm; height: 5mm; border-radius: 50%;
+    font-size: 7pt; font-weight: 700; text-align: center; line-height: 5mm;
+  }
+
+  /* ── COVER (page 1) — clean white ── */
+  .cover { padding: 0; display: flex; flex-direction: column; background: var(--white); }
+  .cover-top {
+    background: var(--white);
+    padding: 5mm 15mm 11mm; text-align: center; color: var(--ink);
+    position: relative; overflow: hidden;
+    border-bottom: 2px solid var(--gold);
+  }
+  .cover-logo {
+    width: 60mm; margin: 0 auto 4mm;
+  }
+  .cover-logo img { width: 100%; display: block; }
+  .cover-org-sub { font-size: 9.5pt; color: var(--green-mid); font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; margin-top: 1mm; }
+  .cover-rule { width: 36mm; height: 2px; background: var(--gold); margin: 6mm auto 5mm; border-radius: 2px; }
+  .cover-badge {
+    display: inline-block; font-size: 9pt; font-weight: 700; letter-spacing: 1.2px;
+    color: var(--gold-light); background: var(--green-deep);
+    padding: 2.2mm 7mm; border-radius: 30px; margin-bottom: 6mm;
+  }
+  .cover-title { font-size: 33pt; line-height: 1.2; font-weight: 800; color: var(--green-deep); }
+  .cover-title span { color: var(--gold); }
+  .cover-sub { font-size: 13pt; color: var(--muted); margin-top: 4mm; line-height: 1.5; }
+
+  .cover-mid {
+    flex: 1; padding: 9mm 15mm; display: flex; flex-direction: column; justify-content: center;
+    background: var(--white);
+  }
+  .cover-stmt {
+    text-align: center; font-size: 12.5pt; color: var(--green-deep); font-weight: 700;
+    line-height: 1.6; margin-bottom: 11mm;
+  }
+  .cover-stmt small { display: block; font-size: 10pt; color: var(--muted); font-weight: 400; margin-top: 3mm; }
+
+  .cover-actions {
+    display: flex; flex-direction: column; gap: 4mm;
+    max-width: 130mm; margin: 0 auto; width: 100%;
+  }
+  .cov-act {
+    display: flex; align-items: center; gap: 5mm;
+    background: var(--cream); border: 1px solid var(--line); border-left: 4px solid var(--gold);
+    border-radius: 3mm; padding: 4.5mm 6mm;
+  }
+  .cov-act .ca-n {
+    flex: 0 0 9mm; height: 9mm; border-radius: 50%; background: var(--green-deep);
+    color: var(--gold-light); font-weight: 800; font-size: 13pt; text-align: center; line-height: 9mm;
+  }
+  .cov-act span { font-size: 11pt; color: var(--ink-mid); line-height: 1.45; }
+  .cov-act b { color: var(--green-deep); }
+
+  .cover-foot {
+    background: var(--green-deep); color: var(--gold-pale);
+    text-align: center; padding: 6mm; font-size: 9.5pt;
+  }
+  .cover-foot b { color: var(--gold-light); }
+
+  /* ── STAT STRIP ── */
+  .stats { display: flex; gap: 4mm; margin: 6mm 0; }
+  .stat {
+    flex: 1; text-align: center; background: rgba(255,255,255,0.72);
+    border: 1px solid var(--line); border-top: 3px solid var(--gold);
+    border-radius: 3mm; padding: 5mm 3mm;
+  }
+  .stat .num { font-size: 18pt; font-weight: 800; color: var(--green-deep); line-height: 1; }
+  .stat .lbl { font-size: 8.5pt; color: var(--muted); margin-top: 2mm; line-height: 1.4; }
+
+  /* ── CARDS ── */
+  .card {
+    background: rgba(255,255,255,0.72); border: 1px solid var(--line); border-radius: 3mm;
+    padding: 4mm 5mm; margin-bottom: 3.5mm; border-left: 4px solid var(--green-light);
+  }
+  .card.gold { border-left-color: var(--gold); }
+  .card h3 { margin-bottom: 2mm; }
+  .card p { font-size: 10pt; }
+
+  .twocol { display: flex; gap: 5mm; }
+  .twocol > * { flex: 1; }
+
+  /* ── TIMELINE ── */
+  .tl { margin: 5mm 0; }
+  .tl-item {
+    display: flex; gap: 5mm; padding: 0 0 4mm; position: relative;
+  }
+  .tl-item:not(:last-child)::before {
+    content: ''; position: absolute; left: 5mm; top: 11mm; bottom: 0;
+    width: 1.2mm; background: var(--line);
+  }
+  .tl-dot {
+    flex: 0 0 10mm; height: 10mm; border-radius: 50%;
+    background: linear-gradient(145deg, var(--green-mid), var(--green-deep));
+    color: var(--gold-light); display: flex; align-items: center; justify-content: center;
+    font-size: 14pt; font-weight: 800; line-height: 1;
+    border: 2px solid var(--gold); z-index: 1;
+  }
+  .tl-body { flex: 1; padding-top: 0.3mm; }
+  .tl-date { font-size: 11pt; font-weight: 800; color: var(--gold); line-height: 1.3; }
+  .tl-title { font-size: 10.5pt; font-weight: 700; color: var(--green-deep); line-height: 1.3; }
+  .tl-body p { font-size: 9.5pt; margin-top: 0.5mm; line-height: 1.55; }
+
+  /* ── DOCUMENT GRID ── */
+  .docgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 3mm; margin: 4mm 0; }
+  .doc {
+    background: rgba(255,255,255,0.72); border: 1px solid var(--line); border-radius: 2.5mm;
+    padding: 3mm 4mm; display: flex; gap: 3mm; align-items: flex-start; font-size: 9.5pt;
+  }
+  .doc .dn {
+    flex: 0 0 6mm; height: 6mm; border-radius: 50%; background: var(--gold);
+    color: var(--white); font-weight: 800; font-size: 8.5pt; text-align: center; line-height: 6mm;
+  }
+  .doc span { color: var(--ink-mid); line-height: 1.4; }
+
+  /* ── PROBLEM / SOLUTION TABLE ── */
+  .ps { margin: 4mm 0; }
+  .ps-row {
+    display: flex; gap: 0; margin-bottom: 3mm; border: 1px solid var(--line);
+    border-radius: 2.5mm; overflow: hidden;
+  }
+  .ps-q {
+    flex: 0 0 42%; background: rgba(13,59,30,0.05); padding: 3.5mm 4mm;
+    font-size: 9.5pt; font-weight: 700; color: var(--green-deep); border-right: 1px solid var(--line);
+  }
+  .ps-a { flex: 1; background: rgba(255,255,255,0.72); padding: 3.5mm 4mm; font-size: 9.5pt; color: var(--ink-mid); }
+  .ps-q small { display: block; font-weight: 400; color: var(--muted); font-size: 8.5pt; margin-top: 1mm; }
+
+  /* ── FAQ ── */
+  .faq { margin: 3mm 0; }
+  .faq-item { margin-bottom: 4mm; padding-bottom: 4mm; border-bottom: 1px dashed var(--line); }
+  .faq-item:last-child { border-bottom: none; }
+  .faq-q {
+    font-size: 10.5pt; font-weight: 700; color: var(--green-deep);
+    padding-left: 7mm; position: relative;
+  }
+  .faq-q::before {
+    content: 'ప్ర'; position: absolute; left: 0; top: 0;
+    color: var(--gold); font-weight: 800; font-size: 9pt;
+  }
+  .faq-a { font-size: 9.5pt; color: var(--ink-mid); padding-left: 7mm; margin-top: 1mm; position: relative; }
+  .faq-a::before { content: 'జ'; position: absolute; left: 0; top: 0; color: var(--green-light); font-weight: 800; font-size: 9pt; }
+
+  /* ── CALLOUT ── */
+  .callout {
+    background: linear-gradient(135deg, rgba(46,139,87,0.10), rgba(200,146,42,0.08));
+    border: 1px solid var(--line); border-left: 4px solid var(--gold);
+    border-radius: 3mm; padding: 4mm 5mm; margin: 4mm 0; font-size: 10pt; color: var(--ink-mid);
+  }
+  .callout b { color: var(--green-deep); }
+
+  .warn {
+    background: rgba(247,239,221,0.86); border: 1px solid rgba(163,116,31,0.30);
+    border-left: 4px solid #a3741f; border-radius: 3mm; padding: 4mm 5mm; margin: 4mm 0;
+    font-size: 10pt; color: #5c4a22;
+  }
+  .warn b { color: #7a5e1a; }
+
+  /* ── ELIGIBILITY ── */
+  .elig { display: flex; gap: 4mm; margin: 4mm 0; }
+  .elig-item {
+    flex: 1; text-align: center; background: rgba(255,255,255,0.72); border: 1px solid var(--line);
+    border-radius: 3mm; padding: 5mm 3mm;
+  }
+  .elig-ic {
+    width: 13mm; height: 13mm; margin: 0 auto 3mm; border-radius: 50%;
+    background: var(--green-deep);
+    border: 1.5px solid var(--gold); display: flex; align-items: center; justify-content: center;
+    font-size: 12pt; font-weight: 800; color: var(--gold-light);
+  }
+  .elig-ic svg { width: 6.5mm; height: 6.5mm; stroke: var(--gold-light); fill: none; }
+  .elig-item b { font-size: 10.5pt; color: var(--green-deep); display: block; }
+  .elig-item span { font-size: 9pt; color: var(--muted); }
+
+  /* ── HELP CONTACT ── */
+  .help-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; margin: 5mm 0; }
+  .help {
+    background: rgba(255,255,255,0.72); border: 1px solid var(--line); border-radius: 3mm;
+    padding: 4mm 5mm; border-top: 3px solid var(--green-light);
+  }
+  .help h3 { font-size: 11pt; margin-bottom: 1.5mm; }
+  .help p { font-size: 9.5pt; }
+  .help .big { font-size: 15pt; font-weight: 800; color: var(--green-deep); }
+
+  .if-banner {
+    background: linear-gradient(150deg, var(--green-deep), #0a2e17);
+    color: var(--gold-pale); border-radius: 4mm; padding: 6mm 7mm; margin-top: 5mm;
+  }
+  .if-banner h3 { color: var(--gold-light); font-size: 12.5pt; text-align: center; margin-bottom: 4mm; }
+  .ifb-row { display: flex; gap: 4mm; }
+  .ifb { flex: 1; display: flex; gap: 3mm; align-items: flex-start; }
+  .ifb-n {
+    flex: 0 0 7mm; height: 7mm; border-radius: 50%; background: var(--gold);
+    color: var(--green-deep); font-weight: 800; font-size: 10pt; text-align: center; line-height: 7mm;
+  }
+  .ifb span { font-size: 9.5pt; color: rgba(245,230,192,0.9); line-height: 1.45; }
+  .ifb-foot { text-align: center; font-size: 9.5pt; color: rgba(245,230,192,0.8); margin-top: 5mm; padding-top: 4mm; border-top: 1px solid rgba(200,146,42,0.3); }
+
+  .sources {
+    font-size: 7.8pt; color: var(--muted); line-height: 1.5; margin-top: 5mm;
+    background: rgba(200,146,42,0.05); border: 1px solid var(--line); border-radius: 2.5mm; padding: 4mm;
+  }
+  .sources b { color: var(--green-deep); }
+
+  .disclaimer { font-size: 8pt; color: var(--muted); font-style: italic; margin-top: 3mm; line-height: 1.5; }
+
+  /* QR codes */
+  .qr-row { display: flex; gap: 5mm; margin: 5mm 0; }
+  .qr {
+    flex: 1; display: flex; align-items: center; gap: 5mm;
+    background: rgba(255,255,255,0.72); border: 1px solid var(--line); border-radius: 3mm; padding: 4mm 5mm;
+  }
+  .qr img { width: 26mm; height: 26mm; flex: 0 0 26mm; }
+  .qr h3 { font-size: 10.5pt; color: var(--green-deep); margin-bottom: 1mm; }
+  .qr p { font-size: 9pt; color: var(--muted); line-height: 1.4; }
+  .qr .qr-url { font-size: 9.5pt; font-weight: 700; color: var(--gold); word-break: break-all; }
+
+  /* Prominent disclaimer */
+  .disclaimer-box {
+    background: var(--green-deep); color: var(--gold-pale);
+    border-radius: 3mm; padding: 5mm 6mm; margin: 5mm 0 4mm;
+    font-size: 10pt; line-height: 1.55; text-align: center;
+  }
+  .disclaimer-box b { color: var(--gold-light); }
+
+  /* Small organiser credit card (founder) */
+  .made-by {
+    display: flex; align-items: center; gap: 4mm; justify-content: center;
+    margin-top: 5mm; padding: 3.5mm 6mm; font-size: 9pt; color: var(--muted);
+    background: rgba(255,255,255,0.72); border: 1px solid var(--line);
+    border-radius: 3mm; max-width: 110mm; margin-left: auto; margin-right: auto;
+  }
+  .made-by img { width: 13mm; height: 16mm; object-fit: cover; object-position: center 22%; border-radius: 2mm; border: 1.5px solid var(--gold); flex: 0 0 13mm; }
+  .made-by span { line-height: 1.4; }
+  .made-by b { color: var(--green-deep); }
+</style>
+</head>
+<body>
+
+<!-- ════════ PAGE 1 — COVER ════════ -->
+<section class="page cover">
+  <div class="cover-top">
+    <div class="cover-logo"><img src="assets/if-logo-full.png" alt="ఇస్లామిక్ ఫ్రంట్ — మంగళగిరి"></div>
+    <div class="cover-org-sub">మంగళగిరి · ఆంధ్రప్రదేశ్ · స్థా. 2011</div>
+    <div class="cover-rule"></div>
+    <div class="cover-badge">ఆంధ్రప్రదేశ్ · 2026</div>
+    <div class="cover-title">ప్రత్యేక సమగ్ర సవరణ<br><span>(SIR) 2026</span></div>
+    <div class="cover-sub">ఆంధ్రప్రదేశ్ ఓటర్ల జాబితా సవరణ<br>— ప్రతి ఓటరుకు సరళమైన మార్గదర్శిని —</div>
+  </div>
+
+  <div class="cover-mid">
+    <div class="cover-stmt">
+      మీ ఓటు హక్కును కాపాడుకోండి. ఈ సవరణలో ప్రతి అర్హత గల ఓటరు పేరు జాబితాలో ఉండాలి.
+      <small>ఈ మార్గదర్శినిలో: SIR అంటే ఏమిటి · ముఖ్య తేదీలు · అవసరమైన పత్రాలు · సాధారణ సమస్యలు &amp; పరిష్కారాలు · సహాయం ఎలా పొందాలి</small>
+    </div>
+
+    <div class="cover-actions">
+      <div class="cov-act"><div class="ca-n">1</div><span>BLO ఇచ్చే <b>ఎన్యుమరేషన్ ఫారం</b> పూరించి సమర్పించండి</span></div>
+      <div class="cov-act"><div class="ca-n">2</div><span>ముసాయిదా జాబితాలో మీ <b>పేరు ఉందో</b> చూసుకోండి</span></div>
+      <div class="cov-act"><div class="ca-n">3</div><span>సందేహాలకు <b>1950</b> హెల్ప్‌లైన్‌ను సంప్రదించండి</span></div>
+    </div>
+  </div>
+
+  <div class="cover-foot">
+    అధికారిక సమాచారం కోసం: ఓటర్ హెల్ప్‌లైన్ <b>1950</b> · <b>voters.eci.gov.in</b> · <b>ceoandhra.nic.in</b>
+  </div>
+</section>
+
+<!-- ════════ PAGE 2 — WHAT IS SIR ════════ -->
+<section class="page">
+  <div class="wm"></div>
+  <div class="pbody">
+  <span class="eyebrow">SIR అంటే ఏమిటి</span>
+  <h2>ప్రత్యేక సమగ్ర సవరణ — పరిచయం</h2>
+  <p class="lead">
+    "Special Intensive Revision" (ప్రత్యేక సమగ్ర సవరణ) అంటే ఓటర్ల జాబితాను ఇంటింటికీ వెళ్లి పూర్తిగా
+    తనిఖీ చేసి, సరిదిద్దే ప్రక్రియ. దీన్ని భారత ఎన్నికల సంఘం (ECI) నిర్వహిస్తుంది. ప్రస్తుతం అందుబాటులో
+    ఉన్న అధికారిక సమాచారం ప్రకారం, ఆంధ్రప్రదేశ్‌లో ఈ ప్రక్రియ జరగనుంది.
+  </p>
+
+  <div class="stats">
+    <div class="stat"><div class="num">4.16</div><div class="lbl">కోట్ల ఓటర్లు<br>ఆంధ్రప్రదేశ్‌లో</div></div>
+    <div class="stat"><div class="num">46,397</div><div class="lbl">బూత్ స్థాయి అధికారులు (BLO)</div></div>
+    <div class="stat"><div class="num">జూలై 1</div><div class="lbl">2026 — అర్హత తేదీ (qualifying date)</div></div>
+  </div>
+  <p style="font-size:9.5pt;color:var(--muted);margin:-1mm 0 1mm;line-height:1.5">
+    ఈ ప్రక్రియ ఆంధ్రప్రదేశ్‌లోని అన్ని జిల్లాలు, నియోజకవర్గాల్లో జరుగుతుంది. మీ ప్రాంత వివరాల కోసం మీ స్థానిక <b>BLO</b> లేదా <b>ceoandhra.nic.in</b> చూడండి.
+  </p>
+
+  <h3 style="margin:5mm 0 2mm">లక్ష్యం ఏమిటి?</h3>
+  <ul class="bul">
+    <li>జాబితాలో ఉన్న ప్రతి పేరు నిజమైనదేనా అని నిర్ధారించడం.</li>
+    <li>మరణించినవారి, శాశ్వతంగా వేరే చోటికి మారినవారి, రెండు చోట్ల ఉన్న నకిలీ పేర్లను తొలగించడం.</li>
+    <li>అర్హత ఉన్నా జాబితాలో లేని వారి పేర్లను కొత్తగా చేర్చడం.</li>
+    <li>స్వచ్ఛమైన, కచ్చితమైన ఓటర్ల జాబితాను తయారు చేయడం.</li>
+  </ul>
+
+  <h3 style="margin:5mm 0 2mm">ఓటరుకు ప్రయోజనాలు</h3>
+  <div class="twocol">
+    <div class="card">
+      <h3>పేరు భద్రత</h3>
+      <p>మీ పేరు, వివరాలు సరిగ్గా ఉన్నాయో లేదో తనిఖీ అవుతుంది. తప్పులు ఉంటే సరిదిద్దుకోవచ్చు.</p>
+    </div>
+    <div class="card gold">
+      <h3>ఉచిత ప్రక్రియ</h3>
+      <p>ఎన్యుమరేషన్ ఫారం పూరించడం, సమర్పించడం పూర్తిగా ఉచితం. ఎవరికీ డబ్బు చెల్లించాల్సిన అవసరం లేదు.</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <b>గుర్తుంచుకోండి:</b> SIR అనేది ఓటర్ల జాబితా సవరణ మాత్రమే. ఇది NRC కాదు, పౌరసత్వ ప్రక్రియ కాదు.
+    ఫారం పూరించడం వల్ల మీ పౌరసత్వంపై ఎలాంటి ప్రభావం ఉండదు.
+  </div>
+
+  </div>
+  <div class="pfoot"><span>SIR 2026 · ఆంధ్రప్రదేశ్ ఓటర్ల జాబితా మార్గదర్శిని</span><span><b>ఇస్లామిక్ ఫ్రంట్</b> · పేజీ 2</span></div>
+</section>
+
+<!-- ════════ PAGE 3 — DATES + ELIGIBILITY ════════ -->
+<section class="page">
+  <div class="wm"></div>
+  <div class="pbody">
+  <span class="eyebrow">ముఖ్య తేదీలు</span>
+  <h2>ఆంధ్రప్రదేశ్ SIR 2026 — షెడ్యూల్</h2>
+
+  <div class="tl">
+    <div class="tl-item">
+      <div class="tl-dot">1</div>
+      <div class="tl-body">
+        <div class="tl-date">జూన్ 15 – జూలై 14, 2026</div>
+        <div class="tl-title">ఇంటింటి తనిఖీ &amp; ఫారం పంపిణీ</div>
+        <p>BLO మీ ఇంటికి వచ్చి ముందుగా నింపిన ఎన్యుమరేషన్ ఫారం ఇస్తారు. పూరించి తిరిగి ఇస్తే రసీదు ఇస్తారు.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot">2</div>
+      <div class="tl-body">
+        <div class="tl-date">జూలై 14, 2026</div>
+        <div class="tl-title">ఫారం సమర్పణకు చివరి తేదీ</div>
+        <p>ఎన్యుమరేషన్ ఫారం సమర్పించడానికి ఇదే ఆఖరు రోజు. ఆలస్యం చేయవద్దు.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot">3</div>
+      <div class="tl-body">
+        <div class="tl-date">జూలై 21, 2026</div>
+        <div class="tl-title">ముసాయిదా జాబితా (Draft Roll) ప్రచురణ</div>
+        <p>మీ పేరు ఉందో లేదో ఈ ముసాయిదా జాబితాలో తప్పక చూసుకోండి.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot">4</div>
+      <div class="tl-body">
+        <div class="tl-date">జూలై 21 – ఆగస్టు 20, 2026</div>
+        <div class="tl-title">క్లెయింలు &amp; అభ్యంతరాలు (Claims &amp; Objections)</div>
+        <p>పేరు లేకపోతే చేర్చమని, తప్పు ఉంటే సరిదిద్దమని ఈ కాలంలో దరఖాస్తు చేసుకోవచ్చు.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot">5</div>
+      <div class="tl-body">
+        <div class="tl-date">సెప్టెంబర్ 22, 2026</div>
+        <div class="tl-title">తుది ఓటర్ల జాబితా (Final Roll) ప్రచురణ</div>
+        <p>సవరించిన తుది ఓటర్ల జాబితా విడుదల అవుతుంది.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="warn" style="margin-top:1mm">
+    <b>గమనిక:</b> పై తేదీలు అధికారిక ప్రకటనల ప్రకారం మారవచ్చు. ఖచ్చితమైన, తాజా తేదీల కోసం ఎల్లప్పుడూ
+    <b>voters.eci.gov.in</b>, <b>ceoandhra.nic.in</b> లేదా <b>1950</b> హెల్ప్‌లైన్‌ను సంప్రదించండి.
+  </div>
+
+  <span class="eyebrow" style="margin-top:3mm">అర్హత</span>
+  <h2>ఎవరు ఓటరుగా అర్హులు?</h2>
+  <p class="lead">భారత రాజ్యాంగంలోని ఆర్టికల్ 326 ప్రకారం, కింది మూడు షరతులు తీర్చిన ప్రతి వ్యక్తి ఓటరుగా అర్హులు:</p>
+  <div class="elig">
+    <div class="elig-item">
+      <div class="elig-ic"><svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M5.5 17a3.5 3.5 0 0 1 7 0M15 9h4M15 13h4"/></svg></div>
+      <b>భారత పౌరుడు</b><span>భారత పౌరసత్వం ఉండాలి</span>
+    </div>
+    <div class="elig-item">
+      <div class="elig-ic">18+</div>
+      <b>18 ఏళ్లు నిండి ఉండాలి</b><span>జూలై 1, 2026 నాటికి</span>
+    </div>
+    <div class="elig-item">
+      <div class="elig-ic"><svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v9h14v-9"/><path d="M10 19v-5h4v5"/></svg></div>
+      <b>స్థానిక నివాసి</b><span>ఆ నియోజకవర్గంలో సాధారణ నివాసం</span>
+    </div>
+  </div>
+
+  </div>
+  <div class="pfoot"><span>SIR 2026 · ఆంధ్రప్రదేశ్ ఓటర్ల జాబితా మార్గదర్శిని</span><span><b>ఇస్లామిక్ ఫ్రంట్</b> · పేజీ 3</span></div>
+</section>
+
+<!-- ════════ PAGE 4 — WHAT TO DO ════════ -->
+<section class="page">
+  <div class="wm"></div>
+  <div class="pbody">
+  <span class="eyebrow">ఏం చేయాలి</span>
+  <h2>మీరు చేయవలసిన దశలు</h2>
+
+  <div class="card">
+    <h3>1 · ఫారం తీసుకోండి</h3>
+    <p>BLO మీ ఇంటికి వచ్చి ముందుగా నింపిన ఎన్యుమరేషన్ ఫారం (EF) ఇస్తారు. BLO రాకపోతే <b>voters.eci.gov.in</b>లో ఆన్‌లైన్‌లో పొందవచ్చు.</p>
+  </div>
+  <div class="card">
+    <h3>2 · వివరాలు సరిచూసుకోండి</h3>
+    <p>పేరు, తండ్రి/భర్త పేరు, వయసు, చిరునామా, ఫోటో సరిగ్గా ఉన్నాయో చూడండి. తప్పు ఉంటే సరిచేయండి.</p>
+  </div>
+  <div class="card">
+    <h3>3 · సంతకం చేసి సమర్పించండి</h3>
+    <p>ఫారంపై సంతకం చేసి BLOకి తిరిగి ఇవ్వండి. తప్పకుండా <b>రసీదు (acknowledgement)</b> తీసుకోండి.</p>
+  </div>
+  <div class="card gold">
+    <h3>4 · ముసాయిదా జాబితాలో పేరు చూసుకోండి</h3>
+    <p>జూలై 21 తర్వాత ముసాయిదా జాబితాలో మీ పేరు ఉందో నిర్ధారించుకోండి. లేకపోతే ఆగస్టు 20లోపు దరఖాస్తు చేసుకోండి.</p>
+  </div>
+
+  <div class="callout">
+    <b>ఇప్పటికే ఓటర్ జాబితాలో పేరు ఉన్నవారికి:</b> మీరు ఎన్యుమరేషన్ ఫారం, ఓటర్ జాబితా నకలు (extract)
+    మాత్రమే సమర్పిస్తే సరిపోతుంది. <b>అదనపు పత్రాలు అవసరం లేదు.</b>
+  </div>
+
+  <h3 style="margin:4mm 0 2mm">ఆన్‌లైన్‌లో ఎలా సమర్పించాలి?</h3>
+  <ul class="bul">
+    <li><b>voters.eci.gov.in</b> వెబ్‌సైట్ లేదా <b>Voter Helpline</b> యాప్ తెరవండి.</li>
+    <li>మీ EPIC (ఓటర్ ID) నంబర్‌తో లాగిన్ అవ్వండి.</li>
+    <li>ఆన్‌లైన్ eSign కోసం మీ మొబైల్ నంబర్ ఓటర్ IDతో అనుసంధానమై ఉండాలి, పేరు సరిపోలాలి.</li>
+    <li>ముందుగా నింపిన ఫారం చూసి, సరిచేసి, సమర్పించండి.</li>
+  </ul>
+
+  <div class="warn">
+    <b>జాగ్రత్త:</b> ఎన్యుమరేషన్ సమయంలో <b>అసలు పత్రాలు ఎవరికీ ఇవ్వవద్దు.</b> ఈ దశలో ఫారం మాత్రమే
+    తీసుకుంటారు. పత్రాలు అవసరమైతే తర్వాత ERO నుంచి నోటీసు వస్తుంది.
+  </div>
+
+  </div>
+  <div class="pfoot"><span>SIR 2026 · ఆంధ్రప్రదేశ్ ఓటర్ల జాబితా మార్గదర్శిని</span><span><b>ఇస్లామిక్ ఫ్రంట్</b> · పేజీ 4</span></div>
+</section>
+
+<!-- ════════ PAGE 5 — DOCUMENTS ════════ -->
+<section class="page">
+  <div class="wm"></div>
+  <div class="pbody">
+  <span class="eyebrow">అవసరమైన పత్రాలు</span>
+  <h2>ఏ పత్రాలు అవసరం?</h2>
+  <p class="lead">
+    <b>ఇప్పటికే ఓటర్ జాబితాలో ఉన్నవారికి సాధారణంగా అదనపు పత్రాలు అక్కర్లేదు</b> — ఎన్యుమరేషన్ ఫారం
+    సమర్పిస్తే సరిపోతుంది. మీ వివరాలు పాత జాబితాతో సరిపోలకపోతే, లేదా కొత్తగా చేర్చాలంటే మాత్రమే పత్రాలు అవసరం.
+  </p>
+
+  <div class="warn" style="margin-top:0">
+    <b>ముఖ్య గమనిక:</b> అవసరమైన పత్రాల జాబితా, నిబంధనలు అధికారిక ECI మార్గదర్శకాల ప్రకారం మారవచ్చు.
+    ఖచ్చితమైన, తాజా జాబితా కోసం ఎల్లప్పుడూ <b>voters.eci.gov.in</b> లేదా మీ <b>BLO/ERO</b>ను సంప్రదించండి.
+    కింది జాబితా సాధారణ అవగాహన కోసం మాత్రమే.
+  </div>
+
+  <div class="docgrid">
+    <div class="doc"><div class="dn">1</div><span>జనన ధ్రువీకరణ పత్రం (Birth Certificate)</span></div>
+    <div class="doc"><div class="dn">2</div><span>పాస్‌పోర్ట్</span></div>
+    <div class="doc"><div class="dn">3</div><span>మెట్రిక్/పాఠశాల/విద్యా ధ్రువీకరణ పత్రం</span></div>
+    <div class="doc"><div class="dn">4</div><span>OBC/SC/ST లేదా కుల ధ్రువీకరణ పత్రం</span></div>
+    <div class="doc"><div class="dn">5</div><span>శాశ్వత నివాస ధ్రువీకరణ పత్రం (PRC)</span></div>
+    <div class="doc"><div class="dn">6</div><span>ప్రభుత్వ/PSU ఉద్యోగి లేదా పెన్షనర్ ID కార్డు</span></div>
+    <div class="doc"><div class="dn">7</div><span>ప్రభుత్వం ఇచ్చిన భూమి/ఇంటి కేటాయింపు పత్రం</span></div>
+    <div class="doc"><div class="dn">8</div><span>కుటుంబ రిజిస్టర్ (ప్రభుత్వ/స్థానిక సంస్థ)</span></div>
+    <div class="doc"><div class="dn">9</div><span>ఆధార్ కార్డు (గుర్తింపు రుజువుగా మాత్రమే)</span></div>
+  </div>
+
+  <div class="callout">
+    <b>ఆధార్ గురించి:</b> ఆధార్‌ను సాధారణంగా <b>గుర్తింపు (identity) రుజువుగా మాత్రమే</b> ఉపయోగిస్తారు.
+    మీ వద్ద ఏ పత్రం ఉంటే సరిపోతుందో ఖచ్చితంగా తెలుసుకోవడానికి అధికారిక మార్గదర్శకాలను చూడండి.
+  </div>
+
+  <div class="card" style="border-left-color:var(--gold)">
+    <h3>కొత్త / యువ ఓటర్లు</h3>
+    <p>మొదటిసారి నమోదు చేసుకునే వారికి లేదా కొందరికి అదనపు పత్రాలు అవసరం కావచ్చు. ఖచ్చితమైన వివరాల
+    కోసం <b>voters.eci.gov.in</b>లోని అధికారిక మార్గదర్శకాలు లేదా మీ <b>BLO</b>ను సంప్రదించడం ఉత్తమం.</p>
+  </div>
+
+  </div>
+  <div class="pfoot"><span>SIR 2026 · ఆంధ్రప్రదేశ్ ఓటర్ల జాబితా మార్గదర్శిని</span><span><b>ఇస్లామిక్ ఫ్రంట్</b> · పేజీ 5</span></div>
+</section>
+
+<!-- ════════ PAGE 6 — PROBLEMS & SOLUTIONS ════════ -->
+<section class="page">
+  <div class="wm"></div>
+  <div class="pbody">
+  <span class="eyebrow">సాధారణ సమస్యలు &amp; పరిష్కారాలు</span>
+  <h2>ఇబ్బందులు వస్తే ఏం చేయాలి?</h2>
+
+  <div class="ps">
+    <div class="ps-row">
+      <div class="ps-q">BLO వచ్చినప్పుడు ఇల్లు తాళం వేసి ఉంది<small>పేరు "నివాసం లేదు" అని గుర్తు పడవచ్చు</small></div>
+      <div class="ps-a">BLOను సంప్రదించి ఫారం పూరించి ఇవ్వండి, లేదా <b>voters.eci.gov.in</b>లో ఆన్‌లైన్‌లో సమర్పించండి.</div>
+    </div>
+    <div class="ps-row">
+      <div class="ps-q">చదువు/ఉద్యోగం కోసం ఊరి బయట ఉన్నారు<small>"శాశ్వతంగా మారారు" అని తప్పుగా గుర్తించవచ్చు</small></div>
+      <div class="ps-a">మీ స్థానిక చిరునామా రుజువు ఇచ్చి, ఫారం సమర్పించండి. మీరే ఆ నియోజకవర్గ నివాసి అని నిర్ధారించండి.</div>
+    </div>
+    <div class="ps-row">
+      <div class="ps-q">ఫారం అందలేదు / BLO రాలేదు</div>
+      <div class="ps-a"><b>1950</b> హెల్ప్‌లైన్‌కు కాల్ చేయండి, లేదా BLO/ERO కార్యాలయాన్ని సంప్రదించండి. ఆన్‌లైన్‌లో కూడా పొందవచ్చు.</div>
+    </div>
+    <div class="ps-row">
+      <div class="ps-q">పేరు/చిరునామా స్పెల్లింగ్ తప్పుగా ఉంది</div>
+      <div class="ps-a">ఫారంలో సరిచేసి, మీ పత్రాలతో సరిపోయేలా రాయండి. ముసాయిదా జాబితా దశలో కూడా సరిచేసుకోవచ్చు.</div>
+    </div>
+    <div class="ps-row">
+      <div class="ps-q">SIR తర్వాత పేరు జాబితా నుంచి తొలగించబడింది</div>
+      <div class="ps-a">కంగారు పడవద్దు. <b>Form 6</b> ద్వారా తిరిగి చేర్చుకోవచ్చు. <b>voters.eci.gov.in</b>లో దరఖాస్తు చేసి రిఫరెన్స్ నంబర్ భద్రపరచుకోండి.</div>
+    </div>
+    <div class="ps-row">
+      <div class="ps-q">రెండు చోట్ల పేరు ఉంది</div>
+      <div class="ps-a">ఒక చోట మాత్రమే ఉంచుతారు. మీరు నివసించే నియోజకవర్గంలో పేరు ఉంచుకుని, మిగతా చోట తొలగించమని కోరండి.</div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <b>ముఖ్య విషయం:</b> ఓటర్ జాబితా నుంచి పేరు తొలగించే ముందు సాధారణంగా <b>నోటీసు ఇచ్చి, మీ వివరణ /
+    అభ్యంతరం చెప్పే అవకాశం</b> ఇస్తారు. అందుకే ముసాయిదా జాబితాను తప్పక చూసుకోవడం ముఖ్యం. ఖచ్చితమైన
+    విధానం కోసం <b>1950</b> లేదా <b>voters.eci.gov.in</b>ను సంప్రదించండి.
+  </div>
+
+  </div>
+  <div class="pfoot"><span>SIR 2026 · ఆంధ్రప్రదేశ్ ఓటర్ల జాబితా మార్గదర్శిని</span><span><b>ఇస్లామిక్ ఫ్రంట్</b> · పేజీ 6</span></div>
+</section>
+
+<!-- ════════ PAGE 7 — MINORITY POINTS + FAQ ════════ -->
+<section class="page">
+  <div class="wm"></div>
+  <div class="pbody">
+  <span class="eyebrow">మైనారిటీ సమాజం తెలుసుకోవలసినవి</span>
+  <h2>ముఖ్యమైన అంశాలు</h2>
+  <ul class="bul">
+    <li><b>SIR అనేది NRC కాదు.</b> ఇది ఓటర్ల జాబితా సవరణ మాత్రమే. పౌరసత్వంతో సంబంధం లేదు.</li>
+    <li>ఫారం పూరించడం వల్ల మీ పౌరసత్వంపై ఎలాంటి ప్రభావం ఉండదు.</li>
+    <li>ఓటర్ జాబితా నుంచి పేరు తొలగించే ముందు సాధారణంగా నోటీసు ఇచ్చి, అభ్యంతరం చెప్పే అవకాశం ఉంటుంది.</li>
+    <li>పుకార్లను నమ్మవద్దు. అధికారిక సమాచారం కోసం <b>voters.eci.gov.in</b> లేదా <b>1950</b> మాత్రమే నమ్మండి.</li>
+    <li>సకాలంలో ఫారం సమర్పించి, ముసాయిదా జాబితాలో పేరు నిర్ధారించుకోవడం అత్యంత ముఖ్యం.</li>
+  </ul>
+
+  <span class="eyebrow" style="margin-top:4mm">తరచుగా అడిగే ప్రశ్నలు</span>
+  <h2>FAQ</h2>
+  <div class="faq">
+    <div class="faq-item">
+      <div class="faq-q">నేను ఇప్పటికే ఓటరుని. మళ్లీ ఫారం పూరించాలా?</div>
+      <div class="faq-a">అవును. SIRలో ప్రతి ఓటరూ ఎన్యుమరేషన్ ఫారం పూరించి సమర్పించాలి. కానీ మీకు అదనపు పత్రాలు అవసరం లేదు.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">ఫారం సమర్పించకపోతే ఏమవుతుంది?</div>
+      <div class="faq-a">మీ పేరు ముసాయిదా జాబితాలో రాకపోవచ్చు. అందుకే జూలై 14లోపు తప్పక సమర్పించండి.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">నా దగ్గర ఏ పత్రమూ లేకపోతే?</div>
+      <div class="faq-a">ఇప్పటికే జాబితాలో ఉంటే పత్రాలు అక్కర్లేదు. కొత్తవారైతే జాబితాలోని ఏదైనా ఒక పత్రం సంపాదించడానికి ప్రయత్నించండి. సందేహాలుంటే 1950 హెల్ప్‌లైన్ లేదా మీ BLOను సంప్రదించండి.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">ఆన్‌లైన్‌లో సమర్పించవచ్చా?</div>
+      <div class="faq-a">అవును. voters.eci.gov.in లేదా Voter Helpline యాప్ ద్వారా. మొబైల్ నంబర్ ఓటర్ IDతో అనుసంధానమై ఉండాలి.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">ఇది ఉచితమేనా? ఎవరికైనా డబ్బు ఇవ్వాలా?</div>
+      <div class="faq-a">పూర్తిగా ఉచితం. ఎవరికీ డబ్బు ఇవ్వవద్దు. ఎవరైనా డబ్బు అడిగితే నిరాకరించి, అధికారులకు ఫిర్యాదు చేయండి.</div>
+    </div>
+  </div>
+
+  </div>
+  <div class="pfoot"><span>SIR 2026 · ఆంధ్రప్రదేశ్ ఓటర్ల జాబితా మార్గదర్శిని</span><span><b>ఇస్లామిక్ ఫ్రంట్</b> · పేజీ 7</span></div>
+</section>
+
+<!-- ════════ PAGE 8 — HELP ════════ -->
+<section class="page">
+  <div class="wm"></div>
+  <div class="pbody">
+  <span class="eyebrow">సహాయం ఎలా పొందాలి</span>
+  <h2>సహాయం &amp; మరింత సమాచారం</h2>
+
+  <div class="help-grid">
+    <div class="help">
+      <h3>ఓటర్ హెల్ప్‌లైన్</h3>
+      <div class="big">1950</div>
+      <p>టోల్-ఫ్రీ · అన్ని రోజులు. ఓటర్ సంబంధిత ఏ ప్రశ్నకైనా.</p>
+    </div>
+    <div class="help">
+      <h3>స్థానిక అధికారులు</h3>
+      <p>మీ <b>BLO</b> (బూత్ స్థాయి అధికారి), <b>ERO</b> (ఎన్నికల నమోదు అధికారి), లేదా మీ <b>జిల్లా ఎన్నికల కార్యాలయం</b>.</p>
+    </div>
+  </div>
+
+  <div class="qr-row">
+    <div class="qr">
+      <img src="assets/qr-voters.png" alt="voters.eci.gov.in QR">
+      <div>
+        <h3>ఓటర్ సేవలు</h3>
+        <div class="qr-url">voters.eci.gov.in</div>
+        <p>ఫారం, పేరు తనిఖీ, దరఖాస్తులు</p>
+      </div>
+    </div>
+    <div class="qr">
+      <img src="assets/qr-ceoap.png" alt="ceoandhra.nic.in QR">
+      <div>
+        <h3>CEO ఆంధ్రప్రదేశ్</h3>
+        <div class="qr-url">ceoandhra.nic.in</div>
+        <p>AP ఎన్నికల అధికారిక సమాచారం</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="disclaimer-box">
+    ఈ పత్రం <b>అవగాహన కోసం మాత్రమే</b>. ఇది అధికారిక ఎన్నికల సంఘం పత్రం కాదు. తేదీలు, నిబంధనలు,
+    పత్రాల జాబితా మారవచ్చు. అధికారిక సమాచారం కోసం <b>ఎల్లప్పుడూ ఎన్నికల సంఘం వెబ్‌సైట్ (voters.eci.gov.in)
+    లేదా 1950 హెల్ప్‌లైన్‌ను సంప్రదించండి.</b>
+  </div>
+
+  <div class="sources">
+    <b>అధికారిక ఆధారాలు:</b> భారత ఎన్నికల సంఘం — <b>eci.gov.in</b>, <b>voters.eci.gov.in</b> ·
+    ఆంధ్రప్రదేశ్ ముఖ్య ఎన్నికల అధికారి కార్యాలయం — <b>ceoandhra.nic.in</b> · అధికారిక ECI / CEO ప్రకటనలు.
+    తేదీలు, పత్రాల వివరాలను ఈ అధికారిక వనరుల నుంచి నిర్ధారించుకోండి.
+  </div>
+
+  <div class="made-by">
+    <img src="assets/founder/shaik-akram-2.jpg" alt="జనాబ్ షేక్ అక్రమ్">
+    <span>సమాజ అవగాహన కార్యక్రమం — <b>ఇస్లామిక్ ఫ్రంట్, మంగళగిరి</b><br>సంస్థాపకుడు: జనాబ్ షేక్ అక్రమ్</span>
+  </div>
+
+  </div>
+  <div class="pfoot"><span>SIR 2026 · ఆంధ్రప్రదేశ్ ఓటర్ల జాబితా మార్గదర్శిని</span><span><b>ఇస్లామిక్ ఫ్రంట్</b> · పేజీ 8</span></div>
+</section>
+
+</body>
+</html>
