@@ -2,8 +2,13 @@ import type { Metadata } from "next";
 import "./styles.css";
 
 export const metadata: Metadata = {
-  title: "ఓటర్ జాబితా సాధనం",
-  description: "Private voter list extraction and review dashboard",
+  title: "IFP Premium Voter Desk",
+  description: "Islamic Front premium private voter extraction and review dashboard",
+  icons: {
+    icon: "/if-logo-emblem.png",
+    shortcut: "/if-logo-emblem.png",
+    apple: "/if-logo-emblem.png",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

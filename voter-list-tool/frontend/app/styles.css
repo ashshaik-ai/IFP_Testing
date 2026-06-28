@@ -1,14 +1,14 @@
 :root {
-  --bg: #f7f4ec;
-  --panel: #ffffff;
+  --bg: #f4efe4;
+  --panel: #fffdfa;
   --ink: #10231b;
   --muted: #5d6a62;
-  --green: #0c4a34;
+  --green: #0e4a35;
   --green-soft: #e7f5ee;
   --violet: #6e43c5;
   --violet-soft: #f0eaff;
-  --gold: #c6922e;
-  --line: #ded7c8;
+  --gold: #b9892b;
+  --line: #d7cfbe;
   --danger: #9b1c1c;
 }
 
@@ -18,7 +18,10 @@
 
 body {
   margin: 0;
-  background: var(--bg);
+  background:
+    radial-gradient(circle at top left, rgba(185, 137, 43, 0.14), transparent 28%),
+    radial-gradient(circle at top right, rgba(14, 74, 53, 0.12), transparent 30%),
+    var(--bg);
   color: var(--ink);
   font-family: system-ui, "Noto Sans Telugu", "Segoe UI", sans-serif;
 }
@@ -65,7 +68,7 @@ select:focus-visible {
   background: var(--panel);
   border: 1px solid var(--line);
   border-radius: 10px;
-  box-shadow: 0 20px 60px rgba(16, 35, 27, 0.08);
+  box-shadow: 0 24px 70px rgba(16, 35, 27, 0.1);
 }
 
 .loginPanel {
@@ -87,6 +90,38 @@ select:focus-visible {
 dt,
 label {
   color: var(--muted);
+}
+
+.brandBlock {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+
+.brandBlock strong {
+  display: block;
+  color: var(--green);
+  font-size: 15px;
+}
+
+.brandBlock span,
+.brandBlock p {
+  margin: 4px 0 0;
+  color: var(--muted);
+}
+
+.brandInline {
+  min-width: 0;
+}
+
+.brandLogo {
+  width: 82px;
+  height: auto;
+  object-fit: contain;
+}
+
+.heroCopy {
+  min-width: 0;
 }
 
 label {
@@ -143,7 +178,7 @@ select {
   gap: 16px;
   align-items: center;
   padding: 12px 0;
-  background: rgba(247, 244, 236, 0.96);
+  background: rgba(244, 239, 228, 0.96);
   backdrop-filter: blur(12px);
 }
 
@@ -179,13 +214,46 @@ select {
 .statusCard {
   display: grid;
   gap: 8px;
+  background: linear-gradient(180deg, rgba(14, 74, 53, 0.04), rgba(185, 137, 43, 0.08));
+}
+
+.statusStats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.statPill {
+  display: grid;
+  gap: 4px;
+  padding: 12px;
+  border: 1px solid rgba(14, 74, 53, 0.1);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.statPill small {
+  color: var(--muted);
+}
+
+.statPill strong {
+  color: var(--ink);
+  font-size: 18px;
+}
+
+.statPill.life {
+  background: linear-gradient(180deg, rgba(231, 245, 238, 1), rgba(255, 255, 255, 1));
+}
+
+.statPill.general {
+  background: linear-gradient(180deg, rgba(240, 234, 255, 1), rgba(255, 255, 255, 1));
 }
 
 .layout {
   display: grid;
   grid-template-columns: 300px 1fr;
   gap: 16px;
-  align-items: start;
+  align-items: flex-start;
 }
 
 .sidebar {
@@ -198,6 +266,10 @@ select {
 .sidebar h2 {
   margin: 14px 0 4px;
   font-size: 16px;
+}
+
+.areaSearchInput {
+  margin: 0 0 6px;
 }
 
 .job,
@@ -222,7 +294,7 @@ select {
 
 .active {
   border-color: var(--green);
-  background: #edf6f1;
+  background: linear-gradient(180deg, rgba(231, 245, 238, 1), rgba(255, 250, 240, 1));
 }
 
 .toolbar {
@@ -271,7 +343,7 @@ dd {
   padding: 10px;
   min-width: 0;
   overflow: hidden;
-  background: linear-gradient(180deg, #ffffff, #fcfaf4);
+  background: linear-gradient(180deg, #ffffff, #fbf7ef);
 }
 
 .photoCol {
@@ -365,11 +437,37 @@ form {
   overflow: auto;
 }
 
+.modalHeader {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: flex-start;
+  margin: -16px -18px 18px;
+  padding: 16px 18px;
+  border-bottom: 1px solid var(--line);
+  background: rgba(255, 253, 250, 0.96);
+  backdrop-filter: blur(12px);
+}
+
+.modalHeader h2,
+.modalHeader p {
+  margin: 0;
+}
+
+.modalHeader p {
+  margin-top: 4px;
+  color: var(--muted);
+}
+
 .close {
-  position: absolute;
-  top: 12px;
-  right: 12px;
+  flex: 0 0 auto;
   width: 44px;
+  min-width: 44px;
+  font-size: 28px;
+  line-height: 1;
 }
 
 .reviewGrid {
@@ -405,7 +503,8 @@ form {
   .uploadBand,
   .layout,
   .reviewGrid,
-  .mergeBar {
+  .mergeBar,
+  .statusStats {
     grid-template-columns: 1fr;
   }
 

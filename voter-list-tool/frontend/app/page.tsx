@@ -11,6 +11,12 @@ type MergeResult = {
   areas: Area[];
 };
 
+type ScopeStats = {
+  total: number;
+  life: number;
+  general: number;
+};
+
 const SOURCE_ORDER: SourceFilter[] = ["all", "life", "general"];
 
 export default function Home() {
@@ -23,10 +29,12 @@ export default function Home() {
   const [areas, setAreas] = useState<Area[]>([]);
   const [areaOptions, setAreaOptions] = useState<AreaOption[]>([]);
   const [area, setArea] = useState("");
+  const [areaQuery, setAreaQuery] = useState("");
   const [mergeTarget, setMergeTarget] = useState("");
   const [source, setSource] = useState<SourceFilter>("all");
   const [query, setQuery] = useState("");
   const [voters, setVoters] = useState<Voter[]>([]);
+  const [statsVoters, setStatsVoters] = useState<Voter[]>([]);
   const [selected, setSelected] = useState<Voter | null>(null);
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
@@ -66,6 +74,13 @@ export default function Home() {
   }, [token, jobId, area, query, source]);
 
   useEffect(() => {
+    if (!token) {
+      return;
+    }
+    loadStatsVoters();
+  }, [token, jobId]);
+
+  useEffect(() => {
     setMergeTarget("");
   }, [area]);
 
@@ -77,7 +92,7 @@ export default function Home() {
       body: JSON.stringify({ code }),
     });
     if (!res.ok) {
-      setError(lang === "te" ? "ప్రవేశ కోడ్ సరైంది కాదు" : "Access code is invalid");
+      setError(lang === "te" ? "ప్రవేశ కోడ్ సరైనది కాదు" : "Access code is invalid");
       return;
     }
     const data = await res.json();
@@ -118,13 +133,16 @@ export default function Home() {
   }
 
   async function loadAreas() {
-    const qs = source !== "all" ? `?source=${source}` : "";
-    setAreas(await api<Area[]>(`${currentBasePath()}/areas${qs}`, token));
+    setAreas(await api<Area[]>(`${currentBasePath()}/areas`, token));
   }
 
   async function loadVoters() {
     const qs = sourceParams();
     setVoters(await api<Voter[]>(`${currentBasePath()}/voters${qs ? `?${qs}` : ""}`, token));
+  }
+
+  async function loadStatsVoters() {
+    setStatsVoters(await api<Voter[]>(`${currentBasePath()}/voters`, token));
   }
 
   async function upload(file: File | null) {
@@ -138,22 +156,9 @@ export default function Home() {
     try {
       await api<Job>("/api/jobs", token, { method: "POST", body: form });
       await refreshJobs();
-    } catch (err) {
-      setError(String(err));
-    } finally {
-      setBusy(false);
-    }
-  }
-
-  async function reprocess() {
-    if (jobId === "all") {
-      return;
-    }
-    setBusy(true);
-    setError("");
-    try {
-      await api<Job>(`/api/jobs/${jobId}/reprocess`, token, { method: "POST" });
-      await refreshJobs();
+      await loadStatsVoters();
+      await loadAreas();
+      await loadVoters();
     } catch (err) {
       setError(String(err));
     } finally {
@@ -183,6 +188,7 @@ export default function Home() {
         }),
       });
       setSelected(saved);
+      await loadStatsVoters();
       await loadVoters();
       await loadAreas();
     } catch (err) {
@@ -206,6 +212,7 @@ export default function Home() {
       setAreas(result.areas);
       setArea(mergeTarget);
       setMergeTarget("");
+      await loadStatsVoters();
       await loadVoters();
     } catch (err) {
       setError(String(err));
@@ -234,10 +241,6 @@ export default function Home() {
       });
   }
 
-  function areaLabel(item: { area_te: string; area_en?: string }) {
-    return lang === "te" ? item.area_te : item.area_en || item.area_te;
-  }
-
   function sourceLabel(kind: SourceFilter | "life" | "general") {
     if (kind === "life") {
       return t.sourceLife;
@@ -251,6 +254,46 @@ export default function Home() {
   const currentJob = useMemo(() => jobs.find((item) => item.id === jobId) || null, [jobs, jobId]);
   const mergeChoices = areaOptions.filter((item) => item.area_te !== area);
 
+  const filteredAreas = useMemo(() => {
+    const needle = areaQuery.trim().toLowerCase();
+    if (!needle) {
+      return areas;
+    }
+    return areas.filter((item) => item.area_te.toLowerCase().includes(needle));
+  }, [areaQuery, areas]);
+
+  const areaStatMap = useMemo(() => {
+    const map = new Map<string, ScopeStats>();
+    for (const voter of statsVoters) {
+      const key = voter.area_te || "ఇతర ప్రాంతం";
+      const current = map.get(key) || { total: 0, life: 0, general: 0 };
+      current.total += 1;
+      if (voter.source_kind === "life") {
+        current.life += 1;
+      } else {
+        current.general += 1;
+      }
+      map.set(key, current);
+    }
+    return map;
+  }, [statsVoters]);
+
+  const selectedScopeStats = useMemo(() => {
+    const pool = area ? statsVoters.filter((item) => item.area_te === area) : statsVoters;
+    return pool.reduce<ScopeStats>(
+      (acc, item) => {
+        acc.total += 1;
+        if (item.source_kind === "life") {
+          acc.life += 1;
+        } else {
+          acc.general += 1;
+        }
+        return acc;
+      },
+      { total: 0, life: 0, general: 0 },
+    );
+  }, [area, statsVoters]);
+
   if (!token) {
     return (
       <main className="loginShell">
@@ -259,6 +302,13 @@ export default function Home() {
             <button type="button" onClick={() => setLang(lang === "te" ? "en" : "te")}>
               {lang === "te" ? "English" : "తెలుగు"}
             </button>
+          </div>
+          <div className="brandBlock">
+            <img src="/if-logo-full.png" alt="Islamic Front" className="brandLogo" />
+            <div>
+              <strong>{t.brand}</strong>
+              <span>{t.premium}</span>
+            </div>
           </div>
           <h1>{t.title}</h1>
           <p>{t.subtitle}</p>
@@ -278,7 +328,14 @@ export default function Home() {
   return (
     <main className="appShell">
       <header className="topbar">
-        <div>
+        <div className="brandBlock brandInline">
+          <img src="/if-logo-full.png" alt="Islamic Front" className="brandLogo" />
+          <div>
+            <strong>{t.brand}</strong>
+            <p>{t.premium}</p>
+          </div>
+        </div>
+        <div className="heroCopy">
           <h1>{t.title}</h1>
           <p>{t.subtitle}</p>
         </div>
@@ -306,9 +363,24 @@ export default function Home() {
         <div className="statusCard">
           <strong>{jobId === "all" ? t.allPdfs : currentJob?.filename || t.allPdfs}</strong>
           <span>{jobId === "all" ? `${jobs.length} ${t.jobs}` : currentJob?.message_te || ""}</span>
-          <span>
-            {voters.length} {t.total} · {voters.filter((item) => item.photo_url).length} {t.photos}
-          </span>
+          <div className="statusStats" aria-label={t.overview}>
+            <div className="statPill">
+              <small>{area ? t.selectedArea : t.overview}</small>
+              <strong>{area || t.all}</strong>
+            </div>
+            <div className="statPill">
+              <small>{t.total}</small>
+              <strong>{selectedScopeStats.total}</strong>
+            </div>
+            <div className="statPill life">
+              <small>{t.lifeCount}</small>
+              <strong>{selectedScopeStats.life}</strong>
+            </div>
+            <div className="statPill general">
+              <small>{t.generalCount}</small>
+              <strong>{selectedScopeStats.general}</strong>
+            </div>
+          </div>
         </div>
         {error && <p className="error">{error}</p>}
       </section>
@@ -357,22 +429,34 @@ export default function Home() {
           </div>
 
           <h2>{t.areas}</h2>
+          <input
+            className="areaSearchInput"
+            value={areaQuery}
+            onChange={(event) => setAreaQuery(event.target.value)}
+            placeholder={t.areaSearch}
+          />
           <button type="button" className={!area ? "area active" : "area"} onClick={() => setArea("")}>
-            {t.all}
+            <span>{t.all}</span>
+            <small>
+              {statsVoters.length} · {selectedScopeStats.life}/{selectedScopeStats.general}
+            </small>
           </button>
-          {areas.map((item) => (
-            <button
-              type="button"
-              key={item.area_te}
-              className={item.area_te === area ? "area active" : "area"}
-              onClick={() => setArea(item.area_te)}
-            >
-              <span>{areaLabel(item)}</span>
-              <small>
-                {item.count} · {t.missing} {item.missing_count}
-              </small>
-            </button>
-          ))}
+          {filteredAreas.map((item) => {
+            const stat = areaStatMap.get(item.area_te) || { total: item.count, life: 0, general: 0 };
+            return (
+              <button
+                type="button"
+                key={item.area_te}
+                className={item.area_te === area ? "area active" : "area"}
+                onClick={() => setArea(item.area_te)}
+              >
+                <span>{item.area_te}</span>
+                <small>
+                  {stat.total} · {t.sourceLife} {stat.life} · {t.sourceGeneral} {stat.general}
+                </small>
+              </button>
+            );
+          })}
         </aside>
 
         <section className="content">
@@ -381,11 +465,6 @@ export default function Home() {
             <button type="button" onClick={() => downloadCsv()}>
               {t.exportAll}
             </button>
-            {jobId !== "all" && (
-              <button type="button" onClick={reprocess} disabled={busy}>
-                {t.reprocess}
-              </button>
-            )}
             {area && (
               <button type="button" onClick={() => downloadCsv(area)}>
                 {t.exportArea}
@@ -396,14 +475,16 @@ export default function Home() {
           {area && jobId !== "all" && (
             <div className="mergeBar">
               <div>
-                <strong>{areaLabel({ area_te: area, area_en: mergeChoices.find((item) => item.area_te === area)?.area_en })}</strong>
-                <span>{t.mergeArea}</span>
+                <strong>{area}</strong>
+                <span>
+                  {t.areaBreakdown}: {selectedScopeStats.life} / {selectedScopeStats.general}
+                </span>
               </div>
               <select value={mergeTarget} onChange={(event) => setMergeTarget(event.target.value)}>
                 <option value="">{t.mergeTarget}</option>
                 {mergeChoices.map((item) => (
                   <option key={item.area_te} value={item.area_te}>
-                    {areaLabel(item)}
+                    {item.area_te}
                   </option>
                 ))}
               </select>
@@ -424,7 +505,10 @@ export default function Home() {
                 </div>
                 <div>
                   <h3>{lang === "te" ? voter.name_te : voter.name_en || voter.name_te}</h3>
-                  <p>{voter.relation_name_te || "-"}</p>
+                  <p>
+                    <strong>{t.relation}: </strong>
+                    {voter.relation_name_te || "-"}
+                  </p>
                   <dl>
                     <dt>{t.serial}</dt>
                     <dd>{voter.serial_no || "-"}</dd>
@@ -433,7 +517,7 @@ export default function Home() {
                     <dt>{t.house}</dt>
                     <dd>{voter.house_no || "-"}</dd>
                     <dt>{t.area}</dt>
-                    <dd>{areaLabel(voter)}</dd>
+                    <dd>{voter.area_te || "-"}</dd>
                     <dt>{t.source}</dt>
                     <dd>{lang === "te" ? voter.source_label_te : voter.source_label_en}</dd>
                   </dl>
@@ -449,12 +533,23 @@ export default function Home() {
       </section>
 
       {selected && (
-        <div className="modal" role="dialog" aria-modal="true" aria-labelledby="voter-title">
-          <section className="reviewPanel">
-            <button type="button" className="close" onClick={() => setSelected(null)} aria-label={t.close}>
-              ×
-            </button>
-            <h2 id="voter-title">{lang === "te" ? selected.name_te : selected.name_en || selected.name_te}</h2>
+        <div
+          className="modal"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="voter-title"
+          onClick={() => setSelected(null)}
+        >
+          <section className="reviewPanel" onClick={(event) => event.stopPropagation()}>
+            <div className="modalHeader">
+              <div>
+                <h2 id="voter-title">{lang === "te" ? selected.name_te : selected.name_en || selected.name_te}</h2>
+                <p>{selected.area_te || "-"}</p>
+              </div>
+              <button type="button" className="close" onClick={() => setSelected(null)} aria-label={t.close}>
+                ×
+              </button>
+            </div>
             <div className="reviewGrid">
               <div>
                 <SecureImage path={selected.card_url} token={token} alt={t.card} />
@@ -489,17 +584,15 @@ export default function Home() {
                     value={selected.area_te}
                     onChange={(event) => {
                       const nextArea = event.target.value;
-                      const nextOption = areaOptions.find((item) => item.area_te === nextArea);
                       setSelected({
                         ...selected,
                         area_te: nextArea,
-                        area_en: nextOption?.area_en || selected.area_en,
                       });
                     }}
                   >
                     {areaOptions.map((item) => (
                       <option key={item.area_te} value={item.area_te}>
-                        {areaLabel(item)}
+                        {item.area_te}
                       </option>
                     ))}
                   </select>

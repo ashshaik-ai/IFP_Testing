@@ -6,16 +6,32 @@
 
 ---
 
-## STATUS: IDLE
+## STATUS: DONE
 
 ```
-AGENT        : -
-TASK         : -
-STARTED      : -
+AGENT        : codex
+TASK         : Fix voter-tool UI, labels, and filters without rerunning OCR
+STARTED      : 2026-06-28
+COMPLETED    : 2026-06-28
 LAST_UPDATED : 2026-06-28
 ```
 
-No active task. Safe to begin new work.
+STEPS_DONE:
+  - Read TASK.md, PROJECT_RULES.md, LOCALIZATION_RULES.md
+  - Confirmed user does not want OCR rerun unless explicitly approved
+  - Confirmed current pass is presentation and filter cleanup on existing processed data
+  - Remove area English from UI
+  - Rename relation label to father name in UI
+  - Fix member modal close UX
+  - Add area search in left rail
+  - Add total and per-area Life vs General stats
+  - Keep area selection broad, then filter by Life or General
+  - Verify frontend behavior with existing processed data only
+  - Restart stale Next server that was returning old `_next` assets with `400` responses
+  - Recheck local app in Playwright, 0 current console errors
+
+LAST_FILE_CHANGED: voter-list-tool/frontend/app/layout.tsx
+NOTES: OCR import was not rerun. The reported client-side exception was caused by a stale frontend server serving outdated `_next` assets. Fresh restart + favicon metadata cleanup resolved the local runtime issue.
 
 ---
 
@@ -100,7 +116,7 @@ NOTES: Lesson is fully wired. Content sections are placeholders - author must fi
 ### As the agent RESUMING after the other finished (DONE -> IDLE)
 
 1. Read this file at session start.
-2. See STATUS: DONE - confirm to the user what was completed.
+2. See STATUS: DONE - confirm completion to the user what was completed.
 3. Set STATUS: IDLE and clear the fields.
 4. Do NOT restart the completed task.
 

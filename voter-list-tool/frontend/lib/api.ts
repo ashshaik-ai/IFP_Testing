@@ -21,14 +21,14 @@ export type Job = {
 
 export type Area = {
   area_te: string;
-  area_en: string;
+  area_en?: string;
   count: number;
   missing_count: number;
 };
 
 export type AreaOption = {
   area_te: string;
-  area_en: string;
+  area_en?: string;
 };
 
 export type Voter = {
@@ -64,6 +64,8 @@ export type Voter = {
 export const copy = {
   te: {
     title: "ఓటర్ జాబితా సాధనం",
+    brand: "ఇస్లామిక్ ఫ్రంట్",
+    premium: "IFP Premium Desk",
     subtitle: "PDF అప్లోడ్ చేసి ప్రాంతాల వారీగా ఓటర్లను చూడండి",
     login: "ప్రవేశించండి",
     code: "ప్రవేశ కోడ్",
@@ -83,7 +85,7 @@ export const copy = {
     card: "అసలు కార్డు",
     name: "పేరు",
     englishName: "English పేరు",
-    relation: "తండ్రి/భర్త పేరు",
+    relation: "తండ్రి పేరు",
     age: "వయస్సు",
     occupation: "వృత్తి",
     house: "ఇంటి నంబర్",
@@ -100,9 +102,17 @@ export const copy = {
     logout: "లాగౌట్",
     close: "మూసివేయండి",
     missing: "లోపాలు",
+    areaSearch: "ప్రాంతం వెతకండి",
+    lifeCount: "లైఫ్ ఓటర్లు",
+    generalCount: "జనరల్ ఓటర్లు",
+    areaBreakdown: "లైఫ్ / జనరల్ విభజన",
+    overview: "సంగ్రహం",
+    selectedArea: "ఎంపిక చేసిన ప్రాంతం",
   },
   en: {
     title: "Voter List Tool",
+    brand: "Islamic Front",
+    premium: "IFP Premium Desk",
     subtitle: "Upload PDFs and view voters area-wise",
     login: "Login",
     code: "Access code",
@@ -122,7 +132,7 @@ export const copy = {
     card: "Original card",
     name: "Name",
     englishName: "English name",
-    relation: "Father/Husband name",
+    relation: "Father name",
     age: "Age",
     occupation: "Occupation",
     house: "House number",
@@ -139,6 +149,12 @@ export const copy = {
     logout: "Logout",
     close: "Close",
     missing: "Missing",
+    areaSearch: "Search area",
+    lifeCount: "Life voters",
+    generalCount: "General voters",
+    areaBreakdown: "Life / General split",
+    overview: "Overview",
+    selectedArea: "Selected area",
   },
 } as const;
 

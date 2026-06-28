@@ -104,36 +104,34 @@ def _bounds_from_centers(centers: list[float], start: float, end: float) -> list
     return [(cuts[i], cuts[i + 1]) for i in range(len(cuts) - 1)]
 
 
-def _detect_grid(page: fitz.Page) -> tuple[list[fitz.Rect], list[fitz.Rect]]:
-    image_rects: list[fitz.Rect] = []
-    for block in page.get_text("dict").get("blocks", []):
-        if block.get("type") == 1:
-            image_rects.append(fitz.Rect(block["bbox"]))
-    if len(image_rects) >= 4:
-        photo_x0 = _clusters([rect.x0 for rect in image_rects])
-        photo_y0 = _clusters([rect.y0 for rect in image_rects])
-        x_step = min([b - a for a, b in zip(photo_x0, photo_x0[1:])] or [page.rect.width / 5])
-        y_step = min([b - a for a, b in zip(photo_y0, photo_y0[1:])] or [(page.rect.height - 120) / 4])
-        x_lefts = [max(0, x - (x_step * 0.62)) for x in photo_x0]
-        y_tops = [max(0, y - (y_step * 0.06)) for y in photo_y0]
-        x_bounds = [(left, min(page.rect.width, left + x_step * 0.98)) for left in x_lefts]
-        y_bounds = [(top, min(page.rect.height, top + y_step * 0.98)) for top in y_tops]
-    else:
-        xs = [(i + 0.5) * page.rect.width / 5 for i in range(5)]
-        ys = [110 + (i + 0.5) * (page.rect.height - 120) / 4 for i in range(4)]
-        x_bounds = _bounds_from_centers(xs, 0, page.rect.width)
-        y_bounds = _bounds_from_centers(ys, max(0, min(ys) - 65), page.rect.height)
-    cards = [fitz.Rect(x0, y0, x1, y1) for x0, x1 in x_bounds for y0, y1 in y_bounds]
-    return cards, image_rects
+def _detect_grid(page: fitz.Page) -> list[fitz.Rect]:
+    rect = page.rect
+    left = rect.width * 0.054
+    right = rect.width * 0.954
+    top = rect.height * 0.118
+    bottom = rect.height * 0.957
+    card_width = (right - left) / 5
+    card_height = (bottom - top) / 4
+    cards: list[fitz.Rect] = []
+    for row in range(4):
+        for col in range(5):
+            x0 = left + (col * card_width)
+            x1 = left + ((col + 1) * card_width)
+            y0 = top + (row * card_height)
+            y1 = top + ((row + 1) * card_height)
+            cards.append(fitz.Rect(x0, y0, x1, y1))
+    return cards
 
 
-def _nearest_photo(card: fitz.Rect, photos: list[fitz.Rect]) -> fitz.Rect | None:
-    if not photos:
-        return None
-    cx, cy = (card.x0 + card.x1) / 2, (card.y0 + card.y1) / 2
-    inside = [photo for photo in photos if card.intersects(photo)]
-    pool = inside or photos
-    return min(pool, key=lambda photo: math.hypot(((photo.x0 + photo.x1) / 2) - cx, ((photo.y0 + photo.y1) / 2) - cy))
+def _photo_region(card: fitz.Rect) -> fitz.Rect:
+    width = card.x1 - card.x0
+    height = card.y1 - card.y0
+    return fitz.Rect(
+        card.x0 + (width * 0.62),
+        card.y0 + (height * 0.08),
+        card.x0 + (width * 0.97),
+        card.y0 + (height * 0.63),
+    )
 
 
 def _demo_fields(index: int, page_no: int) -> dict[str, Any]:
@@ -187,6 +185,29 @@ def _field_map(fields: Any) -> dict[str, Any]:
     return {}
 
 
+def _is_incomplete(fields: dict[str, Any]) -> bool:
+    critical = ("serial_no", "name_te", "relation_name_te", "age", "occupation_te", "house_no", "area_te")
+    for key in critical:
+        value = str(fields.get(key, "")).strip()
+        if not value or value == "/":
+            return True
+    return False
+
+
+def _merge_fields(primary: dict[str, Any], fallback: dict[str, Any]) -> dict[str, Any]:
+    merged = dict(primary)
+    for key, value in fallback.items():
+        incoming = str(value or "").strip()
+        current = str(merged.get(key, "") or "").strip()
+        if key in {"raw_text", "notes"}:
+            continue
+        if (not current or current == "/") and incoming:
+            merged[key] = value
+    if fallback.get("raw_text"):
+        merged["raw_text"] = "\n".join(part for part in [primary.get("raw_text", ""), fallback.get("raw_text", "")] if part)
+    return merged
+
+
 def _apply_serial_sequence(records: list[dict[str, Any]]) -> None:
     if not settings.auto_sequence_serials:
         return
@@ -194,7 +215,7 @@ def _apply_serial_sequence(records: list[dict[str, Any]]) -> None:
     for record in records:
         by_page.setdefault(int(record.get("page_no") or 0), []).append(record)
     for page_records in by_page.values():
-        page_records.sort(key=lambda item: (int(item.get("col_no") or 0), int(item.get("row_no") or 0)))
+        page_records.sort(key=lambda item: (int(item.get("row_no") or 0), int(item.get("col_no") or 0)))
         first = str(page_records[0].get("serial_no", "")).strip() if page_records else ""
         if not first.isdigit():
             continue
@@ -213,37 +234,65 @@ async def process_pdf(job_id: str, source_pdf: Path) -> None:
         doc = fitz.open(source_pdf)
         voter_index = 0
         photo_count = 0
+        local_ocr_limiter = asyncio.Semaphore(4)
         for page_index, page in enumerate(doc, start=1):
-            cards, photos = _detect_grid(page)
+            page_fields: list[dict[str, Any]] = []
+            if settings.gemini_api_keys and settings.ocr_provider != "local":
+                page_image = job_dir(job_id) / f"page_{page_index:03d}.png"
+                page.get_pixmap(matrix=fitz.Matrix(1.4, 1.4)).save(page_image)
+                try:
+                    page_fields = await gemini_rotator.extract_page_cards(page_image)
+                except Exception:
+                    page_fields = []
+            cards = _detect_grid(page)
+            page_items: list[dict[str, Any]] = []
             for card_index, card in enumerate(cards):
-                voter_index += 1
-                col = card_index // 4 + 1
-                row = card_index % 4 + 1
+                row = card_index // 5 + 1
+                col = card_index % 5 + 1
                 card_path = job_dir(job_id) / "cards" / f"p{page_index:03d}_c{card_index + 1:02d}.png"
                 page.get_pixmap(matrix=fitz.Matrix(2, 2), clip=card).save(card_path)
-                photo_rect = _nearest_photo(card, photos)
-                photo_url = ""
-                if photo_rect:
-                    photo_count += 1
-                    photo_path = job_dir(job_id) / "photos" / f"p{page_index:03d}_c{card_index + 1:02d}.png"
-                    page.get_pixmap(matrix=fitz.Matrix(2, 2), clip=photo_rect).save(photo_path)
-                    photo_url = f"/api/files/{job_id}/photos/{photo_path.name}"
+                photo_rect = _photo_region(card)
+                photo_path = job_dir(job_id) / "photos" / f"p{page_index:03d}_c{card_index + 1:02d}.png"
+                page.get_pixmap(matrix=fitz.Matrix(2, 2), clip=photo_rect).save(photo_path)
+                photo_count += 1
+                page_items.append(
+                    {
+                        "card_index": card_index,
+                        "row": row,
+                        "col": col,
+                        "card_path": card_path,
+                        "card_url": f"/api/files/{job_id}/cards/{card_path.name}",
+                        "photo_url": f"/api/files/{job_id}/photos/{photo_path.name}",
+                        "seeded_fields": _field_map(page_fields[card_index]) if card_index < len(page_fields) else {},
+                    }
+                )
 
+            async def resolve_fields(item: dict[str, Any]) -> dict[str, Any]:
+                seeded_fields = item["seeded_fields"]
+                if seeded_fields and not _is_incomplete(seeded_fields):
+                    return seeded_fields
                 if settings.ocr_provider == "local":
                     try:
-                        fields = _field_map(extract_local_card(card_path))
+                        async with local_ocr_limiter:
+                            local_fields = await asyncio.to_thread(extract_local_card, item["card_path"])
+                        return _merge_fields(_field_map(local_fields), seeded_fields) if seeded_fields else _field_map(local_fields)
                     except Exception as exc:
-                        fields = _demo_fields(voter_index - 1, page_index)
-                        fields["notes"] = f"Local OCR విఫలమైంది: {exc}"
-                elif settings.gemini_api_keys:
+                        demo = _demo_fields(voter_index, page_index)
+                        demo["notes"] = f"Local OCR విఫలమైంది: {exc}"
+                        return demo
+                if settings.gemini_api_keys:
                     try:
-                        fields = _field_map(await gemini_rotator.extract_card(card_path))
+                        return _field_map(await gemini_rotator.extract_card(item["card_path"]))
                     except Exception as exc:
-                        fields = _demo_fields(voter_index - 1, page_index)
-                        fields["notes"] = f"Gemini విఫలమైంది: {exc}"
-                else:
-                    fields = _field_map(_demo_fields(voter_index - 1, page_index) if settings.demo_ocr else {})
+                        demo = _demo_fields(voter_index, page_index)
+                        demo["notes"] = f"Gemini విఫలమైంది: {exc}"
+                        return demo
+                return _field_map(_demo_fields(voter_index, page_index) if settings.demo_ocr else {})
 
+            page_results = await asyncio.gather(*(resolve_fields(item) for item in page_items))
+
+            for item, fields in zip(page_items, page_results):
+                voter_index += 1
                 name_te = _text_or_default(fields.get("name_te"))
                 area_te = canonical_area_te(_text_or_default(fields.get("area_te")))
                 record = VoterRecord(
@@ -255,10 +304,10 @@ async def process_pdf(job_id: str, source_pdf: Path) -> None:
                     source_label_te=src["source_label_te"],
                     source_label_en=src["source_label_en"],
                     page_no=page_index,
-                    row_no=row,
-                    col_no=col,
-                    photo_url=photo_url,
-                    card_url=f"/api/files/{job_id}/cards/{card_path.name}",
+                    row_no=item["row"],
+                    col_no=item["col"],
+                    photo_url=item["photo_url"],
+                    card_url=item["card_url"],
                     serial_no=_text_or_default(fields.get("serial_no")),
                     card_no=_text_or_default(fields.get("card_no")),
                     name_te=name_te,
