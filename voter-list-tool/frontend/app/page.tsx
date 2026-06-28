@@ -1,23 +1,99 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { API_BASE, Area, AreaOption, Job, Lang, SourceFilter, Voter, api, copy } from "@/lib/api";
+import { API_BASE, AreaOption, Job, Lang, SourceFilter, Voter, api, copy } from "@/lib/api";
 import { SecureImage } from "@/components/SecureImage";
-
-type MergeResult = {
-  from_area_te: string;
-  to_area_te: string;
-  moved_count: number;
-  areas: Area[];
-};
 
 type ScopeStats = {
   total: number;
   life: number;
   general: number;
+  missing: number;
+};
+
+type AreaTile = {
+  key: string;
+  label: string;
+  aliases: string[];
+  aliasSet: Set<string>;
 };
 
 const SOURCE_ORDER: SourceFilter[] = ["all", "life", "general"];
+const CRITICAL_FIELDS: Array<keyof Voter> = ["serial_no", "name_te", "relation_name_te", "age", "occupation_te", "house_no", "area_te"];
+
+const AREA_TILE_DEFS: Array<{ label: string; aliases: string[] }> = [
+  { label: "13th Ward", aliases: ["ఇస్రాంపేట", "ఇస్లాంపేట", "చినపంజా వీధి", "తెనాలిరోడ్", "మసీదు వీధి", "చిన్న పంజా వీధి", "పెదకోనేరు వీధి", "కోనేరు వీధి", "గోపాలకృష్ణ హాల్ దగ్గర"] },
+  { label: "Kothapeta", aliases: ["కొత్త పేట", "కొత్తపేట", "కీ త్త పేట", "కో త్ర పేట"] },
+  { label: "Tipparla Bazar", aliases: ["టిప్పర్ల బజార్", "టిప్పర్లబజార్", "టీప్పర్లబజార్", "సీతారామాంజనేయ పేట", "సీతారామాంజనేయపేట", "న్యూ బ్వాంక్ కాలనీ", "టి, బజారు", "టి.బజారు"] },
+  { label: "Manneam Vari Street", aliases: ["మార్కండేయ కాలనీ", "మార్కండేయకాలని", "మన్నెం వారి వీధి", "జెండా చెట్టు"] },
+  { label: "Old Mangalagiri", aliases: ["పాతమంగళగిరి", "ప్రాతమంగళగిరి", "సీతారామకోవెల", "పీర్లపంజా, పాతమంగళగిరి", "దిగుడు బావి సెంటర్", "దిగుడుబావి సెంటర్", "సీతారామ కోవెల సీట్"] },
+  { label: "31st Ward", aliases: ["పార్కురోడ్", "శ్రీనివాస మహల్", "పార్క్రో డ్ర్", "పాతబస్థాండు", "పాత బ్వాంక్ కాలని", "పాతబస్టాండు", "బ్యాంక్ కాలని"] },
+  { label: "Bapanaiah Nagar", aliases: ["బాపనయ్యనగర్", "అజయ్ నగర్"] },
+  { label: "Rajiv Gruhakalpa", aliases: ["రాజీవ్ గృహకల్ప"] },
+  { label: "Tidco House", aliases: ["టిడ్కో హౌస్"] },
+  { label: "Ratnalacheruvu", aliases: ["రత్నాల చెబువు", "రత్నాల చెజువు", "శ్రామిక నగర్", "సూర్యనారాయణ నగర్"] },
+  { label: "Bhagat Singh Nagar", aliases: ["భగత్సింగ్ నగర్"] },
+  { label: "Kuppurao Colony", aliases: ["కుప్పురావు కాలనీ"] },
+  { label: "Lakshmi Narasimha Colony", aliases: ["లక్ష్మీనరసింహస్వామి కాలని", "శ్రీలక్షీనరసింహస్వామి కాలని", "శ్రీలక్షీనరసింహస్వామి కాలనీ", "శ్రీలక్ష్మీనరసింహస్వామి కాలని"] },
+  { label: "Driver Peta", aliases: ["డ్రైవర్ పేట", "డ్రైవరు పేట"] },
+  { label: "Munagala Vari Veedhi", aliases: ["మునగాల వారి వీధి"] },
+  { label: "TTD", aliases: ["గండాలయ పేట", "టిటిడి కళ్యాణమండపం", "టిటిడి కల్యాణ మండపం", "ద్వారకానగర్"] },
+  { label: "Shahi Masjid", aliases: ["పోలేరమ్మ వీధి", "ఇందిరానగర్"] },
+  { label: "Best India", aliases: ["యలమందల వారి వీధి", "ఎల్.బి. నగర్", "భార్గవ పేట"] },
+  { label: "Mangalagiri Mix", aliases: ["మంగళగిరి"] },
+];
+
+const AREA_TILES: AreaTile[] = AREA_TILE_DEFS.map((item) => ({
+  key: item.label.toLowerCase(),
+  label: item.label,
+  aliases: item.aliases,
+  aliasSet: new Set(item.aliases),
+}));
+
+function isMissingVoterField(voter: Voter, key: keyof Voter) {
+  const value = String(voter[key] || "").trim();
+  return !value || value === "/";
+}
+
+function voterMissingCount(voter: Voter) {
+  return CRITICAL_FIELDS.reduce((acc, key) => acc + (isMissingVoterField(voter, key) ? 1 : 0), 0);
+}
+
+function voterMatchesQuery(voter: Voter, query: string) {
+  const needle = query.trim().toLowerCase();
+  if (!needle) {
+    return true;
+  }
+  return [
+    voter.serial_no,
+    voter.card_no,
+    voter.name_te,
+    voter.name_en,
+    voter.relation_name_te,
+    voter.house_no,
+    voter.area_te,
+    voter.source_filename,
+  ]
+    .join(" ")
+    .toLowerCase()
+    .includes(needle);
+}
+
+function getAreaTile(voter: Voter) {
+  const rawArea = (voter.area_te || "").trim();
+  const matched = AREA_TILES.find((tile) => tile.aliasSet.has(rawArea));
+  return matched || null;
+}
+
+function sourceLabel(kind: SourceFilter | "life" | "general", t: (typeof copy)["te"] | (typeof copy)["en"]) {
+  if (kind === "life") {
+    return t.sourceLife;
+  }
+  if (kind === "general") {
+    return t.sourceGeneral;
+  }
+  return t.all;
+}
 
 export default function Home() {
   const [lang, setLang] = useState<Lang>("te");
@@ -26,15 +102,12 @@ export default function Home() {
   const [code, setCode] = useState("");
   const [jobs, setJobs] = useState<Job[]>([]);
   const [jobId, setJobId] = useState<string>("all");
-  const [areas, setAreas] = useState<Area[]>([]);
   const [areaOptions, setAreaOptions] = useState<AreaOption[]>([]);
-  const [area, setArea] = useState("");
+  const [selectedTile, setSelectedTile] = useState("");
   const [areaQuery, setAreaQuery] = useState("");
-  const [mergeTarget, setMergeTarget] = useState("");
   const [source, setSource] = useState<SourceFilter>("all");
   const [query, setQuery] = useState("");
-  const [voters, setVoters] = useState<Voter[]>([]);
-  const [statsVoters, setStatsVoters] = useState<Voter[]>([]);
+  const [allVoters, setAllVoters] = useState<Voter[]>([]);
   const [selected, setSelected] = useState<Voter | null>(null);
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
@@ -59,9 +132,9 @@ export default function Home() {
     if (!token) {
       return;
     }
-    refreshJobs();
-    loadAreaOptions();
-    const timer = setInterval(refreshJobs, 4000);
+    void refreshJobs();
+    void loadAreaOptions();
+    const timer = setInterval(() => void refreshJobs(), 4000);
     return () => clearInterval(timer);
   }, [token]);
 
@@ -69,20 +142,8 @@ export default function Home() {
     if (!token) {
       return;
     }
-    loadAreas();
-    loadVoters();
-  }, [token, jobId, area, query, source]);
-
-  useEffect(() => {
-    if (!token) {
-      return;
-    }
-    loadStatsVoters();
+    void loadAllVoters();
   }, [token, jobId]);
-
-  useEffect(() => {
-    setMergeTarget("");
-  }, [area]);
 
   async function login() {
     setError("");
@@ -118,31 +179,8 @@ export default function Home() {
     return jobId === "all" ? "/api" : `/api/jobs/${jobId}`;
   }
 
-  function sourceParams(includeArea = true) {
-    const params = new URLSearchParams();
-    if (query) {
-      params.set("q", query);
-    }
-    if (includeArea && area) {
-      params.set("area", area);
-    }
-    if (source !== "all") {
-      params.set("source", source);
-    }
-    return params.toString();
-  }
-
-  async function loadAreas() {
-    setAreas(await api<Area[]>(`${currentBasePath()}/areas`, token));
-  }
-
-  async function loadVoters() {
-    const qs = sourceParams();
-    setVoters(await api<Voter[]>(`${currentBasePath()}/voters${qs ? `?${qs}` : ""}`, token));
-  }
-
-  async function loadStatsVoters() {
-    setStatsVoters(await api<Voter[]>(`${currentBasePath()}/voters`, token));
+  async function loadAllVoters() {
+    setAllVoters(await api<Voter[]>(`${currentBasePath()}/voters`, token));
   }
 
   async function upload(file: File | null) {
@@ -156,9 +194,7 @@ export default function Home() {
     try {
       await api<Job>("/api/jobs", token, { method: "POST", body: form });
       await refreshJobs();
-      await loadStatsVoters();
-      await loadAreas();
-      await loadVoters();
+      await loadAllVoters();
     } catch (err) {
       setError(String(err));
     } finally {
@@ -188,32 +224,7 @@ export default function Home() {
         }),
       });
       setSelected(saved);
-      await loadStatsVoters();
-      await loadVoters();
-      await loadAreas();
-    } catch (err) {
-      setError(String(err));
-    } finally {
-      setBusy(false);
-    }
-  }
-
-  async function mergeArea() {
-    if (jobId === "all" || !area || !mergeTarget || area === mergeTarget) {
-      return;
-    }
-    setBusy(true);
-    setError("");
-    try {
-      const result = await api<MergeResult>(`/api/jobs/${jobId}/areas/merge`, token, {
-        method: "POST",
-        body: JSON.stringify({ from_area_te: area, to_area_te: mergeTarget }),
-      });
-      setAreas(result.areas);
-      setArea(mergeTarget);
-      setMergeTarget("");
-      await loadStatsVoters();
-      await loadVoters();
+      await loadAllVoters();
     } catch (err) {
       setError(String(err));
     } finally {
@@ -241,48 +252,70 @@ export default function Home() {
       });
   }
 
-  function sourceLabel(kind: SourceFilter | "life" | "general") {
-    if (kind === "life") {
-      return t.sourceLife;
-    }
-    if (kind === "general") {
-      return t.sourceGeneral;
-    }
-    return t.all;
-  }
-
   const currentJob = useMemo(() => jobs.find((item) => item.id === jobId) || null, [jobs, jobId]);
-  const mergeChoices = areaOptions.filter((item) => item.area_te !== area);
 
-  const filteredAreas = useMemo(() => {
-    const needle = areaQuery.trim().toLowerCase();
-    if (!needle) {
-      return areas;
-    }
-    return areas.filter((item) => item.area_te.toLowerCase().includes(needle));
-  }, [areaQuery, areas]);
-
-  const areaStatMap = useMemo(() => {
-    const map = new Map<string, ScopeStats>();
-    for (const voter of statsVoters) {
-      const key = voter.area_te || "ఇతర ప్రాంతం";
-      const current = map.get(key) || { total: 0, life: 0, general: 0 };
+  const areaTiles = useMemo(() => {
+    const tileMap = new Map<string, ScopeStats & { label: string; aliases: string[] }>(
+      AREA_TILES.map((tile) => [
+        tile.key,
+        { label: tile.label, aliases: tile.aliases, total: 0, life: 0, general: 0, missing: 0 },
+      ]),
+    );
+    for (const voter of allVoters) {
+      const tile = getAreaTile(voter);
+      if (!tile) {
+        continue;
+      }
+      const current = tileMap.get(tile.key);
+      if (!current) {
+        continue;
+      }
       current.total += 1;
+      current.missing += voterMissingCount(voter) > 0 ? 1 : 0;
       if (voter.source_kind === "life") {
         current.life += 1;
       } else {
         current.general += 1;
       }
-      map.set(key, current);
+      tileMap.set(tile.key, current);
     }
-    return map;
-  }, [statsVoters]);
+    return Array.from(tileMap.entries())
+      .map(([key, value]) => ({ key, ...value }))
+      .sort((a, b) => AREA_TILES.findIndex((tile) => tile.key === a.key) - AREA_TILES.findIndex((tile) => tile.key === b.key));
+  }, [allVoters]);
+
+  const visibleAreaTiles = useMemo(() => {
+    const needle = areaQuery.trim().toLowerCase();
+    if (!needle) {
+      return areaTiles;
+    }
+    return areaTiles.filter((tile) =>
+      [tile.label, ...tile.aliases]
+        .join(" ")
+        .toLowerCase()
+        .includes(needle),
+    );
+  }, [areaQuery, areaTiles]);
+
+  const filteredVoters = useMemo(() => {
+    return allVoters.filter((voter) => {
+      const tile = getAreaTile(voter);
+      if (selectedTile && tile?.key !== selectedTile) {
+        return false;
+      }
+      if (source !== "all" && voter.source_kind !== source) {
+        return false;
+      }
+      return voterMatchesQuery(voter, query);
+    });
+  }, [allVoters, query, selectedTile, source]);
 
   const selectedScopeStats = useMemo(() => {
-    const pool = area ? statsVoters.filter((item) => item.area_te === area) : statsVoters;
+    const pool = selectedTile ? allVoters.filter((item) => getAreaTile(item)?.key === selectedTile) : allVoters;
     return pool.reduce<ScopeStats>(
       (acc, item) => {
         acc.total += 1;
+        acc.missing += voterMissingCount(item) > 0 ? 1 : 0;
         if (item.source_kind === "life") {
           acc.life += 1;
         } else {
@@ -290,9 +323,14 @@ export default function Home() {
         }
         return acc;
       },
-      { total: 0, life: 0, general: 0 },
+      { total: 0, life: 0, general: 0, missing: 0 },
     );
-  }, [area, statsVoters]);
+  }, [allVoters, selectedTile]);
+
+  const selectedTileLabel = useMemo(
+    () => areaTiles.find((item) => item.key === selectedTile)?.label || "",
+    [areaTiles, selectedTile],
+  );
 
   if (!token) {
     return (
@@ -365,8 +403,8 @@ export default function Home() {
           <span>{jobId === "all" ? `${jobs.length} ${t.jobs}` : currentJob?.message_te || ""}</span>
           <div className="statusStats" aria-label={t.overview}>
             <div className="statPill">
-              <small>{area ? t.selectedArea : t.overview}</small>
-              <strong>{area || t.all}</strong>
+              <small>{selectedTile ? t.selectedArea : t.overview}</small>
+              <strong>{selectedTileLabel || t.all}</strong>
             </div>
             <div className="statPill">
               <small>{t.total}</small>
@@ -393,7 +431,7 @@ export default function Home() {
             className={jobId === "all" ? "job active" : "job"}
             onClick={() => {
               setJobId("all");
-              setArea("");
+              setSelectedTile("");
             }}
           >
             <span>{t.allPdfs}</span>
@@ -406,11 +444,11 @@ export default function Home() {
               key={item.id}
               onClick={() => {
                 setJobId(item.id);
-                setArea("");
+                setSelectedTile("");
               }}
             >
               <span>{item.filename}</span>
-              <small>{sourceLabel(item.source_kind)}</small>
+              <small>{sourceLabel(item.source_kind, t)}</small>
             </button>
           ))}
 
@@ -423,7 +461,7 @@ export default function Home() {
                 className={source === item ? "sourceChip active" : "sourceChip"}
                 onClick={() => setSource(item)}
               >
-                {sourceLabel(item)}
+                {sourceLabel(item, t)}
               </button>
             ))}
           </div>
@@ -435,28 +473,27 @@ export default function Home() {
             onChange={(event) => setAreaQuery(event.target.value)}
             placeholder={t.areaSearch}
           />
-          <button type="button" className={!area ? "area active" : "area"} onClick={() => setArea("")}>
-            <span>{t.all}</span>
-            <small>
-              {statsVoters.length} · {selectedScopeStats.life}/{selectedScopeStats.general}
-            </small>
-          </button>
-          {filteredAreas.map((item) => {
-            const stat = areaStatMap.get(item.area_te) || { total: item.count, life: 0, general: 0 };
-            return (
+          <div className="areaList">
+            <button type="button" className={!selectedTile ? "area active" : "area"} onClick={() => setSelectedTile("")}>
+              <span>{t.all}</span>
+              <small>
+                {allVoters.length} · {t.sourceLife} {selectedScopeStats.life} · {t.sourceGeneral} {selectedScopeStats.general}
+              </small>
+            </button>
+            {visibleAreaTiles.map((tile) => (
               <button
                 type="button"
-                key={item.area_te}
-                className={item.area_te === area ? "area active" : "area"}
-                onClick={() => setArea(item.area_te)}
+                key={tile.key}
+                className={tile.key === selectedTile ? "area active" : "area"}
+                onClick={() => setSelectedTile(tile.key)}
               >
-                <span>{item.area_te}</span>
+                <span>{tile.label}</span>
                 <small>
-                  {stat.total} · {t.sourceLife} {stat.life} · {t.sourceGeneral} {stat.general}
+                  {tile.total} · {t.sourceLife} {tile.life} · {t.sourceGeneral} {tile.general}
                 </small>
               </button>
-            );
-          })}
+            ))}
+          </div>
         </aside>
 
         <section className="content">
@@ -465,37 +502,17 @@ export default function Home() {
             <button type="button" onClick={() => downloadCsv()}>
               {t.exportAll}
             </button>
-            {area && (
-              <button type="button" onClick={() => downloadCsv(area)}>
-                {t.exportArea}
-              </button>
-            )}
           </div>
 
-          {area && jobId !== "all" && (
-            <div className="mergeBar">
-              <div>
-                <strong>{area}</strong>
-                <span>
-                  {t.areaBreakdown}: {selectedScopeStats.life} / {selectedScopeStats.general}
-                </span>
-              </div>
-              <select value={mergeTarget} onChange={(event) => setMergeTarget(event.target.value)}>
-                <option value="">{t.mergeTarget}</option>
-                {mergeChoices.map((item) => (
-                  <option key={item.area_te} value={item.area_te}>
-                    {item.area_te}
-                  </option>
-                ))}
-              </select>
-              <button type="button" onClick={mergeArea} disabled={!mergeTarget || busy}>
-                {t.mergeAction}
-              </button>
-            </div>
-          )}
+          <div className="selectionBand">
+            <strong>{selectedTileLabel || t.all}</strong>
+            <span>
+              {t.total}: {filteredVoters.length} · {t.sourceLife} {filteredVoters.filter((item) => item.source_kind === "life").length} · {t.sourceGeneral} {filteredVoters.filter((item) => item.source_kind === "general").length}
+            </span>
+          </div>
 
           <div className="voterGrid">
-            {voters.map((voter) => (
+            {filteredVoters.map((voter) => (
               <article className="voterCard" key={voter.id}>
                 <div className="photoCol">
                   <SecureImage path={voter.photo_url} token={token} alt={t.photo} />
@@ -533,13 +550,7 @@ export default function Home() {
       </section>
 
       {selected && (
-        <div
-          className="modal"
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby="voter-title"
-          onClick={() => setSelected(null)}
-        >
+        <div className="modal" role="dialog" aria-modal="true" aria-labelledby="voter-title" onClick={() => setSelected(null)}>
           <section className="reviewPanel" onClick={(event) => event.stopPropagation()}>
             <div className="modalHeader">
               <div>
@@ -557,7 +568,7 @@ export default function Home() {
               <form
                 onSubmit={(event) => {
                   event.preventDefault();
-                  saveSelected();
+                  void saveSelected();
                 }}
               >
                 {[
@@ -583,10 +594,9 @@ export default function Home() {
                   <select
                     value={selected.area_te}
                     onChange={(event) => {
-                      const nextArea = event.target.value;
                       setSelected({
                         ...selected,
-                        area_te: nextArea,
+                        area_te: event.target.value,
                       });
                     }}
                   >

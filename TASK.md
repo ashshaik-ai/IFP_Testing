@@ -6,32 +6,21 @@
 
 ---
 
-## STATUS: DONE
+## STATUS: IDLE
 
 ```
-AGENT        : codex
-TASK         : Fix voter-tool UI, labels, and filters without rerunning OCR
-STARTED      : 2026-06-28
-COMPLETED    : 2026-06-28
+AGENT        : -
+TASK         : -
+STARTED      : -
+COMPLETED    : -
 LAST_UPDATED : 2026-06-28
 ```
 
 STEPS_DONE:
-  - Read TASK.md, PROJECT_RULES.md, LOCALIZATION_RULES.md
-  - Confirmed user does not want OCR rerun unless explicitly approved
-  - Confirmed current pass is presentation and filter cleanup on existing processed data
-  - Remove area English from UI
-  - Rename relation label to father name in UI
-  - Fix member modal close UX
-  - Add area search in left rail
-  - Add total and per-area Life vs General stats
-  - Keep area selection broad, then filter by Life or General
-  - Verify frontend behavior with existing processed data only
-  - Restart stale Next server that was returning old `_next` assets with `400` responses
-  - Recheck local app in Playwright, 0 current console errors
+  - -
 
-LAST_FILE_CHANGED: voter-list-tool/frontend/app/layout.tsx
-NOTES: OCR import was not rerun. The reported client-side exception was caused by a stale frontend server serving outdated `_next` assets. Fresh restart + favicon metadata cleanup resolved the local runtime issue.
+LAST_FILE_CHANGED: -
+NOTES: No active task.
 
 ---
 
