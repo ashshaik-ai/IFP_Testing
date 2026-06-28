@@ -254,14 +254,17 @@ select {
   grid-template-columns: 300px 1fr;
   gap: 16px;
   align-items: flex-start;
+  min-height: 0;
 }
 
 .sidebar {
   position: sticky;
   top: 88px;
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 8px;
-  max-height: calc(100vh - 112px);
+  height: calc(100vh - 112px);
+  min-height: 0;
   overflow: hidden;
 }
 
@@ -275,11 +278,15 @@ select {
 }
 
 .areaList {
-  display: grid;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
   gap: 8px;
   min-height: 0;
   overflow-y: auto;
   padding-right: 4px;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
 }
 
 .job,
@@ -442,6 +449,7 @@ dd {
 }
 
 .voterCard > div,
+.content,
 .reviewPanel,
 .reviewGrid,
 form {
@@ -547,6 +555,7 @@ form {
 
   .sidebar {
     position: static;
+    height: auto;
     max-height: none;
   }
 

@@ -3,13 +3,20 @@
 import { useEffect, useState } from "react";
 import { API_BASE } from "@/lib/api";
 
+const imageBlobCache = new Map<string, string>();
+
 export function SecureImage({ path, token, alt }: { path: string; token: string; alt: string }) {
-  const [src, setSrc] = useState("");
+  const cacheKey = `${token}:${path}`;
+  const [src, setSrc] = useState(() => imageBlobCache.get(cacheKey) || "");
 
   useEffect(() => {
     let alive = true;
-    let objectUrl = "";
     if (!path) return;
+    const cached = imageBlobCache.get(cacheKey);
+    if (cached) {
+      setSrc(cached);
+      return;
+    }
     fetch(`${API_BASE}${path}`, { headers: { Authorization: `Bearer ${token}` } })
       .then((res) => {
         if (!res.ok) throw new Error("image");
@@ -17,16 +24,16 @@ export function SecureImage({ path, token, alt }: { path: string; token: string;
       })
       .then((blob) => {
         if (!alive) return;
-        objectUrl = URL.createObjectURL(blob);
+        const objectUrl = URL.createObjectURL(blob);
+        imageBlobCache.set(cacheKey, objectUrl);
         setSrc(objectUrl);
       })
       .catch(() => setSrc(""));
     return () => {
       alive = false;
-      if (objectUrl) URL.revokeObjectURL(objectUrl);
     };
-  }, [path, token]);
+  }, [cacheKey, path, token]);
 
   if (!src) return <div className="imagePlaceholder">{alt}</div>;
-  return <img src={src} alt={alt} loading="lazy" />;
+  return <img src={src} alt={alt} loading="lazy" decoding="async" />;
 }

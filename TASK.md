@@ -6,21 +6,27 @@
 
 ---
 
-## STATUS: IDLE
+## STATUS: DONE
 
 ```
-AGENT        : -
-TASK         : -
-STARTED      : -
-COMPLETED    : -
+AGENT        : codex
+TASK         : Improve voter tool performance and fix left area list scrolling
+STARTED      : 2026-06-28
+COMPLETED    : 2026-06-28
 LAST_UPDATED : 2026-06-28
 ```
 
 STEPS_DONE:
-  - -
+  - Read TASK.md, PROJECT_RULES.md, LOCALIZATION_RULES.md
+  - Inspected current voter tool sidebar, filtering, and image loading code
+  - Confirmed left area list scroll issue is in sidebar sizing and overflow behavior
+  - Fix sidebar height and scroll containment for area list
+  - Reduce avoidable frontend rework in filtering and counts
+  - Reduce repeated image refetch work where safe
+  - Verify frontend build passes after the changes
 
-LAST_FILE_CHANGED: -
-NOTES: No active task.
+LAST_FILE_CHANGED: voter-list-tool/frontend/components/SecureImage.tsx
+NOTES: No OCR rerun or backend data changes. Frontend build passed after the UI/runtime fixes.
 
 ---
 

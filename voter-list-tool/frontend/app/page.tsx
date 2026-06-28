@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { API_BASE, AreaOption, Job, Lang, SourceFilter, Voter, api, copy } from "@/lib/api";
+import { API_BASE, Job, Lang, SourceFilter, Voter, api, copy } from "@/lib/api";
 import { SecureImage } from "@/components/SecureImage";
 
 type ScopeStats = {
@@ -16,6 +16,11 @@ type AreaTile = {
   label: string;
   aliases: string[];
   aliasSet: Set<string>;
+};
+
+type MoveAreaOption = {
+  value: string;
+  label: string;
 };
 
 const SOURCE_ORDER: SourceFilter[] = ["all", "life", "general"];
@@ -48,6 +53,11 @@ const AREA_TILES: AreaTile[] = AREA_TILE_DEFS.map((item) => ({
   label: item.label,
   aliases: item.aliases,
   aliasSet: new Set(item.aliases),
+}));
+
+const MOVE_AREA_OPTIONS: MoveAreaOption[] = AREA_TILES.map((tile) => ({
+  value: tile.aliases[0],
+  label: tile.label,
 }));
 
 function isMissingVoterField(voter: Voter, key: keyof Voter) {
@@ -102,7 +112,6 @@ export default function Home() {
   const [code, setCode] = useState("");
   const [jobs, setJobs] = useState<Job[]>([]);
   const [jobId, setJobId] = useState<string>("all");
-  const [areaOptions, setAreaOptions] = useState<AreaOption[]>([]);
   const [selectedTile, setSelectedTile] = useState("");
   const [areaQuery, setAreaQuery] = useState("");
   const [source, setSource] = useState<SourceFilter>("all");
@@ -133,7 +142,6 @@ export default function Home() {
       return;
     }
     void refreshJobs();
-    void loadAreaOptions();
     const timer = setInterval(() => void refreshJobs(), 4000);
     return () => clearInterval(timer);
   }, [token]);
@@ -169,10 +177,6 @@ export default function Home() {
       localStorage.removeItem("voter-token");
       setToken("");
     }
-  }
-
-  async function loadAreaOptions() {
-    setAreaOptions(await api<AreaOption[]>("/api/area-options", token));
   }
 
   function currentBasePath() {
@@ -252,7 +256,19 @@ export default function Home() {
       });
   }
 
-  const currentJob = useMemo(() => jobs.find((item) => item.id === jobId) || null, [jobs, jobId]);
+  const categoryJobCounts = useMemo(
+    () => ({
+      life: jobs.filter((item) => item.source_kind === "life").length,
+      general: jobs.filter((item) => item.source_kind === "general").length,
+    }),
+    [jobs],
+  );
+  const moveAreaFallback = useMemo(() => {
+    if (!selected) {
+      return "";
+    }
+    return getAreaTile(selected)?.aliases[0] || selected.area_te || "";
+  }, [selected]);
 
   const areaTiles = useMemo(() => {
     const tileMap = new Map<string, ScopeStats & { label: string; aliases: string[] }>(
@@ -297,22 +313,22 @@ export default function Home() {
     );
   }, [areaQuery, areaTiles]);
 
+  const selectedAreaVoters = useMemo(
+    () => (selectedTile ? allVoters.filter((item) => getAreaTile(item)?.key === selectedTile) : allVoters),
+    [allVoters, selectedTile],
+  );
+
   const filteredVoters = useMemo(() => {
-    return allVoters.filter((voter) => {
-      const tile = getAreaTile(voter);
-      if (selectedTile && tile?.key !== selectedTile) {
-        return false;
-      }
+    return selectedAreaVoters.filter((voter) => {
       if (source !== "all" && voter.source_kind !== source) {
         return false;
       }
       return voterMatchesQuery(voter, query);
     });
-  }, [allVoters, query, selectedTile, source]);
+  }, [query, selectedAreaVoters, source]);
 
   const selectedScopeStats = useMemo(() => {
-    const pool = selectedTile ? allVoters.filter((item) => getAreaTile(item)?.key === selectedTile) : allVoters;
-    return pool.reduce<ScopeStats>(
+    return selectedAreaVoters.reduce<ScopeStats>(
       (acc, item) => {
         acc.total += 1;
         acc.missing += voterMissingCount(item) > 0 ? 1 : 0;
@@ -325,7 +341,25 @@ export default function Home() {
       },
       { total: 0, life: 0, general: 0, missing: 0 },
     );
-  }, [allVoters, selectedTile]);
+  }, [selectedAreaVoters]);
+
+  const filteredScopeStats = useMemo(
+    () =>
+      filteredVoters.reduce<ScopeStats>(
+        (acc, item) => {
+          acc.total += 1;
+          acc.missing += voterMissingCount(item) > 0 ? 1 : 0;
+          if (item.source_kind === "life") {
+            acc.life += 1;
+          } else {
+            acc.general += 1;
+          }
+          return acc;
+        },
+        { total: 0, life: 0, general: 0, missing: 0 },
+      ),
+    [filteredVoters],
+  );
 
   const selectedTileLabel = useMemo(
     () => areaTiles.find((item) => item.key === selectedTile)?.label || "",
@@ -399,8 +433,14 @@ export default function Home() {
           <input type="file" accept="application/pdf" onChange={(event) => upload(event.target.files?.[0] || null)} />
         </label>
         <div className="statusCard">
-          <strong>{jobId === "all" ? t.allPdfs : currentJob?.filename || t.allPdfs}</strong>
-          <span>{jobId === "all" ? `${jobs.length} ${t.jobs}` : currentJob?.message_te || ""}</span>
+          <strong>{source === "life" ? t.sourceLife : source === "general" ? t.sourceGeneral : t.allPdfs}</strong>
+          <span>
+            {source === "life"
+              ? `${categoryJobCounts.life} ${t.jobs}`
+              : source === "general"
+                ? `${categoryJobCounts.general} ${t.jobs}`
+                : `${jobs.length} ${t.jobs}`}
+          </span>
           <div className="statusStats" aria-label={t.overview}>
             <div className="statPill">
               <small>{selectedTile ? t.selectedArea : t.overview}</small>
@@ -425,46 +465,32 @@ export default function Home() {
 
       <section className="layout">
         <aside className="sidebar">
-          <h2>{t.jobs}</h2>
+          <h2>{t.source}</h2>
           <button
             type="button"
-            className={jobId === "all" ? "job active" : "job"}
+            className={source === "all" ? "job active" : "job"}
             onClick={() => {
-              setJobId("all");
+              setSource("all");
               setSelectedTile("");
             }}
           >
             <span>{t.allPdfs}</span>
             <small>{jobs.length}</small>
           </button>
-          {jobs.map((item) => (
+          {SOURCE_ORDER.filter((item) => item !== "all").map((item) => (
             <button
               type="button"
-              className={item.id === jobId ? "job active" : "job"}
-              key={item.id}
+              className={source === item ? "job active" : "job"}
+              key={item}
               onClick={() => {
-                setJobId(item.id);
+                setSource(item);
                 setSelectedTile("");
               }}
             >
-              <span>{item.filename}</span>
-              <small>{sourceLabel(item.source_kind, t)}</small>
+              <span>{sourceLabel(item, t)}</span>
+              <small>{item === "life" ? categoryJobCounts.life : categoryJobCounts.general}</small>
             </button>
           ))}
-
-          <h2>{t.source}</h2>
-          <div className="sourceFilterStack">
-            {SOURCE_ORDER.map((item) => (
-              <button
-                type="button"
-                key={item}
-                className={source === item ? "sourceChip active" : "sourceChip"}
-                onClick={() => setSource(item)}
-              >
-                {sourceLabel(item, t)}
-              </button>
-            ))}
-          </div>
 
           <h2>{t.areas}</h2>
           <input
@@ -507,7 +533,7 @@ export default function Home() {
           <div className="selectionBand">
             <strong>{selectedTileLabel || t.all}</strong>
             <span>
-              {t.total}: {filteredVoters.length} · {t.sourceLife} {filteredVoters.filter((item) => item.source_kind === "life").length} · {t.sourceGeneral} {filteredVoters.filter((item) => item.source_kind === "general").length}
+              {t.total}: {filteredScopeStats.total} · {t.sourceLife} {filteredScopeStats.life} · {t.sourceGeneral} {filteredScopeStats.general}
             </span>
           </div>
 
@@ -592,7 +618,7 @@ export default function Home() {
                 <label>
                   {t.moveArea}
                   <select
-                    value={selected.area_te}
+                    value={moveAreaFallback}
                     onChange={(event) => {
                       setSelected({
                         ...selected,
@@ -600,9 +626,12 @@ export default function Home() {
                       });
                     }}
                   >
-                    {areaOptions.map((item) => (
-                      <option key={item.area_te} value={item.area_te}>
-                        {item.area_te}
+                    {!MOVE_AREA_OPTIONS.some((item) => item.value === moveAreaFallback) && moveAreaFallback ? (
+                      <option value={moveAreaFallback}>{selected.area_te}</option>
+                    ) : null}
+                    {MOVE_AREA_OPTIONS.map((item) => (
+                      <option key={item.label} value={item.value}>
+                        {item.label}
                       </option>
                     ))}
                   </select>
