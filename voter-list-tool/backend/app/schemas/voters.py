@@ -1,0 +1,77 @@
+from __future__ import annotations
+
+from pydantic import BaseModel, Field
+
+
+class LoginRequest(BaseModel):
+    code: str = Field(min_length=4)
+
+
+class VoterRecord(BaseModel):
+    id: str
+    job_id: str
+    source_filename: str = ""
+    source_kind: str = ""
+    source_badge: str = ""
+    source_label_te: str = ""
+    source_label_en: str = ""
+    serial_no: str = ""
+    card_no: str = ""
+    name_te: str = ""
+    name_en: str = ""
+    relation_label_te: str = ""
+    relation_name_te: str = ""
+    age: str = ""
+    occupation_te: str = ""
+    house_no: str = ""
+    area_te: str = ""
+    area_en: str = ""
+    page_no: int
+    row_no: int
+    col_no: int
+    photo_url: str = ""
+    card_url: str = ""
+    confidence: float = 0
+    needs_review: bool = False
+    raw_text: str = ""
+    notes: str = ""
+
+
+class VoterUpdate(BaseModel):
+    serial_no: str | None = None
+    card_no: str | None = None
+    name_te: str | None = None
+    name_en: str | None = None
+    relation_label_te: str | None = None
+    relation_name_te: str | None = None
+    age: str | None = None
+    occupation_te: str | None = None
+    house_no: str | None = None
+    area_te: str | None = None
+    area_en: str | None = None
+    needs_review: bool | None = None
+    notes: str | None = None
+
+
+class AreaMergeRequest(BaseModel):
+    from_area_te: str = Field(min_length=1)
+    to_area_te: str = Field(min_length=1)
+
+
+class AreaSummary(BaseModel):
+    area_te: str
+    area_en: str = ""
+    count: int
+    missing_count: int
+
+
+class JobSummary(BaseModel):
+    id: str
+    filename: str
+    status: str
+    message_te: str
+    created_at: str
+    page_count: int = 0
+    voter_count: int = 0
+    photo_count: int = 0
+    review_count: int = 0

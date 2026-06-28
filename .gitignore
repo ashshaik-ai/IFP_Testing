@@ -14,6 +14,8 @@ Thumbs.db
 desktop.ini
 *.swp
 *.swo
+__pycache__/
+.pytest_cache/
 
 # Local server / env
 *.log
@@ -38,3 +40,14 @@ _verify/
 playwright-screenshots/
 _*.png
 _pos_*.json
+
+# Private voter-list tool runtime data
+voter-list-tool/backend/data/
+voter-list-tool/backend/.env
+voter-list-tool/frontend/.env.local
+voter-list-tool/frontend/.next/
+voter-list-tool/frontend/node_modules/
+!voter-list-tool/frontend/package.json
+!voter-list-tool/frontend/package-lock.json
+!voter-list-tool/backend/tests/
+!voter-list-tool/backend/tests/*.py

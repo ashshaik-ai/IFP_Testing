@@ -1,4 +1,4 @@
-# TASK.md — Live Task Baton
+# TASK.md - Live Task Baton
 
 > **Both agents (Claude Code and Codex) must read this file at the start of every session.**
 > This file is the single source of truth for what is currently being worked on, how far it got, and what remains.
@@ -9,10 +9,10 @@
 ## STATUS: IDLE
 
 ```
-AGENT        : —
-TASK         : —
-STARTED      : —
-LAST_UPDATED : 2026-06-22
+AGENT        : -
+TASK         : -
+STARTED      : -
+LAST_UPDATED : 2026-06-28
 ```
 
 No active task. Safe to begin new work.
@@ -27,7 +27,7 @@ Before beginning any multi-step task (more than ~3 edits or touching more than 1
 
 ```
 STATUS: IN_PROGRESS
-AGENT        : claude-code   ← or: codex
+AGENT        : claude-code   <- or: codex
 TASK         : <one-line description>
 STARTED      : <date>
 LAST_UPDATED : <date>
@@ -40,8 +40,8 @@ STEPS_REMAINING:
   - step 2
   - step 3
 
-LAST_FILE_CHANGED: —
-NOTES: —
+LAST_FILE_CHANGED: -
+NOTES: -
 ```
 
 ### As the agent HANDING OFF (token limit reached or switching)
@@ -50,14 +50,14 @@ Update this file BEFORE stopping. Change STATUS to BLOCKED and fill in exactly w
 
 ```
 STATUS: BLOCKED
-AGENT        : claude-code → codex   ← direction of handoff
+AGENT        : claude-code -> codex   <- direction of handoff
 TASK         : <same description>
 STARTED      : <original date>
 LAST_UPDATED : <today>
 
 STEPS_DONE:
-  - ✓ created knowledge-center/arabic/tajweed-basics.html
-  - ✓ added entry to assets/data/site-catalog.js (id=arabic-tajweed-basics)
+  - created knowledge-center/arabic/tajweed-basics.html
+  - added entry to assets/data/site-catalog.js (id=arabic-tajweed-basics)
 
 STEPS_REMAINING:
   - update IF_PORTAL.lessons[] in knowledge-center/learn-arabic/index.html
@@ -72,7 +72,7 @@ NOTES: IF_PORTAL.lessons[] is at line ~312 in learn-arabic/index.html. New entry
 ### As the agent PICKING UP a BLOCKED task
 
 1. Read this entire file.
-2. Check `STEPS_DONE` — do NOT redo those steps.
+2. Check `STEPS_DONE` - do NOT redo those steps.
 3. Execute `STEPS_REMAINING` in order.
 4. When done, update STATUS to DONE (see below).
 
@@ -80,27 +80,27 @@ NOTES: IF_PORTAL.lessons[] is at line ~312 in learn-arabic/index.html. New entry
 
 ```
 STATUS: DONE
-AGENT        : codex   ← whoever finished it
+AGENT        : codex   <- whoever finished it
 TASK         : <description>
 STARTED      : <original date>
 COMPLETED    : <today>
 LAST_UPDATED : <today>
 
 STEPS_DONE:
-  - ✓ created knowledge-center/arabic/tajweed-basics.html
-  - ✓ added entry to assets/data/site-catalog.js
-  - ✓ updated IF_PORTAL.lessons[] in learn-arabic/index.html
-  - ✓ incremented portal total to 7
-  - ✓ catalog-sync: 0 errors
+  - created knowledge-center/arabic/tajweed-basics.html
+  - added entry to assets/data/site-catalog.js
+  - updated IF_PORTAL.lessons[] in learn-arabic/index.html
+  - incremented portal total to 7
+  - catalog-sync: 0 errors
 
 LAST_FILE_CHANGED: assets/data/site-catalog.js
-NOTES: Lesson is fully wired. Content sections are placeholders — author must fill in.
+NOTES: Lesson is fully wired. Content sections are placeholders - author must fill in.
 ```
 
-### As the agent RESUMING after the other finished (DONE → IDLE)
+### As the agent RESUMING after the other finished (DONE -> IDLE)
 
 1. Read this file at session start.
-2. See STATUS: DONE — confirm to the user what was completed.
+2. See STATUS: DONE - confirm to the user what was completed.
 3. Set STATUS: IDLE and clear the fields.
 4. Do NOT restart the completed task.
 
@@ -112,19 +112,19 @@ NOTES: Lesson is fully wired. Content sections are placeholders — author must 
 |---|---|
 | `claude-code` | Claude Code is/was working on it |
 | `codex` | Codex is/was working on it |
-| `claude-code → codex` | Claude Code handed off to Codex |
-| `codex → claude-code` | Codex handed off to Claude Code |
-| `—` | IDLE, no active agent |
+| `claude-code -> codex` | Claude Code handed off to Codex |
+| `codex -> claude-code` | Codex handed off to Claude Code |
+| `-` | IDLE, no active agent |
 
 ---
 
 ## Quick reference for both agents
 
 **If STATUS is IDLE:** start new work normally.
-**If STATUS is IN_PROGRESS (same agent):** you were interrupted — resume from STEPS_REMAINING.
-**If STATUS is IN_PROGRESS (other agent):** that agent is still working — do NOT touch this task; ask the user.
-**If STATUS is BLOCKED:** pick up where the other agent stopped — read STEPS_REMAINING and NOTES.
-**If STATUS is DONE:** confirm completion to user, then reset to IDLE.
+**If STATUS is IN_PROGRESS (same agent):** you were interrupted - resume from STEPS_REMAINING.
+**If STATUS is IN_PROGRESS (other agent):** that agent is still working - do NOT touch this task; ask the user.
+**If STATUS is BLOCKED:** pick up where the other agent stopped - read STEPS_REMAINING and NOTES.
+**If STATUS is DONE:** confirm completion to the user, then reset to IDLE.
 
 ---
 
@@ -132,4 +132,6 @@ NOTES: Lesson is fully wired. Content sections are placeholders — author must 
 
 | Date | Task | Started by | Finished by | Outcome |
 |---|---|---|---|---|
-| 2026-06-22 | Design and implement 5 Claude Skills | claude-code | claude-code | ✓ Done — catalog-sync, design-sync, portal-audit, translate-cards, lesson-scaffold created |
+| 2026-06-22 | Design and implement 5 Claude Skills | claude-code | claude-code | Done - catalog-sync, design-sync, portal-audit, translate-cards, lesson-scaffold created |
+| 2026-06-27 | Install requested Claude Plugin Hub skill packs | codex | codex | Done, partial failures from invalid manifest, SSH-only sources, and unsupported marketplace source type |
+| 2026-06-28 | Add Life/General filters, area move/merge polish, and refresh voter PDFs | codex | codex | Done - 3 final PDFs reprocessed, aggregated filters added, badges added, live backend/frontend rechecked |
