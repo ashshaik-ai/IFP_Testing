@@ -10,9 +10,19 @@ BACKEND_ROOT = Path(__file__).resolve().parents[2]
 load_dotenv(BACKEND_ROOT / ".env")
 
 
+def _resolve_env_path(value: str, fallback: Path) -> Path:
+    raw = (value or "").strip()
+    if not raw:
+        return fallback.resolve()
+    path = Path(raw)
+    if not path.is_absolute():
+        path = BACKEND_ROOT / path
+    return path.resolve()
+
+
 class Settings:
     app_name = "IFP Voter List Tool"
-    data_dir = Path(os.getenv("VOTER_TOOL_DATA_DIR", str(BACKEND_ROOT / "data"))).resolve()
+    data_dir = _resolve_env_path(os.getenv("VOTER_TOOL_DATA_DIR", ""), BACKEND_ROOT / "data")
     access_codes = [
         code.strip()
         for code in os.getenv("VOTER_APP_CODES", "ifp-private-2026").split(",")
@@ -34,12 +44,10 @@ class Settings:
     ]
     gemini_model = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
     demo_ocr = os.getenv("VOTER_DEMO_OCR", "true").lower() in {"1", "true", "yes"}
-    auto_sequence_serials = os.getenv("VOTER_AUTO_SEQUENCE_SERIALS", "true").lower() in {"1", "true", "yes"}
+    auto_sequence_serials = os.getenv("VOTER_AUTO_SEQUENCE_SERIALS", "false").lower() in {"1", "true", "yes"}
     ocr_provider = os.getenv("VOTER_OCR_PROVIDER", "local").lower()
     tesseract_cmd = os.getenv("TESSERACT_CMD", r"C:\Program Files\Tesseract-OCR\tesseract.exe")
-    tessdata_prefix = Path(
-        os.getenv("TESSDATA_PREFIX", str(data_dir / "tessdata"))
-    ).resolve()
+    tessdata_prefix = _resolve_env_path(os.getenv("TESSDATA_PREFIX", ""), data_dir / "tessdata")
 
 
 settings = Settings()

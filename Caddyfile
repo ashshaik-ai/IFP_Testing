@@ -1,0 +1,19 @@
+# ── Replace :80 with your domain (e.g. "voterstool.example.com") to get
+#    automatic HTTPS from Let's Encrypt at zero cost. ──────────────────────
+:80 {
+    # API → backend
+    handle /api/* {
+        reverse_proxy backend:8000
+    }
+    handle /health {
+        reverse_proxy backend:8000
+    }
+    handle /api/files/* {
+        reverse_proxy backend:8000
+    }
+
+    # Everything else → Next.js frontend
+    handle {
+        reverse_proxy frontend:3000
+    }
+}

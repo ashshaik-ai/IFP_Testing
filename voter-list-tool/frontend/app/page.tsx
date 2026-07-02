@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
-import { API_BASE, Job, Lang, SourceFilter, Voter, api, copy } from "@/lib/api";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { API_BASE, AreaOption, Job, Lang, SourceFilter, Voter, api, copy } from "@/lib/api";
+import { englishToTeluguName, toEnglishArea, toEnglishName, toEnglishText } from "@/lib/transliterate";
 import { SecureImage } from "@/components/SecureImage";
 
 type ScopeStats = {
@@ -9,6 +10,10 @@ type ScopeStats = {
   life: number;
   general: number;
   missing: number;
+  yt: number;
+  target: number;
+  mf: number;
+  ifp: number;
 };
 
 type AreaTile = {
@@ -18,34 +23,51 @@ type AreaTile = {
   aliasSet: Set<string>;
 };
 
+type AreaTileSummary = AreaTile & ScopeStats;
+
 type MoveAreaOption = {
   value: string;
   label: string;
+};
+
+type FamilyCluster = {
+  key: string;
+  areaKey: string;
+  areaLabel: string;
+  houseNo: string;
+  count: number;
+  life: number;
+  general: number;
+  ifp: number;
+  voters: Voter[];
 };
 
 const SOURCE_ORDER: SourceFilter[] = ["all", "life", "general"];
 const CRITICAL_FIELDS: Array<keyof Voter> = ["serial_no", "name_te", "relation_name_te", "age", "occupation_te", "house_no", "area_te"];
 
 const AREA_TILE_DEFS: Array<{ label: string; aliases: string[] }> = [
-  { label: "13th Ward", aliases: ["ఇస్రాంపేట", "ఇస్లాంపేట", "చినపంజా వీధి", "తెనాలిరోడ్", "మసీదు వీధి", "చిన్న పంజా వీధి", "పెదకోనేరు వీధి", "కోనేరు వీధి", "గోపాలకృష్ణ హాల్ దగ్గర"] },
-  { label: "Kothapeta", aliases: ["కొత్త పేట", "కొత్తపేట", "కీ త్త పేట", "కో త్ర పేట"] },
-  { label: "Tipparla Bazar", aliases: ["టిప్పర్ల బజార్", "టిప్పర్లబజార్", "టీప్పర్లబజార్", "సీతారామాంజనేయ పేట", "సీతారామాంజనేయపేట", "న్యూ బ్వాంక్ కాలనీ", "టి, బజారు", "టి.బజారు"] },
-  { label: "Manneam Vari Street", aliases: ["మార్కండేయ కాలనీ", "మార్కండేయకాలని", "మన్నెం వారి వీధి", "జెండా చెట్టు"] },
-  { label: "Old Mangalagiri", aliases: ["పాతమంగళగిరి", "ప్రాతమంగళగిరి", "సీతారామకోవెల", "పీర్లపంజా, పాతమంగళగిరి", "దిగుడు బావి సెంటర్", "దిగుడుబావి సెంటర్", "సీతారామ కోవెల సీట్"] },
-  { label: "31st Ward", aliases: ["పార్కురోడ్", "శ్రీనివాస మహల్", "పార్క్రో డ్ర్", "పాతబస్థాండు", "పాత బ్వాంక్ కాలని", "పాతబస్టాండు", "బ్యాంక్ కాలని"] },
-  { label: "Bapanaiah Nagar", aliases: ["బాపనయ్యనగర్", "అజయ్ నగర్"] },
-  { label: "Rajiv Gruhakalpa", aliases: ["రాజీవ్ గృహకల్ప"] },
-  { label: "Tidco House", aliases: ["టిడ్కో హౌస్"] },
-  { label: "Ratnalacheruvu", aliases: ["రత్నాల చెబువు", "రత్నాల చెజువు", "శ్రామిక నగర్", "సూర్యనారాయణ నగర్"] },
-  { label: "Bhagat Singh Nagar", aliases: ["భగత్సింగ్ నగర్"] },
-  { label: "Kuppurao Colony", aliases: ["కుప్పురావు కాలనీ"] },
-  { label: "Lakshmi Narasimha Colony", aliases: ["లక్ష్మీనరసింహస్వామి కాలని", "శ్రీలక్షీనరసింహస్వామి కాలని", "శ్రీలక్షీనరసింహస్వామి కాలనీ", "శ్రీలక్ష్మీనరసింహస్వామి కాలని"] },
-  { label: "Driver Peta", aliases: ["డ్రైవర్ పేట", "డ్రైవరు పేట"] },
-  { label: "Munagala Vari Veedhi", aliases: ["మునగాల వారి వీధి"] },
-  { label: "TTD", aliases: ["గండాలయ పేట", "టిటిడి కళ్యాణమండపం", "టిటిడి కల్యాణ మండపం", "ద్వారకానగర్"] },
-  { label: "Shahi Masjid", aliases: ["పోలేరమ్మ వీధి", "ఇందిరానగర్"] },
-  { label: "Best India", aliases: ["యలమందల వారి వీధి", "ఎల్.బి. నగర్", "భార్గవ పేట"] },
-  { label: "Mangalagiri Mix", aliases: ["మంగళగిరి"] },
+  { label: "13th Ward", aliases: ["\u0c07\u0c38\u0c4d\u0c30\u0c3e\u0c02\u0c2a\u0c47\u0c1f", "\u0c07\u0c38\u0c4d\u0c32\u0c3e\u0c02\u0c2a\u0c47\u0c1f", "\u0c1a\u0c3f\u0c28\u0c2a\u0c02\u0c1c\u0c3e \u0c35\u0c40\u0c27\u0c3f", "\u0c24\u0c46\u0c28\u0c3e\u0c32\u0c3f\u0c30\u0c4b\u0c21\u0c4d", "\u0c2e\u0c38\u0c40\u0c26\u0c41 \u0c35\u0c40\u0c27\u0c3f", "\u0c1a\u0c3f\u0c28\u0c4d\u0c28 \u0c2a\u0c02\u0c1c\u0c3e \u0c35\u0c40\u0c27\u0c3f", "\u0c2a\u0c46\u0c26\u0c15\u0c4b\u0c28\u0c47\u0c30\u0c41 \u0c35\u0c40\u0c27\u0c3f", "\u0c15\u0c4b\u0c28\u0c47\u0c30\u0c41 \u0c35\u0c40\u0c27\u0c3f", "\u0c2c\u0c41\u0c21\u0c4d\u0c1c\u0c2f\u0c4d\u0c2f \u0c17\u0c3e\u0c30\u0c3f \u0c35\u0c40\u0c27\u0c3f", "\u0c17\u0c4c\u0c24\u0c2e \u0c2c\u0c41\u0c26\u0c4d\u0c26\u0c3e\u0c30\u0c4b\u0c21\u0c4d", "\u0c2a\u0c40\u0c30\u0c4d\u0c32\u0c2a\u0c02\u0c1c\u0c3e"] },
+  { label: "Kothapeta", aliases: ["\u0c15\u0c4a\u0c24\u0c4d\u0c24 \u0c2a\u0c47\u0c1f", "\u0c15\u0c4a\u0c24\u0c4d\u0c24\u0c2a\u0c47\u0c1f", "\u0c15\u0c40 \u0c24\u0c4d\u0c24 \u0c2a\u0c47\u0c1f", "\u0c15\u0c4b \u0c24\u0c4d\u0c30 \u0c2a\u0c47\u0c1f", "\u0c17\u0c4d\u0c30\u0c47\u0c1f\u0c4d \u0c07\u0c02\u0c21\u0c3f\u0c2f\u0c3e \u0c30\u0c4b\u0c21\u0c4d"] },
+  { label: "Tipparla Bazar", aliases: ["\u0c1f\u0c3f\u0c2a\u0c4d\u0c2a\u0c30\u0c4d\u0c32 \u0c2c\u0c1c\u0c3e\u0c30\u0c4d", "\u0c1f\u0c3f\u0c2a\u0c4d\u0c2a\u0c30\u0c4d\u0c32\u0c2c\u0c1c\u0c3e\u0c30\u0c4d", "\u0c1f\u0c3f\u0c2a\u0c4d\u0c2a\u0c30\u0c4d\u0c32\u0c2c\u0c1c\u0c3e\u0c30\u0c41", "\u0c1f\u0c40\u0c2a\u0c4d\u0c2a\u0c30\u0c4d\u0c32\u0c2c\u0c1c\u0c3e\u0c30\u0c4d", "\u0c38\u0c40\u0c24\u0c3e\u0c30\u0c3e\u0c2e\u0c3e\u0c02\u0c1c\u0c28\u0c47\u0c2f \u0c2a\u0c47\u0c1f", "\u0c38\u0c40\u0c24\u0c3e\u0c30\u0c3e\u0c2e\u0c3e\u0c02\u0c1c\u0c28\u0c47\u0c2f\u0c2a\u0c47\u0c1f", "\u0c28\u0c4d\u0c2f\u0c42 \u0c2c\u0c4d\u0c35\u0c3e\u0c02\u0c15\u0c4d \u0c15\u0c3e\u0c32\u0c4b\u0c28\u0c40", "\u0c1f\u0c3f, \u0c2c\u0c1c\u0c3e\u0c30\u0c41", "\u0c1f\u0c3f.\u0c2c\u0c1c\u0c3e\u0c30\u0c41", "\u0c1f\u0c3f\u0c2a\u0c4d\u0c2a\u0c30\u0c4d\u0c32 \u0c2c\u0c1c\u0c3e\u0c30\u0c4d, \u0c38\u0c40\u0c24\u0c3e\u0c30\u0c3e\u0c2e\u0c3e\u0c02\u0c1c\u0c28\u0c47\u0c2f \u0c2a\u0c47\u0c1f"] },
+  { label: "Manneam Vari Street", aliases: ["\u0c2e\u0c3e\u0c30\u0c4d\u0c15\u0c02\u0c21\u0c47\u0c2f \u0c15\u0c3e\u0c32\u0c4b\u0c28\u0c40", "\u0c2e\u0c3e\u0c30\u0c4d\u0c15\u0c02\u0c21\u0c47\u0c2f\u0c15\u0c3e\u0c32\u0c4b\u0c28\u0c3f", "\u0c2e\u0c28\u0c4d\u0c28\u0c46\u0c02 \u0c35\u0c3e\u0c30\u0c3f \u0c35\u0c40\u0c27\u0c3f", "\u0c1c\u0c46\u0c02\u0c21\u0c3e \u0c1a\u0c46\u0c1f\u0c4d\u0c1f\u0c41", "\u0c17\u0c4b\u0c2a\u0c3e\u0c32\u0c15\u0c43\u0c37\u0c4d\u0c23 \u0c25\u0c3f\u0c2f\u0c47\u0c1f\u0c30\u0c4d \u0c2a\u0c4d\u0c30\u0c15\u0c4d\u0c15 \u0c38\u0c02\u0c26\u0c41", "\u0c38\u0c3f.\u0c15\u0c46. \u0c17\u0c4d\u0c30\u0c4c\u0c02\u0c21\u0c4d", "\u0c17\u0c4b\u0c2a\u0c3e\u0c32\u0c15\u0c43\u0c37\u0c4d\u0c23 \u0c39\u0c3e\u0c32\u0c4d \u0c26\u0c17\u0c4d\u0c17\u0c30", "\u0c17\u0c4b\u0c2a\u0c3e\u0c32\u0c15\u0c43\u0c37\u0c4d\u0c23 \u0c39\u0c3e\u0c32\u0c4d \u0c35\u0c46\u0c28\u0c41\u0c15", "\u0c17\u0c4b\u0c2a\u0c3e\u0c32\u0c15\u0c43\u0c37\u0c4d\u0c23\u0c3e \u0c25\u0c3f\u0c2f\u0c47\u0c1f\u0c30\u0c4d \u0c35\u0c46\u0c28\u0c41\u0c15", "\u0c2e\u0c3e\u0c30\u0c4d\u0c15\u0c02\u0c21\u0c47\u0c2f\u0c2a\u0c47\u0c1f", "\u0c1a\u0c30\u0c4d\u0c1a\u0c3f\u0c30\u0c4b\u0c21\u0c4d", "\u0c15\u0c46\u0c0e\u0c0e\u0c02 \u0c30\u0c46\u0c38\u0c3f\u0c21\u0c46\u0c28\u0c4d\u0c38\u0c40, \u0c2e\u0c3e\u0c30\u0c4d\u0c15\u0c02\u0c21\u0c47\u0c2f \u0c15\u0c3e\u0c32\u0c4b\u0c28\u0c40"] },
+  { label: "Old Mangalagiri", aliases: ["\u0c2a\u0c3e\u0c24\u0c2e\u0c02\u0c17\u0c33\u0c17\u0c3f\u0c30\u0c3f", "\u0c2a\u0c4d\u0c30\u0c3e\u0c24\u0c2e\u0c02\u0c17\u0c33\u0c17\u0c3f\u0c30\u0c3f", "\u0c38\u0c40\u0c24\u0c3e\u0c30\u0c3e\u0c2e\u0c15\u0c4b\u0c35\u0c46\u0c32", "\u0c2a\u0c40\u0c30\u0c4d\u0c32\u0c2a\u0c02\u0c1c\u0c3e, \u0c2a\u0c3e\u0c24\u0c2e\u0c02\u0c17\u0c33\u0c17\u0c3f\u0c30\u0c3f", "\u0c26\u0c3f\u0c17\u0c41\u0c21\u0c41 \u0c2c\u0c3e\u0c35\u0c3f \u0c38\u0c46\u0c02\u0c1f\u0c30\u0c4d", "\u0c26\u0c3f\u0c17\u0c41\u0c21\u0c41\u0c2c\u0c3e\u0c35\u0c3f \u0c38\u0c46\u0c02\u0c1f\u0c30\u0c4d", "\u0c38\u0c40\u0c24\u0c3e\u0c30\u0c3e\u0c2e \u0c15\u0c4b\u0c35\u0c46\u0c32 \u0c38\u0c40\u0c1f\u0c4d", "\u0c24\u0c2e\u0c4d\u0c2e\u0c3f\u0c36\u0c46\u0c1f\u0c4d\u0c1f\u0c3f \u0c30\u0c3e\u0c2e\u0c15\u0c43\u0c37\u0c4d\u0c23 \u0c35\u0c40\u0c27\u0c3f", "\u0c2d\u0c26\u0c4d\u0c30\u0c3e\u0c35\u0c24\u0c3f \u0c28\u0c17\u0c30\u0c4d"] },
+  { label: "31st Ward", aliases: ["\u0c2a\u0c3e\u0c30\u0c4d\u0c15\u0c41\u0c30\u0c4b\u0c21\u0c4d", "\u0c2a\u0c3e\u0c30\u0c4d\u0c15\u0c4d \u0c30\u0c4b\u0c21\u0c4d", "\u0c2a\u0c3e\u0c30\u0c4d\u0c15\u0c4d \u0c30\u0c4b\u0c21\u0c4d\u0c21\u0c4d\u0c21\u0c41", "\u0c2a\u0c3e\u0c30\u0c4d\u0c15\u0c4d \u0c30\u0c4b\u0c21\u0c4d\u0c32\u0c41", "\u0c2a\u0c3e\u0c30\u0c4d\u0c15\u0c4d \u0c30\u0c4b\u0c21\u0c4d\u0c21\u0c41", "\u0c36\u0c4d\u0c30\u0c40\u0c28\u0c3f\u0c35\u0c3e\u0c38 \u0c2e\u0c39\u0c32\u0c4d", "\u0c2a\u0c3e\u0c30\u0c4d\u0c15\u0c4d\u0c30\u0c4b \u0c21\u0c4d\u0c30\u0c4d", "\u0c2a\u0c3e\u0c24\u0c2c\u0c38\u0c4d\u0c25\u0c3e\u0c02\u0c21\u0c41", "\u0c2a\u0c3e\u0c24\u0c2c\u0c38\u0c4d\u0c1f\u0c3e\u0c02\u0c21\u0c41", "\u0c28\u0c3e\u0c28\u0c3f \u0c38\u0c4d\u0c35\u0c40\u0c1f\u0c4d\u0c38\u0c4d \u0c35\u0c40\u0c27\u0c3f", "\u0c2a\u0c3e\u0c24 \u0c2c\u0c38\u0c4d\u0c1f\u0c3e\u0c02\u0c21\u0c4d, \u0c28\u0c3e\u0c28\u0c3f \u0c38\u0c4d\u0c35\u0c40\u0c1f\u0c4d\u0c38\u0c4d \u0c2c\u0c1c\u0c3e\u0c30\u0c4d"] },
+  { label: "Nidamarru Road", aliases: ["\u0c28\u0c3f\u0c21\u0c2e\u0c30\u0c4d\u0c30\u0c41 \u0c30\u0c4b\u0c21\u0c4d", "\u0c2a\u0c3e\u0c24 \u0c2c\u0c4d\u0c35\u0c3e\u0c02\u0c15\u0c4d \u0c15\u0c3e\u0c32\u0c4d\u0c2f\u0c3e\u0c23\u0c3f", "\u0c2c\u0c4d\u0c2f\u0c3e\u0c02\u0c15\u0c4d \u0c15\u0c3e\u0c32\u0c4d\u0c2f\u0c3e\u0c23\u0c3f", "\u0c28\u0c3f\u0c21\u0c2e\u0c30\u0c4d\u0c30 \u0c30\u0c4b\u0c21\u0c4d, \u0c28\u0c3f\u0c2f\u0c30\u0c4d \u0c2c\u0c3f\u0c32\u0c3e\u0c32\u0c4d \u0c2e\u0c38\u0c4d\u0c1f\u0c40\u0c26\u0c4d", "\u0c28\u0c4d\u0c2f\u0c42 \u0c2c\u0c4d\u0c2f\u0c3e\u0c02\u0c15\u0c4d \u0c15\u0c3e\u0c32\u0c4d\u0c2f\u0c3e\u0c23\u0c3f, \u0c28\u0c3f\u0c21\u0c2e\u0c30\u0c4d\u0c30\u0c41 \u0c30\u0c4b\u0c21\u0c4d"] },
+  { label: "Bapanaiah Nagar", aliases: ["\u0c2c\u0c3e\u0c2a\u0c28\u0c2f\u0c4d\u0c2f\u0c28\u0c17\u0c30\u0c4d", "\u0c05\u0c1c\u0c2f\u0c4d \u0c28\u0c17\u0c30\u0c4d", "\u0c30\u0c48\u0c32\u0c41 \u0c15\u0c1f\u0c4d\u0c1f"] },
+  { label: "Rajiv Gruhakalpa", aliases: ["\u0c30\u0c3e\u0c1c\u0c40\u0c35\u0c4d \u0c17\u0c43\u0c39\u0c15\u0c32\u0c4d\u0c2a", "\u0c06\u0c1f\u0c4b\u0c28\u0c17\u0c30\u0c4d"] },
+  { label: "Tidco House", aliases: ["\u0c1f\u0c3f\u0c21\u0c4d\u0c15\u0c4b \u0c39\u0c4c\u0c38\u0c4d", "24\u0c35 \u0c2c\u0c4d\u0c32\u0c3e\u0c15\u0c4d, \u0c1f\u0c3f\u0c21\u0c4d\u0c15\u0c4b", "\u0c0e\u0c28\u0c4d.\u0c06\u0c30\u0c4d.\u0c10. \u0c39\u0c3e\u0c38\u0c4d\u0c2a\u0c3f\u0c1f\u0c32\u0c4d \u0c35\u0c46\u0c28\u0c41\u0c15"] },
+  { label: "Ratnalacheruvu", aliases: ["\u0c30\u0c24\u0c4d\u0c28\u0c3e\u0c32 \u0c1a\u0c46\u0c2c\u0c41\u0c35\u0c41", "\u0c30\u0c24\u0c4d\u0c28\u0c3e\u0c32 \u0c1a\u0c46\u0c1c\u0c41\u0c35\u0c41", "\u0c36\u0c4d\u0c30\u0c3e\u0c2e\u0c3f\u0c15 \u0c28\u0c17\u0c30\u0c4d", "\u0c38\u0c42\u0c30\u0c4d\u0c2f\u0c28\u0c3e\u0c30\u0c3e\u0c2f\u0c23 \u0c28\u0c17\u0c30\u0c4d"] },
+  { label: "Bhagat Singh Nagar", aliases: ["\u0c2d\u0c17\u0c24\u0c4d\u0c38\u0c3f\u0c02\u0c17\u0c4d \u0c28\u0c17\u0c30\u0c4d"] },
+  { label: "Kuppurao Colony", aliases: ["\u0c15\u0c41\u0c2a\u0c4d\u0c2a\u0c41\u0c30\u0c3e\u0c35\u0c41 \u0c15\u0c3e\u0c32\u0c4b\u0c28\u0c40", "\u0c2c\u0c3e\u0c32\u0c3e\u0c1c\u0c40\u0c28\u0c17\u0c30\u0c4d", "\u0c17\u0c3e\u0c02\u0c27\u0c3f \u0c28\u0c17\u0c30\u0c4d"] },
+  { label: "Lakshmi Narasimha Colony", aliases: ["\u0c32\u0c15\u0c4d\u0c37\u0c4d\u0c2e\u0c40\u0c28\u0c30\u0c38\u0c3f\u0c02\u0c39\u0c38\u0c4d\u0c35\u0c3e\u0c2e\u0c3f \u0c15\u0c3e\u0c32\u0c4d\u0c2f\u0c3e\u0c23\u0c3f", "\u0c36\u0c4d\u0c30\u0c40\u0c32\u0c15\u0c4d\u0c37\u0c40\u0c28\u0c30\u0c38\u0c3f\u0c02\u0c39\u0c38\u0c4d\u0c35\u0c3e\u0c2e\u0c3f \u0c15\u0c3e\u0c32\u0c4d\u0c2f\u0c3e\u0c23\u0c3f", "\u0c36\u0c4d\u0c30\u0c40\u0c32\u0c15\u0c4d\u0c37\u0c40\u0c28\u0c30\u0c38\u0c3f\u0c02\u0c39\u0c38\u0c4d\u0c35\u0c3e\u0c2e\u0c3f \u0c15\u0c3e\u0c32\u0c4b\u0c28\u0c40", "\u0c36\u0c4d\u0c30\u0c40\u0c32\u0c15\u0c4d\u0c37\u0c4d\u0c2e\u0c40\u0c28\u0c30\u0c38\u0c3f\u0c02\u0c39\u0c38\u0c4d\u0c35\u0c3e\u0c2e\u0c3f \u0c15\u0c3e\u0c32\u0c4d\u0c2f\u0c3e\u0c23\u0c3f"] },
+  { label: "Driver Peta", aliases: ["\u0c21\u0c4d\u0c30\u0c48\u0c35\u0c30\u0c4d \u0c2a\u0c47\u0c1f", "\u0c21\u0c4d\u0c30\u0c48\u0c35\u0c30\u0c41 \u0c2a\u0c47\u0c1f"] },
+  { label: "Munagala Vari Veedhi", aliases: ["\u0c2e\u0c41\u0c28\u0c17\u0c3e\u0c32 \u0c35\u0c3e\u0c30\u0c3f \u0c35\u0c40\u0c27\u0c3f"] },
+  { label: "TTD", aliases: ["\u0c17\u0c02\u0c21\u0c3e\u0c32\u0c2f \u0c2a\u0c47\u0c1f", "\u0c1f\u0c3f\u0c1f\u0c3f\u0c21\u0c3f \u0c15\u0c33\u0c4d\u0c2f\u0c3e\u0c23\u0c2e\u0c02\u0c21\u0c2a\u0c02", "\u0c1f\u0c3f\u0c1f\u0c3f\u0c21\u0c3f \u0c15\u0c32\u0c4d\u0c2f\u0c3e\u0c23 \u0c2e\u0c02\u0c21\u0c2a\u0c02", "\u0c26\u0c4d\u0c35\u0c3e\u0c30\u0c15\u0c3e\u0c28\u0c17\u0c30\u0c4d", "\u0c17\u0c35\u0c30\u0c4d\u0c28\u0c2e\u0c46\u0c02\u0c1f\u0c4d \u0c39\u0c3e\u0c38\u0c4d\u0c2a\u0c3f\u0c1f\u0c32\u0c4d", "\u0c06\u0c02\u0c1c\u0c28\u0c47\u0c2f \u0c15\u0c3e\u0c32\u0c4b\u0c28\u0c40"] },
+  { label: "Shahi Masjid", aliases: ["\u0c2a\u0c4b\u0c32\u0c47\u0c30\u0c2e\u0c4d\u0c2e \u0c35\u0c40\u0c27\u0c3f", "\u0c07\u0c02\u0c26\u0c3f\u0c30\u0c3e\u0c28\u0c17\u0c30\u0c4d", "\u0c17\u0c4b\u0c30\u0c40\u0c32 \u0c2c\u0c1c\u0c3e\u0c30\u0c4d"] },
+  { label: "Best India", aliases: ["\u0c2f\u0c32\u0c2e\u0c02\u0c26\u0c32 \u0c35\u0c3e\u0c30\u0c3f \u0c35\u0c40\u0c27\u0c3f", "\u0c0e\u0c32\u0c4d.\u0c2c\u0c3f. \u0c28\u0c17\u0c30\u0c4d", "\u0c2d\u0c3e\u0c30\u0c4d\u0c17\u0c35 \u0c2a\u0c47\u0c1f", "\u0c35\u0c21\u0c4d\u0c32\u0c2a\u0c42\u0c21\u0c3f \u0c38\u0c46\u0c02\u0c1f\u0c30\u0c4d"] },
+  { label: "APSP", aliases: ["\u0c0e\u0c2a\u0c3f\u0c0e\u0c38\u0c4d\u0c2a\u0c3f \u0c15\u0c4d\u0c2f\u0c3e\u0c02\u0c2a\u0c4d", "\u0c2f\u0c3e\u0c26\u0c35\u0c2a\u0c3e\u0c32\u0c46\u0c02"] },
+  { label: "Mangalagiri Mix", aliases: ["\u0c2e\u0c02\u0c17\u0c33\u0c17\u0c3f\u0c30\u0c3f"] },
+  { label: "Other Area", aliases: ["\u0c07\u0c24\u0c30 \u0c2a\u0c4d\u0c30\u0c3e\u0c02\u0c24\u0c02"] },
 ];
 
 const AREA_TILES: AreaTile[] = AREA_TILE_DEFS.map((item) => ({
@@ -54,6 +76,8 @@ const AREA_TILES: AreaTile[] = AREA_TILE_DEFS.map((item) => ({
   aliases: item.aliases,
   aliasSet: new Set(item.aliases),
 }));
+
+const AREA_TILE_ORDER = new Map(AREA_TILES.map((tile, index) => [tile.key, index]));
 
 const MOVE_AREA_OPTIONS: MoveAreaOption[] = AREA_TILES.map((tile) => ({
   value: tile.aliases[0],
@@ -95,6 +119,18 @@ function getAreaTile(voter: Voter) {
   return matched || null;
 }
 
+function normalizeHouseNo(value: string) {
+  return value.trim().replace(/\s*([/-])\s*/g, "$1").replace(/\s+/g, " ");
+}
+
+function isFamilyDoorValue(value: string) {
+  const normalized = normalizeHouseNo(value);
+  if (!normalized || normalized === "/" || normalized === "-") {
+    return false;
+  }
+  return normalized.includes("-") || normalized.includes("/");
+}
+
 function sourceLabel(kind: SourceFilter | "life" | "general", t: (typeof copy)["te"] | (typeof copy)["en"]) {
   if (kind === "life") {
     return t.sourceLife;
@@ -105,7 +141,72 @@ function sourceLabel(kind: SourceFilter | "life" | "general", t: (typeof copy)["
   return t.all;
 }
 
+function renderFilterMeta(parts: Array<string | number>) {
+  return (
+    <small className="filterMeta">
+      {parts.map((part, index) => (
+        <span key={`${part}-${index}`}>{part}</span>
+      ))}
+    </small>
+  );
+}
+
+function formatPercent(value: number, lang: Lang) {
+  const rounded = Math.round(value * 10) / 10;
+  return `${new Intl.NumberFormat(lang === "te" ? "te-IN" : "en-IN", {
+    minimumFractionDigits: rounded % 1 === 0 ? 0 : 1,
+    maximumFractionDigits: 1,
+  }).format(rounded)}%`;
+}
+
+function nameFontSize(name: string, lang: Lang): string {
+  const len = name.length;
+  if (lang === "te") {
+    // Telugu glyphs are wider — shrink earlier
+    if (len > 22) return "10px";
+    if (len > 17) return "11.5px";
+    if (len > 12) return "13px";
+    return "15px";
+  }
+  // English
+  if (len > 36) return "10px";
+  if (len > 26) return "12px";
+  if (len > 18) return "13.5px";
+  return "15px";
+}
+
+function displayName(voter: Pick<Voter, "name_te" | "name_en">, lang: Lang, fallback: string) {
+  if (lang === "te") {
+    return voter.name_te || voter.name_en || fallback;
+  }
+  return voter.name_en || toEnglishName(voter.name_te || "", fallback) || fallback;
+}
+
+function displayRelation(text: string, lang: Lang) {
+  if (lang === "te") {
+    return text || "-";
+  }
+  return toEnglishName(text || "", text || "-") || "-";
+}
+
+function displayOccupation(text: string, lang: Lang) {
+  if (lang === "te") {
+    return text || "-";
+  }
+  return toEnglishText(text || "", text || "-") || "-";
+}
+
+function displayArea(voter: Pick<Voter, "area_te" | "area_en">, lang: Lang) {
+  if (lang === "te") {
+    return voter.area_te || "-";
+  }
+  return toEnglishArea(voter.area_te || "", voter.area_en || "Other Area") || voter.area_en || voter.area_te || "-";
+}
+
 export default function Home() {
+  const topbarRef = useRef<HTMLElement | null>(null);
+  const stickyZoneRef = useRef<HTMLDivElement | null>(null);
+  const sentinelRef = useRef<HTMLDivElement | null>(null);
   const [lang, setLang] = useState<Lang>("te");
   const t = copy[lang];
   const [token, setToken] = useState("");
@@ -115,11 +216,39 @@ export default function Home() {
   const [selectedTile, setSelectedTile] = useState("");
   const [areaQuery, setAreaQuery] = useState("");
   const [source, setSource] = useState<SourceFilter>("all");
+  const [showDeceasedMgr, setShowDeceasedMgr] = useState(false);
+  const [showBlocklistMgr, setShowBlocklistMgr] = useState(false);
+  const [showCancelledMgr, setShowCancelledMgr] = useState(false);
+  const [showFamilyMgr, setShowFamilyMgr] = useState(false);
+  const [partyFilter, setPartyFilter] = useState<"ifp" | "yt" | "target" | "mf" | null>(null);
   const [query, setQuery] = useState("");
+  const [exactHouseNoFilter, setExactHouseNoFilter] = useState("");
   const [allVoters, setAllVoters] = useState<Voter[]>([]);
   const [selected, setSelected] = useState<Voter | null>(null);
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
+  const [ifpBusyId, setIfpBusyId] = useState("");
+  const [ytBusyId, setYtBusyId] = useState("");
+  const [targetBusyId, setTargetBusyId] = useState("");
+  const [mfBusyId, setMfBusyId] = useState("");
+  const [pdfBusy, setPdfBusy] = useState(false);
+  const [votersLoading, setVotersLoading] = useState(false);
+  const [showAreaMgr, setShowAreaMgr] = useState(false);
+  const [showAreaStats, setShowAreaStats] = useState(false);
+  const [rawAreas, setRawAreas] = useState<{ area_te: string; count: number; missing_count: number }[]>([]);
+  const [knownAreaOptions, setKnownAreaOptions] = useState<AreaOption[]>([]);
+  const [mergeTargets, setMergeTargets] = useState<Record<string, string>>({});
+  const [confirmDeceased, setConfirmDeceased] = useState(false);
+  const [visibleCount, setVisibleCount] = useState(120);
+  const [nameMode, setNameMode] = useState<"te" | "en">("en");
+  const [nameEnDraft, setNameEnDraft] = useState("");
+
+  useEffect(() => {
+    if (selected) {
+      setNameEnDraft(selected.name_en || "");
+      setNameMode("en");
+    }
+  }, [selected?.id]);
 
   useEffect(() => {
     const saved = localStorage.getItem("voter-token");
@@ -138,6 +267,29 @@ export default function Home() {
   }, [lang]);
 
   useEffect(() => {
+    if (!stickyZoneRef.current) {
+      return;
+    }
+    const root = document.documentElement;
+    const applyStickyMetrics = () => {
+      const zoneH = Math.ceil(stickyZoneRef.current!.getBoundingClientRect().height);
+      root.style.setProperty("--sticky-top", `${zoneH}px`);
+      if (topbarRef.current) {
+        root.style.setProperty("--topbar-height", `${Math.ceil(topbarRef.current.getBoundingClientRect().height)}px`);
+      }
+
+    };
+    applyStickyMetrics();
+    const observer = new ResizeObserver(() => applyStickyMetrics());
+    observer.observe(stickyZoneRef.current);
+    window.addEventListener("resize", applyStickyMetrics);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", applyStickyMetrics);
+    };
+  }, [lang, token, selectedTile]);
+
+  useEffect(() => {
     if (!token) {
       return;
     }
@@ -153,29 +305,49 @@ export default function Home() {
     void loadAllVoters();
   }, [token, jobId]);
 
+  const countFormatter = useMemo(
+    () => new Intl.NumberFormat(lang === "te" ? "te-IN" : "en-IN"),
+    [lang],
+  );
+
+  function formatCount(value: number) {
+    return countFormatter.format(value);
+  }
+
   async function login() {
     setError("");
-    const res = await fetch(`${API_BASE}/api/auth/login`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ code }),
-    });
-    if (!res.ok) {
-      setError(lang === "te" ? "ప్రవేశ కోడ్ సరైనది కాదు" : "Access code is invalid");
-      return;
+    try {
+      const res = await fetch(`${API_BASE}/api/auth/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ code }),
+      });
+      if (!res.ok) {
+        setError(lang === "te" ? "ప్రవేశ కోడ్ సరైనది కాదు" : "Access code is invalid");
+        return;
+      }
+      const data = await res.json() as { token: string };
+      localStorage.setItem("voter-token", data.token);
+      setToken(data.token);
+    } catch {
+      setError(lang === "te" ? "సర్వర్‌కు కనెక్ట్ అవలేదు" : "Could not connect to server");
     }
-    const data = await res.json();
-    localStorage.setItem("voter-token", data.token);
-    setToken(data.token);
   }
 
   async function refreshJobs() {
     try {
-      const data = await api<Job[]>("/api/jobs", token);
-      setJobs(data);
+      const res = await fetch(`${API_BASE}/api/jobs`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      if (res.status === 401) {
+        localStorage.removeItem("voter-token");
+        setToken("");
+        return;
+      }
+      if (!res.ok) return; // transient server error — keep session alive
+      setJobs(await res.json() as Job[]);
     } catch {
-      localStorage.removeItem("voter-token");
-      setToken("");
+      // network error — don't logout
     }
   }
 
@@ -184,7 +356,26 @@ export default function Home() {
   }
 
   async function loadAllVoters() {
-    setAllVoters(await api<Voter[]>(`${currentBasePath()}/voters`, token));
+    setVotersLoading(true);
+    try {
+      setAllVoters(await api<Voter[]>(`${currentBasePath()}/voters?include_deceased=1&include_blocklisted=1&include_cancelled=1`, token));
+    } finally {
+      setVotersLoading(false);
+    }
+  }
+
+  function syncPatchedVoter(saved: Voter) {
+    setAllVoters((prev) => prev.map((item) => (item.id === saved.id ? { ...item, ...saved } : item)));
+    setSelected((prev) => (prev?.id === saved.id ? { ...prev, ...saved } : prev));
+  }
+
+  async function patchVoter(voter: Pick<Voter, "id" | "job_id">, patch: Record<string, unknown>) {
+    const saved = await api<Voter>(`/api/jobs/${voter.job_id}/voters/${voter.id}`, token, {
+      method: "PATCH",
+      body: JSON.stringify(patch),
+    });
+    syncPatchedVoter(saved);
+    return saved;
   }
 
   async function upload(file: File | null) {
@@ -213,22 +404,140 @@ export default function Home() {
     setBusy(true);
     setError("");
     try {
-      const saved = await api<Voter>(`/api/jobs/${selected.job_id}/voters/${selected.id}`, token, {
-        method: "PATCH",
-        body: JSON.stringify({
-          serial_no: selected.serial_no,
-          name_te: selected.name_te,
-          name_en: selected.name_en,
-          relation_name_te: selected.relation_name_te,
-          age: selected.age,
-          occupation_te: selected.occupation_te,
-          house_no: selected.house_no,
-          area_te: selected.area_te,
-          notes: selected.notes,
-        }),
+      await patchVoter(selected, {
+        serial_no: selected.serial_no,
+        name_te: selected.name_te,
+        name_en: nameMode === "en" ? nameEnDraft : selected.name_en,
+        relation_name_te: selected.relation_name_te,
+        age: selected.age,
+        occupation_te: selected.occupation_te,
+        house_no: selected.house_no,
+        area_te: selected.area_te,
+        is_deceased: Boolean(selected.is_deceased),
+        is_blocklisted: Boolean(selected.is_blocklisted),
+        is_cancelled: Boolean(selected.is_cancelled),
+        is_ifp_voter: Boolean(selected.is_ifp_voter),
+        is_yt_voter: Boolean(selected.is_yt_voter),
+        is_target: Boolean(selected.is_target),
+        is_mf_voter: Boolean(selected.is_mf_voter),
+        notes: selected.notes,
       });
-      setSelected(saved);
-      await loadAllVoters();
+      closeModal();
+    } catch (err) {
+      setError(String(err));
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function toggleIfpVoter(voter: Voter) {
+    setIfpBusyId(voter.id);
+    setError("");
+    try {
+      await patchVoter(voter, { is_ifp_voter: !Boolean(voter.is_ifp_voter) });
+    } catch (err) {
+      setError(String(err));
+    } finally {
+      setIfpBusyId("");
+    }
+  }
+
+  async function toggleYtVoter(voter: Voter) {
+    const next = !Boolean(voter.is_yt_voter);
+    setAllVoters((prev) => prev.map((v) => (v.id === voter.id ? { ...v, is_yt_voter: next } : v)));
+    setYtBusyId(voter.id);
+    setError("");
+    try {
+      await patchVoter(voter, { is_yt_voter: next });
+    } catch (err) {
+      setAllVoters((prev) => prev.map((v) => (v.id === voter.id ? { ...v, is_yt_voter: !next } : v)));
+      setError(String(err));
+    } finally {
+      setYtBusyId("");
+    }
+  }
+
+  async function toggleTargetVoter(voter: Voter) {
+    const next = !Boolean(voter.is_target);
+    setAllVoters((prev) => prev.map((v) => (v.id === voter.id ? { ...v, is_target: next } : v)));
+    setTargetBusyId(voter.id);
+    setError("");
+    try {
+      await patchVoter(voter, { is_target: next });
+    } catch (err) {
+      setAllVoters((prev) => prev.map((v) => (v.id === voter.id ? { ...v, is_target: !next } : v)));
+      setError(String(err));
+    } finally {
+      setTargetBusyId("");
+    }
+  }
+
+  async function toggleMfVoter(voter: Voter) {
+    const next = !Boolean(voter.is_mf_voter);
+    setAllVoters((prev) => prev.map((v) => (v.id === voter.id ? { ...v, is_mf_voter: next } : v)));
+    setMfBusyId(voter.id);
+    setError("");
+    try {
+      await patchVoter(voter, { is_mf_voter: next });
+    } catch (err) {
+      setAllVoters((prev) => prev.map((v) => (v.id === voter.id ? { ...v, is_mf_voter: !next } : v)));
+      setError(String(err));
+    } finally {
+      setMfBusyId("");
+    }
+  }
+
+  function focusFamilyCluster(cluster: FamilyCluster) {
+    setSelectedTile(cluster.areaKey);
+    setQuery(cluster.houseNo);
+    setExactHouseNoFilter(cluster.houseNo);
+    setShowFamilyMgr(false);
+  }
+
+  function closeModal() {
+    setSelected(null);
+    setConfirmDeceased(false);
+  }
+
+  function updateSelectedField<K extends keyof Voter>(key: K, value: Voter[K]) {
+    if (!selected) {
+      return;
+    }
+    const next = { ...selected, [key]: value } as Voter;
+    if (key === "name_te") {
+      next.name_en = toEnglishName(String(value || ""), next.name_en || "");
+    }
+    if (key === "area_te") {
+      next.area_en = toEnglishArea(String(value || ""), next.area_en || "Other Area");
+    }
+    setSelected(next);
+  }
+
+  async function loadRawAreas() {
+    const [areas, options] = await Promise.all([
+      api<{ area_te: string; count: number; missing_count: number }[]>("/api/areas", token),
+      api<AreaOption[]>("/api/area-options", token),
+    ]);
+    setRawAreas(areas);
+    setKnownAreaOptions(options);
+  }
+
+  async function mergeArea(fromArea: string) {
+    const toArea = mergeTargets[fromArea];
+    if (!toArea) return;
+    setBusy(true);
+    setError("");
+    try {
+      await api<{ moved_count: number }>("/api/areas/merge", token, {
+        method: "POST",
+        body: JSON.stringify({ from_area_te: fromArea, to_area_te: toArea }),
+      });
+      setMergeTargets((prev) => {
+        const next = { ...prev };
+        delete next[fromArea];
+        return next;
+      });
+      await Promise.all([loadRawAreas(), loadAllVoters()]);
     } catch (err) {
       setError(String(err));
     } finally {
@@ -256,6 +565,128 @@ export default function Home() {
       });
   }
 
+  async function downloadPdf(areaLabel: string) {
+    setPdfBusy(true);
+    try {
+      const life = filteredVoters.filter((v) => v.source_kind === "life");
+      const general = filteredVoters.filter((v) => v.source_kind === "general");
+
+      async function toDataUrl(photoUrl: string): Promise<string> {
+        if (!photoUrl) return "";
+        try {
+          const res = await fetch(`${API_BASE}${photoUrl}`, { headers: { Authorization: `Bearer ${token}` } });
+          if (!res.ok) return "";
+          const blob = await res.blob();
+          return await new Promise<string>((resolve) => {
+            const reader = new FileReader();
+            reader.onload = () => resolve(reader.result as string);
+            reader.onerror = () => resolve("");
+            reader.readAsDataURL(blob);
+          });
+        } catch {
+          return "";
+        }
+      }
+
+      const allVoters = [...life, ...general];
+      const dataUrls = await Promise.all(allVoters.map((v) => toDataUrl(v.photo_url)));
+      const urlMap: Record<string, string> = {};
+      allVoters.forEach((v, i) => { urlMap[v.id] = dataUrls[i]; });
+
+      function voterRow(v: Voter): string {
+        const img = urlMap[v.id]
+          ? `<img src="${urlMap[v.id]}" alt="" />`
+          : `<div class="noPhoto"></div>`;
+        const badge = v.source_kind === "life" ? "L" : "G";
+        const badgeCls = v.source_kind === "life" ? "life" : "gen";
+        const name = displayName(v, lang, "[పేరు తెలియదు]");
+        const tags = [
+          v.is_target    ? `<span class="tag tag-t">T</span>`   : "",
+          v.is_yt_voter  ? `<span class="tag tag-yt">YT</span>` : "",
+          v.is_mf_voter  ? `<span class="tag tag-mf">MF</span>` : "",
+          v.is_ifp_voter ? `<span class="tag tag-ifp">IFP</span>` : "",
+        ].filter(Boolean).join("");
+        return `<div class="card">
+          <div class="photo">${img}<span class="badge ${badgeCls}">${badge}</span></div>
+          <div class="info">
+            <div class="name">${name || "[పేరు తెలియదు]"}${tags ? `<span class="tags">${tags}</span>` : ""}</div>
+            <div class="row"><span class="lbl">${lang === "te" ? "తండ్రి" : "Father"}</span><span>${displayRelation(v.relation_name_te || "", lang)}</span></div>
+            <div class="row"><span class="lbl">సీరియల్</span><span>${v.serial_no || "-"}</span></div>
+            <div class="row"><span class="lbl">వయస్సు</span><span>${v.age || "-"}</span></div>
+            <div class="row"><span class="lbl">D.no</span><span>${v.house_no || "-"}</span></div>
+          </div>
+        </div>`;
+      }
+
+      function section(title: string, voters: Voter[]): string {
+        if (!voters.length) return "";
+        return `<div class="section">
+          <div class="secHeader">${title} <span class="cnt">${voters.length}</span></div>
+          <div class="grid">${voters.map(voterRow).join("")}</div>
+        </div>`;
+      }
+
+      const html = `<!DOCTYPE html><html lang="te"><head>
+<meta charset="UTF-8">
+<title>${areaLabel} — ఓటర్ జాబితా</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Telugu:wght@400;700&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Noto Sans Telugu', 'Segoe UI', sans-serif; font-size: 11px; background: #fff; color: #1a1a1a; }
+  .pageHeader { padding: 12px 16px; background: #0e4a35; color: #fff; display: flex; justify-content: space-between; align-items: center; }
+  .pageHeader h1 { font-size: 15px; }
+  .pageHeader .meta { font-size: 11px; opacity: 0.85; text-align: right; }
+  .section { padding: 12px 16px; }
+  .secHeader { font-size: 13px; font-weight: 700; padding: 6px 10px; background: #f0ebe0; border-bottom: 2px solid #0e4a35; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+  .secHeader .cnt { background: #0e4a35; color: #fff; border-radius: 99px; padding: 1px 8px; font-size: 11px; }
+  .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+  .card { display: flex; gap: 6px; border: 1px solid #d7cfbe; border-radius: 6px; padding: 6px; break-inside: avoid; }
+  .photo { position: relative; flex-shrink: 0; width: 56px; }
+  .photo img, .photo .noPhoto { width: 56px; height: 72px; object-fit: cover; border-radius: 4px; background: #e8e3d8; }
+  .badge { position: absolute; bottom: 2px; right: 2px; font-size: 9px; font-weight: 700; padding: 1px 4px; border-radius: 3px; }
+  .life { background: #d1fae5; color: #065f46; }
+  .gen { background: #ede9fe; color: #4c1d95; }
+  .info { flex: 1; min-width: 0; }
+  .name { font-weight: 700; font-size: 12px; margin-bottom: 3px; overflow-wrap: anywhere; display: flex; flex-wrap: wrap; align-items: center; gap: 3px; }
+  .tags { display: inline-flex; gap: 2px; flex-shrink: 0; }
+  .tag { font-size: 8px; font-weight: 700; padding: 1px 4px; border-radius: 3px; line-height: 1.4; }
+  .tag-t   { background: #fef2f2; color: #b91c1c; }
+  .tag-yt  { background: #f3f0ff; color: #6d28d9; }
+  .tag-mf  { background: #f0fdfa; color: #0d9488; }
+  .tag-ifp { background: #d1fae5; color: #065f46; }
+  .row { display: flex; gap: 4px; font-size: 10px; line-height: 1.5; }
+  .lbl { color: #6b7280; flex-shrink: 0; }
+  @media print {
+    .pageHeader { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .secHeader { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .badge { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head><body>
+<div class="pageHeader">
+  <h1>${areaLabel}</h1>
+  <div class="meta">
+    మొత్తం ${filteredVoters.length} · లైఫ్ ${life.length} · జనరల్ ${general.length}<br>
+    ${new Date().toLocaleDateString("te-IN")}
+  </div>
+</div>
+${section("లైఫ్ ఓటర్లు", life)}
+${section("జనరల్ ఓటర్లు", general)}
+</body></html>`;
+
+      const win = window.open("", "_blank");
+      if (!win) return;
+      // Set onload BEFORE document.close() — close() fires the load event,
+      // so assigning onload afterward means the handler is always missed.
+      win.onload = () => { win.focus(); win.print(); };
+      win.document.open();
+      win.document.write(html);
+      win.document.close();
+    } finally {
+      setPdfBusy(false);
+    }
+  }
+
   const categoryJobCounts = useMemo(
     () => ({
       life: jobs.filter((item) => item.source_kind === "life").length,
@@ -270,14 +701,33 @@ export default function Home() {
     return getAreaTile(selected)?.aliases[0] || selected.area_te || "";
   }, [selected]);
 
-  const areaTiles = useMemo(() => {
-    const tileMap = new Map<string, ScopeStats & { label: string; aliases: string[] }>(
+  const deceasedVoters = useMemo(() => allVoters.filter((item) => Boolean(item.is_deceased)), [allVoters]);
+  const blocklistedVoters = useMemo(() => allVoters.filter((item) => Boolean(item.is_blocklisted)), [allVoters]);
+  const cancelledVoters = useMemo(() => allVoters.filter((item) => Boolean(item.is_cancelled)), [allVoters]);
+  const activeVoters = useMemo(
+    () => allVoters.filter((item) => !item.is_deceased && !item.is_blocklisted && !item.is_cancelled),
+    [allVoters],
+  );
+  const ifpVoters = useMemo(() => activeVoters.filter((item) => Boolean(item.is_ifp_voter)), [activeVoters]);
+  const ytVoters = useMemo(() => activeVoters.filter((item) => Boolean(item.is_yt_voter)), [activeVoters]);
+  const targetVoters = useMemo(() => activeVoters.filter((item) => Boolean(item.is_target)), [activeVoters]);
+  const mfVoters = useMemo(() => activeVoters.filter((item) => Boolean(item.is_mf_voter)), [activeVoters]);
+  const scopedVoters = useMemo(() => {
+    if (partyFilter === "ifp") return ifpVoters;
+    if (partyFilter === "yt") return ytVoters;
+    if (partyFilter === "target") return targetVoters;
+    if (partyFilter === "mf") return mfVoters;
+    return activeVoters;
+  }, [partyFilter, activeVoters, ifpVoters, ytVoters, targetVoters, mfVoters]);
+
+  const areaTiles = useMemo<AreaTileSummary[]>(() => {
+    const tileMap = new Map<string, AreaTileSummary>(
       AREA_TILES.map((tile) => [
         tile.key,
-        { label: tile.label, aliases: tile.aliases, total: 0, life: 0, general: 0, missing: 0 },
+        { ...tile, total: 0, life: 0, general: 0, missing: 0, ifp: 0, yt: 0, target: 0, mf: 0 },
       ]),
     );
-    for (const voter of allVoters) {
+    for (const voter of scopedVoters) {
       const tile = getAreaTile(voter);
       if (!tile) {
         continue;
@@ -288,6 +738,10 @@ export default function Home() {
       }
       current.total += 1;
       current.missing += voterMissingCount(voter) > 0 ? 1 : 0;
+      current.ifp += voter.is_ifp_voter ? 1 : 0;
+      current.yt += voter.is_yt_voter ? 1 : 0;
+      current.target += voter.is_target ? 1 : 0;
+      current.mf += voter.is_mf_voter ? 1 : 0;
       if (voter.source_kind === "life") {
         current.life += 1;
       } else {
@@ -295,10 +749,15 @@ export default function Home() {
       }
       tileMap.set(tile.key, current);
     }
-    return Array.from(tileMap.entries())
-      .map(([key, value]) => ({ key, ...value }))
-      .sort((a, b) => AREA_TILES.findIndex((tile) => tile.key === a.key) - AREA_TILES.findIndex((tile) => tile.key === b.key));
-  }, [allVoters]);
+    return Array.from(tileMap.values())
+      .sort(
+        (a, b) =>
+          b.total - a.total ||
+          b.ifp - a.ifp ||
+          b.life - a.life ||
+          (AREA_TILE_ORDER.get(a.key) ?? Number.MAX_SAFE_INTEGER) - (AREA_TILE_ORDER.get(b.key) ?? Number.MAX_SAFE_INTEGER),
+      );
+  }, [scopedVoters]);
 
   const visibleAreaTiles = useMemo(() => {
     const needle = areaQuery.trim().toLowerCase();
@@ -313,9 +772,19 @@ export default function Home() {
     );
   }, [areaQuery, areaTiles]);
 
+  const sidebarAreaStats = useMemo(
+    () => areaTiles.filter((tile) => tile.total > 0).sort((a, b) => b.total - a.total || a.label.localeCompare(b.label)),
+    [areaTiles],
+  );
+
   const selectedAreaVoters = useMemo(
-    () => (selectedTile ? allVoters.filter((item) => getAreaTile(item)?.key === selectedTile) : allVoters),
-    [allVoters, selectedTile],
+    () => (selectedTile ? scopedVoters.filter((item) => getAreaTile(item)?.key === selectedTile) : scopedVoters),
+    [scopedVoters, selectedTile],
+  );
+
+  const familyScopeVoters = useMemo(
+    () => selectedAreaVoters.filter((item) => source === "all" || item.source_kind === source),
+    [selectedAreaVoters, source],
   );
 
   const filteredVoters = useMemo(() => {
@@ -323,15 +792,81 @@ export default function Home() {
       if (source !== "all" && voter.source_kind !== source) {
         return false;
       }
+      if (exactHouseNoFilter && normalizeHouseNo(voter.house_no || "") !== exactHouseNoFilter) {
+        return false;
+      }
       return voterMatchesQuery(voter, query);
     });
-  }, [query, selectedAreaVoters, source]);
+  }, [exactHouseNoFilter, query, selectedAreaVoters, source]);
+
+  const familyClusters = useMemo(() => {
+    const clusters = new Map<string, FamilyCluster>();
+    for (const voter of familyScopeVoters) {
+      const houseNo = normalizeHouseNo(voter.house_no || "");
+      if (!isFamilyDoorValue(houseNo)) {
+        continue;
+      }
+      const tile = getAreaTile(voter);
+      const areaKey = tile?.key || (voter.area_te || "").trim().toLowerCase();
+      const areaLabel = tile?.label || voter.area_te || "—";
+      const key = `${areaKey}::${houseNo}`;
+      const current = clusters.get(key) || {
+        key,
+        areaKey,
+        areaLabel,
+        houseNo,
+        count: 0,
+        life: 0,
+        general: 0,
+        ifp: 0,
+        voters: [],
+      };
+      current.count += 1;
+      current.ifp += voter.is_ifp_voter ? 1 : 0;
+      if (voter.source_kind === "life") {
+        current.life += 1;
+      } else {
+        current.general += 1;
+      }
+      current.voters.push(voter);
+      clusters.set(key, current);
+    }
+    return Array.from(clusters.values())
+      .filter((cluster) => cluster.count > 1)
+      .map((cluster) => ({
+        ...cluster,
+        voters: [...cluster.voters].sort(
+          (a, b) =>
+            a.source_kind.localeCompare(b.source_kind) ||
+            a.serial_no.localeCompare(b.serial_no, "en", { numeric: true }) ||
+            a.name_te.localeCompare(b.name_te, "te"),
+        ),
+      }))
+      .sort(
+        (a, b) =>
+          b.count - a.count ||
+          b.ifp - a.ifp ||
+          a.areaLabel.localeCompare(b.areaLabel, "en") ||
+          a.houseNo.localeCompare(b.houseNo, "en", { numeric: true }),
+      );
+  }, [familyScopeVoters]);
+
+  const familyCoveredCount = useMemo(
+    () => familyClusters.reduce((acc, cluster) => acc + cluster.count, 0),
+    [familyClusters],
+  );
+
+  const largestFamilyCluster = familyClusters[0]?.count || 0;
 
   const selectedScopeStats = useMemo(() => {
     return selectedAreaVoters.reduce<ScopeStats>(
       (acc, item) => {
         acc.total += 1;
         acc.missing += voterMissingCount(item) > 0 ? 1 : 0;
+        acc.ifp += item.is_ifp_voter ? 1 : 0;
+        acc.yt += item.is_yt_voter ? 1 : 0;
+        acc.target += item.is_target ? 1 : 0;
+        acc.mf += item.is_mf_voter ? 1 : 0;
         if (item.source_kind === "life") {
           acc.life += 1;
         } else {
@@ -339,7 +874,7 @@ export default function Home() {
         }
         return acc;
       },
-      { total: 0, life: 0, general: 0, missing: 0 },
+      { total: 0, life: 0, general: 0, missing: 0, ifp: 0, yt: 0, target: 0, mf: 0 },
     );
   }, [selectedAreaVoters]);
 
@@ -349,6 +884,10 @@ export default function Home() {
         (acc, item) => {
           acc.total += 1;
           acc.missing += voterMissingCount(item) > 0 ? 1 : 0;
+          acc.ifp += item.is_ifp_voter ? 1 : 0;
+          acc.yt += item.is_yt_voter ? 1 : 0;
+          acc.target += item.is_target ? 1 : 0;
+          acc.mf += item.is_mf_voter ? 1 : 0;
           if (item.source_kind === "life") {
             acc.life += 1;
           } else {
@@ -356,14 +895,105 @@ export default function Home() {
           }
           return acc;
         },
-        { total: 0, life: 0, general: 0, missing: 0 },
+        { total: 0, life: 0, general: 0, missing: 0, ifp: 0, yt: 0, target: 0, mf: 0 },
       ),
     [filteredVoters],
+  );
+
+  const selectedIfpShare = useMemo(
+    () => (selectedScopeStats.total ? (selectedScopeStats.ifp / selectedScopeStats.total) * 100 : 0),
+    [selectedScopeStats],
+  );
+  const selectedLifeShare = useMemo(
+    () => (selectedScopeStats.total ? (selectedScopeStats.life / selectedScopeStats.total) * 100 : 0),
+    [selectedScopeStats],
+  );
+  const selectedGeneralShare = useMemo(
+    () => (selectedScopeStats.total ? (selectedScopeStats.general / selectedScopeStats.total) * 100 : 0),
+    [selectedScopeStats],
+  );
+  const selectedTargetShare = useMemo(
+    () => (selectedScopeStats.total ? (selectedScopeStats.target / selectedScopeStats.total) * 100 : 0),
+    [selectedScopeStats],
+  );
+  const selectedYtShare = useMemo(
+    () => (selectedScopeStats.total ? (selectedScopeStats.yt / selectedScopeStats.total) * 100 : 0),
+    [selectedScopeStats],
+  );
+  const selectedMfShare = useMemo(
+    () => (selectedScopeStats.total ? (selectedScopeStats.mf / selectedScopeStats.total) * 100 : 0),
+    [selectedScopeStats],
   );
 
   const selectedTileLabel = useMemo(
     () => areaTiles.find((item) => item.key === selectedTile)?.label || "",
     [areaTiles, selectedTile],
+  );
+
+  useEffect(() => {
+    if (selectedTile && !areaTiles.some((item) => item.key === selectedTile)) {
+      setSelectedTile("");
+    }
+  }, [areaTiles, selectedTile]);
+
+  useEffect(() => { setVisibleCount(120); }, [selectedTile, query, source]);
+
+  useEffect(() => {
+    document.body.style.overflow = selected || showAreaMgr || showDeceasedMgr || showBlocklistMgr || showCancelledMgr || showFamilyMgr || showAreaStats ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [selected, showAreaMgr, showDeceasedMgr, showBlocklistMgr, showCancelledMgr, showFamilyMgr, showAreaStats]);
+
+  // Enhancement #2 — Escape key closes any open modal
+  useEffect(() => {
+    if (!selected) return;
+    function onKey(e: KeyboardEvent) { if (e.key === "Escape") closeModal(); }
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [selected]);
+
+  // Enhancement #8 — infinite scroll: reconnect observer every time the count or list changes
+  // so it fires again immediately if the sentinel is already in view after a load batch
+  useEffect(() => {
+    const sentinel = sentinelRef.current;
+    if (!sentinel || filteredVoters.length <= visibleCount) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) setVisibleCount((c) => c + 120);
+      },
+      { rootMargin: "200px" },
+    );
+    observer.observe(sentinel);
+    return () => observer.disconnect();
+  }, [filteredVoters.length, visibleCount]);
+
+  const unclassifiedAreas = useMemo(
+    () => rawAreas.filter((area) => !AREA_TILES.some((tile) => tile.aliasSet.has(area.area_te))),
+    [rawAreas],
+  );
+
+  const areaManagerRows = useMemo(
+    () => {
+      const liveCounts = new Map(rawAreas.map((area) => [area.area_te, area]));
+      const allAreaNames = Array.from(
+        new Set([
+          ...knownAreaOptions.map((item) => item.area_te),
+          ...rawAreas.map((item) => item.area_te),
+        ]),
+      );
+      return allAreaNames.map((areaTe) => {
+        const current = liveCounts.get(areaTe);
+        const matchedTile = AREA_TILES.find((tile) => tile.aliasSet.has(areaTe));
+        return {
+          area_te: areaTe,
+          count: current?.count || 0,
+          missing_count: current?.missing_count || 0,
+          matchedTile,
+          matchedLabel: matchedTile?.label || "",
+          matchedAlias: matchedTile?.aliases[0] || "",
+        };
+      }).sort((a, b) => b.count - a.count || a.area_te.localeCompare(b.area_te, "te"));
+    },
+    [knownAreaOptions, rawAreas],
   );
 
   if (!token) {
@@ -384,13 +1014,30 @@ export default function Home() {
           </div>
           <h1>{t.title}</h1>
           <p>{t.subtitle}</p>
-          <label>
-            {t.code}
-            <input value={code} onChange={(event) => setCode(event.target.value)} type="password" />
-          </label>
-          <button type="button" className="primary" onClick={login}>
-            {t.login}
-          </button>
+          <form onSubmit={(e) => { e.preventDefault(); void login(); }}>
+            <input
+              type="text"
+              autoComplete="username"
+              defaultValue="ifp-member"
+              tabIndex={-1}
+              aria-hidden="true"
+              style={{ display: "none" }}
+              readOnly
+            />
+            <label>
+              {t.code}
+              <input
+                value={code}
+                onChange={(event) => setCode(event.target.value)}
+                type="password"
+                autoComplete="current-password"
+                autoFocus
+              />
+            </label>
+            <button type="submit" className="primary">
+              {t.login}
+            </button>
+          </form>
           {error && <p className="error">{error}</p>}
         </section>
       </main>
@@ -399,19 +1046,82 @@ export default function Home() {
 
   return (
     <main className="appShell">
-      <header className="topbar">
+      <div className="stickyZone" ref={stickyZoneRef}>
+      <header className="topbar" ref={topbarRef}>
         <div className="brandBlock brandInline">
           <img src="/if-logo-full.png" alt="Islamic Front" className="brandLogo" />
-          <div>
+          <div className="heroCopy">
             <strong>{t.brand}</strong>
             <p>{t.premium}</p>
           </div>
         </div>
-        <div className="heroCopy">
-          <h1>{t.title}</h1>
-          <p>{t.subtitle}</p>
+        <div className="topbarStats">
+          <button
+            type="button"
+            className={`statChip statChipTarget${partyFilter === "target" ? " isActiveFilter" : ""}`}
+            onClick={() => setPartyFilter(prev => prev === "target" ? null : "target")}
+            aria-pressed={partyFilter === "target"}
+            title={t.targetCore}
+          >
+            <span>T</span>
+            <strong key={`t-${targetVoters.length}`} className="popped">{formatCount(targetVoters.length)}</strong>
+          </button>
+          <button
+            type="button"
+            className={`statChip statChipYt${partyFilter === "yt" ? " isActiveFilter" : ""}`}
+            onClick={() => setPartyFilter(prev => prev === "yt" ? null : "yt")}
+            aria-pressed={partyFilter === "yt"}
+            title={t.ytCore}
+          >
+            <span>YT</span>
+            <strong key={`y-${ytVoters.length}`} className="popped">{formatCount(ytVoters.length)}</strong>
+          </button>
+          <button
+            type="button"
+            className={`statChip statChipMf${partyFilter === "mf" ? " isActiveFilter" : ""}`}
+            onClick={() => setPartyFilter(prev => prev === "mf" ? null : "mf")}
+            aria-pressed={partyFilter === "mf"}
+            title={t.mfCore}
+          >
+            <span>MF</span>
+            <strong key={`m-${mfVoters.length}`} className="popped">{formatCount(mfVoters.length)}</strong>
+          </button>
+          <button
+            type="button"
+            className={`statChip statChipIfp${partyFilter === "ifp" ? " isActiveFilter" : ""}`}
+            onClick={() => setPartyFilter(prev => prev === "ifp" ? null : "ifp")}
+            aria-pressed={partyFilter === "ifp"}
+            title={t.ifpOnly}
+          >
+            <span>{t.ifpAction}</span>
+            <strong key={`i-${ifpVoters.length}`} className="popped">{formatCount(ifpVoters.length)}</strong>
+          </button>
+          <span className="topbarDivider" aria-hidden="true" />
+          <button type="button" className="statChip statChipFamily" onClick={() => setShowFamilyMgr(true)} title={t.familyOpen}>
+            <span>{t.familyVoting}</span>
+            <strong key={`f-${familyClusters.length}`} className="popped">{formatCount(familyClusters.length)}</strong>
+          </button>
+          <button type="button" className="statChip statChipDeceased" onClick={() => setShowDeceasedMgr(true)}>
+            <span>{lang === "te" ? "మరణించినవారు" : "Deceased"}</span>
+            <strong key={"d-" + deceasedVoters.length} className="popped">{formatCount(deceasedVoters.length)}</strong>
+          </button>
+          <button type="button" className="statChip statChipBlock" onClick={() => setShowBlocklistMgr(true)}>
+            <span>{lang === "te" ? "బ్లాక్ లిస్ట్" : "Block List"}</span>
+            <strong key={"b-" + blocklistedVoters.length} className="popped">{formatCount(blocklistedVoters.length)}</strong>
+          </button>
+          <button type="button" className="statChip statChipCancelled" onClick={() => setShowCancelledMgr(true)}>
+            <span>{lang === "te" ? "రద్దు జాబితా" : "Cancelled"}</span>
+            <strong key={"c-" + cancelledVoters.length} className="popped">{formatCount(cancelledVoters.length)}</strong>
+          </button>
         </div>
         <div className="actions">
+          <label className="ghostBtn uploadInlineBtn" title={t.upload}>
+            {busy ? "⏳" : "⬆"} {busy ? (lang === "te" ? "అప్లోడ్..." : "Uploading...") : t.upload}
+            <input type="file" accept="application/pdf" style={{ display: "none" }} onChange={(event) => upload(event.target.files?.[0] || null)} />
+          </label>
+          <button type="button" className="ghostBtn" onClick={() => { setShowAreaMgr(true); void loadRawAreas(); }}>
+            {t.manageAreas}
+          </button>
           <button type="button" onClick={() => setLang(lang === "te" ? "en" : "te")}>
             {lang === "te" ? "English" : "తెలుగు"}
           </button>
@@ -427,119 +1137,147 @@ export default function Home() {
         </div>
       </header>
 
-      <section className="uploadBand">
-        <label className="uploadBox">
-          <span>{busy ? "అప్లోడ్..." : t.upload}</span>
-          <input type="file" accept="application/pdf" onChange={(event) => upload(event.target.files?.[0] || null)} />
-        </label>
-        <div className="statusCard">
-          <strong>{source === "life" ? t.sourceLife : source === "general" ? t.sourceGeneral : t.allPdfs}</strong>
-          <span>
-            {source === "life"
-              ? `${categoryJobCounts.life} ${t.jobs}`
-              : source === "general"
-                ? `${categoryJobCounts.general} ${t.jobs}`
-                : `${jobs.length} ${t.jobs}`}
-          </span>
-          <div className="statusStats" aria-label={t.overview}>
-            <div className="statPill">
-              <small>{selectedTile ? t.selectedArea : t.overview}</small>
-              <strong>{selectedTileLabel || t.all}</strong>
-            </div>
-            <div className="statPill">
-              <small>{t.total}</small>
-              <strong>{selectedScopeStats.total}</strong>
-            </div>
-            <div className="statPill life">
-              <small>{t.lifeCount}</small>
-              <strong>{selectedScopeStats.life}</strong>
-            </div>
-            <div className="statPill general">
-              <small>{t.generalCount}</small>
-              <strong>{selectedScopeStats.general}</strong>
-            </div>
-          </div>
-        </div>
-        {error && <p className="error">{error}</p>}
-      </section>
-
-      <section className="layout">
-        <aside className="sidebar">
-          <h2>{t.source}</h2>
-          <button
-            type="button"
-            className={source === "all" ? "job active" : "job"}
-            onClick={() => {
-              setSource("all");
-              setSelectedTile("");
-            }}
-          >
-            <span>{t.allPdfs}</span>
-            <small>{jobs.length}</small>
+      <div className="filterBar">
+        <div className="filterCatGroup">
+          <button type="button" className={source === "all" ? "filterPill active" : "filterPill"} onClick={() => { setSource("all"); setSelectedTile(""); setExactHouseNoFilter(""); }}>
+            {t.allPdfs}
           </button>
-          {SOURCE_ORDER.filter((item) => item !== "all").map((item) => (
-            <button
-              type="button"
-              className={source === item ? "job active" : "job"}
-              key={item}
-              onClick={() => {
-                setSource(item);
-                setSelectedTile("");
-              }}
-            >
-              <span>{sourceLabel(item, t)}</span>
-              <small>{item === "life" ? categoryJobCounts.life : categoryJobCounts.general}</small>
+          {SOURCE_ORDER.filter((s) => s !== "all").map((item) => (
+            <button key={item} type="button" className={source === item ? "filterPill active" : "filterPill"} onClick={() => { setSource(item); setSelectedTile(""); setExactHouseNoFilter(""); }}>
+              {sourceLabel(item, t)}
             </button>
           ))}
-
-          <h2>{t.areas}</h2>
-          <input
-            className="areaSearchInput"
-            value={areaQuery}
-            onChange={(event) => setAreaQuery(event.target.value)}
-            placeholder={t.areaSearch}
-          />
-          <div className="areaList">
-            <button type="button" className={!selectedTile ? "area active" : "area"} onClick={() => setSelectedTile("")}>
-              <span>{t.all}</span>
-              <small>
-                {allVoters.length} · {t.sourceLife} {selectedScopeStats.life} · {t.sourceGeneral} {selectedScopeStats.general}
-              </small>
+        </div>
+        <div className="filterSep" aria-hidden="true" />
+        <input className="filterAreaSearch" value={areaQuery} onChange={(e) => setAreaQuery(e.target.value)} placeholder={t.areaSearch} />
+        <div className="filterAreaScroller" role="group" aria-label={lang === "te" ? "ప్రాంత ఎంపిక" : "Area selection"}>
+        <div className="filterAreaTiles">
+          <button type="button" className={!selectedTile ? "filterPill active" : "filterPill"} onClick={() => { setSelectedTile(""); setExactHouseNoFilter(""); }}>
+            {t.all}
+          </button>
+          {visibleAreaTiles.map((tile) => (
+            <button key={tile.key} type="button" className={tile.key === selectedTile ? "filterPill active" : "filterPill"} onClick={() => { setSelectedTile(tile.key); setExactHouseNoFilter(""); }}>
+              {tile.label}
             </button>
-            {visibleAreaTiles.map((tile) => (
-              <button
-                type="button"
-                key={tile.key}
-                className={tile.key === selectedTile ? "area active" : "area"}
-                onClick={() => setSelectedTile(tile.key)}
-              >
-                <span>{tile.label}</span>
-                <small>
-                  {tile.total} · {t.sourceLife} {tile.life} · {t.sourceGeneral} {tile.general}
-                </small>
-              </button>
-            ))}
-          </div>
-        </aside>
+          ))}
+        </div>
+        </div>
+        <button type="button" className="ghostBtn filterStatsBtn" onClick={() => setShowAreaStats(true)}>
+          {lang === "te" ? "📊 ప్రాంత లెక్కలు" : "📊 Area Stats"}
+        </button>
+      </div>
+      </div>{/* /stickyZone */}
+      <div className="summaryMetricsWrap">
+        <div className="summaryMetricsViewRow">
+          <span className="summaryViewLabel">{t.currentView}</span>
+          <strong className="summaryViewVal">{selectedTileLabel || t.all}</strong>
+          {partyFilter === "ifp" ? <span className="summaryModeChip">{t.ifpOnly}</span> : null}
+          {partyFilter === "target" ? <span className="summaryModeChip">{t.targetCore}</span> : null}
+          {partyFilter === "yt" ? <span className="summaryModeChip">{t.ytCore}</span> : null}
+          {partyFilter === "mf" ? <span className="summaryModeChip">{t.mfCore}</span> : null}
+        </div>
+        <div className="summaryMetrics">
+          <article className="summaryMetricCard metricTotal">
+            <span>{t.total}</span>
+            <strong>{formatCount(selectedScopeStats.total)}</strong>
+            <small>{selectedTileLabel || t.all}</small>
+          </article>
+          <article className="summaryMetricCard metricLife">
+            <span>{t.lifeCount}</span>
+            <strong>{formatCount(selectedScopeStats.life)}</strong>
+            <small>{formatPercent(selectedLifeShare, lang)}</small>
+          </article>
+          <article className="summaryMetricCard metricGeneral">
+            <span>{t.generalCount}</span>
+            <strong>{formatCount(selectedScopeStats.general)}</strong>
+            <small>{formatPercent(selectedGeneralShare, lang)}</small>
+          </article>
+          <article className="summaryMetricCard metricIfp">
+            <span>{t.ifpCount}</span>
+            <strong>{formatCount(selectedScopeStats.ifp)}</strong>
+            <small>{formatPercent(selectedIfpShare, lang)}</small>
+          </article>
+          <article className="summaryMetricCard metricTarget summaryMetricCompact">
+            <span>T</span>
+            <strong>{formatCount(selectedScopeStats.target)}</strong>
+            <small>{formatPercent(selectedTargetShare, lang)}</small>
+          </article>
+          <article className="summaryMetricCard metricYt summaryMetricCompact">
+            <span>YT</span>
+            <strong>{formatCount(selectedScopeStats.yt)}</strong>
+            <small>{formatPercent(selectedYtShare, lang)}</small>
+          </article>
+          <article className="summaryMetricCard metricMf summaryMetricCompact">
+            <span>MF</span>
+            <strong>{formatCount(selectedScopeStats.mf)}</strong>
+            <small>{formatPercent(selectedMfShare, lang)}</small>
+          </article>
+        </div>
+      </div>
+      {error && <p className="error" style={{ width: "100%", margin: "0 0 12px", padding: "0 var(--page-gutter)" }}>{error}</p>}
 
+      <section className="layout">
         <section className="content">
           <div className="toolbar">
-            <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder={t.search} />
-            <button type="button" onClick={() => downloadCsv()}>
-              {t.exportAll}
+            <input
+              value={query}
+              onChange={(event) => {
+                const nextValue = event.target.value;
+                if (exactHouseNoFilter && normalizeHouseNo(nextValue) !== exactHouseNoFilter) {
+                  setExactHouseNoFilter("");
+                }
+                setQuery(nextValue);
+              }}
+              placeholder={t.search}
+            />
+            <button
+              type="button"
+              onClick={() => {
+                const tile = AREA_TILES.find((tile) => tile.key === selectedTile);
+                downloadCsv(tile?.aliases[0]);
+              }}
+            >
+              {selectedTile ? t.exportArea : t.exportAll}
+            </button>
+            <button
+              type="button"
+              className="ghostBtn"
+              disabled={pdfBusy || filteredVoters.length === 0}
+              onClick={() => {
+                const tile = AREA_TILES.find((tile) => tile.key === selectedTile);
+                const base = tile?.label || query.trim() || t.all;
+                const suffix = partyFilter === "target" ? " T" : partyFilter === "yt" ? " YT" : partyFilter === "mf" ? " MF" : partyFilter === "ifp" ? " IFP" : "";
+                void downloadPdf(base + suffix);
+              }}
+            >
+              {pdfBusy ? t.exportingPdf : t.exportPdf}
             </button>
           </div>
 
-          <div className="selectionBand">
-            <strong>{selectedTileLabel || t.all}</strong>
-            <span>
-              {t.total}: {filteredScopeStats.total} · {t.sourceLife} {filteredScopeStats.life} · {t.sourceGeneral} {filteredScopeStats.general}
-            </span>
-          </div>
-
+          {votersLoading && allVoters.length === 0 && (
+            <div className="skeletonGrid">
+              {Array.from({ length: 12 }).map((_, i) => (
+                <div className="skeletonCard" key={i}>
+                  <div className="skeletonBlock skeletonPhoto" style={{ animationDelay: `${i * 0.06}s` }} />
+                  <div className="skeletonLines">
+                    {[80, 60, 45, 55, 40].map((w, j) => (
+                      <div key={j} className="skeletonBlock" style={{ height: 11, width: `${w}%`, animationDelay: `${(i * 0.06) + (j * 0.04)}s` }} />
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+          {!votersLoading && filteredVoters.length === 0 && (
+            <p className="noSelectionHint">{t.noVoters}</p>
+          )}
           <div className="voterGrid">
-            {filteredVoters.map((voter) => (
-              <article className="voterCard" key={voter.id}>
+            {filteredVoters.slice(0, visibleCount).map((voter, index) => (
+              <article
+                className={`voterCard${voter.is_ifp_voter ? " ifpMarked" : ""}${voter.is_yt_voter ? " ytMarked" : ""}${voter.is_target ? " targetMarked" : ""}${voter.is_mf_voter ? " mfMarked" : ""}`}
+                key={voter.id}
+                style={index < 40 ? { animationDelay: `${index * 0.03}s` } : { animation: "none" }}
+              >
                 <div className="photoCol">
                   <SecureImage path={voter.photo_url} token={token} alt={t.photo} />
                   <span className={voter.source_kind === "life" ? "sourceBadge sourceLife" : "sourceBadge sourceGeneral"}>
@@ -547,43 +1285,90 @@ export default function Home() {
                   </span>
                 </div>
                 <div>
-                  <h3>{lang === "te" ? voter.name_te : voter.name_en || voter.name_te}</h3>
+                  <div className="voterTitleRow">
+                    <h3 style={{ fontSize: nameFontSize(displayName(voter, lang, t.missingName), lang) }}>{displayName(voter, lang, t.missingName)}</h3>
+                    {voter.is_target ? <span className="targetPill">{t.targetCore}</span> : null}
+                    {voter.is_yt_voter ? <span className="ytPill">{t.ytCore}</span> : null}
+                    {voter.is_mf_voter ? <span className="mfPill">{t.mfCore}</span> : null}
+                    {voter.is_ifp_voter ? <span className="ifpPill">{t.ifpCore}</span> : null}
+                  </div>
                   <p>
                     <strong>{t.relation}: </strong>
-                    {voter.relation_name_te || "-"}
+                    {displayRelation(voter.relation_name_te || "", lang)}
                   </p>
                   <dl>
                     <dt>{t.serial}</dt>
                     <dd>{voter.serial_no || "-"}</dd>
                     <dt>{t.age}</dt>
                     <dd>{voter.age || "-"}</dd>
-                    <dt>{t.house}</dt>
+                    <dt className="dtHouse">{t.house}</dt>
                     <dd>{voter.house_no || "-"}</dd>
                     <dt>{t.area}</dt>
-                    <dd>{voter.area_te || "-"}</dd>
+                    <dd>{displayArea(voter, lang)}</dd>
                     <dt>{t.source}</dt>
                     <dd>{lang === "te" ? voter.source_label_te : voter.source_label_en}</dd>
                   </dl>
                   {voter.notes && <p className="note">{voter.notes}</p>}
-                  <button type="button" onClick={() => setSelected(voter)}>
-                    {t.open}
-                  </button>
+                </div>
+                <div className="cardActions">
+                    <button
+                      type="button"
+                      className={`targetBtn${voter.is_target ? " active" : ""}`}
+                      aria-pressed={Boolean(voter.is_target)}
+                      disabled={targetBusyId === voter.id}
+                      onClick={() => void toggleTargetVoter(voter)}
+                    >
+                      {targetBusyId === voter.id ? "..." : voter.is_target ? "★ T" : "☆ T"}
+                    </button>
+                    <button
+                      type="button"
+                      className={`ytBtn${voter.is_yt_voter ? " active" : ""}`}
+                      aria-pressed={Boolean(voter.is_yt_voter)}
+                      disabled={ytBusyId === voter.id}
+                      onClick={() => void toggleYtVoter(voter)}
+                    >
+                      {ytBusyId === voter.id ? "..." : voter.is_yt_voter ? "★ YT" : "☆ YT"}
+                    </button>
+                    <button
+                      type="button"
+                      className={`mfBtn${voter.is_mf_voter ? " active" : ""}`}
+                      aria-pressed={Boolean(voter.is_mf_voter)}
+                      disabled={mfBusyId === voter.id}
+                      onClick={() => void toggleMfVoter(voter)}
+                    >
+                      {mfBusyId === voter.id ? "..." : voter.is_mf_voter ? "★ MF" : "☆ MF"}
+                    </button>
+                    <button type="button" onClick={() => setSelected(voter)}>
+                      {t.open}
+                    </button>
+                    <button
+                      type="button"
+                      className={`ifpBtn${voter.is_ifp_voter ? " active" : ""}`}
+                      aria-pressed={Boolean(voter.is_ifp_voter)}
+                      disabled={ifpBusyId === voter.id}
+                      onClick={() => void toggleIfpVoter(voter)}
+                    >
+                      {ifpBusyId === voter.id ? "..." : voter.is_ifp_voter ? t.ifpAction : "☆ IFP"}
+                    </button>
                 </div>
               </article>
             ))}
           </div>
+          {/* Enhancement #8 — infinite scroll sentinel */}
+          <div ref={sentinelRef} className="scrollSentinel" aria-hidden="true" />
+
         </section>
       </section>
 
       {selected && (
-        <div className="modal" role="dialog" aria-modal="true" aria-labelledby="voter-title" onClick={() => setSelected(null)}>
+        <div className="modal" role="dialog" aria-modal="true" aria-labelledby="voter-title" onClick={closeModal}>
           <section className="reviewPanel" onClick={(event) => event.stopPropagation()}>
             <div className="modalHeader">
               <div>
-                <h2 id="voter-title">{lang === "te" ? selected.name_te : selected.name_en || selected.name_te}</h2>
-                <p>{selected.area_te || "-"}</p>
+                <h2 id="voter-title">{displayName(selected, lang, t.missingName)}</h2>
+                <p>{displayArea(selected, lang)}</p>
               </div>
-              <button type="button" className="close" onClick={() => setSelected(null)} aria-label={t.close}>
+              <button type="button" className="close" onClick={closeModal} aria-label={t.close}>
                 ×
               </button>
             </div>
@@ -600,30 +1385,65 @@ export default function Home() {
                 {[
                   ["serial_no", t.serial],
                   ["name_te", t.name],
-                  ["name_en", t.englishName],
                   ["relation_name_te", t.relation],
                   ["age", t.age],
                   ["occupation_te", t.occupation],
                   ["house_no", t.house],
-                ].map(([key, label]) => (
-                  <label key={key}>
-                    {label}
-                    <input
-                      value={String(selected[key as keyof Voter] || "")}
-                      onChange={(event) => setSelected({ ...selected, [key]: event.target.value })}
-                    />
-                  </label>
-                ))}
+                ].map(([key, label]) => {
+                  if (key === "name_te") {
+                    return (
+                      <label key={key}>
+                        <div className="nameLabelRow">
+                          <span>{label}</span>
+                          <div className="nameModeToggle">
+                            <button type="button" className={nameMode === "en" ? "active" : ""} onClick={() => setNameMode("en")}>English</button>
+                            <button type="button" className={nameMode === "te" ? "active" : ""} onClick={() => setNameMode("te")}>తెలుగు</button>
+                          </div>
+                        </div>
+                        {nameMode === "en" ? (
+                          <>
+                            <input
+                              placeholder="e.g. Chand Basha"
+                              value={nameEnDraft}
+                              onChange={(e) => {
+                                const en = e.target.value;
+                                setNameEnDraft(en);
+                                updateSelectedField("name_te", englishToTeluguName(en) as Voter["name_te"]);
+                              }}
+                            />
+                            <small className="fieldPreview">Telugu: {selected.name_te || "—"}</small>
+                          </>
+                        ) : (
+                          <>
+                            <input
+                              value={selected.name_te || ""}
+                              onChange={(e) => updateSelectedField("name_te", e.target.value as Voter["name_te"])}
+                            />
+                            <small className="fieldPreview">{t.englishPreview}: {displayName(selected, "en", t.missingName)}</small>
+                          </>
+                        )}
+                      </label>
+                    );
+                  }
+                  return (
+                    <label key={key}>
+                      {label}
+                      <input
+                        value={String(selected[key as keyof Voter] || "")}
+                        onChange={(event) => updateSelectedField(key as keyof Voter, event.target.value as Voter[keyof Voter])}
+                      />
+                      {lang === "en" && key === "relation_name_te" && selected.relation_name_te ? <small className="fieldPreview">{t.englishPreview}: {displayRelation(selected.relation_name_te, "en")}</small> : null}
+                      {lang === "en" && key === "occupation_te" && selected.occupation_te ? <small className="fieldPreview">{t.englishPreview}: {displayOccupation(selected.occupation_te, "en")}</small> : null}
+                    </label>
+                  );
+                })}
 
                 <label>
                   {t.moveArea}
                   <select
                     value={moveAreaFallback}
                     onChange={(event) => {
-                      setSelected({
-                        ...selected,
-                        area_te: event.target.value,
-                      });
+                      updateSelectedField("area_te", event.target.value);
                     }}
                   >
                     {!MOVE_AREA_OPTIONS.some((item) => item.value === moveAreaFallback) && moveAreaFallback ? (
@@ -635,13 +1455,484 @@ export default function Home() {
                       </option>
                     ))}
                   </select>
+                  {lang === "en" && selected.area_te ? <small className="fieldPreview">{t.englishPreview}: {displayArea(selected, "en")}</small> : null}
                 </label>
 
+                <div className="targetToggleRow">
+                  <div>
+                    <strong>Target</strong>
+                    <p>{selected.is_target ? t.targetCore : t.markTarget}</p>
+                  </div>
+                  <button
+                    type="button"
+                    className={`targetBtn${selected.is_target ? " active" : ""}`}
+                    onClick={() => setSelected({ ...selected, is_target: !Boolean(selected.is_target) })}
+                  >
+                    {selected.is_target ? t.unmarkTarget : t.markTarget}
+                  </button>
+                </div>
+
+                <div className="ytToggleRow">
+                  <div>
+                    <strong>Yuva Taram</strong>
+                    <p>{selected.is_yt_voter ? t.ytCore : t.markYt}</p>
+                  </div>
+                  <button
+                    type="button"
+                    className={`ytBtn${selected.is_yt_voter ? " active" : ""}`}
+                    onClick={() => setSelected({ ...selected, is_yt_voter: !Boolean(selected.is_yt_voter) })}
+                  >
+                    {selected.is_yt_voter ? t.unmarkYt : t.markYt}
+                  </button>
+                </div>
+
+                <div className="mfToggleRow">
+                  <div>
+                    <strong>MF</strong>
+                    <p>{selected.is_mf_voter ? t.mfCore : t.markMf}</p>
+                  </div>
+                  <button
+                    type="button"
+                    className={`mfBtn${selected.is_mf_voter ? " active" : ""}`}
+                    onClick={() => setSelected({ ...selected, is_mf_voter: !Boolean(selected.is_mf_voter) })}
+                  >
+                    {selected.is_mf_voter ? t.unmarkMf : t.markMf}
+                  </button>
+                </div>
+
+                <div className="ifpToggleRow">
+                  <div>
+                    <strong>{t.ifpCount}</strong>
+                    <p>{selected.is_ifp_voter ? t.ifpCore : t.markIfp}</p>
+                  </div>
+                  <button
+                    type="button"
+                    className={`ifpBtn${selected.is_ifp_voter ? " active" : ""}`}
+                    onClick={() =>
+                      setSelected({
+                        ...selected,
+                        is_ifp_voter: !Boolean(selected.is_ifp_voter),
+                        ...(!selected.is_ifp_voter
+                          ? { is_deceased: false, is_blocklisted: false, is_cancelled: false }
+                          : {}),
+                      })
+                    }
+                  >
+                    {selected.is_ifp_voter ? t.unmarkIfp : t.markIfp}
+                  </button>
+                </div>
+
+                {selected.is_deceased || selected.is_blocklisted || selected.is_cancelled ? (
+                  <button
+                    type="button"
+                    className="secondary dangerGhost"
+                    onClick={() => {
+                      setSelected({ ...selected, is_deceased: false, is_blocklisted: false, is_cancelled: false });
+                      setConfirmDeceased(false);
+                    }}
+                  >
+                    {t.restoreActive}
+                  </button>
+                ) : (
+                  <details className="dangerDetails">
+                    <summary>{lang === "te" ? "⚠ ఇతర చర్యలు" : "⚠ Other actions"}</summary>
+                    {confirmDeceased ? (
+                      <div className="confirmBand">
+                        <p>{t.confirmDeceased}</p>
+                        <div className="confirmActions">
+                          <button
+                            type="button"
+                            className="secondary dangerGhost"
+                            onClick={() => { setSelected({ ...selected, is_deceased: true, is_blocklisted: false, is_cancelled: false }); setConfirmDeceased(false); }}
+                          >
+                            {t.confirmYes}
+                          </button>
+                          <button type="button" className="secondary" onClick={() => setConfirmDeceased(false)}>
+                            {t.confirmNo}
+                          </button>
+                        </div>
+                      </div>
+                    ) : (
+                      <>
+                        <button type="button" className="secondary dangerGhost" style={{ marginTop: "8px" }} onClick={() => setConfirmDeceased(true)}>
+                          {t.markDeceased}
+                        </button>
+                        <button
+                          type="button"
+                          className="secondary dangerGhost"
+                          style={{ marginTop: "8px" }}
+                          onClick={() => {
+                            setSelected({ ...selected, is_deceased: false, is_blocklisted: true, is_cancelled: false });
+                            setConfirmDeceased(false);
+                          }}
+                        >
+                          {t.markBlocklist}
+                        </button>
+                        <button
+                          type="button"
+                          className="secondary dangerGhost"
+                          style={{ marginTop: "8px" }}
+                          onClick={() => {
+                            setSelected({ ...selected, is_deceased: false, is_blocklisted: false, is_cancelled: true });
+                            setConfirmDeceased(false);
+                          }}
+                        >
+                          {t.markCancelled}
+                        </button>
+                      </>
+                    )}
+                  </details>
+                )}
+
                 {selected.notes && <p className="note">{selected.notes}</p>}
-                <button type="submit" className="primary">
-                  {t.save}
-                </button>
+                <div className="modalFooter">
+                  <button type="submit" className="primary">{t.save}</button>
+                  <button type="button" className="secondary" onClick={closeModal}>{t.close}</button>
+                </div>
               </form>
+            </div>
+          </section>
+        </div>
+      )}
+
+      {showAreaMgr && (
+        <div className="modal" role="dialog" aria-modal="true" aria-label={t.manageAreas} onClick={() => setShowAreaMgr(false)}>
+          <section className="areaMgrPanel" onClick={(event) => event.stopPropagation()}>
+            <div className="modalHeader">
+              <div>
+                <h2>{t.manageAreas}</h2>
+                <p>
+                  {areaManagerRows.length} {t.rawAreaCount} · {unclassifiedAreas.length} {t.unclassifiedCount}
+                </p>
+              </div>
+              <button type="button" className="close" onClick={() => setShowAreaMgr(false)} aria-label={t.close}>×</button>
+            </div>
+            <div className="areaMgrBody">
+              {rawAreas.length === 0 ? (
+                <p className="noSelectionHint">...</p>
+              ) : (
+                <>
+                  <p className="areaMgrIntro">
+                    {unclassifiedAreas.length === 0 ? t.allAreasClassified : `${unclassifiedAreas.length} ${t.unclassifiedCount}`}
+                  </p>
+                  <table className="areaTable">
+                    <thead>
+                      <tr>
+                        <th>{t.area}</th>
+                        <th>{t.total}</th>
+                        <th>{t.selectedArea}</th>
+                        <th>{t.mergeArea}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {areaManagerRows.map((area) => (
+                        <tr key={area.area_te} className={area.count === 0 ? "isEmptyAreaRow" : ""}>
+                          <td>{area.area_te}</td>
+                          <td>{area.count}</td>
+                          <td>
+                            {area.matchedLabel ? (
+                              <span className="areaTag ok">{area.matchedLabel}</span>
+                            ) : (
+                              <span className="areaTag warn">{t.unclassifiedCount}</span>
+                            )}
+                          </td>
+                          <td>
+                            <div className="mergeRow">
+                              <select
+                                value={mergeTargets[area.area_te] || ""}
+                                onChange={(event) =>
+                                  setMergeTargets((prev) => ({ ...prev, [area.area_te]: event.target.value }))
+                                }
+                              >
+                                <option value="">— {t.mergeTarget} —</option>
+                                {MOVE_AREA_OPTIONS.map((opt) => (
+                                  <option key={opt.label} value={opt.value}>
+                                    {opt.label}
+                                  </option>
+                                ))}
+                              </select>
+                              <button
+                                type="button"
+                                disabled={area.count === 0 || !mergeTargets[area.area_te] || mergeTargets[area.area_te] === area.area_te || busy}
+                                onClick={() => void mergeArea(area.area_te)}
+                              >
+                                {t.mergeAction}
+                              </button>
+                            </div>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </>
+              )}
+              {error && <p className="error" style={{ marginTop: "12px" }}>{error}</p>}
+            </div>
+          </section>
+        </div>
+      )}
+
+      {showDeceasedMgr && (
+        <div className="modal" role="dialog" aria-modal="true" aria-label={lang === "te" ? "మరణించిన ఓటర్లు" : "Deceased Voters"} onClick={() => setShowDeceasedMgr(false)}>
+          <section className="areaMgrPanel" onClick={(event) => event.stopPropagation()}>
+            <div className="modalHeader">
+              <div>
+                <h2>{lang === "te" ? "మరణించిన ఓటర్లు" : "Deceased Voters"}</h2>
+                <p>{lang === "te" ? `ప్రత్యేకంగా ఉంచిన జాబితా • మొత్తం ${deceasedVoters.length}` : `Separated archive • Total ${deceasedVoters.length}`}</p>
+              </div>
+              <button type="button" className="close" onClick={() => setShowDeceasedMgr(false)} aria-label={t.close}>×</button>
+            </div>
+            <div className="areaMgrBody">
+              {deceasedVoters.length === 0 ? (
+                <p className="noSelectionHint">{lang === "te" ? "మరణించిన ఓటర్లు లేరు" : "No deceased voters on record"}</p>
+              ) : (
+                <div className="archiveVoterGrid">
+                  {deceasedVoters.map((voter) => (
+                    <div key={voter.id} className="archiveVoterCard">
+                      <div className="archiveVoterPhoto">
+                        <SecureImage path={voter.photo_url} token={token} alt={t.photo} />
+                      </div>
+                      <div className="archiveVoterInfo">
+                        <span className="archiveVoterName">{displayName(voter, lang, t.missingName)}</span>
+                        <span className="archiveVoterMeta">#{voter.serial_no} · {displayArea(voter, lang)}</span>
+                        <button
+                          type="button"
+                          className="ghostBtn archiveRestoreBtn"
+                          disabled={busy}
+                          onClick={async () => {
+                            setBusy(true);
+                            try {
+                              await patchVoter(voter, { is_deceased: false, is_blocklisted: false, is_cancelled: false });
+                            } catch (err) {
+                              setError(String(err));
+                            } finally {
+                              setBusy(false);
+                            }
+                          }}
+                        >
+                          {t.restoreActive}
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </section>
+        </div>
+      )}
+
+      {showBlocklistMgr && (
+        <div className="modal" role="dialog" aria-modal="true" aria-label={lang === "te" ? "బ్లాక్ లిస్ట్" : "Block List"} onClick={() => setShowBlocklistMgr(false)}>
+          <section className="areaMgrPanel" onClick={(event) => event.stopPropagation()}>
+            <div className="modalHeader">
+              <div>
+                <h2>{lang === "te" ? "బ్లాక్ లిస్ట్" : "Block List"}</h2>
+                <p>{lang === "te" ? `ప్రత్యేకంగా ఉంచిన ప్రత్యర్థి జాబితా • మొత్తం ${blocklistedVoters.length}` : `Separated opponent archive • Total ${blocklistedVoters.length}`}</p>
+              </div>
+              <button type="button" className="close" onClick={() => setShowBlocklistMgr(false)} aria-label={t.close}>×</button>
+            </div>
+            <div className="areaMgrBody">
+              {blocklistedVoters.length === 0 ? (
+                <p className="noSelectionHint">{lang === "te" ? "బ్లాక్ లిస్ట్‌లో ఓటర్లు లేరు" : "No block-listed voters"}</p>
+              ) : (
+                <div className="archiveVoterGrid">
+                  {blocklistedVoters.map((voter) => (
+                    <div key={voter.id} className="archiveVoterCard">
+                      <div className="archiveVoterPhoto">
+                        <SecureImage path={voter.photo_url} token={token} alt={t.photo} />
+                      </div>
+                      <div className="archiveVoterInfo">
+                        <span className="archiveVoterName">{displayName(voter, lang, t.missingName)}</span>
+                        <span className="archiveVoterMeta">#{voter.serial_no} · {displayArea(voter, lang)}</span>
+                        <button
+                          type="button"
+                          className="ghostBtn archiveRestoreBtn"
+                          disabled={busy}
+                          onClick={async () => {
+                            setBusy(true);
+                            try {
+                              await patchVoter(voter, { is_deceased: false, is_blocklisted: false, is_cancelled: false });
+                            } catch (err) {
+                              setError(String(err));
+                            } finally {
+                              setBusy(false);
+                            }
+                          }}
+                        >
+                          {t.restoreActive}
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </section>
+        </div>
+      )}
+
+      {showCancelledMgr && (
+        <div className="modal" role="dialog" aria-modal="true" aria-label={lang === "te" ? "రద్దు ఓటర్లు" : "Cancelled Voters"} onClick={() => setShowCancelledMgr(false)}>
+          <section className="areaMgrPanel" onClick={(event) => event.stopPropagation()}>
+            <div className="modalHeader">
+              <div>
+                <h2>{lang === "te" ? "రద్దు ఓటర్లు" : "Cancelled Voters"}</h2>
+                <p>{lang === "te" ? `దాచిన రద్దు జాబితా • మొత్తం ${cancelledVoters.length}` : `Hidden cancelled archive • Total ${cancelledVoters.length}`}</p>
+              </div>
+              <button type="button" className="close" onClick={() => setShowCancelledMgr(false)} aria-label={t.close}>×</button>
+            </div>
+            <div className="areaMgrBody">
+              {cancelledVoters.length === 0 ? (
+                <p className="noSelectionHint">{lang === "te" ? "రద్దు ఓటర్లు లేరు" : "No cancelled voters"}</p>
+              ) : (
+                <div className="archiveVoterGrid">
+                  {cancelledVoters.map((voter) => (
+                    <div key={voter.id} className="archiveVoterCard">
+                      <div className="archiveVoterPhoto">
+                        <SecureImage path={voter.photo_url} token={token} alt={t.photo} />
+                      </div>
+                      <div className="archiveVoterInfo">
+                        <span className="archiveVoterName">{displayName(voter, lang, t.missingName)}</span>
+                        <span className="archiveVoterMeta">#{voter.serial_no} · {displayArea(voter, lang)}</span>
+                        <button
+                          type="button"
+                          className="ghostBtn archiveRestoreBtn"
+                          disabled={busy}
+                          onClick={async () => {
+                            setBusy(true);
+                            try {
+                              await patchVoter(voter, { is_deceased: false, is_blocklisted: false, is_cancelled: false });
+                            } catch (err) {
+                              setError(String(err));
+                            } finally {
+                              setBusy(false);
+                            }
+                          }}
+                        >
+                          {t.restoreActive}
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </section>
+        </div>
+      )}
+
+      {showFamilyMgr && (
+        <div className="modal" role="dialog" aria-modal="true" aria-label={t.familyVoting} onClick={() => setShowFamilyMgr(false)}>
+          <section className="areaMgrPanel familyPanel" onClick={(event) => event.stopPropagation()}>
+            <div className="modalHeader">
+              <div>
+                <h2>{t.familyVoting}</h2>
+                <p>{selectedTileLabel || t.all} · {sourceLabel(source, t)} · {t.familyGroups} {formatCount(familyClusters.length)}</p>
+              </div>
+              <button type="button" className="close" onClick={() => setShowFamilyMgr(false)} aria-label={t.close}>×</button>
+            </div>
+            <div className="areaMgrBody familyPanelBody">
+              <p className="areaMgrIntro">{t.familyScope}</p>
+              <p className="familyRule">{t.familyRule}</p>
+              <div className="familySummaryGrid">
+                <article className="familySummaryCard">
+                  <span>{t.familyGroups}</span>
+                  <strong>{formatCount(familyClusters.length)}</strong>
+                </article>
+                <article className="familySummaryCard">
+                  <span>{t.familyCovered}</span>
+                  <strong>{formatCount(familyCoveredCount)}</strong>
+                </article>
+                <article className="familySummaryCard">
+                  <span>{t.familyMax}</span>
+                  <strong>{formatCount(largestFamilyCluster)}</strong>
+                </article>
+              </div>
+              {familyClusters.length === 0 ? (
+                <p className="noSelectionHint">{t.familyNoGroups}</p>
+              ) : (
+                <div className="familyTableWrap">
+                  <table className="familyTable">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>{t.familyDoor}</th>
+                        <th>{t.area}</th>
+                        <th>{t.familyCount}</th>
+                        <th>{t.lifeCount}</th>
+                        <th>{t.generalCount}</th>
+                        <th>{t.ifpCount}</th>
+                        <th>{t.familyMembers}</th>
+                        <th>{t.open}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {familyClusters.map((cluster, index) => (
+                        <tr key={cluster.key}>
+                          <td>{formatCount(index + 1)}</td>
+                          <td>
+                            <span className="familyDoorBadge">{cluster.houseNo}</span>
+                          </td>
+                          <td>{cluster.areaLabel}</td>
+                          <td><strong>{formatCount(cluster.count)}</strong></td>
+                          <td>{formatCount(cluster.life)}</td>
+                          <td>{formatCount(cluster.general)}</td>
+                          <td>{formatCount(cluster.ifp)}</td>
+                          <td>
+                            <div className="familyMemberList">
+                              {cluster.voters.map((voter) => (
+                                <span key={voter.id} className={`familyMemberChip ${voter.source_kind === "life" ? "life" : "general"}`}>
+                                  {displayName(voter, lang, t.missingName)}
+                                </span>
+                              ))}
+                            </div>
+                          </td>
+                          <td>
+                            <button type="button" className="ghostBtn familyFocusBtn" onClick={() => focusFamilyCluster(cluster)}>
+                              {t.familyViewMembers}
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
+            </div>
+          </section>
+        </div>
+      )}
+
+      {showAreaStats && (
+        <div className="modal" role="dialog" aria-modal="true" aria-label={t.areaStats} onClick={() => setShowAreaStats(false)}>
+          <section className="areaMgrPanel areaStatsPanel" onClick={(e) => e.stopPropagation()}>
+            <div className="modalHeader">
+              <strong>{t.areaStats}</strong>
+              <span className="modalCount">{sidebarAreaStats.length}</span>
+              <button type="button" className="ghostBtn" onClick={() => setShowAreaStats(false)}>✕</button>
+            </div>
+            <div className="sidebarStatsTableWrap">
+              <table className="sidebarStatsTable">
+                <thead>
+                  <tr>
+                    <th>{t.area}</th>
+                    <th>{t.sourceLife}</th>
+                    <th>{t.sourceGeneral}</th>
+                    <th>{t.total}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {sidebarAreaStats.map((tile) => (
+                    <tr key={`stats-${tile.key}`} className={tile.key === selectedTile ? "isSelected" : ""}>
+                      <td>{tile.label}</td>
+                      <td>{tile.life}</td>
+                      <td>{tile.general}</td>
+                      <td>{tile.total}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           </section>
         </div>

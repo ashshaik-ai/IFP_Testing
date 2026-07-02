@@ -12,6 +12,7 @@ from app.services.area_rules import all_area_options, canonical_area_en, canonic
 from app.services.exporter import area_summaries, voters_to_csv
 from app.services.pdf_processor import create_job, process_pdf, update_job
 from app.services.storage import job_dir, job_meta_path, load_jobs, read_json, voters_path, write_json
+from app.services.transliterate import transliterate_person_name_te
 
 
 router = APIRouter(prefix="/api")
@@ -24,8 +25,31 @@ def _all_voters() -> list[dict]:
     return voters
 
 
-def _filter_voters(voters: list[dict], q: str = "", area: str = "", source: str = "") -> list[dict]:
+def _filter_voters(
+    voters: list[dict],
+    q: str = "",
+    area: str = "",
+    source: str = "",
+    include_deceased: bool = False,
+    deceased_only: bool = False,
+    include_blocklisted: bool = False,
+    blocklisted_only: bool = False,
+    include_cancelled: bool = False,
+    cancelled_only: bool = False,
+) -> list[dict]:
     result = list(voters)
+    if deceased_only:
+        result = [voter for voter in result if bool(voter.get("is_deceased"))]
+    elif blocklisted_only:
+        result = [voter for voter in result if bool(voter.get("is_blocklisted"))]
+    elif cancelled_only:
+        result = [voter for voter in result if bool(voter.get("is_cancelled"))]
+    elif not include_deceased:
+        result = [voter for voter in result if not bool(voter.get("is_deceased"))]
+    if not blocklisted_only and not include_blocklisted:
+        result = [voter for voter in result if not bool(voter.get("is_blocklisted"))]
+    if not cancelled_only and not include_cancelled:
+        result = [voter for voter in result if not bool(voter.get("is_cancelled"))]
     source_key = source.strip().lower()
     if area:
         area_match = canonical_area_te(area)
@@ -67,18 +91,100 @@ def area_options() -> list[dict]:
 
 
 @router.get("/voters", dependencies=[Depends(require_auth)])
-def list_all_voters(q: str = "", area: str = "", source: str = "") -> list[dict]:
-    return _filter_voters(_all_voters(), q=q, area=area, source=source)
+def list_all_voters(
+    q: str = "",
+    area: str = "",
+    source: str = "",
+    include_deceased: bool = False,
+    deceased_only: bool = False,
+    include_blocklisted: bool = False,
+    blocklisted_only: bool = False,
+    include_cancelled: bool = False,
+    cancelled_only: bool = False,
+) -> list[dict]:
+    return _filter_voters(
+        _all_voters(),
+        q=q,
+        area=area,
+        source=source,
+        include_deceased=include_deceased,
+        deceased_only=deceased_only,
+        include_blocklisted=include_blocklisted,
+        blocklisted_only=blocklisted_only,
+        include_cancelled=include_cancelled,
+        cancelled_only=cancelled_only,
+    )
 
 
 @router.get("/areas", dependencies=[Depends(require_auth)])
-def list_all_areas(source: str = "") -> list[dict]:
-    return area_summaries(_filter_voters(_all_voters(), source=source))
+def list_all_areas(
+    source: str = "",
+    include_deceased: bool = False,
+    deceased_only: bool = False,
+    include_blocklisted: bool = False,
+    blocklisted_only: bool = False,
+    include_cancelled: bool = False,
+    cancelled_only: bool = False,
+) -> list[dict]:
+    return area_summaries(
+        _filter_voters(
+            _all_voters(),
+            source=source,
+            include_deceased=include_deceased,
+            deceased_only=deceased_only,
+            include_blocklisted=include_blocklisted,
+            blocklisted_only=blocklisted_only,
+            include_cancelled=include_cancelled,
+            cancelled_only=cancelled_only,
+        )
+    )
+
+
+@router.post("/areas/merge", dependencies=[Depends(require_auth)])
+def merge_all_areas(payload: AreaMergeRequest) -> dict:
+    """Merge an area string across every job in one call."""
+    from_area = payload.from_area_te.strip()
+    to_area = canonical_area_te(payload.to_area_te)
+    total_moved = 0
+    for job in load_jobs():
+        voters = read_json(voters_path(job["id"]), [])
+        moved = 0
+        for voter in voters:
+            if str(voter.get("area_te", "")).strip() != from_area:
+                continue
+            voter["area_te"] = to_area
+            voter["area_en"] = canonical_area_en(to_area)
+            voter["needs_review"] = False
+            moved += 1
+        if moved:
+            write_json(voters_path(job["id"]), voters)
+            update_job(job["id"], review_count=0)
+        total_moved += moved
+    return {"from_area_te": from_area, "to_area_te": to_area, "moved_count": total_moved}
 
 
 @router.get("/export.csv", dependencies=[Depends(require_auth)])
-def export_all_csv(area: str = "", source: str = "") -> PlainTextResponse:
-    filtered = _filter_voters(_all_voters(), area=area, source=source)
+def export_all_csv(
+    area: str = "",
+    source: str = "",
+    include_deceased: bool = False,
+    deceased_only: bool = False,
+    include_blocklisted: bool = False,
+    blocklisted_only: bool = False,
+    include_cancelled: bool = False,
+    cancelled_only: bool = False,
+) -> PlainTextResponse:
+    filtered = _filter_voters(
+        _all_voters(),
+        area=area,
+        source=source,
+        include_deceased=include_deceased,
+        deceased_only=deceased_only,
+        include_blocklisted=include_blocklisted,
+        blocklisted_only=blocklisted_only,
+        include_cancelled=include_cancelled,
+        cancelled_only=cancelled_only,
+    )
     csv_text = voters_to_csv(filtered, None)
     filename = "filtered-voters.csv" if area or source else "all-voters.csv"
     return PlainTextResponse(
@@ -119,13 +225,55 @@ def job_detail(job_id: str) -> dict:
 
 
 @router.get("/jobs/{job_id}/voters", dependencies=[Depends(require_auth)])
-def list_voters(job_id: str, q: str = "", area: str = "", source: str = "") -> list[dict]:
-    return _filter_voters(read_json(voters_path(job_id), []), q=q, area=area, source=source)
+def list_voters(
+    job_id: str,
+    q: str = "",
+    area: str = "",
+    source: str = "",
+    include_deceased: bool = False,
+    deceased_only: bool = False,
+    include_blocklisted: bool = False,
+    blocklisted_only: bool = False,
+    include_cancelled: bool = False,
+    cancelled_only: bool = False,
+) -> list[dict]:
+    return _filter_voters(
+        read_json(voters_path(job_id), []),
+        q=q,
+        area=area,
+        source=source,
+        include_deceased=include_deceased,
+        deceased_only=deceased_only,
+        include_blocklisted=include_blocklisted,
+        blocklisted_only=blocklisted_only,
+        include_cancelled=include_cancelled,
+        cancelled_only=cancelled_only,
+    )
 
 
 @router.get("/jobs/{job_id}/areas", dependencies=[Depends(require_auth)])
-def list_areas(job_id: str, source: str = "") -> list[dict]:
-    return area_summaries(_filter_voters(read_json(voters_path(job_id), []), source=source))
+def list_areas(
+    job_id: str,
+    source: str = "",
+    include_deceased: bool = False,
+    deceased_only: bool = False,
+    include_blocklisted: bool = False,
+    blocklisted_only: bool = False,
+    include_cancelled: bool = False,
+    cancelled_only: bool = False,
+) -> list[dict]:
+    return area_summaries(
+        _filter_voters(
+            read_json(voters_path(job_id), []),
+            source=source,
+            include_deceased=include_deceased,
+            deceased_only=deceased_only,
+            include_blocklisted=include_blocklisted,
+            blocklisted_only=blocklisted_only,
+            include_cancelled=include_cancelled,
+            cancelled_only=cancelled_only,
+        )
+    )
 
 
 @router.patch("/jobs/{job_id}/voters/{voter_id}", dependencies=[Depends(require_auth)])
@@ -137,6 +285,24 @@ def update_voter(job_id: str, voter_id: str, payload: VoterUpdate) -> dict:
             continue
         for key, value in updates.items():
             voter[key] = value
+        if "name_te" in updates and "name_en" not in updates:
+            voter["name_en"] = transliterate_person_name_te(str(voter.get("name_te", "")).strip(), str(voter.get("name_en", "")).strip())
+        if voter.get("is_deceased"):
+            voter["is_blocklisted"] = False
+            voter["is_cancelled"] = False
+            voter["is_ifp_voter"] = False
+        if voter.get("is_blocklisted"):
+            voter["is_deceased"] = False
+            voter["is_cancelled"] = False
+            voter["is_ifp_voter"] = False
+        if voter.get("is_cancelled"):
+            voter["is_deceased"] = False
+            voter["is_blocklisted"] = False
+            voter["is_ifp_voter"] = False
+        if voter.get("is_ifp_voter"):
+            voter["is_deceased"] = False
+            voter["is_blocklisted"] = False
+            voter["is_cancelled"] = False
         if "area_te" in updates:
             voter["area_te"] = canonical_area_te(voter.get("area_te", ""))
             voter["area_en"] = canonical_area_en(voter["area_te"])
@@ -150,18 +316,19 @@ def update_voter(job_id: str, voter_id: str, payload: VoterUpdate) -> dict:
 @router.post("/jobs/{job_id}/areas/merge", dependencies=[Depends(require_auth)])
 def merge_area(job_id: str, payload: AreaMergeRequest) -> dict:
     voters = read_json(voters_path(job_id), [])
-    from_area = canonical_area_te(payload.from_area_te)
+    from_area = payload.from_area_te.strip()
     to_area = canonical_area_te(payload.to_area_te)
     moved = 0
     for voter in voters:
-        if canonical_area_te(voter.get("area_te", "")) != from_area:
+        if str(voter.get("area_te", "")).strip() != from_area:
             continue
         voter["area_te"] = to_area
         voter["area_en"] = canonical_area_en(to_area)
         voter["needs_review"] = False
         moved += 1
-    write_json(voters_path(job_id), voters)
-    update_job(job_id, review_count=0)
+    if moved:
+        write_json(voters_path(job_id), voters)
+        update_job(job_id, review_count=0)
     return {
         "from_area_te": from_area,
         "to_area_te": to_area,
@@ -171,8 +338,28 @@ def merge_area(job_id: str, payload: AreaMergeRequest) -> dict:
 
 
 @router.get("/jobs/{job_id}/export.csv", dependencies=[Depends(require_auth)])
-def export_csv(job_id: str, area: str = "", source: str = "") -> PlainTextResponse:
-    filtered = _filter_voters(read_json(voters_path(job_id), []), area=area, source=source)
+def export_csv(
+    job_id: str,
+    area: str = "",
+    source: str = "",
+    include_deceased: bool = False,
+    deceased_only: bool = False,
+    include_blocklisted: bool = False,
+    blocklisted_only: bool = False,
+    include_cancelled: bool = False,
+    cancelled_only: bool = False,
+) -> PlainTextResponse:
+    filtered = _filter_voters(
+        read_json(voters_path(job_id), []),
+        area=area,
+        source=source,
+        include_deceased=include_deceased,
+        deceased_only=deceased_only,
+        include_blocklisted=include_blocklisted,
+        blocklisted_only=blocklisted_only,
+        include_cancelled=include_cancelled,
+        cancelled_only=cancelled_only,
+    )
     csv_text = voters_to_csv(filtered, None)
     filename = "area-voters.csv" if area else "job-voters.csv"
     return PlainTextResponse(
@@ -187,6 +374,6 @@ def private_file(job_id: str, kind: str, filename: str) -> FileResponse:
     if kind not in {"cards", "photos"}:
         raise HTTPException(status_code=404, detail="ఫైల్ కనిపించలేదు")
     path = (job_dir(job_id) / kind / Path(filename).name).resolve()
-    if not path.exists() or settings.data_dir not in path.parents:
+    if not path.exists() or not path.is_relative_to(settings.data_dir):
         raise HTTPException(status_code=404, detail="ఫైల్ కనిపించలేదు")
     return FileResponse(path)

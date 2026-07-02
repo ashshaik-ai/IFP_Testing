@@ -33,6 +33,13 @@ class VoterRecord(BaseModel):
     card_url: str = ""
     confidence: float = 0
     needs_review: bool = False
+    is_deceased: bool = False
+    is_blocklisted: bool = False
+    is_cancelled: bool = False
+    is_ifp_voter: bool = False
+    is_yt_voter: bool = False
+    is_target: bool = False
+    is_mf_voter: bool = False
     raw_text: str = ""
     notes: str = ""
 
@@ -50,6 +57,13 @@ class VoterUpdate(BaseModel):
     area_te: str | None = None
     area_en: str | None = None
     needs_review: bool | None = None
+    is_deceased: bool | None = None
+    is_blocklisted: bool | None = None
+    is_cancelled: bool | None = None
+    is_ifp_voter: bool | None = None
+    is_yt_voter: bool | None = None
+    is_target: bool | None = None
+    is_mf_voter: bool | None = None
     notes: str | None = None
 
 

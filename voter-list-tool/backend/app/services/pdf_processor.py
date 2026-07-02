@@ -9,6 +9,7 @@ from pathlib import Path
 from typing import Any
 
 import fitz
+import cv2
 
 from app.core.config import settings
 from app.schemas.voters import VoterRecord
@@ -134,6 +135,27 @@ def _photo_region(card: fitz.Rect) -> fitz.Rect:
     )
 
 
+def _trim_white_margins(image_path: Path, padding: int = 10) -> None:
+    image = cv2.imread(str(image_path))
+    if image is None:
+        return
+    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    mask = gray < 245
+    coords = cv2.findNonZero(mask.astype("uint8"))
+    if coords is None:
+        return
+    x, y, w, h = cv2.boundingRect(coords)
+    if w <= 0 or h <= 0:
+        return
+    x0 = max(0, x - padding)
+    y0 = max(0, y - padding)
+    x1 = min(image.shape[1], x + w + padding)
+    y1 = min(image.shape[0], y + h + padding)
+    trimmed = image[y0:y1, x0:x1]
+    if trimmed.size and (trimmed.shape[0] < image.shape[0] or trimmed.shape[1] < image.shape[1]):
+        cv2.imwrite(str(image_path), trimmed)
+
+
 def _demo_fields(index: int, page_no: int) -> dict[str, Any]:
     serial = 2730 + index if page_no == 1 else ""
     return {
@@ -251,6 +273,7 @@ async def process_pdf(job_id: str, source_pdf: Path) -> None:
                 col = card_index % 5 + 1
                 card_path = job_dir(job_id) / "cards" / f"p{page_index:03d}_c{card_index + 1:02d}.png"
                 page.get_pixmap(matrix=fitz.Matrix(2, 2), clip=card).save(card_path)
+                _trim_white_margins(card_path)
                 photo_rect = _photo_region(card)
                 photo_path = job_dir(job_id) / "photos" / f"p{page_index:03d}_c{card_index + 1:02d}.png"
                 page.get_pixmap(matrix=fitz.Matrix(2, 2), clip=photo_rect).save(photo_path)
