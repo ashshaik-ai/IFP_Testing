@@ -134,8 +134,14 @@ def security_dashboard(code: str = "") -> HTMLResponse:
         status = "✅ Login" if e.get("ok") else "❌ Failed"
         ip = e.get("ip", "")
         is_blocked = ip in blocked
-        block_btn = f'<form method="post" action="/api/admin/unblock-ip" style="display:inline"><input type="hidden" name="ip" value="{ip}"><input type="hidden" name="code" value="{code}"><button style="color:green;border:none;background:none;cursor:pointer">Unblock</button></form>' if is_blocked else f'<form method="post" action="/api/admin/block-ip" style="display:inline"><input type="hidden" name="ip" value="{ip}"><input type="hidden" name="code" value="{code}"><button style="color:red;border:none;background:none;cursor:pointer">Block</button></form>'
-        rows += f"<tr{'style=\"background:#fee\"' if is_blocked else ''}><td>{e.get('ts','')}</td><td>{status}</td><td>{ip}</td><td style='font-size:11px;max-width:300px;overflow:hidden'>{e.get('device','')}</td><td>{block_btn}</td></tr>"
+        row_style = ' style="background:#fee"' if is_blocked else ""
+        if is_blocked:
+            block_btn = f'<form method="post" action="/api/admin/unblock-ip" style="display:inline"><input type="hidden" name="ip" value="{ip}"><input type="hidden" name="code" value="{code}"><button style="color:green;border:none;background:none;cursor:pointer">Unblock</button></form>'
+        else:
+            block_btn = f'<form method="post" action="/api/admin/block-ip" style="display:inline"><input type="hidden" name="ip" value="{ip}"><input type="hidden" name="code" value="{code}"><button style="color:red;border:none;background:none;cursor:pointer">Block</button></form>'
+        ts = e.get("ts", "")
+        device = e.get("device", "")
+        rows += f'<tr{row_style}><td>{ts}</td><td>{status}</td><td>{ip}</td><td style="font-size:11px;max-width:300px;overflow:hidden">{device}</td><td>{block_btn}</td></tr>'
     blocked_list = "".join(f"<li>{ip} <form method='post' action='/api/admin/unblock-ip' style='display:inline'><input type='hidden' name='ip' value='{ip}'><input type='hidden' name='code' value='{code}'><button style='color:green;border:none;background:none;cursor:pointer'>Unblock</button></form></li>" for ip in blocked) or "<li>None</li>"
     html = f"""<!doctype html><html><head><meta charset='utf-8'><title>IFP Security Log</title>
     <style>body{{font-family:sans-serif;padding:20px}}table{{border-collapse:collapse;width:100%}}th,td{{border:1px solid #ddd;padding:8px;text-align:left}}th{{background:#333;color:#fff}}tr:hover{{background:#f5f5f5}}</style></head>
