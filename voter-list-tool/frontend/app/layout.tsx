@@ -1,19 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Noto_Sans_Telugu } from "next/font/google";
 import "./styles.css";
-
-const inter = Inter({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-latin",
-});
-
-const notoTelugu = Noto_Sans_Telugu({
-  subsets: ["telugu"],
-  weight: ["400", "500", "600", "700", "800"],
-  display: "swap",
-  variable: "--font-tel",
-});
 
 export const metadata: Metadata = {
   title: "IFP Premium Voter Desk",
@@ -27,7 +13,16 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="te" className={`${notoTelugu.variable} ${inter.variable}`}>
+    <html lang="te">
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Telugu:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet"
+        />
+        <style>{`:root { --font-tel: 'Noto Sans Telugu', sans-serif; --font-latin: 'Inter', sans-serif; }`}</style>
+      </head>
       <body>{children}</body>
     </html>
   );
