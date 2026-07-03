@@ -1,4 +1,4 @@
-export const API_BASE = process.env.NEXT_PUBLIC_API_BASE || "http://127.0.0.1:8000";
+export const API_BASE = process.env.NEXT_PUBLIC_API_BASE ?? "";
 
 export type Lang = "te" | "en";
 export type SourceFilter = "all" | "life" | "general";
