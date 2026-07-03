@@ -1,9 +1,11 @@
 from __future__ import annotations
 
+import json
+from datetime import datetime, timezone
 from pathlib import Path
 
-from fastapi import APIRouter, BackgroundTasks, Depends, File, HTTPException, UploadFile
-from fastapi.responses import FileResponse, PlainTextResponse
+from fastapi import APIRouter, BackgroundTasks, Depends, File, HTTPException, Request, UploadFile
+from fastapi.responses import FileResponse, HTMLResponse, PlainTextResponse
 
 from app.core.auth import create_token, require_auth
 from app.core.config import settings
@@ -16,6 +18,36 @@ from app.services.transliterate import transliterate_person_name_te
 
 
 router = APIRouter(prefix="/api")
+
+_SECURITY_LOG = Path("/app/data/login_log.json")
+_BLOCKED_IPS  = Path("/app/data/blocked_ips.json")
+
+
+def _real_ip(request: Request) -> str:
+    return (
+        request.headers.get("X-Real-IP")
+        or request.headers.get("X-Forwarded-For", "").split(",")[0].strip()
+        or (request.client.host if request.client else "unknown")
+    )
+
+def _log_attempt(ip: str, device: str, success: bool) -> None:
+    try:
+        log: list = json.loads(_SECURITY_LOG.read_text()) if _SECURITY_LOG.exists() else []
+    except Exception:
+        log = []
+    log.insert(0, {
+        "ts": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC"),
+        "ip": ip,
+        "device": device[:150],
+        "ok": success,
+    })
+    _SECURITY_LOG.write_text(json.dumps(log[:1000]))
+
+def _blocked_ips() -> list[str]:
+    try:
+        return json.loads(_BLOCKED_IPS.read_text()) if _BLOCKED_IPS.exists() else []
+    except Exception:
+        return []
 
 
 def _all_voters() -> list[dict]:
@@ -74,10 +106,65 @@ def _filter_voters(
 
 
 @router.post("/auth/login")
-def login(payload: LoginRequest) -> dict:
+def login(payload: LoginRequest, request: Request) -> dict:
+    ip = _real_ip(request)
+    device = request.headers.get("User-Agent", "unknown")
+    if ip in _blocked_ips():
+        _log_attempt(ip, device, False)
+        raise HTTPException(status_code=403, detail="Access denied")
     if payload.code not in settings.access_codes:
+        _log_attempt(ip, device, False)
         raise HTTPException(status_code=401, detail="ప్రవేశ కోడ్ తప్పు")
+    _log_attempt(ip, device, True)
     return {"token": create_token(payload.code)}
+
+
+@router.get("/admin/security", response_class=HTMLResponse)
+def security_dashboard(code: str = "") -> HTMLResponse:
+    if code not in settings.access_codes:
+        raise HTTPException(status_code=403, detail="Access denied")
+    log: list = []
+    try:
+        log = json.loads(_SECURITY_LOG.read_text()) if _SECURITY_LOG.exists() else []
+    except Exception:
+        pass
+    blocked = _blocked_ips()
+    rows = ""
+    for e in log:
+        status = "✅ Login" if e.get("ok") else "❌ Failed"
+        ip = e.get("ip", "")
+        is_blocked = ip in blocked
+        block_btn = f'<form method="post" action="/api/admin/unblock-ip" style="display:inline"><input type="hidden" name="ip" value="{ip}"><input type="hidden" name="code" value="{code}"><button style="color:green;border:none;background:none;cursor:pointer">Unblock</button></form>' if is_blocked else f'<form method="post" action="/api/admin/block-ip" style="display:inline"><input type="hidden" name="ip" value="{ip}"><input type="hidden" name="code" value="{code}"><button style="color:red;border:none;background:none;cursor:pointer">Block</button></form>'
+        rows += f"<tr{'style=\"background:#fee\"' if is_blocked else ''}><td>{e.get('ts','')}</td><td>{status}</td><td>{ip}</td><td style='font-size:11px;max-width:300px;overflow:hidden'>{e.get('device','')}</td><td>{block_btn}</td></tr>"
+    blocked_list = "".join(f"<li>{ip} <form method='post' action='/api/admin/unblock-ip' style='display:inline'><input type='hidden' name='ip' value='{ip}'><input type='hidden' name='code' value='{code}'><button style='color:green;border:none;background:none;cursor:pointer'>Unblock</button></form></li>" for ip in blocked) or "<li>None</li>"
+    html = f"""<!doctype html><html><head><meta charset='utf-8'><title>IFP Security Log</title>
+    <style>body{{font-family:sans-serif;padding:20px}}table{{border-collapse:collapse;width:100%}}th,td{{border:1px solid #ddd;padding:8px;text-align:left}}th{{background:#333;color:#fff}}tr:hover{{background:#f5f5f5}}</style></head>
+    <body><h2>IFP Security Log</h2>
+    <h3>Blocked IPs</h3><ul>{blocked_list}</ul>
+    <h3>Login Attempts (last {len(log)})</h3>
+    <table><tr><th>Time</th><th>Result</th><th>IP Address</th><th>Device/Browser</th><th>Action</th></tr>{rows}</table>
+    </body></html>"""
+    return HTMLResponse(html)
+
+
+@router.post("/admin/block-ip")
+def block_ip(ip: str, code: str = "") -> dict:
+    if code not in settings.access_codes:
+        raise HTTPException(status_code=403, detail="Access denied")
+    ips = _blocked_ips()
+    if ip not in ips:
+        ips.append(ip)
+        _BLOCKED_IPS.write_text(json.dumps(ips))
+    return {"blocked": ip}
+
+
+@router.post("/admin/unblock-ip")
+def unblock_ip(ip: str, code: str = "") -> dict:
+    if code not in settings.access_codes:
+        raise HTTPException(status_code=403, detail="Access denied")
+    ips = [x for x in _blocked_ips() if x != ip]
+    _BLOCKED_IPS.write_text(json.dumps(ips))
+    return {"unblocked": ip}
 
 
 @router.get("/jobs", dependencies=[Depends(require_auth)])
