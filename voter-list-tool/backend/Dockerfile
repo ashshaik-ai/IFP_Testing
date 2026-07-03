@@ -13,8 +13,9 @@ WORKDIR /app
 
 # Install Python deps first (cached layer)
 COPY requirements.txt .
-# Use headless OpenCV — no display needed on server
-RUN sed 's/opencv-python>=/opencv-python-headless>=/g' requirements.txt > req_server.txt \
+# Headless OpenCV + strip easyocr (pulls torch/CUDA; server uses Tesseract only)
+RUN sed 's/opencv-python>=/opencv-python-headless>=/g' requirements.txt \
+    | grep -v '^easyocr' > req_server.txt \
     && pip install --no-cache-dir -r req_server.txt \
     && rm req_server.txt
 
