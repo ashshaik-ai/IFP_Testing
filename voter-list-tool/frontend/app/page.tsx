@@ -70,12 +70,28 @@ const AREA_TILE_DEFS: Array<{ label: string; aliases: string[] }> = [
   { label: "Other Area", aliases: ["\u0c07\u0c24\u0c30 \u0c2a\u0c4d\u0c30\u0c3e\u0c02\u0c24\u0c02"] },
 ];
 
-const AREA_TILES: AreaTile[] = AREA_TILE_DEFS.map((item) => ({
-  key: item.label.toLowerCase(),
-  label: item.label,
-  aliases: item.aliases,
-  aliasSet: new Set(item.aliases),
-}));
+// Canonical spellings the backend can store (via /api/areas/merge → canonical_area_te)
+// that are missing from AREA_TILE_DEFS. Without these, merged voters land in no tile.
+const EXTRA_ALIASES: Record<string, string[]> = {
+  "13th Ward": ["ఇసాంపేట"],
+  "Tipparla Bazar": ["న్యూ బ్వాంక్ కాలనీ"],
+  "Manneam Vari Street": ["మార్కండేయ కాలనీ", "మార్కండేయకాలని"],
+  "31st Ward": ["శ్రీనివాస మహల్ సందు", "శ్రీనివాస మహల్ వెనుక", "శ్రీనివాస మహల్ దగ్గర", "శ్రీనివాస మహల్ ప్రక్కన"],
+  "Nidamarru Road": ["పాత బ్వాంక్ కాలని", "బ్యాంక్ కాలని"],
+  "Kuppurao Colony": ["కుప్పురావు కాలనీ"],
+  "Lakshmi Narasimha Colony": ["లక్ష్మీనరసింహస్వామి కాలని", "శ్రీలక్ష్మీనరసింహస్వామి కాలని", "శ్రీలక్షీనరసింహస్వామి కాలని", "శ్రీలక్షీనరసింహస్వామి కాలనీ"],
+  "Driver Peta": ["డ్రైవరుపేట", "డైవరుపేట"],
+};
+
+const AREA_TILES: AreaTile[] = AREA_TILE_DEFS.map((item) => {
+  const aliases = [...item.aliases, ...(EXTRA_ALIASES[item.label] ?? [])];
+  return {
+    key: item.label.toLowerCase(),
+    label: item.label,
+    aliases,
+    aliasSet: new Set(aliases),
+  };
+});
 
 const AREA_TILE_ORDER = new Map(AREA_TILES.map((tile, index) => [tile.key, index]));
 
@@ -159,8 +175,16 @@ function formatPercent(value: number, lang: Lang) {
   }).format(rounded)}%`;
 }
 
+function compactFieldFontSize(value: string): string {
+  const len = value.trim().length;
+  if (len > 14) return "10px";
+  if (len > 10) return "11px";
+  if (len > 5) return "12px";
+  return "13px";
+}
+
 function nameFontSize(name: string, lang: Lang): string {
-  const len = name.length;
+  const len = name.trim().length;
   if (lang === "te") {
     // Telugu glyphs are wider — shrink earlier
     if (len > 22) return "10px";
@@ -169,9 +193,10 @@ function nameFontSize(name: string, lang: Lang): string {
     return "15px";
   }
   // English
-  if (len > 36) return "10px";
-  if (len > 26) return "12px";
-  if (len > 18) return "13.5px";
+  if (len > 26) return "9.5px";
+  if (len > 20) return "10.5px";
+  if (len > 15) return "12px";
+  if (len > 10) return "13.5px";
   return "15px";
 }
 
@@ -207,6 +232,7 @@ export default function Home() {
   const topbarRef = useRef<HTMLElement | null>(null);
   const stickyZoneRef = useRef<HTMLDivElement | null>(null);
   const sentinelRef = useRef<HTMLDivElement | null>(null);
+  const searchRef = useRef<HTMLInputElement | null>(null);
   const [lang, setLang] = useState<Lang>("te");
   const t = copy[lang];
   const [token, setToken] = useState("");
@@ -214,7 +240,6 @@ export default function Home() {
   const [jobs, setJobs] = useState<Job[]>([]);
   const [jobId, setJobId] = useState<string>("all");
   const [selectedTile, setSelectedTile] = useState("");
-  const [areaQuery, setAreaQuery] = useState("");
   const [source, setSource] = useState<SourceFilter>("all");
   const [showDeceasedMgr, setShowDeceasedMgr] = useState(false);
   const [showBlocklistMgr, setShowBlocklistMgr] = useState(false);
@@ -232,13 +257,14 @@ export default function Home() {
   const [targetBusyId, setTargetBusyId] = useState("");
   const [mfBusyId, setMfBusyId] = useState("");
   const [pdfBusy, setPdfBusy] = useState(false);
+  const [browseAll, setBrowseAll] = useState(false);
+  const [showJumpSearch, setShowJumpSearch] = useState(false);
   const [votersLoading, setVotersLoading] = useState(false);
   const [showAreaMgr, setShowAreaMgr] = useState(false);
   const [showAreaStats, setShowAreaStats] = useState(false);
   const [rawAreas, setRawAreas] = useState<{ area_te: string; count: number; missing_count: number }[]>([]);
   const [knownAreaOptions, setKnownAreaOptions] = useState<AreaOption[]>([]);
   const [mergeTargets, setMergeTargets] = useState<Record<string, string>>({});
-  const [confirmDeceased, setConfirmDeceased] = useState(false);
   const [visibleCount, setVisibleCount] = useState(120);
   const [nameMode, setNameMode] = useState<"te" | "en">("en");
   const [nameEnDraft, setNameEnDraft] = useState("");
@@ -431,11 +457,17 @@ export default function Home() {
   }
 
   async function toggleIfpVoter(voter: Voter) {
+    const next = !Boolean(voter.is_ifp_voter);
+    const patch = next
+      ? { is_ifp_voter: true, is_yt_voter: false, is_target: false, is_mf_voter: false }
+      : { is_ifp_voter: false };
+    setAllVoters((prev) => prev.map((v) => (v.id === voter.id ? { ...v, ...patch } : v)));
     setIfpBusyId(voter.id);
     setError("");
     try {
-      await patchVoter(voter, { is_ifp_voter: !Boolean(voter.is_ifp_voter) });
+      await patchVoter(voter, patch);
     } catch (err) {
+      setAllVoters((prev) => prev.map((v) => (v.id === voter.id ? { ...v, is_ifp_voter: voter.is_ifp_voter, is_yt_voter: voter.is_yt_voter, is_target: voter.is_target, is_mf_voter: voter.is_mf_voter } : v)));
       setError(String(err));
     } finally {
       setIfpBusyId("");
@@ -444,13 +476,16 @@ export default function Home() {
 
   async function toggleYtVoter(voter: Voter) {
     const next = !Boolean(voter.is_yt_voter);
-    setAllVoters((prev) => prev.map((v) => (v.id === voter.id ? { ...v, is_yt_voter: next } : v)));
+    const patch = next
+      ? { is_yt_voter: true, is_ifp_voter: false, is_target: false, is_mf_voter: false }
+      : { is_yt_voter: false };
+    setAllVoters((prev) => prev.map((v) => (v.id === voter.id ? { ...v, ...patch } : v)));
     setYtBusyId(voter.id);
     setError("");
     try {
-      await patchVoter(voter, { is_yt_voter: next });
+      await patchVoter(voter, patch);
     } catch (err) {
-      setAllVoters((prev) => prev.map((v) => (v.id === voter.id ? { ...v, is_yt_voter: !next } : v)));
+      setAllVoters((prev) => prev.map((v) => (v.id === voter.id ? { ...v, is_yt_voter: voter.is_yt_voter, is_ifp_voter: voter.is_ifp_voter, is_target: voter.is_target, is_mf_voter: voter.is_mf_voter } : v)));
       setError(String(err));
     } finally {
       setYtBusyId("");
@@ -459,13 +494,16 @@ export default function Home() {
 
   async function toggleTargetVoter(voter: Voter) {
     const next = !Boolean(voter.is_target);
-    setAllVoters((prev) => prev.map((v) => (v.id === voter.id ? { ...v, is_target: next } : v)));
+    const patch = next
+      ? { is_target: true, is_ifp_voter: false, is_yt_voter: false, is_mf_voter: false }
+      : { is_target: false };
+    setAllVoters((prev) => prev.map((v) => (v.id === voter.id ? { ...v, ...patch } : v)));
     setTargetBusyId(voter.id);
     setError("");
     try {
-      await patchVoter(voter, { is_target: next });
+      await patchVoter(voter, patch);
     } catch (err) {
-      setAllVoters((prev) => prev.map((v) => (v.id === voter.id ? { ...v, is_target: !next } : v)));
+      setAllVoters((prev) => prev.map((v) => (v.id === voter.id ? { ...v, is_target: voter.is_target, is_ifp_voter: voter.is_ifp_voter, is_yt_voter: voter.is_yt_voter, is_mf_voter: voter.is_mf_voter } : v)));
       setError(String(err));
     } finally {
       setTargetBusyId("");
@@ -474,16 +512,33 @@ export default function Home() {
 
   async function toggleMfVoter(voter: Voter) {
     const next = !Boolean(voter.is_mf_voter);
-    setAllVoters((prev) => prev.map((v) => (v.id === voter.id ? { ...v, is_mf_voter: next } : v)));
+    const patch = next
+      ? { is_mf_voter: true, is_ifp_voter: false, is_yt_voter: false, is_target: false }
+      : { is_mf_voter: false };
+    setAllVoters((prev) => prev.map((v) => (v.id === voter.id ? { ...v, ...patch } : v)));
     setMfBusyId(voter.id);
     setError("");
     try {
-      await patchVoter(voter, { is_mf_voter: next });
+      await patchVoter(voter, patch);
     } catch (err) {
-      setAllVoters((prev) => prev.map((v) => (v.id === voter.id ? { ...v, is_mf_voter: !next } : v)));
+      setAllVoters((prev) => prev.map((v) => (v.id === voter.id ? { ...v, is_mf_voter: voter.is_mf_voter, is_ifp_voter: voter.is_ifp_voter, is_yt_voter: voter.is_yt_voter, is_target: voter.is_target } : v)));
       setError(String(err));
     } finally {
       setMfBusyId("");
+    }
+  }
+
+  async function markAndSave(patch: Partial<Voter>) {
+    if (!selected) return;
+    setBusy(true);
+    setError("");
+    try {
+      await patchVoter(selected, patch);
+      closeModal();
+    } catch (err) {
+      setError(String(err));
+    } finally {
+      setBusy(false);
     }
   }
 
@@ -496,7 +551,6 @@ export default function Home() {
 
   function closeModal() {
     setSelected(null);
-    setConfirmDeceased(false);
   }
 
   function updateSelectedField<K extends keyof Voter>(key: K, value: Voter[K]) {
@@ -712,6 +766,30 @@ ${section("జనరల్ ఓటర్లు", general)}
   const ytVoters = useMemo(() => activeVoters.filter((item) => Boolean(item.is_yt_voter)), [activeVoters]);
   const targetVoters = useMemo(() => activeVoters.filter((item) => Boolean(item.is_target)), [activeVoters]);
   const mfVoters = useMemo(() => activeVoters.filter((item) => Boolean(item.is_mf_voter)), [activeVoters]);
+
+  // area-scoped counts NOT filtered by partyFilter — used for chip labels so all 4 stay non-zero
+  const areaBaseVoters = useMemo(
+    () => (selectedTile ? activeVoters.filter((item) => getAreaTile(item)?.key === selectedTile) : activeVoters),
+    [activeVoters, selectedTile],
+  );
+  const areaBaseStats = useMemo(
+    () =>
+      areaBaseVoters.reduce<ScopeStats>(
+        (acc, item) => {
+          acc.total += 1;
+          acc.ifp += item.is_ifp_voter ? 1 : 0;
+          acc.yt += item.is_yt_voter ? 1 : 0;
+          acc.target += item.is_target ? 1 : 0;
+          acc.mf += item.is_mf_voter ? 1 : 0;
+          if (item.source_kind === "life") acc.life += 1;
+          else acc.general += 1;
+          return acc;
+        },
+        { total: 0, life: 0, general: 0, missing: 0, ifp: 0, yt: 0, target: 0, mf: 0 },
+      ),
+    [areaBaseVoters],
+  );
+
   const scopedVoters = useMemo(() => {
     if (partyFilter === "ifp") return ifpVoters;
     if (partyFilter === "yt") return ytVoters;
@@ -720,6 +798,12 @@ ${section("జనరల్ ఓటర్లు", general)}
     return activeVoters;
   }, [partyFilter, activeVoters, ifpVoters, ytVoters, targetVoters, mfVoters]);
 
+  // source-filtered too, so atlas tile counts (incl. IFP share) respect the Life/General pills
+  const sourceScopedVoters = useMemo(
+    () => (source === "all" ? scopedVoters : scopedVoters.filter((v) => v.source_kind === source)),
+    [scopedVoters, source],
+  );
+
   const areaTiles = useMemo<AreaTileSummary[]>(() => {
     const tileMap = new Map<string, AreaTileSummary>(
       AREA_TILES.map((tile) => [
@@ -727,7 +811,7 @@ ${section("జనరల్ ఓటర్లు", general)}
         { ...tile, total: 0, life: 0, general: 0, missing: 0, ifp: 0, yt: 0, target: 0, mf: 0 },
       ]),
     );
-    for (const voter of scopedVoters) {
+    for (const voter of sourceScopedVoters) {
       const tile = getAreaTile(voter);
       if (!tile) {
         continue;
@@ -757,20 +841,7 @@ ${section("జనరల్ ఓటర్లు", general)}
           b.life - a.life ||
           (AREA_TILE_ORDER.get(a.key) ?? Number.MAX_SAFE_INTEGER) - (AREA_TILE_ORDER.get(b.key) ?? Number.MAX_SAFE_INTEGER),
       );
-  }, [scopedVoters]);
-
-  const visibleAreaTiles = useMemo(() => {
-    const needle = areaQuery.trim().toLowerCase();
-    if (!needle) {
-      return areaTiles;
-    }
-    return areaTiles.filter((tile) =>
-      [tile.label, ...tile.aliases]
-        .join(" ")
-        .toLowerCase()
-        .includes(needle),
-    );
-  }, [areaQuery, areaTiles]);
+  }, [sourceScopedVoters]);
 
   const sidebarAreaStats = useMemo(
     () => areaTiles.filter((tile) => tile.total > 0).sort((a, b) => b.total - a.total || a.label.localeCompare(b.label)),
@@ -858,29 +929,9 @@ ${section("జనరల్ ఓటర్లు", general)}
 
   const largestFamilyCluster = familyClusters[0]?.count || 0;
 
-  const selectedScopeStats = useMemo(() => {
-    return selectedAreaVoters.reduce<ScopeStats>(
-      (acc, item) => {
-        acc.total += 1;
-        acc.missing += voterMissingCount(item) > 0 ? 1 : 0;
-        acc.ifp += item.is_ifp_voter ? 1 : 0;
-        acc.yt += item.is_yt_voter ? 1 : 0;
-        acc.target += item.is_target ? 1 : 0;
-        acc.mf += item.is_mf_voter ? 1 : 0;
-        if (item.source_kind === "life") {
-          acc.life += 1;
-        } else {
-          acc.general += 1;
-        }
-        return acc;
-      },
-      { total: 0, life: 0, general: 0, missing: 0, ifp: 0, yt: 0, target: 0, mf: 0 },
-    );
-  }, [selectedAreaVoters]);
-
-  const filteredScopeStats = useMemo(
+  const selectedScopeStats = useMemo(
     () =>
-      filteredVoters.reduce<ScopeStats>(
+      selectedAreaVoters.reduce<ScopeStats>(
         (acc, item) => {
           acc.total += 1;
           acc.missing += voterMissingCount(item) > 0 ? 1 : 0;
@@ -888,16 +939,13 @@ ${section("జనరల్ ఓటర్లు", general)}
           acc.yt += item.is_yt_voter ? 1 : 0;
           acc.target += item.is_target ? 1 : 0;
           acc.mf += item.is_mf_voter ? 1 : 0;
-          if (item.source_kind === "life") {
-            acc.life += 1;
-          } else {
-            acc.general += 1;
-          }
+          if (item.source_kind === "life") acc.life += 1;
+          else acc.general += 1;
           return acc;
         },
         { total: 0, life: 0, general: 0, missing: 0, ifp: 0, yt: 0, target: 0, mf: 0 },
       ),
-    [filteredVoters],
+    [selectedAreaVoters],
   );
 
   const selectedIfpShare = useMemo(
@@ -930,6 +978,17 @@ ${section("జనరల్ ఓటర్లు", general)}
     [areaTiles, selectedTile],
   );
 
+  const atlasMode = !selectedTile && !browseAll && !query.trim();
+
+  const atlasGrandTotal = sourceScopedVoters.length;
+
+  function goHome() {
+    setSelectedTile("");
+    setBrowseAll(false);
+    setQuery("");
+    setExactHouseNoFilter("");
+  }
+
   useEffect(() => {
     if (selectedTile && !areaTiles.some((item) => item.key === selectedTile)) {
       setSelectedTile("");
@@ -937,6 +996,12 @@ ${section("జనరల్ ఓటర్లు", general)}
   }, [areaTiles, selectedTile]);
 
   useEffect(() => { setVisibleCount(120); }, [selectedTile, query, source]);
+
+  useEffect(() => {
+    const onScroll = () => setShowJumpSearch(window.scrollY > 320);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   useEffect(() => {
     document.body.style.overflow = selected || showAreaMgr || showDeceasedMgr || showBlocklistMgr || showCancelledMgr || showFamilyMgr || showAreaStats ? "hidden" : "";
@@ -1058,13 +1123,23 @@ ${section("జనరల్ ఓటర్లు", general)}
         <div className="topbarStats">
           <button
             type="button"
+            className={`statChip statChipIfp${partyFilter === "ifp" ? " isActiveFilter" : ""}`}
+            onClick={() => setPartyFilter(prev => prev === "ifp" ? null : "ifp")}
+            aria-pressed={partyFilter === "ifp"}
+            title={t.ifpOnly}
+          >
+            <span>IFP</span>
+            <strong key={`i-${areaBaseStats.ifp}`} className="popped">{formatCount(areaBaseStats.ifp)}</strong>
+          </button>
+          <button
+            type="button"
             className={`statChip statChipTarget${partyFilter === "target" ? " isActiveFilter" : ""}`}
             onClick={() => setPartyFilter(prev => prev === "target" ? null : "target")}
             aria-pressed={partyFilter === "target"}
             title={t.targetCore}
           >
             <span>T</span>
-            <strong key={`t-${targetVoters.length}`} className="popped">{formatCount(targetVoters.length)}</strong>
+            <strong key={`t-${areaBaseStats.target}`} className="popped">{formatCount(areaBaseStats.target)}</strong>
           </button>
           <button
             type="button"
@@ -1074,7 +1149,7 @@ ${section("జనరల్ ఓటర్లు", general)}
             title={t.ytCore}
           >
             <span>YT</span>
-            <strong key={`y-${ytVoters.length}`} className="popped">{formatCount(ytVoters.length)}</strong>
+            <strong key={`y-${areaBaseStats.yt}`} className="popped">{formatCount(areaBaseStats.yt)}</strong>
           </button>
           <button
             type="button"
@@ -1084,17 +1159,7 @@ ${section("జనరల్ ఓటర్లు", general)}
             title={t.mfCore}
           >
             <span>MF</span>
-            <strong key={`m-${mfVoters.length}`} className="popped">{formatCount(mfVoters.length)}</strong>
-          </button>
-          <button
-            type="button"
-            className={`statChip statChipIfp${partyFilter === "ifp" ? " isActiveFilter" : ""}`}
-            onClick={() => setPartyFilter(prev => prev === "ifp" ? null : "ifp")}
-            aria-pressed={partyFilter === "ifp"}
-            title={t.ifpOnly}
-          >
-            <span>{t.ifpAction}</span>
-            <strong key={`i-${ifpVoters.length}`} className="popped">{formatCount(ifpVoters.length)}</strong>
+            <strong key={`m-${areaBaseStats.mf}`} className="popped">{formatCount(areaBaseStats.mf)}</strong>
           </button>
           <span className="topbarDivider" aria-hidden="true" />
           <button type="button" className="statChip statChipFamily" onClick={() => setShowFamilyMgr(true)} title={t.familyOpen}>
@@ -1115,8 +1180,8 @@ ${section("జనరల్ ఓటర్లు", general)}
           </button>
         </div>
         <div className="actions">
-          <label className="ghostBtn uploadInlineBtn" title={t.upload}>
-            {busy ? "⏳" : "⬆"} {busy ? (lang === "te" ? "అప్లోడ్..." : "Uploading...") : t.upload}
+          <label className="ghostBtn uploadIconBtn" title={t.upload} aria-label={t.upload}>
+            {busy ? "⏳" : "⬆"}
             <input type="file" accept="application/pdf" style={{ display: "none" }} onChange={(event) => upload(event.target.files?.[0] || null)} />
           </label>
           <button type="button" className="ghostBtn" onClick={() => { setShowAreaMgr(true); void loadRawAreas(); }}>
@@ -1143,38 +1208,74 @@ ${section("జనరల్ ఓటర్లు", general)}
             {t.allPdfs}
           </button>
           {SOURCE_ORDER.filter((s) => s !== "all").map((item) => (
-            <button key={item} type="button" className={source === item ? "filterPill active" : "filterPill"} onClick={() => { setSource(item); setSelectedTile(""); setExactHouseNoFilter(""); }}>
+            <button key={item} type="button" className={source === item ? "filterPill active" : "filterPill"} onClick={() => { setSource(source === item ? "all" : item); setSelectedTile(""); setExactHouseNoFilter(""); }}>
               {sourceLabel(item, t)}
             </button>
           ))}
         </div>
-        <div className="filterSep" aria-hidden="true" />
-        <input className="filterAreaSearch" value={areaQuery} onChange={(e) => setAreaQuery(e.target.value)} placeholder={t.areaSearch} />
-        <div className="filterAreaScroller" role="group" aria-label={lang === "te" ? "ప్రాంత ఎంపిక" : "Area selection"}>
-        <div className="filterAreaTiles">
-          <button type="button" className={!selectedTile ? "filterPill active" : "filterPill"} onClick={() => { setSelectedTile(""); setExactHouseNoFilter(""); }}>
-            {t.all}
+        <div className="filterBarDivider" aria-hidden="true" />
+        <input
+          ref={searchRef}
+          className="filterBarSearch"
+          value={query}
+          onChange={(event) => {
+            const nextValue = event.target.value;
+            if (exactHouseNoFilter && normalizeHouseNo(nextValue) !== exactHouseNoFilter) {
+              setExactHouseNoFilter("");
+            }
+            setQuery(nextValue);
+          }}
+          placeholder={t.search}
+        />
+        <div className="exportBtnGroup">
+          <button
+            type="button"
+            className="exportCompactBtn"
+            title={selectedTile ? t.exportArea : t.exportAll}
+            onClick={() => {
+              const tile = AREA_TILES.find((tile) => tile.key === selectedTile);
+              downloadCsv(tile?.aliases[0]);
+            }}
+          >
+            ↓ CSV
           </button>
-          {visibleAreaTiles.map((tile) => (
-            <button key={tile.key} type="button" className={tile.key === selectedTile ? "filterPill active" : "filterPill"} onClick={() => { setSelectedTile(tile.key); setExactHouseNoFilter(""); }}>
-              {tile.label}
-            </button>
-          ))}
-        </div>
+          <button
+            type="button"
+            className="exportCompactBtn"
+            title={t.exportPdf}
+            disabled={pdfBusy || filteredVoters.length === 0}
+            onClick={() => {
+              const tile = AREA_TILES.find((tile) => tile.key === selectedTile);
+              const base = tile?.label || query.trim() || t.all;
+              const suffix = partyFilter === "target" ? " T" : partyFilter === "yt" ? " YT" : partyFilter === "mf" ? " MF" : partyFilter === "ifp" ? " IFP" : "";
+              void downloadPdf(base + suffix);
+            }}
+          >
+            {pdfBusy ? "⏳" : "↓ PDF"}
+          </button>
         </div>
         <button type="button" className="ghostBtn filterStatsBtn" onClick={() => setShowAreaStats(true)}>
           {lang === "te" ? "📊 ప్రాంత లెక్కలు" : "📊 Area Stats"}
         </button>
-      </div>
-      </div>{/* /stickyZone */}
+      </div>{/* /filterBar */}
       <div className="summaryMetricsWrap">
         <div className="summaryMetricsViewRow">
+          {!atlasMode && (
+            <button type="button" className="summaryBackBtn" onClick={goHome}>
+              ← {lang === "te" ? "అన్ని ప్రాంతాలు" : "All areas"}
+            </button>
+          )}
           <span className="summaryViewLabel">{t.currentView}</span>
-          <strong className="summaryViewVal">{selectedTileLabel || t.all}</strong>
+          <strong className="summaryViewVal">{atlasMode ? (lang === "te" ? "ప్రాంతాల పటం" : "Area atlas") : selectedTileLabel || t.all}</strong>
           {partyFilter === "ifp" ? <span className="summaryModeChip">{t.ifpOnly}</span> : null}
           {partyFilter === "target" ? <span className="summaryModeChip">{t.targetCore}</span> : null}
           {partyFilter === "yt" ? <span className="summaryModeChip">{t.ytCore}</span> : null}
           {partyFilter === "mf" ? <span className="summaryModeChip">{t.mfCore}</span> : null}
+          {atlasMode && (
+            <button type="button" className="atlasAllBtn" onClick={() => setBrowseAll(true)}>
+              {t.all} · {formatCount(atlasGrandTotal)} →
+            </button>
+          )}
         </div>
         <div className="summaryMetrics">
           <article className="summaryMetricCard metricTotal">
@@ -1214,45 +1315,11 @@ ${section("జనరల్ ఓటర్లు", general)}
           </article>
         </div>
       </div>
+      </div>{/* /stickyZone */}
       {error && <p className="error" style={{ width: "100%", margin: "0 0 12px", padding: "0 var(--page-gutter)" }}>{error}</p>}
 
       <section className="layout">
         <section className="content">
-          <div className="toolbar">
-            <input
-              value={query}
-              onChange={(event) => {
-                const nextValue = event.target.value;
-                if (exactHouseNoFilter && normalizeHouseNo(nextValue) !== exactHouseNoFilter) {
-                  setExactHouseNoFilter("");
-                }
-                setQuery(nextValue);
-              }}
-              placeholder={t.search}
-            />
-            <button
-              type="button"
-              onClick={() => {
-                const tile = AREA_TILES.find((tile) => tile.key === selectedTile);
-                downloadCsv(tile?.aliases[0]);
-              }}
-            >
-              {selectedTile ? t.exportArea : t.exportAll}
-            </button>
-            <button
-              type="button"
-              className="ghostBtn"
-              disabled={pdfBusy || filteredVoters.length === 0}
-              onClick={() => {
-                const tile = AREA_TILES.find((tile) => tile.key === selectedTile);
-                const base = tile?.label || query.trim() || t.all;
-                const suffix = partyFilter === "target" ? " T" : partyFilter === "yt" ? " YT" : partyFilter === "mf" ? " MF" : partyFilter === "ifp" ? " IFP" : "";
-                void downloadPdf(base + suffix);
-              }}
-            >
-              {pdfBusy ? t.exportingPdf : t.exportPdf}
-            </button>
-          </div>
 
           {votersLoading && allVoters.length === 0 && (
             <div className="skeletonGrid">
@@ -1268,9 +1335,29 @@ ${section("జనరల్ ఓటర్లు", general)}
               ))}
             </div>
           )}
-          {!votersLoading && filteredVoters.length === 0 && (
+          {atlasMode && !(votersLoading && allVoters.length === 0) && (
+            <div className="atlasWrap">
+              <div className="atlasGrid">
+                {areaTiles
+                  .filter((tile) => tile.total > 0)
+                  .map((tile) => {
+                    const share = tile.total ? Math.round((tile.ifp / tile.total) * 100) : 0;
+                    return (
+                      <button key={tile.key} type="button" className="atlasTile" onClick={() => { setSelectedTile(tile.key); setExactHouseNoFilter(""); }}>
+                        <span className="atlasName">{tile.label}</span>
+                        <strong className="atlasTotal">{formatCount(tile.total)}</strong>
+                        <span className="atlasIfp">IFP {formatCount(tile.ifp)} · {share}%</span>
+                        <span className="atlasBarTrack"><span className="atlasBarFill" style={{ width: `${share}%` }} /></span>
+                      </button>
+                    );
+                  })}
+              </div>
+            </div>
+          )}
+          {!atlasMode && !votersLoading && filteredVoters.length === 0 && (
             <p className="noSelectionHint">{t.noVoters}</p>
           )}
+          {!atlasMode && (
           <div className="voterGrid">
             {filteredVoters.slice(0, visibleCount).map((voter, index) => (
               <article
@@ -1280,21 +1367,25 @@ ${section("జనరల్ ఓటర్లు", general)}
               >
                 <div className="photoCol">
                   <SecureImage path={voter.photo_url} token={token} alt={t.photo} />
-                  <span className={voter.source_kind === "life" ? "sourceBadge sourceLife" : "sourceBadge sourceGeneral"}>
-                    {voter.source_badge}
-                  </span>
+                  <div className="photoBadges">
+                    <span className={voter.source_kind === "life" ? "sourceBadge sourceLife" : "sourceBadge sourceGeneral"}>
+                      {voter.source_badge}
+                    </span>
+                    {voter.is_target ? <span className="miniTag miniTagTarget">T</span> : null}
+                    {voter.is_yt_voter ? <span className="miniTag miniTagYt">YT</span> : null}
+                    {voter.is_mf_voter ? <span className="miniTag miniTagMf">MF</span> : null}
+                    {voter.is_ifp_voter ? <span className="miniTag miniTagIfp">IFP</span> : null}
+                  </div>
                 </div>
                 <div>
                   <div className="voterTitleRow">
-                    <h3 style={{ fontSize: nameFontSize(displayName(voter, lang, t.missingName), lang) }}>{displayName(voter, lang, t.missingName)}</h3>
-                    {voter.is_target ? <span className="targetPill">{t.targetCore}</span> : null}
-                    {voter.is_yt_voter ? <span className="ytPill">{t.ytCore}</span> : null}
-                    {voter.is_mf_voter ? <span className="mfPill">{t.mfCore}</span> : null}
-                    {voter.is_ifp_voter ? <span className="ifpPill">{t.ifpCore}</span> : null}
+                    <h3 className="ddCompact" style={{ fontSize: nameFontSize(displayName(voter, lang, t.missingName), lang) }}>{displayName(voter, lang, t.missingName)}</h3>
                   </div>
-                  <p>
+                  <p className="relationRow">
                     <strong>{t.relation}: </strong>
-                    {displayRelation(voter.relation_name_te || "", lang)}
+                    <span className="ddCompact" style={{ fontSize: compactFieldFontSize(displayRelation(voter.relation_name_te || "", lang)) }}>
+                      {displayRelation(voter.relation_name_te || "", lang)}
+                    </span>
                   </p>
                   <dl>
                     <dt>{t.serial}</dt>
@@ -1302,11 +1393,9 @@ ${section("జనరల్ ఓటర్లు", general)}
                     <dt>{t.age}</dt>
                     <dd>{voter.age || "-"}</dd>
                     <dt className="dtHouse">{t.house}</dt>
-                    <dd>{voter.house_no || "-"}</dd>
+                    <dd className="ddCompact" style={{ fontSize: compactFieldFontSize(voter.house_no || "-") }}>{voter.house_no || "-"}</dd>
                     <dt>{t.area}</dt>
-                    <dd>{displayArea(voter, lang)}</dd>
-                    <dt>{t.source}</dt>
-                    <dd>{lang === "te" ? voter.source_label_te : voter.source_label_en}</dd>
+                    <dd className="ddCompact" style={{ fontSize: compactFieldFontSize(displayArea(voter, lang)) }}>{displayArea(voter, lang)}</dd>
                   </dl>
                   {voter.notes && <p className="note">{voter.notes}</p>}
                 </div>
@@ -1354,8 +1443,26 @@ ${section("జనరల్ ఓటర్లు", general)}
               </article>
             ))}
           </div>
+          )}
           {/* Enhancement #8 — infinite scroll sentinel */}
-          <div ref={sentinelRef} className="scrollSentinel" aria-hidden="true" />
+          {!atlasMode && <div ref={sentinelRef} className="scrollSentinel" aria-hidden="true" />}
+
+          {showJumpSearch && (
+            <button
+              type="button"
+              className="jumpSearchBtn"
+              aria-label={lang === "te" ? "వెతుకుడు పైన ఉంది — పైకి వెళ్లండి" : "Jump to search"}
+              onClick={() => {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+                searchRef.current?.focus({ preventScroll: true });
+              }}
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" aria-hidden="true">
+                <circle cx="11" cy="11" r="7" />
+                <path d="m20 20-3.5-3.5" />
+              </svg>
+            </button>
+          )}
 
         </section>
       </section>
@@ -1382,61 +1489,64 @@ ${section("జనరల్ ఓటర్లు", general)}
                   void saveSelected();
                 }}
               >
-                {[
-                  ["serial_no", t.serial],
-                  ["name_te", t.name],
-                  ["relation_name_te", t.relation],
-                  ["age", t.age],
-                  ["occupation_te", t.occupation],
-                  ["house_no", t.house],
-                ].map(([key, label]) => {
-                  if (key === "name_te") {
-                    return (
-                      <label key={key}>
-                        <div className="nameLabelRow">
-                          <span>{label}</span>
-                          <div className="nameModeToggle">
-                            <button type="button" className={nameMode === "en" ? "active" : ""} onClick={() => setNameMode("en")}>English</button>
-                            <button type="button" className={nameMode === "te" ? "active" : ""} onClick={() => setNameMode("te")}>తెలుగు</button>
-                          </div>
-                        </div>
-                        {nameMode === "en" ? (
-                          <>
-                            <input
-                              placeholder="e.g. Chand Basha"
-                              value={nameEnDraft}
-                              onChange={(e) => {
-                                const en = e.target.value;
-                                setNameEnDraft(en);
-                                updateSelectedField("name_te", englishToTeluguName(en) as Voter["name_te"]);
-                              }}
-                            />
-                            <small className="fieldPreview">Telugu: {selected.name_te || "—"}</small>
-                          </>
-                        ) : (
-                          <>
-                            <input
-                              value={selected.name_te || ""}
-                              onChange={(e) => updateSelectedField("name_te", e.target.value as Voter["name_te"])}
-                            />
-                            <small className="fieldPreview">{t.englishPreview}: {displayName(selected, "en", t.missingName)}</small>
-                          </>
-                        )}
-                      </label>
-                    );
-                  }
-                  return (
+                <label key="serial_no">
+                  {t.serial}
+                  <input
+                    value={String(selected.serial_no || "")}
+                    onChange={(event) => updateSelectedField("serial_no", event.target.value as Voter["serial_no"])}
+                  />
+                </label>
+                <label key="name_te">
+                  <div className="nameLabelRow">
+                    <span>{t.name}</span>
+                    <div className="nameModeToggle">
+                      <button type="button" className={nameMode === "en" ? "active" : ""} onClick={() => setNameMode("en")}>English</button>
+                      <button type="button" className={nameMode === "te" ? "active" : ""} onClick={() => setNameMode("te")}>తెలుగు</button>
+                    </div>
+                  </div>
+                  {nameMode === "en" ? (
+                    <>
+                      <input
+                        placeholder="e.g. Chand Basha"
+                        value={nameEnDraft}
+                        onChange={(e) => {
+                          const en = e.target.value;
+                          setNameEnDraft(en);
+                          updateSelectedField("name_te", englishToTeluguName(en) as Voter["name_te"]);
+                        }}
+                      />
+                      <small className="fieldPreview">Telugu: {selected.name_te || "—"}</small>
+                    </>
+                  ) : (
+                    <>
+                      <input
+                        value={selected.name_te || ""}
+                        onChange={(e) => updateSelectedField("name_te", e.target.value as Voter["name_te"])}
+                      />
+                      <small className="fieldPreview">{t.englishPreview}: {displayName(selected, "en", t.missingName)}</small>
+                    </>
+                  )}
+                </label>
+
+                <details className="modalMoreDetails">
+                  <summary>{lang === "te" ? "మరిన్ని వివరాలు" : "More details"}</summary>
+                  {([
+                    ["relation_name_te", t.relation],
+                    ["age", t.age],
+                    ["occupation_te", t.occupation],
+                    ["house_no", t.house],
+                  ] as [keyof Voter, string][]).map(([key, label]) => (
                     <label key={key}>
                       {label}
                       <input
-                        value={String(selected[key as keyof Voter] || "")}
-                        onChange={(event) => updateSelectedField(key as keyof Voter, event.target.value as Voter[keyof Voter])}
+                        value={String(selected[key] || "")}
+                        onChange={(event) => updateSelectedField(key, event.target.value as Voter[typeof key])}
                       />
                       {lang === "en" && key === "relation_name_te" && selected.relation_name_te ? <small className="fieldPreview">{t.englishPreview}: {displayRelation(selected.relation_name_te, "en")}</small> : null}
                       {lang === "en" && key === "occupation_te" && selected.occupation_te ? <small className="fieldPreview">{t.englishPreview}: {displayOccupation(selected.occupation_te, "en")}</small> : null}
                     </label>
-                  );
-                })}
+                  ))}
+                </details>
 
                 <label>
                   {t.moveArea}
@@ -1458,129 +1568,30 @@ ${section("జనరల్ ఓటర్లు", general)}
                   {lang === "en" && selected.area_te ? <small className="fieldPreview">{t.englishPreview}: {displayArea(selected, "en")}</small> : null}
                 </label>
 
-                <div className="targetToggleRow">
-                  <div>
-                    <strong>Target</strong>
-                    <p>{selected.is_target ? t.targetCore : t.markTarget}</p>
-                  </div>
-                  <button
-                    type="button"
-                    className={`targetBtn${selected.is_target ? " active" : ""}`}
-                    onClick={() => setSelected({ ...selected, is_target: !Boolean(selected.is_target) })}
-                  >
-                    {selected.is_target ? t.unmarkTarget : t.markTarget}
-                  </button>
-                </div>
-
-                <div className="ytToggleRow">
-                  <div>
-                    <strong>Yuva Taram</strong>
-                    <p>{selected.is_yt_voter ? t.ytCore : t.markYt}</p>
-                  </div>
-                  <button
-                    type="button"
-                    className={`ytBtn${selected.is_yt_voter ? " active" : ""}`}
-                    onClick={() => setSelected({ ...selected, is_yt_voter: !Boolean(selected.is_yt_voter) })}
-                  >
-                    {selected.is_yt_voter ? t.unmarkYt : t.markYt}
-                  </button>
-                </div>
-
-                <div className="mfToggleRow">
-                  <div>
-                    <strong>MF</strong>
-                    <p>{selected.is_mf_voter ? t.mfCore : t.markMf}</p>
-                  </div>
-                  <button
-                    type="button"
-                    className={`mfBtn${selected.is_mf_voter ? " active" : ""}`}
-                    onClick={() => setSelected({ ...selected, is_mf_voter: !Boolean(selected.is_mf_voter) })}
-                  >
-                    {selected.is_mf_voter ? t.unmarkMf : t.markMf}
-                  </button>
-                </div>
-
-                <div className="ifpToggleRow">
-                  <div>
-                    <strong>{t.ifpCount}</strong>
-                    <p>{selected.is_ifp_voter ? t.ifpCore : t.markIfp}</p>
-                  </div>
-                  <button
-                    type="button"
-                    className={`ifpBtn${selected.is_ifp_voter ? " active" : ""}`}
-                    onClick={() =>
-                      setSelected({
-                        ...selected,
-                        is_ifp_voter: !Boolean(selected.is_ifp_voter),
-                        ...(!selected.is_ifp_voter
-                          ? { is_deceased: false, is_blocklisted: false, is_cancelled: false }
-                          : {}),
-                      })
-                    }
-                  >
-                    {selected.is_ifp_voter ? t.unmarkIfp : t.markIfp}
-                  </button>
-                </div>
-
                 {selected.is_deceased || selected.is_blocklisted || selected.is_cancelled ? (
                   <button
                     type="button"
                     className="secondary dangerGhost"
-                    onClick={() => {
-                      setSelected({ ...selected, is_deceased: false, is_blocklisted: false, is_cancelled: false });
-                      setConfirmDeceased(false);
-                    }}
+                    disabled={busy}
+                    onClick={() => void markAndSave({ is_deceased: false, is_blocklisted: false, is_cancelled: false })}
                   >
                     {t.restoreActive}
                   </button>
                 ) : (
                   <details className="dangerDetails">
                     <summary>{lang === "te" ? "⚠ ఇతర చర్యలు" : "⚠ Other actions"}</summary>
-                    {confirmDeceased ? (
-                      <div className="confirmBand">
-                        <p>{t.confirmDeceased}</p>
-                        <div className="confirmActions">
-                          <button
-                            type="button"
-                            className="secondary dangerGhost"
-                            onClick={() => { setSelected({ ...selected, is_deceased: true, is_blocklisted: false, is_cancelled: false }); setConfirmDeceased(false); }}
-                          >
-                            {t.confirmYes}
-                          </button>
-                          <button type="button" className="secondary" onClick={() => setConfirmDeceased(false)}>
-                            {t.confirmNo}
-                          </button>
-                        </div>
-                      </div>
-                    ) : (
-                      <>
-                        <button type="button" className="secondary dangerGhost" style={{ marginTop: "8px" }} onClick={() => setConfirmDeceased(true)}>
-                          {t.markDeceased}
-                        </button>
-                        <button
-                          type="button"
-                          className="secondary dangerGhost"
-                          style={{ marginTop: "8px" }}
-                          onClick={() => {
-                            setSelected({ ...selected, is_deceased: false, is_blocklisted: true, is_cancelled: false });
-                            setConfirmDeceased(false);
-                          }}
-                        >
-                          {t.markBlocklist}
-                        </button>
-                        <button
-                          type="button"
-                          className="secondary dangerGhost"
-                          style={{ marginTop: "8px" }}
-                          onClick={() => {
-                            setSelected({ ...selected, is_deceased: false, is_blocklisted: false, is_cancelled: true });
-                            setConfirmDeceased(false);
-                          }}
-                        >
-                          {t.markCancelled}
-                        </button>
-                      </>
-                    )}
+                    <button type="button" className="secondary dangerGhost" style={{ marginTop: "8px" }} disabled={busy}
+                      onClick={() => void markAndSave({ is_deceased: true, is_blocklisted: false, is_cancelled: false, is_ifp_voter: false, is_yt_voter: false, is_target: false, is_mf_voter: false })}>
+                      {t.markDeceased}
+                    </button>
+                    <button type="button" className="secondary dangerGhost" style={{ marginTop: "8px" }} disabled={busy}
+                      onClick={() => void markAndSave({ is_deceased: false, is_blocklisted: true, is_cancelled: false, is_ifp_voter: false, is_yt_voter: false, is_target: false, is_mf_voter: false })}>
+                      {t.markBlocklist}
+                    </button>
+                    <button type="button" className="secondary dangerGhost" style={{ marginTop: "8px" }} disabled={busy}
+                      onClick={() => void markAndSave({ is_deceased: false, is_blocklisted: false, is_cancelled: true, is_ifp_voter: false, is_yt_voter: false, is_target: false, is_mf_voter: false })}>
+                      {t.markCancelled}
+                    </button>
                   </details>
                 )}
 

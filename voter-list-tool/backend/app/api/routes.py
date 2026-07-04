@@ -1,11 +1,13 @@
 from __future__ import annotations
 
 import json
+import random
+import string
 from datetime import datetime, timezone
 from pathlib import Path
 
-from fastapi import APIRouter, BackgroundTasks, Depends, File, HTTPException, Request, UploadFile
-from fastapi.responses import FileResponse, HTMLResponse, PlainTextResponse
+from fastapi import APIRouter, BackgroundTasks, Depends, File, Form, HTTPException, Request, UploadFile
+from fastapi.responses import FileResponse, HTMLResponse, PlainTextResponse, RedirectResponse
 
 from app.core.auth import create_token, require_auth
 from app.core.config import settings
@@ -21,6 +23,21 @@ router = APIRouter(prefix="/api")
 
 _SECURITY_LOG = Path("/app/data/login_log.json")
 _BLOCKED_IPS  = Path("/app/data/blocked_ips.json")
+_CODE_FILE    = Path("/app/data/access_code.txt")
+
+
+def _get_codes() -> list[str]:
+    if _CODE_FILE.exists():
+        code = _CODE_FILE.read_text().strip()
+        if code:
+            return [code]
+    return list(settings.access_codes)
+
+
+def _generate_code() -> str:
+    chars = string.ascii_uppercase + string.digits
+    suffix = "".join(random.choices(chars, k=8))
+    return f"IFP-{suffix}"
 
 
 def _real_ip(request: Request) -> str:
@@ -112,7 +129,7 @@ def login(payload: LoginRequest, request: Request) -> dict:
     if ip in _blocked_ips():
         _log_attempt(ip, device, False)
         raise HTTPException(status_code=403, detail="Access denied")
-    if payload.code not in settings.access_codes:
+    if payload.code not in _get_codes():
         _log_attempt(ip, device, False)
         raise HTTPException(status_code=401, detail="ప్రవేశ కోడ్ తప్పు")
     _log_attempt(ip, device, True)
@@ -121,7 +138,7 @@ def login(payload: LoginRequest, request: Request) -> dict:
 
 @router.get("/admin/security", response_class=HTMLResponse)
 def security_dashboard(code: str = "") -> HTMLResponse:
-    if code not in settings.access_codes:
+    if code not in _get_codes():
         raise HTTPException(status_code=403, detail="Access denied")
     log: list = []
     try:
@@ -129,6 +146,7 @@ def security_dashboard(code: str = "") -> HTMLResponse:
     except Exception:
         pass
     blocked = _blocked_ips()
+    current_code = _get_codes()[0]
     rows = ""
     for e in log:
         status = "✅ Login" if e.get("ok") else "❌ Failed"
@@ -138,14 +156,16 @@ def security_dashboard(code: str = "") -> HTMLResponse:
         if is_blocked:
             block_btn = f'<form method="post" action="/api/admin/unblock-ip" style="display:inline"><input type="hidden" name="ip" value="{ip}"><input type="hidden" name="code" value="{code}"><button style="color:green;border:none;background:none;cursor:pointer">Unblock</button></form>'
         else:
-            block_btn = f'<form method="post" action="/api/admin/block-ip" style="display:inline"><input type="hidden" name="ip" value="{ip}"><input type="hidden" name="code" value="{code}"><button style="color:red;border:none;background:none;cursor:pointer">Block</button></form>'
+            block_btn = f'<form method="post" action="/api/admin/block-ip" style="display:inline"><input type="hidden" name="ip" value="{ip}"><input type="hidden" name="code" value="{code}"><button style="color:red;border:none;background:none;cursor:pointer">Block & Change Code</button></form>'
         ts = e.get("ts", "")
         device = e.get("device", "")
         rows += f'<tr{row_style}><td>{ts}</td><td>{status}</td><td>{ip}</td><td style="font-size:11px;max-width:300px;overflow:hidden">{device}</td><td>{block_btn}</td></tr>'
     blocked_list = "".join(f"<li>{ip} <form method='post' action='/api/admin/unblock-ip' style='display:inline'><input type='hidden' name='ip' value='{ip}'><input type='hidden' name='code' value='{code}'><button style='color:green;border:none;background:none;cursor:pointer'>Unblock</button></form></li>" for ip in blocked) or "<li>None</li>"
     html = f"""<!doctype html><html><head><meta charset='utf-8'><title>IFP Security Log</title>
-    <style>body{{font-family:sans-serif;padding:20px}}table{{border-collapse:collapse;width:100%}}th,td{{border:1px solid #ddd;padding:8px;text-align:left}}th{{background:#333;color:#fff}}tr:hover{{background:#f5f5f5}}</style></head>
-    <body><h2>IFP Security Log</h2>
+    <style>body{{font-family:sans-serif;padding:20px}}table{{border-collapse:collapse;width:100%}}th,td{{border:1px solid #ddd;padding:8px;text-align:left}}th{{background:#333;color:#fff}}tr:hover{{background:#f5f5f5}}.code-box{{background:#1a1a2e;color:#00ff88;font-size:22px;font-family:monospace;padding:16px 24px;border-radius:8px;display:inline-block;letter-spacing:2px;margin:8px 0}}.warn{{background:#fff8dc;border:1px solid #e6c200;padding:12px 16px;border-radius:6px;margin:12px 0}}</style></head>
+    <body><h2>IFP Security Dashboard</h2>
+    <div class="warn"><strong>Current access code:</strong><br><span class="code-box">{current_code}</span><br><small>Save this. Share via WhatsApp with your team if changed.</small></div>
+    <form method="post" action="/api/admin/generate-code" style="margin:8px 0"><input type="hidden" name="code" value="{code}"><button style="background:#c0392b;color:#fff;padding:8px 18px;border:none;border-radius:4px;cursor:pointer;font-size:14px">Generate New Code (use if someone saw your old code)</button></form>
     <h3>Blocked IPs</h3><ul>{blocked_list}</ul>
     <h3>Login Attempts (last {len(log)})</h3>
     <table><tr><th>Time</th><th>Result</th><th>IP Address</th><th>Device/Browser</th><th>Action</th></tr>{rows}</table>
@@ -153,24 +173,48 @@ def security_dashboard(code: str = "") -> HTMLResponse:
     return HTMLResponse(html)
 
 
-@router.post("/admin/block-ip")
-def block_ip(ip: str, code: str = "") -> dict:
-    if code not in settings.access_codes:
+@router.post("/admin/block-ip", response_class=HTMLResponse)
+def block_ip(ip: str = Form(...), code: str = Form("")) -> HTMLResponse:
+    if code not in _get_codes():
         raise HTTPException(status_code=403, detail="Access denied")
     ips = _blocked_ips()
     if ip not in ips:
         ips.append(ip)
         _BLOCKED_IPS.write_text(json.dumps(ips))
-    return {"blocked": ip}
+    new_code = _generate_code()
+    _CODE_FILE.write_text(new_code)
+    return HTMLResponse(f"""<!doctype html><html><head><meta charset='utf-8'><title>IP Blocked</title>
+    <style>body{{font-family:sans-serif;padding:40px;text-align:center}}.code-box{{background:#1a1a2e;color:#00ff88;font-size:28px;font-family:monospace;padding:20px 36px;border-radius:8px;display:inline-block;letter-spacing:3px;margin:16px 0}}.warn{{background:#fff8dc;border:2px solid #e6c200;padding:16px 24px;border-radius:8px;max-width:500px;margin:0 auto}}</style></head>
+    <body><h2>IP Blocked: {ip}</h2>
+    <div class="warn"><p><strong>Access code has been changed automatically.</strong></p>
+    <p>New code:</p><div class="code-box">{new_code}</div>
+    <p>Screenshot this and share via WhatsApp with your team before closing this page.</p>
+    <p><a href="/api/admin/security?code={new_code}">Open Security Dashboard with new code</a></p></div>
+    </body></html>""")
 
 
 @router.post("/admin/unblock-ip")
-def unblock_ip(ip: str, code: str = "") -> dict:
-    if code not in settings.access_codes:
+def unblock_ip(ip: str = Form(...), code: str = Form("")) -> RedirectResponse:
+    if code not in _get_codes():
         raise HTTPException(status_code=403, detail="Access denied")
     ips = [x for x in _blocked_ips() if x != ip]
     _BLOCKED_IPS.write_text(json.dumps(ips))
-    return {"unblocked": ip}
+    return RedirectResponse(f"/api/admin/security?code={code}", status_code=303)
+
+
+@router.post("/admin/generate-code", response_class=HTMLResponse)
+def generate_code(code: str = Form("")) -> HTMLResponse:
+    if code not in _get_codes():
+        raise HTTPException(status_code=403, detail="Access denied")
+    new_code = _generate_code()
+    _CODE_FILE.write_text(new_code)
+    return HTMLResponse(f"""<!doctype html><html><head><meta charset='utf-8'><title>New Code Generated</title>
+    <style>body{{font-family:sans-serif;padding:40px;text-align:center}}.code-box{{background:#1a1a2e;color:#00ff88;font-size:28px;font-family:monospace;padding:20px 36px;border-radius:8px;display:inline-block;letter-spacing:3px;margin:16px 0}}.warn{{background:#fff8dc;border:2px solid #e6c200;padding:16px 24px;border-radius:8px;max-width:500px;margin:0 auto}}</style></head>
+    <body><h2>New Access Code Generated</h2>
+    <div class="warn"><p>New code:</p><div class="code-box">{new_code}</div>
+    <p>Screenshot this and share via WhatsApp with your team before closing this page.</p>
+    <p><a href="/api/admin/security?code={new_code}">Open Security Dashboard with new code</a></p></div>
+    </body></html>""")
 
 
 @router.get("/jobs", dependencies=[Depends(require_auth)])

@@ -189,7 +189,7 @@ export const copy = {
     photo: "Photo",
     card: "Original card",
     name: "Name",
-    relation: "Father name",
+    relation: "F.name",
     age: "Age",
     occupation: "Occupation",
     house: "D.no/Ward",

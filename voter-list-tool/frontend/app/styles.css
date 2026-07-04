@@ -196,7 +196,7 @@ label {
 }
 
 .brandInline .brandLogo {
-  width: 38px;
+  width: 54px;
 }
 
 .heroCopy {
@@ -365,8 +365,7 @@ select {
 }
 
 .langRow,
-.actions,
-.toolbar {
+.actions {
   display: flex;
   gap: 10px;
   align-items: center;
@@ -398,20 +397,52 @@ select {
 
 .stickyZone .topbar,
 .stickyZone .summaryRail,
-.stickyZone .filterBar {
+.stickyZone .filterBar,
+.stickyZone .summaryMetricsWrap {
   width: 100%;
   margin: 0;
 }
+
 
 /* ── FILTER BAR ── */
 .filterBar {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 6px var(--page-gutter);
+  gap: 10px;
+  padding: 8px var(--page-gutter);
   background: #ffffff;
   border-bottom: 1px solid var(--line);
   overflow: clip;
+  flex-wrap: wrap;
+}
+
+.filterBarDivider {
+  width: 1px;
+  height: 20px;
+  background: var(--line);
+  flex-shrink: 0;
+}
+
+.filterBarSearch {
+  flex: 1 1 180px;
+  min-width: 140px;
+  height: 32px;
+  padding: 0 12px;
+  font-size: 13px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-input);
+  background: var(--bg);
+  color: var(--ink);
+  font-family: inherit;
+}
+
+.filterBarSearch::placeholder { color: var(--muted); }
+
+.filterBarSearch:focus {
+  outline: none;
+  border-color: var(--green);
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(14, 102, 68, 0.1);
 }
 
 .filterCatGroup {
@@ -421,81 +452,124 @@ select {
   flex-shrink: 0;
 }
 
-.filterSep {
-  width: 1px;
-  height: 18px;
-  background: var(--line);
-  flex-shrink: 0;
-  margin: 0 2px;
+/* ── ATLAS (area-first home screen) ── */
+.atlasWrap {
+  padding: 0 var(--page-gutter);
 }
 
-.filterAreaSearch {
-  width: 140px;
-  flex-shrink: 0;
-  height: 28px;
-  padding: 0 10px;
-  font-size: 12px;
-  border: 1px solid var(--line);
-  border-radius: var(--radius-input);
-  background: var(--bg);
-  color: var(--ink);
-}
-
-.filterAreaSearch::placeholder { color: var(--muted); }
-
-.filterAreaSearch:focus {
-  outline: none;
-  border-color: var(--green);
-  background: #fff;
-}
-
-.filterAreaScroller {
-  display: flex;
+.atlasAllBtn {
+  display: inline-flex;
   align-items: center;
-  flex: 1;
-  min-width: 0;
-  overflow: hidden;
-  position: relative;
+  gap: 6px;
+  margin-left: 4px;
+  min-height: 40px;
+  padding: 0 16px;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(14, 74, 53, 0.3);
+  background: var(--green-soft);
+  color: var(--green);
+  font-size: 13.5px;
+  font-weight: 700;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background 0.15s;
 }
 
-/* Right-edge fade hint: shows when there are more tiles to scroll to */
-.filterAreaScroller::after {
-  content: "";
-  position: absolute;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  width: 36px;
-  background: linear-gradient(to right, transparent, var(--panel, #fff));
-  pointer-events: none;
-  z-index: 1;
-}
-
-.filterAreaTiles {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  overflow-x: auto;
-  flex: 1;
-  width: 100%;
-  min-width: 0;
-  scrollbar-width: thin;
-  scrollbar-color: var(--green) transparent;
-  padding: 1px 36px 6px 1px; /* right padding so last pill clears the fade */
-  scroll-snap-type: x proximity;
-  overscroll-behavior-x: contain;
-  -webkit-overflow-scrolling: touch;
-}
-
-.filterAreaTiles::-webkit-scrollbar {
-  height: 3px;
-}
-.filterAreaTiles::-webkit-scrollbar-track {
-  background: transparent;
-}
-.filterAreaTiles::-webkit-scrollbar-thumb {
+.atlasAllBtn:hover {
   background: var(--green);
+  color: #fff;
+}
+
+.atlasGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 8px;
+}
+
+.atlasTile {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3px;
+  padding: 13px 14px 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  transition: border-color 0.15s, background 0.15s, transform 0.15s;
+}
+
+.atlasTile:hover {
+  border-color: var(--green);
+  background: rgba(231, 245, 238, 0.45);
+  transform: translateY(-1px);
+}
+
+.atlasTile:focus-visible {
+  outline: 2px solid var(--ifp);
+  outline-offset: 2px;
+}
+
+.atlasName {
+  font-size: 13.5px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+
+.atlasTotal {
+  font-size: 19px;
+  font-weight: 800;
+  color: var(--green);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.15;
+}
+
+.atlasIfp {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.atlasBarTrack {
+  width: 100%;
+  height: 4px;
   border-radius: 2px;
+  background: rgba(16, 35, 27, 0.08);
+  margin-top: 5px;
+  overflow: hidden;
+}
+
+.atlasBarFill {
+  display: block;
+  height: 100%;
+  border-radius: 2px;
+  background: var(--ifp);
+}
+
+.summaryBackBtn {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 0 12px;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(14, 74, 53, 0.3);
+  background: #fff;
+  color: var(--green);
+  font-size: 12.5px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s;
+}
+
+.summaryBackBtn:hover {
+  background: var(--green);
+  color: #fff;
 }
 
 .filterPill {
@@ -532,8 +606,8 @@ select {
   flex-shrink: 0;
   white-space: nowrap;
   font-size: 12px;
-  min-height: 28px;
-  padding: 0 10px;
+  height: 32px;
+  padding: 0 12px;
 }
 
 .topbar {
@@ -631,7 +705,10 @@ select {
 .statChipIfp strong { color: var(--ifp); }
 
 .statChipIfp.isActiveFilter {
-  box-shadow: 0 0 0 2px rgba(154, 106, 0, 0.14);
+  background: var(--green);
+  color: #fff;
+  border-color: transparent;
+  box-shadow: none;
   filter: none;
 }
 
@@ -644,7 +721,10 @@ select {
 .statChipTarget strong { color: var(--target); }
 
 .statChipTarget.isActiveFilter {
-  box-shadow: 0 0 0 2px rgba(185, 28, 28, 0.18);
+  background: var(--green);
+  color: #fff;
+  border-color: transparent;
+  box-shadow: none;
   filter: none;
 }
 
@@ -657,7 +737,10 @@ select {
 .statChipYt strong { color: var(--yt); }
 
 .statChipYt.isActiveFilter {
-  box-shadow: 0 0 0 2px rgba(109, 40, 217, 0.18);
+  background: var(--green);
+  color: #fff;
+  border-color: transparent;
+  box-shadow: none;
   filter: none;
 }
 
@@ -670,8 +753,18 @@ select {
 .statChipMf strong { color: var(--mf); }
 
 .statChipMf.isActiveFilter {
-  box-shadow: 0 0 0 2px rgba(13, 148, 136, 0.18);
+  background: var(--green);
+  color: #fff;
+  border-color: transparent;
+  box-shadow: none;
   filter: none;
+}
+
+.statChipIfp.isActiveFilter strong,
+.statChipTarget.isActiveFilter strong,
+.statChipYt.isActiveFilter strong,
+.statChipMf.isActiveFilter strong {
+  color: #fff;
 }
 
 .scrollSentinel {
@@ -920,9 +1013,10 @@ select {
   background: linear-gradient(180deg, rgba(14, 74, 53, 0.04), rgba(185, 137, 43, 0.08));
 }
 
-
 .summaryMetricsWrap {
-  padding: 6px var(--page-gutter) 0;
+  padding: 6px var(--page-gutter) 10px;
+  border-bottom: 1px solid var(--line-soft);
+  background: #ffffff;
 }
 
 .summaryMetricsViewRow {
@@ -930,6 +1024,7 @@ select {
   align-items: center;
   gap: 8px;
   margin-bottom: 5px;
+  flex-wrap: wrap;
 }
 
 .layout {
@@ -956,14 +1051,29 @@ select {
 .content {
   position: relative;
   isolation: isolate;
-  padding: 0 18px 18px;
+  padding: 14px 18px 18px;
+}
+
+.jumpSearchBtn {
+  display: none;
+}
+
+@keyframes jumpSearchIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: none; }
 }
 
 .noSelectionHint {
   margin: 48px auto;
+  padding: 28px 24px;
+  max-width: 360px;
   text-align: center;
   color: var(--muted);
   font-size: 15px;
+  line-height: 1.6;
+  border: 1px dashed var(--line);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.7);
 }
 
 .sidebar h2 {
@@ -1159,18 +1269,6 @@ select {
   background: linear-gradient(180deg, rgba(231, 245, 238, 1), rgba(255, 250, 240, 1));
 }
 
-.toolbar {
-  position: sticky;
-  top: var(--sticky-top);
-  z-index: 32;
-  margin: 0 -18px 12px;
-  padding: 10px var(--space-4);
-  background: rgba(255, 255, 255, 0.98);
-  border-bottom: 1px solid var(--line-soft);
-  box-shadow: 0 6px 16px rgba(16, 35, 27, 0.06);
-  backdrop-filter: blur(10px);
-  isolation: isolate;
-}
 
 .selectionBand {
   display: flex;
@@ -1225,12 +1323,14 @@ dd {
   display: grid;
   grid-template-columns: 1fr;
   gap: 10px;
+  align-items: stretch;
 }
 
 .voterCard {
   display: grid;
   grid-template-columns: 82px minmax(0, 1fr);
-  grid-template-rows: 1fr auto;
+  grid-template-rows: auto auto;
+  align-content: start;
   gap: 12px 12px;
   border: 1px solid var(--line);
   border-radius: var(--radius-card);
@@ -1242,7 +1342,7 @@ dd {
   transition: box-shadow 0.18s ease, transform 0.15s ease, border-color 0.18s ease;
   content-visibility: auto;
   contain-intrinsic-size: 0 134px;
-  align-items: stretch;
+  align-items: start;
 }
 
 .voterCard:hover {
@@ -1359,64 +1459,73 @@ dd {
 
 .voterTitleRow h3 {
   margin: 0;
-  overflow-wrap: anywhere;
-  word-break: break-word;
+  min-width: 0;
+  flex: 1;
 }
 
-.ifpPill {
-  display: inline-flex;
+.voterTitleRow > span {
+  flex-shrink: 0;
+}
+
+.relationRow {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  min-width: 0;
+}
+
+.relationRow strong {
+  flex-shrink: 0;
+}
+
+.relationRow .ddCompact {
+  flex: 1;
+  min-width: 0;
+}
+
+.photoBadges {
+  display: flex;
+  flex-wrap: wrap;
   align-items: center;
+  gap: 4px;
+}
+
+.miniTag {
+  display: inline-grid;
+  place-items: center;
   min-height: 24px;
-  padding: 0 10px;
-  border-radius: 999px;
-  background: var(--ifp-soft);
-  color: var(--ifp);
-  font-size: 12px;
+  min-width: 24px;
+  width: fit-content;
+  padding: 0 6px;
+  border-radius: var(--radius-pill);
+  font-size: 10px;
   font-weight: 800;
-  border: 1px solid rgba(154, 106, 0, 0.16);
+  line-height: 1;
   white-space: nowrap;
 }
 
-.ytPill {
-  display: inline-flex;
-  align-items: center;
-  min-height: 24px;
-  padding: 0 10px;
-  border-radius: 999px;
-  background: var(--yt-soft);
-  color: var(--yt);
-  font-size: 12px;
-  font-weight: 800;
-  border: 1px solid rgba(109, 40, 217, 0.16);
-  white-space: nowrap;
-}
-
-.targetPill {
-  display: inline-flex;
-  align-items: center;
-  min-height: 24px;
-  padding: 0 10px;
-  border-radius: 999px;
+.miniTagTarget {
   background: var(--target-soft);
   color: var(--target);
-  font-size: 12px;
-  font-weight: 800;
   border: 1px solid rgba(185, 28, 28, 0.16);
-  white-space: nowrap;
 }
 
-.mfPill {
-  display: inline-flex;
-  align-items: center;
-  min-height: 24px;
-  padding: 0 10px;
-  border-radius: 999px;
+.miniTagYt {
+  background: var(--yt-soft);
+  color: var(--yt);
+  border: 1px solid rgba(109, 40, 217, 0.16);
+}
+
+.miniTagMf {
   background: var(--mf-soft);
   color: var(--mf);
-  font-size: 12px;
-  font-weight: 800;
   border: 1px solid rgba(13, 148, 136, 0.16);
-  white-space: nowrap;
+}
+
+.miniTagIfp {
+  background: var(--ifp-soft);
+  color: var(--ifp);
+  border: 1px solid rgba(154, 106, 0, 0.16);
 }
 
 dl {
@@ -1431,10 +1540,17 @@ dl {
 dd {
   margin: 0;
   font-weight: 700;
+  font-variant-numeric: tabular-nums;
 }
 
 .dtHouse {
   font-size: 10px;
+}
+
+.ddCompact {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .voterCard > div,
@@ -1675,8 +1791,8 @@ form {
   z-index: 1;
 }
 
-.modalFooter .primary { flex: 1; }
-.modalFooter .secondary { flex: 0 0 auto; }
+.modalFooter .primary,
+.modalFooter .secondary { flex: 1; }
 
 .modal {
   position: fixed;
@@ -2056,21 +2172,57 @@ form {
   font-size: 13px;
 }
 
-.uploadInlineBtn {
+.uploadIconBtn {
   cursor: pointer;
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 0 16px;
-  white-space: nowrap;
-  font-weight: 700;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  font-size: 16px;
   border-color: rgba(14, 74, 53, 0.3);
   background: rgba(231, 245, 238, 0.7);
   color: var(--green);
+  flex-shrink: 0;
 }
 
-.uploadInlineBtn:hover {
+.uploadIconBtn:hover {
   background: rgba(231, 245, 238, 1);
+}
+
+.exportBtnGroup {
+  display: flex;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.exportCompactBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 0 10px;
+  height: 32px;
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: var(--radius-sm, 6px);
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.85);
+  color: var(--muted);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s;
+}
+
+.exportCompactBtn:hover:not(:disabled) {
+  background: rgba(231, 245, 238, 0.9);
+  color: var(--green);
+  border-color: rgba(14, 74, 53, 0.3);
+}
+
+.exportCompactBtn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
 }
 
 .loadMoreRow {
@@ -2097,6 +2249,72 @@ form {
 .error {
   color: var(--danger);
   font-weight: 700;
+}
+
+.modalMoreDetails {
+  margin: 4px 0 8px;
+}
+
+.modalMoreDetails summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--green);
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+  padding: 4px 0;
+}
+
+.modalMoreDetails summary::-webkit-details-marker { display: none; }
+
+.modalMoreDetails summary::before {
+  content: "▸";
+  font-size: 9px;
+  transition: transform 0.15s;
+}
+
+.modalMoreDetails[open] summary::before {
+  transform: rotate(90deg);
+}
+
+.modalMoreDetails[open] label:first-of-type {
+  margin-top: 6px;
+}
+
+.voterMoreDetails {
+  margin-top: 4px;
+}
+
+.voterMoreDetails summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--green);
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+  padding: 2px 0;
+}
+
+.voterMoreDetails summary::-webkit-details-marker { display: none; }
+
+.voterMoreDetails summary::before {
+  content: "▸";
+  font-size: 9px;
+  transition: transform 0.15s;
+}
+
+.voterMoreDetails[open] summary::before {
+  transform: rotate(90deg);
+}
+
+.voterMoreDetails[open] dl {
+  margin-top: 4px;
 }
 
 .note {
@@ -2284,14 +2502,6 @@ button:not(.close):not(.area):not(.job):active {
     flex-wrap: wrap;
   }
 
-  .filterAreaScroller {
-    order: 10;
-    flex-basis: 100%;
-  }
-
-  .filterAreaTiles {
-    padding-right: 2px;
-  }
 
   .filterStatsBtn {
     margin-left: auto;
@@ -2311,8 +2521,7 @@ button:not(.close):not(.area):not(.job):active {
     grid-template-columns: 1fr;
   }
 
-  .actions,
-  .toolbar {
+  .actions {
     flex-wrap: wrap;
   }
 
@@ -2322,7 +2531,6 @@ button:not(.close):not(.area):not(.job):active {
     max-height: none;
   }
 
-  .toolbar,
   .mergeBar {
     top: auto;
     position: static;
@@ -2347,6 +2555,100 @@ button:not(.close):not(.area):not(.job):active {
 
   .actions {
     flex-wrap: wrap;
+  }
+
+  .filterBarDivider {
+    display: none;
+  }
+
+  .filterBarSearch {
+    order: 1;
+    flex-basis: 100%;
+    height: 40px;
+    font-size: 14px;
+  }
+
+  .exportBtnGroup {
+    order: 2;
+  }
+
+  .exportCompactBtn,
+  .filterStatsBtn {
+    height: 40px;
+  }
+
+  .filterStatsBtn {
+    order: 3;
+  }
+
+  /* Header scrolls away on phones — a 400px+ sticky block buries the content
+     and intercepts taps on anything underneath it. */
+  .stickyZone {
+    position: static;
+  }
+
+  /* Stats: 2-column grid (340px tall) becomes a swipeable one-row strip. */
+  .summaryMetrics {
+    display: flex;
+    overflow-x: auto;
+    gap: 8px;
+    padding-bottom: 4px;
+    scroll-snap-type: x proximity;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: var(--line) transparent;
+  }
+
+  .summaryMetricCard {
+    flex: 0 0 auto;
+    min-width: 112px;
+    scroll-snap-align: start;
+  }
+
+  .summaryMetricsWrap {
+    padding-bottom: 6px;
+  }
+
+  /* Floating "jump to search" — the header scrolls away on phones, so this
+     brings the search back within thumb reach mid-list. */
+  .jumpSearchBtn {
+    display: grid;
+    place-items: center;
+    position: fixed;
+    right: 14px;
+    bottom: calc(16px + env(safe-area-inset-bottom));
+    z-index: 35;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: none;
+    background: var(--green);
+    color: #fdfcf9;
+    box-shadow: 0 8px 22px rgba(14, 74, 53, 0.35);
+    animation: jumpSearchIn 0.2s ease both;
+  }
+
+  .jumpSearchBtn:active {
+    transform: scale(0.94);
+  }
+
+  /* Modals become bottom sheets: thumb-reachable close, natural swipe-down feel. */
+  .modal {
+    padding: 0;
+    place-items: end center;
+  }
+
+  .reviewPanel,
+  .areaMgrPanel,
+  .familyPanel,
+  .deceasedPanel,
+  .blocklistPanel,
+  .cancelledPanel {
+    width: 100%;
+    max-width: 100%;
+    max-height: 94dvh;
+    border-radius: 16px 16px 0 0;
+    border-bottom: none;
   }
 }
 

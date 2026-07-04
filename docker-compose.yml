@@ -5,8 +5,8 @@ services:
     volumes:
       - voter_data:/app/data          # persistent — survives restarts/redeploys
     environment:
-      VOTER_APP_CODES: "ifp-private-2026"
-      VOTER_APP_SECRET: "CHANGE_THIS_TO_A_RANDOM_SECRET"
+      VOTER_APP_CODES: "IFP2026-MngDesk-9x7k"
+      VOTER_APP_SECRET: "IFP2026-MngDesk-9x7k"
       VOTER_CORS_ORIGINS: "*"         # Caddy is the only public entry point
       VOTER_DEMO_OCR: "true"          # data already processed; skip OCR on upload
       VOTER_OCR_PROVIDER: "local"

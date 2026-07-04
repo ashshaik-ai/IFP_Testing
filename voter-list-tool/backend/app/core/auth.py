@@ -4,12 +4,23 @@ import base64
 import hashlib
 import hmac
 import time
+from pathlib import Path
 from fastapi import Header, HTTPException, status
 
 from app.core.config import settings
 
 
 TOKEN_TTL_SECONDS = 60 * 60 * 24 * 14
+_CODE_FILE = Path("/app/data/access_code.txt")
+
+
+def _live_codes() -> list[str]:
+    """Read active codes from file override first, then fall back to env var."""
+    if _CODE_FILE.exists():
+        code = _CODE_FILE.read_text().strip()
+        if code:
+            return [code]
+    return list(settings.access_codes)
 
 
 def _sign(payload: str) -> str:
@@ -29,7 +40,7 @@ def verify_token(token: str) -> bool:
             return False
         payload = base64.urlsafe_b64decode(body.encode()).decode()
         code, issued = payload.rsplit(":", 1)
-        return code in settings.access_codes and time.time() - int(issued) <= TOKEN_TTL_SECONDS
+        return code in _live_codes() and time.time() - int(issued) <= TOKEN_TTL_SECONDS
     except Exception:
         return False
 
