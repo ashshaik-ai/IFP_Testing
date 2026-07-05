@@ -4,14 +4,17 @@
   --ink: #10231b;
   --muted: #4a5650;
   --green: #0e4a35;
+  --green-deep: #0a3a29;
   --green-soft: #e7f5ee;
-  --ifp: #9a6a00;
+  /* Darkened from #9a6a00 (4.22:1 on --ifp-soft, failed WCAG 1.4.3) to 5.03:1 */
+  --ifp: #8a5f00;
   --ifp-soft: #fff1cc;
   --yt: #6d28d9;
   --yt-soft: #f3f0ff;
   --target: #b91c1c;
   --target-soft: #fef2f2;
-  --mf: #0d9488;
+  /* Darkened from #0d9488 (3.59:1 on --mf-soft, failed WCAG 1.4.3) to 5.56:1 */
+  --mf: #0b7268;
   --mf-soft: #f0fdfa;
   /* "General" accent — harmonized slate-indigo (replaces clashing violet) */
   --violet: #3c4f8f;
@@ -56,6 +59,37 @@
 
 * {
   box-sizing: border-box;
+}
+
+.skipLink {
+  position: absolute;
+  top: -50px;
+  left: 8px;
+  z-index: 100;
+  padding: 10px 16px;
+  background: var(--green-deep);
+  color: #fdfcf9;
+  font-size: 13.5px;
+  font-weight: 700;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: top 0.15s ease;
+}
+
+.skipLink:focus {
+  top: 8px;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 body {
@@ -112,7 +146,16 @@ select:focus-visible {
   display: grid;
   min-height: 100vh;
   place-items: center;
+  gap: 16px;
   padding: 20px;
+}
+
+.loginFooter {
+  margin: 0;
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--muted);
 }
 
 .loginPanel,
@@ -123,10 +166,7 @@ select:focus-visible {
   box-shadow: 0 24px 70px rgba(16, 35, 27, 0.1);
 }
 
-.statusCard,
-.sidebar,
-.content,
-.mergeBar {
+.content {
   background: var(--panel);
   border: 1px solid var(--line);
   border-radius: 10px;
@@ -156,9 +196,6 @@ select:focus-visible {
 
 .loginPanel p,
 .topbar p,
-.mergeBar span,
-.statusCard span,
-.sidebar small,
 .voterCard p,
 dt,
 label {
@@ -296,68 +333,6 @@ select {
   border-color: rgba(14, 74, 53, 0.18);
 }
 
-.archiveCluster {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 4px;
-  border: 1px solid var(--line);
-  border-radius: var(--radius-pill);
-  background: rgba(16, 35, 27, 0.05);
-}
-
-.archiveBtn {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  min-height: 36px;
-  padding: 0 12px;
-  font-size: 13px;
-  font-weight: 700;
-  color: #fff;
-  border-color: transparent;
-  border-radius: var(--radius-pill);
-}
-
-.archiveBtn span {
-  color: inherit;
-}
-
-.archiveBtn strong {
-  min-width: 22px;
-  min-height: 22px;
-  display: inline-grid;
-  place-items: center;
-  padding: 0 7px;
-  border-radius: var(--radius-pill);
-  background: rgba(255, 255, 255, 0.22);
-  color: #fff;
-  font-size: 12px;
-  font-weight: 800;
-}
-
-.archiveBtnDeceased {
-  background: #8c1d1d;
-}
-
-.archiveBtnBlock {
-  background: #4c1d95;
-}
-
-.archiveBtnCancelled {
-  background: #92400e;
-}
-
-.archiveBtn:hover {
-  filter: brightness(1.08);
-}
-
-.activeToggle,
-.dangerGhost {
-  border-color: rgba(14, 74, 53, 0.32);
-  background: rgba(231, 245, 238, 0.9);
-}
-
 .dangerGhost {
   color: var(--danger);
   border-color: rgba(155, 28, 28, 0.24);
@@ -380,7 +355,6 @@ select {
   padding: 0 0 16px;
 }
 
-.uploadBand,
 .layout {
   width: 100%;
   margin: 0 0 16px;
@@ -396,30 +370,25 @@ select {
 }
 
 .stickyZone .topbar,
-.stickyZone .summaryRail,
-.stickyZone .filterBar,
 .stickyZone .summaryMetricsWrap {
   width: 100%;
   margin: 0;
 }
 
 
-/* ── FILTER BAR ── */
-.filterBar {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 8px var(--page-gutter);
-  background: #ffffff;
-  border-bottom: 1px solid var(--line);
-  overflow: clip;
-  flex-wrap: wrap;
-}
-
+/* ── FILTER BAR (merged into .topbar as one continuous line) ── */
 .filterBarDivider {
   width: 1px;
   height: 20px;
   background: var(--line);
+  flex-shrink: 0;
+}
+
+.filterBarView {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
   flex-shrink: 0;
 }
 
@@ -438,6 +407,12 @@ select {
 
 .filterBarSearch::placeholder { color: var(--muted); }
 
+.filterBarSearchCompact {
+  flex: 0 1 180px;
+  min-width: 120px;
+  max-width: 220px;
+}
+
 .filterBarSearch:focus {
   outline: none;
   border-color: var(--green);
@@ -455,29 +430,6 @@ select {
 /* ── ATLAS (area-first home screen) ── */
 .atlasWrap {
   padding: 0 var(--page-gutter);
-}
-
-.atlasAllBtn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  margin-left: 4px;
-  min-height: 40px;
-  padding: 0 16px;
-  border-radius: var(--radius-pill);
-  border: 1px solid rgba(14, 74, 53, 0.3);
-  background: var(--green-soft);
-  color: var(--green);
-  font-size: 13.5px;
-  font-weight: 700;
-  white-space: nowrap;
-  cursor: pointer;
-  transition: background 0.15s;
-}
-
-.atlasAllBtn:hover {
-  background: var(--green);
-  color: #fff;
 }
 
 .atlasGrid {
@@ -516,8 +468,14 @@ select {
   font-size: 13.5px;
   font-weight: 800;
   letter-spacing: -0.01em;
+  line-height: 1.25;
   color: var(--ink);
   overflow-wrap: anywhere;
+  /* Reserve 2 lines always, so a short 1-line name and a wrapped 2-line
+     name leave the total (count) below aligned across a tile row. */
+  min-height: calc(1.25em * 2);
+  display: flex;
+  align-items: flex-start;
 }
 
 .atlasTotal {
@@ -572,6 +530,27 @@ select {
   color: #fff;
 }
 
+.summaryModeChip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  padding: 0 10px;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(154, 106, 0, 0.22);
+  background: var(--ifp-soft);
+  color: var(--ifp);
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s;
+}
+
+.summaryModeChip:hover {
+  background: var(--ifp);
+  color: #fff;
+}
+
 .filterPill {
   display: inline-flex;
   flex: 0 0 auto;
@@ -602,46 +581,62 @@ select {
   font-weight: 600;
 }
 
-.filterStatsBtn {
-  flex-shrink: 0;
-  white-space: nowrap;
-  font-size: 12px;
-  height: 32px;
-  padding: 0 12px;
-}
-
 .topbar {
   display: flex;
-  justify-content: space-between;
-  gap: var(--space-3);
   align-items: center;
+  gap: 8px 10px;
   padding: 6px var(--page-gutter);
   background: #ffffff;
   border-bottom: 1px solid var(--line);
   box-shadow: 0 4px 12px rgba(16, 35, 27, 0.05);
+  flex-wrap: wrap;
 }
 
-.summaryRail {
-  padding: 5px var(--page-gutter);
-  border-top: none;
-  border-bottom: 1px solid var(--line);
-  background: #ffffff;
+/* Inside an area, .topbarRow is transparent to layout (display:contents),
+   so brand/actions/filters/search/export all flow as one continuous line —
+   the merged toolbar users asked for once real estate matters. */
+.topbarRow {
+  display: contents;
 }
 
-.summaryStrip {
+/* Deliberate reading order for the merged single line inside an area:
+   identity -> where am I / back -> filters -> search -> export, with
+   account-level controls (menu/language/logout) pinned to the far right
+   instead of sitting right after the brand. These values are also each
+   other's natural DOM order within the atlas screen's two separate rows,
+   so the same rules are a no-op there. */
+.brandBlock { order: 1; }
+.filterBarView { order: 2; }
+.filterBarDividerA { order: 3; }
+.filterCatGroup { order: 4; }
+.filterBarDividerB { order: 5; }
+.filterBarSearch { order: 6; }
+.exportBtnGroup { order: 7; }
+.actions { order: 8; margin-left: auto; }
+
+/* On the atlas/home screen there's no long list competing for space below,
+   so a roomier 2-row header (brand+account on top, view/filters/search on
+   the second) reads calmer and more deliberate than one crowded line. */
+.topbarAtlas {
+  align-items: stretch;
+  padding: 10px var(--page-gutter) 8px;
+}
+
+.topbarAtlas .topbarRow {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 8px 10px;
+}
+
+.topbarAtlas .topbarRowTop {
   justify-content: space-between;
-  gap: 12px;
-  flex-wrap: wrap;
-  min-height: 28px;
 }
 
-.summaryView {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  flex-wrap: wrap;
+.topbarAtlas .topbarRowBottom {
+  padding-top: 8px;
+  border-top: 1px solid var(--line-soft);
 }
 
 .summaryViewLabel {
@@ -658,174 +653,10 @@ select {
   color: var(--ink);
 }
 
-.summaryModeChip {
-  display: inline-flex;
-  align-items: center;
-  min-height: 24px;
-  padding: 0 10px;
-  border-radius: 999px;
-  background: var(--ifp-soft);
-  border: 1px solid rgba(154, 106, 0, 0.22);
-  color: var(--ifp);
-  font-size: 12px;
-  font-weight: 800;
-}
-
-.topbarStats {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  flex-shrink: 0;
-  flex-wrap: wrap;
-}
-
-.statChip[type="button"] {
-  cursor: pointer;
-  font-family: inherit;
-}
-
-.statChip[type="button"]:hover {
-  filter: brightness(0.92);
-}
-
-.statChipDeceased {
-  background: rgba(140, 29, 29, 0.08);
-  border-color: rgba(140, 29, 29, 0.28);
-  color: #8c1d1d;
-}
-
-.statChipDeceased strong { color: #8c1d1d; }
-
-.statChipIfp {
-  background: var(--ifp-soft);
-  border-color: rgba(154, 106, 0, 0.24);
-  color: var(--ifp);
-}
-
-.statChipIfp strong { color: var(--ifp); }
-
-.statChipIfp.isActiveFilter {
-  background: var(--green);
-  color: #fff;
-  border-color: transparent;
-  box-shadow: none;
-  filter: none;
-}
-
-.statChipTarget {
-  background: var(--target-soft);
-  border-color: rgba(185, 28, 28, 0.24);
-  color: var(--target);
-}
-
-.statChipTarget strong { color: var(--target); }
-
-.statChipTarget.isActiveFilter {
-  background: var(--green);
-  color: #fff;
-  border-color: transparent;
-  box-shadow: none;
-  filter: none;
-}
-
-.statChipYt {
-  background: var(--yt-soft);
-  border-color: rgba(109, 40, 217, 0.24);
-  color: var(--yt);
-}
-
-.statChipYt strong { color: var(--yt); }
-
-.statChipYt.isActiveFilter {
-  background: var(--green);
-  color: #fff;
-  border-color: transparent;
-  box-shadow: none;
-  filter: none;
-}
-
-.statChipMf {
-  background: var(--mf-soft);
-  border-color: rgba(13, 148, 136, 0.24);
-  color: var(--mf);
-}
-
-.statChipMf strong { color: var(--mf); }
-
-.statChipMf.isActiveFilter {
-  background: var(--green);
-  color: #fff;
-  border-color: transparent;
-  box-shadow: none;
-  filter: none;
-}
-
-.statChipIfp.isActiveFilter strong,
-.statChipTarget.isActiveFilter strong,
-.statChipYt.isActiveFilter strong,
-.statChipMf.isActiveFilter strong {
-  color: #fff;
-}
-
 .scrollSentinel {
   height: 1px;
   width: 100%;
   pointer-events: none;
-}
-
-.topbarDivider {
-  display: inline-block;
-  width: 1px;
-  align-self: stretch;
-  background: var(--line);
-  margin: 3px 4px;
-  flex-shrink: 0;
-}
-
-.statChipFamily {
-  background: rgba(14, 74, 53, 0.08);
-  border-color: rgba(14, 74, 53, 0.22);
-  color: var(--green);
-}
-
-.statChipFamily strong {
-  color: var(--green);
-}
-
-.statChipBlock {
-  background: rgba(76, 29, 149, 0.08);
-  border-color: rgba(76, 29, 149, 0.28);
-  color: #4c1d95;
-}
-
-.statChipBlock strong { color: #4c1d95; }
-
-.statChipCancelled {
-  background: rgba(146, 64, 14, 0.08);
-  border-color: rgba(146, 64, 14, 0.28);
-  color: #92400e;
-}
-
-.statChipCancelled strong { color: #92400e; }
-
-.summaryInlineStats {
-  display: flex;
-  justify-content: flex-end;
-  gap: 6px;
-  flex-wrap: wrap;
-  font-size: 12px;
-  color: var(--muted);
-}
-
-.summaryInlineStats strong {
-  font-size: 13px;
-  font-weight: 800;
-  color: var(--ink);
-  transition: color 0.3s ease;
-}
-
-.summaryInlineStats strong.popped {
-  animation: statPop 0.22s ease-out both;
 }
 
 .summaryMetrics {
@@ -855,6 +686,23 @@ select {
   border: 1px solid rgba(16, 35, 27, 0.08);
   background: rgba(255, 255, 255, 0.95);
   box-shadow: 0 1px 3px rgba(16, 35, 27, 0.04);
+  text-align: left;
+  font-family: inherit;
+  cursor: default;
+}
+
+button.summaryMetricCard {
+  cursor: pointer;
+  transition: transform 0.15s, border-color 0.15s, box-shadow 0.15s;
+}
+
+/* The 4 party cards are filter buttons; Total/Life/General are static
+   info — without a hover cue nothing distinguished the two, so the
+   filtering feature was easy to miss entirely. */
+button.summaryMetricCard:hover {
+  border-color: rgba(16, 35, 27, 0.22);
+  box-shadow: 0 3px 8px rgba(16, 35, 27, 0.1);
+  transform: translateY(-1px);
 }
 
 .summaryMetricCard span {
@@ -923,94 +771,41 @@ select {
   color: var(--mf);
 }
 
+.metricIfp.isActiveFilter,
+.metricTarget.isActiveFilter,
+.metricYt.isActiveFilter,
+.metricMf.isActiveFilter {
+  background: var(--green);
+  border-color: transparent;
+  box-shadow: none;
+}
+
+.metricIfp.isActiveFilter span,
+.metricTarget.isActiveFilter span,
+.metricYt.isActiveFilter span,
+.metricMf.isActiveFilter span,
+.metricIfp.isActiveFilter strong,
+.metricTarget.isActiveFilter strong,
+.metricYt.isActiveFilter strong,
+.metricMf.isActiveFilter strong,
+.metricIfp.isActiveFilter small,
+.metricTarget.isActiveFilter small,
+.metricYt.isActiveFilter small,
+.metricMf.isActiveFilter small {
+  color: #fff;
+}
+
 .areaStatsPanel {
   width: min(580px, 96vw);
 }
 
-.statChips {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  flex-wrap: wrap;
-}
-
-.statChip {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  padding: 2px 9px;
-  border-radius: var(--radius-pill);
-  font-size: 12px;
-  color: var(--muted);
-  background: rgba(255, 255, 255, 0.85);
-  border: 1px solid var(--line);
-  white-space: nowrap;
-}
-
-.statChip strong {
-  font-size: 13px;
-  font-weight: 800;
-  color: var(--ink);
-  transition: color 0.3s ease;
-}
-
-.statChip strong.popped {
+.popped {
   animation: statPop 0.22s ease-out both;
 }
 
-.statChip.life {
-  background: var(--green-soft);
-  border-color: rgba(14, 74, 53, 0.18);
-  color: var(--green);
-}
-
-.statChip.life strong {
-  color: var(--green);
-}
-
-.statChip.general {
-  background: var(--violet-soft);
-  border-color: rgba(60, 79, 143, 0.18);
-  color: var(--violet);
-}
-
-.statChip.general strong {
-  color: var(--violet);
-}
-
-.uploadBand {
-  display: grid;
-  grid-template-columns: minmax(220px, 320px) 1fr;
-  gap: 14px;
-}
-
-.uploadBox {
-  min-height: 116px;
-  display: grid;
-  place-items: center;
-  border: 2px dashed var(--gold);
-  border-radius: 10px;
-  background: #fffaf0;
-  color: var(--green);
-  margin: 0;
-}
-
-.uploadBox input {
-  display: none;
-}
-
-.statusCard,
-.sidebar,
 .content,
-.reviewPanel,
-.mergeBar {
+.reviewPanel {
   padding: 16px 18px;
-}
-
-.statusCard {
-  display: grid;
-  gap: 8px;
-  background: linear-gradient(180deg, rgba(14, 74, 53, 0.04), rgba(185, 137, 43, 0.08));
 }
 
 .summaryMetricsWrap {
@@ -1019,12 +814,36 @@ select {
   background: #ffffff;
 }
 
-.summaryMetricsViewRow {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 5px;
-  flex-wrap: wrap;
+/* Inside a drilled-into area the voter grid needs the vertical space more
+   than these cards do — the atlas/home screen keeps the roomier version. */
+.summaryMetricsWrapCompact {
+  padding: 4px var(--page-gutter) 6px;
+}
+
+.summaryMetricsWrapCompact .summaryMetrics {
+  gap: 6px;
+  margin-top: 0;
+}
+
+.summaryMetricsWrapCompact .summaryMetricCard {
+  padding: 3px 8px;
+  gap: 0;
+}
+
+.summaryMetricsWrapCompact .summaryMetricCard span {
+  font-size: 10px;
+}
+
+.summaryMetricsWrapCompact .summaryMetricCard strong {
+  font-size: 15px;
+}
+
+.summaryMetricsWrapCompact .summaryMetricCard small {
+  font-size: 10px;
+}
+
+.summaryMetricsWrapCompact .summaryMetricCompact strong {
+  font-size: 13px;
 }
 
 .layout {
@@ -1036,31 +855,48 @@ select {
   padding: 0;
 }
 
-.sidebar {
-  position: sticky;
-  top: var(--sticky-top);
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  max-height: calc(100vh - (var(--sticky-top) + 32px));
-  min-height: 0;
-  overflow-y: auto;
-  overscroll-behavior: contain;
-}
-
 .content {
   position: relative;
   isolation: isolate;
   padding: 14px 18px 18px;
 }
 
-.jumpSearchBtn {
+.mobileBottomNav {
   display: none;
 }
 
-@keyframes jumpSearchIn {
-  from { opacity: 0; transform: translateY(8px); }
-  to   { opacity: 1; transform: none; }
+.refetchBar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 61;
+  overflow: hidden;
+  background: rgba(14, 74, 53, 0.12);
+}
+
+.refetchBar::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 40%;
+  background: var(--green);
+  border-radius: 2px;
+  animation: refetchSweep 1.1s ease-in-out infinite;
+}
+
+@keyframes refetchSweep {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(350%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .refetchBar::after {
+    animation: none;
+    width: 100%;
+    transform: none;
+  }
 }
 
 .noSelectionHint {
@@ -1076,62 +912,14 @@ select {
   background: rgba(255, 255, 255, 0.7);
 }
 
-.sidebar h2 {
-  margin: 14px 0 4px;
-  font-size: var(--fs-h2);
-  font-weight: 700;
-  letter-spacing: 0.01em;
-  color: var(--green);
+.noSelectionHint p {
+  margin: 0 0 10px;
 }
 
-.areaSearchInput {
-  margin: 0 0 6px;
-}
-
-.areaList {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  min-height: 160px;
-  max-height: min(360px, 42vh);
-  overflow-y: auto;
-  padding-right: 4px;
-  overscroll-behavior: contain;
-  -webkit-overflow-scrolling: touch;
-}
-
-.sidebarStatsCard {
-  display: grid;
-  gap: 10px;
-  margin-top: 8px;
-  padding: 12px;
-  border: 1px solid rgba(14, 74, 53, 0.12);
-  border-radius: 10px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(244, 239, 228, 0.82));
-}
-
-.sidebarStatsHead {
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-  align-items: center;
-}
-
-.sidebarStatsHead strong {
-  font-size: 14px;
-}
-
-.sidebarStatsHead span {
-  min-width: 32px;
-  min-height: 24px;
-  display: inline-grid;
-  place-items: center;
-  padding: 0 8px;
-  border-radius: 999px;
-  background: rgba(14, 74, 53, 0.1);
-  color: var(--green);
-  font-size: 12px;
-  font-weight: 800;
+.activeFilterList {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
 }
 
 .sidebarStatsTableWrap {
@@ -1184,48 +972,6 @@ select {
   box-shadow: inset 3px 0 0 var(--green);
 }
 
-.job,
-.area {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  width: 100%;
-  gap: 5px;
-  padding: 10px 12px;
-  text-align: left;
-  align-items: start;
-  align-content: start;
-  justify-items: start;
-  min-width: 0;
-  white-space: normal;
-  overflow: hidden;
-  border-left: 3px solid transparent;
-}
-
-.area.active,
-.job.active {
-  border-left-color: var(--green);
-}
-
-.job span,
-.job small,
-.area span,
-.area small {
-  display: block;
-  min-width: 0;
-  overflow-wrap: anywhere;
-  word-break: break-word;
-}
-
-.job span,
-.area span {
-  font-weight: 700;
-  line-height: 1.35;
-}
-
-.filterLabel {
-  width: 100%;
-}
-
 .filterMeta {
   display: flex !important;
   width: 100%;
@@ -1253,70 +999,15 @@ select {
   color: var(--green);
 }
 
-.sourceFilterStack {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 8px;
-}
-
-.sourceChip {
-  min-height: 44px;
-  font-weight: 700;
-}
-
 .active {
   border-color: var(--green);
   background: linear-gradient(180deg, rgba(231, 245, 238, 1), rgba(255, 250, 240, 1));
 }
 
-
-.selectionBand {
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
-  align-items: baseline;
-  margin: 0 0 14px;
-  padding: 6px 4px 10px;
-  border-bottom: 1px solid var(--line-soft);
-  font-size: var(--fs-body);
-}
-
-.selectionBand strong {
-  font-size: var(--fs-h3);
-  font-weight: 700;
-}
-
-.selectionBand span {
-  color: var(--muted);
-}
-
-.selectionBand strong,
-.selectionBand span {
-  overflow-wrap: anywhere;
-  word-break: break-word;
-}
-
-.mergeBar {
-  position: sticky;
-  top: 144px;
-  z-index: 3;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(220px, 280px) auto;
-  gap: 12px;
-  align-items: center;
-  margin: 0 0 14px;
-}
-
-.mergeBar strong,
 .voterCard h3,
 dd {
   overflow-wrap: anywhere;
   word-break: break-word;
-}
-
-.mergeBar strong {
-  display: block;
-  margin: 0 0 4px;
 }
 
 .voterGrid {
@@ -1409,6 +1100,13 @@ dd {
   background-size: cover;
 }
 
+/* Distinct from the neutral loading silhouette above — a failed photo
+   fetch used to look identical to "still loading" forever. */
+.imagePlaceholderFailed {
+  background-color: #f7f1ee;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 116'%3E%3Ccircle cx='48' cy='44' r='18' fill='none' stroke='%23c99b8f' stroke-width='3'/%3E%3Cpath d='M38 34l20 20M58 34l-20 20' stroke='%23c99b8f' stroke-width='3' stroke-linecap='round'/%3E%3Cpath d='M18 104c0-17 13-28 30-28s30 11 30 28z' fill='%23d9c3bc'/%3E%3C/svg%3E");
+}
+
 .sourceBadge {
   justify-self: start;
   min-height: 24px;
@@ -1450,21 +1148,41 @@ dd {
 }
 
 .voterTitleRow {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 10px;
+  position: relative;
   margin-bottom: 4px;
 }
 
 .voterTitleRow h3 {
   margin: 0;
   min-width: 0;
-  flex: 1;
+  /* The chevron floats out of flow (below) instead of sharing this flex
+     line — reserve clearance for it on the first line only; a wrapped
+     2nd line gets the full card width back. */
+  padding-right: 40px;
 }
 
-.voterTitleRow > span {
-  flex-shrink: 0;
+/* Floated to the corner instead of sitting in the name's flex line — on
+   a name that's already at its smallest font size, the ~40px this used
+   to take out of the line was enough to force an early wrap/shrink. */
+.cardOpenBtn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--muted);
+}
+
+.cardOpenBtn:hover {
+  background: var(--green-soft);
+  color: var(--green);
+  border-color: rgba(14, 74, 53, 0.25);
 }
 
 .relationRow {
@@ -1478,7 +1196,8 @@ dd {
   flex-shrink: 0;
 }
 
-.relationRow .ddCompact {
+.relationRow .ddCompact,
+.relationRow .ddWrap {
   flex: 1;
   min-width: 0;
 }
@@ -1488,44 +1207,6 @@ dd {
   flex-wrap: wrap;
   align-items: center;
   gap: 4px;
-}
-
-.miniTag {
-  display: inline-grid;
-  place-items: center;
-  min-height: 24px;
-  min-width: 24px;
-  width: fit-content;
-  padding: 0 6px;
-  border-radius: var(--radius-pill);
-  font-size: 10px;
-  font-weight: 800;
-  line-height: 1;
-  white-space: nowrap;
-}
-
-.miniTagTarget {
-  background: var(--target-soft);
-  color: var(--target);
-  border: 1px solid rgba(185, 28, 28, 0.16);
-}
-
-.miniTagYt {
-  background: var(--yt-soft);
-  color: var(--yt);
-  border: 1px solid rgba(109, 40, 217, 0.16);
-}
-
-.miniTagMf {
-  background: var(--mf-soft);
-  color: var(--mf);
-  border: 1px solid rgba(13, 148, 136, 0.16);
-}
-
-.miniTagIfp {
-  background: var(--ifp-soft);
-  color: var(--ifp);
-  border: 1px solid rgba(154, 106, 0, 0.16);
 }
 
 dl {
@@ -1551,6 +1232,13 @@ dd {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+/* Used instead of .ddCompact once a name is already at its smallest font
+   size — wraps to a 2nd line instead of silently clipping part of it. */
+.ddWrap {
+  white-space: normal;
+  overflow-wrap: anywhere;
 }
 
 .voterCard > div,
@@ -1579,9 +1267,9 @@ form {
 
 .cardActions button {
   flex: 1;
-  min-height: 40px;
+  min-height: 44px;
   padding: 4px 4px;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 600;
   white-space: nowrap;
   display: flex;
@@ -1633,11 +1321,14 @@ form {
   }
 }
 
+.partyBtn {
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.88);
+}
+
 .mfBtn {
   border-color: rgba(13, 148, 136, 0.22);
-  background: rgba(255, 255, 255, 0.98);
   color: #0f766e;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.88);
 }
 
 .mfBtn.active {
@@ -1646,34 +1337,9 @@ form {
   color: var(--mf);
 }
 
-.mfToggleRow {
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
-  align-items: center;
-  padding: 10px 12px;
-  border-radius: 8px;
-  background: linear-gradient(180deg, rgba(240, 253, 250, 0.96), rgba(255, 255, 255, 0.94));
-  border: 1px solid rgba(13, 148, 136, 0.12);
-  margin-bottom: 6px;
-}
-
-.mfToggleRow strong,
-.mfToggleRow p {
-  margin: 0;
-}
-
-.mfToggleRow p {
-  margin-top: 2px;
-  color: var(--muted);
-  font-size: 12px;
-}
-
 .targetBtn {
   border-color: rgba(185, 28, 28, 0.22);
-  background: rgba(255, 255, 255, 0.98);
   color: #991b1b;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.88);
 }
 
 .targetBtn.active {
@@ -1682,34 +1348,9 @@ form {
   color: var(--target);
 }
 
-.targetToggleRow {
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
-  align-items: center;
-  padding: 10px 12px;
-  border-radius: 8px;
-  background: linear-gradient(180deg, rgba(254, 242, 242, 0.96), rgba(255, 255, 255, 0.94));
-  border: 1px solid rgba(185, 28, 28, 0.12);
-  margin-bottom: 6px;
-}
-
-.targetToggleRow strong,
-.targetToggleRow p {
-  margin: 0;
-}
-
-.targetToggleRow p {
-  margin-top: 2px;
-  color: var(--muted);
-  font-size: 12px;
-}
-
 .ytBtn {
   border-color: rgba(109, 40, 217, 0.22);
-  background: rgba(255, 255, 255, 0.98);
   color: #5b21b6;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.88);
 }
 
 .ytBtn.active {
@@ -1718,64 +1359,16 @@ form {
   color: var(--yt);
 }
 
-.ytToggleRow {
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
-  align-items: center;
-  padding: 10px 12px;
-  border-radius: 8px;
-  background: linear-gradient(180deg, rgba(243, 240, 255, 0.96), rgba(255, 255, 255, 0.94));
-  border: 1px solid rgba(109, 40, 217, 0.12);
-  margin-bottom: 6px;
-}
-
-.ytToggleRow strong,
-.ytToggleRow p {
-  margin: 0;
-}
-
-.ytToggleRow p {
-  margin-top: 2px;
-  color: var(--muted);
-  font-size: 12px;
-}
-
 .ifpBtn {
   border-color: rgba(154, 106, 0, 0.24);
-  background: rgba(255, 255, 255, 0.98);
   color: #7a6540;
   font-weight: 800;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.88);
 }
 
 .ifpBtn.active {
   background: linear-gradient(180deg, rgba(255, 233, 179, 1), rgba(255, 248, 232, 1));
   border-color: rgba(154, 106, 0, 0.34);
   color: var(--ifp);
-}
-
-.ifpToggleRow {
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
-  align-items: center;
-  margin: 4px 0 10px;
-  padding: 10px 12px;
-  border-radius: 10px;
-  border: 1px solid rgba(154, 106, 0, 0.14);
-  background: linear-gradient(180deg, rgba(255, 248, 232, 0.96), rgba(255, 255, 255, 0.94));
-}
-
-.ifpToggleRow strong,
-.ifpToggleRow p {
-  margin: 0;
-}
-
-.ifpToggleRow p {
-  margin-top: 2px;
-  color: var(--muted);
-  font-size: 12px;
 }
 
 /* Enhancement #1 — sticky Save footer inside modal */
@@ -1789,6 +1382,33 @@ form {
   background: var(--panel);
   border-top: 1px solid var(--line);
   z-index: 1;
+}
+
+/* Expanding "Other actions" used to place Block-list/Cancelled directly
+   behind the sticky Save/Close row with no clearance to scroll past it. */
+.dangerDetails[open] {
+  margin-bottom: 64px;
+}
+
+.dangerDetails summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.spinnerIcon {
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spinnerIcon {
+    animation-duration: 1.6s;
+  }
 }
 
 .modalFooter .primary,
@@ -1809,10 +1429,7 @@ form {
 
 .reviewPanel,
 .areaMgrPanel,
-.familyPanel,
-.deceasedPanel,
-.blocklistPanel,
-.cancelledPanel {
+.familyPanel {
   cursor: default;
 }
 
@@ -1862,8 +1479,13 @@ form {
   gap: 18px;
 }
 
-.reviewGrid img,
-.reviewGrid .imagePlaceholder {
+/* Neither a card scan nor a face photo exists — don't reserve an empty
+   column for one, let the form use the full width instead. */
+.reviewGridNoImage {
+  grid-template-columns: 1fr;
+}
+
+.reviewGrid img {
   width: auto;
   max-width: 100%;
   height: auto;
@@ -1874,6 +1496,18 @@ form {
   justify-self: start;
   align-self: start;
   background: transparent;
+}
+
+/* The fetch (auth header + blob conversion) takes a moment — without a
+   real size, this collapsed to 0x0 and looked like the photo had failed
+   to load rather than "loading". Keep the loading silhouette visible and
+   card-shaped while the request is in flight. */
+.reviewGrid .imagePlaceholder {
+  width: 220px;
+  height: 260px;
+  max-width: 100%;
+  justify-self: start;
+  align-self: start;
 }
 
 .areaMgrPanel {
@@ -2144,51 +1778,77 @@ form {
   white-space: nowrap;
 }
 
-.confirmBand {
-  display: grid;
-  gap: 8px;
-  padding: 12px;
-  border: 1px solid rgba(155, 28, 28, 0.2);
-  border-radius: 8px;
-  background: rgba(155, 28, 28, 0.04);
-  margin: 4px 0;
+.moreMenuWrap {
+  position: relative;
 }
 
-.confirmBand p {
-  margin: 0;
-  font-size: 14px;
-  color: var(--danger);
-  font-weight: 700;
-}
-
-.confirmActions {
-  display: flex;
-  gap: 8px;
-}
-
-.confirmActions button {
-  flex: 1;
-  min-height: 36px;
-  font-size: 13px;
-}
-
-.uploadIconBtn {
+.moreMenuBtn {
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   padding: 0;
-  font-size: 16px;
   border-color: rgba(14, 74, 53, 0.3);
   background: rgba(231, 245, 238, 0.7);
   color: var(--green);
   flex-shrink: 0;
 }
 
-.uploadIconBtn:hover {
+.moreMenuBtn:hover {
   background: rgba(231, 245, 238, 1);
+}
+
+.moreMenu {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  min-width: 200px;
+  padding: 6px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 12px 32px rgba(16, 35, 27, 0.16);
+  animation: partyChipIn 0.15s ease-out both;
+}
+
+.moreMenuItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 38px;
+  padding: 0 10px;
+  border: none;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--ink);
+  font-size: 13.5px;
+  font-weight: 600;
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.moreMenuItem:hover {
+  background: rgba(14, 74, 53, 0.07);
+}
+
+.moreMenuCount {
+  margin-left: auto;
+  color: var(--muted);
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.moreMenuDivider {
+  height: 1px;
+  margin: 5px 4px;
+  background: var(--line);
 }
 
 .exportBtnGroup {
@@ -2225,27 +1885,6 @@ form {
   cursor: not-allowed;
 }
 
-.loadMoreRow {
-  grid-column: 1 / -1;
-  display: flex;
-  justify-content: center;
-  padding: 16px 0 8px;
-}
-
-.loadMoreBtn {
-  padding: 0 28px;
-  background: var(--green);
-  color: #fff;
-  border-color: var(--green);
-  font-weight: 700;
-  border-radius: 999px;
-  min-height: 44px;
-}
-
-.loadMoreBtn:hover {
-  filter: brightness(1.1);
-}
-
 .error {
   color: var(--danger);
   font-weight: 700;
@@ -2259,6 +1898,7 @@ form {
   display: inline-flex;
   align-items: center;
   gap: 4px;
+  min-height: 24px;
   font-size: 12px;
   font-weight: 600;
   color: var(--green);
@@ -2282,39 +1922,6 @@ form {
 
 .modalMoreDetails[open] label:first-of-type {
   margin-top: 6px;
-}
-
-.voterMoreDetails {
-  margin-top: 4px;
-}
-
-.voterMoreDetails summary {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--green);
-  cursor: pointer;
-  list-style: none;
-  user-select: none;
-  padding: 2px 0;
-}
-
-.voterMoreDetails summary::-webkit-details-marker { display: none; }
-
-.voterMoreDetails summary::before {
-  content: "▸";
-  font-size: 9px;
-  transition: transform 0.15s;
-}
-
-.voterMoreDetails[open] summary::before {
-  transform: rotate(90deg);
-}
-
-.voterMoreDetails[open] dl {
-  margin-top: 4px;
 }
 
 .note {
@@ -2416,45 +2023,25 @@ form {
   padding: 6px 0;
 }
 
-/* ── 4. AREA TILE HOVER LIFT + ACTIVE GLOW ── */
-.area,
-.job {
-  transition:
-    background 0.2s ease,
-    box-shadow 0.2s ease,
-    transform 0.15s cubic-bezier(0.22, 1, 0.36, 1),
-    border-color 0.2s ease;
-}
-
-.area:hover:not(.active),
-.job:hover:not(.active) {
-  background: linear-gradient(180deg, rgba(231, 245, 238, 0.65), rgba(255, 253, 250, 0.9));
-  box-shadow: 0 5px 16px rgba(14, 74, 53, 0.12);
-  transform: translateY(-2px);
-  border-color: rgba(14, 74, 53, 0.26);
-}
-
-.area:active,
-.job:active {
-  transform: scale(0.97) translateY(0);
-  box-shadow: none;
-  transition-duration: 0.08s;
-}
-
-.area.active {
-  background: rgba(14, 74, 53, 0.07);
-  border-color: rgba(14, 74, 53, 0.28);
-  box-shadow: inset 0 0 0 1px rgba(14, 74, 53, 0.14), 0 4px 14px rgba(14, 74, 53, 0.12);
-}
-
 /* ── 5. STAT NUMBER POP ── */
 @keyframes statPop {
   from { opacity: 0.4; transform: translateY(5px); }
   to   { opacity: 1;   transform: translateY(0); }
 }
 
+/* ── party tag collapse: 4 toggle buttons -> 1 solo chip on select ── */
+@keyframes partyChipIn {
+  from { opacity: 0; transform: scale(0.85); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.partyBtnSolo {
+  width: 100%;
+  animation: partyChipIn 0.22s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
 /* ── GLOBAL BUTTON PRESS FEEDBACK ── */
-button:not(.close):not(.area):not(.job):active {
+button:not(.close):active {
   transform: scale(0.97);
   filter: brightness(0.94);
   transition-duration: 0.08s;
@@ -2481,40 +2068,13 @@ button:not(.close):not(.area):not(.job):active {
 }
 
 @media (max-width: 860px) {
-  .uploadBand,
   .layout,
-  .reviewGrid,
-  .mergeBar {
+  .reviewGrid {
     grid-template-columns: 1fr;
   }
 
   .topbar {
-    flex-wrap: wrap;
-    align-items: center;
     gap: 6px;
-  }
-
-  .topbarStats {
-    flex-shrink: 1;
-  }
-
-  .filterBar {
-    flex-wrap: wrap;
-  }
-
-
-  .filterStatsBtn {
-    margin-left: auto;
-  }
-
-  .summaryStrip {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 6px;
-  }
-
-  .summaryMetrics {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
   .familySummaryGrid {
@@ -2525,45 +2085,55 @@ button:not(.close):not(.area):not(.job):active {
     flex-wrap: wrap;
   }
 
-  .sidebar {
-    position: static;
-    height: auto;
-    max-height: none;
-  }
-
-  .mergeBar {
-    top: auto;
-    position: static;
-  }
-
 }
 
 @media (max-width: 640px) {
   .topbar {
     gap: 4px;
-    padding: 6px var(--page-gutter);
+    padding: 5px var(--page-gutter);
   }
 
-  .topbarStats {
-    order: 3;
-    width: 100%;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    flex-wrap: nowrap;
-    padding-bottom: 2px;
+  /* Header stack was measured at 542px before any content — the brand
+     row costs the most for the least information once you're past first
+     glance, so it shrinks hardest. */
+  .brandInline .brandLogo {
+    width: 34px;
+  }
+
+  .heroCopy p {
+    display: none;
+  }
+
+  /* Measured 293px available at 375px viewport — the 150px desktop minimum
+     only fits 1 column there (293/150 < 2). 130px comfortably fits 2. */
+  .atlasGrid {
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
   }
 
   .actions {
     flex-wrap: wrap;
+    order: 0;
+    margin-left: 0;
   }
 
   .filterBarDivider {
     display: none;
   }
 
+  /* The single-line desktop reading order (view -> filters -> search ->
+     export -> account controls) doesn't survive wrapping onto several
+     mobile rows — restore natural DOM order for everything except the
+     search/export pair, which already had a deliberate wrapped sequence. */
+  .brandBlock,
+  .filterBarView,
+  .filterCatGroup {
+    order: 0;
+  }
+
   .filterBarSearch {
     order: 1;
     flex-basis: 100%;
+    max-width: none;
     height: 40px;
     font-size: 14px;
   }
@@ -2572,13 +2142,8 @@ button:not(.close):not(.area):not(.job):active {
     order: 2;
   }
 
-  .exportCompactBtn,
-  .filterStatsBtn {
+  .exportCompactBtn {
     height: 40px;
-  }
-
-  .filterStatsBtn {
-    order: 3;
   }
 
   /* Header scrolls away on phones — a 400px+ sticky block buries the content
@@ -2609,27 +2174,49 @@ button:not(.close):not(.area):not(.job):active {
     padding-bottom: 6px;
   }
 
-  /* Floating "jump to search" — the header scrolls away on phones, so this
-     brings the search back within thumb reach mid-list. */
-  .jumpSearchBtn {
-    display: grid;
-    place-items: center;
+  /* Persistent bottom nav — the header scrolls away on phones, so this keeps
+     the 4 most-used actions (atlas/search/filters/stats) reachable at all
+     times without a floating button that used to sit over card actions. */
+  .mobileBottomNav {
+    display: flex;
     position: fixed;
-    right: 14px;
-    bottom: calc(16px + env(safe-area-inset-bottom));
+    left: 0;
+    right: 0;
+    bottom: 0;
     z-index: 35;
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    border: none;
-    background: var(--green);
-    color: #fdfcf9;
-    box-shadow: 0 8px 22px rgba(14, 74, 53, 0.35);
-    animation: jumpSearchIn 0.2s ease both;
+    background: rgba(253, 252, 249, 0.97);
+    backdrop-filter: blur(8px);
+    border-top: 1px solid var(--line);
+    padding: 4px calc(4px + env(safe-area-inset-left)) calc(4px + env(safe-area-inset-bottom)) calc(4px + env(safe-area-inset-right));
+    box-shadow: 0 -6px 18px rgba(16, 35, 27, 0.08);
   }
 
-  .jumpSearchBtn:active {
-    transform: scale(0.94);
+  .mobileBottomNav button {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    min-height: 52px;
+    padding: 6px 4px;
+    border: none;
+    background: none;
+    border-radius: 10px;
+    color: var(--muted);
+    font-size: 10.5px;
+    font-weight: 700;
+  }
+
+  .mobileBottomNav button:active {
+    background: var(--green-soft);
+    color: var(--green-deep);
+  }
+
+  /* Room at the bottom of the scrollable content so the last card/tile
+     isn't hidden behind the fixed nav bar. */
+  .layout,
+  .atlasWrap {
+    padding-bottom: 76px;
   }
 
   /* Modals become bottom sheets: thumb-reachable close, natural swipe-down feel. */
@@ -2640,29 +2227,50 @@ button:not(.close):not(.area):not(.job):active {
 
   .reviewPanel,
   .areaMgrPanel,
-  .familyPanel,
-  .deceasedPanel,
-  .blocklistPanel,
-  .cancelledPanel {
+  .familyPanel {
+    position: relative;
     width: 100%;
     max-width: 100%;
     max-height: 94dvh;
+    padding-top: 22px;
     border-radius: 16px 16px 0 0;
     border-bottom: none;
+  }
+
+  /* Drag handle: signals the sheet is swipeable (it wasn't obvious before —
+     the audit found the × close in the top-right, out of thumb reach, was
+     the only way users discovered to dismiss it). */
+  .reviewPanel::before,
+  .areaMgrPanel::before,
+  .familyPanel::before {
+    content: "";
+    position: absolute;
+    top: 9px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 36px;
+    height: 4px;
+    border-radius: 2px;
+    background: var(--line);
+  }
+
+  /* 4 tag buttons in one 40px row left too little room per button, tight
+     enough that the audit found mis-taps landing on the neighbor.
+     Wrapping to 2+2 gives each one real breathing room. */
+  .cardActions {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .cardActions button {
+    flex: 1 1 45%;
+    min-height: 44px;
   }
 }
 
 @media (max-width: 420px) {
   .appShell {
     padding: 10px;
-  }
-
-  .summaryMetrics {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .sourceFilterStack {
-    grid-template-columns: 1fr;
   }
 
   .voterCard {

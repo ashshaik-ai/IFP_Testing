@@ -21,7 +21,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Telugu:wght@400;500;600;700;800&display=swap"
           rel="stylesheet"
         />
-        <style>{`:root { --font-tel: 'Noto Sans Telugu', sans-serif; --font-latin: 'Inter', sans-serif; }`}</style>
+        <style>{`:root { --font-tel: 'Noto Sans Telugu'; --font-latin: 'Inter'; }`}</style>
       </head>
       <body>{children}</body>
     </html>

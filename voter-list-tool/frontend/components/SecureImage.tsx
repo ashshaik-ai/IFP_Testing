@@ -3,11 +3,29 @@
 import { useEffect, useRef, useState } from "react";
 import { API_BASE } from "@/lib/api";
 
+// Bounded LRU cache: a long session can view thousands of distinct voter
+// photos, and blob: URLs are never freed by the browser on their own —
+// capping the cache and revoking evicted entries keeps memory bounded
+// instead of growing for the life of the tab.
+const MAX_CACHED_BLOBS = 300;
 const imageBlobCache = new Map<string, string>();
+
+function cacheBlob(key: string, url: string) {
+  if (imageBlobCache.size >= MAX_CACHED_BLOBS) {
+    const oldestKey = imageBlobCache.keys().next().value;
+    if (oldestKey !== undefined) {
+      const oldestUrl = imageBlobCache.get(oldestKey);
+      if (oldestUrl) URL.revokeObjectURL(oldestUrl);
+      imageBlobCache.delete(oldestKey);
+    }
+  }
+  imageBlobCache.set(key, url);
+}
 
 export function SecureImage({ path, token, alt }: { path: string; token: string; alt: string }) {
   const cacheKey = `${token}:${path}`;
   const [src, setSrc] = useState(() => imageBlobCache.get(cacheKey) || "");
+  const [failed, setFailed] = useState(false);
   const placeholderRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -26,10 +44,10 @@ export function SecureImage({ path, token, alt }: { path: string; token: string;
         .then((blob) => {
           if (!alive) return;
           const url = URL.createObjectURL(blob);
-          imageBlobCache.set(cacheKey, url);
+          cacheBlob(cacheKey, url);
           setSrc(url);
         })
-        .catch(() => {});
+        .catch(() => { if (alive) setFailed(true); });
     }
 
     // Only fetch when the placeholder enters (or is near) the viewport.
@@ -43,6 +61,7 @@ export function SecureImage({ path, token, alt }: { path: string; token: string;
     return () => { alive = false; observer.disconnect(); };
   }, [cacheKey, path, token]);
 
+  if (failed) return <div className="imagePlaceholder imagePlaceholderFailed" role="img" aria-label={alt} />;
   if (!src) return <div className="imagePlaceholder" ref={placeholderRef} aria-hidden="true" />;
   return <img src={src} alt={alt} loading="lazy" decoding="async" />;
 }

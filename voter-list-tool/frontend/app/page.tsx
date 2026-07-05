@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { RefObject, TouchEvent as ReactTouchEvent, useEffect, useMemo, useRef, useState } from "react";
 import { API_BASE, AreaOption, Job, Lang, SourceFilter, Voter, api, copy } from "@/lib/api";
-import { englishToTeluguName, toEnglishArea, toEnglishName, toEnglishText } from "@/lib/transliterate";
+import { englishToTeluguName, toEnglishArea, toEnglishName } from "@/lib/transliterate";
 import { SecureImage } from "@/components/SecureImage";
 
 type ScopeStats = {
@@ -183,6 +183,13 @@ function compactFieldFontSize(value: string): string {
   return "13px";
 }
 
+// Same floor as compactFieldFontSize's smallest tier (10px) — past this
+// length the text can't shrink further, so wrap to a 2nd line instead of
+// truncating with an ellipsis (matches isNameAtFontFloor's rationale).
+function isFieldAtFontFloor(value: string): boolean {
+  return value.trim().length > 14;
+}
+
 function nameFontSize(name: string, lang: Lang): string {
   const len = name.trim().length;
   if (lang === "te") {
@@ -200,6 +207,14 @@ function nameFontSize(name: string, lang: Lang): string {
   return "15px";
 }
 
+// Past this length the name is already at its smallest font size and can't
+// shrink further — truncating with an ellipsis at that point silently hides
+// part of someone's name. Wrapping to a 2nd line keeps it fully visible.
+function isNameAtFontFloor(name: string, lang: Lang): boolean {
+  const len = name.trim().length;
+  return lang === "te" ? len > 22 : len > 26;
+}
+
 function displayName(voter: Pick<Voter, "name_te" | "name_en">, lang: Lang, fallback: string) {
   if (lang === "te") {
     return voter.name_te || voter.name_en || fallback;
@@ -214,13 +229,6 @@ function displayRelation(text: string, lang: Lang) {
   return toEnglishName(text || "", text || "-") || "-";
 }
 
-function displayOccupation(text: string, lang: Lang) {
-  if (lang === "te") {
-    return text || "-";
-  }
-  return toEnglishText(text || "", text || "-") || "-";
-}
-
 function displayArea(voter: Pick<Voter, "area_te" | "area_en">, lang: Lang) {
   if (lang === "te") {
     return voter.area_te || "-";
@@ -228,17 +236,131 @@ function displayArea(voter: Pick<Voter, "area_te" | "area_en">, lang: Lang) {
   return toEnglishArea(voter.area_te || "", voter.area_en || "Other Area") || voter.area_en || voter.area_te || "-";
 }
 
+// Hover tooltip for the T/YT/MF/IFP tags — spelled out in full since the
+// bare letters mean nothing to a new field worker.
+const TAG_TOOLTIPS: Record<"target" | "yt" | "mf" | "ifp", { te: string; en: string }> = {
+  target: { te: "లక్ష్యం", en: "Target" },
+  yt: { te: "యువ తరం (Yuva Taram)", en: "Yuva Taram (Youth wing)" },
+  mf: { te: "ముస్లిం ఫ్రంట్ (Muslim Front)", en: "Muslim Front" },
+  ifp: { te: "ఇస్లామిక్ ఫ్రంట్ పార్టీ", en: "Islamic Front Party" },
+};
+function tagTooltip(code: "target" | "yt" | "mf" | "ifp", lang: Lang): string {
+  return lang === "te" ? TAG_TOOLTIPS[code].te : TAG_TOOLTIPS[code].en;
+}
+
+// Small reusable icon set — replaces emoji glyphs (★☆📊⚠⏳⬆) that render
+// inconsistently across platforms and can't take a color/size from CSS.
+function StarIcon({ filled }: { filled: boolean }) {
+  return (
+    <svg width="11" height="11" viewBox="0 0 24 24" fill={filled ? "currentColor" : "none"} stroke="currentColor" strokeWidth="2" aria-hidden="true" style={{ flexShrink: 0 }}>
+      <path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z" />
+    </svg>
+  );
+}
+function ChartIcon() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" aria-hidden="true">
+      <path d="M4 20V10M12 20V4M20 20v-6" />
+    </svg>
+  );
+}
+function WarningIcon() {
+  return (
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" style={{ flexShrink: 0 }}>
+      <path d="M12 9v4M12 17h.01M10.3 3.9 2.8 17a1.8 1.8 0 0 0 1.5 2.7h15.4a1.8 1.8 0 0 0 1.5-2.7L13.7 3.9a1.8 1.8 0 0 0-3.4 0Z" />
+    </svg>
+  );
+}
+function SpinnerIcon() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true" className="spinnerIcon">
+      <circle cx="12" cy="12" r="9" stroke="currentColor" strokeOpacity="0.25" strokeWidth="3" />
+      <path d="M21 12a9 9 0 0 0-9-9" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
+    </svg>
+  );
+}
+function UploadIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M12 20V6M6 11l6-6 6 6M5 20h14" />
+    </svg>
+  );
+}
+function MoreIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <circle cx="5" cy="12" r="2" />
+      <circle cx="12" cy="12" r="2" />
+      <circle cx="19" cy="12" r="2" />
+    </svg>
+  );
+}
+
+const FOCUSABLE_SELECTOR = 'a[href], button:not([disabled]), textarea:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])';
+
+// Focus management for modal dialogs (WCAG 2.4.3): on open, moves focus into
+// the dialog and traps Tab/Shift+Tab inside it; on close, restores focus to
+// whatever triggered the open so keyboard/screen-reader users never land in
+// the hidden page behind the overlay.
+function useModalFocusTrap(containerRef: RefObject<HTMLElement | null>, isOpen: boolean) {
+  const triggerRef = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    triggerRef.current = document.activeElement as HTMLElement | null;
+    const container = containerRef.current;
+    if (!container) return;
+
+    const getFocusable = () =>
+      Array.from(container.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR)).filter((el) => el.offsetParent !== null);
+
+    const firstFocusable = getFocusable()[0];
+    (firstFocusable || container).focus();
+
+    function onKeyDown(e: KeyboardEvent) {
+      if (e.key !== "Tab") return;
+      const items = getFocusable();
+      if (items.length === 0) return;
+      const first = items[0];
+      const last = items[items.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
+    container.addEventListener("keydown", onKeyDown);
+    return () => {
+      container.removeEventListener("keydown", onKeyDown);
+      triggerRef.current?.focus?.();
+    };
+  }, [isOpen, containerRef]);
+}
+
 export default function Home() {
   const topbarRef = useRef<HTMLElement | null>(null);
   const stickyZoneRef = useRef<HTMLDivElement | null>(null);
   const sentinelRef = useRef<HTMLDivElement | null>(null);
+  const voterModalRef = useRef<HTMLElement | null>(null);
+  const moreMenuRef = useRef<HTMLDivElement | null>(null);
+  const sheetDragStartY = useRef(0);
+  const sheetDragActive = useRef(false);
+  const sheetDragDistance = useRef(0);
   const searchRef = useRef<HTMLInputElement | null>(null);
   const [lang, setLang] = useState<Lang>("te");
+
+  // layout.tsx hardcodes lang="te"; keep the document's declared language in
+  // sync with the toggle so screen readers use correct pronunciation rules
+  // for whichever language is actually on screen (WCAG 3.1.1).
+  useEffect(() => {
+    document.documentElement.lang = lang;
+  }, [lang]);
   const t = copy[lang];
   const [token, setToken] = useState("");
   const [code, setCode] = useState("");
   const [jobs, setJobs] = useState<Job[]>([]);
-  const [jobId, setJobId] = useState<string>("all");
   const [selectedTile, setSelectedTile] = useState("");
   const [source, setSource] = useState<SourceFilter>("all");
   const [showDeceasedMgr, setShowDeceasedMgr] = useState(false);
@@ -257,9 +379,11 @@ export default function Home() {
   const [targetBusyId, setTargetBusyId] = useState("");
   const [mfBusyId, setMfBusyId] = useState("");
   const [pdfBusy, setPdfBusy] = useState(false);
+  const [showMoreMenu, setShowMoreMenu] = useState(false);
   const [browseAll, setBrowseAll] = useState(false);
-  const [showJumpSearch, setShowJumpSearch] = useState(false);
   const [votersLoading, setVotersLoading] = useState(false);
+  const [voterLoadFailed, setVoterLoadFailed] = useState(false);
+  const [liveMessage, setLiveMessage] = useState("");
   const [showAreaMgr, setShowAreaMgr] = useState(false);
   const [showAreaStats, setShowAreaStats] = useState(false);
   const [rawAreas, setRawAreas] = useState<{ area_te: string; count: number; missing_count: number }[]>([]);
@@ -268,11 +392,16 @@ export default function Home() {
   const [visibleCount, setVisibleCount] = useState(120);
   const [nameMode, setNameMode] = useState<"te" | "en">("en");
   const [nameEnDraft, setNameEnDraft] = useState("");
+  const originalSelectedRef = useRef<Voter | null>(null);
 
   useEffect(() => {
     if (selected) {
       setNameEnDraft(selected.name_en || "");
-      setNameMode("en");
+      setNameMode(lang === "te" ? "te" : "en");
+      originalSelectedRef.current = selected;
+      setError("");
+    } else {
+      originalSelectedRef.current = null;
     }
   }, [selected?.id]);
 
@@ -329,7 +458,7 @@ export default function Home() {
       return;
     }
     void loadAllVoters();
-  }, [token, jobId]);
+  }, [token]);
 
   const countFormatter = useMemo(
     () => new Intl.NumberFormat(lang === "te" ? "te-IN" : "en-IN"),
@@ -377,14 +506,14 @@ export default function Home() {
     }
   }
 
-  function currentBasePath() {
-    return jobId === "all" ? "/api" : `/api/jobs/${jobId}`;
-  }
-
   async function loadAllVoters() {
     setVotersLoading(true);
+    setVoterLoadFailed(false);
     try {
-      setAllVoters(await api<Voter[]>(`${currentBasePath()}/voters?include_deceased=1&include_blocklisted=1&include_cancelled=1`, token));
+      setAllVoters(await api<Voter[]>("/api/voters?include_deceased=1&include_blocklisted=1&include_cancelled=1", token));
+    } catch (err) {
+      setVoterLoadFailed(true);
+      setError(String(err));
     } finally {
       setVotersLoading(false);
     }
@@ -410,13 +539,16 @@ export default function Home() {
     }
     setBusy(true);
     setError("");
+    setLiveMessage(lang === "te" ? `"${file.name}" అప్‌లోడ్ అవుతోంది…` : `Uploading "${file.name}"…`);
     const form = new FormData();
     form.append("file", file);
     try {
       await api<Job>("/api/jobs", token, { method: "POST", body: form });
+      setLiveMessage(lang === "te" ? `"${file.name}" ఎక్కించబడింది, ప్రాసెస్ అవుతోంది` : `"${file.name}" uploaded — processing in the background`);
       await refreshJobs();
       await loadAllVoters();
     } catch (err) {
+      setLiveMessage(lang === "te" ? `"${file.name}" అప్‌లోడ్ విఫలమైంది` : `Upload of "${file.name}" failed`);
       setError(String(err));
     } finally {
       setBusy(false);
@@ -448,7 +580,8 @@ export default function Home() {
         is_mf_voter: Boolean(selected.is_mf_voter),
         notes: selected.notes,
       });
-      closeModal();
+      setLiveMessage(lang === "te" ? "మార్పులు సేవ్ అయ్యాయి" : "Changes saved");
+      closeModalInternal();
     } catch (err) {
       setError(String(err));
     } finally {
@@ -456,11 +589,33 @@ export default function Home() {
     }
   }
 
+  // Radio-group tag toggles clear the other 3 flags silently — announce both
+  // the new tag and whatever got cleared so screen-reader users aren't left
+  // guessing why a voter's classification just changed (WCAG 4.1.3).
+  function announceTagToggle(voter: Voter, label: string, next: boolean) {
+    if (!next) {
+      setLiveMessage(lang === "te" ? `${label} తీసివేయబడింది` : `${label} removed`);
+      return;
+    }
+    const cleared = [
+      voter.is_ifp_voter && "IFP",
+      voter.is_yt_voter && "YT",
+      voter.is_target && "T",
+      voter.is_mf_voter && "MF",
+    ].filter((l): l is string => Boolean(l) && l !== label);
+    setLiveMessage(
+      cleared.length
+        ? (lang === "te" ? `${cleared.join(", ")} తీసివేసి ${label} గా గుర్తించారు` : `${cleared.join(", ")} removed, marked as ${label}`)
+        : (lang === "te" ? `${label} గా గుర్తించారు` : `Marked as ${label}`),
+    );
+  }
+
   async function toggleIfpVoter(voter: Voter) {
     const next = !Boolean(voter.is_ifp_voter);
     const patch = next
       ? { is_ifp_voter: true, is_yt_voter: false, is_target: false, is_mf_voter: false }
       : { is_ifp_voter: false };
+    announceTagToggle(voter, "IFP", next);
     setAllVoters((prev) => prev.map((v) => (v.id === voter.id ? { ...v, ...patch } : v)));
     setIfpBusyId(voter.id);
     setError("");
@@ -479,6 +634,7 @@ export default function Home() {
     const patch = next
       ? { is_yt_voter: true, is_ifp_voter: false, is_target: false, is_mf_voter: false }
       : { is_yt_voter: false };
+    announceTagToggle(voter, "YT", next);
     setAllVoters((prev) => prev.map((v) => (v.id === voter.id ? { ...v, ...patch } : v)));
     setYtBusyId(voter.id);
     setError("");
@@ -497,6 +653,7 @@ export default function Home() {
     const patch = next
       ? { is_target: true, is_ifp_voter: false, is_yt_voter: false, is_mf_voter: false }
       : { is_target: false };
+    announceTagToggle(voter, "T", next);
     setAllVoters((prev) => prev.map((v) => (v.id === voter.id ? { ...v, ...patch } : v)));
     setTargetBusyId(voter.id);
     setError("");
@@ -515,6 +672,7 @@ export default function Home() {
     const patch = next
       ? { is_mf_voter: true, is_ifp_voter: false, is_yt_voter: false, is_target: false }
       : { is_mf_voter: false };
+    announceTagToggle(voter, "MF", next);
     setAllVoters((prev) => prev.map((v) => (v.id === voter.id ? { ...v, ...patch } : v)));
     setMfBusyId(voter.id);
     setError("");
@@ -534,7 +692,15 @@ export default function Home() {
     setError("");
     try {
       await patchVoter(selected, patch);
-      closeModal();
+      const msg = patch.is_deceased
+        ? (lang === "te" ? "మరణించినవారిగా గుర్తించారు" : "Marked as deceased")
+        : patch.is_blocklisted
+        ? (lang === "te" ? "బ్లాక్ లిస్ట్‌కు మార్చారు" : "Moved to block list")
+        : patch.is_cancelled
+        ? (lang === "te" ? "రద్దు జాబితాకు మార్చారు" : "Moved to cancelled")
+        : (lang === "te" ? "సక్రియ జాబితాకు పునరుద్ధరించారు" : "Restored to active list");
+      setLiveMessage(msg);
+      closeModalInternal();
     } catch (err) {
       setError(String(err));
     } finally {
@@ -544,13 +710,31 @@ export default function Home() {
 
   function focusFamilyCluster(cluster: FamilyCluster) {
     setSelectedTile(cluster.areaKey);
-    setQuery(cluster.houseNo);
     setExactHouseNoFilter(cluster.houseNo);
     setShowFamilyMgr(false);
   }
 
-  function closeModal() {
+  function closeModalInternal() {
     setSelected(null);
+  }
+
+  function isSelectedDirty(): boolean {
+    const original = originalSelectedRef.current;
+    if (!selected || !original) return false;
+    const fields: (keyof Voter)[] = ["serial_no", "name_te", "relation_name_te", "age", "occupation_te", "house_no", "area_te"];
+    const fieldChanged = fields.some((f) => (selected[f] || "") !== (original[f] || ""));
+    const nameEnChanged = nameMode === "en" && nameEnDraft !== (original.name_en || "");
+    return fieldChanged || nameEnChanged;
+  }
+
+  function closeModal() {
+    if (isSelectedDirty()) {
+      const msg = lang === "te"
+        ? "మీరు చేసిన మార్పులు సేవ్ కాలేదు. మూసివేయాలా?"
+        : "You have unsaved changes. Close without saving?";
+      if (!window.confirm(msg)) return;
+    }
+    closeModalInternal();
   }
 
   function updateSelectedField<K extends keyof Voter>(key: K, value: Voter[K]) {
@@ -599,24 +783,37 @@ export default function Home() {
     }
   }
 
-  function downloadCsv(selectedArea?: string) {
-    const url = new URL(`${API_BASE}${currentBasePath()}/export.csv`);
-    if (selectedArea) {
-      url.searchParams.set("area", selectedArea);
-    }
-    if (source !== "all") {
-      url.searchParams.set("source", source);
-    }
-    fetch(url, { headers: { Authorization: `Bearer ${token}` } })
-      .then((res) => res.blob())
-      .then((blob) => {
-        const href = URL.createObjectURL(blob);
-        const anchor = document.createElement("a");
-        anchor.href = href;
-        anchor.download = selectedArea ? `${selectedArea}.csv` : "all-voters.csv";
-        anchor.click();
-        URL.revokeObjectURL(href);
-      });
+  // Builds the CSV client-side from filteredVoters — the exact list rendered
+  // on screen — so the export always matches area + party filter + source
+  // pill + search, instead of the old server round-trip that only knew
+  // about area/source and silently dropped the rest.
+  function csvField(value: string): string {
+    const v = value ?? "";
+    return /[",\n\r]/.test(v) ? `"${v.replace(/"/g, '""')}"` : v;
+  }
+
+  function downloadCsv(fileLabel: string) {
+    const headers = ["ప్రాంతం", "క్రమ సంఖ్య", "కార్డ్ సంఖ్య", "పేరు", "English పేరు", "తండ్రి/భర్త", "తండ్రి/భర్త పేరు", "వయస్సు", "వృత్తి", "ఇంటి నంబర్"];
+    const rows = filteredVoters.map((v) => [
+      v.area_te || "",
+      v.serial_no || "",
+      v.card_no || "",
+      v.name_te || "",
+      v.name_en || "",
+      v.relation_label_te || "",
+      v.relation_name_te || "",
+      v.age || "",
+      v.occupation_te || "",
+      v.house_no || "",
+    ]);
+    const csv = "﻿" + [headers, ...rows].map((row) => row.map(csvField).join(",")).join("\r\n");
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
+    const href = URL.createObjectURL(blob);
+    const anchor = document.createElement("a");
+    anchor.href = href;
+    anchor.download = `${fileLabel}.csv`;
+    anchor.click();
+    URL.revokeObjectURL(href);
   }
 
   async function downloadPdf(areaLabel: string) {
@@ -729,7 +926,12 @@ ${section("జనరల్ ఓటర్లు", general)}
 </body></html>`;
 
       const win = window.open("", "_blank");
-      if (!win) return;
+      if (!win) {
+        setError(lang === "te"
+          ? "PDF తెరవలేకపోయాం — బ్రౌజర్ పాప్-అప్‌లను బ్లాక్ చేసింది. పాప్-అప్‌లను అనుమతించి మళ్ళీ ప్రయత్నించండి."
+          : "Couldn't open the PDF — your browser blocked the pop-up. Allow pop-ups for this site and try again.");
+        return;
+      }
       // Set onload BEFORE document.close() — close() fires the load event,
       // so assigning onload afterward means the handler is always missed.
       win.onload = () => { win.focus(); win.print(); };
@@ -788,6 +990,22 @@ ${section("జనరల్ ఓటర్లు", general)}
         { total: 0, life: 0, general: 0, missing: 0, ifp: 0, yt: 0, target: 0, mf: 0 },
       ),
     [areaBaseVoters],
+  );
+  const areaIfpShare = useMemo(
+    () => (areaBaseStats.total ? (areaBaseStats.ifp / areaBaseStats.total) * 100 : 0),
+    [areaBaseStats],
+  );
+  const areaTargetShare = useMemo(
+    () => (areaBaseStats.total ? (areaBaseStats.target / areaBaseStats.total) * 100 : 0),
+    [areaBaseStats],
+  );
+  const areaYtShare = useMemo(
+    () => (areaBaseStats.total ? (areaBaseStats.yt / areaBaseStats.total) * 100 : 0),
+    [areaBaseStats],
+  );
+  const areaMfShare = useMemo(
+    () => (areaBaseStats.total ? (areaBaseStats.mf / areaBaseStats.total) * 100 : 0),
+    [areaBaseStats],
   );
 
   const scopedVoters = useMemo(() => {
@@ -929,9 +1147,12 @@ ${section("జనరల్ ఓటర్లు", general)}
 
   const largestFamilyCluster = familyClusters[0]?.count || 0;
 
+  // Derived from filteredVoters (the exact list rendered below) so the metric
+  // cards can never disagree with what's on screen — includes source pill,
+  // search text, and exact-house-number scoping, not just area + party.
   const selectedScopeStats = useMemo(
     () =>
-      selectedAreaVoters.reduce<ScopeStats>(
+      filteredVoters.reduce<ScopeStats>(
         (acc, item) => {
           acc.total += 1;
           acc.missing += voterMissingCount(item) > 0 ? 1 : 0;
@@ -945,31 +1166,15 @@ ${section("జనరల్ ఓటర్లు", general)}
         },
         { total: 0, life: 0, general: 0, missing: 0, ifp: 0, yt: 0, target: 0, mf: 0 },
       ),
-    [selectedAreaVoters],
+    [filteredVoters],
   );
 
-  const selectedIfpShare = useMemo(
-    () => (selectedScopeStats.total ? (selectedScopeStats.ifp / selectedScopeStats.total) * 100 : 0),
-    [selectedScopeStats],
-  );
   const selectedLifeShare = useMemo(
     () => (selectedScopeStats.total ? (selectedScopeStats.life / selectedScopeStats.total) * 100 : 0),
     [selectedScopeStats],
   );
   const selectedGeneralShare = useMemo(
     () => (selectedScopeStats.total ? (selectedScopeStats.general / selectedScopeStats.total) * 100 : 0),
-    [selectedScopeStats],
-  );
-  const selectedTargetShare = useMemo(
-    () => (selectedScopeStats.total ? (selectedScopeStats.target / selectedScopeStats.total) * 100 : 0),
-    [selectedScopeStats],
-  );
-  const selectedYtShare = useMemo(
-    () => (selectedScopeStats.total ? (selectedScopeStats.yt / selectedScopeStats.total) * 100 : 0),
-    [selectedScopeStats],
-  );
-  const selectedMfShare = useMemo(
-    () => (selectedScopeStats.total ? (selectedScopeStats.mf / selectedScopeStats.total) * 100 : 0),
     [selectedScopeStats],
   );
 
@@ -980,13 +1185,13 @@ ${section("జనరల్ ఓటర్లు", general)}
 
   const atlasMode = !selectedTile && !browseAll && !query.trim();
 
-  const atlasGrandTotal = sourceScopedVoters.length;
-
   function goHome() {
     setSelectedTile("");
     setBrowseAll(false);
     setQuery("");
     setExactHouseNoFilter("");
+    setPartyFilter(null);
+    setSource("all");
   }
 
   useEffect(() => {
@@ -998,23 +1203,90 @@ ${section("జనరల్ ఓటర్లు", general)}
   useEffect(() => { setVisibleCount(120); }, [selectedTile, query, source]);
 
   useEffect(() => {
-    const onScroll = () => setShowJumpSearch(window.scrollY > 320);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  useEffect(() => {
     document.body.style.overflow = selected || showAreaMgr || showDeceasedMgr || showBlocklistMgr || showCancelledMgr || showFamilyMgr || showAreaStats ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
   }, [selected, showAreaMgr, showDeceasedMgr, showBlocklistMgr, showCancelledMgr, showFamilyMgr, showAreaStats]);
 
   // Enhancement #2 — Escape key closes any open modal
   useEffect(() => {
-    if (!selected) return;
-    function onKey(e: KeyboardEvent) { if (e.key === "Escape") closeModal(); }
+    const anyOpen = selected || showAreaMgr || showDeceasedMgr || showBlocklistMgr || showCancelledMgr || showFamilyMgr || showAreaStats;
+    if (!anyOpen) return;
+    function onKey(e: KeyboardEvent) {
+      if (e.key !== "Escape") return;
+      if (selected) { closeModal(); return; }
+      setShowAreaMgr(false);
+      setShowDeceasedMgr(false);
+      setShowBlocklistMgr(false);
+      setShowCancelledMgr(false);
+      setShowFamilyMgr(false);
+      setShowAreaStats(false);
+    }
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
-  }, [selected]);
+  }, [selected, showAreaMgr, showDeceasedMgr, showBlocklistMgr, showCancelledMgr, showFamilyMgr, showAreaStats, nameEnDraft, nameMode]);
+
+  useModalFocusTrap(voterModalRef, Boolean(selected));
+
+  // Overflow "more" menu (upload/manage areas/area stats/family/deceased/
+  // block/cancelled) closes on outside click or Escape, same as any menu.
+  useEffect(() => {
+    if (!showMoreMenu) return;
+    function onPointer(e: MouseEvent) {
+      if (moreMenuRef.current && !moreMenuRef.current.contains(e.target as Node)) {
+        setShowMoreMenu(false);
+      }
+    }
+    function onKey(e: KeyboardEvent) {
+      if (e.key === "Escape") setShowMoreMenu(false);
+    }
+    document.addEventListener("mousedown", onPointer);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("mousedown", onPointer);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [showMoreMenu]);
+
+  // Swipe-down-to-dismiss on the bottom sheet's header/grab-handle (mobile
+  // only — these are touch events, so mouse users on desktop never trigger
+  // them). Reads the panel via currentTarget.parentElement instead of a ref
+  // so the same handlers work for all 7 modal headers uninstrumented.
+  function onSheetTouchStart(e: ReactTouchEvent<HTMLElement>) {
+    sheetDragStartY.current = e.touches[0].clientY;
+    sheetDragActive.current = true;
+  }
+  function onSheetTouchMove(e: ReactTouchEvent<HTMLElement>) {
+    if (!sheetDragActive.current) return;
+    const panel = e.currentTarget.parentElement;
+    if (!panel) return;
+    const dy = e.touches[0].clientY - sheetDragStartY.current;
+    sheetDragDistance.current = dy;
+    panel.style.transform = dy > 0 ? `translateY(${dy}px)` : "";
+  }
+  function onSheetTouchEnd(e: ReactTouchEvent<HTMLElement>, onDismiss: () => void) {
+    if (!sheetDragActive.current) return;
+    sheetDragActive.current = false;
+    const panel = e.currentTarget.parentElement;
+    const dy = sheetDragDistance.current;
+    sheetDragDistance.current = 0;
+    if (!panel) return;
+    panel.style.transition = "transform 0.2s ease";
+    if (dy > 110) {
+      onDismiss();
+    } else {
+      panel.style.transform = "";
+    }
+    setTimeout(() => { panel.style.transition = ""; }, 220);
+  }
+
+  // Error banners used to persist forever until the next unrelated action
+  // happened to call setError(""). Auto-clearing keeps the UI from getting
+  // stuck showing a stale failure message.
+  useEffect(() => {
+    if (!error) return;
+    const timer = setTimeout(() => setError(""), 8000);
+    return () => clearTimeout(timer);
+  }, [error]);
 
   // Enhancement #8 — infinite scroll: reconnect observer every time the count or list changes
   // so it fires again immediately if the sentinel is already in view after a load batch
@@ -1029,7 +1301,7 @@ ${section("జనరల్ ఓటర్లు", general)}
     );
     observer.observe(sentinel);
     return () => observer.disconnect();
-  }, [filteredVoters.length, visibleCount]);
+  }, [filteredVoters.length, visibleCount, atlasMode]);
 
   const unclassifiedAreas = useMemo(
     () => rawAreas.filter((area) => !AREA_TILES.some((tile) => tile.aliasSet.has(area.area_te))),
@@ -1105,14 +1377,121 @@ ${section("జనరల్ ఓటర్లు", general)}
           </form>
           {error && <p className="error">{error}</p>}
         </section>
+        <p className="loginFooter">{lang === "te" ? "ఇస్లామిక్ ఫ్రంట్ · మంగళగిరి" : "Islamic Front · Mangalagiri"}</p>
       </main>
     );
   }
 
+  // Inside a drilled-into area this row scrolls away with the page instead
+  // of staying pinned in the sticky header — with 100+ voter cards below,
+  // a permanently fixed stats row eats space users need for the list. The
+  // atlas/home screen keeps it pinned since there's no long list under it.
+  const summaryMetricsBlock = (
+    <div className={`summaryMetricsWrap${!atlasMode ? " summaryMetricsWrapCompact" : ""}`}>
+      <div className="summaryMetrics">
+        {atlasMode ? (
+          <button type="button" className="summaryMetricCard metricTotal" onClick={() => setBrowseAll(true)}>
+            <span>{t.total}</span>
+            <strong>{formatCount(selectedScopeStats.total)}</strong>
+            <small>{selectedTileLabel || t.all}</small>
+          </button>
+        ) : (
+          <article className="summaryMetricCard metricTotal">
+            <span>{t.total}</span>
+            <strong>{formatCount(selectedScopeStats.total)}</strong>
+            <small>{selectedTileLabel || t.all}</small>
+          </article>
+        )}
+        {atlasMode ? (
+          <button type="button" className="summaryMetricCard metricLife" onClick={() => { setBrowseAll(true); setSource("life"); }}>
+            <span>{t.lifeCount}</span>
+            <strong>{formatCount(selectedScopeStats.life)}</strong>
+            <small>{formatPercent(selectedLifeShare, lang)}</small>
+          </button>
+        ) : (
+          <article className="summaryMetricCard metricLife">
+            <span>{t.lifeCount}</span>
+            <strong>{formatCount(selectedScopeStats.life)}</strong>
+            <small>{formatPercent(selectedLifeShare, lang)}</small>
+          </article>
+        )}
+        {atlasMode ? (
+          <button type="button" className="summaryMetricCard metricGeneral" onClick={() => { setBrowseAll(true); setSource("general"); }}>
+            <span>{t.generalCount}</span>
+            <strong>{formatCount(selectedScopeStats.general)}</strong>
+            <small>{formatPercent(selectedGeneralShare, lang)}</small>
+          </button>
+        ) : (
+          <article className="summaryMetricCard metricGeneral">
+            <span>{t.generalCount}</span>
+            <strong>{formatCount(selectedScopeStats.general)}</strong>
+            <small>{formatPercent(selectedGeneralShare, lang)}</small>
+          </article>
+        )}
+        <button
+          type="button"
+          className={`summaryMetricCard metricIfp${partyFilter === "ifp" ? " isActiveFilter" : ""}`}
+          onClick={() => setPartyFilter((prev) => (prev === "ifp" ? null : "ifp"))}
+          aria-pressed={partyFilter === "ifp"}
+          title={tagTooltip("ifp", lang)}
+        >
+          <span>{t.ifpCount}</span>
+          <strong key={`m-ifp-${areaBaseStats.ifp}`} className="popped">{formatCount(areaBaseStats.ifp)}</strong>
+          <small>{formatPercent(areaIfpShare, lang)}</small>
+        </button>
+        <button
+          type="button"
+          className={`summaryMetricCard metricTarget summaryMetricCompact${partyFilter === "target" ? " isActiveFilter" : ""}`}
+          onClick={() => setPartyFilter((prev) => (prev === "target" ? null : "target"))}
+          aria-pressed={partyFilter === "target"}
+          title={tagTooltip("target", lang)}
+        >
+          <span>T</span>
+          <strong key={`m-t-${areaBaseStats.target}`} className="popped">{formatCount(areaBaseStats.target)}</strong>
+          <small>{formatPercent(areaTargetShare, lang)}</small>
+        </button>
+        <button
+          type="button"
+          className={`summaryMetricCard metricYt summaryMetricCompact${partyFilter === "yt" ? " isActiveFilter" : ""}`}
+          onClick={() => setPartyFilter((prev) => (prev === "yt" ? null : "yt"))}
+          aria-pressed={partyFilter === "yt"}
+          title={tagTooltip("yt", lang)}
+        >
+          <span>YT</span>
+          <strong key={`m-y-${areaBaseStats.yt}`} className="popped">{formatCount(areaBaseStats.yt)}</strong>
+          <small>{formatPercent(areaYtShare, lang)}</small>
+        </button>
+        <button
+          type="button"
+          className={`summaryMetricCard metricMf summaryMetricCompact${partyFilter === "mf" ? " isActiveFilter" : ""}`}
+          onClick={() => setPartyFilter((prev) => (prev === "mf" ? null : "mf"))}
+          aria-pressed={partyFilter === "mf"}
+          title={tagTooltip("mf", lang)}
+        >
+          <span>MF</span>
+          <strong key={`m-m-${areaBaseStats.mf}`} className="popped">{formatCount(areaBaseStats.mf)}</strong>
+          <small>{formatPercent(areaMfShare, lang)}</small>
+        </button>
+      </div>
+    </div>
+  );
+
   return (
     <main className="appShell">
+      {/* First card is otherwise ~21 tab stops deep (header chips + filter
+          bar controls) — with 120+ cards on screen that's ~300 Tab presses
+          to reach the middle of the list. This jumps straight past all of it. */}
+      <a href="#voterListRegion" className="skipLink">
+        {lang === "te" ? "ఓటర్ల జాబితాకు వెళ్లండి" : "Skip to voter list"}
+      </a>
+      <div className="srOnly" role="status" aria-live="polite">{liveMessage}</div>
+      {/* A refetch (after upload/merge/token refresh) previously showed no
+          signal while the stale list stayed on screen — this thin bar is
+          the only indicator that a reload with existing data is in flight. */}
+      {votersLoading && allVoters.length > 0 && <div className="refetchBar" aria-hidden="true" />}
       <div className="stickyZone" ref={stickyZoneRef}>
-      <header className="topbar" ref={topbarRef}>
+      <header className={`topbar${atlasMode ? " topbarAtlas" : ""}`} ref={topbarRef}>
+        <div className="topbarRow topbarRowTop">
         <div className="brandBlock brandInline">
           <img src="/if-logo-full.png" alt="Islamic Front" className="brandLogo" />
           <div className="heroCopy">
@@ -1120,73 +1499,51 @@ ${section("జనరల్ ఓటర్లు", general)}
             <p>{t.premium}</p>
           </div>
         </div>
-        <div className="topbarStats">
-          <button
-            type="button"
-            className={`statChip statChipIfp${partyFilter === "ifp" ? " isActiveFilter" : ""}`}
-            onClick={() => setPartyFilter(prev => prev === "ifp" ? null : "ifp")}
-            aria-pressed={partyFilter === "ifp"}
-            title={t.ifpOnly}
-          >
-            <span>IFP</span>
-            <strong key={`i-${areaBaseStats.ifp}`} className="popped">{formatCount(areaBaseStats.ifp)}</strong>
-          </button>
-          <button
-            type="button"
-            className={`statChip statChipTarget${partyFilter === "target" ? " isActiveFilter" : ""}`}
-            onClick={() => setPartyFilter(prev => prev === "target" ? null : "target")}
-            aria-pressed={partyFilter === "target"}
-            title={t.targetCore}
-          >
-            <span>T</span>
-            <strong key={`t-${areaBaseStats.target}`} className="popped">{formatCount(areaBaseStats.target)}</strong>
-          </button>
-          <button
-            type="button"
-            className={`statChip statChipYt${partyFilter === "yt" ? " isActiveFilter" : ""}`}
-            onClick={() => setPartyFilter(prev => prev === "yt" ? null : "yt")}
-            aria-pressed={partyFilter === "yt"}
-            title={t.ytCore}
-          >
-            <span>YT</span>
-            <strong key={`y-${areaBaseStats.yt}`} className="popped">{formatCount(areaBaseStats.yt)}</strong>
-          </button>
-          <button
-            type="button"
-            className={`statChip statChipMf${partyFilter === "mf" ? " isActiveFilter" : ""}`}
-            onClick={() => setPartyFilter(prev => prev === "mf" ? null : "mf")}
-            aria-pressed={partyFilter === "mf"}
-            title={t.mfCore}
-          >
-            <span>MF</span>
-            <strong key={`m-${areaBaseStats.mf}`} className="popped">{formatCount(areaBaseStats.mf)}</strong>
-          </button>
-          <span className="topbarDivider" aria-hidden="true" />
-          <button type="button" className="statChip statChipFamily" onClick={() => setShowFamilyMgr(true)} title={t.familyOpen}>
-            <span>{t.familyVoting}</span>
-            <strong key={`f-${familyClusters.length}`} className="popped">{formatCount(familyClusters.length)}</strong>
-          </button>
-          <button type="button" className="statChip statChipDeceased" onClick={() => setShowDeceasedMgr(true)}>
-            <span>{lang === "te" ? "మరణించినవారు" : "Deceased"}</span>
-            <strong key={"d-" + deceasedVoters.length} className="popped">{formatCount(deceasedVoters.length)}</strong>
-          </button>
-          <button type="button" className="statChip statChipBlock" onClick={() => setShowBlocklistMgr(true)}>
-            <span>{lang === "te" ? "బ్లాక్ లిస్ట్" : "Block List"}</span>
-            <strong key={"b-" + blocklistedVoters.length} className="popped">{formatCount(blocklistedVoters.length)}</strong>
-          </button>
-          <button type="button" className="statChip statChipCancelled" onClick={() => setShowCancelledMgr(true)}>
-            <span>{lang === "te" ? "రద్దు జాబితా" : "Cancelled"}</span>
-            <strong key={"c-" + cancelledVoters.length} className="popped">{formatCount(cancelledVoters.length)}</strong>
-          </button>
-        </div>
         <div className="actions">
-          <label className="ghostBtn uploadIconBtn" title={t.upload} aria-label={t.upload}>
-            {busy ? "⏳" : "⬆"}
-            <input type="file" accept="application/pdf" style={{ display: "none" }} onChange={(event) => upload(event.target.files?.[0] || null)} />
-          </label>
-          <button type="button" className="ghostBtn" onClick={() => { setShowAreaMgr(true); void loadRawAreas(); }}>
-            {t.manageAreas}
-          </button>
+          <div className="moreMenuWrap" ref={moreMenuRef}>
+            <button
+              type="button"
+              className="ghostBtn moreMenuBtn"
+              onClick={() => setShowMoreMenu((v) => !v)}
+              aria-haspopup="true"
+              aria-expanded={showMoreMenu}
+              aria-label={lang === "te" ? "మరిన్ని ఎంపికలు" : "More options"}
+            >
+              <MoreIcon />
+            </button>
+            {showMoreMenu && (
+              <div className="moreMenu" role="menu">
+                <button type="button" role="menuitem" className="moreMenuItem" onClick={() => { setShowFamilyMgr(true); setShowMoreMenu(false); }}>
+                  {t.familyVoting} <span className="moreMenuCount">{formatCount(familyClusters.length)}</span>
+                </button>
+                <button type="button" role="menuitem" className="moreMenuItem" onClick={() => { setShowDeceasedMgr(true); setShowMoreMenu(false); }}>
+                  {lang === "te" ? "మరణించినవారు" : "Deceased"} <span className="moreMenuCount">{formatCount(deceasedVoters.length)}</span>
+                </button>
+                <button type="button" role="menuitem" className="moreMenuItem" onClick={() => { setShowBlocklistMgr(true); setShowMoreMenu(false); }}>
+                  {lang === "te" ? "బ్లాక్ లిస్ట్" : "Block List"} <span className="moreMenuCount">{formatCount(blocklistedVoters.length)}</span>
+                </button>
+                <button type="button" role="menuitem" className="moreMenuItem" onClick={() => { setShowCancelledMgr(true); setShowMoreMenu(false); }}>
+                  {lang === "te" ? "రద్దు జాబితా" : "Cancelled"} <span className="moreMenuCount">{formatCount(cancelledVoters.length)}</span>
+                </button>
+                <label className="moreMenuItem" role="menuitem">
+                  {busy ? <SpinnerIcon /> : <UploadIcon />} {t.upload}
+                  <input
+                    type="file"
+                    accept="application/pdf"
+                    style={{ display: "none" }}
+                    onChange={(event) => { upload(event.target.files?.[0] || null); setShowMoreMenu(false); }}
+                  />
+                </label>
+                <div className="moreMenuDivider" aria-hidden="true" />
+                <button type="button" role="menuitem" className="moreMenuItem" onClick={() => { setShowAreaStats(true); setShowMoreMenu(false); }}>
+                  <ChartIcon /> {lang === "te" ? "ప్రాంత లెక్కలు" : "Area Stats"}
+                </button>
+                <button type="button" role="menuitem" className="moreMenuItem" onClick={() => { setShowAreaMgr(true); void loadRawAreas(); setShowMoreMenu(false); }}>
+                  {t.manageAreas}
+                </button>
+              </div>
+            )}
+          </div>
           <button type="button" onClick={() => setLang(lang === "te" ? "en" : "te")}>
             {lang === "te" ? "English" : "తెలుగు"}
           </button>
@@ -1200,41 +1557,63 @@ ${section("జనరల్ ఓటర్లు", general)}
             {t.logout}
           </button>
         </div>
-      </header>
-
-      <div className="filterBar">
+        </div>{/* /topbarRowTop */}
+        <div className="topbarRow topbarRowBottom">
+        <div className="filterBarView">
+          {!atlasMode && (
+            <button type="button" className="summaryBackBtn" onClick={goHome}>
+              ← {lang === "te" ? "అన్ని ప్రాంతాలు" : "All areas"}
+            </button>
+          )}
+          <span className="summaryViewLabel">{t.currentView}</span>
+          <strong className="summaryViewVal">{atlasMode ? (lang === "te" ? "ప్రాంతాల పటం" : "Area atlas") : selectedTileLabel || t.all}</strong>
+          {partyFilter && (
+            <button type="button" className="summaryModeChip" onClick={() => setPartyFilter(null)}>
+              {partyFilter === "ifp" ? t.ifpOnly : partyFilter === "target" ? t.targetCore : partyFilter === "yt" ? t.ytCore : t.mfCore}
+              <span aria-hidden="true"> ✕</span>
+            </button>
+          )}
+          {exactHouseNoFilter && (
+            <button type="button" className="summaryModeChip" onClick={() => setExactHouseNoFilter("")}>
+              {lang === "te" ? `ఇల్లు ${exactHouseNoFilter}` : `Door ${exactHouseNoFilter}`}
+              <span aria-hidden="true"> ✕</span>
+            </button>
+          )}
+        </div>
+        <div className="filterBarDivider filterBarDividerA" aria-hidden="true" />
         <div className="filterCatGroup">
-          <button type="button" className={source === "all" ? "filterPill active" : "filterPill"} onClick={() => { setSource("all"); setSelectedTile(""); setExactHouseNoFilter(""); }}>
+          <button type="button" className={source === "all" ? "filterPill active" : "filterPill"} onClick={() => { setSource("all"); setExactHouseNoFilter(""); }}>
             {t.allPdfs}
           </button>
           {SOURCE_ORDER.filter((s) => s !== "all").map((item) => (
-            <button key={item} type="button" className={source === item ? "filterPill active" : "filterPill"} onClick={() => { setSource(source === item ? "all" : item); setSelectedTile(""); setExactHouseNoFilter(""); }}>
+            <button key={item} type="button" className={source === item ? "filterPill active" : "filterPill"} onClick={() => { setSource(source === item ? "all" : item); setExactHouseNoFilter(""); }}>
               {sourceLabel(item, t)}
             </button>
           ))}
         </div>
-        <div className="filterBarDivider" aria-hidden="true" />
+        <div className="filterBarDivider filterBarDividerB" aria-hidden="true" />
         <input
           ref={searchRef}
-          className="filterBarSearch"
+          className={`filterBarSearch${atlasMode ? "" : " filterBarSearchCompact"}`}
           value={query}
           onChange={(event) => {
-            const nextValue = event.target.value;
-            if (exactHouseNoFilter && normalizeHouseNo(nextValue) !== exactHouseNoFilter) {
-              setExactHouseNoFilter("");
-            }
-            setQuery(nextValue);
+            if (exactHouseNoFilter) setExactHouseNoFilter("");
+            setQuery(event.target.value);
           }}
           placeholder={t.search}
+          aria-label={t.search}
         />
         <div className="exportBtnGroup">
           <button
             type="button"
             className="exportCompactBtn"
             title={selectedTile ? t.exportArea : t.exportAll}
+            disabled={filteredVoters.length === 0}
             onClick={() => {
               const tile = AREA_TILES.find((tile) => tile.key === selectedTile);
-              downloadCsv(tile?.aliases[0]);
+              const base = tile?.label || query.trim() || t.all;
+              const suffix = partyFilter === "target" ? " T" : partyFilter === "yt" ? " YT" : partyFilter === "mf" ? " MF" : partyFilter === "ifp" ? " IFP" : "";
+              downloadCsv(base + suffix);
             }}
           >
             ↓ CSV
@@ -1251,75 +1630,18 @@ ${section("జనరల్ ఓటర్లు", general)}
               void downloadPdf(base + suffix);
             }}
           >
-            {pdfBusy ? "⏳" : "↓ PDF"}
+            {pdfBusy ? <SpinnerIcon /> : "↓ PDF"}
           </button>
         </div>
-        <button type="button" className="ghostBtn filterStatsBtn" onClick={() => setShowAreaStats(true)}>
-          {lang === "te" ? "📊 ప్రాంత లెక్కలు" : "📊 Area Stats"}
-        </button>
-      </div>{/* /filterBar */}
-      <div className="summaryMetricsWrap">
-        <div className="summaryMetricsViewRow">
-          {!atlasMode && (
-            <button type="button" className="summaryBackBtn" onClick={goHome}>
-              ← {lang === "te" ? "అన్ని ప్రాంతాలు" : "All areas"}
-            </button>
-          )}
-          <span className="summaryViewLabel">{t.currentView}</span>
-          <strong className="summaryViewVal">{atlasMode ? (lang === "te" ? "ప్రాంతాల పటం" : "Area atlas") : selectedTileLabel || t.all}</strong>
-          {partyFilter === "ifp" ? <span className="summaryModeChip">{t.ifpOnly}</span> : null}
-          {partyFilter === "target" ? <span className="summaryModeChip">{t.targetCore}</span> : null}
-          {partyFilter === "yt" ? <span className="summaryModeChip">{t.ytCore}</span> : null}
-          {partyFilter === "mf" ? <span className="summaryModeChip">{t.mfCore}</span> : null}
-          {atlasMode && (
-            <button type="button" className="atlasAllBtn" onClick={() => setBrowseAll(true)}>
-              {t.all} · {formatCount(atlasGrandTotal)} →
-            </button>
-          )}
-        </div>
-        <div className="summaryMetrics">
-          <article className="summaryMetricCard metricTotal">
-            <span>{t.total}</span>
-            <strong>{formatCount(selectedScopeStats.total)}</strong>
-            <small>{selectedTileLabel || t.all}</small>
-          </article>
-          <article className="summaryMetricCard metricLife">
-            <span>{t.lifeCount}</span>
-            <strong>{formatCount(selectedScopeStats.life)}</strong>
-            <small>{formatPercent(selectedLifeShare, lang)}</small>
-          </article>
-          <article className="summaryMetricCard metricGeneral">
-            <span>{t.generalCount}</span>
-            <strong>{formatCount(selectedScopeStats.general)}</strong>
-            <small>{formatPercent(selectedGeneralShare, lang)}</small>
-          </article>
-          <article className="summaryMetricCard metricIfp">
-            <span>{t.ifpCount}</span>
-            <strong>{formatCount(selectedScopeStats.ifp)}</strong>
-            <small>{formatPercent(selectedIfpShare, lang)}</small>
-          </article>
-          <article className="summaryMetricCard metricTarget summaryMetricCompact">
-            <span>T</span>
-            <strong>{formatCount(selectedScopeStats.target)}</strong>
-            <small>{formatPercent(selectedTargetShare, lang)}</small>
-          </article>
-          <article className="summaryMetricCard metricYt summaryMetricCompact">
-            <span>YT</span>
-            <strong>{formatCount(selectedScopeStats.yt)}</strong>
-            <small>{formatPercent(selectedYtShare, lang)}</small>
-          </article>
-          <article className="summaryMetricCard metricMf summaryMetricCompact">
-            <span>MF</span>
-            <strong>{formatCount(selectedScopeStats.mf)}</strong>
-            <small>{formatPercent(selectedMfShare, lang)}</small>
-          </article>
-        </div>
-      </div>
+        </div>{/* /topbarRowBottom */}
+      </header>{/* /topbar — 2 rows on the atlas/home screen, 1 continuous line inside an area */}
+      {atlasMode && summaryMetricsBlock}
       </div>{/* /stickyZone */}
+      {!atlasMode && summaryMetricsBlock}
       {error && <p className="error" style={{ width: "100%", margin: "0 0 12px", padding: "0 var(--page-gutter)" }}>{error}</p>}
 
       <section className="layout">
-        <section className="content">
+        <section className="content" id="voterListRegion" tabIndex={-1}>
 
           {votersLoading && allVoters.length === 0 && (
             <div className="skeletonGrid">
@@ -1335,6 +1657,15 @@ ${section("జనరల్ ఓటర్లు", general)}
               ))}
             </div>
           )}
+          {!votersLoading && allVoters.length === 0 && voterLoadFailed && (
+            <p className="noSelectionHint" role="alert">
+              {lang === "te" ? "ఓటర్ల జాబితా లోడ్ కాలేదు." : "Couldn't load the voter list."}
+              <br />
+              <button type="button" className="ghostBtn" style={{ marginTop: "10px" }} onClick={() => void loadAllVoters()}>
+                {lang === "te" ? "మళ్ళీ ప్రయత్నించండి" : "Retry"}
+              </button>
+            </p>
+          )}
           {atlasMode && !(votersLoading && allVoters.length === 0) && (
             <div className="atlasWrap">
               <div className="atlasGrid">
@@ -1346,8 +1677,16 @@ ${section("జనరల్ ఓటర్లు", general)}
                       <button key={tile.key} type="button" className="atlasTile" onClick={() => { setSelectedTile(tile.key); setExactHouseNoFilter(""); }}>
                         <span className="atlasName">{tile.label}</span>
                         <strong className="atlasTotal">{formatCount(tile.total)}</strong>
-                        <span className="atlasIfp">IFP {formatCount(tile.ifp)} · {share}%</span>
-                        <span className="atlasBarTrack"><span className="atlasBarFill" style={{ width: `${share}%` }} /></span>
+                        {/* Sub-stat is tautological once a party filter is active (tile.total
+                            already equals that party's count) — the audit caught it reading
+                            "IFP 0 · 0%" under a T filter and "100%" under IFP. Hide it instead
+                            of showing dead/misleading numbers. */}
+                        {!partyFilter && (
+                          <>
+                            <span className="atlasIfp">IFP {formatCount(tile.ifp)} · {share}%</span>
+                            <span className="atlasBarTrack"><span className="atlasBarFill" style={{ width: `${share}%` }} /></span>
+                          </>
+                        )}
                       </button>
                     );
                   })}
@@ -1355,7 +1694,34 @@ ${section("జనరల్ ఓటర్లు", general)}
             </div>
           )}
           {!atlasMode && !votersLoading && filteredVoters.length === 0 && (
-            <p className="noSelectionHint">{t.noVoters}</p>
+            <div className="noSelectionHint">
+              <p>{t.noVoters}</p>
+              {(partyFilter || source !== "all" || query.trim() || exactHouseNoFilter) && (
+                <>
+                  <p className="activeFilterList">
+                    {lang === "te" ? "యాక్టివ్ ఫిల్టర్లు: " : "Active filters: "}
+                    {[
+                      partyFilter ? (partyFilter === "ifp" ? t.ifpOnly : partyFilter === "target" ? t.targetCore : partyFilter === "yt" ? t.ytCore : t.mfCore) : null,
+                      source !== "all" ? sourceLabel(source, t) : null,
+                      query.trim() ? `“${query.trim()}”` : null,
+                      exactHouseNoFilter ? `D.no ${exactHouseNoFilter}` : null,
+                    ].filter(Boolean).join(" · ")}
+                  </p>
+                  <button
+                    type="button"
+                    className="ghostBtn"
+                    onClick={() => {
+                      setPartyFilter(null);
+                      setSource("all");
+                      setQuery("");
+                      setExactHouseNoFilter("");
+                    }}
+                  >
+                    {lang === "te" ? "అన్ని ఫిల్టర్లు తీసివేయండి" : "Clear all filters"}
+                  </button>
+                </>
+              )}
+            </div>
           )}
           {!atlasMode && (
           <div className="voterGrid">
@@ -1371,19 +1737,20 @@ ${section("జనరల్ ఓటర్లు", general)}
                     <span className={voter.source_kind === "life" ? "sourceBadge sourceLife" : "sourceBadge sourceGeneral"}>
                       {voter.source_badge}
                     </span>
-                    {voter.is_target ? <span className="miniTag miniTagTarget">T</span> : null}
-                    {voter.is_yt_voter ? <span className="miniTag miniTagYt">YT</span> : null}
-                    {voter.is_mf_voter ? <span className="miniTag miniTagMf">MF</span> : null}
-                    {voter.is_ifp_voter ? <span className="miniTag miniTagIfp">IFP</span> : null}
                   </div>
                 </div>
                 <div>
                   <div className="voterTitleRow">
-                    <h3 className="ddCompact" style={{ fontSize: nameFontSize(displayName(voter, lang, t.missingName), lang) }}>{displayName(voter, lang, t.missingName)}</h3>
+                    <h3 className={isNameAtFontFloor(displayName(voter, lang, t.missingName), lang) ? "ddWrap" : "ddCompact"} style={{ fontSize: nameFontSize(displayName(voter, lang, t.missingName), lang) }}>{displayName(voter, lang, t.missingName)}</h3>
+                    <button type="button" className="cardOpenBtn" onClick={() => setSelected(voter)} aria-label={`${t.open} — ${displayName(voter, lang, t.missingName)}`}>
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                        <path d="m9 6 6 6-6 6" />
+                      </svg>
+                    </button>
                   </div>
                   <p className="relationRow">
                     <strong>{t.relation}: </strong>
-                    <span className="ddCompact" style={{ fontSize: compactFieldFontSize(displayRelation(voter.relation_name_te || "", lang)) }}>
+                    <span className={isFieldAtFontFloor(displayRelation(voter.relation_name_te || "", lang)) ? "ddWrap" : "ddCompact"} style={{ fontSize: compactFieldFontSize(displayRelation(voter.relation_name_te || "", lang)) }}>
                       {displayRelation(voter.relation_name_te || "", lang)}
                     </span>
                   </p>
@@ -1400,45 +1767,102 @@ ${section("జనరల్ ఓటర్లు", general)}
                   {voter.notes && <p className="note">{voter.notes}</p>}
                 </div>
                 <div className="cardActions">
+                  {voter.is_target ? (
                     <button
                       type="button"
-                      className={`targetBtn${voter.is_target ? " active" : ""}`}
-                      aria-pressed={Boolean(voter.is_target)}
+                      className="partyBtn targetBtn active partyBtnSolo"
+                      aria-pressed="true"
+                      aria-label={`${t.targetCore} — ${displayName(voter, lang, t.missingName)}`}
+                      title={tagTooltip("target", lang)}
                       disabled={targetBusyId === voter.id}
                       onClick={() => void toggleTargetVoter(voter)}
                     >
-                      {targetBusyId === voter.id ? "..." : voter.is_target ? "★ T" : "☆ T"}
+                      {targetBusyId === voter.id ? <SpinnerIcon /> : <><StarIcon filled /> T</>}
                     </button>
+                  ) : voter.is_yt_voter ? (
                     <button
                       type="button"
-                      className={`ytBtn${voter.is_yt_voter ? " active" : ""}`}
-                      aria-pressed={Boolean(voter.is_yt_voter)}
+                      className="partyBtn ytBtn active partyBtnSolo"
+                      aria-pressed="true"
+                      aria-label={`${t.ytCore} — ${displayName(voter, lang, t.missingName)}`}
+                      title={tagTooltip("yt", lang)}
                       disabled={ytBusyId === voter.id}
                       onClick={() => void toggleYtVoter(voter)}
                     >
-                      {ytBusyId === voter.id ? "..." : voter.is_yt_voter ? "★ YT" : "☆ YT"}
+                      {ytBusyId === voter.id ? <SpinnerIcon /> : <><StarIcon filled /> YT</>}
                     </button>
+                  ) : voter.is_mf_voter ? (
                     <button
                       type="button"
-                      className={`mfBtn${voter.is_mf_voter ? " active" : ""}`}
-                      aria-pressed={Boolean(voter.is_mf_voter)}
+                      className="partyBtn mfBtn active partyBtnSolo"
+                      aria-pressed="true"
+                      aria-label={`MF — ${displayName(voter, lang, t.missingName)}`}
+                      title={tagTooltip("mf", lang)}
                       disabled={mfBusyId === voter.id}
                       onClick={() => void toggleMfVoter(voter)}
                     >
-                      {mfBusyId === voter.id ? "..." : voter.is_mf_voter ? "★ MF" : "☆ MF"}
+                      {mfBusyId === voter.id ? <SpinnerIcon /> : <><StarIcon filled /> MF</>}
                     </button>
-                    <button type="button" onClick={() => setSelected(voter)}>
-                      {t.open}
-                    </button>
+                  ) : voter.is_ifp_voter ? (
                     <button
                       type="button"
-                      className={`ifpBtn${voter.is_ifp_voter ? " active" : ""}`}
-                      aria-pressed={Boolean(voter.is_ifp_voter)}
+                      className="partyBtn ifpBtn active partyBtnSolo"
+                      aria-pressed="true"
+                      aria-label={`IFP — ${displayName(voter, lang, t.missingName)}`}
+                      title={tagTooltip("ifp", lang)}
                       disabled={ifpBusyId === voter.id}
                       onClick={() => void toggleIfpVoter(voter)}
                     >
-                      {ifpBusyId === voter.id ? "..." : voter.is_ifp_voter ? t.ifpAction : "☆ IFP"}
+                      {ifpBusyId === voter.id ? <SpinnerIcon /> : <><StarIcon filled /> IFP</>}
                     </button>
+                  ) : (
+                    <>
+                      <button
+                        type="button"
+                        className="partyBtn targetBtn"
+                        aria-pressed="false"
+                        aria-label={`${t.targetCore} — ${displayName(voter, lang, t.missingName)}`}
+                        title={tagTooltip("target", lang)}
+                        disabled={targetBusyId === voter.id}
+                        onClick={() => void toggleTargetVoter(voter)}
+                      >
+                        {targetBusyId === voter.id ? <SpinnerIcon /> : <><StarIcon filled={false} /> T</>}
+                      </button>
+                      <button
+                        type="button"
+                        className="partyBtn ytBtn"
+                        aria-pressed="false"
+                        aria-label={`${t.ytCore} — ${displayName(voter, lang, t.missingName)}`}
+                        title={tagTooltip("yt", lang)}
+                        disabled={ytBusyId === voter.id}
+                        onClick={() => void toggleYtVoter(voter)}
+                      >
+                        {ytBusyId === voter.id ? <SpinnerIcon /> : <><StarIcon filled={false} /> YT</>}
+                      </button>
+                      <button
+                        type="button"
+                        className="partyBtn mfBtn"
+                        aria-pressed="false"
+                        aria-label={`MF — ${displayName(voter, lang, t.missingName)}`}
+                        title={tagTooltip("mf", lang)}
+                        disabled={mfBusyId === voter.id}
+                        onClick={() => void toggleMfVoter(voter)}
+                      >
+                        {mfBusyId === voter.id ? <SpinnerIcon /> : <><StarIcon filled={false} /> MF</>}
+                      </button>
+                      <button
+                        type="button"
+                        className="partyBtn ifpBtn"
+                        aria-pressed="false"
+                        aria-label={`IFP — ${displayName(voter, lang, t.missingName)}`}
+                        title={tagTooltip("ifp", lang)}
+                        disabled={ifpBusyId === voter.id}
+                        onClick={() => void toggleIfpVoter(voter)}
+                      >
+                        {ifpBusyId === voter.id ? <SpinnerIcon /> : <><StarIcon filled={false} /> IFP</>}
+                      </button>
+                    </>
+                  )}
                 </div>
               </article>
             ))}
@@ -1446,31 +1870,45 @@ ${section("జనరల్ ఓటర్లు", general)}
           )}
           {/* Enhancement #8 — infinite scroll sentinel */}
           {!atlasMode && <div ref={sentinelRef} className="scrollSentinel" aria-hidden="true" />}
-
-          {showJumpSearch && (
-            <button
-              type="button"
-              className="jumpSearchBtn"
-              aria-label={lang === "te" ? "వెతుకుడు పైన ఉంది — పైకి వెళ్లండి" : "Jump to search"}
-              onClick={() => {
-                window.scrollTo({ top: 0, behavior: "smooth" });
-                searchRef.current?.focus({ preventScroll: true });
-              }}
-            >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" aria-hidden="true">
-                <circle cx="11" cy="11" r="7" />
-                <path d="m20 20-3.5-3.5" />
-              </svg>
-            </button>
-          )}
-
         </section>
       </section>
 
+      {/* Mobile-only persistent bottom nav — the sticky header is static on
+          phones (so it doesn't block taps on content underneath), which
+          means it scrolls away. This keeps the 4 most-used actions within
+          thumb reach at all times instead of a single floating search FAB
+          that used to sit directly over the card's IFP button. */}
+      <nav className="mobileBottomNav" aria-label={lang === "te" ? "త్వరిత నావిగేషన్" : "Quick navigation"}>
+        <button type="button" onClick={goHome}>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <path d="m3 11 9-8 9 8" /><path d="M5 10v10h14V10" />
+          </svg>
+          <span>{lang === "te" ? "పటం" : "Atlas"}</span>
+        </button>
+        <button type="button" onClick={() => { window.scrollTo({ top: 0, behavior: "smooth" }); searchRef.current?.focus({ preventScroll: true }); }}>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" />
+          </svg>
+          <span>{lang === "te" ? "వెతుకు" : "Search"}</span>
+        </button>
+        <button type="button" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <path d="M4 6h16M7 12h10M10 18h4" />
+          </svg>
+          <span>{lang === "te" ? "ఫిల్టర్లు" : "Filters"}</span>
+        </button>
+        <button type="button" onClick={() => setShowAreaStats(true)}>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <path d="M4 20V10M12 20V4M20 20v-6" />
+          </svg>
+          <span>{lang === "te" ? "గణాంకాలు" : "Stats"}</span>
+        </button>
+      </nav>
+
       {selected && (
         <div className="modal" role="dialog" aria-modal="true" aria-labelledby="voter-title" onClick={closeModal}>
-          <section className="reviewPanel" onClick={(event) => event.stopPropagation()}>
-            <div className="modalHeader">
+          <section className="reviewPanel" ref={voterModalRef} tabIndex={-1} onClick={(event) => event.stopPropagation()}>
+            <div className="modalHeader" onTouchStart={onSheetTouchStart} onTouchMove={onSheetTouchMove} onTouchEnd={(e) => onSheetTouchEnd(e, closeModal)}>
               <div>
                 <h2 id="voter-title">{displayName(selected, lang, t.missingName)}</h2>
                 <p>{displayArea(selected, lang)}</p>
@@ -1479,10 +1917,12 @@ ${section("జనరల్ ఓటర్లు", general)}
                 ×
               </button>
             </div>
-            <div className="reviewGrid">
-              <div>
-                <SecureImage path={selected.card_url} token={token} alt={t.card} />
-              </div>
+            <div className={`reviewGrid${!selected.card_url && !selected.photo_url ? " reviewGridNoImage" : ""}`}>
+              {(selected.card_url || selected.photo_url) && (
+                <div>
+                  <SecureImage path={selected.card_url || selected.photo_url} token={token} alt={selected.card_url ? t.card : t.photo} />
+                </div>
+              )}
               <form
                 onSubmit={(event) => {
                   event.preventDefault();
@@ -1528,26 +1968,6 @@ ${section("జనరల్ ఓటర్లు", general)}
                   )}
                 </label>
 
-                <details className="modalMoreDetails">
-                  <summary>{lang === "te" ? "మరిన్ని వివరాలు" : "More details"}</summary>
-                  {([
-                    ["relation_name_te", t.relation],
-                    ["age", t.age],
-                    ["occupation_te", t.occupation],
-                    ["house_no", t.house],
-                  ] as [keyof Voter, string][]).map(([key, label]) => (
-                    <label key={key}>
-                      {label}
-                      <input
-                        value={String(selected[key] || "")}
-                        onChange={(event) => updateSelectedField(key, event.target.value as Voter[typeof key])}
-                      />
-                      {lang === "en" && key === "relation_name_te" && selected.relation_name_te ? <small className="fieldPreview">{t.englishPreview}: {displayRelation(selected.relation_name_te, "en")}</small> : null}
-                      {lang === "en" && key === "occupation_te" && selected.occupation_te ? <small className="fieldPreview">{t.englishPreview}: {displayOccupation(selected.occupation_te, "en")}</small> : null}
-                    </label>
-                  ))}
-                </details>
-
                 <label>
                   {t.moveArea}
                   <select
@@ -1565,7 +1985,6 @@ ${section("జనరల్ ఓటర్లు", general)}
                       </option>
                     ))}
                   </select>
-                  {lang === "en" && selected.area_te ? <small className="fieldPreview">{t.englishPreview}: {displayArea(selected, "en")}</small> : null}
                 </label>
 
                 {selected.is_deceased || selected.is_blocklisted || selected.is_cancelled ? (
@@ -1579,25 +1998,53 @@ ${section("జనరల్ ఓటర్లు", general)}
                   </button>
                 ) : (
                   <details className="dangerDetails">
-                    <summary>{lang === "te" ? "⚠ ఇతర చర్యలు" : "⚠ Other actions"}</summary>
+                    <summary><WarningIcon /> {lang === "te" ? "ఇతర చర్యలు" : "Other actions"}</summary>
                     <button type="button" className="secondary dangerGhost" style={{ marginTop: "8px" }} disabled={busy}
-                      onClick={() => void markAndSave({ is_deceased: true, is_blocklisted: false, is_cancelled: false, is_ifp_voter: false, is_yt_voter: false, is_target: false, is_mf_voter: false })}>
+                      onClick={() => {
+                        const msg = lang === "te" ? "ఈ ఓటరును మరణించినవారిగా గుర్తించాలా?" : "Mark this voter as deceased?";
+                        if (window.confirm(msg)) void markAndSave({ is_deceased: true, is_blocklisted: false, is_cancelled: false, is_ifp_voter: false, is_yt_voter: false, is_target: false, is_mf_voter: false });
+                      }}>
                       {t.markDeceased}
                     </button>
                     <button type="button" className="secondary dangerGhost" style={{ marginTop: "8px" }} disabled={busy}
-                      onClick={() => void markAndSave({ is_deceased: false, is_blocklisted: true, is_cancelled: false, is_ifp_voter: false, is_yt_voter: false, is_target: false, is_mf_voter: false })}>
+                      onClick={() => {
+                        const msg = lang === "te" ? "ఈ ఓటరును బ్లాక్ లిస్ట్‌కు మార్చాలా?" : "Move this voter to the block list?";
+                        if (window.confirm(msg)) void markAndSave({ is_deceased: false, is_blocklisted: true, is_cancelled: false, is_ifp_voter: false, is_yt_voter: false, is_target: false, is_mf_voter: false });
+                      }}>
                       {t.markBlocklist}
                     </button>
                     <button type="button" className="secondary dangerGhost" style={{ marginTop: "8px" }} disabled={busy}
-                      onClick={() => void markAndSave({ is_deceased: false, is_blocklisted: false, is_cancelled: true, is_ifp_voter: false, is_yt_voter: false, is_target: false, is_mf_voter: false })}>
+                      onClick={() => {
+                        const msg = lang === "te" ? "ఈ ఓటరును రద్దు జాబితాకు మార్చాలా?" : "Move this voter to the cancelled list?";
+                        if (window.confirm(msg)) void markAndSave({ is_deceased: false, is_blocklisted: false, is_cancelled: true, is_ifp_voter: false, is_yt_voter: false, is_target: false, is_mf_voter: false });
+                      }}>
                       {t.markCancelled}
                     </button>
                   </details>
                 )}
 
+                <details className="modalMoreDetails">
+                  <summary>{lang === "te" ? "మరిన్ని వివరాలు" : "More details"}</summary>
+                  {([
+                    ["relation_name_te", t.relation],
+                    ["age", t.age],
+                    ["occupation_te", t.occupation],
+                    ["house_no", t.house],
+                  ] as [keyof Voter, string][]).map(([key, label]) => (
+                    <label key={key}>
+                      {label}
+                      <input
+                        value={String(selected[key] || "")}
+                        onChange={(event) => updateSelectedField(key, event.target.value as Voter[typeof key])}
+                      />
+                    </label>
+                  ))}
+                </details>
+
                 {selected.notes && <p className="note">{selected.notes}</p>}
+                {error && <p className="error" role="alert">{error}</p>}
                 <div className="modalFooter">
-                  <button type="submit" className="primary">{t.save}</button>
+                  <button type="submit" className="primary" disabled={busy}>{t.save}</button>
                   <button type="button" className="secondary" onClick={closeModal}>{t.close}</button>
                 </div>
               </form>
@@ -1609,7 +2056,7 @@ ${section("జనరల్ ఓటర్లు", general)}
       {showAreaMgr && (
         <div className="modal" role="dialog" aria-modal="true" aria-label={t.manageAreas} onClick={() => setShowAreaMgr(false)}>
           <section className="areaMgrPanel" onClick={(event) => event.stopPropagation()}>
-            <div className="modalHeader">
+            <div className="modalHeader" onTouchStart={onSheetTouchStart} onTouchMove={onSheetTouchMove} onTouchEnd={(e) => onSheetTouchEnd(e, () => setShowAreaMgr(false))}>
               <div>
                 <h2>{t.manageAreas}</h2>
                 <p>
@@ -1686,7 +2133,7 @@ ${section("జనరల్ ఓటర్లు", general)}
       {showDeceasedMgr && (
         <div className="modal" role="dialog" aria-modal="true" aria-label={lang === "te" ? "మరణించిన ఓటర్లు" : "Deceased Voters"} onClick={() => setShowDeceasedMgr(false)}>
           <section className="areaMgrPanel" onClick={(event) => event.stopPropagation()}>
-            <div className="modalHeader">
+            <div className="modalHeader" onTouchStart={onSheetTouchStart} onTouchMove={onSheetTouchMove} onTouchEnd={(e) => onSheetTouchEnd(e, () => setShowDeceasedMgr(false))}>
               <div>
                 <h2>{lang === "te" ? "మరణించిన ఓటర్లు" : "Deceased Voters"}</h2>
                 <p>{lang === "te" ? `ప్రత్యేకంగా ఉంచిన జాబితా • మొత్తం ${deceasedVoters.length}` : `Separated archive • Total ${deceasedVoters.length}`}</p>
@@ -1736,7 +2183,7 @@ ${section("జనరల్ ఓటర్లు", general)}
       {showBlocklistMgr && (
         <div className="modal" role="dialog" aria-modal="true" aria-label={lang === "te" ? "బ్లాక్ లిస్ట్" : "Block List"} onClick={() => setShowBlocklistMgr(false)}>
           <section className="areaMgrPanel" onClick={(event) => event.stopPropagation()}>
-            <div className="modalHeader">
+            <div className="modalHeader" onTouchStart={onSheetTouchStart} onTouchMove={onSheetTouchMove} onTouchEnd={(e) => onSheetTouchEnd(e, () => setShowBlocklistMgr(false))}>
               <div>
                 <h2>{lang === "te" ? "బ్లాక్ లిస్ట్" : "Block List"}</h2>
                 <p>{lang === "te" ? `ప్రత్యేకంగా ఉంచిన ప్రత్యర్థి జాబితా • మొత్తం ${blocklistedVoters.length}` : `Separated opponent archive • Total ${blocklistedVoters.length}`}</p>
@@ -1786,7 +2233,7 @@ ${section("జనరల్ ఓటర్లు", general)}
       {showCancelledMgr && (
         <div className="modal" role="dialog" aria-modal="true" aria-label={lang === "te" ? "రద్దు ఓటర్లు" : "Cancelled Voters"} onClick={() => setShowCancelledMgr(false)}>
           <section className="areaMgrPanel" onClick={(event) => event.stopPropagation()}>
-            <div className="modalHeader">
+            <div className="modalHeader" onTouchStart={onSheetTouchStart} onTouchMove={onSheetTouchMove} onTouchEnd={(e) => onSheetTouchEnd(e, () => setShowCancelledMgr(false))}>
               <div>
                 <h2>{lang === "te" ? "రద్దు ఓటర్లు" : "Cancelled Voters"}</h2>
                 <p>{lang === "te" ? `దాచిన రద్దు జాబితా • మొత్తం ${cancelledVoters.length}` : `Hidden cancelled archive • Total ${cancelledVoters.length}`}</p>
@@ -1836,7 +2283,7 @@ ${section("జనరల్ ఓటర్లు", general)}
       {showFamilyMgr && (
         <div className="modal" role="dialog" aria-modal="true" aria-label={t.familyVoting} onClick={() => setShowFamilyMgr(false)}>
           <section className="areaMgrPanel familyPanel" onClick={(event) => event.stopPropagation()}>
-            <div className="modalHeader">
+            <div className="modalHeader" onTouchStart={onSheetTouchStart} onTouchMove={onSheetTouchMove} onTouchEnd={(e) => onSheetTouchEnd(e, () => setShowFamilyMgr(false))}>
               <div>
                 <h2>{t.familyVoting}</h2>
                 <p>{selectedTileLabel || t.all} · {sourceLabel(source, t)} · {t.familyGroups} {formatCount(familyClusters.length)}</p>
@@ -1918,7 +2365,7 @@ ${section("జనరల్ ఓటర్లు", general)}
       {showAreaStats && (
         <div className="modal" role="dialog" aria-modal="true" aria-label={t.areaStats} onClick={() => setShowAreaStats(false)}>
           <section className="areaMgrPanel areaStatsPanel" onClick={(e) => e.stopPropagation()}>
-            <div className="modalHeader">
+            <div className="modalHeader" onTouchStart={onSheetTouchStart} onTouchMove={onSheetTouchMove} onTouchEnd={(e) => onSheetTouchEnd(e, () => setShowAreaStats(false))}>
               <strong>{t.areaStats}</strong>
               <span className="modalCount">{sidebarAreaStats.length}</span>
               <button type="button" className="ghostBtn" onClick={() => setShowAreaStats(false)}>✕</button>
