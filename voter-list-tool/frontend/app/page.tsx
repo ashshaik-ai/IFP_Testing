@@ -1,9 +1,10 @@
 "use client";
 
 import { RefObject, TouchEvent as ReactTouchEvent, useEffect, useMemo, useRef, useState } from "react";
-import { API_BASE, AreaOption, Job, Lang, SourceFilter, Voter, api, copy } from "@/lib/api";
+import { API_BASE, AreaOption, Job, Lang, PhoneImportResult, SourceFilter, Voter, api, copy } from "@/lib/api";
 import { englishToTeluguName, toEnglishArea, toEnglishName } from "@/lib/transliterate";
 import { SecureImage } from "@/components/SecureImage";
+import { CampaignConsole } from "@/components/CampaignConsole";
 
 type ScopeStats = {
   total: number;
@@ -14,6 +15,7 @@ type ScopeStats = {
   target: number;
   mf: number;
   ifp: number;
+  flagged: number;
 };
 
 type AreaTile = {
@@ -286,6 +288,22 @@ function UploadIcon() {
     </svg>
   );
 }
+function SearchIcon() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <circle cx="11" cy="11" r="7" />
+      <path d="m21 21-4.3-4.3" />
+    </svg>
+  );
+}
+function FlagIcon() {
+  return (
+    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" style={{ flexShrink: 0 }}>
+      <path d="M6 21V4" />
+      <path d="M6 4h12.2a1 1 0 0 1 .8 1.6l-3.4 4.4 3.4 4.4a1 1 0 0 1-.8 1.6H6" fill="currentColor" />
+    </svg>
+  );
+}
 function MoreIcon() {
   return (
     <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -367,7 +385,7 @@ export default function Home() {
   const [showBlocklistMgr, setShowBlocklistMgr] = useState(false);
   const [showCancelledMgr, setShowCancelledMgr] = useState(false);
   const [showFamilyMgr, setShowFamilyMgr] = useState(false);
-  const [partyFilter, setPartyFilter] = useState<"ifp" | "yt" | "target" | "mf" | null>(null);
+  const [partyFilter, setPartyFilter] = useState<"ifp" | "yt" | "target" | "mf" | "flagged" | null>(null);
   const [query, setQuery] = useState("");
   const [exactHouseNoFilter, setExactHouseNoFilter] = useState("");
   const [allVoters, setAllVoters] = useState<Voter[]>([]);
@@ -378,6 +396,7 @@ export default function Home() {
   const [ytBusyId, setYtBusyId] = useState("");
   const [targetBusyId, setTargetBusyId] = useState("");
   const [mfBusyId, setMfBusyId] = useState("");
+  const [flagBusyId, setFlagBusyId] = useState("");
   const [pdfBusy, setPdfBusy] = useState(false);
   const [showMoreMenu, setShowMoreMenu] = useState(false);
   const [browseAll, setBrowseAll] = useState(false);
@@ -386,6 +405,7 @@ export default function Home() {
   const [liveMessage, setLiveMessage] = useState("");
   const [showAreaMgr, setShowAreaMgr] = useState(false);
   const [showAreaStats, setShowAreaStats] = useState(false);
+  const [showCampaigns, setShowCampaigns] = useState(false);
   const [rawAreas, setRawAreas] = useState<{ area_te: string; count: number; missing_count: number }[]>([]);
   const [knownAreaOptions, setKnownAreaOptions] = useState<AreaOption[]>([]);
   const [mergeTargets, setMergeTargets] = useState<Record<string, string>>({});
@@ -555,8 +575,38 @@ export default function Home() {
     }
   }
 
+  async function importPhones(file: File | null) {
+    if (!file) {
+      return;
+    }
+    setBusy(true);
+    setError("");
+    setLiveMessage(lang === "te" ? `"${file.name}" దిగుమతి అవుతోంది…` : `Importing "${file.name}"…`);
+    const form = new FormData();
+    form.append("file", file);
+    try {
+      const result = await api<PhoneImportResult>("/api/voters/import-phones", token, { method: "POST", body: form });
+      setLiveMessage(
+        lang === "te"
+          ? `${result.updated} మంది సభ్యులకు ఫోన్ నంబర్లు నవీకరించబడ్డాయి (${result.matched}/${result.phone_rows} సరిపోలాయి, ${result.not_found_count} సరిపోలలేదు)`
+          : `Updated phone numbers for ${result.updated} members (${result.matched}/${result.phone_rows} matched, ${result.not_found_count} not found)`
+      );
+      await loadAllVoters();
+    } catch (err) {
+      setLiveMessage(lang === "te" ? `"${file.name}" దిగుమతి విఫలమైంది` : `Import of "${file.name}" failed`);
+      setError(String(err));
+    } finally {
+      setBusy(false);
+    }
+  }
+
   async function saveSelected() {
     if (!selected) {
+      return;
+    }
+    const mobileDigits = String(selected.mobile || "").replace(/\D/g, "");
+    if (mobileDigits.length !== 0 && mobileDigits.length !== 10) {
+      setError(lang === "te" ? "మొబైల్ నంబర్ 10 అంకెలు ఉండాలి" : "Mobile number must be 10 digits");
       return;
     }
     setBusy(true);
@@ -579,6 +629,12 @@ export default function Home() {
         is_target: Boolean(selected.is_target),
         is_mf_voter: Boolean(selected.is_mf_voter),
         notes: selected.notes,
+        mobile: mobileDigits,
+        wa_optin: Boolean(selected.wa_optin),
+        // stamp consent the first time a member is opted in
+        ...(selected.wa_optin && !selected.consent_ts
+          ? { consent_ts: new Date().toISOString(), consent_source: "desk" }
+          : {}),
       });
       setLiveMessage(lang === "te" ? "మార్పులు సేవ్ అయ్యాయి" : "Changes saved");
       closeModalInternal();
@@ -683,6 +739,25 @@ export default function Home() {
       setError(String(err));
     } finally {
       setMfBusyId("");
+    }
+  }
+
+  // Independent of the T/YT/MF/IFP radio-group — no mutual exclusivity, no
+  // descriptive label anywhere (aria-live included), by design.
+  async function toggleFlagVoter(voter: Voter) {
+    const next = !Boolean(voter.is_flagged);
+    const patch = { is_flagged: next };
+    setLiveMessage(lang === "te" ? (next ? "గుర్తు పెట్టబడింది" : "గుర్తు తీసివేయబడింది") : (next ? "Marked" : "Unmarked"));
+    setAllVoters((prev) => prev.map((v) => (v.id === voter.id ? { ...v, ...patch } : v)));
+    setFlagBusyId(voter.id);
+    setError("");
+    try {
+      await patchVoter(voter, patch);
+    } catch (err) {
+      setAllVoters((prev) => prev.map((v) => (v.id === voter.id ? { ...v, is_flagged: voter.is_flagged } : v)));
+      setError(String(err));
+    } finally {
+      setFlagBusyId("");
     }
   }
 
@@ -857,14 +932,18 @@ export default function Home() {
           v.is_mf_voter  ? `<span class="tag tag-mf">MF</span>` : "",
           v.is_ifp_voter ? `<span class="tag tag-ifp">IFP</span>` : "",
         ].filter(Boolean).join("");
+        const flag = v.is_flagged
+          ? `<svg class="flag" width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 21V4"/><path d="M6 4h12.2a1 1 0 0 1 .8 1.6l-3.4 4.4 3.4 4.4a1 1 0 0 1-.8 1.6H6" fill="#1a1a1a"/></svg>`
+          : "";
         return `<div class="card">
-          <div class="photo">${img}<span class="badge ${badgeCls}">${badge}</span></div>
+          <div class="photo">${img}<span class="badge ${badgeCls}">${badge}</span>${flag}</div>
           <div class="info">
             <div class="name">${name || "[పేరు తెలియదు]"}${tags ? `<span class="tags">${tags}</span>` : ""}</div>
             <div class="row"><span class="lbl">${lang === "te" ? "తండ్రి" : "Father"}</span><span>${displayRelation(v.relation_name_te || "", lang)}</span></div>
             <div class="row"><span class="lbl">సీరియల్</span><span>${v.serial_no || "-"}</span></div>
             <div class="row"><span class="lbl">వయస్సు</span><span>${v.age || "-"}</span></div>
             <div class="row"><span class="lbl">D.no</span><span>${v.house_no || "-"}</span></div>
+            ${v.mobile ? `<div class="row"><span class="lbl">${lang === "te" ? "ఫోన్" : "Phone"}</span><span>${v.mobile}</span></div>` : ""}
           </div>
         </div>`;
       }
@@ -895,6 +974,7 @@ export default function Home() {
   .photo { position: relative; flex-shrink: 0; width: 56px; }
   .photo img, .photo .noPhoto { width: 56px; height: 72px; object-fit: cover; border-radius: 4px; background: #e8e3d8; }
   .badge { position: absolute; bottom: 2px; right: 2px; font-size: 9px; font-weight: 700; padding: 1px 4px; border-radius: 3px; }
+  .flag { position: absolute; bottom: 3px; left: 2px; }
   .life { background: #d1fae5; color: #065f46; }
   .gen { background: #ede9fe; color: #4c1d95; }
   .info { flex: 1; min-width: 0; }
@@ -968,6 +1048,7 @@ ${section("జనరల్ ఓటర్లు", general)}
   const ytVoters = useMemo(() => activeVoters.filter((item) => Boolean(item.is_yt_voter)), [activeVoters]);
   const targetVoters = useMemo(() => activeVoters.filter((item) => Boolean(item.is_target)), [activeVoters]);
   const mfVoters = useMemo(() => activeVoters.filter((item) => Boolean(item.is_mf_voter)), [activeVoters]);
+  const flaggedVoters = useMemo(() => activeVoters.filter((item) => Boolean(item.is_flagged)), [activeVoters]);
 
   // area-scoped counts NOT filtered by partyFilter — used for chip labels so all 4 stay non-zero
   const areaBaseVoters = useMemo(
@@ -983,11 +1064,12 @@ ${section("జనరల్ ఓటర్లు", general)}
           acc.yt += item.is_yt_voter ? 1 : 0;
           acc.target += item.is_target ? 1 : 0;
           acc.mf += item.is_mf_voter ? 1 : 0;
+          acc.flagged += item.is_flagged ? 1 : 0;
           if (item.source_kind === "life") acc.life += 1;
           else acc.general += 1;
           return acc;
         },
-        { total: 0, life: 0, general: 0, missing: 0, ifp: 0, yt: 0, target: 0, mf: 0 },
+        { total: 0, life: 0, general: 0, missing: 0, ifp: 0, yt: 0, target: 0, mf: 0, flagged: 0 },
       ),
     [areaBaseVoters],
   );
@@ -1013,8 +1095,9 @@ ${section("జనరల్ ఓటర్లు", general)}
     if (partyFilter === "yt") return ytVoters;
     if (partyFilter === "target") return targetVoters;
     if (partyFilter === "mf") return mfVoters;
+    if (partyFilter === "flagged") return flaggedVoters;
     return activeVoters;
-  }, [partyFilter, activeVoters, ifpVoters, ytVoters, targetVoters, mfVoters]);
+  }, [partyFilter, activeVoters, ifpVoters, ytVoters, targetVoters, mfVoters, flaggedVoters]);
 
   // source-filtered too, so atlas tile counts (incl. IFP share) respect the Life/General pills
   const sourceScopedVoters = useMemo(
@@ -1026,7 +1109,7 @@ ${section("జనరల్ ఓటర్లు", general)}
     const tileMap = new Map<string, AreaTileSummary>(
       AREA_TILES.map((tile) => [
         tile.key,
-        { ...tile, total: 0, life: 0, general: 0, missing: 0, ifp: 0, yt: 0, target: 0, mf: 0 },
+        { ...tile, total: 0, life: 0, general: 0, missing: 0, ifp: 0, yt: 0, target: 0, mf: 0, flagged: 0 },
       ]),
     );
     for (const voter of sourceScopedVoters) {
@@ -1066,6 +1149,23 @@ ${section("జనరల్ ఓటర్లు", general)}
     [areaTiles],
   );
 
+  // Denominator for the atlas tiles' % once a party filter (IFP/T/YT/MF) is
+  // active. areaTiles itself is built from sourceScopedVoters, which is
+  // already narrowed to the active party filter — so tile.total there IS
+  // the filtered count per area, but there's no area-total left to divide
+  // by. This tracks each area's true total (source-filtered only, never
+  // party-filtered) so the % is still "this party's count / area's total".
+  const areaTrueTotals = useMemo(() => {
+    const bySource = source === "all" ? activeVoters : activeVoters.filter((v) => v.source_kind === source);
+    const totals = new Map<string, number>();
+    for (const voter of bySource) {
+      const tile = getAreaTile(voter);
+      if (!tile) continue;
+      totals.set(tile.key, (totals.get(tile.key) ?? 0) + 1);
+    }
+    return totals;
+  }, [activeVoters, source]);
+
   const selectedAreaVoters = useMemo(
     () => (selectedTile ? scopedVoters.filter((item) => getAreaTile(item)?.key === selectedTile) : scopedVoters),
     [scopedVoters, selectedTile],
@@ -1077,15 +1177,17 @@ ${section("జనరల్ ఓటర్లు", general)}
   );
 
   const filteredVoters = useMemo(() => {
-    return selectedAreaVoters.filter((voter) => {
-      if (source !== "all" && voter.source_kind !== source) {
-        return false;
-      }
-      if (exactHouseNoFilter && normalizeHouseNo(voter.house_no || "") !== exactHouseNoFilter) {
-        return false;
-      }
-      return voterMatchesQuery(voter, query);
-    });
+    return selectedAreaVoters
+      .filter((voter) => {
+        if (source !== "all" && voter.source_kind !== source) {
+          return false;
+        }
+        if (exactHouseNoFilter && normalizeHouseNo(voter.house_no || "") !== exactHouseNoFilter) {
+          return false;
+        }
+        return voterMatchesQuery(voter, query);
+      })
+      .sort((a, b) => a.serial_no.localeCompare(b.serial_no, "en", { numeric: true }));
   }, [exactHouseNoFilter, query, selectedAreaVoters, source]);
 
   const familyClusters = useMemo(() => {
@@ -1160,11 +1262,12 @@ ${section("జనరల్ ఓటర్లు", general)}
           acc.yt += item.is_yt_voter ? 1 : 0;
           acc.target += item.is_target ? 1 : 0;
           acc.mf += item.is_mf_voter ? 1 : 0;
+          acc.flagged += item.is_flagged ? 1 : 0;
           if (item.source_kind === "life") acc.life += 1;
           else acc.general += 1;
           return acc;
         },
-        { total: 0, life: 0, general: 0, missing: 0, ifp: 0, yt: 0, target: 0, mf: 0 },
+        { total: 0, life: 0, general: 0, missing: 0, ifp: 0, yt: 0, target: 0, mf: 0, flagged: 0 },
       ),
     [filteredVoters],
   );
@@ -1203,13 +1306,13 @@ ${section("జనరల్ ఓటర్లు", general)}
   useEffect(() => { setVisibleCount(120); }, [selectedTile, query, source]);
 
   useEffect(() => {
-    document.body.style.overflow = selected || showAreaMgr || showDeceasedMgr || showBlocklistMgr || showCancelledMgr || showFamilyMgr || showAreaStats ? "hidden" : "";
+    document.body.style.overflow = selected || showAreaMgr || showDeceasedMgr || showBlocklistMgr || showCancelledMgr || showFamilyMgr || showAreaStats || showCampaigns ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
-  }, [selected, showAreaMgr, showDeceasedMgr, showBlocklistMgr, showCancelledMgr, showFamilyMgr, showAreaStats]);
+  }, [selected, showAreaMgr, showDeceasedMgr, showBlocklistMgr, showCancelledMgr, showFamilyMgr, showAreaStats, showCampaigns]);
 
   // Enhancement #2 — Escape key closes any open modal
   useEffect(() => {
-    const anyOpen = selected || showAreaMgr || showDeceasedMgr || showBlocklistMgr || showCancelledMgr || showFamilyMgr || showAreaStats;
+    const anyOpen = selected || showAreaMgr || showDeceasedMgr || showBlocklistMgr || showCancelledMgr || showFamilyMgr || showAreaStats || showCampaigns;
     if (!anyOpen) return;
     function onKey(e: KeyboardEvent) {
       if (e.key !== "Escape") return;
@@ -1220,10 +1323,11 @@ ${section("జనరల్ ఓటర్లు", general)}
       setShowCancelledMgr(false);
       setShowFamilyMgr(false);
       setShowAreaStats(false);
+      setShowCampaigns(false);
     }
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
-  }, [selected, showAreaMgr, showDeceasedMgr, showBlocklistMgr, showCancelledMgr, showFamilyMgr, showAreaStats, nameEnDraft, nameMode]);
+  }, [selected, showAreaMgr, showDeceasedMgr, showBlocklistMgr, showCancelledMgr, showFamilyMgr, showAreaStats, showCampaigns, nameEnDraft, nameMode]);
 
   useModalFocusTrap(voterModalRef, Boolean(selected));
 
@@ -1382,12 +1486,11 @@ ${section("జనరల్ ఓటర్లు", general)}
     );
   }
 
-  // Inside a drilled-into area this row scrolls away with the page instead
-  // of staying pinned in the sticky header — with 100+ voter cards below,
-  // a permanently fixed stats row eats space users need for the list. The
-  // atlas/home screen keeps it pinned since there's no long list under it.
+  // Inside a drilled-into area this renders inline in the header's first row
+  // (next to the logo) instead of as its own strip below — so it stays
+  // pinned with the sticky header instead of scrolling away with the list.
   const summaryMetricsBlock = (
-    <div className={`summaryMetricsWrap${!atlasMode ? " summaryMetricsWrapCompact" : ""}`}>
+    <div className={`summaryMetricsWrap${!atlasMode ? " summaryMetricsWrapCompact summaryMetricsHeaderInline" : ""}`}>
       <div className="summaryMetrics">
         {atlasMode ? (
           <button type="button" className="summaryMetricCard metricTotal" onClick={() => setBrowseAll(true)}>
@@ -1472,6 +1575,18 @@ ${section("జనరల్ ఓటర్లు", general)}
           <strong key={`m-m-${areaBaseStats.mf}`} className="popped">{formatCount(areaBaseStats.mf)}</strong>
           <small>{formatPercent(areaMfShare, lang)}</small>
         </button>
+        {!atlasMode && areaBaseStats.flagged > 0 && (
+          <button
+            type="button"
+            className={`summaryMetricCard metricFlagged summaryMetricCompact${partyFilter === "flagged" ? " isActiveFilter" : ""}`}
+            onClick={() => setPartyFilter((prev) => (prev === "flagged" ? null : "flagged"))}
+            aria-pressed={partyFilter === "flagged"}
+            aria-label={`${lang === "te" ? "గుర్తు పెట్టినవారు" : "Marked"}: ${areaBaseStats.flagged}`}
+          >
+            <span><FlagIcon /></span>
+            <strong key={`m-fl-${areaBaseStats.flagged}`} className="popped">{formatCount(areaBaseStats.flagged)}</strong>
+          </button>
+        )}
       </div>
     </div>
   );
@@ -1499,7 +1614,20 @@ ${section("జనరల్ ఓటర్లు", general)}
             <p>{t.premium}</p>
           </div>
         </div>
+        {!atlasMode && summaryMetricsBlock}
         <div className="actions">
+          {atlasMode && areaBaseStats.flagged > 0 && (
+            <button
+              type="button"
+              className={`headerFlagBtn${partyFilter === "flagged" ? " isActiveFilter" : ""}`}
+              onClick={() => setPartyFilter((prev) => (prev === "flagged" ? null : "flagged"))}
+              aria-pressed={partyFilter === "flagged"}
+              aria-label={`${lang === "te" ? "గుర్తు పెట్టినవారు" : "Marked"}: ${areaBaseStats.flagged}`}
+            >
+              <FlagIcon />
+              <span>{formatCount(areaBaseStats.flagged)}</span>
+            </button>
+          )}
           <div className="moreMenuWrap" ref={moreMenuRef}>
             <button
               type="button"
@@ -1534,7 +1662,19 @@ ${section("జనరల్ ఓటర్లు", general)}
                     onChange={(event) => { upload(event.target.files?.[0] || null); setShowMoreMenu(false); }}
                   />
                 </label>
+                <label className="moreMenuItem" role="menuitem">
+                  {busy ? <SpinnerIcon /> : <UploadIcon />} {t.importPhones}
+                  <input
+                    type="file"
+                    accept=".xlsx,.xlsm"
+                    style={{ display: "none" }}
+                    onChange={(event) => { importPhones(event.target.files?.[0] || null); setShowMoreMenu(false); }}
+                  />
+                </label>
                 <div className="moreMenuDivider" aria-hidden="true" />
+                <button type="button" role="menuitem" className="moreMenuItem" onClick={() => { setShowCampaigns(true); setShowMoreMenu(false); }}>
+                  {lang === "te" ? "వాట్సాప్ ప్రచారం" : "WhatsApp Campaigns"}
+                </button>
                 <button type="button" role="menuitem" className="moreMenuItem" onClick={() => { setShowAreaStats(true); setShowMoreMenu(false); }}>
                   <ChartIcon /> {lang === "te" ? "ప్రాంత లెక్కలు" : "Area Stats"}
                 </button>
@@ -1567,12 +1707,6 @@ ${section("జనరల్ ఓటర్లు", general)}
           )}
           <span className="summaryViewLabel">{t.currentView}</span>
           <strong className="summaryViewVal">{atlasMode ? (lang === "te" ? "ప్రాంతాల పటం" : "Area atlas") : selectedTileLabel || t.all}</strong>
-          {partyFilter && (
-            <button type="button" className="summaryModeChip" onClick={() => setPartyFilter(null)}>
-              {partyFilter === "ifp" ? t.ifpOnly : partyFilter === "target" ? t.targetCore : partyFilter === "yt" ? t.ytCore : t.mfCore}
-              <span aria-hidden="true"> ✕</span>
-            </button>
-          )}
           {exactHouseNoFilter && (
             <button type="button" className="summaryModeChip" onClick={() => setExactHouseNoFilter("")}>
               {lang === "te" ? `ఇల్లు ${exactHouseNoFilter}` : `Door ${exactHouseNoFilter}`}
@@ -1592,17 +1726,20 @@ ${section("జనరల్ ఓటర్లు", general)}
           ))}
         </div>
         <div className="filterBarDivider filterBarDividerB" aria-hidden="true" />
-        <input
-          ref={searchRef}
-          className={`filterBarSearch${atlasMode ? "" : " filterBarSearchCompact"}`}
-          value={query}
-          onChange={(event) => {
-            if (exactHouseNoFilter) setExactHouseNoFilter("");
-            setQuery(event.target.value);
-          }}
-          placeholder={t.search}
-          aria-label={t.search}
-        />
+        <div className={`filterBarSearchWrap${atlasMode ? "" : " filterBarSearchWrapCompact"}`}>
+          <SearchIcon />
+          <input
+            ref={searchRef}
+            className="filterBarSearch"
+            value={query}
+            onChange={(event) => {
+              if (exactHouseNoFilter) setExactHouseNoFilter("");
+              setQuery(event.target.value);
+            }}
+            placeholder={t.search}
+            aria-label={t.search}
+          />
+        </div>
         <div className="exportBtnGroup">
           <button
             type="button"
@@ -1612,7 +1749,7 @@ ${section("జనరల్ ఓటర్లు", general)}
             onClick={() => {
               const tile = AREA_TILES.find((tile) => tile.key === selectedTile);
               const base = tile?.label || query.trim() || t.all;
-              const suffix = partyFilter === "target" ? " T" : partyFilter === "yt" ? " YT" : partyFilter === "mf" ? " MF" : partyFilter === "ifp" ? " IFP" : "";
+              const suffix = partyFilter === "target" ? " T" : partyFilter === "yt" ? " YT" : partyFilter === "mf" ? " MF" : partyFilter === "ifp" ? " IFP" : partyFilter === "flagged" ? " Marked" : "";
               downloadCsv(base + suffix);
             }}
           >
@@ -1626,7 +1763,7 @@ ${section("జనరల్ ఓటర్లు", general)}
             onClick={() => {
               const tile = AREA_TILES.find((tile) => tile.key === selectedTile);
               const base = tile?.label || query.trim() || t.all;
-              const suffix = partyFilter === "target" ? " T" : partyFilter === "yt" ? " YT" : partyFilter === "mf" ? " MF" : partyFilter === "ifp" ? " IFP" : "";
+              const suffix = partyFilter === "target" ? " T" : partyFilter === "yt" ? " YT" : partyFilter === "mf" ? " MF" : partyFilter === "ifp" ? " IFP" : partyFilter === "flagged" ? " Marked" : "";
               void downloadPdf(base + suffix);
             }}
           >
@@ -1636,8 +1773,7 @@ ${section("జనరల్ ఓటర్లు", general)}
         </div>{/* /topbarRowBottom */}
       </header>{/* /topbar — 2 rows on the atlas/home screen, 1 continuous line inside an area */}
       {atlasMode && summaryMetricsBlock}
-      </div>{/* /stickyZone */}
-      {!atlasMode && summaryMetricsBlock}
+      </div>{/* /stickyZone — inside an area, summaryMetricsBlock instead renders inline in topbarRowTop so it stays pinned with the header */}
       {error && <p className="error" style={{ width: "100%", margin: "0 0 12px", padding: "0 var(--page-gutter)" }}>{error}</p>}
 
       <section className="layout">
@@ -1672,21 +1808,25 @@ ${section("జనరల్ ఓటర్లు", general)}
                 {areaTiles
                   .filter((tile) => tile.total > 0)
                   .map((tile) => {
-                    const share = tile.total ? Math.round((tile.ifp / tile.total) * 100) : 0;
+                    const ifpShare = tile.total ? Math.round((tile.ifp / tile.total) * 100) : 0;
+                    // Once a party filter (IFP/T/YT/MF) is active, tile.total already
+                    // equals that party's count for the area (areaTiles is built from
+                    // sourceScopedVoters, which is pre-filtered by partyFilter) — so the
+                    // % here is that count divided by the area's TRUE total (tracked
+                    // separately in areaTrueTotals, unaffected by partyFilter).
+                    const areaTrueTotal = areaTrueTotals.get(tile.key) ?? 0;
+                    const filterShare = areaTrueTotal ? Math.round((tile.total / areaTrueTotal) * 100) : 0;
+                    const share = partyFilter ? filterShare : ifpShare;
                     return (
                       <button key={tile.key} type="button" className="atlasTile" onClick={() => { setSelectedTile(tile.key); setExactHouseNoFilter(""); }}>
                         <span className="atlasName">{tile.label}</span>
                         <strong className="atlasTotal">{formatCount(tile.total)}</strong>
-                        {/* Sub-stat is tautological once a party filter is active (tile.total
-                            already equals that party's count) — the audit caught it reading
-                            "IFP 0 · 0%" under a T filter and "100%" under IFP. Hide it instead
-                            of showing dead/misleading numbers. */}
-                        {!partyFilter && (
-                          <>
-                            <span className="atlasIfp">IFP {formatCount(tile.ifp)} · {share}%</span>
-                            <span className="atlasBarTrack"><span className="atlasBarFill" style={{ width: `${share}%` }} /></span>
-                          </>
+                        {partyFilter ? (
+                          <span className="atlasIfp">{share}%</span>
+                        ) : (
+                          <span className="atlasIfp">IFP {formatCount(tile.ifp)} · {share}%</span>
                         )}
+                        <span className="atlasBarTrack"><span className="atlasBarFill" style={{ width: `${share}%` }} /></span>
                       </button>
                     );
                   })}
@@ -1701,7 +1841,7 @@ ${section("జనరల్ ఓటర్లు", general)}
                   <p className="activeFilterList">
                     {lang === "te" ? "యాక్టివ్ ఫిల్టర్లు: " : "Active filters: "}
                     {[
-                      partyFilter ? (partyFilter === "ifp" ? t.ifpOnly : partyFilter === "target" ? t.targetCore : partyFilter === "yt" ? t.ytCore : t.mfCore) : null,
+                      partyFilter ? (partyFilter === "ifp" ? t.ifpOnly : partyFilter === "target" ? t.targetCore : partyFilter === "yt" ? t.ytCore : partyFilter === "mf" ? t.mfCore : t.markedCore) : null,
                       source !== "all" ? sourceLabel(source, t) : null,
                       query.trim() ? `“${query.trim()}”` : null,
                       exactHouseNoFilter ? `D.no ${exactHouseNoFilter}` : null,
@@ -1737,6 +1877,16 @@ ${section("జనరల్ ఓటర్లు", general)}
                     <span className={voter.source_kind === "life" ? "sourceBadge sourceLife" : "sourceBadge sourceGeneral"}>
                       {voter.source_badge}
                     </span>
+                    <button
+                      type="button"
+                      className={`flagBadge${voter.is_flagged ? " flagBadge--on" : ""}`}
+                      onClick={() => toggleFlagVoter(voter)}
+                      disabled={flagBusyId === voter.id}
+                      aria-pressed={Boolean(voter.is_flagged)}
+                      aria-label={voter.is_flagged ? (lang === "te" ? "గుర్తు తీసివేయండి" : "Unmark") : (lang === "te" ? "గుర్తు పెట్టండి" : "Mark")}
+                    >
+                      {voter.is_flagged && <FlagIcon />}
+                    </button>
                   </div>
                 </div>
                 <div>
@@ -1764,6 +1914,9 @@ ${section("జనరల్ ఓటర్లు", general)}
                     <dt>{t.area}</dt>
                     <dd className="ddCompact" style={{ fontSize: compactFieldFontSize(displayArea(voter, lang)) }}>{displayArea(voter, lang)}</dd>
                   </dl>
+                  {voter.mobile && (
+                    <p className="cardPhone"><a className="phoneLink" href={`tel:${voter.mobile}`}>{voter.mobile}</a></p>
+                  )}
                   {voter.notes && <p className="note">{voter.notes}</p>}
                 </div>
                 <div className="cardActions">
@@ -1987,6 +2140,17 @@ ${section("జనరల్ ఓటర్లు", general)}
                   </select>
                 </label>
 
+                <label>
+                  {lang === "te" ? "మొబైల్ నంబర్ (10 అంకెలు)" : "Mobile number (10 digits)"}
+                  <input
+                    value={String(selected.mobile || "")}
+                    onChange={(event) => updateSelectedField("mobile", event.target.value)}
+                    placeholder="9876543210"
+                    inputMode="tel"
+                    maxLength={10}
+                  />
+                </label>
+
                 {selected.is_deceased || selected.is_blocklisted || selected.is_cancelled ? (
                   <button
                     type="button"
@@ -2039,6 +2203,21 @@ ${section("జనరల్ ఓటర్లు", general)}
                       />
                     </label>
                   ))}
+                </details>
+
+                <details className="modalMoreDetails" open={Boolean(selected.wa_optin || selected.opted_out)}>
+                  <summary>{lang === "te" ? "వాట్సాప్ ఒప్పందం" : "WhatsApp opt-in"}</summary>
+                  <label className="optinRow">
+                    <input
+                      type="checkbox"
+                      checked={Boolean(selected.wa_optin)}
+                      onChange={(event) => updateSelectedField("wa_optin", event.target.checked)}
+                    />
+                    <span>{lang === "te" ? "వాట్సాప్ సందేశాలకు ఒప్పుకున్నారు" : "Opted in to WhatsApp messages"}</span>
+                  </label>
+                  {selected.opted_out && (
+                    <p className="optoutFlag">{lang === "te" ? "ఈ సభ్యుడు STOP పంపి వద్దన్నారు" : "This member sent STOP (opted out)"}</p>
+                  )}
                 </details>
 
                 {selected.notes && <p className="note">{selected.notes}</p>}
@@ -2394,6 +2573,15 @@ ${section("జనరల్ ఓటర్లు", general)}
             </div>
           </section>
         </div>
+      )}
+
+      {showCampaigns && (
+        <CampaignConsole
+          token={token}
+          lang={lang}
+          areaOptions={MOVE_AREA_OPTIONS}
+          onClose={() => setShowCampaigns(false)}
+        />
       )}
     </main>
   );

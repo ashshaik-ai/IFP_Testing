@@ -15,8 +15,10 @@ from app.schemas.voters import AreaMergeRequest, LoginRequest, VoterUpdate
 from app.services.area_rules import all_area_options, canonical_area_en, canonical_area_te
 from app.services.exporter import area_summaries, voters_to_csv
 from app.services.pdf_processor import create_job, process_pdf, update_job
+from app.services.phone_import import import_phones_from_xlsx
 from app.services.storage import job_dir, job_meta_path, load_jobs, read_json, voters_path, write_json
 from app.services.transliterate import transliterate_person_name_te
+from app.services.voter_query import all_voters, filter_voters
 
 
 router = APIRouter(prefix="/api")
@@ -67,59 +69,11 @@ def _blocked_ips() -> list[str]:
         return []
 
 
-def _all_voters() -> list[dict]:
-    voters: list[dict] = []
-    for job in load_jobs():
-        voters.extend(read_json(voters_path(job["id"]), []))
-    return voters
-
-
-def _filter_voters(
-    voters: list[dict],
-    q: str = "",
-    area: str = "",
-    source: str = "",
-    include_deceased: bool = False,
-    deceased_only: bool = False,
-    include_blocklisted: bool = False,
-    blocklisted_only: bool = False,
-    include_cancelled: bool = False,
-    cancelled_only: bool = False,
-) -> list[dict]:
-    result = list(voters)
-    if deceased_only:
-        result = [voter for voter in result if bool(voter.get("is_deceased"))]
-    elif blocklisted_only:
-        result = [voter for voter in result if bool(voter.get("is_blocklisted"))]
-    elif cancelled_only:
-        result = [voter for voter in result if bool(voter.get("is_cancelled"))]
-    elif not include_deceased:
-        result = [voter for voter in result if not bool(voter.get("is_deceased"))]
-    if not blocklisted_only and not include_blocklisted:
-        result = [voter for voter in result if not bool(voter.get("is_blocklisted"))]
-    if not cancelled_only and not include_cancelled:
-        result = [voter for voter in result if not bool(voter.get("is_cancelled"))]
-    source_key = source.strip().lower()
-    if area:
-        area_match = canonical_area_te(area)
-        result = [voter for voter in result if canonical_area_te(voter.get("area_te", "")) == area_match]
-    if source_key in {"life", "general"}:
-        result = [voter for voter in result if str(voter.get("source_kind", "")).lower() == source_key]
-    query = q.strip().lower()
-    if query:
-        fields = (
-            "serial_no",
-            "card_no",
-            "name_te",
-            "name_en",
-            "relation_name_te",
-            "house_no",
-            "area_te",
-            "area_en",
-            "source_filename",
-        )
-        result = [voter for voter in result if any(query in str(voter.get(field, "")).lower() for field in fields)]
-    return result
+# Moved to app.services.voter_query so the messaging hub can reuse them
+# without importing this module's OCR/PDF dependencies. Aliased here to keep
+# the existing call sites (and their leading-underscore names) unchanged.
+_all_voters = all_voters
+_filter_voters = filter_voters
 
 
 @router.post("/auth/login")
@@ -331,6 +285,16 @@ def export_all_csv(
     )
 
 
+@router.post("/voters/import-phones", dependencies=[Depends(require_auth)])
+async def import_phones(file: UploadFile = File(...)) -> dict:
+    if not file.filename or not file.filename.lower().endswith((".xlsx", ".xlsm")):
+        raise HTTPException(status_code=400, detail="Excel (.xlsx) ఫైల్ మాత్రమే అప్లోడ్ చేయండి")
+    try:
+        return import_phones_from_xlsx(await file.read())
+    except Exception:
+        raise HTTPException(status_code=400, detail="ఫైల్ చదవడంలో లోపం — Serial/Phone నిలువు వరుసలు ఉన్నాయో చూడండి")
+
+
 @router.post("/jobs", dependencies=[Depends(require_auth)])
 async def upload_pdf(background: BackgroundTasks, file: UploadFile = File(...)) -> dict:
     if not file.filename or not file.filename.lower().endswith(".pdf"):
@@ -417,6 +381,11 @@ def list_areas(
 def update_voter(job_id: str, voter_id: str, payload: VoterUpdate) -> dict:
     voters = read_json(voters_path(job_id), [])
     updates = payload.model_dump(exclude_unset=True)
+    if "mobile" in updates:
+        digits = "".join(ch for ch in str(updates["mobile"] or "") if ch.isdigit())
+        if digits and len(digits) != 10:
+            raise HTTPException(status_code=400, detail="మొబైల్ నంబర్ 10 అంకెలు ఉండాలి")
+        updates["mobile"] = digits
     for voter in voters:
         if voter["id"] != voter_id:
             continue

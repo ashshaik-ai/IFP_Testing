@@ -64,8 +64,84 @@ export type Voter = {
   is_yt_voter?: boolean;
   is_target?: boolean;
   is_mf_voter?: boolean;
+  is_flagged?: boolean;
+  mobile?: string;
+  mobile_verified?: boolean;
+  wa_optin?: boolean;
+  opted_out?: boolean;
+  consent_ts?: string;
+  consent_source?: string;
   raw_text: string;
   notes: string;
+};
+
+export type MessagingNumber = {
+  id: string;
+  label: string;
+  phone: string;
+  status: string;            // "active" | "paused"
+  daily_cap: number;
+  warmup_start: number;
+  sent_today: number;
+  day_stamp: string;
+  paused_reason: string;
+  created_at: string;
+};
+
+export type Media = {
+  id: string;
+  filename: string;
+  kind: string;              // image | video | document | audio
+  url: string;
+  size: number;
+  created_at: string;
+};
+
+export type CampaignStats = Record<string, number>;
+
+export type Campaign = {
+  id: string;
+  name: string;
+  body: string;
+  media_path: string;
+  media_kind: string;
+  status: string;
+  total: number;
+  schedule_at: string;
+  created_at: string;
+  stats: CampaignStats;
+};
+
+export type CampaignMessage = {
+  id: string;
+  campaign_id: string;
+  voter_id: string;
+  to_phone: string;
+  number_id: string | null;
+  status: string;
+  provider_id: string;
+  attempts: number;
+  last_error: string;
+  caption: string;
+  media_path: string;
+  media_kind: string;
+  send_after: string;
+  created_at: string;
+  updated_at: string;
+};
+
+export type PhoneImportResult = {
+  total_rows: number;
+  phone_rows: number;
+  matched: number;
+  updated: number;
+  not_found_count: number;
+};
+
+export type SegmentSpecInput = {
+  area_te?: string;
+  source?: string;
+  tag?: string;
 };
 
 export const copy = {
@@ -132,6 +208,7 @@ export const copy = {
     mfCore: "MF ఓటరు",
     markMf: "MF గా గుర్తించండి",
     unmarkMf: "MF గుర్తింపు తీసేయండి",
+    markedCore: "గుర్తు పెట్టినవారు",
     familyVoting: "కుటుంబ ఓటింగ్",
     familyGroups: "కుటుంబ గృహాలు",
     familyCovered: "కవర్ అయ్యే ఓటర్లు",
@@ -165,6 +242,7 @@ export const copy = {
     confirmNo: "రద్దు",
     exportPdf: "PDF ఎగుమతి",
     exportingPdf: "PDF తయారవుతోంది...",
+    importPhones: "ఫోన్ నంబర్లు దిగుమతి (Excel)",
   },
   en: {
     title: "Voter List Tool",
@@ -229,6 +307,7 @@ export const copy = {
     mfCore: "MF voter",
     markMf: "Mark as MF",
     unmarkMf: "Remove MF mark",
+    markedCore: "Marked",
     familyVoting: "Family Voting",
     familyGroups: "Family households",
     familyCovered: "Covered voters",
@@ -262,6 +341,7 @@ export const copy = {
     confirmNo: "Cancel",
     exportPdf: "Export PDF",
     exportingPdf: "Generating PDF...",
+    importPhones: "Import phone numbers (Excel)",
   },
 } as const;
 

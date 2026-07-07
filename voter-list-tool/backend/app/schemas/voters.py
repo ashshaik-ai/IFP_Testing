@@ -40,8 +40,17 @@ class VoterRecord(BaseModel):
     is_yt_voter: bool = False
     is_target: bool = False
     is_mf_voter: bool = False
+    is_flagged: bool = False
     raw_text: str = ""
     notes: str = ""
+    # Member contact + WhatsApp opt-in (broadcast hub). Independent of every
+    # tag/archive flag above.
+    mobile: str = ""
+    mobile_verified: bool = False
+    wa_optin: bool = False
+    opted_out: bool = False
+    consent_ts: str = ""
+    consent_source: str = ""
 
 
 class VoterUpdate(BaseModel):
@@ -64,7 +73,14 @@ class VoterUpdate(BaseModel):
     is_yt_voter: bool | None = None
     is_target: bool | None = None
     is_mf_voter: bool | None = None
+    is_flagged: bool | None = None
     notes: str | None = None
+    mobile: str | None = None
+    mobile_verified: bool | None = None
+    wa_optin: bool | None = None
+    opted_out: bool | None = None
+    consent_ts: str | None = None
+    consent_source: str | None = None
 
 
 class AreaMergeRequest(BaseModel):

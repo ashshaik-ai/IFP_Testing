@@ -2,6 +2,8 @@
 
 Private tool for Telugu voter-list PDFs. It extracts voter-card crops and photos, runs Gemini OCR when keys are configured, groups voters area-wise, supports Telugu/English UI and search, and exports Unicode CSV.
 
+**For architecture, data model, the frontend layout system, and the production deploy procedure, see [project-docs/](project-docs/README.md).**
+
 ## Run Locally
 
 Backend:
