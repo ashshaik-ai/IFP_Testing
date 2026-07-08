@@ -138,6 +138,15 @@ export type PhoneImportResult = {
   not_found_count: number;
 };
 
+export type FlagImportResult = {
+  total_rows: number;
+  serial_rows: number;
+  matched: number;
+  flagged: number;
+  already_flagged: number;
+  not_found_count: number;
+};
+
 export type SegmentSpecInput = {
   area_te?: string;
   source?: string;
@@ -243,6 +252,7 @@ export const copy = {
     exportPdf: "PDF ఎగుమతి",
     exportingPdf: "PDF తయారవుతోంది...",
     importPhones: "ఫోన్ నంబర్లు దిగుమతి (Excel)",
+    importFlags: "ఫ్లాగ్‌లు దిగుమతి (Excel)",
   },
   en: {
     title: "Voter List Tool",
@@ -342,6 +352,7 @@ export const copy = {
     exportPdf: "Export PDF",
     exportingPdf: "Generating PDF...",
     importPhones: "Import phone numbers (Excel)",
+    importFlags: "Import flags (Excel)",
   },
 } as const;
 

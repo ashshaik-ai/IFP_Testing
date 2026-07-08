@@ -14,6 +14,7 @@ from app.core.config import settings
 from app.schemas.voters import AreaMergeRequest, LoginRequest, VoterUpdate
 from app.services.area_rules import all_area_options, canonical_area_en, canonical_area_te
 from app.services.exporter import area_summaries, voters_to_csv
+from app.services.flag_import import import_flags_from_xlsx
 from app.services.pdf_processor import create_job, process_pdf, update_job
 from app.services.phone_import import import_phones_from_xlsx
 from app.services.storage import job_dir, job_meta_path, load_jobs, read_json, voters_path, write_json
@@ -293,6 +294,16 @@ async def import_phones(file: UploadFile = File(...)) -> dict:
         return import_phones_from_xlsx(await file.read())
     except Exception:
         raise HTTPException(status_code=400, detail="ఫైల్ చదవడంలో లోపం — Serial/Phone నిలువు వరుసలు ఉన్నాయో చూడండి")
+
+
+@router.post("/voters/import-flags", dependencies=[Depends(require_auth)])
+async def import_flags(file: UploadFile = File(...)) -> dict:
+    if not file.filename or not file.filename.lower().endswith((".xlsx", ".xlsm")):
+        raise HTTPException(status_code=400, detail="Excel (.xlsx) ఫైల్ మాత్రమే అప్లోడ్ చేయండి")
+    try:
+        return import_flags_from_xlsx(await file.read())
+    except Exception:
+        raise HTTPException(status_code=400, detail="ఫైల్ చదవడంలో లోపం — Serial నిలువు వరుస ఉందో చూడండి")
 
 
 @router.post("/jobs", dependencies=[Depends(require_auth)])

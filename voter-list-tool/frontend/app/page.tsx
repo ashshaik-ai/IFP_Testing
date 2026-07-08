@@ -1,7 +1,7 @@
 "use client";
 
 import { RefObject, TouchEvent as ReactTouchEvent, useEffect, useMemo, useRef, useState } from "react";
-import { API_BASE, AreaOption, Job, Lang, PhoneImportResult, SourceFilter, Voter, api, copy } from "@/lib/api";
+import { API_BASE, AreaOption, FlagImportResult, Job, Lang, PhoneImportResult, SourceFilter, Voter, api, copy } from "@/lib/api";
 import { englishToTeluguName, toEnglishArea, toEnglishName } from "@/lib/transliterate";
 import { SecureImage } from "@/components/SecureImage";
 import { CampaignConsole } from "@/components/CampaignConsole";
@@ -111,6 +111,19 @@ function voterMissingCount(voter: Voter) {
   return CRITICAL_FIELDS.reduce((acc, key) => acc + (isMissingVoterField(voter, key) ? 1 : 0), 0);
 }
 
+function isMobileDevice() {
+  return typeof navigator !== "undefined" && /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
+}
+
+function handlePhoneClick(event: React.MouseEvent<HTMLAnchorElement>, mobile: string) {
+  if (isMobileDevice()) {
+    return; // let the tel: link open the dialer
+  }
+  event.preventDefault();
+  const digits = mobile.replace(/\D/g, "");
+  window.open(`https://wa.me/91${digits}`, "_blank", "noopener,noreferrer");
+}
+
 function voterMatchesQuery(voter: Voter, query: string) {
   const needle = query.trim().toLowerCase();
   if (!needle) {
@@ -125,6 +138,7 @@ function voterMatchesQuery(voter: Voter, query: string) {
     voter.house_no,
     voter.area_te,
     voter.source_filename,
+    voter.mobile,
   ]
     .join(" ")
     .toLowerCase()
@@ -391,6 +405,7 @@ export default function Home() {
   const [allVoters, setAllVoters] = useState<Voter[]>([]);
   const [selected, setSelected] = useState<Voter | null>(null);
   const [error, setError] = useState("");
+  const [notice, setNotice] = useState("");
   const [busy, setBusy] = useState(false);
   const [ifpBusyId, setIfpBusyId] = useState("");
   const [ytBusyId, setYtBusyId] = useState("");
@@ -581,16 +596,45 @@ export default function Home() {
     }
     setBusy(true);
     setError("");
+    setNotice("");
     setLiveMessage(lang === "te" ? `"${file.name}" దిగుమతి అవుతోంది…` : `Importing "${file.name}"…`);
     const form = new FormData();
     form.append("file", file);
     try {
       const result = await api<PhoneImportResult>("/api/voters/import-phones", token, { method: "POST", body: form });
-      setLiveMessage(
+      const msg =
         lang === "te"
-          ? `${result.updated} మంది సభ్యులకు ఫోన్ నంబర్లు నవీకరించబడ్డాయి (${result.matched}/${result.phone_rows} సరిపోలాయి, ${result.not_found_count} సరిపోలలేదు)`
-          : `Updated phone numbers for ${result.updated} members (${result.matched}/${result.phone_rows} matched, ${result.not_found_count} not found)`
-      );
+          ? `"${file.name}" దిగుమతి పూర్తయింది — ${result.updated} మంది సభ్యులకు ఫోన్ నంబర్లు నవీకరించబడ్డాయి (${result.matched}/${result.phone_rows} సరిపోలాయి, ${result.not_found_count} సరిపోలలేదు)`
+          : `"${file.name}" imported — updated phone numbers for ${result.updated} members (${result.matched}/${result.phone_rows} matched, ${result.not_found_count} not found)`;
+      setLiveMessage(msg);
+      setNotice(msg);
+      await loadAllVoters();
+    } catch (err) {
+      setLiveMessage(lang === "te" ? `"${file.name}" దిగుమతి విఫలమైంది` : `Import of "${file.name}" failed`);
+      setError(String(err));
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function importFlags(file: File | null) {
+    if (!file) {
+      return;
+    }
+    setBusy(true);
+    setError("");
+    setNotice("");
+    setLiveMessage(lang === "te" ? `"${file.name}" దిగుమతి అవుతోంది…` : `Importing "${file.name}"…`);
+    const form = new FormData();
+    form.append("file", file);
+    try {
+      const result = await api<FlagImportResult>("/api/voters/import-flags", token, { method: "POST", body: form });
+      const msg =
+        lang === "te"
+          ? `"${file.name}" దిగుమతి పూర్తయింది — ${result.flagged} మంది సభ్యులు ఫ్లాగ్ చేయబడ్డారు (${result.already_flagged} ఇప్పటికే ఫ్లాగ్ చేయబడ్డారు, ${result.not_found_count} సరిపోలలేదు)`
+          : `"${file.name}" imported — flagged ${result.flagged} members (${result.already_flagged} already flagged, ${result.not_found_count} not found)`;
+      setLiveMessage(msg);
+      setNotice(msg);
       await loadAllVoters();
     } catch (err) {
       setLiveMessage(lang === "te" ? `"${file.name}" దిగుమతి విఫలమైంది` : `Import of "${file.name}" failed`);
@@ -1671,6 +1715,15 @@ ${section("జనరల్ ఓటర్లు", general)}
                     onChange={(event) => { importPhones(event.target.files?.[0] || null); setShowMoreMenu(false); }}
                   />
                 </label>
+                <label className="moreMenuItem" role="menuitem">
+                  {busy ? <SpinnerIcon /> : <UploadIcon />} {t.importFlags}
+                  <input
+                    type="file"
+                    accept=".xlsx,.xlsm"
+                    style={{ display: "none" }}
+                    onChange={(event) => { importFlags(event.target.files?.[0] || null); setShowMoreMenu(false); }}
+                  />
+                </label>
                 <div className="moreMenuDivider" aria-hidden="true" />
                 <button type="button" role="menuitem" className="moreMenuItem" onClick={() => { setShowCampaigns(true); setShowMoreMenu(false); }}>
                   {lang === "te" ? "వాట్సాప్ ప్రచారం" : "WhatsApp Campaigns"}
@@ -1775,6 +1828,7 @@ ${section("జనరల్ ఓటర్లు", general)}
       {atlasMode && summaryMetricsBlock}
       </div>{/* /stickyZone — inside an area, summaryMetricsBlock instead renders inline in topbarRowTop so it stays pinned with the header */}
       {error && <p className="error" style={{ width: "100%", margin: "0 0 12px", padding: "0 var(--page-gutter)" }}>{error}</p>}
+      {notice && <p className="notice" style={{ width: "100%", margin: "0 0 12px", padding: "0 var(--page-gutter)" }}>{notice}</p>}
 
       <section className="layout">
         <section className="content" id="voterListRegion" tabIndex={-1}>
@@ -1915,7 +1969,15 @@ ${section("జనరల్ ఓటర్లు", general)}
                     <dd className="ddCompact" style={{ fontSize: compactFieldFontSize(displayArea(voter, lang)) }}>{displayArea(voter, lang)}</dd>
                   </dl>
                   {voter.mobile && (
-                    <p className="cardPhone"><a className="phoneLink" href={`tel:${voter.mobile}`}>{voter.mobile}</a></p>
+                    <p className="cardPhone">
+                      <a
+                        className="phoneLink"
+                        href={`tel:${voter.mobile}`}
+                        onClick={(event) => handlePhoneClick(event, voter.mobile as string)}
+                      >
+                        {voter.mobile}
+                      </a>
+                    </p>
                   )}
                   {voter.notes && <p className="note">{voter.notes}</p>}
                 </div>

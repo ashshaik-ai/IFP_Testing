@@ -54,6 +54,7 @@ def filter_voters(
             "area_te",
             "area_en",
             "source_filename",
+            "mobile",
         )
         result = [voter for voter in result if any(query in str(voter.get(field, "")).lower() for field in fields)]
     return result

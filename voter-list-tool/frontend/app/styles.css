@@ -2056,6 +2056,11 @@ form {
   font-weight: 700;
 }
 
+.notice {
+  color: var(--green-deep);
+  font-weight: 700;
+}
+
 .modalMoreDetails {
   margin: 4px 0 8px;
 }
