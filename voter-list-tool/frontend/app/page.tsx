@@ -1133,6 +1133,10 @@ ${section("జనరల్ ఓటర్లు", general)}
     () => (areaBaseStats.total ? (areaBaseStats.mf / areaBaseStats.total) * 100 : 0),
     [areaBaseStats],
   );
+  const areaFlaggedShare = useMemo(
+    () => (areaBaseStats.total ? (areaBaseStats.flagged / areaBaseStats.total) * 100 : 0),
+    [areaBaseStats],
+  );
 
   const scopedVoters = useMemo(() => {
     if (partyFilter === "ifp") return ifpVoters;
@@ -1629,6 +1633,7 @@ ${section("జనరల్ ఓటర్లు", general)}
           >
             <span><FlagIcon /></span>
             <strong key={`m-fl-${areaBaseStats.flagged}`} className="popped">{formatCount(areaBaseStats.flagged)}</strong>
+            <small>{formatPercent(areaFlaggedShare, lang)}</small>
           </button>
         )}
       </div>
