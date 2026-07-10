@@ -115,7 +115,7 @@ Always-Free per account allows: 1× e2-micro (us-central1/us-west1/us-east1), 30
 | Machine type e2-micro | ✅ | ✅ | free |
 | 30 GB **pd-standard** disk | ✅ | ✅ | free (SSD would NOT be) |
 | Static external IP | none (ephemeral) ✅ | 1, **in-use** ✅ | free **only while attached**; billed if VM stops |
-| **Disk snapshots** | **7 daily, ~15.8 GB, auto-schedule** ⚠️ | none ✅ | **NOT free — ~$0.40/mo and the main billing item** |
+| **Disk snapshots** | **deleted 2026-07-10** ✅ | **schedule removed before it fired** ✅ | was the only non-free item; now $0 (see §10) |
 | Cloud Ops Agent (logging/monitoring) | active ⚠️ | active ⚠️ | metrics free; log ingest free < 50 GB/mo but uses ~40–80 MB RAM |
 | Egress | low | low (API calls out) | within 1 GB free if traffic stays small |
 | Load balancer / snapshots-off-region / extra IPs | none | none | ✅ |
@@ -233,9 +233,14 @@ Done this session (Tier A + B1):
 Also done:
 - ✅ **DuckDNS token (ifp-desk) rotated** — validated + updated in VM1 **root** crontab (the 3 real crons live in root crontab, not user). Site verified up.
 - ✅ **Monitoring dashboard** — live at `/monitor/` on VM2 (§8b).
+- ✅ **VM1 external IP made static** (`35.224.252.212`) — promoted the existing ephemeral IP in place, zero downtime, zero IP change. Removes the ~5-min DNS-drift window on reboot.
+- ✅ **VM1 IAM scope updated** — added `devstorage.read_write` to the default compute service account (required one brief planned stop/start; verified all 3 containers + all 3 root crons + site intact after).
+- ✅ **Off-disk voter-data backup, fully free** — GCS bucket `gs://ifp-voter-backups-87e` (us-central1, Always-Free 5 GB tier), 7-day object lifecycle (steady-state ~2.7 GB, comfortably under the 5 GB limit). Daily backup cron now also pushes to this bucket after the local tar. **Verified end-to-end**: a real 367 MiB backup pushed and confirmed in the bucket, running as root exactly as the cron will. (Note: the dedicated `voter-backup` service account + key approach was blocked by an org policy, `iam.disableServiceAccountKeyCreation` — solved instead via VM-scope + bucket IAM binding on the VM's own default service account, no key file needed.)
+- ✅ **Snapshot schedules deleted on BOTH accounts** — `default-schedule-1` detached + deleted on VM1 and VM2. **All 8 existing VM1 snapshots deleted** (17.3 GB reclaimed). VM2 had 0 snapshots (schedule hadn't fired yet) — its schedule is gone too, before it could.
+
+**Result: both accounts verified at zero chargeable GCP resources** (0 snapshots, 0 schedules, 0 custom images, both disks standard 30GB, IP billing identical for static/ephemeral while running). Recovery story is now: git IaC (this repo) for infra + GCS bucket for data — no paid backups anywhere.
 
 Open (your decision / manual):
-- ⏳ **Snapshot schedule on VM1** (`default-schedule-1`, ~15.8 GB, ~₹40/mo) — the ONLY non-free recurring cost; tar backups already cover the data. Awaiting explicit go-ahead to delete schedule + snapshots (destructive to prod backups).
 - ⏳ **Ops Agent on both VMs** — optional disable for ~40–80 MB RAM; kept for now.
 - ⏳ **Messaging system still uncommitted** — commit to `testing` before any VM1 prod deploy; keep the safety gate on (`WA_SEND_MODE`≠`live`) until bulk is explicitly approved.
 - ⏳ **VM1 metrics on the dashboard** — add a matching collector later if wanted.
