@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IFP WhatsApp Gateway — Monitor</title>
+<style>
+  :root{--bg:#0f1a14;--card:#16241c;--line:#25382c;--ink:#e8f0ea;--dim:#8fa89a;--gold:#ffd34e;--ok:#3fbf6a;--warn:#e8a13a;--bad:#e0533d}
+  @media(prefers-color-scheme:light){:root{--bg:#f4f7f4;--card:#fff;--line:#e2e8e3;--ink:#16241c;--dim:#5c7266;--gold:#b8860b}}
+  *{box-sizing:border-box}
+  body{margin:0;font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--ink)}
+  header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 20px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+  h1{font-size:20px;margin:0;font-weight:700}
+  h1 span{color:var(--gold)}
+  .ts{color:var(--dim);font-size:13px}
+  main{max-width:960px;margin:0 auto;padding:20px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-bottom:14px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px}
+  .card h2{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--dim);margin:0 0 12px}
+  .row{display:flex;justify-content:space-between;gap:10px;padding:4px 0}
+  .row .k{color:var(--dim)}
+  .row .v{font-weight:600;text-align:right}
+  .pill{display:inline-block;padding:2px 10px;border-radius:999px;font-size:13px;font-weight:700}
+  .pill.ok{background:color-mix(in srgb,var(--ok) 22%,transparent);color:var(--ok)}
+  .pill.warn{background:color-mix(in srgb,var(--warn) 22%,transparent);color:var(--warn)}
+  .pill.bad{background:color-mix(in srgb,var(--bad) 22%,transparent);color:var(--bad)}
+  .bar{height:7px;border-radius:99px;background:var(--line);overflow:hidden;margin-top:6px}
+  .bar>i{display:block;height:100%;background:var(--gold)}
+  .bar>i.warn{background:var(--warn)}.bar>i.bad{background:var(--bad)}
+  .logbar{display:flex;gap:8px;margin-bottom:8px;flex-wrap:wrap}
+  input,button,a.btn{font:inherit;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:8px;padding:7px 12px;text-decoration:none}
+  input{flex:1;min-width:140px}
+  button,a.btn{cursor:pointer;font-weight:600}
+  pre{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px;max-height:340px;overflow:auto;font-size:12.5px;line-height:1.45;white-space:pre-wrap;word-break:break-word;margin:0}
+  .muted{color:var(--dim);font-size:13px}
+  .err{color:var(--bad)}
+</style>
+</head>
+<body>
+<header>
+  <h1><span>IFP</span> WhatsApp Gateway — Monitor</h1>
+  <div class="ts" id="ts">loading…</div>
+</header>
+<main>
+  <div class="grid">
+    <div class="card">
+      <h2>WhatsApp Session</h2>
+      <div class="row"><span class="k">Status</span><span class="v"><span id="wa-status" class="pill">—</span></span></div>
+      <div class="row"><span class="k">Engine</span><span class="v" id="wa-engine">—</span></div>
+      <div class="row"><span class="k">Device</span><span class="v" id="wa-device">—</span></div>
+      <div class="row"><span class="k">Name</span><span class="v" id="wa-name">—</span></div>
+    </div>
+    <div class="card">
+      <h2>System</h2>
+      <div class="row"><span class="k">CPU load (1m)</span><span class="v" id="cpu">—</span></div>
+      <div class="row"><span class="k">RAM</span><span class="v" id="mem">—</span></div>
+      <div class="bar"><i id="mem-bar"></i></div>
+      <div class="row" style="margin-top:8px"><span class="k">Disk</span><span class="v" id="disk">—</span></div>
+      <div class="bar"><i id="disk-bar"></i></div>
+      <div class="row" style="margin-top:8px"><span class="k">Swap used</span><span class="v" id="swap">—</span></div>
+      <div class="row"><span class="k">Uptime</span><span class="v" id="uptime">—</span></div>
+    </div>
+    <div class="card">
+      <h2>Services</h2>
+      <div id="services"><span class="muted">—</span></div>
+    </div>
+  </div>
+  <div class="card">
+    <h2>WhatsApp Logs (last 120 lines)</h2>
+    <div class="logbar">
+      <input id="filter" placeholder="filter logs…">
+      <button id="clear">Clear</button>
+      <a class="btn" id="download" href="logs.txt" download="waha-logs.txt">Download</a>
+    </div>
+    <pre id="logs" class="muted">loading…</pre>
+  </div>
+  <p class="muted">Auto-refreshes every 30 s. Data collected by cron on the VM. <span id="stale" class="err"></span></p>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+function pill(el,status){
+  const s=(status||'').toUpperCase();
+  el.textContent=s||'UNKNOWN';
+  el.className='pill '+(s==='WORKING'?'ok':(s==='STARTING'||s==='SCAN_QR_CODE')?'warn':'bad');
+}
+function barClass(pct){return pct>=90?'bad':pct>=75?'warn':'';}
+let rawLogs='';
+function renderLogs(){
+  const f=$('filter').value.toLowerCase();
+  const lines=rawLogs.split('\n').filter(l=>!f||l.toLowerCase().includes(f));
+  $('logs').textContent=lines.join('\n')||'(no matching lines)';
+  $('logs').className='';
+}
+async function tick(){
+  try{
+    const s=await (await fetch('status.json?_='+Date.now())).json();
+    $('ts').textContent='updated '+s.ts;
+    pill($('wa-status'),s.whatsapp.status);
+    $('wa-engine').textContent=s.whatsapp.engine||'—';
+    $('wa-device').textContent=s.whatsapp.device?('+'+s.whatsapp.device):'—';
+    $('wa-name').textContent=s.whatsapp.name||'—';
+    const i=s.infra;
+    $('cpu').textContent=i.cpu_load;
+    $('mem').textContent=i.mem_used_mb+' / '+i.mem_total_mb+' MB ('+i.mem_pct+'%)';
+    $('mem-bar').style.width=i.mem_pct+'%';$('mem-bar').className=barClass(i.mem_pct);
+    $('disk').textContent=i.disk_used+' / '+i.disk_total+' ('+i.disk_pct+'%)';
+    $('disk-bar').style.width=i.disk_pct+'%';$('disk-bar').className=barClass(i.disk_pct);
+    $('swap').textContent=i.swap_used_mb+' MB';
+    $('uptime').textContent=i.uptime;
+    $('services').innerHTML=s.services.map(x=>
+      `<div class="row"><span class="k">${x.name}</span><span class="v"><span class="pill ${x.up?'ok':'bad'}">${x.status}</span></span></div>`
+    ).join('')||'<span class="muted">none</span>';
+    // stale check: warn if data older than 3 min
+    const age=(Date.now()-Date.parse(s.ts.replace(/ [A-Z]+$/,'')))/1000;
+    $('stale').textContent=(age>180)?('⚠ data '+Math.round(age/60)+' min old — collector may be down'):'';
+  }catch(e){ $('ts').textContent='status unavailable'; }
+  try{ rawLogs=await (await fetch('logs.txt?_='+Date.now())).text(); renderLogs(); }catch(e){}
+}
+$('filter').addEventListener('input',renderLogs);
+$('clear').addEventListener('click',()=>{$('filter').value='';renderLogs();});
+tick(); setInterval(tick,30000);
+</script>
+</body>
+</html>

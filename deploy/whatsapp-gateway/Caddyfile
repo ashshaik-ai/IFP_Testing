@@ -1,0 +1,14 @@
+# Public TLS entry for the WhatsApp gateway. Caddy auto-provisions a Let's Encrypt cert.
+# Replace __MONITOR_HASH__ with a bcrypt hash (see README: caddy hash-password).
+ifp-wa.duckdns.org {
+    handle_path /monitor* {
+        basic_auth {
+            ifp __MONITOR_HASH__
+        }
+        root * /srv/monitor
+        file_server
+    }
+    handle {
+        reverse_proxy waha:3000
+    }
+}

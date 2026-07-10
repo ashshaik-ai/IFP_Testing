@@ -1,0 +1,44 @@
+# WhatsApp gateway (VM2 `whatsapp-gateway`, GCP account ifp.api.02).
+# Secrets come from a sibling .env file (see .env.example) — never hardcode them here.
+# Rebuild from scratch: see README.md.
+services:
+  waha:
+    image: devlikeapro/waha:latest
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:3000:3000"          # localhost only; Caddy is the sole public entry
+    volumes:
+      - ./sessions:/app/.sessions      # WhatsApp session state — persists across restarts
+      - ./media:/app/.media
+    environment:
+      - WHATSAPP_DEFAULT_ENGINE=NOWEB   # WebSocket engine, no Chromium (~340MB, fits 1GB VM)
+      - WAHA_API_KEY=${WAHA_API_KEY}
+      - WAHA_DASHBOARD_USERNAME=${WAHA_DASHBOARD_USERNAME}
+      - WAHA_DASHBOARD_PASSWORD=${WAHA_DASHBOARD_PASSWORD}
+      - WHATSAPP_DOWNLOAD_MEDIA=false
+      - WHATSAPP_FILES_LIFETIME=0
+      - WAHA_APPS_JOBS_CONCURRENCY=10
+      - WHATSAPP_RESTART_ALL_SESSIONS=True   # session auto-resumes after reboot
+    logging:
+      driver: json-file
+      options:
+        max-size: 100m
+        max-file: '3'
+
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - ./monitor:/srv/monitor:ro       # static monitor dashboard (see monitor/)
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - waha
+
+volumes:
+  caddy_data:
+  caddy_config:

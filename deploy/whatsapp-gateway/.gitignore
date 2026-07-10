@@ -1,0 +1,6 @@
+# Never commit secrets or runtime state — the git copy is a sanitized recipe only.
+.env
+sessions/
+media/
+monitor/status.json
+monitor/logs.txt

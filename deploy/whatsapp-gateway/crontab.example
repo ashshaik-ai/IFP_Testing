@@ -1,0 +1,10 @@
+# VM2 (whatsapp-gateway) cron jobs.
+#
+# ROOT crontab (sudo crontab -e) — session backup (sessions/ is root-owned):
+0 4 * * 0 tar czf /home/User/waha-session-backups/sessions-$(date +\%Y\%m\%d).tar.gz -C /home/User/waha sessions && ls -t /home/User/waha-session-backups/sessions-*.tar.gz | tail -n +5 | xargs rm -f
+#
+# USER crontab (crontab -e) — monitor dashboard collector (every minute):
+* * * * * cd /home/User/waha && /usr/bin/python3 monitor-collect.py >/dev/null 2>&1
+#
+# Note: VM2 uses a STATIC external IP, so it needs NO DuckDNS updater cron
+# (unlike VM1, which is ephemeral and updates DuckDNS every 5 min).
