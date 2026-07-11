@@ -682,7 +682,11 @@ select {
 
 .summaryMetrics {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr)) repeat(3, minmax(0, 1fr));
+  /* Auto-placed columns (not a fixed 7-track template) so an optional card
+     like Unknown joins the same row and compacts everything else instead
+     of wrapping to a second line. */
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
   gap: 8px;
   margin-top: 4px;
 }
@@ -792,10 +796,20 @@ button.summaryMetricCard:hover {
   color: var(--mf);
 }
 
+/* Neutral (not a party color) — flags voters not yet classified into any of the 4 tags. */
+.metricUnknown {
+  background: linear-gradient(180deg, rgba(74, 86, 80, 0.14), rgba(253, 252, 249, 0.96));
+}
+
+.metricUnknown strong {
+  color: var(--muted);
+}
+
 .metricIfp.isActiveFilter,
 .metricTarget.isActiveFilter,
 .metricYt.isActiveFilter,
-.metricMf.isActiveFilter {
+.metricMf.isActiveFilter,
+.metricUnknown.isActiveFilter {
   background: var(--green);
   border-color: transparent;
   box-shadow: none;
@@ -805,14 +819,17 @@ button.summaryMetricCard:hover {
 .metricTarget.isActiveFilter span,
 .metricYt.isActiveFilter span,
 .metricMf.isActiveFilter span,
+.metricUnknown.isActiveFilter span,
 .metricIfp.isActiveFilter strong,
 .metricTarget.isActiveFilter strong,
 .metricYt.isActiveFilter strong,
 .metricMf.isActiveFilter strong,
+.metricUnknown.isActiveFilter strong,
 .metricIfp.isActiveFilter small,
 .metricTarget.isActiveFilter small,
 .metricYt.isActiveFilter small,
-.metricMf.isActiveFilter small {
+.metricMf.isActiveFilter small,
+.metricUnknown.isActiveFilter small {
   color: #fff;
 }
 
