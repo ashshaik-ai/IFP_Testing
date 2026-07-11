@@ -1,6 +1,6 @@
 "use client";
 
-import { RefObject, TouchEvent as ReactTouchEvent, useEffect, useMemo, useRef, useState } from "react";
+import { ReactNode, RefObject, TouchEvent as ReactTouchEvent, useEffect, useMemo, useRef, useState } from "react";
 import { API_BASE, AreaOption, FlagImportResult, Job, Lang, PhoneImportResult, SourceFilter, Voter, api, copy } from "@/lib/api";
 import { englishToTeluguName, toEnglishArea, toEnglishName } from "@/lib/transliterate";
 import { SecureImage } from "@/components/SecureImage";
@@ -199,6 +199,77 @@ function formatPercent(value: number, lang: Lang) {
   }).format(rounded)}%`;
 }
 
+// Homepage/area-header stat chip — one component for all 8 filterable cards
+// (Total is excluded/kept separate since it's not a filter and never drills).
+// `onClick` absent renders a static <article> (used for the non-atlas inline
+// header, which only ever displays); `drillOnClick` present adds the small
+// corner arrow that jumps straight to the flat, all-areas list for this stat.
+function StatCard({
+  compact,
+  colorClass,
+  label,
+  countLabel,
+  share,
+  lang,
+  active,
+  onClick,
+  ariaLabel,
+  title,
+  animKey,
+  drillOnClick,
+  drillLabel,
+}: {
+  compact?: boolean;
+  colorClass: string;
+  label: ReactNode;
+  countLabel: string;
+  share: number;
+  lang: Lang;
+  active?: boolean;
+  onClick?: () => void;
+  ariaLabel?: string;
+  title?: string;
+  animKey?: string;
+  drillOnClick?: () => void;
+  drillLabel?: string;
+}) {
+  const cls = `summaryMetricCard ${colorClass}${compact ? " summaryMetricCompact" : ""}${active ? " isActiveFilter" : ""}`;
+  const body = onClick ? (
+    <button type="button" className={cls} onClick={onClick} aria-pressed={active} aria-label={ariaLabel} title={title}>
+      <span>{label}</span>
+      <strong key={animKey} className="popped">{countLabel}</strong>
+      <small>{formatPercent(share, lang)}</small>
+    </button>
+  ) : (
+    <article className={cls}>
+      <span>{label}</span>
+      <strong>{countLabel}</strong>
+      <small>{formatPercent(share, lang)}</small>
+    </article>
+  );
+  if (!drillOnClick) {
+    return body;
+  }
+  return (
+    <div className="summaryMetricCardWrap">
+      {body}
+      <button
+        type="button"
+        className="summaryMetricDrill"
+        onClick={(event) => {
+          event.stopPropagation();
+          drillOnClick();
+        }}
+        aria-label={drillLabel}
+      >
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+          <path d="m9 6 6 6-6 6" />
+        </svg>
+      </button>
+    </div>
+  );
+}
+
 function compactFieldFontSize(value: string): string {
   const len = value.trim().length;
   if (len > 14) return "10px";
@@ -284,6 +355,13 @@ const PARTY_FILTER_EXPORT_LABEL: Record<PartyCategory, string> = {
   flagged: "Marked",
 };
 const PARTY_FILTER_ORDER: PartyCategory[] = ["ifp", "target", "yt", "mf", "unknown", "flagged"];
+// IFP/Target/YT/MF are mutually-exclusive primary-category tags in practice
+// (a voter belongs to at most one), so multiselecting within this group is an
+// OR ("show IFP or Target or YT or MF combined"), not an AND that would
+// always come back empty. Unknown/Flagged are cross-cutting attributes, so
+// they stay AND'd against everything (e.g. IFP+Flag means "IFP voters who
+// are also flagged").
+const PARTY_GROUP: PartyCategory[] = ["ifp", "target", "yt", "mf"];
 
 // Small reusable icon set — replaces emoji glyphs (★☆📊⚠⏳⬆) that render
 // inconsistently across platforms and can't take a color/size from CSS.
@@ -420,9 +498,9 @@ export default function Home() {
   const [showBlocklistMgr, setShowBlocklistMgr] = useState(false);
   const [showCancelledMgr, setShowCancelledMgr] = useState(false);
   const [showFamilyMgr, setShowFamilyMgr] = useState(false);
-  // Multiselect: clicking a chip toggles its membership; the resulting set is
-  // AND-combined in scopedVoters, so e.g. {ifp, flagged} shows only IFP voters
-  // who are also flagged (IFP+Flag) — same mechanism covers MF+Flag/YT+Flag/Unknown+Flag.
+  // Multiselect: clicking a chip toggles its membership. IFP/Target/YT/MF
+  // combine as OR with each other (mutually-exclusive primary-category tags);
+  // Unknown/Flagged AND against the rest — see PARTY_GROUP / scopedVoters below.
   const [partyFilters, setPartyFilters] = useState<Set<PartyCategory>>(new Set());
   const togglePartyFilter = (cat: PartyCategory) => {
     setPartyFilters((prev) => {
@@ -431,6 +509,19 @@ export default function Home() {
       else next.add(cat);
       return next;
     });
+  };
+  // Homepage stat-card "drill in" arrow — jumps straight to the flat,
+  // all-areas voter list isolated to exactly this one stat (unlike clicking
+  // the card body, which stays on the area-wise atlas view).
+  const openAllFor = (kind: "life" | "general" | PartyCategory) => {
+    if (kind === "life" || kind === "general") {
+      setSource(kind);
+      setPartyFilters(new Set());
+    } else {
+      setSource("all");
+      setPartyFilters(new Set([kind]));
+    }
+    setBrowseAll(true);
   };
   const [query, setQuery] = useState("");
   const [exactHouseNoFilter, setExactHouseNoFilter] = useState("");
@@ -1168,18 +1259,18 @@ ${section("జనరల్ ఓటర్లు", general)}
     () => (areaBaseStats.total ? (areaBaseStats.flagged / areaBaseStats.total) * 100 : 0),
     [areaBaseStats],
   );
-
   const scopedVoters = useMemo(() => {
     if (partyFilters.size === 0) return activeVoters;
+    const selectedParties = PARTY_GROUP.filter((cat) => partyFilters.has(cat));
     return activeVoters.filter((voter) => {
-      for (const cat of partyFilters) {
-        if (cat === "ifp" && !voter.is_ifp_voter) return false;
-        if (cat === "yt" && !voter.is_yt_voter) return false;
-        if (cat === "target" && !voter.is_target) return false;
-        if (cat === "mf" && !voter.is_mf_voter) return false;
-        if (cat === "unknown" && !isUnknownVoter(voter)) return false;
-        if (cat === "flagged" && !voter.is_flagged) return false;
+      if (selectedParties.length > 0) {
+        const matchesAnyParty = selectedParties.some((cat) =>
+          cat === "ifp" ? voter.is_ifp_voter : cat === "target" ? voter.is_target : cat === "yt" ? voter.is_yt_voter : voter.is_mf_voter,
+        );
+        if (!matchesAnyParty) return false;
       }
+      if (partyFilters.has("unknown") && !isUnknownVoter(voter)) return false;
+      if (partyFilters.has("flagged") && !voter.is_flagged) return false;
       return true;
     });
   }, [partyFilters, activeVoters]);
@@ -1259,6 +1350,20 @@ ${section("జనరల్ ఓటర్లు", general)}
     }
     return totals;
   }, [activeVoters, source]);
+
+  // Denominator for the atlas tiles' % when Life/General alone is selected
+  // (no party filter) — unlike areaTrueTotals this is NEVER source-scoped,
+  // since "what fraction of this area is Life voters" needs the area's
+  // grand total across both sources, not just the Life-filtered total.
+  const areaGrandTotals = useMemo(() => {
+    const totals = new Map<string, number>();
+    for (const voter of activeVoters) {
+      const tile = getAreaTile(voter);
+      if (!tile) continue;
+      totals.set(tile.key, (totals.get(tile.key) ?? 0) + 1);
+    }
+    return totals;
+  }, [activeVoters]);
 
   const selectedAreaVoters = useMemo(
     () => (selectedTile ? scopedVoters.filter((item) => getAreaTile(item)?.key === selectedTile) : scopedVoters),
@@ -1600,101 +1705,114 @@ ${section("జనరల్ ఓటర్లు", general)}
             <small>{selectedTileLabel || t.all}</small>
           </article>
         )}
-        {atlasMode ? (
-          <button type="button" className="summaryMetricCard metricLife" onClick={() => { setBrowseAll(true); setSource("life"); }}>
-            <span>{t.lifeCount}</span>
-            <strong>{formatCount(selectedScopeStats.life)}</strong>
-            <small>{formatPercent(selectedLifeShare, lang)}</small>
-          </button>
-        ) : (
-          <article className="summaryMetricCard metricLife">
-            <span>{t.lifeCount}</span>
-            <strong>{formatCount(selectedScopeStats.life)}</strong>
-            <small>{formatPercent(selectedLifeShare, lang)}</small>
-          </article>
-        )}
-        {atlasMode ? (
-          <button type="button" className="summaryMetricCard metricGeneral" onClick={() => { setBrowseAll(true); setSource("general"); }}>
-            <span>{t.generalCount}</span>
-            <strong>{formatCount(selectedScopeStats.general)}</strong>
-            <small>{formatPercent(selectedGeneralShare, lang)}</small>
-          </button>
-        ) : (
-          <article className="summaryMetricCard metricGeneral">
-            <span>{t.generalCount}</span>
-            <strong>{formatCount(selectedScopeStats.general)}</strong>
-            <small>{formatPercent(selectedGeneralShare, lang)}</small>
-          </article>
-        )}
-        <button
-          type="button"
-          className={`summaryMetricCard metricIfp${partyFilters.has("ifp") ? " isActiveFilter" : ""}`}
+        <StatCard
+          colorClass="metricLife"
+          label={t.lifeCount}
+          countLabel={formatCount(selectedScopeStats.life)}
+          share={selectedLifeShare}
+          lang={lang}
+          active={atlasMode && source === "life"}
+          onClick={atlasMode ? () => setSource((prev) => (prev === "life" ? "all" : "life")) : undefined}
+          drillOnClick={atlasMode ? () => openAllFor("life") : undefined}
+          drillLabel={lang === "te" ? "అన్ని లైఫ్ ఓటర్లు చూడండి" : "View all Life voters"}
+        />
+        <StatCard
+          colorClass="metricGeneral"
+          label={t.generalCount}
+          countLabel={formatCount(selectedScopeStats.general)}
+          share={selectedGeneralShare}
+          lang={lang}
+          active={atlasMode && source === "general"}
+          onClick={atlasMode ? () => setSource((prev) => (prev === "general" ? "all" : "general")) : undefined}
+          drillOnClick={atlasMode ? () => openAllFor("general") : undefined}
+          drillLabel={lang === "te" ? "అన్ని జనరల్ ఓటర్లు చూడండి" : "View all General voters"}
+        />
+        <StatCard
+          colorClass="metricIfp"
+          label={t.ifpCount}
+          countLabel={formatCount(areaBaseStats.ifp)}
+          share={areaIfpShare}
+          lang={lang}
+          active={partyFilters.has("ifp")}
           onClick={() => togglePartyFilter("ifp")}
-          aria-pressed={partyFilters.has("ifp")}
           title={tagTooltip("ifp", lang)}
-        >
-          <span>{t.ifpCount}</span>
-          <strong key={`m-ifp-${areaBaseStats.ifp}`} className="popped">{formatCount(areaBaseStats.ifp)}</strong>
-          <small>{formatPercent(areaIfpShare, lang)}</small>
-        </button>
-        <button
-          type="button"
-          className={`summaryMetricCard metricTarget summaryMetricCompact${partyFilters.has("target") ? " isActiveFilter" : ""}`}
+          animKey={`m-ifp-${areaBaseStats.ifp}`}
+          drillOnClick={atlasMode ? () => openAllFor("ifp") : undefined}
+          drillLabel={lang === "te" ? "అన్ని IFP ఓటర్లు చూడండి" : "View all IFP voters"}
+        />
+        <StatCard
+          compact
+          colorClass="metricTarget"
+          label="T"
+          countLabel={formatCount(areaBaseStats.target)}
+          share={areaTargetShare}
+          lang={lang}
+          active={partyFilters.has("target")}
           onClick={() => togglePartyFilter("target")}
-          aria-pressed={partyFilters.has("target")}
           title={tagTooltip("target", lang)}
-        >
-          <span>T</span>
-          <strong key={`m-t-${areaBaseStats.target}`} className="popped">{formatCount(areaBaseStats.target)}</strong>
-          <small>{formatPercent(areaTargetShare, lang)}</small>
-        </button>
-        <button
-          type="button"
-          className={`summaryMetricCard metricYt summaryMetricCompact${partyFilters.has("yt") ? " isActiveFilter" : ""}`}
+          animKey={`m-t-${areaBaseStats.target}`}
+          drillOnClick={atlasMode ? () => openAllFor("target") : undefined}
+          drillLabel={lang === "te" ? "అన్ని లక్ష్య ఓటర్లు చూడండి" : "View all Target voters"}
+        />
+        <StatCard
+          compact
+          colorClass="metricYt"
+          label="YT"
+          countLabel={formatCount(areaBaseStats.yt)}
+          share={areaYtShare}
+          lang={lang}
+          active={partyFilters.has("yt")}
           onClick={() => togglePartyFilter("yt")}
-          aria-pressed={partyFilters.has("yt")}
           title={tagTooltip("yt", lang)}
-        >
-          <span>YT</span>
-          <strong key={`m-y-${areaBaseStats.yt}`} className="popped">{formatCount(areaBaseStats.yt)}</strong>
-          <small>{formatPercent(areaYtShare, lang)}</small>
-        </button>
-        <button
-          type="button"
-          className={`summaryMetricCard metricMf summaryMetricCompact${partyFilters.has("mf") ? " isActiveFilter" : ""}`}
+          animKey={`m-y-${areaBaseStats.yt}`}
+          drillOnClick={atlasMode ? () => openAllFor("yt") : undefined}
+          drillLabel={lang === "te" ? "అన్ని YT ఓటర్లు చూడండి" : "View all YT voters"}
+        />
+        <StatCard
+          compact
+          colorClass="metricMf"
+          label="MF"
+          countLabel={formatCount(areaBaseStats.mf)}
+          share={areaMfShare}
+          lang={lang}
+          active={partyFilters.has("mf")}
           onClick={() => togglePartyFilter("mf")}
-          aria-pressed={partyFilters.has("mf")}
           title={tagTooltip("mf", lang)}
-        >
-          <span>MF</span>
-          <strong key={`m-m-${areaBaseStats.mf}`} className="popped">{formatCount(areaBaseStats.mf)}</strong>
-          <small>{formatPercent(areaMfShare, lang)}</small>
-        </button>
+          animKey={`m-m-${areaBaseStats.mf}`}
+          drillOnClick={atlasMode ? () => openAllFor("mf") : undefined}
+          drillLabel={lang === "te" ? "అన్ని MF ఓటర్లు చూడండి" : "View all MF voters"}
+        />
         {areaBaseStats.unknown > 0 && (
-          <button
-            type="button"
-            className={`summaryMetricCard metricUnknown summaryMetricCompact${partyFilters.has("unknown") ? " isActiveFilter" : ""}`}
+          <StatCard
+            compact
+            colorClass="metricUnknown"
+            label={t.unknownCore}
+            countLabel={formatCount(areaBaseStats.unknown)}
+            share={areaUnknownShare}
+            lang={lang}
+            active={partyFilters.has("unknown")}
             onClick={() => togglePartyFilter("unknown")}
-            aria-pressed={partyFilters.has("unknown")}
             title={tagTooltip("unknown", lang)}
-          >
-            <span>{t.unknownCore}</span>
-            <strong key={`m-u-${areaBaseStats.unknown}`} className="popped">{formatCount(areaBaseStats.unknown)}</strong>
-            <small>{formatPercent(areaUnknownShare, lang)}</small>
-          </button>
+            animKey={`m-u-${areaBaseStats.unknown}`}
+            drillOnClick={atlasMode ? () => openAllFor("unknown") : undefined}
+            drillLabel={lang === "te" ? "అన్ని తెలియని ఓటర్లు చూడండి" : "View all Unknown voters"}
+          />
         )}
-        {!atlasMode && areaBaseStats.flagged > 0 && (
-          <button
-            type="button"
-            className={`summaryMetricCard metricFlagged summaryMetricCompact${partyFilters.has("flagged") ? " isActiveFilter" : ""}`}
+        {areaBaseStats.flagged > 0 && (
+          <StatCard
+            compact
+            colorClass="metricFlagged"
+            label={<FlagIcon />}
+            countLabel={formatCount(areaBaseStats.flagged)}
+            share={areaFlaggedShare}
+            lang={lang}
+            active={partyFilters.has("flagged")}
             onClick={() => togglePartyFilter("flagged")}
-            aria-pressed={partyFilters.has("flagged")}
-            aria-label={`${lang === "te" ? "గుర్తు పెట్టినవారు" : "Marked"}: ${areaBaseStats.flagged}`}
-          >
-            <span><FlagIcon /></span>
-            <strong key={`m-fl-${areaBaseStats.flagged}`} className="popped">{formatCount(areaBaseStats.flagged)}</strong>
-            <small>{formatPercent(areaFlaggedShare, lang)}</small>
-          </button>
+            ariaLabel={`${lang === "te" ? "గుర్తు పెట్టినవారు" : "Marked"}: ${areaBaseStats.flagged}`}
+            animKey={`m-fl-${areaBaseStats.flagged}`}
+            drillOnClick={atlasMode ? () => openAllFor("flagged") : undefined}
+            drillLabel={lang === "te" ? "అన్ని గుర్తు పెట్టిన ఓటర్లు చూడండి" : "View all Flagged voters"}
+          />
         )}
       </div>
     </div>
@@ -1725,18 +1843,6 @@ ${section("జనరల్ ఓటర్లు", general)}
         </div>
         {!atlasMode && summaryMetricsBlock}
         <div className="actions">
-          {atlasMode && areaBaseStats.flagged > 0 && (
-            <button
-              type="button"
-              className={`headerFlagBtn${partyFilters.has("flagged") ? " isActiveFilter" : ""}`}
-              onClick={() => togglePartyFilter("flagged")}
-              aria-pressed={partyFilters.has("flagged")}
-              aria-label={`${lang === "te" ? "గుర్తు పెట్టినవారు" : "Marked"}: ${areaBaseStats.flagged}`}
-            >
-              <FlagIcon />
-              <span>{formatCount(areaBaseStats.flagged)}</span>
-            </button>
-          )}
           <div className="moreMenuWrap" ref={moreMenuRef}>
             <button
               type="button"
@@ -1935,12 +2041,19 @@ ${section("జనరల్ ఓటర్లు", general)}
                     // separately in areaTrueTotals, unaffected by partyFilters).
                     const areaTrueTotal = areaTrueTotals.get(tile.key) ?? 0;
                     const filterShare = areaTrueTotal ? Math.round((tile.total / areaTrueTotal) * 100) : 0;
-                    const share = partyFilters.size > 0 ? filterShare : ifpShare;
+                    // Life/General alone (no party filter) needs a different lens: % of
+                    // the area's GRAND total (both sources), not the source-scoped total —
+                    // "what fraction of this area is Life voters", not "100% of Life is Life".
+                    const hasPartyFilter = partyFilters.size > 0;
+                    const hasSourceOnly = !hasPartyFilter && source !== "all";
+                    const areaGrandTotal = areaGrandTotals.get(tile.key) ?? 0;
+                    const sourceShare = areaGrandTotal ? Math.round((tile.total / areaGrandTotal) * 100) : 0;
+                    const share = hasPartyFilter ? filterShare : hasSourceOnly ? sourceShare : ifpShare;
                     return (
                       <button key={tile.key} type="button" className="atlasTile" onClick={() => { setSelectedTile(tile.key); setExactHouseNoFilter(""); }}>
                         <span className="atlasName">{tile.label}</span>
                         <strong className="atlasTotal">{formatCount(tile.total)}</strong>
-                        {partyFilters.size > 0 ? (
+                        {hasPartyFilter || hasSourceOnly ? (
                           <span className="atlasIfp">{share}%</span>
                         ) : (
                           <span className="atlasIfp">IFP {formatCount(tile.ifp)} · {share}%</span>
