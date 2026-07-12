@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+<meta charset="UTF-8">
+<title>జుమా ముబారక్ — ఇస్లామిక్ ఫ్రంట్</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Telugu:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green-deep: #0d3b1e;
+    --green-mid: #1a5c30;
+    --gold: #c8922a;
+    --paper: #faf8f1;
+    --ink: #26362b;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1080px; height: 1350px; overflow: hidden; }
+  body {
+    font-family: 'Noto Sans Telugu', sans-serif;
+    background: var(--paper);
+    position: relative;
+    color: var(--ink);
+  }
+
+  /* ---- decoration zone (right side only, behind photo) ---- */
+  .disc {
+    position: absolute;
+    right: -260px; top: 300px;
+    width: 760px; height: 760px;
+    border-radius: 50%;
+    background: #e9f3ec;
+  }
+  .disc-ring {
+    position: absolute;
+    right: -220px; top: 340px;
+    width: 680px; height: 680px;
+    border-radius: 50%;
+    border: 3px solid rgba(200, 146, 42, .45);
+  }
+
+  /* ---- header ---- */
+  .logo {
+    position: absolute;
+    top: 52px; left: 64px;
+    height: 150px;
+  }
+
+  /* ---- text zone (left column) ---- */
+  .eyebrow {
+    position: absolute;
+    top: 300px; left: 66px;
+    font-size: 32px; font-weight: 600;
+    color: var(--gold);
+    letter-spacing: 1px;
+  }
+  h1 {
+    position: absolute;
+    top: 348px; left: 62px;
+    font-size: 92px; font-weight: 900;
+    color: var(--green-deep);
+    line-height: 1.25;
+  }
+  .rule {
+    position: absolute;
+    top: 614px; left: 66px;
+    width: 88px; height: 5px;
+    background: var(--gold);
+    border-radius: 3px;
+  }
+  .dua {
+    position: absolute;
+    top: 664px; left: 66px;
+    width: 470px;
+    font-size: 30px; font-weight: 400;
+    line-height: 1.65;
+    text-wrap: pretty;
+  }
+
+  /* ---- signature block ---- */
+  .sign {
+    position: absolute;
+    left: 66px; bottom: 150px;
+    width: 480px;
+  }
+  .sign .name {
+    font-size: 48px; font-weight: 800;
+    color: var(--green-deep);
+    margin-bottom: 10px;
+  }
+  .sign .desig {
+    font-size: 25px; font-weight: 600;
+    color: #303a32;
+    line-height: 1.8;
+  }
+
+  /* ---- photo zone ---- */
+  .akram {
+    position: absolute;
+    right: -14px; bottom: 0;
+    height: 940px;
+    filter: drop-shadow(0 20px 44px rgba(13, 59, 30, .22));
+  }
+
+  /* ---- footer band ---- */
+  footer {
+    position: absolute;
+    left: 0; bottom: 0;
+    width: 100%; height: 92px;
+    background: var(--green-deep);
+    display: flex; align-items: center;
+    padding-left: 66px;
+    font-size: 28px; font-weight: 600;
+    color: #f5e6c0;
+    letter-spacing: .5px;
+  }
+</style>
+</head>
+<body>
+  <div class="disc"></div>
+  <div class="disc-ring"></div>
+
+  <img class="logo" src="assets/logo.png" alt="">
+
+  <div class="eyebrow">శుభ శుక్రవారం</div>
+  <h1>జుమా<br>ముబారక్</h1>
+  <div class="rule"></div>
+  <p class="dua">ఈ పవిత్ర శుక్రవారం మీకు, మీ కుటుంబ సభ్యులకు శాంతి, ఆరోగ్యం, బర్కతులు కలగాలని మనసారా దుఆ చేస్తున్నాం.</p>
+
+  <div class="sign">
+    <div class="name">షేక్ అక్రం</div>
+    <div class="desig">
+      ఆంధ్రప్రదేశ్ రాష్ట్ర వక్ఫ్ బోర్డు డైరెక్టర్<br>
+      ఇస్లామిక్ ఫ్రంట్ కన్వీనర్<br>
+      MHPS రాష్ట్ర కార్యదర్శి
+    </div>
+  </div>
+
+  <img class="akram" src="assets/akram-cutout.png" alt="">
+
+  <footer>ఇస్లామిక్ ఫ్రంట్ &nbsp;•&nbsp; మంగళగిరి</footer>
+</body>
+</html>

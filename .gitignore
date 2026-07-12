@@ -16,6 +16,7 @@ desktop.ini
 *.swo
 __pycache__/
 .pytest_cache/
+.venv/
 
 # Local server / env
 *.log
@@ -51,3 +52,11 @@ voter-list-tool/frontend/node_modules/
 !voter-list-tool/frontend/package-lock.json
 !voter-list-tool/backend/tests/
 !voter-list-tool/backend/tests/*.py
+!personal-ai-email-agent/tests/
+!personal-ai-email-agent/tests/**
+personal-ai-email-agent/.env
+personal-ai-email-agent/.venv/
+personal-ai-email-agent/.data/
+
+# poster render artifacts
+posters/out/
