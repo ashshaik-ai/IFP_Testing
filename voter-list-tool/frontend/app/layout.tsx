@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./styles.css";
 
 export const metadata: Metadata = {
-  title: "IFP Premium Voter Desk",
+  title: "IFP Voter Desk",
   description: "Islamic Front premium private voter extraction and review dashboard",
   icons: {
     icon: "/if-logo-emblem.png",
