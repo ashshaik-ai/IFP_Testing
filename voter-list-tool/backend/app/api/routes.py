@@ -18,6 +18,7 @@ from app.services.flag_import import import_flags_from_xlsx
 from app.services.pdf_processor import create_job, process_pdf, update_job
 from app.services.phone_import import import_phones_from_xlsx
 from app.services.storage import job_dir, job_meta_path, load_jobs, read_json, voters_path, write_json
+from app.services.wa_status_import import import_whatsapp_status_from_xlsx
 from app.services.transliterate import transliterate_person_name_te
 from app.services.voter_query import all_voters, filter_voters
 
@@ -306,6 +307,16 @@ async def import_flags(file: UploadFile = File(...)) -> dict:
         raise HTTPException(status_code=400, detail="ఫైల్ చదవడంలో లోపం — Serial నిలువు వరుస ఉందో చూడండి")
 
 
+@router.post("/voters/import-whatsapp-status", dependencies=[Depends(require_auth)])
+async def import_whatsapp_status(file: UploadFile = File(...)) -> dict:
+    if not file.filename or not file.filename.lower().endswith((".xlsx", ".xlsm")):
+        raise HTTPException(status_code=400, detail="Excel (.xlsx) ఫైల్ మాత్రమే అప్లోడ్ చేయండి")
+    try:
+        return import_whatsapp_status_from_xlsx(await file.read())
+    except Exception:
+        raise HTTPException(status_code=400, detail="ఫైల్ చదవడంలో లోపం — Serial/WhatsApp నిలువు వరుసలు ఉన్నాయో చూడండి")
+
+
 @router.post("/jobs", dependencies=[Depends(require_auth)])
 async def upload_pdf(background: BackgroundTasks, file: UploadFile = File(...)) -> dict:
     if not file.filename or not file.filename.lower().endswith(".pdf"):
@@ -420,6 +431,19 @@ def update_voter(job_id: str, voter_id: str, payload: VoterUpdate) -> dict:
             voter["is_deceased"] = False
             voter["is_blocklisted"] = False
             voter["is_cancelled"] = False
+        # IFP/Target/YT/MF are mutually-exclusive primary-category tags — a
+        # voter belongs to at most one. The frontend's mark-as-X buttons
+        # already send the other three as false in the same request, but
+        # enforce it server-side too so no caller (scripts, future UI, direct
+        # API use) can ever leave a voter multi-tagged. Whichever flag this
+        # request just turned on wins over any that were already set.
+        party_flags = ("is_ifp_voter", "is_target", "is_yt_voter", "is_mf_voter")
+        newly_set = [f for f in party_flags if updates.get(f) is True]
+        if newly_set:
+            winner = newly_set[-1]
+            for flag in party_flags:
+                if flag != winner:
+                    voter[flag] = False
         if "area_te" in updates:
             voter["area_te"] = canonical_area_te(voter.get("area_te", ""))
             voter["area_en"] = canonical_area_en(voter["area_te"])

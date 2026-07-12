@@ -51,6 +51,9 @@ class VoterRecord(BaseModel):
     opted_out: bool = False
     consent_ts: str = ""
     consent_source: str = ""
+    # None = not checked yet, True = confirmed on WhatsApp, False = confirmed
+    # not on WhatsApp (bulk-verified externally, imported by serial_no).
+    has_whatsapp: bool | None = None
 
 
 class VoterUpdate(BaseModel):
@@ -81,6 +84,7 @@ class VoterUpdate(BaseModel):
     opted_out: bool | None = None
     consent_ts: str | None = None
     consent_source: str | None = None
+    has_whatsapp: bool | None = None
 
 
 class AreaMergeRequest(BaseModel):

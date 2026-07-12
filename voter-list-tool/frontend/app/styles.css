@@ -1435,6 +1435,9 @@ dd {
 }
 
 .cardPhone {
+  display: flex;
+  align-items: center;
+  gap: 5px;
   font-size: 13px;
   font-weight: 700;
   font-variant-numeric: tabular-nums;
@@ -1448,6 +1451,15 @@ dd {
 .phoneLink:hover,
 .phoneLink:focus-visible {
   text-decoration: underline;
+}
+
+/* Bulk-verified externally (serial-matched Excel import) -- lets staff see
+   at a glance not to bother messaging this number. */
+.noWhatsappBadge {
+  display: inline-flex;
+  align-items: center;
+  color: var(--danger);
+  opacity: 0.85;
 }
 
 /* Used instead of .ddCompact once a name is already at its smallest font

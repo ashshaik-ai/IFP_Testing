@@ -71,6 +71,7 @@ export type Voter = {
   opted_out?: boolean;
   consent_ts?: string;
   consent_source?: string;
+  has_whatsapp?: boolean | null;
   raw_text: string;
   notes: string;
 };
@@ -144,6 +145,16 @@ export type FlagImportResult = {
   matched: number;
   flagged: number;
   already_flagged: number;
+  not_found_count: number;
+};
+
+export type WhatsappImportResult = {
+  total_rows: number;
+  status_rows: number;
+  matched: number;
+  updated: number;
+  marked_yes: number;
+  marked_no: number;
   not_found_count: number;
 };
 
@@ -254,6 +265,8 @@ export const copy = {
     exportingPdf: "PDF తయారవుతోంది...",
     importPhones: "ఫోన్ నంబర్లు దిగుమతి (Excel)",
     importFlags: "ఫ్లాగ్‌లు దిగుమతి (Excel)",
+    importWhatsapp: "WhatsApp స్థితి దిగుమతి (Excel)",
+    noWhatsapp: "WhatsApp లేదు",
   },
   en: {
     title: "Voter List Tool",
@@ -355,6 +368,8 @@ export const copy = {
     exportingPdf: "Generating PDF...",
     importPhones: "Import phone numbers (Excel)",
     importFlags: "Import flags (Excel)",
+    importWhatsapp: "Import WhatsApp status (Excel)",
+    noWhatsapp: "No WhatsApp",
   },
 } as const;
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { ReactNode, RefObject, TouchEvent as ReactTouchEvent, useEffect, useMemo, useRef, useState } from "react";
-import { API_BASE, AreaOption, FlagImportResult, Job, Lang, PhoneImportResult, SourceFilter, Voter, api, copy } from "@/lib/api";
+import { API_BASE, AreaOption, FlagImportResult, Job, Lang, PhoneImportResult, SourceFilter, Voter, WhatsappImportResult, api, copy } from "@/lib/api";
 import { englishToTeluguName, toEnglishArea, toEnglishName } from "@/lib/transliterate";
 import { SecureImage } from "@/components/SecureImage";
 import { CampaignConsole } from "@/components/CampaignConsole";
@@ -355,6 +355,16 @@ const PARTY_FILTER_EXPORT_LABEL: Record<PartyCategory, string> = {
   flagged: "Marked",
 };
 const PARTY_FILTER_ORDER: PartyCategory[] = ["ifp", "target", "yt", "mf", "unknown", "flagged"];
+// PDF export only: bright tints (readable on the header's dark green
+// background) for each category suffix, e.g. "31st Ward T" -> "T" in red.
+const PDF_HEADER_SUFFIX_COLOR: Record<PartyCategory, string> = {
+  ifp: "#6ee7b7",
+  target: "#fca5a5",
+  yt: "#c4b5fd",
+  mf: "#5eead4",
+  unknown: "#d1d5db",
+  flagged: "#fde68a",
+};
 // IFP/Target/YT/MF are mutually-exclusive primary-category tags in practice
 // (a voter belongs to at most one), so multiselecting within this group is an
 // OR ("show IFP or Target or YT or MF combined"), not an AND that would
@@ -414,6 +424,14 @@ function FlagIcon() {
     <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" style={{ flexShrink: 0 }}>
       <path d="M6 21V4" />
       <path d="M6 4h12.2a1 1 0 0 1 .8 1.6l-3.4 4.4 3.4 4.4a1 1 0 0 1-.8 1.6H6" fill="currentColor" />
+    </svg>
+  );
+}
+function NoWhatsappIcon() {
+  return (
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" style={{ flexShrink: 0 }}>
+      <path d="M4.5 20.5 6.4 15a8 8 0 1 1 3.4 3.2z" />
+      <path d="M3 3l18 18" />
     </svg>
   );
 }
@@ -767,6 +785,33 @@ export default function Home() {
     }
   }
 
+  async function importWhatsappStatus(file: File | null) {
+    if (!file) {
+      return;
+    }
+    setBusy(true);
+    setError("");
+    setNotice("");
+    setLiveMessage(lang === "te" ? `"${file.name}" దిగుమతి అవుతోంది…` : `Importing "${file.name}"…`);
+    const form = new FormData();
+    form.append("file", file);
+    try {
+      const result = await api<WhatsappImportResult>("/api/voters/import-whatsapp-status", token, { method: "POST", body: form });
+      const msg =
+        lang === "te"
+          ? `"${file.name}" దిగుమతి పూర్తయింది — ${result.updated} మంది సభ్యుల WhatsApp స్థితి నవీకరించబడింది (${result.marked_no} WhatsApp లేదు, ${result.matched}/${result.status_rows} సరిపోలాయి, ${result.not_found_count} సరిపోలలేదు)`
+          : `"${file.name}" imported — updated WhatsApp status for ${result.updated} members (${result.marked_no} marked no WhatsApp, ${result.matched}/${result.status_rows} matched, ${result.not_found_count} not found)`;
+      setLiveMessage(msg);
+      setNotice(msg);
+      await loadAllVoters();
+    } catch (err) {
+      setLiveMessage(lang === "te" ? `"${file.name}" దిగుమతి విఫలమైంది` : `Import of "${file.name}" failed`);
+      setError(String(err));
+    } finally {
+      setBusy(false);
+    }
+  }
+
   async function saveSelected() {
     if (!selected) {
       return;
@@ -1058,9 +1103,16 @@ export default function Home() {
     URL.revokeObjectURL(href);
   }
 
-  async function downloadPdf(areaLabel: string) {
+  async function downloadPdf(base: string, categories: PartyCategory[] = []) {
     setPdfBusy(true);
     try {
+      const plainSuffix = categories.map((cat) => PARTY_FILTER_EXPORT_LABEL[cat]).join("+");
+      const areaLabel = base + (plainSuffix ? ` ${plainSuffix}` : "");
+      const suffixHtml = categories.length
+        ? " " + categories
+            .map((cat) => `<span style="color:${PDF_HEADER_SUFFIX_COLOR[cat]}">${PARTY_FILTER_EXPORT_LABEL[cat]}</span>`)
+            .join('<span style="opacity:.55"> + </span>')
+        : "";
       const life = filteredVoters.filter((v) => v.source_kind === "life");
       const general = filteredVoters.filter((v) => v.source_kind === "general");
 
@@ -1093,25 +1145,35 @@ export default function Home() {
         const badge = v.source_kind === "life" ? "L" : "G";
         const badgeCls = v.source_kind === "life" ? "life" : "gen";
         const name = displayName(v, lang, "[పేరు తెలియదు]");
-        const tags = [
-          v.is_target    ? `<span class="tag tag-t">T</span>`   : "",
-          v.is_yt_voter  ? `<span class="tag tag-yt">YT</span>` : "",
-          v.is_mf_voter  ? `<span class="tag tag-mf">MF</span>` : "",
-          v.is_ifp_voter ? `<span class="tag tag-ifp">IFP</span>` : "",
-        ].filter(Boolean).join("");
+        // IFP/Target/YT/MF are mutually exclusive, so a card gets exactly one
+        // category -- shown as "(CODE)" after the name, colored to match the
+        // card's left-edge stripe -- instead of a separate chip.
+        const catCode = v.is_target ? "T" : v.is_yt_voter ? "YT" : v.is_mf_voter ? "MF" : v.is_ifp_voter ? "IFP" : "";
+        const catCls = v.is_target ? "card-target" : v.is_yt_voter ? "card-yt" : v.is_mf_voter ? "card-mf" : v.is_ifp_voter ? "card-ifp" : "";
+        const catTag = catCode ? `<span class="catTag ${catCls}">(${catCode})</span>` : "";
         const flag = v.is_flagged
           ? `<svg class="flag" width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 21V4"/><path d="M6 4h12.2a1 1 0 0 1 .8 1.6l-3.4 4.4 3.4 4.4a1 1 0 0 1-.8 1.6H6" fill="#1a1a1a"/></svg>`
           : "";
-        return `<div class="card">
-          <div class="photo">${img}<span class="badge ${badgeCls}">${badge}</span>${flag}</div>
-          <div class="info">
-            <div class="name">${name || "[పేరు తెలియదు]"}${tags ? `<span class="tags">${tags}</span>` : ""}</div>
-            <div class="row"><span class="lbl">${lang === "te" ? "తండ్రి" : "Father"}</span><span>${displayRelation(v.relation_name_te || "", lang)}</span></div>
-            <div class="row"><span class="lbl">సీరియల్</span><span>${v.serial_no || "-"}</span></div>
-            <div class="row"><span class="lbl">వయస్సు</span><span>${v.age || "-"}</span></div>
-            <div class="row"><span class="lbl">D.no</span><span>${v.house_no || "-"}</span></div>
-            ${v.mobile ? `<div class="row"><span class="lbl">${lang === "te" ? "ఫోన్" : "Phone"}</span><span>${v.mobile}</span></div>` : ""}
+        const noWa = v.has_whatsapp === false
+          ? `<svg class="noWa" width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#b91c1c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 20.5 6.4 15a8 8 0 1 1 3.4 3.2z"/><path d="M3 3l18 18"/></svg>`
+          : "";
+        const hasGoodWhatsapp = Boolean(v.mobile) && v.has_whatsapp === true;
+        const waBox = hasGoodWhatsapp
+          ? ""
+          : `<div class="waBox"><span>${lang === "te" ? "నం:" : "No:"}</span></div>`;
+        return `<div class="card ${catCls}">
+          <div class="cardTop">
+            <div class="photo">${img}<span class="badge ${badgeCls}">${badge}</span>${flag}</div>
+            <div class="info">
+              <div class="name">${name || "[పేరు తెలియదు]"}${catTag}</div>
+              <div class="row"><span class="lbl">${lang === "te" ? "తండ్రి" : "Father"}</span><span>${displayRelation(v.relation_name_te || "", lang)}</span></div>
+              <div class="row"><span class="lbl">సీరియల్</span><span>${v.serial_no || "-"}</span></div>
+              <div class="row"><span class="lbl">వయస్సు</span><span>${v.age || "-"}</span></div>
+              <div class="row"><span class="lbl">D.no</span><span>${v.house_no || "-"}</span></div>
+              ${v.mobile ? `<div class="row"><span class="lbl">${lang === "te" ? "ఫోన్" : "Phone"}</span><span>${v.mobile}</span>${noWa}</div>` : ""}
+            </div>
           </div>
+          ${waBox}
         </div>`;
       }
 
@@ -1130,30 +1192,39 @@ export default function Home() {
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Telugu:wght@400;700&display=swap');
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: 'Noto Sans Telugu', 'Segoe UI', sans-serif; font-size: 11px; background: #fff; color: #1a1a1a; }
-  .pageHeader { padding: 12px 16px; background: #0e4a35; color: #fff; display: flex; justify-content: space-between; align-items: center; }
+  .pageHeader { padding: 12px 16px 12px 32px; background: #0e4a35; color: #fff; display: flex; justify-content: space-between; align-items: center; }
   .pageHeader h1 { font-size: 15px; }
   .pageHeader .meta { font-size: 11px; opacity: 0.85; text-align: right; }
-  .section { padding: 12px 16px; }
+  .section { padding: 12px 16px 12px 32px; }
   .secHeader { font-size: 13px; font-weight: 700; padding: 6px 10px; background: #f0ebe0; border-bottom: 2px solid #0e4a35; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
   .secHeader .cnt { background: #0e4a35; color: #fff; border-radius: 99px; padding: 1px 8px; font-size: 11px; }
   .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
-  .card { display: flex; gap: 6px; border: 1px solid #d7cfbe; border-radius: 6px; padding: 6px; break-inside: avoid; }
+  /* Left edge carries the category color (thicker than the other 3 sides) --
+     IFP/Target/YT/MF are mutually exclusive, so each card gets exactly one. */
+  .card { display: flex; flex-direction: column; gap: 6px; border: 1px solid #d7cfbe; border-left-width: 4px; border-radius: 6px; padding: 6px; break-inside: avoid; }
+  .card-target { border-left-color: #b91c1c; }
+  .card-yt     { border-left-color: #6d28d9; }
+  .card-mf     { border-left-color: #0d9488; }
+  .card-ifp    { border-left-color: #065f46; }
+  .cardTop { display: flex; gap: 6px; }
   .photo { position: relative; flex-shrink: 0; width: 56px; }
   .photo img, .photo .noPhoto { width: 56px; height: 72px; object-fit: cover; border-radius: 4px; background: #e8e3d8; }
-  .badge { position: absolute; bottom: 2px; right: 2px; font-size: 9px; font-weight: 700; padding: 1px 4px; border-radius: 3px; }
-  .flag { position: absolute; bottom: 3px; left: 2px; }
+  .badge { position: absolute; bottom: 2px; left: 2px; font-size: 9px; font-weight: 700; padding: 1px 4px; border-radius: 3px; }
+  .flag { position: absolute; bottom: 3px; right: 2px; }
   .life { background: #d1fae5; color: #065f46; }
   .gen { background: #ede9fe; color: #4c1d95; }
   .info { flex: 1; min-width: 0; }
-  .name { font-weight: 700; font-size: 12px; margin-bottom: 3px; overflow-wrap: anywhere; display: flex; flex-wrap: wrap; align-items: center; gap: 3px; }
-  .tags { display: inline-flex; gap: 2px; flex-shrink: 0; }
-  .tag { font-size: 8px; font-weight: 700; padding: 1px 4px; border-radius: 3px; line-height: 1.4; }
-  .tag-t   { background: #fef2f2; color: #b91c1c; }
-  .tag-yt  { background: #f3f0ff; color: #6d28d9; }
-  .tag-mf  { background: #f0fdfa; color: #0d9488; }
-  .tag-ifp { background: #d1fae5; color: #065f46; }
-  .row { display: flex; gap: 4px; font-size: 10px; line-height: 1.5; }
+  .name { font-weight: 700; font-size: 12px; margin-bottom: 3px; overflow-wrap: anywhere; display: flex; flex-wrap: wrap; align-items: baseline; gap: 3px; }
+  .catTag { font-size: 10px; font-weight: 700; flex-shrink: 0; }
+  .catTag.card-target { color: #b91c1c; }
+  .catTag.card-yt     { color: #6d28d9; }
+  .catTag.card-mf     { color: #0d9488; }
+  .catTag.card-ifp    { color: #065f46; }
+  .row { display: flex; gap: 4px; font-size: 10px; line-height: 1.5; align-items: center; }
   .lbl { color: #6b7280; flex-shrink: 0; }
+  .noWa { flex-shrink: 0; }
+  .waBox { display: flex; align-items: flex-start; gap: 4px; padding: 4px 6px; min-height: 30px; border: 1px dashed #9ca3af; border-radius: 4px; font-size: 9px; color: #6b7280; }
+  .waBox span { flex-shrink: 0; }
   @media print {
     .pageHeader { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     .secHeader { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
@@ -1162,7 +1233,7 @@ export default function Home() {
 </style>
 </head><body>
 <div class="pageHeader">
-  <h1>${areaLabel}</h1>
+  <h1>${base}${suffixHtml}</h1>
   <div class="meta">
     మొత్తం ${filteredVoters.length} · లైఫ్ ${life.length} · జనరల్ ${general.length}<br>
     ${new Date().toLocaleDateString("te-IN")}
@@ -1895,6 +1966,15 @@ ${section("జనరల్ ఓటర్లు", general)}
                     onChange={(event) => { importFlags(event.target.files?.[0] || null); setShowMoreMenu(false); }}
                   />
                 </label>
+                <label className="moreMenuItem" role="menuitem">
+                  {busy ? <SpinnerIcon /> : <UploadIcon />} {t.importWhatsapp}
+                  <input
+                    type="file"
+                    accept=".xlsx,.xlsm"
+                    style={{ display: "none" }}
+                    onChange={(event) => { importWhatsappStatus(event.target.files?.[0] || null); setShowMoreMenu(false); }}
+                  />
+                </label>
                 <div className="moreMenuDivider" aria-hidden="true" />
                 <button type="button" role="menuitem" className="moreMenuItem" onClick={() => { setShowCampaigns(true); setShowMoreMenu(false); }}>
                   {lang === "te" ? "వాట్సాప్ ప్రచారం" : "WhatsApp Campaigns"}
@@ -1987,8 +2067,8 @@ ${section("జనరల్ ఓటర్లు", general)}
             onClick={() => {
               const tile = AREA_TILES.find((tile) => tile.key === selectedTile);
               const base = tile?.label || query.trim() || t.all;
-              const suffix = partyFilterSuffix ? ` ${partyFilterSuffix}` : "";
-              void downloadPdf(base + suffix);
+              const categories = PARTY_FILTER_ORDER.filter((cat) => partyFilters.has(cat));
+              void downloadPdf(base, categories);
             }}
           >
             {pdfBusy ? <SpinnerIcon /> : "↓ PDF"}
@@ -2161,6 +2241,11 @@ ${section("జనరల్ ఓటర్లు", general)}
                       >
                         {voter.mobile}
                       </a>
+                      {voter.has_whatsapp === false && (
+                        <span className="noWhatsappBadge" title={t.noWhatsapp} aria-label={t.noWhatsapp}>
+                          <NoWhatsappIcon />
+                        </span>
+                      )}
                     </p>
                   )}
                   {voter.notes && <p className="note">{voter.notes}</p>}
