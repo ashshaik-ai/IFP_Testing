@@ -20,6 +20,7 @@ type ScopeStats = {
 };
 
 type PartyCategory = "ifp" | "yt" | "target" | "mf" | "unknown" | "flagged";
+type AgeFilter = "all" | "youth" | "middle" | "senior";
 
 type AreaTile = {
   key: string;
@@ -47,7 +48,7 @@ type FamilyCluster = {
   voters: Voter[];
 };
 
-const SOURCE_ORDER: SourceFilter[] = ["all", "life", "general"];
+const AGE_FILTERS: Exclude<AgeFilter, "all">[] = ["youth", "middle", "senior"];
 const CRITICAL_FIELDS: Array<keyof Voter> = ["serial_no", "name_te", "relation_name_te", "age", "occupation_te", "house_no", "area_te"];
 
 const AREA_TILE_DEFS: Array<{ label: string; aliases: string[] }> = [
@@ -181,22 +182,40 @@ function sourceLabel(kind: SourceFilter | "life" | "general", t: (typeof copy)["
   return t.all;
 }
 
-function renderFilterMeta(parts: Array<string | number>) {
-  return (
-    <small className="filterMeta">
-      {parts.map((part, index) => (
-        <span key={`${part}-${index}`}>{part}</span>
-      ))}
-    </small>
-  );
-}
-
 function formatPercent(value: number, lang: Lang) {
   const rounded = Math.round(value * 10) / 10;
   return `${new Intl.NumberFormat(lang === "te" ? "te-IN" : "en-IN", {
     minimumFractionDigits: rounded % 1 === 0 ? 0 : 1,
     maximumFractionDigits: 1,
   }).format(rounded)}%`;
+}
+
+function parseAge(value: string) {
+  const normalized = String(value || "")
+    .replace(/[౦-౯]/g, (digit) => String("౦౧౨౩౪౫౬౭౮౯".indexOf(digit)))
+    .match(/\d+/)?.[0];
+  return normalized ? Number.parseInt(normalized, 10) : null;
+}
+
+function voterMatchesAgeFilter(voter: Voter, filter: AgeFilter) {
+  if (filter === "all") return true;
+  const age = parseAge(voter.age);
+  if (age === null) return false;
+  if (filter === "youth") return age <= 30;
+  if (filter === "middle") return age >= 31 && age <= 50;
+  return age >= 51;
+}
+
+function ageFilterLabel(filter: Exclude<AgeFilter, "all">, lang: Lang) {
+  if (filter === "youth") return lang === "te" ? "యూత్" : "Youth";
+  if (filter === "middle") return lang === "te" ? "మిడిల్" : "Middle";
+  return lang === "te" ? "సీనియర్" : "Senior";
+}
+
+function ageFilterRange(filter: Exclude<AgeFilter, "all">) {
+  if (filter === "youth") return "18-30";
+  if (filter === "middle") return "31-50";
+  return "51+";
 }
 
 // Homepage/area-header stat chip — one component for all 8 filterable cards
@@ -512,6 +531,7 @@ export default function Home() {
   const [jobs, setJobs] = useState<Job[]>([]);
   const [selectedTile, setSelectedTile] = useState("");
   const [source, setSource] = useState<SourceFilter>("all");
+  const [ageFilter, setAgeFilter] = useState<AgeFilter>("all");
   const [showDeceasedMgr, setShowDeceasedMgr] = useState(false);
   const [showBlocklistMgr, setShowBlocklistMgr] = useState(false);
   const [showCancelledMgr, setShowCancelledMgr] = useState(false);
@@ -1319,10 +1339,14 @@ ${pagesHtml}
     () => allVoters.filter((item) => !item.is_deceased && !item.is_blocklisted && !item.is_cancelled),
     [allVoters],
   );
+  const ageScopedVoters = useMemo(
+    () => activeVoters.filter((item) => voterMatchesAgeFilter(item, ageFilter)),
+    [activeVoters, ageFilter],
+  );
   // area-scoped counts NOT filtered by partyFilters — used for chip labels so all chips stay non-zero
   const areaBaseVoters = useMemo(
-    () => (selectedTile ? activeVoters.filter((item) => getAreaTile(item)?.key === selectedTile) : activeVoters),
-    [activeVoters, selectedTile],
+    () => (selectedTile ? ageScopedVoters.filter((item) => getAreaTile(item)?.key === selectedTile) : ageScopedVoters),
+    [ageScopedVoters, selectedTile],
   );
   const areaBaseStats = useMemo(
     () =>
@@ -1368,9 +1392,9 @@ ${pagesHtml}
     [areaBaseStats],
   );
   const scopedVoters = useMemo(() => {
-    if (partyFilters.size === 0) return activeVoters;
+    if (partyFilters.size === 0) return ageScopedVoters;
     const selectedParties = PARTY_GROUP.filter((cat) => partyFilters.has(cat));
-    return activeVoters.filter((voter) => {
+    return ageScopedVoters.filter((voter) => {
       if (selectedParties.length > 0) {
         const matchesAnyParty = selectedParties.some((cat) =>
           cat === "ifp" ? voter.is_ifp_voter : cat === "target" ? voter.is_target : cat === "yt" ? voter.is_yt_voter : voter.is_mf_voter,
@@ -1381,7 +1405,7 @@ ${pagesHtml}
       if (partyFilters.has("flagged") && !voter.is_flagged) return false;
       return true;
     });
-  }, [partyFilters, activeVoters]);
+  }, [partyFilters, ageScopedVoters]);
 
   const partyFilterSuffix = useMemo(
     () =>
@@ -1390,6 +1414,7 @@ ${pagesHtml}
         .join("+"),
     [partyFilters],
   );
+  const ageFilterSuffix = ageFilter === "all" ? "" : `${ageFilterLabel(ageFilter, "en")} ${ageFilterRange(ageFilter)}`;
 
   // source-filtered too, so atlas tile counts (incl. IFP share) respect the Life/General pills
   const sourceScopedVoters = useMemo(
@@ -1449,7 +1474,7 @@ ${pagesHtml}
   // by. This tracks each area's true total (source-filtered only, never
   // party-filtered) so the % is still "this party's count / area's total".
   const areaTrueTotals = useMemo(() => {
-    const bySource = source === "all" ? activeVoters : activeVoters.filter((v) => v.source_kind === source);
+    const bySource = source === "all" ? ageScopedVoters : ageScopedVoters.filter((v) => v.source_kind === source);
     const totals = new Map<string, number>();
     for (const voter of bySource) {
       const tile = getAreaTile(voter);
@@ -1457,7 +1482,7 @@ ${pagesHtml}
       totals.set(tile.key, (totals.get(tile.key) ?? 0) + 1);
     }
     return totals;
-  }, [activeVoters, source]);
+  }, [ageScopedVoters, source]);
 
   // Denominator for the atlas tiles' % when Life/General alone is selected
   // (no party filter) — unlike areaTrueTotals this is NEVER source-scoped,
@@ -1465,13 +1490,13 @@ ${pagesHtml}
   // grand total across both sources, not just the Life-filtered total.
   const areaGrandTotals = useMemo(() => {
     const totals = new Map<string, number>();
-    for (const voter of activeVoters) {
+    for (const voter of ageScopedVoters) {
       const tile = getAreaTile(voter);
       if (!tile) continue;
       totals.set(tile.key, (totals.get(tile.key) ?? 0) + 1);
     }
     return totals;
-  }, [activeVoters]);
+  }, [ageScopedVoters]);
 
   const selectedAreaVoters = useMemo(
     () => (selectedTile ? scopedVoters.filter((item) => getAreaTile(item)?.key === selectedTile) : scopedVoters),
@@ -1603,6 +1628,7 @@ ${pagesHtml}
     setExactHouseNoFilter("");
     setPartyFilters(new Set());
     setSource("all");
+    setAgeFilter("all");
   }
 
   useEffect(() => {
@@ -1611,7 +1637,7 @@ ${pagesHtml}
     }
   }, [areaTiles, selectedTile]);
 
-  useEffect(() => { setVisibleCount(120); }, [selectedTile, query, source]);
+  useEffect(() => { setVisibleCount(120); }, [selectedTile, query, source, ageFilter]);
 
   useEffect(() => {
     document.body.style.overflow = selected || showAreaMgr || showDeceasedMgr || showBlocklistMgr || showCancelledMgr || showFamilyMgr || showAreaStats || showCampaigns ? "hidden" : "";
@@ -1819,8 +1845,8 @@ ${pagesHtml}
           countLabel={formatCount(selectedScopeStats.life)}
           share={selectedLifeShare}
           lang={lang}
-          active={atlasMode && source === "life"}
-          onClick={atlasMode ? () => setSource((prev) => (prev === "life" ? "all" : "life")) : undefined}
+          active={source === "life"}
+          onClick={() => setSource((prev) => (prev === "life" ? "all" : "life"))}
           drillOnClick={atlasMode ? () => openAllFor("life") : undefined}
           drillLabel={lang === "te" ? "అన్ని లైఫ్ ఓటర్లు చూడండి" : "View all Life voters"}
         />
@@ -1830,8 +1856,8 @@ ${pagesHtml}
           countLabel={formatCount(selectedScopeStats.general)}
           share={selectedGeneralShare}
           lang={lang}
-          active={atlasMode && source === "general"}
-          onClick={atlasMode ? () => setSource((prev) => (prev === "general" ? "all" : "general")) : undefined}
+          active={source === "general"}
+          onClick={() => setSource((prev) => (prev === "general" ? "all" : "general"))}
           drillOnClick={atlasMode ? () => openAllFor("general") : undefined}
           drillLabel={lang === "te" ? "అన్ని జనరల్ ఓటర్లు చూడండి" : "View all General voters"}
         />
@@ -2056,13 +2082,21 @@ ${pagesHtml}
           )}
         </div>
         <div className="filterBarDivider filterBarDividerA" aria-hidden="true" />
-        <div className="filterCatGroup">
-          <button type="button" className={source === "all" ? "filterPill active" : "filterPill"} onClick={() => { setSource("all"); setExactHouseNoFilter(""); }}>
-            {t.allPdfs}
-          </button>
-          {SOURCE_ORDER.filter((s) => s !== "all").map((item) => (
-            <button key={item} type="button" className={source === item ? "filterPill active" : "filterPill"} onClick={() => { setSource(source === item ? "all" : item); setExactHouseNoFilter(""); }}>
-              {sourceLabel(item, t)}
+        <div className="filterCatGroup ageFilterGroup" aria-label={lang === "te" ? "వయస్సు వడపోతలు" : "Age filters"}>
+          {AGE_FILTERS.map((item) => (
+            <button
+              key={item}
+              type="button"
+              className={ageFilter === item ? "filterPill ageFilterPill active" : "filterPill ageFilterPill"}
+              onClick={() => {
+                setAgeFilter((prev) => (prev === item ? "all" : item));
+                setExactHouseNoFilter("");
+              }}
+              aria-pressed={ageFilter === item}
+              title={`${ageFilterLabel(item, lang)} ${ageFilterRange(item)}`}
+            >
+              <span className="ageFilterLabel">{ageFilterLabel(item, lang)}</span>
+              <span className="ageFilterRange">{ageFilterRange(item)}</span>
             </button>
           ))}
         </div>
@@ -2090,8 +2124,8 @@ ${pagesHtml}
             onClick={() => {
               const tile = AREA_TILES.find((tile) => tile.key === selectedTile);
               const base = tile?.label || query.trim() || t.all;
-              const suffix = partyFilterSuffix ? ` ${partyFilterSuffix}` : "";
-              downloadCsv(base + suffix);
+              const suffix = [partyFilterSuffix, ageFilterSuffix].filter(Boolean).join(" ");
+              downloadCsv(base + (suffix ? ` ${suffix}` : ""));
             }}
           >
             ↓ CSV
@@ -2104,8 +2138,9 @@ ${pagesHtml}
             onClick={() => {
               const tile = AREA_TILES.find((tile) => tile.key === selectedTile);
               const base = tile?.label || query.trim() || t.all;
+              const suffix = ageFilterSuffix ? ` ${ageFilterSuffix}` : "";
               const categories = PARTY_FILTER_ORDER.filter((cat) => partyFilters.has(cat));
-              void downloadPdf(base, categories);
+              void downloadPdf(base + suffix, categories);
             }}
           >
             {pdfBusy ? <SpinnerIcon /> : "↓ PDF"}
@@ -2185,7 +2220,7 @@ ${pagesHtml}
           {!atlasMode && !votersLoading && filteredVoters.length === 0 && (
             <div className="noSelectionHint">
               <p>{t.noVoters}</p>
-              {(partyFilters.size > 0 || source !== "all" || query.trim() || exactHouseNoFilter) && (
+              {(partyFilters.size > 0 || source !== "all" || ageFilter !== "all" || query.trim() || exactHouseNoFilter) && (
                 <>
                   <p className="activeFilterList">
                     {lang === "te" ? "యాక్టివ్ ఫిల్టర్లు: " : "Active filters: "}
@@ -2198,6 +2233,7 @@ ${pagesHtml}
                             .join(" + ")
                         : null,
                       source !== "all" ? sourceLabel(source, t) : null,
+                      ageFilter !== "all" ? `${ageFilterLabel(ageFilter, lang)} ${ageFilterRange(ageFilter)}` : null,
                       query.trim() ? `“${query.trim()}”` : null,
                       exactHouseNoFilter ? `D.no ${exactHouseNoFilter}` : null,
                     ].filter(Boolean).join(" · ")}
@@ -2208,6 +2244,7 @@ ${pagesHtml}
                     onClick={() => {
                       setPartyFilters(new Set());
                       setSource("all");
+                      setAgeFilter("all");
                       setQuery("");
                       setExactHouseNoFilter("");
                     }}
