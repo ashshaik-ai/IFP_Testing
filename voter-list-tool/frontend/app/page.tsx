@@ -1177,25 +1177,70 @@ export default function Home() {
         </div>`;
       }
 
-      function section(title: string, voters: Voter[]): string {
-        if (!voters.length) return "";
-        return `<div class="section">
-          <div class="secHeader">${title} <span class="cnt">${voters.length}</span></div>
-          <div class="grid">${voters.map(voterRow).join("")}</div>
-        </div>`;
+      // Explicit pagination instead of letting the browser auto-flow pages:
+      // a plain continuation page is a strict 4x5 grid (20 cards); any page
+      // that opens with the banner and/or a section divider only fits 4x4
+      // (16) since that header eats a row's worth of vertical space.
+      type PdfPage = { showBanner: boolean; sectionLabel: string; sectionTotal: number; cards: Voter[] };
+      const pdfPages: PdfPage[] = [];
+      let isFirstPageOverall = true;
+      function pushSection(voters: Voter[], label: string) {
+        if (!voters.length) return;
+        let idx = 0;
+        let firstPageOfSection = true;
+        while (idx < voters.length) {
+          const cap = firstPageOfSection || isFirstPageOverall ? 16 : 20;
+          pdfPages.push({
+            showBanner: isFirstPageOverall,
+            sectionLabel: firstPageOfSection ? label : "",
+            sectionTotal: voters.length,
+            cards: voters.slice(idx, idx + cap),
+          });
+          idx += cap;
+          firstPageOfSection = false;
+          isFirstPageOverall = false;
+        }
       }
+      pushSection(life, "లైఫ్ ఓటర్లు");
+      pushSection(general, "జనరల్ ఓటర్లు");
+
+      const pagesHtml = pdfPages.map((page, i) => {
+        const banner = page.showBanner
+          ? `<div class="pageHeader">
+              <h1>${base}${suffixHtml}</h1>
+              <div class="meta">
+                మొత్తం ${filteredVoters.length} · లైఫ్ ${life.length} · జనరల్ ${general.length}<br>
+                ${new Date().toLocaleDateString("te-IN")}
+              </div>
+            </div>`
+          : "";
+        const secHeader = page.sectionLabel
+          ? `<div class="secHeader">${page.sectionLabel} <span class="cnt">${page.sectionTotal}</span></div>`
+          : "";
+        const last = i === pdfPages.length - 1 ? " lastPage" : "";
+        return `<div class="pdfPage${last}">
+          ${banner}
+          ${secHeader}
+          <div class="grid">${page.cards.map(voterRow).join("")}</div>
+        </div>`;
+      }).join("");
 
       const html = `<!DOCTYPE html><html lang="te"><head>
 <meta charset="UTF-8">
 <title>${areaLabel} — ఓటర్ జాబితా</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Telugu:wght@400;700&display=swap');
+  @page { size: A4 landscape; margin: 0; }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: 'Noto Sans Telugu', 'Segoe UI', sans-serif; font-size: 11px; background: #fff; color: #1a1a1a; }
-  .pageHeader { padding: 12px 16px 12px 32px; background: #0e4a35; color: #fff; display: flex; justify-content: space-between; align-items: center; }
+  /* One physical sheet per block -- padding here is the only page margin
+     (extra on the left for binding/hole-punch), so content fits evenly on
+     all sides instead of relying on unpredictable browser auto-pagination. */
+  .pdfPage { padding: 10mm 8mm 10mm 14mm; break-after: page; }
+  .pdfPage.lastPage { break-after: auto; }
+  .pageHeader { padding: 12px 16px; margin-bottom: 12px; background: #0e4a35; color: #fff; border-radius: 6px; display: flex; justify-content: space-between; align-items: center; }
   .pageHeader h1 { font-size: 15px; }
   .pageHeader .meta { font-size: 11px; opacity: 0.85; text-align: right; }
-  .section { padding: 12px 16px 12px 32px; }
   .secHeader { font-size: 13px; font-weight: 700; padding: 6px 10px; background: #f0ebe0; border-bottom: 2px solid #0e4a35; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
   .secHeader .cnt { background: #0e4a35; color: #fff; border-radius: 99px; padding: 1px 8px; font-size: 11px; }
   .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
@@ -1232,15 +1277,7 @@ export default function Home() {
   }
 </style>
 </head><body>
-<div class="pageHeader">
-  <h1>${base}${suffixHtml}</h1>
-  <div class="meta">
-    మొత్తం ${filteredVoters.length} · లైఫ్ ${life.length} · జనరల్ ${general.length}<br>
-    ${new Date().toLocaleDateString("te-IN")}
-  </div>
-</div>
-${section("లైఫ్ ఓటర్లు", life)}
-${section("జనరల్ ఓటర్లు", general)}
+${pagesHtml}
 </body></html>`;
 
       const win = window.open("", "_blank");
