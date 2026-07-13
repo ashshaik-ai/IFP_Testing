@@ -430,6 +430,13 @@ function UploadIcon() {
     </svg>
   );
 }
+function DownloadIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M12 4v14M6 13l6 6 6-6M5 20h14" />
+    </svg>
+  );
+}
 function SearchIcon() {
   return (
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -573,6 +580,7 @@ export default function Home() {
   const [targetBusyId, setTargetBusyId] = useState("");
   const [mfBusyId, setMfBusyId] = useState("");
   const [flagBusyId, setFlagBusyId] = useState("");
+  const [noWaBusyId, setNoWaBusyId] = useState("");
   const [pdfBusy, setPdfBusy] = useState(false);
   const [showMoreMenu, setShowMoreMenu] = useState(false);
   const [browseAll, setBrowseAll] = useState(false);
@@ -993,6 +1001,26 @@ export default function Home() {
     }
   }
 
+  // Flips a "confirmed no WhatsApp" mark to confirmed-good -- clicked after
+  // manually fixing the mobile number, so the desk operator is asserting the
+  // corrected number IS on WhatsApp. Same optimistic-update/revert-on-error
+  // shape as toggleFlagVoter.
+  async function clearNoWhatsapp(voter: Voter) {
+    const patch = { has_whatsapp: true };
+    setLiveMessage(lang === "te" ? "WhatsApp ఉందని గుర్తించారు" : "Marked as has WhatsApp");
+    setAllVoters((prev) => prev.map((v) => (v.id === voter.id ? { ...v, ...patch } : v)));
+    setNoWaBusyId(voter.id);
+    setError("");
+    try {
+      await patchVoter(voter, patch);
+    } catch (err) {
+      setAllVoters((prev) => prev.map((v) => (v.id === voter.id ? { ...v, has_whatsapp: voter.has_whatsapp } : v)));
+      setError(String(err));
+    } finally {
+      setNoWaBusyId("");
+    }
+  }
+
   async function markAndSave(patch: Partial<Voter>) {
     if (!selected) return;
     setBusy(true);
@@ -1119,6 +1147,35 @@ export default function Home() {
     const anchor = document.createElement("a");
     anchor.href = href;
     anchor.download = `${fileLabel}.csv`;
+    anchor.click();
+    URL.revokeObjectURL(href);
+  }
+
+  // Every voter with a manual_update_ts -- stamped server-side only when a
+  // desk operator hand-edits mobile/has_whatsapp (see routes.py), never by
+  // bulk import -- so this is exactly "numbers I touched by hand," across
+  // all jobs, ignoring the current area/party/source filters on purpose.
+  function downloadUpdatedContactsCsv() {
+    const headers = ["ప్రాంతం", "క్రమ సంఖ్య", "పేరు", "మొబైల్", "WhatsApp స్థితి", "నవీకరించిన సమయం"];
+    const waStatusLabel = (v: Voter) =>
+      v.has_whatsapp === true ? "ఉంది" : v.has_whatsapp === false ? "లేదు" : "తెలియదు";
+    const rows = allVoters
+      .filter((v) => v.manual_update_ts)
+      .sort((a, b) => String(b.manual_update_ts).localeCompare(String(a.manual_update_ts)))
+      .map((v) => [
+        v.area_te || "",
+        v.serial_no || "",
+        v.name_te || "",
+        v.mobile || "",
+        waStatusLabel(v),
+        v.manual_update_ts || "",
+      ]);
+    const csv = "﻿" + [headers, ...rows].map((row) => row.map(csvField).join(",")).join("\r\n");
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
+    const href = URL.createObjectURL(blob);
+    const anchor = document.createElement("a");
+    anchor.href = href;
+    anchor.download = "updated-contacts.csv";
     anchor.click();
     URL.revokeObjectURL(href);
   }
@@ -2038,6 +2095,9 @@ ${pagesHtml}
                     onChange={(event) => { importWhatsappStatus(event.target.files?.[0] || null); setShowMoreMenu(false); }}
                   />
                 </label>
+                <button type="button" role="menuitem" className="moreMenuItem" onClick={() => { downloadUpdatedContactsCsv(); setShowMoreMenu(false); }}>
+                  <DownloadIcon /> {t.exportUpdated}
+                </button>
                 <div className="moreMenuDivider" aria-hidden="true" />
                 <button type="button" role="menuitem" className="moreMenuItem" onClick={() => { setShowCampaigns(true); setShowMoreMenu(false); }}>
                   {lang === "te" ? "వాట్సాప్ ప్రచారం" : "WhatsApp Campaigns"}
@@ -2277,7 +2337,7 @@ ${pagesHtml}
                       aria-pressed={Boolean(voter.is_flagged)}
                       aria-label={voter.is_flagged ? (lang === "te" ? "గుర్తు తీసివేయండి" : "Unmark") : (lang === "te" ? "గుర్తు పెట్టండి" : "Mark")}
                     >
-                      {voter.is_flagged && <FlagIcon />}
+                      {voter.is_flagged && <span className="iconPopIn"><FlagIcon /></span>}
                     </button>
                   </div>
                 </div>
@@ -2316,9 +2376,16 @@ ${pagesHtml}
                         {voter.mobile}
                       </a>
                       {voter.has_whatsapp === false && (
-                        <span className="noWhatsappBadge" title={t.noWhatsapp} aria-label={t.noWhatsapp}>
+                        <button
+                          type="button"
+                          className="noWhatsappBadge iconPopIn"
+                          title={t.clearNoWhatsapp}
+                          aria-label={t.clearNoWhatsapp}
+                          disabled={noWaBusyId === voter.id}
+                          onClick={() => void clearNoWhatsapp(voter)}
+                        >
                           <NoWhatsappIcon />
-                        </span>
+                        </button>
                       )}
                     </p>
                   )}

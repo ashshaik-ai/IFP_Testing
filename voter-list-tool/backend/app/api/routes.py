@@ -411,6 +411,23 @@ def update_voter(job_id: str, voter_id: str, payload: VoterUpdate) -> dict:
     for voter in voters:
         if voter["id"] != voter_id:
             continue
+        # Stamp manual-edit audit trail only when mobile/has_whatsapp actually
+        # change value -- not on every save of an unrelated field -- so the
+        # "updated contacts" export reflects real phone/WhatsApp edits only.
+        contact_changed = any(
+            field in updates and updates[field] != voter.get(field)
+            for field in ("mobile", "has_whatsapp")
+        )
+        if contact_changed:
+            updates["manual_update_ts"] = datetime.now(timezone.utc).isoformat(timespec="seconds")
+        # Default opt-in rule, reapplied whenever has_whatsapp is (re)confirmed
+        # via this route (e.g. the desk UI's "mark as has WhatsApp" action):
+        # a mobile number + confirmed WhatsApp together imply opt-in, anything
+        # else does not. Overrides any wa_optin the caller also sent in this
+        # same request -- consistent with the bulk-import path's behavior.
+        if "has_whatsapp" in updates and updates["has_whatsapp"] != voter.get("has_whatsapp"):
+            final_mobile = str(updates.get("mobile", voter.get("mobile", "")) or "").strip()
+            updates["wa_optin"] = bool(final_mobile) and updates["has_whatsapp"] is True
         for key, value in updates.items():
             voter[key] = value
         if "name_te" in updates and "name_en" not in updates:

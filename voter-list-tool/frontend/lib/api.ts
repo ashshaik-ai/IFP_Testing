@@ -72,6 +72,7 @@ export type Voter = {
   consent_ts?: string;
   consent_source?: string;
   has_whatsapp?: boolean | null;
+  manual_update_ts?: string;
   raw_text: string;
   notes: string;
 };
@@ -267,6 +268,8 @@ export const copy = {
     importFlags: "ఫ్లాగ్‌లు దిగుమతి (Excel)",
     importWhatsapp: "WhatsApp స్థితి దిగుమతి (Excel)",
     noWhatsapp: "WhatsApp లేదు",
+    clearNoWhatsapp: "నంబర్ సరిచేసిన తర్వాత — WhatsApp ఉందని గుర్తించండి",
+    exportUpdated: "నవీకరించిన నంబర్లు ఎగుమతి (Excel)",
   },
   en: {
     title: "Voter List Tool",
@@ -370,6 +373,8 @@ export const copy = {
     importFlags: "Import flags (Excel)",
     importWhatsapp: "Import WhatsApp status (Excel)",
     noWhatsapp: "No WhatsApp",
+    clearNoWhatsapp: "Fixed the number — mark as has WhatsApp",
+    exportUpdated: "Export updated numbers (Excel)",
   },
 } as const;
 

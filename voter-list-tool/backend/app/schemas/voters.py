@@ -54,6 +54,11 @@ class VoterRecord(BaseModel):
     # None = not checked yet, True = confirmed on WhatsApp, False = confirmed
     # not on WhatsApp (bulk-verified externally, imported by serial_no).
     has_whatsapp: bool | None = None
+    # Server-stamped (never client-set) whenever a desk operator manually
+    # changes mobile/has_whatsapp via the single-voter PATCH route. Bulk
+    # imports use their own dedicated endpoints, so any stamp here reflects a
+    # real manual edit -- this is what the "updated contacts" export filters on.
+    manual_update_ts: str = ""
 
 
 class VoterUpdate(BaseModel):

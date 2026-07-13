@@ -1517,12 +1517,46 @@ dd {
 }
 
 /* Bulk-verified externally (serial-matched Excel import) -- lets staff see
-   at a glance not to bother messaging this number. */
+   at a glance not to bother messaging this number. Clickable: clears the
+   mark back to unknown, e.g. after correcting the mobile number. */
 .noWhatsappBadge {
   display: inline-flex;
   align-items: center;
+  border: none;
+  background: transparent;
+  padding: 0 0 0 4px;
   color: var(--danger);
   opacity: 0.85;
+  cursor: pointer;
+}
+
+.noWhatsappBadge:hover,
+.noWhatsappBadge:focus-visible {
+  opacity: 1;
+}
+
+.noWhatsappBadge:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 1px;
+}
+
+.noWhatsappBadge:disabled {
+  cursor: default;
+  opacity: 0.5;
+}
+
+/* Shared pop-in feedback for badge icons appearing (flag mark, no-WhatsApp
+   mark) -- same treatment as .partyBtnSolo's partyChipIn, just scoped to a
+   small inline icon instead of a full button. */
+@keyframes iconPopIn {
+  from { opacity: 0; transform: scale(0.55); }
+  60%  { opacity: 1; transform: scale(1.15); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.iconPopIn {
+  display: inline-flex;
+  animation: iconPopIn 0.28s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 /* Used instead of .ddCompact once a name is already at its smallest font

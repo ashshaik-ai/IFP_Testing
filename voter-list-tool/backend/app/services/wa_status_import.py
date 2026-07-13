@@ -84,6 +84,14 @@ def import_whatsapp_status_from_xlsx(file_bytes: bytes) -> dict:
                     marked_yes += 1
                 else:
                     marked_no += 1
+            # Default opt-in rule: a mobile number + a confirmed-WhatsApp
+            # status together imply opt-in; anything else does not. Recomputed
+            # every time has_whatsapp is (re)confirmed by this importer, even
+            # if has_whatsapp itself didn't change value this run.
+            desired_optin = bool(str(voter.get("mobile", "")).strip()) and status is True
+            if bool(voter.get("wa_optin")) != desired_optin:
+                voter["wa_optin"] = desired_optin
+                changed = True
         if changed:
             write_json(path, voters)
 
