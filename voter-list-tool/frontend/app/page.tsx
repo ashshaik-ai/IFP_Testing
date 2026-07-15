@@ -197,9 +197,25 @@ function parseAge(value: string) {
   return normalized ? Number.parseInt(normalized, 10) : null;
 }
 
+// The stored `age` field is whatever was printed on the voter's card when
+// this list was originally collected (2023) -- never overwritten to mean
+// "current age" (editing it means correcting an OCR misread, not aging
+// someone up). Every place age is *displayed* instead adds how many years
+// have passed since 2023, so it stays correct without a yearly manual pass.
+const VOTER_LIST_BASE_YEAR = 2023;
+function currentAge(value: string) {
+  const stored = parseAge(value);
+  if (stored === null) return null;
+  return stored + (new Date().getFullYear() - VOTER_LIST_BASE_YEAR);
+}
+function displayAge(value: string) {
+  const age = currentAge(value);
+  return age === null ? "-" : String(age);
+}
+
 function voterMatchesAgeFilter(voter: Voter, filter: AgeFilter) {
   if (filter === "all") return true;
-  const age = parseAge(voter.age);
+  const age = currentAge(voter.age);
   if (age === null) return false;
   if (filter === "youth") return age <= 30;
   if (filter === "middle") return age >= 31 && age <= 50;
@@ -1137,7 +1153,7 @@ export default function Home() {
       v.name_en || "",
       v.relation_label_te || "",
       v.relation_name_te || "",
-      v.age || "",
+      displayAge(v.age),
       v.occupation_te || "",
       v.house_no || "",
     ]);
@@ -1245,7 +1261,7 @@ export default function Home() {
               <div class="name">${name || "[పేరు తెలియదు]"}${catTag}</div>
               <div class="row"><span class="lbl">${lang === "te" ? "తండ్రి" : "Father"}</span><span>${displayRelation(v.relation_name_te || "", lang)}</span></div>
               <div class="row"><span class="lbl">సీరియల్</span><span>${v.serial_no || "-"}</span></div>
-              <div class="row"><span class="lbl">వయస్సు</span><span>${v.age || "-"}</span></div>
+              <div class="row"><span class="lbl">వయస్సు</span><span>${displayAge(v.age)}</span></div>
               <div class="row"><span class="lbl">D.no</span><span>${v.house_no || "-"}</span></div>
               ${v.mobile ? `<div class="row"><span class="lbl">${lang === "te" ? "ఫోన్" : "Phone"}</span><span>${v.mobile}</span>${noWa}</div>` : ""}
             </div>
@@ -2360,7 +2376,7 @@ ${pagesHtml}
                     <dt>{t.serial}</dt>
                     <dd>{voter.serial_no || "-"}</dd>
                     <dt>{t.age}</dt>
-                    <dd>{voter.age || "-"}</dd>
+                    <dd>{displayAge(voter.age)}</dd>
                     <dt className="dtHouse">{t.house}</dt>
                     <dd className="ddCompact" style={{ fontSize: compactFieldFontSize(voter.house_no || "-") }}>{voter.house_no || "-"}</dd>
                     <dt>{t.area}</dt>
@@ -2673,6 +2689,13 @@ ${pagesHtml}
                         value={String(selected[key] || "")}
                         onChange={(event) => updateSelectedField(key, event.target.value as Voter[typeof key])}
                       />
+                      {key === "age" && (
+                        <small className="fieldPreview">
+                          {lang === "te"
+                            ? `కార్డుపై ఉన్నది నమోదు చేయండి (${VOTER_LIST_BASE_YEAR} నాటి వయస్సు) — ప్రస్తుత వయస్సు: ${displayAge(selected.age)}`
+                            : `Enter what's printed on the card (age as of ${VOTER_LIST_BASE_YEAR}) — current age: ${displayAge(selected.age)}`}
+                        </small>
+                      )}
                     </label>
                   ))}
                 </details>
