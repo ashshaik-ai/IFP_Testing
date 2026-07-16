@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactNode, RefObject, TouchEvent as ReactTouchEvent, useEffect, useMemo, useRef, useState } from "react";
+import { KeyboardEvent as ReactKeyboardEvent, ReactNode, RefObject, TouchEvent as ReactTouchEvent, useEffect, useMemo, useRef, useState } from "react";
 import { API_BASE, AreaOption, FlagImportResult, Job, Lang, PhoneImportResult, SourceFilter, Voter, WhatsappImportResult, api, copy } from "@/lib/api";
 import { englishToTeluguName, toEnglishArea, toEnglishName } from "@/lib/transliterate";
 import { SecureImage } from "@/components/SecureImage";
@@ -228,6 +228,16 @@ function friendlyError(err: unknown, lang: Lang): string {
   return lang === "te" ? "ఏదో తప్పు జరిగింది — మళ్ళీ ప్రయత్నించండి." : "Something went wrong — please try again.";
 }
 
+// A file-input <label> isn't focusable, so wrapping one in a menu made every
+// import keyboard-unreachable. tabIndex + this handler make Enter/Space open
+// the native file picker like any other menu item.
+function fileMenuItemKeyDown(e: ReactKeyboardEvent<HTMLLabelElement>) {
+  if (e.key === "Enter" || e.key === " ") {
+    e.preventDefault();
+    (e.currentTarget.querySelector('input[type="file"]') as HTMLInputElement | null)?.click();
+  }
+}
+
 function voterMatchesAgeFilter(voter: Voter, filter: AgeFilter) {
   if (filter === "all") return true;
   const age = currentAge(voter.age);
@@ -322,9 +332,12 @@ function StatCard({
 
 function compactFieldFontSize(value: string): string {
   const len = value.trim().length;
-  if (len > 14) return "10px";
-  if (len > 10) return "11px";
-  if (len > 5) return "12px";
+  // 11.5px floor (was 10px) — Telugu conjuncts with vattu stacks are hard to
+  // read below this on a phone, and this app's users skew older. Past the
+  // floor length the wrap-capable fields break to a 2nd line instead.
+  if (len > 14) return "11.5px";
+  if (len > 10) return "12px";
+  if (len > 5) return "12.5px";
   return "13px";
 }
 
@@ -338,16 +351,17 @@ function isFieldAtFontFloor(value: string): boolean {
 function nameFontSize(name: string, lang: Lang): string {
   const len = name.trim().length;
   if (lang === "te") {
-    // Telugu glyphs are wider — shrink earlier
-    if (len > 22) return "10px";
-    if (len > 17) return "11.5px";
-    if (len > 12) return "13px";
+    // Telugu glyphs are wider — shrink earlier. 11.5px floor (was 10px) keeps
+    // conjuncts legible for older users; longer names wrap past the floor.
+    if (len > 22) return "11.5px";
+    if (len > 17) return "12.5px";
+    if (len > 12) return "13.5px";
     return "15px";
   }
-  // English
-  if (len > 26) return "9.5px";
-  if (len > 20) return "10.5px";
-  if (len > 15) return "12px";
+  // English — 11px floor (was 9.5px).
+  if (len > 26) return "11px";
+  if (len > 20) return "12px";
+  if (len > 15) return "13px";
   if (len > 10) return "13.5px";
   return "15px";
 }
@@ -550,6 +564,12 @@ export default function Home() {
   const stickyZoneRef = useRef<HTMLDivElement | null>(null);
   const sentinelRef = useRef<HTMLDivElement | null>(null);
   const voterModalRef = useRef<HTMLElement | null>(null);
+  const areaMgrRef = useRef<HTMLElement | null>(null);
+  const deceasedRef = useRef<HTMLElement | null>(null);
+  const blocklistRef = useRef<HTMLElement | null>(null);
+  const cancelledRef = useRef<HTMLElement | null>(null);
+  const familyRef = useRef<HTMLElement | null>(null);
+  const areaStatsRef = useRef<HTMLElement | null>(null);
   const moreMenuRef = useRef<HTMLDivElement | null>(null);
   const sheetDragStartY = useRef(0);
   const sheetDragActive = useRef(false);
@@ -1798,6 +1818,12 @@ ${pagesHtml}
   }, [selected, showAreaMgr, showDeceasedMgr, showBlocklistMgr, showCancelledMgr, showFamilyMgr, showAreaStats, showCampaigns, nameEnDraft, nameMode]);
 
   useModalFocusTrap(voterModalRef, Boolean(selected));
+  useModalFocusTrap(areaMgrRef, showAreaMgr);
+  useModalFocusTrap(deceasedRef, showDeceasedMgr);
+  useModalFocusTrap(blocklistRef, showBlocklistMgr);
+  useModalFocusTrap(cancelledRef, showCancelledMgr);
+  useModalFocusTrap(familyRef, showFamilyMgr);
+  useModalFocusTrap(areaStatsRef, showAreaStats);
 
   // Overflow "more" menu (upload/manage areas/area stats/family/deceased/
   // block/cancelled) closes on outside click or Escape, same as any menu.
@@ -2136,7 +2162,7 @@ ${pagesHtml}
                 <button type="button" role="menuitem" className="moreMenuItem" onClick={() => { setShowCancelledMgr(true); setShowMoreMenu(false); }}>
                   {lang === "te" ? "రద్దు జాబితా" : "Cancelled"} <span className="moreMenuCount">{formatCount(cancelledVoters.length)}</span>
                 </button>
-                <label className="moreMenuItem" role="menuitem">
+                <label className="moreMenuItem" role="menuitem" tabIndex={0} onKeyDown={fileMenuItemKeyDown}>
                   {busy ? <SpinnerIcon /> : <UploadIcon />} {t.upload}
                   <input
                     type="file"
@@ -2145,7 +2171,7 @@ ${pagesHtml}
                     onChange={(event) => { upload(event.target.files?.[0] || null); setShowMoreMenu(false); }}
                   />
                 </label>
-                <label className="moreMenuItem" role="menuitem">
+                <label className="moreMenuItem" role="menuitem" tabIndex={0} onKeyDown={fileMenuItemKeyDown}>
                   {busy ? <SpinnerIcon /> : <UploadIcon />} {t.importPhones}
                   <input
                     type="file"
@@ -2154,7 +2180,7 @@ ${pagesHtml}
                     onChange={(event) => { importPhones(event.target.files?.[0] || null); setShowMoreMenu(false); }}
                   />
                 </label>
-                <label className="moreMenuItem" role="menuitem">
+                <label className="moreMenuItem" role="menuitem" tabIndex={0} onKeyDown={fileMenuItemKeyDown}>
                   {busy ? <SpinnerIcon /> : <UploadIcon />} {t.importFlags}
                   <input
                     type="file"
@@ -2163,7 +2189,7 @@ ${pagesHtml}
                     onChange={(event) => { importFlags(event.target.files?.[0] || null); setShowMoreMenu(false); }}
                   />
                 </label>
-                <label className="moreMenuItem" role="menuitem">
+                <label className="moreMenuItem" role="menuitem" tabIndex={0} onKeyDown={fileMenuItemKeyDown}>
                   {busy ? <SpinnerIcon /> : <UploadIcon />} {t.importWhatsapp}
                   <input
                     type="file"
@@ -2409,9 +2435,13 @@ ${pagesHtml}
                 style={index < 40 ? { animationDelay: `${index * 0.03}s` } : { animation: "none" }}
               >
                 <div className="photoCol">
-                  <SecureImage path={voter.photo_url} token={token} alt={t.photo} />
+                  <SecureImage path={voter.photo_url} token={token} alt={displayName(voter, lang, t.missingName)} />
                   <div className="photoBadges">
-                    <span className={voter.source_kind === "life" ? "sourceBadge sourceLife" : "sourceBadge sourceGeneral"}>
+                    <span
+                      className={voter.source_kind === "life" ? "sourceBadge sourceLife" : "sourceBadge sourceGeneral"}
+                      title={voter.source_kind === "life" ? t.lifeCount : t.generalCount}
+                      aria-label={voter.source_kind === "life" ? t.lifeCount : t.generalCount}
+                    >
                       {voter.source_badge}
                     </span>
                     <button
@@ -2798,7 +2828,7 @@ ${pagesHtml}
 
       {showAreaMgr && (
         <div className="modal" role="dialog" aria-modal="true" aria-label={t.manageAreas} onClick={() => setShowAreaMgr(false)}>
-          <section className="areaMgrPanel" onClick={(event) => event.stopPropagation()}>
+          <section className="areaMgrPanel" ref={areaMgrRef} tabIndex={-1} onClick={(event) => event.stopPropagation()}>
             <div className="modalHeader" onTouchStart={onSheetTouchStart} onTouchMove={onSheetTouchMove} onTouchEnd={(e) => onSheetTouchEnd(e, () => setShowAreaMgr(false))}>
               <div>
                 <h2>{t.manageAreas}</h2>
@@ -2875,7 +2905,7 @@ ${pagesHtml}
 
       {showDeceasedMgr && (
         <div className="modal" role="dialog" aria-modal="true" aria-label={lang === "te" ? "మరణించిన ఓటర్లు" : "Deceased Voters"} onClick={() => setShowDeceasedMgr(false)}>
-          <section className="areaMgrPanel" onClick={(event) => event.stopPropagation()}>
+          <section className="areaMgrPanel" ref={deceasedRef} tabIndex={-1} onClick={(event) => event.stopPropagation()}>
             <div className="modalHeader" onTouchStart={onSheetTouchStart} onTouchMove={onSheetTouchMove} onTouchEnd={(e) => onSheetTouchEnd(e, () => setShowDeceasedMgr(false))}>
               <div>
                 <h2>{lang === "te" ? "మరణించిన ఓటర్లు" : "Deceased Voters"}</h2>
@@ -2925,7 +2955,7 @@ ${pagesHtml}
 
       {showBlocklistMgr && (
         <div className="modal" role="dialog" aria-modal="true" aria-label={lang === "te" ? "బ్లాక్ లిస్ట్" : "Block List"} onClick={() => setShowBlocklistMgr(false)}>
-          <section className="areaMgrPanel" onClick={(event) => event.stopPropagation()}>
+          <section className="areaMgrPanel" ref={blocklistRef} tabIndex={-1} onClick={(event) => event.stopPropagation()}>
             <div className="modalHeader" onTouchStart={onSheetTouchStart} onTouchMove={onSheetTouchMove} onTouchEnd={(e) => onSheetTouchEnd(e, () => setShowBlocklistMgr(false))}>
               <div>
                 <h2>{lang === "te" ? "బ్లాక్ లిస్ట్" : "Block List"}</h2>
@@ -2975,7 +3005,7 @@ ${pagesHtml}
 
       {showCancelledMgr && (
         <div className="modal" role="dialog" aria-modal="true" aria-label={lang === "te" ? "రద్దు ఓటర్లు" : "Cancelled Voters"} onClick={() => setShowCancelledMgr(false)}>
-          <section className="areaMgrPanel" onClick={(event) => event.stopPropagation()}>
+          <section className="areaMgrPanel" ref={cancelledRef} tabIndex={-1} onClick={(event) => event.stopPropagation()}>
             <div className="modalHeader" onTouchStart={onSheetTouchStart} onTouchMove={onSheetTouchMove} onTouchEnd={(e) => onSheetTouchEnd(e, () => setShowCancelledMgr(false))}>
               <div>
                 <h2>{lang === "te" ? "రద్దు ఓటర్లు" : "Cancelled Voters"}</h2>
@@ -3025,7 +3055,7 @@ ${pagesHtml}
 
       {showFamilyMgr && (
         <div className="modal" role="dialog" aria-modal="true" aria-label={t.familyVoting} onClick={() => setShowFamilyMgr(false)}>
-          <section className="areaMgrPanel familyPanel" onClick={(event) => event.stopPropagation()}>
+          <section className="areaMgrPanel familyPanel" ref={familyRef} tabIndex={-1} onClick={(event) => event.stopPropagation()}>
             <div className="modalHeader" onTouchStart={onSheetTouchStart} onTouchMove={onSheetTouchMove} onTouchEnd={(e) => onSheetTouchEnd(e, () => setShowFamilyMgr(false))}>
               <div>
                 <h2>{t.familyVoting}</h2>
@@ -3107,7 +3137,7 @@ ${pagesHtml}
 
       {showAreaStats && (
         <div className="modal" role="dialog" aria-modal="true" aria-label={t.areaStats} onClick={() => setShowAreaStats(false)}>
-          <section className="areaMgrPanel areaStatsPanel" onClick={(e) => e.stopPropagation()}>
+          <section className="areaMgrPanel areaStatsPanel" ref={areaStatsRef} tabIndex={-1} onClick={(e) => e.stopPropagation()}>
             <div className="modalHeader" onTouchStart={onSheetTouchStart} onTouchMove={onSheetTouchMove} onTouchEnd={(e) => onSheetTouchEnd(e, () => setShowAreaStats(false))}>
               <strong>{t.areaStats}</strong>
               <span className="modalCount">{sidebarAreaStats.length}</span>

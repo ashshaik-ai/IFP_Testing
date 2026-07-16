@@ -137,8 +137,13 @@ select:hover {
 
 button:focus-visible,
 input:focus-visible,
-select:focus-visible {
-  outline: 3px solid rgba(198, 146, 46, 0.45);
+select:focus-visible,
+a:focus-visible,
+[tabindex]:focus-visible {
+  /* Opaque gold (was 45%-alpha ≈ 1.54:1, below the 3:1 non-text minimum).
+     Solid --gold clears 3:1 on both the white surfaces and the green
+     active-filter fills. */
+  outline: 3px solid var(--gold);
   outline-offset: 2px;
 }
 
@@ -427,8 +432,13 @@ select {
 
 .filterBarSearch::placeholder { color: var(--muted); }
 
-.filterBarSearch:focus {
-  outline: none;
+.filterBarSearch:focus-visible {
+  border-color: var(--green);
+  background: #fff;
+  outline: 3px solid var(--gold);
+  outline-offset: 2px;
+}
+.filterBarSearch:focus:not(:focus-visible) {
   border-color: var(--green);
   background: #fff;
   box-shadow: 0 0 0 3px rgba(14, 102, 68, 0.1);
