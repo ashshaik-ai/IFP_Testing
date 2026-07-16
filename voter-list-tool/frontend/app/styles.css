@@ -2186,7 +2186,7 @@ form {
   display: flex;
   align-items: center;
   gap: 8px;
-  min-height: 38px;
+  min-height: 44px;
   padding: 0 10px;
   border: none;
   border-radius: 7px;
@@ -2204,6 +2204,16 @@ form {
   background: rgba(14, 74, 53, 0.07);
 }
 
+/* WhatsApp Campaigns is the single highest-blast-radius action in the menu
+   (an unconfirmed send reaches the whole audience) — a quiet red tint
+   distinguishes it from routine admin, without a jarring full danger button. */
+.moreMenuItemDanger {
+  color: var(--danger);
+}
+.moreMenuItemDanger:hover {
+  background: rgba(155, 28, 28, 0.08);
+}
+
 .moreMenuCount {
   margin-left: auto;
   color: var(--muted);
@@ -2211,10 +2221,25 @@ form {
   font-size: 12px;
 }
 
+.moreMenuGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.moreMenuGroupLabel {
+  padding: 6px 10px 4px;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
 .moreMenuDivider {
   height: 1px;
   margin: 5px 4px;
   background: var(--line);
+  border: none;
 }
 
 .exportBtnGroup {

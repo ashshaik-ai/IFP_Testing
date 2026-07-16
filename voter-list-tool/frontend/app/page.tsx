@@ -2168,70 +2168,89 @@ ${pagesHtml}
             </button>
             {showMoreMenu && (
               <div className="moreMenu" role="menu">
-                <button type="button" role="menuitem" className="moreMenuItem" onClick={() => { setShowFamilyMgr(true); setShowMoreMenu(false); }}>
-                  {t.familyVoting} <span className="moreMenuCount">{formatCount(familyClusters.length)}</span>
-                </button>
-                <button type="button" role="menuitem" className="moreMenuItem" onClick={() => { setShowDeceasedMgr(true); setShowMoreMenu(false); }}>
-                  {lang === "te" ? "మరణించినవారు" : "Deceased"} <span className="moreMenuCount">{formatCount(deceasedVoters.length)}</span>
-                </button>
-                <button type="button" role="menuitem" className="moreMenuItem" onClick={() => { setShowBlocklistMgr(true); setShowMoreMenu(false); }}>
-                  {lang === "te" ? "బ్లాక్ లిస్ట్" : "Block List"} <span className="moreMenuCount">{formatCount(blocklistedVoters.length)}</span>
-                </button>
-                <button type="button" role="menuitem" className="moreMenuItem" onClick={() => { setShowCancelledMgr(true); setShowMoreMenu(false); }}>
-                  {lang === "te" ? "రద్దు జాబితా" : "Cancelled"} <span className="moreMenuCount">{formatCount(cancelledVoters.length)}</span>
-                </button>
-                <label className="moreMenuItem" role="menuitem" tabIndex={0} onKeyDown={fileMenuItemKeyDown}>
-                  {busy ? <SpinnerIcon /> : <UploadIcon />} {t.upload}
-                  <input
-                    type="file"
-                    accept="application/pdf"
-                    style={{ display: "none" }}
-                    onChange={(event) => { upload(event.target.files?.[0] || null); setShowMoreMenu(false); }}
-                  />
-                </label>
-                <label className="moreMenuItem" role="menuitem" tabIndex={0} onKeyDown={fileMenuItemKeyDown}>
-                  {busy ? <SpinnerIcon /> : <UploadIcon />} {t.importPhones}
-                  <input
-                    type="file"
-                    accept=".xlsx,.xlsm"
-                    style={{ display: "none" }}
-                    onChange={(event) => { importPhones(event.target.files?.[0] || null); setShowMoreMenu(false); }}
-                  />
-                </label>
-                <label className="moreMenuItem" role="menuitem" tabIndex={0} onKeyDown={fileMenuItemKeyDown}>
-                  {busy ? <SpinnerIcon /> : <UploadIcon />} {t.importFlags}
-                  <input
-                    type="file"
-                    accept=".xlsx,.xlsm"
-                    style={{ display: "none" }}
-                    onChange={(event) => { importFlags(event.target.files?.[0] || null); setShowMoreMenu(false); }}
-                  />
-                </label>
-                <label className="moreMenuItem" role="menuitem" tabIndex={0} onKeyDown={fileMenuItemKeyDown}>
-                  {busy ? <SpinnerIcon /> : <UploadIcon />} {t.importWhatsapp}
-                  <input
-                    type="file"
-                    accept=".xlsx,.xlsm"
-                    style={{ display: "none" }}
-                    onChange={(event) => { importWhatsappStatus(event.target.files?.[0] || null); setShowMoreMenu(false); }}
-                  />
-                </label>
-                <button type="button" role="menuitem" className="moreMenuItem" onClick={() => { downloadUpdatedContactsCsv(); setShowMoreMenu(false); }}>
-                  <DownloadIcon /> {t.exportUpdated}
-                </button>
-                <button type="button" role="menuitem" className="moreMenuItem" onClick={() => { downloadContactsCsv(); setShowMoreMenu(false); }}>
-                  <DownloadIcon /> {t.exportContacts}
-                </button>
-                <div className="moreMenuDivider" aria-hidden="true" />
-                <button type="button" role="menuitem" className="moreMenuItem" onClick={() => { setShowCampaigns(true); setShowMoreMenu(false); }}>
-                  {lang === "te" ? "వాట్సాప్ ప్రచారం" : "WhatsApp Campaigns"}
-                </button>
-                <button type="button" role="menuitem" className="moreMenuItem" onClick={() => { setShowAreaStats(true); setShowMoreMenu(false); }}>
-                  <ChartIcon /> {lang === "te" ? "ప్రాంత లెక్కలు" : "Area Stats"}
-                </button>
-                <button type="button" role="menuitem" className="moreMenuItem" onClick={() => { setShowAreaMgr(true); void loadRawAreas(); setShowMoreMenu(false); }}>
-                  {t.manageAreas}
-                </button>
+                {/* Grouped by risk/frequency (audit finding: routine views
+                    used to sit flush against bulk-mutating imports with no
+                    visual separation). Views first (safe, frequent), then
+                    read-only exports, then imports (clearly marked as
+                    instant-mutating), then admin/high-risk last. */}
+                <div className="moreMenuGroup" role="group" aria-label={lang === "te" ? "వీక్షణలు" : "Views"}>
+                  <div className="moreMenuGroupLabel" aria-hidden="true">{lang === "te" ? "వీక్షణలు" : "Views"}</div>
+                  <button type="button" role="menuitem" className="moreMenuItem" onClick={() => { setShowFamilyMgr(true); setShowMoreMenu(false); }}>
+                    {t.familyVoting} <span className="moreMenuCount">{formatCount(familyClusters.length)}</span>
+                  </button>
+                  <button type="button" role="menuitem" className="moreMenuItem" onClick={() => { setShowDeceasedMgr(true); setShowMoreMenu(false); }}>
+                    {lang === "te" ? "మరణించినవారు" : "Deceased"} <span className="moreMenuCount">{formatCount(deceasedVoters.length)}</span>
+                  </button>
+                  <button type="button" role="menuitem" className="moreMenuItem" onClick={() => { setShowBlocklistMgr(true); setShowMoreMenu(false); }}>
+                    {lang === "te" ? "బ్లాక్ లిస్ట్" : "Block List"} <span className="moreMenuCount">{formatCount(blocklistedVoters.length)}</span>
+                  </button>
+                  <button type="button" role="menuitem" className="moreMenuItem" onClick={() => { setShowCancelledMgr(true); setShowMoreMenu(false); }}>
+                    {lang === "te" ? "రద్దు జాబితా" : "Cancelled"} <span className="moreMenuCount">{formatCount(cancelledVoters.length)}</span>
+                  </button>
+                  <button type="button" role="menuitem" className="moreMenuItem" onClick={() => { setShowAreaStats(true); setShowMoreMenu(false); }}>
+                    <ChartIcon /> {lang === "te" ? "ప్రాంత లెక్కలు" : "Area Stats"}
+                  </button>
+                </div>
+                <div className="moreMenuDivider" role="separator" />
+                <div className="moreMenuGroup" role="group" aria-label={lang === "te" ? "ఎగుమతి" : "Export"}>
+                  <div className="moreMenuGroupLabel" aria-hidden="true">{lang === "te" ? "ఎగుమతి" : "Export"}</div>
+                  <button type="button" role="menuitem" className="moreMenuItem" onClick={() => { downloadUpdatedContactsCsv(); setShowMoreMenu(false); }}>
+                    <DownloadIcon /> {t.exportUpdated}
+                  </button>
+                  <button type="button" role="menuitem" className="moreMenuItem" onClick={() => { downloadContactsCsv(); setShowMoreMenu(false); }}>
+                    <DownloadIcon /> {t.exportContacts}
+                  </button>
+                </div>
+                <div className="moreMenuDivider" role="separator" />
+                <div className="moreMenuGroup" role="group" aria-label={lang === "te" ? "దిగుమతి — వెంటనే మారుస్తుంది" : "Import — changes data instantly"}>
+                  <div className="moreMenuGroupLabel" aria-hidden="true">{lang === "te" ? "దిగుమతి — వెంటనే మారుస్తుంది" : "Import — changes data instantly"}</div>
+                  <label className="moreMenuItem" role="menuitem" tabIndex={0} onKeyDown={fileMenuItemKeyDown}>
+                    {busy ? <SpinnerIcon /> : <UploadIcon />} {t.upload}
+                    <input
+                      type="file"
+                      accept="application/pdf"
+                      style={{ display: "none" }}
+                      onChange={(event) => { upload(event.target.files?.[0] || null); setShowMoreMenu(false); }}
+                    />
+                  </label>
+                  <label className="moreMenuItem" role="menuitem" tabIndex={0} onKeyDown={fileMenuItemKeyDown}>
+                    {busy ? <SpinnerIcon /> : <UploadIcon />} {t.importPhones}
+                    <input
+                      type="file"
+                      accept=".xlsx,.xlsm"
+                      style={{ display: "none" }}
+                      onChange={(event) => { importPhones(event.target.files?.[0] || null); setShowMoreMenu(false); }}
+                    />
+                  </label>
+                  <label className="moreMenuItem" role="menuitem" tabIndex={0} onKeyDown={fileMenuItemKeyDown}>
+                    {busy ? <SpinnerIcon /> : <UploadIcon />} {t.importFlags}
+                    <input
+                      type="file"
+                      accept=".xlsx,.xlsm"
+                      style={{ display: "none" }}
+                      onChange={(event) => { importFlags(event.target.files?.[0] || null); setShowMoreMenu(false); }}
+                    />
+                  </label>
+                  <label className="moreMenuItem" role="menuitem" tabIndex={0} onKeyDown={fileMenuItemKeyDown}>
+                    {busy ? <SpinnerIcon /> : <UploadIcon />} {t.importWhatsapp}
+                    <input
+                      type="file"
+                      accept=".xlsx,.xlsm"
+                      style={{ display: "none" }}
+                      onChange={(event) => { importWhatsappStatus(event.target.files?.[0] || null); setShowMoreMenu(false); }}
+                    />
+                  </label>
+                </div>
+                <div className="moreMenuDivider" role="separator" />
+                <div className="moreMenuGroup" role="group" aria-label={lang === "te" ? "అడ్మిన్" : "Admin"}>
+                  <div className="moreMenuGroupLabel" aria-hidden="true">{lang === "te" ? "అడ్మిన్" : "Admin"}</div>
+                  <button type="button" role="menuitem" className="moreMenuItem" onClick={() => { setShowAreaMgr(true); void loadRawAreas(); setShowMoreMenu(false); }}>
+                    {t.manageAreas}
+                  </button>
+                  <button type="button" role="menuitem" className="moreMenuItem moreMenuItemDanger" onClick={() => { setShowCampaigns(true); setShowMoreMenu(false); }}>
+                    {lang === "te" ? "వాట్సాప్ ప్రచారం" : "WhatsApp Campaigns"}
+                  </button>
+                </div>
               </div>
             )}
           </div>
