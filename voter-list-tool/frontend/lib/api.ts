@@ -270,6 +270,7 @@ export const copy = {
     noWhatsapp: "WhatsApp లేదు",
     clearNoWhatsapp: "నంబర్ సరిచేసిన తర్వాత — WhatsApp ఉందని గుర్తించండి",
     exportUpdated: "నవీకరించిన నంబర్లు ఎగుమతి (Excel)",
+    exportContacts: "పరిచయాలు CSV (సీరియల్/పేరు/ఫోన్)",
   },
   en: {
     title: "Voter List Tool",
@@ -375,6 +376,7 @@ export const copy = {
     noWhatsapp: "No WhatsApp",
     clearNoWhatsapp: "Fixed the number — mark as has WhatsApp",
     exportUpdated: "Export updated numbers (Excel)",
+    exportContacts: "Contacts CSV (serial/name/phone)",
   },
 } as const;
 

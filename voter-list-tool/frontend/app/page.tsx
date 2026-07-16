@@ -213,6 +213,21 @@ function displayAge(value: string) {
   return age === null ? "-" : String(age);
 }
 
+// Turns whatever a failed request threw into a message a Telugu-speaking desk
+// operator can act on, instead of the raw `{"detail":...}` JSON blob or an
+// English fetch-stack string that used to be shown verbatim.
+function friendlyError(err: unknown, lang: Lang): string {
+  const raw = err instanceof Error ? err.message : String(err ?? "");
+  try {
+    const parsed = JSON.parse(raw);
+    if (parsed && typeof parsed.detail === "string" && parsed.detail.trim()) return parsed.detail;
+  } catch { /* not JSON — fall through */ }
+  if (/failed to fetch|networkerror|load failed|network request failed/i.test(raw)) {
+    return lang === "te" ? "ఇంటర్నెట్ కనెక్షన్ లేదు — మళ్ళీ ప్రయత్నించండి." : "No internet connection — please try again.";
+  }
+  return lang === "te" ? "ఏదో తప్పు జరిగింది — మళ్ళీ ప్రయత్నించండి." : "Something went wrong — please try again.";
+}
+
 function voterMatchesAgeFilter(voter: Voter, filter: AgeFilter) {
   if (filter === "all") return true;
   const age = currentAge(voter.age);
@@ -733,7 +748,7 @@ export default function Home() {
       setAllVoters(await api<Voter[]>("/api/voters?include_deceased=1&include_blocklisted=1&include_cancelled=1", token));
     } catch (err) {
       setVoterLoadFailed(true);
-      setError(String(err));
+      setError(friendlyError(err, lang));
     } finally {
       setVotersLoading(false);
     }
@@ -769,7 +784,7 @@ export default function Home() {
       await loadAllVoters();
     } catch (err) {
       setLiveMessage(lang === "te" ? `"${file.name}" అప్‌లోడ్ విఫలమైంది` : `Upload of "${file.name}" failed`);
-      setError(String(err));
+      setError(friendlyError(err, lang));
     } finally {
       setBusy(false);
     }
@@ -796,7 +811,7 @@ export default function Home() {
       await loadAllVoters();
     } catch (err) {
       setLiveMessage(lang === "te" ? `"${file.name}" దిగుమతి విఫలమైంది` : `Import of "${file.name}" failed`);
-      setError(String(err));
+      setError(friendlyError(err, lang));
     } finally {
       setBusy(false);
     }
@@ -823,7 +838,7 @@ export default function Home() {
       await loadAllVoters();
     } catch (err) {
       setLiveMessage(lang === "te" ? `"${file.name}" దిగుమతి విఫలమైంది` : `Import of "${file.name}" failed`);
-      setError(String(err));
+      setError(friendlyError(err, lang));
     } finally {
       setBusy(false);
     }
@@ -850,7 +865,7 @@ export default function Home() {
       await loadAllVoters();
     } catch (err) {
       setLiveMessage(lang === "te" ? `"${file.name}" దిగుమతి విఫలమైంది` : `Import of "${file.name}" failed`);
-      setError(String(err));
+      setError(friendlyError(err, lang));
     } finally {
       setBusy(false);
     }
@@ -895,7 +910,7 @@ export default function Home() {
       setLiveMessage(lang === "te" ? "మార్పులు సేవ్ అయ్యాయి" : "Changes saved");
       closeModalInternal();
     } catch (err) {
-      setError(String(err));
+      setError(friendlyError(err, lang));
     } finally {
       setBusy(false);
     }
@@ -935,7 +950,7 @@ export default function Home() {
       await patchVoter(voter, patch);
     } catch (err) {
       setAllVoters((prev) => prev.map((v) => (v.id === voter.id ? { ...v, is_ifp_voter: voter.is_ifp_voter, is_yt_voter: voter.is_yt_voter, is_target: voter.is_target, is_mf_voter: voter.is_mf_voter } : v)));
-      setError(String(err));
+      setError(friendlyError(err, lang));
     } finally {
       setIfpBusyId("");
     }
@@ -954,7 +969,7 @@ export default function Home() {
       await patchVoter(voter, patch);
     } catch (err) {
       setAllVoters((prev) => prev.map((v) => (v.id === voter.id ? { ...v, is_yt_voter: voter.is_yt_voter, is_ifp_voter: voter.is_ifp_voter, is_target: voter.is_target, is_mf_voter: voter.is_mf_voter } : v)));
-      setError(String(err));
+      setError(friendlyError(err, lang));
     } finally {
       setYtBusyId("");
     }
@@ -973,7 +988,7 @@ export default function Home() {
       await patchVoter(voter, patch);
     } catch (err) {
       setAllVoters((prev) => prev.map((v) => (v.id === voter.id ? { ...v, is_target: voter.is_target, is_ifp_voter: voter.is_ifp_voter, is_yt_voter: voter.is_yt_voter, is_mf_voter: voter.is_mf_voter } : v)));
-      setError(String(err));
+      setError(friendlyError(err, lang));
     } finally {
       setTargetBusyId("");
     }
@@ -992,7 +1007,7 @@ export default function Home() {
       await patchVoter(voter, patch);
     } catch (err) {
       setAllVoters((prev) => prev.map((v) => (v.id === voter.id ? { ...v, is_mf_voter: voter.is_mf_voter, is_ifp_voter: voter.is_ifp_voter, is_yt_voter: voter.is_yt_voter, is_target: voter.is_target } : v)));
-      setError(String(err));
+      setError(friendlyError(err, lang));
     } finally {
       setMfBusyId("");
     }
@@ -1011,7 +1026,7 @@ export default function Home() {
       await patchVoter(voter, patch);
     } catch (err) {
       setAllVoters((prev) => prev.map((v) => (v.id === voter.id ? { ...v, is_flagged: voter.is_flagged } : v)));
-      setError(String(err));
+      setError(friendlyError(err, lang));
     } finally {
       setFlagBusyId("");
     }
@@ -1031,7 +1046,7 @@ export default function Home() {
       await patchVoter(voter, patch);
     } catch (err) {
       setAllVoters((prev) => prev.map((v) => (v.id === voter.id ? { ...v, has_whatsapp: voter.has_whatsapp } : v)));
-      setError(String(err));
+      setError(friendlyError(err, lang));
     } finally {
       setNoWaBusyId("");
     }
@@ -1053,7 +1068,7 @@ export default function Home() {
       setLiveMessage(msg);
       closeModalInternal();
     } catch (err) {
-      setError(String(err));
+      setError(friendlyError(err, lang));
     } finally {
       setBusy(false);
     }
@@ -1072,10 +1087,13 @@ export default function Home() {
   function isSelectedDirty(): boolean {
     const original = originalSelectedRef.current;
     if (!selected || !original) return false;
-    const fields: (keyof Voter)[] = ["serial_no", "name_te", "relation_name_te", "age", "occupation_te", "house_no", "area_te"];
+    const fields: (keyof Voter)[] = ["serial_no", "name_te", "relation_name_te", "age", "occupation_te", "house_no", "area_te", "mobile"];
     const fieldChanged = fields.some((f) => (selected[f] || "") !== (original[f] || ""));
     const nameEnChanged = nameMode === "en" && nameEnDraft !== (original.name_en || "");
-    return fieldChanged || nameEnChanged;
+    // mobile is the single most-edited field; wa_optin is a consent record --
+    // both were silently lost on backdrop-close before being added here.
+    const optinChanged = Boolean(selected.wa_optin) !== Boolean(original.wa_optin);
+    return fieldChanged || nameEnChanged || optinChanged;
   }
 
   function closeModal() {
@@ -1128,7 +1146,7 @@ export default function Home() {
       });
       await Promise.all([loadRawAreas(), loadAllVoters()]);
     } catch (err) {
-      setError(String(err));
+      setError(friendlyError(err, lang));
     } finally {
       setBusy(false);
     }
@@ -1139,7 +1157,13 @@ export default function Home() {
   // pill + search, instead of the old server round-trip that only knew
   // about area/source and silently dropped the rest.
   function csvField(value: string): string {
-    const v = value ?? "";
+    let v = value ?? "";
+    // CSV formula-injection guard: a cell opening with = + - @ (or tab/CR) is
+    // executed as a formula when the file is opened in Excel/Sheets. Prefix a
+    // zero-width-safe apostrophe so it's treated as literal text. Mobile and
+    // serial are digit-only server-side, so this effectively only ever fires
+    // on hand-entered free text, never mangling a real phone number.
+    if (/^[=+\-@\t\r]/.test(v)) v = "'" + v;
     return /[",\n\r]/.test(v) ? `"${v.replace(/"/g, '""')}"` : v;
   }
 
@@ -1196,9 +1220,46 @@ export default function Home() {
     URL.revokeObjectURL(href);
   }
 
+  // Full active roster as serial / name / phone / WhatsApp-status, across all
+  // jobs and ignoring the on-screen filters -- the master contact list meant
+  // to be pulled fresh each time and synced into an external messaging tool.
+  // Archived voters (deceased/blocklisted/cancelled) are excluded so they are
+  // never contacted.
+  function downloadContactsCsv() {
+    const headers = ["క్రమ సంఖ్య", "పేరు", "ఫోన్", "WhatsApp స్థితి", "ప్రాంతం"];
+    const waStatusLabel = (v: Voter) =>
+      v.has_whatsapp === true ? "ఉంది" : v.has_whatsapp === false ? "లేదు" : "తెలియదు";
+    const rows = allVoters
+      .filter((v) => !v.is_deceased && !v.is_blocklisted && !v.is_cancelled)
+      .slice()
+      .sort((a, b) => (Number(a.serial_no) || 0) - (Number(b.serial_no) || 0))
+      .map((v) => [
+        v.serial_no || "",
+        v.name_te || "",
+        v.mobile || "",
+        waStatusLabel(v),
+        v.area_te || "",
+      ]);
+    const csv = "﻿" + [headers, ...rows].map((row) => row.map(csvField).join(",")).join("\r\n");
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
+    const href = URL.createObjectURL(blob);
+    const anchor = document.createElement("a");
+    anchor.href = href;
+    anchor.download = `ifp-contacts-${new Date().toISOString().slice(0, 10)}.csv`;
+    anchor.click();
+    URL.revokeObjectURL(href);
+  }
+
   async function downloadPdf(base: string, categories: PartyCategory[] = []) {
     setPdfBusy(true);
     try {
+      // Voter names/relations/house numbers etc. are free-text and get
+      // written into a same-origin popup via document.write below, so every
+      // interpolated value MUST be HTML-escaped or a value like
+      // `<img src=x onerror=...>` executes with the auth token in scope.
+      const esc = (s: string) =>
+        String(s ?? "").replace(/[&<>"']/g, (c) =>
+          ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c] as string));
       const plainSuffix = categories.map((cat) => PARTY_FILTER_EXPORT_LABEL[cat]).join("+");
       const areaLabel = base + (plainSuffix ? ` ${plainSuffix}` : "");
       const suffixHtml = categories.length
@@ -1258,12 +1319,12 @@ export default function Home() {
           <div class="cardTop">
             <div class="photo">${img}<span class="badge ${badgeCls}">${badge}</span>${flag}</div>
             <div class="info">
-              <div class="name">${name || "[పేరు తెలియదు]"}${catTag}</div>
-              <div class="row"><span class="lbl">${lang === "te" ? "తండ్రి" : "Father"}</span><span>${displayRelation(v.relation_name_te || "", lang)}</span></div>
-              <div class="row"><span class="lbl">సీరియల్</span><span>${v.serial_no || "-"}</span></div>
-              <div class="row"><span class="lbl">వయస్సు</span><span>${displayAge(v.age)}</span></div>
-              <div class="row"><span class="lbl">D.no</span><span>${v.house_no || "-"}</span></div>
-              ${v.mobile ? `<div class="row"><span class="lbl">${lang === "te" ? "ఫోన్" : "Phone"}</span><span>${v.mobile}</span>${noWa}</div>` : ""}
+              <div class="name">${esc(name) || "[పేరు తెలియదు]"}${catTag}</div>
+              <div class="row"><span class="lbl">${lang === "te" ? "తండ్రి" : "Father"}</span><span>${esc(displayRelation(v.relation_name_te || "", lang))}</span></div>
+              <div class="row"><span class="lbl">సీరియల్</span><span>${esc(v.serial_no) || "-"}</span></div>
+              <div class="row"><span class="lbl">వయస్సు</span><span>${esc(displayAge(v.age))}</span></div>
+              <div class="row"><span class="lbl">D.no</span><span>${esc(v.house_no) || "-"}</span></div>
+              ${v.mobile ? `<div class="row"><span class="lbl">${lang === "te" ? "ఫోన్" : "Phone"}</span><span>${esc(v.mobile)}</span>${noWa}</div>` : ""}
             </div>
           </div>
           ${waBox}
@@ -1300,7 +1361,7 @@ export default function Home() {
       const pagesHtml = pdfPages.map((page, i) => {
         const banner = page.showBanner
           ? `<div class="pageHeader">
-              <h1>${base}${suffixHtml}</h1>
+              <h1>${esc(base)}${suffixHtml}</h1>
               <div class="meta">
                 మొత్తం ${filteredVoters.length} · లైఫ్ ${life.length} · జనరల్ ${general.length}<br>
                 ${new Date().toLocaleDateString("te-IN")}
@@ -1320,7 +1381,7 @@ export default function Home() {
 
       const html = `<!DOCTYPE html><html lang="te"><head>
 <meta charset="UTF-8">
-<title>${areaLabel} — ఓటర్ జాబితా</title>
+<title>${esc(areaLabel)} — ఓటర్ జాబితా</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Telugu:wght@400;700&display=swap');
   @page { size: A4 landscape; margin: 0; }
@@ -1795,7 +1856,7 @@ ${pagesHtml}
   // stuck showing a stale failure message.
   useEffect(() => {
     if (!error) return;
-    const timer = setTimeout(() => setError(""), 8000);
+    const timer = setTimeout(() => setError(""), 10000);
     return () => clearTimeout(timer);
   }, [error]);
 
@@ -1886,7 +1947,7 @@ ${pagesHtml}
               {t.login}
             </button>
           </form>
-          {error && <p className="error">{error}</p>}
+          {error && <p className="error" role="alert">{error}</p>}
         </section>
         <p className="loginFooter">{lang === "te" ? "ఇస్లామిక్ ఫ్రంట్ · మంగళగిరి" : "Islamic Front · Mangalagiri"}</p>
       </main>
@@ -2114,6 +2175,9 @@ ${pagesHtml}
                 <button type="button" role="menuitem" className="moreMenuItem" onClick={() => { downloadUpdatedContactsCsv(); setShowMoreMenu(false); }}>
                   <DownloadIcon /> {t.exportUpdated}
                 </button>
+                <button type="button" role="menuitem" className="moreMenuItem" onClick={() => { downloadContactsCsv(); setShowMoreMenu(false); }}>
+                  <DownloadIcon /> {t.exportContacts}
+                </button>
                 <div className="moreMenuDivider" aria-hidden="true" />
                 <button type="button" role="menuitem" className="moreMenuItem" onClick={() => { setShowCampaigns(true); setShowMoreMenu(false); }}>
                   {lang === "te" ? "వాట్సాప్ ప్రచారం" : "WhatsApp Campaigns"}
@@ -2226,7 +2290,12 @@ ${pagesHtml}
       </header>{/* /topbar — 2 rows on the atlas/home screen, 1 continuous line inside an area */}
       {atlasMode && summaryMetricsBlock}
       </div>{/* /stickyZone — inside an area, summaryMetricsBlock instead renders inline in topbarRowTop so it stays pinned with the header */}
-      {error && <p className="error" style={{ width: "100%", margin: "0 0 12px", padding: "0 var(--page-gutter)" }}>{error}</p>}
+      {error && (
+        <div className="errorToast" role="alert">
+          <span className="errorToastMsg">{error}</span>
+          <button type="button" className="errorToastClose" aria-label={t.close} onClick={() => setError("")}>✕</button>
+        </div>
+      )}
       {notice && <p className="notice" style={{ width: "100%", margin: "0 0 12px", padding: "0 var(--page-gutter)" }}>{notice}</p>}
 
       <section className="layout">
@@ -2798,7 +2867,7 @@ ${pagesHtml}
                   </table>
                 </>
               )}
-              {error && <p className="error" style={{ marginTop: "12px" }}>{error}</p>}
+              {error && <p className="error" style={{ marginTop: "12px" }} role="alert">{error}</p>}
             </div>
           </section>
         </div>
@@ -2836,7 +2905,7 @@ ${pagesHtml}
                             try {
                               await patchVoter(voter, { is_deceased: false, is_blocklisted: false, is_cancelled: false });
                             } catch (err) {
-                              setError(String(err));
+                              setError(friendlyError(err, lang));
                             } finally {
                               setBusy(false);
                             }
@@ -2886,7 +2955,7 @@ ${pagesHtml}
                             try {
                               await patchVoter(voter, { is_deceased: false, is_blocklisted: false, is_cancelled: false });
                             } catch (err) {
-                              setError(String(err));
+                              setError(friendlyError(err, lang));
                             } finally {
                               setBusy(false);
                             }
@@ -2936,7 +3005,7 @@ ${pagesHtml}
                             try {
                               await patchVoter(voter, { is_deceased: false, is_blocklisted: false, is_cancelled: false });
                             } catch (err) {
-                              setError(String(err));
+                              setError(friendlyError(err, lang));
                             } finally {
                               setBusy(false);
                             }

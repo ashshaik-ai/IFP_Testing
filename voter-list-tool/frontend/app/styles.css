@@ -2220,6 +2220,54 @@ form {
   font-weight: 700;
 }
 
+/* Position-stable failure surface. The old error banner rendered at the top
+   of the document, so on a scrolled mobile list it was off-screen and the
+   user never saw a failed save. This sits fixed above the mobile bottom nav,
+   is announced (role="alert"), and stays until dismissed or the next action. */
+.errorToast {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: calc(64px + env(safe-area-inset-bottom));
+  z-index: 60;
+  width: min(560px, calc(100% - 24px));
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: var(--danger);
+  color: #fff;
+  box-shadow: 0 10px 30px rgba(16, 35, 27, 0.28);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.45;
+  animation: errorToastIn 0.18s ease-out;
+}
+@media (min-width: 861px) {
+  .errorToast { bottom: calc(20px + env(safe-area-inset-bottom)); }
+}
+@keyframes errorToastIn {
+  from { opacity: 0; transform: translate(-50%, 8px); }
+  to { opacity: 1; transform: translate(-50%, 0); }
+}
+.errorToastMsg { flex: 1; min-width: 0; overflow-wrap: anywhere; }
+.errorToastClose {
+  flex-shrink: 0;
+  min-height: 0;
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 7px;
+  background: rgba(255, 255, 255, 0.18);
+  color: #fff;
+  font-size: 14px;
+  line-height: 1;
+  cursor: pointer;
+}
+.errorToastClose:hover { background: rgba(255, 255, 255, 0.3); }
+@media (prefers-reduced-motion: reduce) { .errorToast { animation: none; } }
+
 .modalMoreDetails {
   margin: 4px 0 8px;
 }
