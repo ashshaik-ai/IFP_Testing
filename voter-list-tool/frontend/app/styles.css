@@ -344,6 +344,37 @@ select {
   background: rgba(155, 28, 28, 0.06);
 }
 
+/* In-app confirm dialog — replaces window.confirm, whose buttons render in
+   the OS/device language rather than the app's and don't say what they do. */
+.confirmPanel {
+  width: min(360px, 100%);
+  cursor: default;
+  background: var(--panel);
+  border-radius: var(--radius-card, 14px);
+  padding: 20px;
+  box-shadow: 0 24px 60px rgba(16, 35, 27, 0.22);
+}
+.confirmMessage {
+  margin: 0 0 18px;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--ink, #1a1a1a);
+}
+.confirmActions {
+  display: flex;
+  gap: 10px;
+}
+.confirmActions .secondary { width: auto; flex: 1; }
+.confirmYesBtn {
+  flex: 1;
+  background: var(--danger);
+  color: #fff;
+  border-color: var(--danger);
+  font-weight: 700;
+}
+.confirmYesBtn:hover { filter: brightness(1.08); }
+
 .langRow,
 .actions {
   display: flex;

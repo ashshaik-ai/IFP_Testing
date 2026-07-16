@@ -3,7 +3,7 @@ import "./styles.css";
 
 export const metadata: Metadata = {
   title: "IFP Voter Desk",
-  description: "Islamic Front premium private voter extraction and review dashboard",
+  description: "Islamic Front internal voter list management tool",
   icons: {
     icon: "/if-logo-emblem.png",
     shortcut: "/if-logo-emblem.png",

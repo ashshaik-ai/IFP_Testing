@@ -399,7 +399,7 @@ function displayArea(voter: Pick<Voter, "area_te" | "area_en">, lang: Lang) {
 // bare letters mean nothing to a new field worker.
 const TAG_TOOLTIPS: Record<"target" | "yt" | "mf" | "ifp" | "unknown", { te: string; en: string }> = {
   target: { te: "లక్ష్యం", en: "Target" },
-  yt: { te: "యువ తరం (Yuva Taram)", en: "Yuva Taram (Youth wing)" },
+  yt: { te: "యువ తరం (Yuva Taram)", en: "Yuva Taram" },
   mf: { te: "ముస్లిం ఫ్రంట్ (Muslim Front)", en: "Muslim Front" },
   ifp: { te: "ఇస్లామిక్ ఫ్రంట్ పార్టీ", en: "Islamic Front Party" },
   unknown: { te: "IFP, T, MF, YT ఏదీ కాదు", en: "Not IFP, T, MF, or YT" },
@@ -570,6 +570,7 @@ export default function Home() {
   const cancelledRef = useRef<HTMLElement | null>(null);
   const familyRef = useRef<HTMLElement | null>(null);
   const areaStatsRef = useRef<HTMLElement | null>(null);
+  const confirmDialogRef = useRef<HTMLElement | null>(null);
   const moreMenuRef = useRef<HTMLDivElement | null>(null);
   const sheetDragStartY = useRef(0);
   const sheetDragActive = useRef(false);
@@ -640,6 +641,10 @@ export default function Home() {
   const [liveMessage, setLiveMessage] = useState("");
   const [showAreaMgr, setShowAreaMgr] = useState(false);
   const [showAreaStats, setShowAreaStats] = useState(false);
+  // Replaces window.confirm — the OS dialog's buttons render in the device's
+  // system language and don't say what they do, which is the wrong UX for
+  // the app's most consequential actions (mark deceased, blocklist, cancel).
+  const [confirmDialog, setConfirmDialog] = useState<{ message: string; onConfirm: () => void } | null>(null);
   const [showCampaigns, setShowCampaigns] = useState(false);
   const [rawAreas, setRawAreas] = useState<{ area_te: string; count: number; missing_count: number }[]>([]);
   const [knownAreaOptions, setKnownAreaOptions] = useState<AreaOption[]>([]);
@@ -1126,7 +1131,8 @@ export default function Home() {
       const msg = lang === "te"
         ? "మీరు చేసిన మార్పులు సేవ్ కాలేదు. మూసివేయాలా?"
         : "You have unsaved changes. Close without saving?";
-      if (!window.confirm(msg)) return;
+      confirmAction(msg, closeModalInternal);
+      return;
     }
     closeModalInternal();
   }
@@ -1805,10 +1811,11 @@ ${pagesHtml}
 
   // Enhancement #2 — Escape key closes any open modal
   useEffect(() => {
-    const anyOpen = selected || showAreaMgr || showDeceasedMgr || showBlocklistMgr || showCancelledMgr || showFamilyMgr || showAreaStats || showCampaigns;
+    const anyOpen = selected || showAreaMgr || showDeceasedMgr || showBlocklistMgr || showCancelledMgr || showFamilyMgr || showAreaStats || showCampaigns || confirmDialog;
     if (!anyOpen) return;
     function onKey(e: KeyboardEvent) {
       if (e.key !== "Escape") return;
+      if (confirmDialog) { setConfirmDialog(null); return; }
       if (selected) { closeModal(); return; }
       setShowAreaMgr(false);
       setShowDeceasedMgr(false);
@@ -1820,7 +1827,7 @@ ${pagesHtml}
     }
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
-  }, [selected, showAreaMgr, showDeceasedMgr, showBlocklistMgr, showCancelledMgr, showFamilyMgr, showAreaStats, showCampaigns, nameEnDraft, nameMode]);
+  }, [selected, showAreaMgr, showDeceasedMgr, showBlocklistMgr, showCancelledMgr, showFamilyMgr, showAreaStats, showCampaigns, confirmDialog, nameEnDraft, nameMode]);
 
   useModalFocusTrap(voterModalRef, Boolean(selected));
   useModalFocusTrap(areaMgrRef, showAreaMgr);
@@ -1829,6 +1836,11 @@ ${pagesHtml}
   useModalFocusTrap(cancelledRef, showCancelledMgr);
   useModalFocusTrap(familyRef, showFamilyMgr);
   useModalFocusTrap(areaStatsRef, showAreaStats);
+  useModalFocusTrap(confirmDialogRef, Boolean(confirmDialog));
+
+  function confirmAction(message: string, onConfirm: () => void) {
+    setConfirmDialog({ message, onConfirm });
+  }
 
   // Overflow "more" menu (upload/manage areas/area stats/family/deceased/
   // block/cancelled) closes on outside click or Escape, same as any menu.
@@ -2759,21 +2771,21 @@ ${pagesHtml}
                     <button type="button" className="secondary dangerGhost" style={{ marginTop: "8px" }} disabled={busy}
                       onClick={() => {
                         const msg = lang === "te" ? "ఈ ఓటరును మరణించినవారిగా గుర్తించాలా?" : "Mark this voter as deceased?";
-                        if (window.confirm(msg)) void markAndSave({ is_deceased: true, is_blocklisted: false, is_cancelled: false, is_ifp_voter: false, is_yt_voter: false, is_target: false, is_mf_voter: false });
+                        confirmAction(msg, () => void markAndSave({ is_deceased: true, is_blocklisted: false, is_cancelled: false, is_ifp_voter: false, is_yt_voter: false, is_target: false, is_mf_voter: false }));
                       }}>
                       {t.markDeceased}
                     </button>
                     <button type="button" className="secondary dangerGhost" style={{ marginTop: "8px" }} disabled={busy}
                       onClick={() => {
                         const msg = lang === "te" ? "ఈ ఓటరును బ్లాక్ లిస్ట్‌కు మార్చాలా?" : "Move this voter to the block list?";
-                        if (window.confirm(msg)) void markAndSave({ is_deceased: false, is_blocklisted: true, is_cancelled: false, is_ifp_voter: false, is_yt_voter: false, is_target: false, is_mf_voter: false });
+                        confirmAction(msg, () => void markAndSave({ is_deceased: false, is_blocklisted: true, is_cancelled: false, is_ifp_voter: false, is_yt_voter: false, is_target: false, is_mf_voter: false }));
                       }}>
                       {t.markBlocklist}
                     </button>
                     <button type="button" className="secondary dangerGhost" style={{ marginTop: "8px" }} disabled={busy}
                       onClick={() => {
                         const msg = lang === "te" ? "ఈ ఓటరును రద్దు జాబితాకు మార్చాలా?" : "Move this voter to the cancelled list?";
-                        if (window.confirm(msg)) void markAndSave({ is_deceased: false, is_blocklisted: false, is_cancelled: true, is_ifp_voter: false, is_yt_voter: false, is_target: false, is_mf_voter: false });
+                        confirmAction(msg, () => void markAndSave({ is_deceased: false, is_blocklisted: false, is_cancelled: true, is_ifp_voter: false, is_yt_voter: false, is_target: false, is_mf_voter: false }));
                       }}>
                       {t.markCancelled}
                     </button>
@@ -3182,6 +3194,27 @@ ${pagesHtml}
           areaOptions={MOVE_AREA_OPTIONS}
           onClose={() => setShowCampaigns(false)}
         />
+      )}
+      {confirmDialog && (
+        <div className="modal confirmModal" role="alertdialog" aria-modal="true" aria-label={confirmDialog.message} onClick={() => setConfirmDialog(null)}>
+          <section className="confirmPanel" ref={confirmDialogRef} tabIndex={-1} onClick={(event) => event.stopPropagation()}>
+            <p className="confirmMessage">{confirmDialog.message}</p>
+            <div className="confirmActions">
+              <button type="button" className="secondary" onClick={() => setConfirmDialog(null)}>{t.confirmNo}</button>
+              <button
+                type="button"
+                className="confirmYesBtn"
+                onClick={() => {
+                  const action = confirmDialog.onConfirm;
+                  setConfirmDialog(null);
+                  action();
+                }}
+              >
+                {t.confirmYes}
+              </button>
+            </div>
+          </section>
+        </div>
       )}
     </main>
   );
