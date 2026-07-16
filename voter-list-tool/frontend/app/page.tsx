@@ -750,7 +750,12 @@ export default function Home() {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (res.status === 401) {
+        // Session expired / token invalidated (e.g. backend restart). Tell the
+        // user why they're back at login instead of silently bouncing them.
         localStorage.removeItem("voter-token");
+        setError(lang === "te"
+          ? "సెషన్ ముగిసింది — దయచేసి మళ్ళీ ప్రవేశించండి."
+          : "Session expired — please log in again.");
         setToken("");
         return;
       }
@@ -2076,7 +2081,7 @@ ${pagesHtml}
           drillOnClick={atlasMode ? () => openAllFor("mf") : undefined}
           drillLabel={lang === "te" ? "అన్ని MF ఓటర్లు చూడండి" : "View all MF voters"}
         />
-        {areaBaseStats.unknown > 0 && (
+        {(areaBaseStats.unknown > 0 || partyFilters.has("unknown")) && (
           <StatCard
             compact
             colorClass="metricUnknown"
@@ -2092,7 +2097,7 @@ ${pagesHtml}
             drillLabel={lang === "te" ? "అన్ని తెలియని ఓటర్లు చూడండి" : "View all Unknown voters"}
           />
         )}
-        {areaBaseStats.flagged > 0 && (
+        {(areaBaseStats.flagged > 0 || partyFilters.has("flagged")) && (
           <StatCard
             compact
             colorClass="metricFlagged"
@@ -2120,6 +2125,7 @@ ${pagesHtml}
       <a href="#voterListRegion" className="skipLink">
         {lang === "te" ? "ఓటర్ల జాబితాకు వెళ్లండి" : "Skip to voter list"}
       </a>
+      <h1 className="srOnly">{t.premium}</h1>
       <div className="srOnly" role="status" aria-live="polite">{liveMessage}</div>
       {/* A refetch (after upload/merge/token refresh) previously showed no
           signal while the stale list stayed on screen — this thin bar is
@@ -2248,7 +2254,7 @@ ${pagesHtml}
           )}
         </div>
         <div className="filterBarDivider filterBarDividerA" aria-hidden="true" />
-        <div className="filterCatGroup ageFilterGroup" aria-label={lang === "te" ? "వయస్సు వడపోతలు" : "Age filters"}>
+        <div className="filterCatGroup ageFilterGroup" role="group" aria-label={lang === "te" ? "వయస్సు వడపోతలు" : "Age filters"}>
           {AGE_FILTERS.map((item) => (
             <button
               key={item}
@@ -3141,7 +3147,7 @@ ${pagesHtml}
             <div className="modalHeader" onTouchStart={onSheetTouchStart} onTouchMove={onSheetTouchMove} onTouchEnd={(e) => onSheetTouchEnd(e, () => setShowAreaStats(false))}>
               <strong>{t.areaStats}</strong>
               <span className="modalCount">{sidebarAreaStats.length}</span>
-              <button type="button" className="ghostBtn" onClick={() => setShowAreaStats(false)}>✕</button>
+              <button type="button" className="ghostBtn" aria-label={t.close} onClick={() => setShowAreaStats(false)}>✕</button>
             </div>
             <div className="sidebarStatsTableWrap">
               <table className="sidebarStatsTable">

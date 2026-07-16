@@ -2898,8 +2898,10 @@ button:not(.close):active {
 .campaignPill.paused,
 .campaignPill.queued,
 .campaignPill.sending {
-  background: rgba(185, 137, 43, 0.14);
-  color: var(--gold);
+  /* Darkened from --gold (#b9892b ~2.67:1 on this tint, below AA) to a deep
+     amber that clears 4.5:1 at the pill's 11px size. */
+  background: rgba(185, 137, 43, 0.18);
+  color: #6f5111;
 }
 
 .campaignPill.failed,
