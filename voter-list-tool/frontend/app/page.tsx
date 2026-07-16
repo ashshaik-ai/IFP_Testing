@@ -1508,11 +1508,22 @@ ${pagesHtml}
     () => activeVoters.filter((item) => voterMatchesAgeFilter(item, ageFilter)),
     [activeVoters, ageFilter],
   );
-  // area-scoped counts NOT filtered by partyFilters — used for chip labels so all chips stay non-zero
-  const areaBaseVoters = useMemo(
-    () => (selectedTile ? ageScopedVoters.filter((item) => getAreaTile(item)?.key === selectedTile) : ageScopedVoters),
-    [ageScopedVoters, selectedTile],
-  );
+  // Party/Unknown/Flagged card counts: respects every filter EXCEPT the
+  // party/unknown/flagged toggles themselves (area, age, source, search,
+  // house) -- so a card's number always matches what you'd actually see if
+  // you clicked it next, instead of silently ignoring source/search like
+  // before (audit finding: Life card said 12, IFP card beside it still
+  // showed the whole area's 340 because it wasn't source/search-scoped).
+  // Deliberately excludes the OTHER party filters so every card stays
+  // non-zero and comparable -- selecting Target doesn't zero out the YT
+  // card, it just shows what switching to YT would give you.
+  const areaBaseVoters = useMemo(() => {
+    let list = ageScopedVoters;
+    if (selectedTile) list = list.filter((item) => getAreaTile(item)?.key === selectedTile);
+    if (source !== "all") list = list.filter((item) => item.source_kind === source);
+    if (exactHouseNoFilter) list = list.filter((item) => normalizeHouseNo(item.house_no || "") === exactHouseNoFilter);
+    return list.filter((item) => voterMatchesQuery(item, query));
+  }, [ageScopedVoters, selectedTile, source, exactHouseNoFilter, query]);
   const areaBaseStats = useMemo(
     () =>
       areaBaseVoters.reduce<ScopeStats>(
