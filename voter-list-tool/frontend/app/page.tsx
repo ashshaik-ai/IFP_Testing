@@ -913,10 +913,9 @@ export default function Home() {
     setBusy(true);
     setError("");
     try {
-      await patchVoter(selected, {
+      const intended: Record<string, unknown> = {
         serial_no: selected.serial_no,
         name_te: selected.name_te,
-        name_en: nameMode === "en" ? nameEnDraft : selected.name_en,
         relation_name_te: selected.relation_name_te,
         age: selected.age,
         occupation_te: selected.occupation_te,
@@ -932,11 +931,30 @@ export default function Home() {
         notes: selected.notes,
         mobile: mobileDigits,
         wa_optin: Boolean(selected.wa_optin),
-        // stamp consent the first time a member is opted in
-        ...(selected.wa_optin && !selected.consent_ts
-          ? { consent_ts: new Date().toISOString(), consent_source: "desk" }
-          : {}),
-      });
+      };
+      if (nameMode === "en") intended.name_en = nameEnDraft;
+
+      // Send only fields actually changed in this session, not the whole
+      // snapshot -- a full-object PATCH would silently revert any field a
+      // different desk saved on this same voter after this session's copy
+      // was loaded (concurrent-edit overwrite; audit finding).
+      const original = originalSelectedRef.current as Record<string, unknown> | null;
+      const patch: Record<string, unknown> = {};
+      for (const [key, value] of Object.entries(intended)) {
+        const prev = original ? original[key] : undefined;
+        const changed = typeof value === "boolean" ? Boolean(prev) !== value : (prev ?? "") !== (value ?? "");
+        if (changed) patch[key] = value;
+      }
+      // Stamp consent only when this session is the one turning opt-in on.
+      if (patch.wa_optin === true && !selected.consent_ts) {
+        patch.consent_ts = new Date().toISOString();
+        patch.consent_source = "desk";
+      }
+      if (Object.keys(patch).length === 0) {
+        closeModalInternal();
+        return;
+      }
+      await patchVoter(selected, patch);
       setLiveMessage(lang === "te" ? "మార్పులు సేవ్ అయ్యాయి" : "Changes saved");
       closeModalInternal();
     } catch (err) {
