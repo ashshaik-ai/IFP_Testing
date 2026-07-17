@@ -133,11 +133,7 @@ function handlePhoneClick(event: React.MouseEvent<HTMLAnchorElement>, mobile: st
   window.open(`https://wa.me/91${digits}`, "_blank", "noopener,noreferrer");
 }
 
-function voterMatchesQuery(voter: Voter, query: string) {
-  const needle = query.trim().toLowerCase();
-  if (!needle) {
-    return true;
-  }
+function buildVoterHaystack(voter: Voter) {
   return [
     voter.serial_no,
     voter.card_no,
@@ -150,8 +146,20 @@ function voterMatchesQuery(voter: Voter, query: string) {
     voter.mobile,
   ]
     .join(" ")
-    .toLowerCase()
-    .includes(needle);
+    .toLowerCase();
+}
+
+// haystacks is the precomputed per-voter search string (see searchHaystacks
+// below) -- passing it skips rebuilding the same join/toLowerCase on every
+// voter on every keystroke-driven filter pass. Falls back to building it
+// inline so this stays usable from call sites without the map on hand.
+function voterMatchesQuery(voter: Voter, query: string, haystacks?: Map<string, string>) {
+  const needle = query.trim().toLowerCase();
+  if (!needle) {
+    return true;
+  }
+  const haystack = haystacks?.get(voter.id) ?? buildVoterHaystack(voter);
+  return haystack.includes(needle);
 }
 
 function getAreaTile(voter: Voter) {
@@ -623,6 +631,15 @@ export default function Home() {
     setBrowseAll(true);
   };
   const [query, setQuery] = useState("");
+  // query updates the input instantly (so typing never feels laggy);
+  // debouncedQuery is what the expensive filter passes actually key off,
+  // so a full re-filter of up to ~2,876 voters runs once per typing pause
+  // instead of once per keystroke.
+  const [debouncedQuery, setDebouncedQuery] = useState("");
+  useEffect(() => {
+    const timer = setTimeout(() => setDebouncedQuery(query), 150);
+    return () => clearTimeout(timer);
+  }, [query]);
   const [exactHouseNoFilter, setExactHouseNoFilter] = useState("");
   const [allVoters, setAllVoters] = useState<Voter[]>([]);
   const [selected, setSelected] = useState<Voter | null>(null);
@@ -1553,6 +1570,12 @@ ${pagesHtml}
     return getAreaTile(selected)?.aliases[0] || selected.area_te || "";
   }, [selected]);
 
+  const searchHaystacks = useMemo(() => {
+    const map = new Map<string, string>();
+    for (const voter of allVoters) map.set(voter.id, buildVoterHaystack(voter));
+    return map;
+  }, [allVoters]);
+
   const deceasedVoters = useMemo(() => allVoters.filter((item) => Boolean(item.is_deceased)), [allVoters]);
   const blocklistedVoters = useMemo(() => allVoters.filter((item) => Boolean(item.is_blocklisted)), [allVoters]);
   const cancelledVoters = useMemo(() => allVoters.filter((item) => Boolean(item.is_cancelled)), [allVoters]);
@@ -1578,8 +1601,8 @@ ${pagesHtml}
     if (selectedTile) list = list.filter((item) => getAreaTile(item)?.key === selectedTile);
     if (source !== "all") list = list.filter((item) => item.source_kind === source);
     if (exactHouseNoFilter) list = list.filter((item) => normalizeHouseNo(item.house_no || "") === exactHouseNoFilter);
-    return list.filter((item) => voterMatchesQuery(item, query));
-  }, [ageScopedVoters, selectedTile, source, exactHouseNoFilter, query]);
+    return list.filter((item) => voterMatchesQuery(item, debouncedQuery, searchHaystacks));
+  }, [ageScopedVoters, selectedTile, source, exactHouseNoFilter, debouncedQuery, searchHaystacks]);
   const areaBaseStats = useMemo(
     () =>
       areaBaseVoters.reduce<ScopeStats>(
@@ -1749,10 +1772,10 @@ ${pagesHtml}
         if (exactHouseNoFilter && normalizeHouseNo(voter.house_no || "") !== exactHouseNoFilter) {
           return false;
         }
-        return voterMatchesQuery(voter, query);
+        return voterMatchesQuery(voter, debouncedQuery, searchHaystacks);
       })
       .sort((a, b) => a.serial_no.localeCompare(b.serial_no, "en", { numeric: true }));
-  }, [exactHouseNoFilter, query, selectedAreaVoters, source]);
+  }, [exactHouseNoFilter, debouncedQuery, selectedAreaVoters, source, searchHaystacks]);
 
   const familyClusters = useMemo(() => {
     const clusters = new Map<string, FamilyCluster>();
@@ -2568,7 +2591,7 @@ ${pagesHtml}
               <article
                 className={`voterCard${voter.is_ifp_voter ? " ifpMarked" : ""}${voter.is_yt_voter ? " ytMarked" : ""}${voter.is_target ? " targetMarked" : ""}${voter.is_mf_voter ? " mfMarked" : ""}`}
                 key={voter.id}
-                style={index < 40 ? { animationDelay: `${index * 0.03}s` } : { animation: "none" }}
+                style={index < 40 && !debouncedQuery.trim() ? { animationDelay: `${index * 0.03}s` } : { animation: "none" }}
               >
                 <div className="photoCol">
                   <SecureImage path={voter.photo_url} token={token} alt={displayName(voter, lang, t.missingName)} />
