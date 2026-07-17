@@ -676,6 +676,42 @@ export default function Home() {
     }
   }, []);
 
+  // Restore area/filter selection from the URL on load (audit finding: a
+  // refresh mid-canvass -- area + source + age + party filters set -- reset
+  // straight back to the bare atlas). Runs once; the mirror effect below
+  // keeps the URL in sync as these change so a reload lands back here.
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const area = params.get("area");
+    if (area && AREA_TILES.some((tile) => tile.key === area)) setSelectedTile(area);
+    if (params.get("all") === "1") setBrowseAll(true);
+    const src = params.get("source");
+    if (src === "life" || src === "general") setSource(src);
+    const age = params.get("age");
+    if (age === "youth" || age === "middle" || age === "senior") setAgeFilter(age);
+    const party = params.get("party");
+    if (party) {
+      const cats = party.split(",").filter((c): c is PartyCategory => PARTY_FILTER_ORDER.includes(c as PartyCategory));
+      if (cats.length) setPartyFilters(new Set(cats));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    const params = new URLSearchParams();
+    if (selectedTile) params.set("area", selectedTile);
+    if (browseAll) params.set("all", "1");
+    if (source !== "all") params.set("source", source);
+    if (ageFilter !== "all") params.set("age", ageFilter);
+    if (partyFilters.size) params.set("party", Array.from(partyFilters).join(","));
+    const qs = params.toString();
+    // replaceState, not pushState -- filter tweaks shouldn't pile up in
+    // history (that's what the modal-open trap above uses pushState for);
+    // this only needs to survive a refresh, not be Back-button-navigable.
+    const url = qs ? `${window.location.pathname}?${qs}` : window.location.pathname;
+    window.history.replaceState(window.history.state, "", url);
+  }, [selectedTile, browseAll, source, ageFilter, partyFilters]);
+
   useEffect(() => {
     document.documentElement.lang = lang;
     localStorage.setItem("voter-lang", lang);
@@ -1857,6 +1893,38 @@ ${pagesHtml}
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
   }, [selected, showAreaMgr, showDeceasedMgr, showBlocklistMgr, showCancelledMgr, showFamilyMgr, showAreaStats, showCampaigns, confirmDialog, nameEnDraft, nameMode]);
+
+  // Android/browser Back closing whatever modal is open instead of leaving
+  // the app entirely (audit finding). Pushes one history entry the moment a
+  // modal opens in a given open/close cycle; Back then just pops it and we
+  // treat that pop as "close everything" rather than letting the browser
+  // navigate away. Closing via the X/backdrop leaves one harmless same-URL
+  // entry behind (Back needs pressing once more to actually leave after
+  // that) -- the same trade-off Gmail/Trello-style modals make.
+  const modalHistoryPushedRef = useRef(false);
+  useEffect(() => {
+    const anyOpen = Boolean(selected || showAreaMgr || showDeceasedMgr || showBlocklistMgr || showCancelledMgr || showFamilyMgr || showAreaStats || showCampaigns || confirmDialog);
+    if (anyOpen && !modalHistoryPushedRef.current) {
+      window.history.pushState(window.history.state, "");
+      modalHistoryPushedRef.current = true;
+    } else if (!anyOpen) {
+      modalHistoryPushedRef.current = false;
+    }
+    if (!anyOpen) return;
+    function onPopState() {
+      if (confirmDialog) { setConfirmDialog(null); return; }
+      if (selected) { closeModal(); return; }
+      setShowAreaMgr(false);
+      setShowDeceasedMgr(false);
+      setShowBlocklistMgr(false);
+      setShowCancelledMgr(false);
+      setShowFamilyMgr(false);
+      setShowAreaStats(false);
+      setShowCampaigns(false);
+    }
+    window.addEventListener("popstate", onPopState);
+    return () => window.removeEventListener("popstate", onPopState);
+  }, [selected, showAreaMgr, showDeceasedMgr, showBlocklistMgr, showCancelledMgr, showFamilyMgr, showAreaStats, showCampaigns, confirmDialog]);
 
   useModalFocusTrap(voterModalRef, Boolean(selected));
   useModalFocusTrap(areaMgrRef, showAreaMgr);
