@@ -332,12 +332,9 @@ function StatCard({
 
 function compactFieldFontSize(value: string): string {
   const len = value.trim().length;
-  // 11.5px floor (was 10px) — Telugu conjuncts with vattu stacks are hard to
-  // read below this on a phone, and this app's users skew older. Past the
-  // floor length the wrap-capable fields break to a 2nd line instead.
-  if (len > 14) return "11.5px";
-  if (len > 10) return "12px";
-  if (len > 5) return "12.5px";
+  if (len > 14) return "10px";
+  if (len > 10) return "11px";
+  if (len > 5) return "12px";
   return "13px";
 }
 
@@ -351,17 +348,16 @@ function isFieldAtFontFloor(value: string): boolean {
 function nameFontSize(name: string, lang: Lang): string {
   const len = name.trim().length;
   if (lang === "te") {
-    // Telugu glyphs are wider — shrink earlier. 11.5px floor (was 10px) keeps
-    // conjuncts legible for older users; longer names wrap past the floor.
-    if (len > 22) return "11.5px";
-    if (len > 17) return "12.5px";
-    if (len > 12) return "13.5px";
+    // Telugu glyphs are wider — shrink earlier
+    if (len > 22) return "10px";
+    if (len > 17) return "11.5px";
+    if (len > 12) return "13px";
     return "15px";
   }
-  // English — 11px floor (was 9.5px).
-  if (len > 26) return "11px";
-  if (len > 20) return "12px";
-  if (len > 15) return "13px";
+  // English
+  if (len > 26) return "9.5px";
+  if (len > 20) return "10.5px";
+  if (len > 15) return "12px";
   if (len > 10) return "13.5px";
   return "15px";
 }
