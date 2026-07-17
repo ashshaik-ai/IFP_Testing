@@ -391,6 +391,12 @@ function displayArea(voter: Pick<Voter, "area_te" | "area_en">, lang: Lang) {
   return toEnglishArea(voter.area_te || "", voter.area_en || "Other Area") || voter.area_en || voter.area_te || "-";
 }
 
+function waStatusLabel(voter: Pick<Voter, "has_whatsapp">, lang: Lang): string {
+  if (voter.has_whatsapp === true) return lang === "te" ? "ఉంది" : "Yes";
+  if (voter.has_whatsapp === false) return lang === "te" ? "లేదు" : "No";
+  return lang === "te" ? "తెలియదు" : "Unknown";
+}
+
 // Hover tooltip for the T/YT/MF/IFP tags — spelled out in full since the
 // bare letters mean nothing to a new field worker.
 const TAG_TOOLTIPS: Record<"target" | "yt" | "mf" | "ifp" | "unknown", { te: string; en: string }> = {
@@ -1249,15 +1255,15 @@ export default function Home() {
   }
 
   function downloadCsv(fileLabel: string) {
-    const headers = ["ప్రాంతం", "క్రమ సంఖ్య", "కార్డ్ సంఖ్య", "పేరు", "English పేరు", "తండ్రి/భర్త", "తండ్రి/భర్త పేరు", "వయస్సు", "వృత్తి", "ఇంటి నంబర్"];
+    const headers = lang === "te"
+      ? ["ప్రాంతం", "క్రమ సంఖ్య", "కార్డ్ సంఖ్య", "పేరు", "తండ్రి/భర్త పేరు", "వయస్సు", "వృత్తి", "ఇంటి నంబర్"]
+      : ["Area", "Serial No", "Card No", "Name", "Father/Husband Name", "Age", "Occupation", "House No"];
     const rows = filteredVoters.map((v) => [
-      v.area_te || "",
+      displayArea(v, lang),
       v.serial_no || "",
       v.card_no || "",
-      v.name_te || "",
-      v.name_en || "",
-      v.relation_label_te || "",
-      v.relation_name_te || "",
+      displayName(v, lang, t.missingName),
+      displayRelation(v.relation_name_te || "", lang),
       displayAge(v.age),
       v.occupation_te || "",
       v.house_no || "",
@@ -1277,18 +1283,18 @@ export default function Home() {
   // bulk import -- so this is exactly "numbers I touched by hand," across
   // all jobs, ignoring the current area/party/source filters on purpose.
   function downloadUpdatedContactsCsv() {
-    const headers = ["ప్రాంతం", "క్రమ సంఖ్య", "పేరు", "మొబైల్", "WhatsApp స్థితి", "నవీకరించిన సమయం"];
-    const waStatusLabel = (v: Voter) =>
-      v.has_whatsapp === true ? "ఉంది" : v.has_whatsapp === false ? "లేదు" : "తెలియదు";
+    const headers = lang === "te"
+      ? ["ప్రాంతం", "క్రమ సంఖ్య", "పేరు", "మొబైల్", "WhatsApp స్థితి", "నవీకరించిన సమయం"]
+      : ["Area", "Serial No", "Name", "Mobile", "WhatsApp Status", "Updated At"];
     const rows = allVoters
       .filter((v) => v.manual_update_ts)
       .sort((a, b) => String(b.manual_update_ts).localeCompare(String(a.manual_update_ts)))
       .map((v) => [
-        v.area_te || "",
+        displayArea(v, lang),
         v.serial_no || "",
-        v.name_te || "",
+        displayName(v, lang, t.missingName),
         v.mobile || "",
-        waStatusLabel(v),
+        waStatusLabel(v, lang),
         v.manual_update_ts || "",
       ]);
     const csv = "﻿" + [headers, ...rows].map((row) => row.map(csvField).join(",")).join("\r\n");
@@ -1307,19 +1313,19 @@ export default function Home() {
   // Archived voters (deceased/blocklisted/cancelled) are excluded so they are
   // never contacted.
   function downloadContactsCsv() {
-    const headers = ["క్రమ సంఖ్య", "పేరు", "ఫోన్", "WhatsApp స్థితి", "ప్రాంతం"];
-    const waStatusLabel = (v: Voter) =>
-      v.has_whatsapp === true ? "ఉంది" : v.has_whatsapp === false ? "లేదు" : "తెలియదు";
+    const headers = lang === "te"
+      ? ["క్రమ సంఖ్య", "పేరు", "ఫోన్", "WhatsApp స్థితి", "ప్రాంతం"]
+      : ["Serial No", "Name", "Phone", "WhatsApp Status", "Area"];
     const rows = allVoters
       .filter((v) => !v.is_deceased && !v.is_blocklisted && !v.is_cancelled)
       .slice()
       .sort((a, b) => (Number(a.serial_no) || 0) - (Number(b.serial_no) || 0))
       .map((v) => [
         v.serial_no || "",
-        v.name_te || "",
+        displayName(v, lang, t.missingName),
         v.mobile || "",
-        waStatusLabel(v),
-        v.area_te || "",
+        waStatusLabel(v, lang),
+        displayArea(v, lang),
       ]);
     const csv = "﻿" + [headers, ...rows].map((row) => row.map(csvField).join(",")).join("\r\n");
     const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
@@ -1379,7 +1385,7 @@ export default function Home() {
           : `<div class="noPhoto"></div>`;
         const badge = v.source_kind === "life" ? "L" : "G";
         const badgeCls = v.source_kind === "life" ? "life" : "gen";
-        const name = displayName(v, lang, "[పేరు తెలియదు]");
+        const name = displayName(v, lang, t.missingName);
         // IFP/Target/YT/MF are mutually exclusive, so a card gets exactly one
         // category -- shown as "(CODE)" after the name, colored to match the
         // card's left-edge stripe -- instead of a separate chip.
@@ -1400,10 +1406,10 @@ export default function Home() {
           <div class="cardTop">
             <div class="photo">${img}<span class="badge ${badgeCls}">${badge}</span>${flag}</div>
             <div class="info">
-              <div class="name">${esc(name) || "[పేరు తెలియదు]"}${catTag}</div>
+              <div class="name">${esc(name) || esc(t.missingName)}${catTag}</div>
               <div class="row"><span class="lbl">${lang === "te" ? "తండ్రి" : "Father"}</span><span>${esc(displayRelation(v.relation_name_te || "", lang))}</span></div>
-              <div class="row"><span class="lbl">సీరియల్</span><span>${esc(v.serial_no) || "-"}</span></div>
-              <div class="row"><span class="lbl">వయస్సు</span><span>${esc(displayAge(v.age))}</span></div>
+              <div class="row"><span class="lbl">${lang === "te" ? "సీరియల్" : "Serial"}</span><span>${esc(v.serial_no) || "-"}</span></div>
+              <div class="row"><span class="lbl">${lang === "te" ? "వయస్సు" : "Age"}</span><span>${esc(displayAge(v.age))}</span></div>
               <div class="row"><span class="lbl">D.no</span><span>${esc(v.house_no) || "-"}</span></div>
               ${v.mobile ? `<div class="row"><span class="lbl">${lang === "te" ? "ఫోన్" : "Phone"}</span><span>${esc(v.mobile)}</span>${noWa}</div>` : ""}
             </div>
@@ -1436,16 +1442,16 @@ export default function Home() {
           isFirstPageOverall = false;
         }
       }
-      pushSection(life, "లైఫ్ ఓటర్లు");
-      pushSection(general, "జనరల్ ఓటర్లు");
+      pushSection(life, lang === "te" ? "లైఫ్ ఓటర్లు" : "Life Voters");
+      pushSection(general, lang === "te" ? "జనరల్ ఓటర్లు" : "General Voters");
 
       const pagesHtml = pdfPages.map((page, i) => {
         const banner = page.showBanner
           ? `<div class="pageHeader">
               <h1>${esc(base)}${suffixHtml}</h1>
               <div class="meta">
-                మొత్తం ${filteredVoters.length} · లైఫ్ ${life.length} · జనరల్ ${general.length}<br>
-                ${new Date().toLocaleDateString("te-IN")}
+                ${lang === "te" ? "మొత్తం" : "Total"} ${filteredVoters.length} · ${lang === "te" ? "లైఫ్" : "Life"} ${life.length} · ${lang === "te" ? "జనరల్" : "General"} ${general.length}<br>
+                ${new Date().toLocaleDateString(lang === "te" ? "te-IN" : "en-IN")}
               </div>
             </div>`
           : "";
@@ -1460,9 +1466,9 @@ export default function Home() {
         </div>`;
       }).join("");
 
-      const html = `<!DOCTYPE html><html lang="te"><head>
+      const html = `<!DOCTYPE html><html lang="${lang}"><head>
 <meta charset="UTF-8">
-<title>${esc(areaLabel)} — ఓటర్ జాబితా</title>
+<title>${esc(areaLabel)} — ${lang === "te" ? "ఓటర్ జాబితా" : "Voter List"}</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Telugu:wght@400;700&display=swap');
   @page { size: A4 landscape; margin: 0; }
