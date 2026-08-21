@@ -287,8 +287,23 @@ test.describe('Screenshots — full page mobile', () => {
       });
       await page.waitForTimeout(400);
 
-      await testInfo.attach(`${pg.name}-${browserName}`, {
-        body: await page.screenshot({ fullPage: true }),
+      // PNG tops out at 32767px per side, and the limit applies to DEVICE
+      // pixels, so the CSS-pixel budget is that divided by the DPR (2 on the
+      // iPad profiles). These pages lay out taller than that, so clamp the
+      // capture rather than letting screenshot() throw.
+      const doc = await page.evaluate(() => ({
+        w: document.documentElement.scrollWidth,
+        h: document.documentElement.scrollHeight,
+        dpr: window.devicePixelRatio || 1,
+      }));
+      const maxCss = Math.floor(32000 / doc.dpr);
+      const truncated = doc.h > maxCss;
+      const shot = truncated
+        ? await page.screenshot({ clip: { x: 0, y: 0, width: doc.w, height: maxCss } })
+        : await page.screenshot({ fullPage: true });
+
+      await testInfo.attach(`${pg.name}-${browserName}${truncated ? '-truncated' : ''}`, {
+        body: shot,
         contentType: 'image/png',
       });
     });

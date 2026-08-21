@@ -5,7 +5,11 @@ const BASE_URL = process.env.BASE_URL || 'http://127.0.0.1:9090/';
 
 module.exports = defineConfig({
   testDir: './tests',
-  timeout: 30_000,
+  // WebKit full-page captures of the long portal pages (16000+ CSS px) are
+  // genuinely slow, and the suite grew from 1 tracked spec to 15. 30s at full
+  // parallelism was timing out on the 2-core CI runner, not failing on merit.
+  timeout: 60_000,
+  workers: process.env.CI ? 2 : '50%',
   retries: 1,
   reporter: [['list'], ['html', { open: 'never', outputFolder: 'playwright-report' }]],
   use: {

@@ -289,8 +289,13 @@ img{ max-width: 100%; height: auto; }
 img, video{ max-width:100%; height:auto; }
 *{ overflow-wrap: break-word; }
 
+/* Tap targets key off pointer type, not viewport width. Tablets are touch
+   devices at desktop widths, so a max-width query left them with no floor. */
+@media (pointer: coarse){
+  button, [role="button"], .ifx-btn, summary{ min-height: var(--ifx-tap); }
+}
+
 @media (max-width: 600px){
-  /* tap targets — improve thumb reach without touching desktop */
   button, [role="button"], .ifx-btn, summary{ min-height: var(--ifx-tap); }
   .ifx-card{ padding: 18px; }
   :root{ --ifx-gap: 16px; }
@@ -533,7 +538,7 @@ html { scrollbar-color: rgba(13,59,30,.35) transparent; }
 .ifl-done-btn{ min-height:44px; padding:10px 24px; border-radius:100px; border:1px solid var(--ifx-gold); background:transparent; color:var(--green-deep,#0d3b1e); font:inherit; font-weight:700; cursor:pointer; transition:background .2s,color .2s; }
 .ifl-done-btn:hover{ background:var(--ifx-gold); }
 .ifl-done-btn.done{ background:#2e8b57; border-color:#2e8b57; color:#fff; }
-.ifl-cont-btn{ margin-left:auto; padding:5px 14px; border-radius:100px; border:1.5px solid var(--green-deep,#0d3b1e); background:transparent; color:var(--green-deep,#0d3b1e); font:inherit; font-size:.82rem; font-weight:700; cursor:pointer; white-space:nowrap; transition:background .2s,color .2s; min-height:32px; }
+.ifl-cont-btn{ margin-left:auto; padding:5px 14px; border-radius:100px; border:1.5px solid var(--green-deep,#0d3b1e); background:transparent; color:var(--green-deep,#0d3b1e); font:inherit; font-size:.82rem; font-weight:700; cursor:pointer; white-space:nowrap; transition:background .2s,color .2s; min-height:var(--ifx-tap); display:inline-flex; align-items:center; justify-content:center; }
 .ifl-cont-btn:hover{ background:var(--green-deep,#0d3b1e); color:#fff; }
 .ifl-cont-btn:focus-visible{ outline:2px solid var(--ifx-gold,#c8922a); outline-offset:2px; }
 .ifl-cont-done{ margin-left:auto; font-size:.82rem; font-weight:700; color:#2e8b57; }
@@ -1063,19 +1068,25 @@ span.hmfp-label, .hmfp-li span{ font-size: 12px !important; }
   padding-bottom: 0 !important;
 }
 
-/* Learn-urdu: hero breadcrumb links — expand to 44px tap area */
+/* Learn-urdu: hero breadcrumb links — expand to 44px tap area.
+   Short Telugu labels such as "హోమ్" measure ~42px wide, so the floor needs
+   min-width too; height alone left them failing the target-size check. */
 .lu-hero-breadcrumb a{
   min-height: 44px !important;
+  min-width: 44px !important;
   display: inline-flex !important;
   align-items: center !important;
+  justify-content: center !important;
   padding: 0 2px !important;
 }
 
 /* Learn-urdu: nav links (visible on desktop) — raise height */
 .lu-nav-links a{
   min-height: 44px !important;
+  min-width: 44px !important;
   display: inline-flex !important;
   align-items: center !important;
+  justify-content: center !important;
 }
 
 /* Homepage: sticky contact bar (call/WhatsApp/email labels) */
