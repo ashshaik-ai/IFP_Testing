@@ -195,9 +195,15 @@ test.describe('KC navigation regression coverage', () => {
     await page.waitForTimeout(300);
 
     const labels = await page.locator('#bottom-nav .bn-label').evaluateAll(nodes => nodes.map(n => n.textContent.trim()));
-    expect(labels).toEqual(['Home', 'Guidance', 'Achievements', 'Manifesto', 'More']);
+    // Four items by design (94376df): each gets 25% width so the English
+    // labels fit. Guidance moved to the drawer, asserted below.
+    expect(labels).toEqual(['Home', 'Wins', 'Manifesto', 'More']);
     expect(labels).not.toContain('Knowledge');
     expect(labels).not.toContain('Profile');
+
+    // Guidance left the bottom nav but must stay reachable from the drawer.
+    await expect(page.locator('#nav-drawer a[href="student-guidance.html"]')).toHaveCount(1);
+    await expect(page.locator('#nav-drawer a[href="islamic-knowledge.html"]').first()).toHaveCount(1);
   });
 
   test('Urdu sub-lesson hides header on mobile scroll and keeps lesson nav usable', async ({ page }) => {

@@ -67,7 +67,9 @@
 
   /* HERO BREADCRUMB — visible on dark green */
   .kc-hero-crumb { display:flex; align-items:center; gap:6px; flex-wrap:wrap; font-size:12px; color:rgba(245,230,192,.60); margin-bottom:16px; }
-  .kc-hero-crumb a { color:rgba(245,230,192,.80); text-decoration:none; transition:color .2s; }
+  /* Padding out + margin back keeps the 44px touch target without shifting the crumb line. */
+  .kc-hero-crumb a { color:rgba(245,230,192,.80); text-decoration:none; transition:color .2s;
+    display:inline-flex; align-items:center; min-height:44px; padding-inline:10px; margin-inline:-10px; }
   .kc-hero-crumb a:hover { color:var(--gold-light); }
   .kc-hero-crumb [aria-current] { color:var(--gold-light); font-weight:600; }
 
