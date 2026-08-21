@@ -1,0 +1,83 @@
+{
+  "generated": "2026-08-21T14:08:07.721Z",
+  "counts": {
+    "low": 9,
+    "medium": 3
+  },
+  "catalogRecords": 76,
+  "studentGuidanceCards": 79,
+  "issues": [
+    {
+      "severity": "low",
+      "check": "pwa-manifest-missing",
+      "file": "sir-brochure-ap-2026-en.html",
+      "detail": "No manifest link"
+    },
+    {
+      "severity": "low",
+      "check": "og-title-missing",
+      "file": "sir-brochure-ap-2026-en.html",
+      "detail": "No og:title"
+    },
+    {
+      "severity": "low",
+      "check": "jsonld-missing",
+      "file": "sir-brochure-ap-2026-en.html",
+      "detail": "No static or shared JSON-LD"
+    },
+    {
+      "severity": "low",
+      "check": "pwa-manifest-missing",
+      "file": "sir-brochure-ap-2026.html",
+      "detail": "No manifest link"
+    },
+    {
+      "severity": "low",
+      "check": "og-title-missing",
+      "file": "sir-brochure-ap-2026.html",
+      "detail": "No og:title"
+    },
+    {
+      "severity": "low",
+      "check": "jsonld-missing",
+      "file": "sir-brochure-ap-2026.html",
+      "detail": "No static or shared JSON-LD"
+    },
+    {
+      "severity": "low",
+      "check": "pwa-manifest-missing",
+      "file": "sir-summary-ap-2026.html",
+      "detail": "No manifest link"
+    },
+    {
+      "severity": "low",
+      "check": "og-title-missing",
+      "file": "sir-summary-ap-2026.html",
+      "detail": "No og:title"
+    },
+    {
+      "severity": "low",
+      "check": "jsonld-missing",
+      "file": "sir-summary-ap-2026.html",
+      "detail": "No static or shared JSON-LD"
+    },
+    {
+      "severity": "medium",
+      "check": "html-not-in-catalog",
+      "file": "sir-brochure-ap-2026-en.html",
+      "detail": "HTML page is not represented in site catalog"
+    },
+    {
+      "severity": "medium",
+      "check": "html-not-in-catalog",
+      "file": "sir-brochure-ap-2026.html",
+      "detail": "HTML page is not represented in site catalog"
+    },
+    {
+      "severity": "medium",
+      "check": "html-not-in-catalog",
+      "file": "sir-summary-ap-2026.html",
+      "detail": "HTML page is not represented in site catalog"
+    }
+  ]
+}

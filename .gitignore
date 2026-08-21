@@ -3,12 +3,21 @@
 .codex/
 .agents/
 .playwright-mcp/
+.firecrawl/
+.impeccable/
 skills-lock.json
+agent-dashboard/
+/Islamic Front/
+# Anchored: only the pre-restructure root copy. projects/voter-list-tool/ stays
+# tracked and is filtered by the specific runtime rules further down.
+/voter-list-tool/
+workspace-archive/
 
 # Temp image-processing scripts (generated during development)
 _logo_*.py
 
 # OS / editor
+.vscode/
 .DS_Store
 Thumbs.db
 desktop.ini
@@ -33,7 +42,21 @@ package.json
 package-lock.json
 playwright-report/
 test-results/
+*.tsbuildinfo
 tests/
+# Keep the website's Playwright tooling tracked — mobile-tests.yml runs it in CI.
+# The directory negation must come before the files inside it.
+!projects/islamic-front-website/tests/
+!projects/islamic-front-website/package.json
+!projects/islamic-front-website/package-lock.json
+artifacts/
+archive/
+work/
+tools/
+tools/*/node_modules/
+projects/personal-ai-email-agent/
+projects/telugu-video-factory/
+projects/lpu ma political science/
 
 # Generated brochure / QA outputs
 canva-export/
@@ -41,6 +64,8 @@ _verify/
 playwright-screenshots/
 _*.png
 _pos_*.json
+tmp*.png
+tmp*.xlsx
 
 # Private voter-list tool runtime data
 voter-list-tool/backend/data/
@@ -48,10 +73,20 @@ voter-list-tool/backend/.env
 voter-list-tool/frontend/.env.local
 voter-list-tool/frontend/.next/
 voter-list-tool/frontend/node_modules/
+projects/voter-list-tool/backend/data/
+projects/voter-list-tool/backend/.env
+projects/voter-list-tool/frontend/.env.local
+projects/voter-list-tool/frontend/.next/
+projects/voter-list-tool/frontend/node_modules/
+projects/voter-list-tool/**/*.log
 !voter-list-tool/frontend/package.json
 !voter-list-tool/frontend/package-lock.json
 !voter-list-tool/backend/tests/
 !voter-list-tool/backend/tests/*.py
+!projects/voter-list-tool/frontend/package.json
+!projects/voter-list-tool/frontend/package-lock.json
+!projects/voter-list-tool/backend/tests/
+!projects/voter-list-tool/backend/tests/*.py
 !personal-ai-email-agent/tests/
 !personal-ai-email-agent/tests/**
 personal-ai-email-agent/.env
@@ -60,3 +95,4 @@ personal-ai-email-agent/.data/
 
 # poster render artifacts
 posters/out/
+projects/poster-generator/out/

@@ -72,6 +72,7 @@ Reusable skills in `.claude/skills/` — invoke with `/skill-name`:
 | `/lesson-scaffold` | Adding a new lesson to any portal | Generates lesson HTML, updates catalog, updates portal IF_PORTAL.lessons[], wires prev/next |
 | `/caveman` | **Always active by default** | Ultra-compressed responses — drops filler/pleasantries, keeps all technical content. Stop: "normal mode". |
 | `/stop-slop` | **Always active by default** (for prose) | Strips AI writing tells from shipped prose — site copy, docs, commit/PR bodies, reports. No adverbs, no em-dashes, no "not X but Y", active voice, name the actor. Governs prose; caveman governs chat. Stop: "stop slop off". |
+| `/ponytail` | **Always active by default** | Lazy senior dev mode — run the decision ladder before writing any code: need it? reuse? stdlib? platform native? one-liner? only then write minimum. No unrequested abstractions, no boilerplate, deletion beats addition. Stop: "ponytail off". |
 | `/brochure-telugu-pdf` | Creating or rebuilding a Telugu community brochure PDF | Design system, translation standards, build pipeline, coordinate mapping rule, two-layer copyable PDF, testing checklist. Full runbook: `project-docs/BROCHURE_PIPELINE.md` |
 
 Also available: `/new-portal` · `/i18n-check` · `/a11y-audit` · `/deploy` · `/verify` · `/code-review`
@@ -119,17 +120,29 @@ These rules apply automatically on every task. Do not wait to be asked.
 - RTL support: Arabic/Urdu text must use `dir="rtl"` and Amiri / Noto Nastaliq Urdu fonts
 - Do not introduce new color values not in the existing palette — use `var(--gold)`, `var(--green-deep)`, etc.
 - Buttons must have a visible hover + focus state
+- Never add filler or placeholder content — no dummy sections, lorem ipsum, or padding copy just to fill space
+- Avoid aggressive gradient backgrounds; avoid left-border accent on cards/tabs (side-tab is a dated AI-UI tell)
+- Use `text-wrap: pretty` on paragraph and body text to prevent orphaned words
+- Static designs are the exception — include thoughtful hover effects and transitions; lean toward bold and unexpected over safe and conventional
+- Never use pure `#000` or `#fff` — always tint neutrals (e.g. `#0f0f0f`, `#fafaf8`); pure black/white look harsh on screen
+- Body text: line-height 1.5–1.7, minimum 14px (ideally 16px); tight line-height below 1.3 feels crammed
+- Reading passages (paragraphs, descriptions): cap line length at 65–75ch with `max-width` to prevent overly wide text
+- Animate only `transform` and `opacity` — never animate `width`, `height`, `padding`, or `margin` (causes layout jank and repaints)
+- Break identical card grids — vary card prominence, weight, or size; avoid repeating the same icon + heading + body text pattern throughout
 
 ### Debugging — find root cause first
 - Never patch a symptom without identifying the root cause
 - Read the full error message and stack trace before proposing a fix
 - Reproduce the issue consistently before touching code
 - One fix at a time — verify it works before the next change
+- Add descriptive logging statements to isolate a problem — remove them once fixed, never ship debug logs
+- If stuck on the same error after 3 attempts: stop, state what was tried, and ask the user how to proceed — never loop endlessly
 
 ### Verification before claiming done
 - Run the relevant check (open in browser, grep, node script) before saying "done" or "fixed"
 - Evidence before assertions: state what you ran and what the output was
 - Never claim tests pass, styles look correct, or a bug is fixed without a fresh verification in the same response
+- For TypeScript/JS changes: run the typecheck or build — do not claim done while type errors exist
 
 ### Communication — always concise
 - Respond in the fewest words that fully answer the question
@@ -138,9 +151,21 @@ These rules apply automatically on every task. Do not wait to be asked.
 - Use a table or bullet list instead of paragraphs when listing multiple items
 - If explaining a change, one sentence max per change — not a paragraph
 - Never repeat information already stated earlier in the same response
+- Never use filler qualifiers: "genuinely", "honestly", "straightforward", "certainly", "absolutely", "of course"
+- When clarification is needed, ask at most one question — never a list of questions
+- Never use praise/agreement filler: "You are absolutely right," "Great point," "You are correct," etc.
+- Challenge anything the user says that is incorrect, risky, inefficient, or technically wrong — do not blindly agree
+- No emojis anywhere in code: comments, logs, variable names, or commit messages
+- After finishing any change, report only: **Files changed** / **Summary** / **Important notes or risks** / **How to test** — no other framing
 
 ### Token efficiency (agent self-discipline)
 - Read only the files needed for the task — do not load all HTML files when only one is being changed
 - Use `grep` / `glob` to locate the exact lines before reading entire files
 - When continuing a multi-step task, read `TASK.md` + the `LAST_FILE_CHANGED` only — not the whole repo
 - Prefer `Edit` (diff) over `Write` (full rewrite) whenever less than 40% of a file changes
+- Files or templates over 100 lines: outline structure first, build section by section, review, then finalise — never write a large file in one blind pass
+- When the task constraints are clear, proceed and state any assumptions inline — do not stop to ask clarifying questions that can be inferred
+- Before multi-tool or multi-step tasks: write a one-line plan (which tools, what order) before executing — do not chain tool calls blind
+- JS/TS variable names: prefer concise where obvious — `i`/`j` for indices, `e` for event, `el` for element; full names for domain concepts (`selectedVoter`, not `sv`)
+- Never assume a library or package is available — verify it exists in the project before importing; this is a no-build, no-deps stack for the main site
+- Explain non-trivial shell/bash commands before running them — one sentence on what it does and why

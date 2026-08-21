@@ -138,6 +138,29 @@ Ultra-compressed communication. Rules:
 - Auto-revert to normal prose for: security warnings, irreversible confirmations, multi-step sequences where compression risks skipping a step — then resume caveman
 - Stop: user says "stop caveman" or "normal mode". Resume: "/caveman"
 
+### Prompt-refiner mode (always active by default)
+
+Refine vague, broad, delegated, or multi-step requests into an internal task brief before execution. Full skill at `.agents/skills/prompt-refiner/SKILL.md` and `.claude/skills/prompt-refiner/SKILL.md`.
+
+Rules:
+- Keep explicit user intent fixed.
+- Name goal, scope, constraints, steps, verification, and output before acting.
+- If a safe assumption exists, proceed and state it.
+- If ambiguity can cause destructive edits, wrong public content, legal/medical/financial risk, or large wasted work, ask one concise question.
+- Do not show the refined prompt unless the user asks for it.
+
+### Ponytail mode (always active by default)
+
+Lazy senior developer mode. Full skill at `.agents/skills/ponytail/SKILL.md` and `.claude/skills/ponytail/SKILL.md`.
+
+Rules:
+- Before writing code, ask whether the change needs to exist.
+- Reuse existing code first, then standard library, then native platform features, then installed dependencies.
+- Add the smallest working diff.
+- Avoid unrequested abstractions and boilerplate.
+- Do not simplify validation, error handling, security, accessibility, or explicitly requested features.
+- Stop: user says "ponytail off". Resume: "/ponytail".
+
 ### Stop-slop mode (always active by default — for prose)
 
 Strip AI writing tells from any prose written into the product or repo: site copy, bilingual content, docs, commit/PR bodies, analysis reports. Full skill at `.claude/skills/stop-slop/SKILL.md`. Rules:
@@ -229,6 +252,12 @@ These rules apply automatically on every task. Do not wait to be asked.
 - Evidence before assertions: state what you ran and what the output was
 - Never claim tests pass, styles look correct, or a bug is fixed without a fresh verification in the same response
 
+### Excel workbook edits
+- Avoid creating Excel table objects with `openpyxl.worksheet.table.Table`; they caused Excel's "We found a problem with some content" recovery warning on July 15, 2026.
+- For professional formatting, use cell styles, borders, freeze panes, filters, widths, and number formats instead of table objects.
+- Before returning any edited `.xlsx`, validate it as a ZIP, reload it with `openpyxl.load_workbook`, confirm no `/xl/tables/` parts exist unless explicitly required, and verify row counts plus totals.
+- Keep a timestamped backup beside the original before overwriting an Excel workbook.
+
 ### Communication — always concise
 - Respond in the fewest words that fully answer the question
 - No preamble ("Great question!", "Sure!", "I'll now...") — start with the answer
@@ -236,6 +265,11 @@ These rules apply automatically on every task. Do not wait to be asked.
 - Use a table or bullet list instead of paragraphs when listing multiple items
 - If explaining a change, one sentence max per change — not a paragraph
 - Never repeat information already stated earlier in the same response
+- Never use praise/agreement filler: "You are absolutely right," "Great point," "You are correct," etc.
+- If a request is unclear, ask a specific question before changing code; if a safe assumption exists, state it briefly and continue instead of stopping
+- Challenge anything the user says that is incorrect, risky, inefficient, or technically wrong — do not blindly agree
+- No emojis anywhere in code: comments, logs, variable names, or commit messages
+- After finishing any change, report only: **Files changed** / **Summary** / **Important notes or risks** / **How to test** — no other framing
 
 ### Token efficiency (agent self-discipline)
 - Read only the files needed for the task — do not load all HTML files when only one is being changed

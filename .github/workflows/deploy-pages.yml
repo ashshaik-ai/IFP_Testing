@@ -25,7 +25,7 @@ jobs:
           node-version: '20'
 
       - name: Run static audit (fail on high-severity issues)
-        run: node scripts/audit-site.mjs
+        run: node projects/islamic-front-website/scripts/audit-site.mjs
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -33,7 +33,8 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '.'
+          # The site lives in a subfolder; the repo root is a multi-project workspace.
+          path: 'projects/islamic-front-website'
 
       - name: Deploy to GitHub Pages
         id: deployment

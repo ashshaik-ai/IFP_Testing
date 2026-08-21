@@ -16,6 +16,11 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
 
+    # The site lives in a subfolder; the repo root is a multi-project workspace.
+    defaults:
+      run:
+        working-directory: projects/islamic-front-website
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -25,6 +30,7 @@ jobs:
         with:
           node-version: '24'
           cache: 'npm'
+          cache-dependency-path: projects/islamic-front-website/package-lock.json
 
       - name: Install dependencies
         run: npm ci
@@ -42,7 +48,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: mobile-screenshots-${{ github.sha }}
-          path: playwright-screenshots/
+          path: projects/islamic-front-website/playwright-screenshots/
           retention-days: 30
 
       - name: Upload Playwright HTML report
@@ -50,5 +56,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: playwright-report-${{ github.sha }}
-          path: playwright-report/
+          path: projects/islamic-front-website/playwright-report/
           retention-days: 14
